@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "vtex",
+    "vtex-react"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/prefer-stateless-function": 0
+  }
+}

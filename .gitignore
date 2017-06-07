@@ -1,0 +1,17 @@
+.DS_Store
+*.swp
+*.swo
+build/
+build-raw/
+deploy/
+tmp-deploy/
+tmp-deploy-wm/
+node_modules/
+deploy/
+.idea/
+bower_components/
+.tmp/
+dist/
+npm-debug.log
+.vscode/
+
