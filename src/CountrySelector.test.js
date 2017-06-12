@@ -56,5 +56,5 @@ it('react to change value', () => {
   const event = { target: { value: 'USA' } }
   wrapper.find('select').simulate('change', event)
 
-  expect(handleChange).toHaveBeenCalledWith(event)
+  expect(handleChange).toHaveBeenCalledWith('USA')
 })
