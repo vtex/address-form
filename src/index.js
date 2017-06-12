@@ -1,7 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import registerServiceWorker from './registerServiceWorker'
+import mock from './mock'
 
-ReactDOM.render(<App />, document.getElementById('root'))
-registerServiceWorker()
+const fn = address => {
+  console.log(address)
+}
+
+ReactDOM.render(
+  <App shipsTo={mock.shipsTo} onChangeAddress={fn} />,
+  document.getElementById('root')
+)

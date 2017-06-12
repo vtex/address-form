@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class App extends Component {
+class CountrySelector extends Component {
   render() {
     return <div />
   }
 }
 
-App.propTypes = {
+CountrySelector.propTypes = {
   shipsTo: PropTypes.array.isRequired,
-  onChangeAddress: PropTypes.func.isRequired,
-  onChangeValidation: PropTypes.func,
+  onChangeSelectedCountry: PropTypes.func.isRequired,
 }
 
-export default App
+export default CountrySelector
