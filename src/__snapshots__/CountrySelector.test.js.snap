@@ -4,21 +4,24 @@ exports[`default value 1`] = `
 <div
   className="country-selector"
 >
-  <select
-    onChange={[Function]}
-    value="BRA"
-  >
-    <option
+  <label>
+    País
+    <select
+      onChange={[Function]}
       value="BRA"
     >
-      BRA
-    </option>
-    <option
-      value="USA"
-    >
-      USA
-    </option>
-  </select>
+      <option
+        value="BRA"
+      >
+        BRA
+      </option>
+      <option
+        value="USA"
+      >
+        USA
+      </option>
+    </select>
+  </label>
 </div>
 `;
 
@@ -26,20 +29,23 @@ exports[`show options 1`] = `
 <div
   className="country-selector"
 >
-  <select
-    onChange={[Function]}
-    value={undefined}
-  >
-    <option
-      value="BRA"
+  <label>
+    País
+    <select
+      onChange={[Function]}
+      value=""
     >
-      BRA
-    </option>
-    <option
-      value="USA"
-    >
-      USA
-    </option>
-  </select>
+      <option
+        value="BRA"
+      >
+        BRA
+      </option>
+      <option
+        value="USA"
+      >
+        USA
+      </option>
+    </select>
+  </label>
 </div>
 `;

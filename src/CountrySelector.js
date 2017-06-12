@@ -14,7 +14,7 @@ class CountrySelector extends Component {
       <div className="country-selector">
         <label>
           País
-          <select value={country} onChange={this.handleChange}>
+          <select value={country || ''} onChange={this.handleChange}>
             {shipsTo.map(country => (
               <option value={country} key={country}>
                 {country}
