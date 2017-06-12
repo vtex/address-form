@@ -1,16 +1,48 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import CountrySelector from './CountrySelector'
 
 class App extends Component {
-  render() {
-    return <div />
-  }
-}
+  constructor(props) {
+    super(props)
 
-App.propTypes = {
-  shipsTo: PropTypes.array.isRequired,
-  onChangeAddress: PropTypes.func.isRequired,
-  onChangeValidation: PropTypes.func,
+    this.state = {
+      shipsTo: ['BRA', 'USA'],
+      addressId: '1',
+      addressType: 'residential',
+      city: null,
+      complement: null,
+      country: null,
+      geoCoordinates: [],
+      neighborhood: null,
+      number: null,
+      postalCode: null,
+      receiverName: null,
+      reference: null,
+      state: null,
+      street: null,
+    }
+  }
+
+  handleChangeSelectedCountry = country => {
+    this.setState(prevState => ({
+      ...prevState,
+      country,
+    }))
+  };
+
+  render() {
+    const { shipsTo, country } = this.state
+
+    return (
+      <div>
+        <CountrySelector
+          country={country}
+          shipsTo={shipsTo}
+          onChangeSelectedCountry={this.handleChangeSelectedCountry}
+        />
+      </div>
+    )
+  }
 }
 
 export default App
