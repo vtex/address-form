@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default value 1`] = `
+<div
+  className="country-selector"
+>
+  <select
+    onChange={[Function]}
+    value="BRA"
+  >
+    <option
+      value="BRA"
+    >
+      BRA
+    </option>
+    <option
+      value="USA"
+    >
+      USA
+    </option>
+  </select>
+</div>
+`;
+
+exports[`show options 1`] = `
+<div
+  className="country-selector"
+>
+  <select
+    onChange={[Function]}
+    value={undefined}
+  >
+    <option
+      value="BRA"
+    >
+      BRA
+    </option>
+    <option
+      value="USA"
+    >
+      USA
+    </option>
+  </select>
+</div>
+`;
