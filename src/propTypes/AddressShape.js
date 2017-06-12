@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import CountryType from './CountryType'
 
 export default {
   addressId: PropTypes.string.isRequired,
@@ -10,18 +11,7 @@ export default {
   ]).isRequired,
   city: PropTypes.string,
   complement: PropTypes.string,
-  country: function(props, propName, componentName) {
-    if (!/[A-Z]{3}/.test(props[propName])) {
-      return new Error(
-        'Invalid prop `' +
-          propName +
-          '` supplied to' +
-          ' `' +
-          componentName +
-          '`. Validation failed.'
-      )
-    }
-  },
+  country: CountryType.isRequired,
   geoCoordinates: PropTypes.array,
   neighborhood: PropTypes.string,
   number: PropTypes.string,
