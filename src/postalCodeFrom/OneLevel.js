@@ -4,6 +4,20 @@ import AddressShape from '../propTypes/AddressShape'
 import find from 'lodash/find'
 
 class OneLevel extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      levelField: getLevelField(props.rules),
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      levelField: getLevelField(nextProps.rules),
+    })
+  }
+
   handleChange = e => {
     const value = e.target.value
 
@@ -14,36 +28,41 @@ class OneLevel extends Component {
   };
 
   composeValue = address =>
-    (address.state && address.postalCode
-      ? `${address.state}___${address.postalCode}`
+    (address[this.state.levelField.name] && address.postalCode
+      ? `${address[this.state.levelField.name]}___${address.postalCode}`
       : '');
 
   deComposeValue = value => {
-    const [state, postalCode] = value.split('___')
-    return { state, postalCode }
+    const [levelValue, postalCode] = value.split('___')
+    return { [this.state.levelField.name]: levelValue, postalCode }
   };
 
   render() {
     const { address, rules } = this.props
-
-    const stateField = find(rules.fields, ({ name }) => name === 'state')
+    const { levelField } = this.state
 
     return (
       <div>
         <label>
-          {stateField.label}
+          {levelField.label}
           <select
-            name="state"
+            name={levelField.name}
             value={this.composeValue(address) || ''}
             onChange={this.handleChange}
           >
             <option value="" />
-            {rules.statePostalCodes.map(({ postalCode, state }) => (
+            {rules.firstLevelPostalCodes.map(({
+              postalCode,
+              firstLevelName,
+            }) => (
               <option
-                key={state}
-                value={this.composeValue({ state, postalCode })}
+                key={firstLevelName}
+                value={this.composeValue({
+                  [levelField.name]: firstLevelName,
+                  postalCode,
+                })}
               >
-                {state}
+                {firstLevelName}
               </option>
             ))}
           </select>
@@ -51,6 +70,15 @@ class OneLevel extends Component {
       </div>
     )
   }
+}
+
+function getLevelField(rules) {
+  const levelField = find(
+    rules.fields,
+    ({ name }) => name === rules.postalCodeLevel
+  )
+
+  return levelField
 }
 
 OneLevel.propTypes = {

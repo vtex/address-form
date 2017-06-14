@@ -6,7 +6,7 @@ import CHL from '../country/CHL'
 import newAddress from '../__mocks__/newAddress'
 
 describe('City', () => {
-  it('without state selected', () => {
+  it('without first level selected', () => {
     const address = {
       ...newAddress,
       country: 'CHL',
@@ -21,7 +21,7 @@ describe('City', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('with state selected', () => {
+  it('with first level selected', () => {
     const address = {
       ...newAddress,
       country: 'CHL',
@@ -37,7 +37,7 @@ describe('City', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should change the state', () => {
+  it('should change the first level', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <TwoLevels
@@ -60,7 +60,7 @@ describe('City', () => {
     })
   })
 
-  it('should change the city and postal code ', () => {
+  it('should change the second level and postal code ', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <TwoLevels
@@ -75,13 +75,13 @@ describe('City', () => {
     )
 
     const event = { target: { value: 'Arica___1000000' } }
-    wrapper.find('select[name="city"]').simulate('change', event)
+    wrapper.find('select[name="neighborhood"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
       ...newAddress,
       country: 'CHL',
       state: 'XV Región',
-      city: 'Arica',
+      neighborhood: 'Arica',
       postalCode: '1000000',
     })
   })

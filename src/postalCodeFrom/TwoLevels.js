@@ -5,16 +5,26 @@ import find from 'lodash/find'
 import map from 'lodash/map'
 
 class TwoLevels extends Component {
-  handleStateChange = e => {
-    const state = e.target.value
+  constructor(props) {
+    super(props)
+
+    this.state = getLevels(props.rules)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(getLevels(nextProps.rules))
+  }
+
+  handleFirstLevelChange = e => {
+    const value = e.target.value
 
     this.props.onChangeAddress({
       ...this.props.address,
-      state,
+      [this.state.firstLevel.name]: value,
     })
   };
 
-  handleCityChange = e => {
+  handleSecondLevelChange = e => {
     const value = e.target.value
 
     this.props.onChangeAddress({
@@ -24,54 +34,58 @@ class TwoLevels extends Component {
   };
 
   composeValue = address =>
-    (address.city && address.postalCode
-      ? `${address.city}___${address.postalCode}`
+    (address[this.state.secondLevel.name] && address.postalCode
+      ? `${address[this.state.secondLevel.name]}___${address.postalCode}`
       : '');
 
   deComposeValue = value => {
-    const [city, postalCode] = value.split('___')
-    return { city, postalCode }
+    const [field, postalCode] = value.split('___')
+    return { [this.state.secondLevel.name]: field, postalCode }
   };
 
   render() {
     const { address, rules } = this.props
-
-    const stateField = find(rules.fields, ({ name }) => name === 'state')
+    const { firstLevel, secondLevel } = this.state
 
     return (
       <div>
         <label>
-          {stateField.label}
+          {firstLevel.label}
           <select
-            name="state"
-            value={address.state || ''}
-            onChange={this.handleStateChange}
+            name={firstLevel.name}
+            value={address[firstLevel.name] || ''}
+            onChange={this.handleFirstLevelChange}
           >
             <option value="" />
-            {stateField.options.map(state => (
-              <option key={state} value={state}>
-                {state}
+            {firstLevel.options.map(level => (
+              <option key={level} value={level}>
+                {level}
               </option>
             ))}
           </select>
         </label>
         <label>
-          City
+          {secondLevel.label}
           <select
-            name="city"
+            name={secondLevel.name}
             value={this.composeValue(address)}
-            onChange={this.handleCityChange}
+            onChange={this.handleSecondLevelChange}
           >
-            {address.state
-              ? map(rules.citiesPostalCodes[address.state], ({
+            <option value="" />
+            {address[firstLevel.name] &&
+              rules.secondLevelPostalCodes[address[firstLevel.name]]
+              ? map(rules.secondLevelPostalCodes[address[firstLevel.name]], ({
                   postalCode,
-                  city,
+                  secondLevelName,
                 }) => (
                   <option
-                    key={city}
-                    value={this.composeValue({ city, postalCode })}
+                    key={secondLevelName}
+                    value={this.composeValue({
+                      [secondLevel.name]: secondLevelName,
+                      postalCode,
+                    })}
                   >
-                    {city}
+                    {secondLevelName}
                   </option>
                 ))
               : null}
@@ -80,6 +94,19 @@ class TwoLevels extends Component {
       </div>
     )
   }
+}
+
+function getLevels(rules) {
+  const firstLevel = find(
+    rules.fields,
+    ({ name }) => name === rules.postalCodeLevels[0]
+  )
+  const secondLevel = find(
+    rules.fields,
+    ({ name }) => name === rules.postalCodeLevels[1]
+  )
+
+  return { firstLevel, secondLevel }
 }
 
 TwoLevels.propTypes = {

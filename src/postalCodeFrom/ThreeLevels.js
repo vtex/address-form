@@ -5,25 +5,35 @@ import find from 'lodash/find'
 import map from 'lodash/map'
 
 class ThreeLevels extends Component {
-  handleStateChange = e => {
-    const state = e.target.value
+  constructor(props) {
+    super(props)
+
+    this.state = getLevels(props.rules)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(getLevels(nextProps.rules))
+  }
+
+  handleFirstLevelChange = e => {
+    const value = e.target.value
 
     this.props.onChangeAddress({
       ...this.props.address,
-      state,
+      [this.state.firstLevel.name]: value,
     })
   };
 
-  handleCityChange = e => {
-    const city = e.target.value
+  handleSecondLevelChange = e => {
+    const value = e.target.value
 
     this.props.onChangeAddress({
       ...this.props.address,
-      city,
+      [this.state.secondLevel.name]: value,
     })
   };
 
-  handleNeighborhoodChange = e => {
+  handleThirdLevelChange = e => {
     const value = e.target.value
 
     this.props.onChangeAddress({
@@ -33,80 +43,85 @@ class ThreeLevels extends Component {
   };
 
   composeValue = address =>
-    (address.neighborhood && address.postalCode
-      ? `${address.neighborhood}___${address.postalCode}`
+    (address[this.state.thirdLevel.name] && address.postalCode
+      ? `${address[this.state.thirdLevel.name]}___${address.postalCode}`
       : '');
 
   deComposeValue = value => {
-    const [neighborhood, postalCode] = value.split('___')
-    return { neighborhood, postalCode }
+    const [thirdLevelValue, postalCode] = value.split('___')
+    return { [this.state.thirdLevel.name]: thirdLevelValue, postalCode }
   };
 
   render() {
     const { address, rules } = this.props
-
-    const stateField = find(rules.fields, ({ name }) => name === 'state')
-    const cityField = find(rules.fields, ({ name }) => name === 'city')
-    const neighborhoodField = find(
-      rules.fields,
-      ({ name }) => name === 'neighborhood'
-    )
+    const { firstLevel, secondLevel, thirdLevel } = this.state
 
     return (
       <div>
         <label>
-          {stateField.label}
+          {firstLevel.label}
           <select
-            name="state"
-            value={address.state || ''}
-            onChange={this.handleStateChange}
+            name={firstLevel.name}
+            value={address[firstLevel.name] || ''}
+            onChange={this.handleFirstLevelChange}
           >
             <option value="" />
-            {stateField.options.map(state => (
-              <option key={state} value={state}>
-                {state}
+            {firstLevel.options.map(firstLevelName => (
+              <option key={firstLevelName} value={firstLevelName}>
+                {firstLevelName}
               </option>
             ))}
           </select>
         </label>
         <label>
-          {cityField.label}
+          {secondLevel.label}
           <select
-            name="city"
-            value={address.city || ''}
-            onChange={this.handleCityChange}
+            name={secondLevel.name}
+            value={address[secondLevel.name] || ''}
+            onChange={this.handleSecondLevelChange}
           >
             <option value="" />
-            {address.state && cityField.optionsMap[address.state]
-              ? map(cityField.optionsMap[address.state], city => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-                ))
+            {address[firstLevel.name] &&
+              secondLevel.optionsMap[address[firstLevel.name]]
+              ? map(
+                  secondLevel.optionsMap[address[firstLevel.name]],
+                  secondLevelName => (
+                    <option key={secondLevelName} value={secondLevelName}>
+                      {secondLevelName}
+                    </option>
+                  )
+                )
               : null}
           </select>
         </label>
 
         <label>
-          {neighborhoodField.label}
+          {thirdLevel.label}
           <select
-            name="neighborhood"
+            name={thirdLevel.name}
             value={this.composeValue(address)}
-            onChange={this.handleNeighborhoodChange}
+            onChange={this.handleThirdLevelChange}
           >
             <option value="" />
-            {address.state &&
-              address.city &&
-              rules.neighborhoodPostalCodes[address.state] &&
-              rules.neighborhoodPostalCodes[address.state][address.city]
+            {address[firstLevel.name] &&
+              address[secondLevel.name] &&
+              rules.thirdLevelPostalCodes[address[firstLevel.name]] &&
+              rules.thirdLevelPostalCodes[address[firstLevel.name]][
+                address[secondLevel.name]
+              ]
               ? map(
-                  rules.neighborhoodPostalCodes[address.state][address.city],
-                  ({ postalCode, neighborhood }) => (
+                  rules.thirdLevelPostalCodes[address[firstLevel.name]][
+                    address[secondLevel.name]
+                  ],
+                  ({ postalCode, thirdLevelName }) => (
                     <option
-                      key={neighborhood}
-                      value={this.composeValue({ neighborhood, postalCode })}
+                      key={thirdLevelName}
+                      value={this.composeValue({
+                        [thirdLevel.name]: thirdLevelName,
+                        postalCode,
+                      })}
                     >
-                      {neighborhood}
+                      {thirdLevelName}
                     </option>
                   )
                 )
@@ -116,6 +131,23 @@ class ThreeLevels extends Component {
       </div>
     )
   }
+}
+
+function getLevels(rules) {
+  const firstLevel = find(
+    rules.fields,
+    ({ name }) => name === rules.postalCodeLevels[0]
+  )
+  const secondLevel = find(
+    rules.fields,
+    ({ name }) => name === rules.postalCodeLevels[1]
+  )
+  const thirdLevel = find(
+    rules.fields,
+    ({ name }) => name === rules.postalCodeLevels[2]
+  )
+
+  return { firstLevel, secondLevel, thirdLevel }
 }
 
 ThreeLevels.propTypes = {

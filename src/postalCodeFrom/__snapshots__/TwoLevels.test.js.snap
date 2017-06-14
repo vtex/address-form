@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`City with state selected 1`] = `
+exports[`City with first level selected 1`] = `
 <div>
   <label>
     region
@@ -90,12 +90,15 @@ exports[`City with state selected 1`] = `
     </select>
   </label>
   <label>
-    City
+    community
     <select
-      name="city"
+      name="neighborhood"
       onChange={[Function]}
       value=""
     >
+      <option
+        value=""
+      />
       <option
         value="Arica___1000000"
       >
@@ -121,7 +124,7 @@ exports[`City with state selected 1`] = `
 </div>
 `;
 
-exports[`City without state selected 1`] = `
+exports[`City without first level selected 1`] = `
 <div>
   <label>
     region
@@ -211,12 +214,16 @@ exports[`City without state selected 1`] = `
     </select>
   </label>
   <label>
-    City
+    community
     <select
-      name="city"
+      name="neighborhood"
       onChange={[Function]}
       value=""
-    />
+    >
+      <option
+        value=""
+      />
+    </select>
   </label>
 </div>
 `;

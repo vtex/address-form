@@ -6,7 +6,7 @@ import BOL from '../country/BOL'
 import newAddress from '../__mocks__/newAddress'
 
 describe('ThreeLevels', () => {
-  it('without state and city selected', () => {
+  it('without first and second level selected', () => {
     const address = {
       ...newAddress,
       country: 'BOL',
@@ -25,7 +25,7 @@ describe('ThreeLevels', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('with state selected and city not selected', () => {
+  it('with first level selected and second level not selected', () => {
     const address = {
       ...newAddress,
       country: 'BOL',
@@ -45,7 +45,7 @@ describe('ThreeLevels', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('with state and city selected', () => {
+  it('with first and second level selected', () => {
     const address = {
       ...newAddress,
       country: 'BOL',
@@ -66,7 +66,7 @@ describe('ThreeLevels', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('with state, city and neighborhood selected and not postal code', () => {
+  it('with first, second and third level selected and not postal code', () => {
     const address = {
       ...newAddress,
       country: 'BOL',
@@ -88,7 +88,7 @@ describe('ThreeLevels', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('with state, city, neighborhood and postalCode selected', () => {
+  it('with first, second and third level and postalCode selected', () => {
     const address = {
       ...newAddress,
       country: 'BOL',
@@ -111,7 +111,7 @@ describe('ThreeLevels', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should change the state', () => {
+  it('should change the first level', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <ThreeLevels
@@ -134,7 +134,7 @@ describe('ThreeLevels', () => {
     })
   })
 
-  it('should change the city', () => {
+  it('should change the second level', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <ThreeLevels
@@ -159,7 +159,7 @@ describe('ThreeLevels', () => {
     })
   })
 
-  it('should change the neighborhood and postal code ', () => {
+  it('should change the third level and postal code ', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <ThreeLevels

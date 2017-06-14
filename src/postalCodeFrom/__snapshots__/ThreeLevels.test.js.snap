@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ThreeLevels with state and city selected 1`] = `
+exports[`ThreeLevels with first and second level selected 1`] = `
 <div>
   <label>
     department
@@ -131,7 +131,7 @@ exports[`ThreeLevels with state and city selected 1`] = `
 </div>
 `;
 
-exports[`ThreeLevels with state selected and city not selected 1`] = `
+exports[`ThreeLevels with first level selected and second level not selected 1`] = `
 <div>
   <label>
     department
@@ -247,138 +247,7 @@ exports[`ThreeLevels with state selected and city not selected 1`] = `
 </div>
 `;
 
-exports[`ThreeLevels with state, city and neighborhood selected and not postal code 1`] = `
-<div>
-  <label>
-    department
-    <select
-      name="state"
-      onChange={[Function]}
-      value="Tarija"
-    >
-      <option
-        value=""
-      />
-      <option
-        value="Beni"
-      >
-        Beni
-      </option>
-      <option
-        value="Chuquisaca"
-      >
-        Chuquisaca
-      </option>
-      <option
-        value="Cochabamba"
-      >
-        Cochabamba
-      </option>
-      <option
-        value="La Paz"
-      >
-        La Paz
-      </option>
-      <option
-        value="Oruro"
-      >
-        Oruro
-      </option>
-      <option
-        value="Pando"
-      >
-        Pando
-      </option>
-      <option
-        value="Potosí"
-      >
-        Potosí
-      </option>
-      <option
-        value="Santa Cruz"
-      >
-        Santa Cruz
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
-      </option>
-    </select>
-  </label>
-  <label>
-    province
-    <select
-      name="city"
-      onChange={[Function]}
-      value="Méndez"
-    >
-      <option
-        value=""
-      />
-      <option
-        value="Aniceto Arce"
-      >
-        Aniceto Arce
-      </option>
-      <option
-        value="Burnet O'Connor"
-      >
-        Burnet O'Connor
-      </option>
-      <option
-        value="Cercado"
-      >
-        Cercado
-      </option>
-      <option
-        value="Gran Chaco"
-      >
-        Gran Chaco
-      </option>
-      <option
-        value="Méndez"
-      >
-        Méndez
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
-      </option>
-    </select>
-  </label>
-  <label>
-    city
-    <select
-      name="neighborhood"
-      onChange={[Function]}
-      value=""
-    >
-      <option
-        value=""
-      />
-      <option
-        value="Canasmoro___90400"
-      >
-        Canasmoro
-      </option>
-      <option
-        value="San Lorenzo___90401"
-      >
-        San Lorenzo
-      </option>
-      <option
-        value="Tomatitas___90402"
-      >
-        Tomatitas
-      </option>
-    </select>
-  </label>
-</div>
-`;
-
-exports[`ThreeLevels with state, city, neighborhood and postalCode selected 1`] = `
+exports[`ThreeLevels with first, second and third level and postalCode selected 1`] = `
 <div>
   <label>
     department
@@ -509,7 +378,138 @@ exports[`ThreeLevels with state, city, neighborhood and postalCode selected 1`] 
 </div>
 `;
 
-exports[`ThreeLevels without state and city selected 1`] = `
+exports[`ThreeLevels with first, second and third level selected and not postal code 1`] = `
+<div>
+  <label>
+    department
+    <select
+      name="state"
+      onChange={[Function]}
+      value="Tarija"
+    >
+      <option
+        value=""
+      />
+      <option
+        value="Beni"
+      >
+        Beni
+      </option>
+      <option
+        value="Chuquisaca"
+      >
+        Chuquisaca
+      </option>
+      <option
+        value="Cochabamba"
+      >
+        Cochabamba
+      </option>
+      <option
+        value="La Paz"
+      >
+        La Paz
+      </option>
+      <option
+        value="Oruro"
+      >
+        Oruro
+      </option>
+      <option
+        value="Pando"
+      >
+        Pando
+      </option>
+      <option
+        value="Potosí"
+      >
+        Potosí
+      </option>
+      <option
+        value="Santa Cruz"
+      >
+        Santa Cruz
+      </option>
+      <option
+        value="Tarija"
+      >
+        Tarija
+      </option>
+    </select>
+  </label>
+  <label>
+    province
+    <select
+      name="city"
+      onChange={[Function]}
+      value="Méndez"
+    >
+      <option
+        value=""
+      />
+      <option
+        value="Aniceto Arce"
+      >
+        Aniceto Arce
+      </option>
+      <option
+        value="Burnet O'Connor"
+      >
+        Burnet O'Connor
+      </option>
+      <option
+        value="Cercado"
+      >
+        Cercado
+      </option>
+      <option
+        value="Gran Chaco"
+      >
+        Gran Chaco
+      </option>
+      <option
+        value="Méndez"
+      >
+        Méndez
+      </option>
+      <option
+        value="Tarija"
+      >
+        Tarija
+      </option>
+    </select>
+  </label>
+  <label>
+    city
+    <select
+      name="neighborhood"
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        value=""
+      />
+      <option
+        value="Canasmoro___90400"
+      >
+        Canasmoro
+      </option>
+      <option
+        value="San Lorenzo___90401"
+      >
+        San Lorenzo
+      </option>
+      <option
+        value="Tomatitas___90402"
+      >
+        Tomatitas
+      </option>
+    </select>
+  </label>
+</div>
+`;
+
+exports[`ThreeLevels without first and second level selected 1`] = `
 <div>
   <label>
     department
