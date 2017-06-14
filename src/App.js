@@ -1,44 +1,62 @@
 import React, { Component } from 'react'
 import CountrySelector from './CountrySelector'
+import AddressForm from './AddressForm'
+import PostalCodeGetter from './PostalCodeGetter'
+import BOL from './country/BOL'
+import BRA from './country/BRA'
+import CHL from './country/CHL'
+import ECU from './country/ECU'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      shipsTo: ['BRA', 'USA'],
-      addressId: '1',
-      addressType: 'residential',
-      city: null,
-      complement: null,
-      country: null,
-      geoCoordinates: [],
-      neighborhood: null,
-      number: null,
-      postalCode: null,
-      receiverName: null,
-      reference: null,
-      state: null,
-      street: null,
+      shipsTo: ['BRA', 'BOL', 'CHL', 'ECU'],
+      address: {
+        addressId: '1',
+        addressType: 'residential',
+        city: null,
+        complement: null,
+        country: 'BRA',
+        geoCoordinates: [],
+        neighborhood: null,
+        number: null,
+        postalCode: null,
+        receiverName: null,
+        reference: null,
+        state: null,
+        street: null,
+      },
+      rules: {
+        BOL,
+        BRA,
+        CHL,
+        ECU,
+      },
     }
   }
 
-  handleChangeSelectedCountry = country => {
-    this.setState(prevState => ({
-      ...prevState,
-      country,
-    }))
+  handleChangeAddress = address => {
+    this.setState({
+      address,
+    })
   };
 
   render() {
-    const { shipsTo, country } = this.state
+    const { shipsTo, address, rules } = this.state
 
     return (
       <div>
         <CountrySelector
-          country={country}
+          address={address}
           shipsTo={shipsTo}
-          onChangeSelectedCountry={this.handleChangeSelectedCountry}
+          onChangeAddress={this.handleChangeAddress}
+        />
+        <PostalCodeGetter
+          address={address}
+          rules={rules[address.country]}
+          onChangeAddress={this.handleChangeAddress}
         />
       </div>
     )
