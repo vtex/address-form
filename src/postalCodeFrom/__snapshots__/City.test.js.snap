@@ -5,6 +5,7 @@ exports[`City with state selected 1`] = `
   <label>
     State
     <select
+      name="state"
       onChange={[Function]}
       value="XV Región"
     >
@@ -91,6 +92,7 @@ exports[`City with state selected 1`] = `
   <label>
     City
     <select
+      name="city"
       onChange={[Function]}
       value=""
     >
@@ -124,6 +126,7 @@ exports[`City without state selected 1`] = `
   <label>
     State
     <select
+      name="state"
       onChange={[Function]}
       value=""
     >
@@ -210,6 +213,7 @@ exports[`City without state selected 1`] = `
   <label>
     City
     <select
+      name="city"
       onChange={[Function]}
       value=""
     />

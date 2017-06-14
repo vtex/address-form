@@ -5,6 +5,7 @@ exports[`State show state options 1`] = `
   <label>
     State
     <select
+      name="state"
       onChange={[Function]}
       value=""
     >

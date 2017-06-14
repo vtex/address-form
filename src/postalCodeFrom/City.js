@@ -43,7 +43,11 @@ class City extends Component {
       <div>
         <label>
           State
-          <select value={address.state || ''} onChange={this.handleStateChange}>
+          <select
+            name="state"
+            value={address.state || ''}
+            onChange={this.handleStateChange}
+          >
             <option value="" />
             {stateOptions.map(state => (
               <option key={state} value={state}>
@@ -55,6 +59,7 @@ class City extends Component {
         <label>
           City
           <select
+            name="city"
             value={this.composeValue(address)}
             onChange={this.handleCityChange}
           >

@@ -30,6 +30,7 @@ class State extends Component {
         <label>
           State
           <select
+            name="state"
             value={this.composeValue(address) || ''}
             onChange={this.handleChange}
           >

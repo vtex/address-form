@@ -54,7 +54,11 @@ class Neighborhood extends Component {
       <div>
         <label>
           State
-          <select value={address.state || ''} onChange={this.handleStateChange}>
+          <select
+            name="state"
+            value={address.state || ''}
+            onChange={this.handleStateChange}
+          >
             <option value="" />
             {stateOptions.map(state => (
               <option key={state} value={state}>
@@ -65,7 +69,11 @@ class Neighborhood extends Component {
         </label>
         <label>
           City
-          <select value={address.city || ''} onChange={this.handleCityChange}>
+          <select
+            name="city"
+            value={address.city || ''}
+            onChange={this.handleCityChange}
+          >
             <option value="" />
             {address.state && cityOptionsMap[address.state]
               ? map(cityOptionsMap[address.state], city => (
@@ -80,6 +88,7 @@ class Neighborhood extends Component {
         <label>
           Neighborhood
           <select
+            name="neighborhood"
             value={this.composeValue(address)}
             onChange={this.handleNeighborhoodChange}
           >
