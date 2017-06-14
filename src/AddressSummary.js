@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from './AddressShape'
+import AddressShape from './propTypes/AddressShape'
 
 class AddressSummary extends Component {
   render() {
