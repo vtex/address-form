@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
+import find from 'lodash/find'
 
 class State extends Component {
   handleChange = e => {
@@ -25,10 +26,12 @@ class State extends Component {
   render() {
     const { address, rules } = this.props
 
+    const stateField = find(rules.fields, ({ name }) => name === 'state')
+
     return (
       <div>
         <label>
-          State
+          {stateField.label}
           <select
             name="state"
             value={this.composeValue(address) || ''}

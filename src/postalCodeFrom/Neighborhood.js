@@ -45,22 +45,24 @@ class Neighborhood extends Component {
   render() {
     const { address, rules } = this.props
 
-    const stateOptions = find(rules.fields, ({ name }) => name === 'state')
-      .options
-    const cityOptionsMap = find(rules.fields, ({ name }) => name === 'city')
-      .optionsMap
+    const stateField = find(rules.fields, ({ name }) => name === 'state')
+    const cityField = find(rules.fields, ({ name }) => name === 'city')
+    const neighborhoodField = find(
+      rules.fields,
+      ({ name }) => name === 'neighborhood'
+    )
 
     return (
       <div>
         <label>
-          State
+          {stateField.label}
           <select
             name="state"
             value={address.state || ''}
             onChange={this.handleStateChange}
           >
             <option value="" />
-            {stateOptions.map(state => (
+            {stateField.options.map(state => (
               <option key={state} value={state}>
                 {state}
               </option>
@@ -68,15 +70,15 @@ class Neighborhood extends Component {
           </select>
         </label>
         <label>
-          City
+          {cityField.label}
           <select
             name="city"
             value={address.city || ''}
             onChange={this.handleCityChange}
           >
             <option value="" />
-            {address.state && cityOptionsMap[address.state]
-              ? map(cityOptionsMap[address.state], city => (
+            {address.state && cityField.optionsMap[address.state]
+              ? map(cityField.optionsMap[address.state], city => (
                 <option key={city} value={city}>
                   {city}
                 </option>
@@ -86,14 +88,17 @@ class Neighborhood extends Component {
         </label>
 
         <label>
-          Neighborhood
+          {neighborhoodField.label}
           <select
             name="neighborhood"
             value={this.composeValue(address)}
             onChange={this.handleNeighborhoodChange}
           >
             <option value="" />
-            {address.state && address.city
+            {address.state &&
+              address.city &&
+              rules.neighborhoodPostalCodes[address.state] &&
+              rules.neighborhoodPostalCodes[address.state][address.city]
               ? map(
                   rules.neighborhoodPostalCodes[address.state][address.city],
                   ({ postalCode, neighborhood }) => (

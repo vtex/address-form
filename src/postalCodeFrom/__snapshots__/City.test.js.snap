@@ -3,7 +3,7 @@
 exports[`City with state selected 1`] = `
 <div>
   <label>
-    State
+    region
     <select
       name="state"
       onChange={[Function]}
@@ -124,7 +124,7 @@ exports[`City with state selected 1`] = `
 exports[`City without state selected 1`] = `
 <div>
   <label>
-    State
+    region
     <select
       name="state"
       onChange={[Function]}

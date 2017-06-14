@@ -3,7 +3,7 @@
 exports[`Neighborhood with state and city selected 1`] = `
 <div>
   <label>
-    State
+    department
     <select
       name="state"
       onChange={[Function]}
@@ -60,7 +60,7 @@ exports[`Neighborhood with state and city selected 1`] = `
     </select>
   </label>
   <label>
-    City
+    province
     <select
       name="city"
       onChange={[Function]}
@@ -102,7 +102,7 @@ exports[`Neighborhood with state and city selected 1`] = `
     </select>
   </label>
   <label>
-    Neighborhood
+    city
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -134,7 +134,7 @@ exports[`Neighborhood with state and city selected 1`] = `
 exports[`Neighborhood with state selected and city not selected 1`] = `
 <div>
   <label>
-    State
+    department
     <select
       name="state"
       onChange={[Function]}
@@ -191,7 +191,7 @@ exports[`Neighborhood with state selected and city not selected 1`] = `
     </select>
   </label>
   <label>
-    City
+    province
     <select
       name="city"
       onChange={[Function]}
@@ -233,7 +233,7 @@ exports[`Neighborhood with state selected and city not selected 1`] = `
     </select>
   </label>
   <label>
-    Neighborhood
+    city
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -250,7 +250,7 @@ exports[`Neighborhood with state selected and city not selected 1`] = `
 exports[`Neighborhood with state, city and neighborhood selected and not postal code 1`] = `
 <div>
   <label>
-    State
+    department
     <select
       name="state"
       onChange={[Function]}
@@ -307,7 +307,7 @@ exports[`Neighborhood with state, city and neighborhood selected and not postal 
     </select>
   </label>
   <label>
-    City
+    province
     <select
       name="city"
       onChange={[Function]}
@@ -349,7 +349,7 @@ exports[`Neighborhood with state, city and neighborhood selected and not postal 
     </select>
   </label>
   <label>
-    Neighborhood
+    city
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -381,7 +381,7 @@ exports[`Neighborhood with state, city and neighborhood selected and not postal 
 exports[`Neighborhood with state, city, neighborhood and postalCode selected 1`] = `
 <div>
   <label>
-    State
+    department
     <select
       name="state"
       onChange={[Function]}
@@ -438,7 +438,7 @@ exports[`Neighborhood with state, city, neighborhood and postalCode selected 1`]
     </select>
   </label>
   <label>
-    City
+    province
     <select
       name="city"
       onChange={[Function]}
@@ -480,7 +480,7 @@ exports[`Neighborhood with state, city, neighborhood and postalCode selected 1`]
     </select>
   </label>
   <label>
-    Neighborhood
+    city
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -512,7 +512,7 @@ exports[`Neighborhood with state, city, neighborhood and postalCode selected 1`]
 exports[`Neighborhood without state and city selected 1`] = `
 <div>
   <label>
-    State
+    department
     <select
       name="state"
       onChange={[Function]}
@@ -569,7 +569,7 @@ exports[`Neighborhood without state and city selected 1`] = `
     </select>
   </label>
   <label>
-    City
+    province
     <select
       name="city"
       onChange={[Function]}
@@ -581,7 +581,7 @@ exports[`Neighborhood without state and city selected 1`] = `
     </select>
   </label>
   <label>
-    Neighborhood
+    city
     <select
       name="neighborhood"
       onChange={[Function]}

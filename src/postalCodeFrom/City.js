@@ -36,20 +36,19 @@ class City extends Component {
   render() {
     const { address, rules } = this.props
 
-    const stateOptions = find(rules.fields, ({ name }) => name === 'state')
-      .options
+    const stateField = find(rules.fields, ({ name }) => name === 'state')
 
     return (
       <div>
         <label>
-          State
+          {stateField.label}
           <select
             name="state"
             value={address.state || ''}
             onChange={this.handleStateChange}
           >
             <option value="" />
-            {stateOptions.map(state => (
+            {stateField.options.map(state => (
               <option key={state} value={state}>
                 {state}
               </option>

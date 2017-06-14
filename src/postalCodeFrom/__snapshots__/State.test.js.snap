@@ -3,7 +3,7 @@
 exports[`State show state options 1`] = `
 <div>
   <label>
-    State
+    province
     <select
       name="state"
       onChange={[Function]}
