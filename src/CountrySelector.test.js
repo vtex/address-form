@@ -71,7 +71,7 @@ describe('CountrySelector', () => {
     })
   })
 
-  it('shold clean postalCode when country changes', () => {
+  it('shold clean address delivery fields when country changes', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <CountrySelector
@@ -79,6 +79,9 @@ describe('CountrySelector', () => {
           ...newAddress,
           country: 'BRA',
           postalCode: '123',
+          state: 'Foo',
+          city: 'Bar',
+          neighborhood: 'Baz',
         }}
         shipsTo={['BRA', 'USA']}
         onChangeAddress={handleChange}
@@ -92,6 +95,9 @@ describe('CountrySelector', () => {
       ...newAddress,
       country: 'USA',
       postalCode: null,
+      state: null,
+      city: null,
+      neighborhood: null,
     })
   })
 })

@@ -8,6 +8,9 @@ class CountrySelector extends Component {
     this.props.onChangeAddress({
       ...this.props.address,
       postalCode: null,
+      state: null,
+      city: null,
+      neighborhood: null,
       country,
     })
   };
