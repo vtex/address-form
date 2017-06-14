@@ -7,7 +7,7 @@ class PostalCode extends Component {
     const postalCode = e.target.value
     this.props.onChangeAddress({
       ...this.props.address,
-      ...postalCode,
+      postalCode,
     })
   };
 
