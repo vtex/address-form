@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Postal Code show postal code 1`] = `
+<div
+  className="postal-code"
+>
+  <label>
+    Postal code
+    <input
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </label>
+</div>
+`;

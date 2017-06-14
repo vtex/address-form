@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`City with state selected 1`] = `
+<div>
+  <label>
+    State
+    <select
+      onChange={[Function]}
+      value="XV Región"
+    >
+      <option
+        value=""
+      />
+      <option
+        value="Región Metropolitana"
+      >
+        Región Metropolitana
+      </option>
+      <option
+        value="I Región"
+      >
+        I Región
+      </option>
+      <option
+        value="II Región"
+      >
+        II Región
+      </option>
+      <option
+        value="III Región"
+      >
+        III Región
+      </option>
+      <option
+        value="IV Región"
+      >
+        IV Región
+      </option>
+      <option
+        value="V Región"
+      >
+        V Región
+      </option>
+      <option
+        value="VI Región"
+      >
+        VI Región
+      </option>
+      <option
+        value="IX Región"
+      >
+        IX Región
+      </option>
+      <option
+        value="VII Región"
+      >
+        VII Región
+      </option>
+      <option
+        value="VIII Región"
+      >
+        VIII Región
+      </option>
+      <option
+        value="X Región"
+      >
+        X Región
+      </option>
+      <option
+        value="XI Región"
+      >
+        XI Región
+      </option>
+      <option
+        value="XII Región"
+      >
+        XII Región
+      </option>
+      <option
+        value="XIV Región"
+      >
+        XIV Región
+      </option>
+      <option
+        value="XV Región"
+      >
+        XV Región
+      </option>
+    </select>
+  </label>
+  <label>
+    City
+    <select
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        value="Arica___1000000"
+      >
+        Arica
+      </option>
+      <option
+        value="Camarones___1040000"
+      >
+        Camarones
+      </option>
+      <option
+        value="General Lagos___1080000"
+      >
+        General Lagos
+      </option>
+      <option
+        value="Putre___1070000"
+      >
+        Putre
+      </option>
+    </select>
+  </label>
+</div>
+`;
+
+exports[`City without state selected 1`] = `
+<div>
+  <label>
+    State
+    <select
+      onChange={[Function]}
+      value=""
+    >
+      <option
+        value=""
+      />
+      <option
+        value="Región Metropolitana"
+      >
+        Región Metropolitana
+      </option>
+      <option
+        value="I Región"
+      >
+        I Región
+      </option>
+      <option
+        value="II Región"
+      >
+        II Región
+      </option>
+      <option
+        value="III Región"
+      >
+        III Región
+      </option>
+      <option
+        value="IV Región"
+      >
+        IV Región
+      </option>
+      <option
+        value="V Región"
+      >
+        V Región
+      </option>
+      <option
+        value="VI Región"
+      >
+        VI Región
+      </option>
+      <option
+        value="IX Región"
+      >
+        IX Región
+      </option>
+      <option
+        value="VII Región"
+      >
+        VII Región
+      </option>
+      <option
+        value="VIII Región"
+      >
+        VIII Región
+      </option>
+      <option
+        value="X Región"
+      >
+        X Región
+      </option>
+      <option
+        value="XI Región"
+      >
+        XI Región
+      </option>
+      <option
+        value="XII Región"
+      >
+        XII Región
+      </option>
+      <option
+        value="XIV Región"
+      >
+        XIV Región
+      </option>
+      <option
+        value="XV Región"
+      >
+        XV Región
+      </option>
+    </select>
+  </label>
+  <label>
+    City
+    <select
+      onChange={[Function]}
+      value=""
+    />
+  </label>
+</div>
+`;
