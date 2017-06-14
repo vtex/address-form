@@ -48,6 +48,8 @@ class App extends Component {
 
     return (
       <div>
+        <pre>{JSON.stringify(address, null, 2)}</pre>
+
         <CountrySelector
           address={address}
           shipsTo={shipsTo}
