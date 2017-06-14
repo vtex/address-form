@@ -1,12 +1,12 @@
 import {
-  statePostalCodes,
-  citiesPostalCodes,
-  neighborhoodPostalCodes,
+  firstLevelPostalCodes,
+  secondLevelPostalCodes,
+  thirdLevelPostalCodes,
 } from './postalCodes'
 
 describe('Postal Code Transforms', () => {
   it('should transform state postal codes', () => {
-    const mapOfStateAndCities = {
+    const oneLevelCountryData = {
       StateName01: {
         City01: '1',
         City02: '1',
@@ -16,13 +16,13 @@ describe('Postal Code Transforms', () => {
       },
     }
 
-    const result = statePostalCodes(mapOfStateAndCities)
+    const result = firstLevelPostalCodes(oneLevelCountryData)
 
     expect(result).toMatchSnapshot()
   })
 
   it('should transform cities postal codes', () => {
-    const mapOfStateAndCities = {
+    const twoLevelsCountryData = {
       StateName01: {
         City01: '1',
         City02: '2',
@@ -32,13 +32,13 @@ describe('Postal Code Transforms', () => {
       },
     }
 
-    const result = citiesPostalCodes(mapOfStateAndCities)
+    const result = secondLevelPostalCodes(twoLevelsCountryData)
 
     expect(result).toMatchSnapshot()
   })
 
   it('should transform neighborhoods postal codes', () => {
-    const mapOfStateAndCities = {
+    const threeLevelsCountryData = {
       StateName01: {
         City01: {
           Neighborhood1: '1',
@@ -56,7 +56,7 @@ describe('Postal Code Transforms', () => {
       },
     }
 
-    const result = neighborhoodPostalCodes(mapOfStateAndCities)
+    const result = thirdLevelPostalCodes(threeLevelsCountryData)
 
     expect(result).toMatchSnapshot()
   })

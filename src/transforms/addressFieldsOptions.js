@@ -2,39 +2,37 @@ import keys from 'lodash/keys'
 import map from 'lodash/map'
 import reduce from 'lodash/reduce'
 
-export function getStates(mapOfStates) {
-  return keys(mapOfStates)
+export function getFirstLevel(countryData) {
+  return keys(countryData)
 }
 
-export function getMapOfStatesAndCities(mapOfStatesAndCities) {
+export function getSecondLevel(countryData) {
   return reduce(
-    mapOfStatesAndCities,
-    (memo, cities, state) => {
-      memo[state] = keys(cities)
+    countryData,
+    (memo, secondLevels, firstLevelName) => {
+      memo[firstLevelName] = keys(secondLevels)
       return memo
     },
     {}
   )
 }
 
-export function getMapOfStatesCitiesAndNeighborhoods(
-  mapOfStatesCitiesAndNeighborhoods
-) {
+export function getThirdLevel(countryData) {
   return reduce(
-    mapOfStatesCitiesAndNeighborhoods,
-    (memoStates, cities, state) => {
-      memoStates[state] = reduce(
-        cities,
-        (memoCities, neighborhoods, city) => {
-          memoCities[city] = map(
-            neighborhoods,
-            (postalCode, neighborhood) => neighborhood
+    countryData,
+    (memoFirst, secondLevels, firstLevelName) => {
+      memoFirst[firstLevelName] = reduce(
+        secondLevels,
+        (memoSecond, thirdLevels, secondLevelName) => {
+          memoSecond[secondLevelName] = map(
+            thirdLevels,
+            (postalCode, thirdLevelName) => thirdLevelName
           )
-          return memoCities
+          return memoSecond
         },
         {}
       )
-      return memoStates
+      return memoFirst
     },
     {}
   )

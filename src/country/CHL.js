@@ -1,8 +1,8 @@
 import { TWO_LEVELS } from '../constants'
-import { citiesPostalCodes } from '../transforms/postalCodes'
+import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import {
-  getStates,
-  getMapOfStatesAndCities,
+  getFirstLevel,
+  getSecondLevel,
 } from '../transforms/addressFieldsOptions'
 
 const countryData = {
@@ -386,7 +386,7 @@ const countryData = {
 export default {
   postalCodeFrom: TWO_LEVELS,
   postalCodeLevels: ['state', 'neighborhood'],
-  citiesPostalCodes: citiesPostalCodes(countryData),
+  secondLevelPostalCodes: secondLevelPostalCodes(countryData),
   fields: [
     {
       name: 'street',
@@ -411,14 +411,14 @@ export default {
       required: true,
       size: 'large',
       isUpperCase: false,
-      options: getStates(countryData),
+      options: getFirstLevel(countryData),
     },
     {
       name: 'neighborhood',
       label: 'community',
       required: true,
       size: 'large',
-      optionsMap: getMapOfStatesAndCities(countryData),
+      optionsMap: getSecondLevel(countryData),
     },
   ],
 }

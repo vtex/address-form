@@ -2,36 +2,41 @@ import map from 'lodash/map'
 import reduce from 'lodash/reduce'
 import values from 'lodash/values'
 
-export function statePostalCodes(mapOfStateAndCities) {
-  return map(mapOfStateAndCities, (cities, state) => ({
-    state,
-    postalCode: values(cities)[0],
+export function firstLevelPostalCodes(countryData) {
+  return map(countryData, (secondLevel, firstLevelName) => ({
+    firstLevelName,
+    postalCode: values(secondLevel)[0],
   }))
 }
 
-export function citiesPostalCodes(mapOfStateAndCities) {
+export function secondLevelPostalCodes(countryData) {
   return reduce(
-    mapOfStateAndCities,
-    (memo, cities, state) => {
-      memo[state] = map(cities, (postalCode, city) => ({ postalCode, city }))
+    countryData,
+    (memo, secondLevels, firstLevel) => {
+      memo[firstLevel] = map(secondLevels, (postalCode, secondLevelName) => ({
+        postalCode,
+        secondLevelName,
+      }))
       return memo
     },
     {}
   )
 }
 
-export function neighborhoodPostalCodes(mapOfStateCitiesAndNeighborhoods) {
+export function thirdLevelPostalCodes(countryData) {
   return reduce(
-    mapOfStateCitiesAndNeighborhoods,
-    (memo, cities, state) => {
-      memo[state] = reduce(
-        cities,
-        (memoCities, neighborhoods, city) => {
-          memoCities[city] = map(neighborhoods, (postalCode, neighborhood) => ({
+    countryData,
+    (memo, secondLevels, firstLevel) => {
+      memo[firstLevel] = reduce(
+        secondLevels,
+        (memoSecond, thirdLevels, secondLevel) => {
+          memoSecond[
+            secondLevel
+          ] = map(thirdLevels, (postalCode, thirdLevelName) => ({
             postalCode,
-            neighborhood,
+            thirdLevelName,
           }))
-          return memoCities
+          return memoSecond
         },
         {}
       )

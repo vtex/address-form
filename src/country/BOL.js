@@ -1,9 +1,9 @@
 import { THREE_LEVELS } from '../constants'
-import { neighborhoodPostalCodes } from '../transforms/postalCodes'
+import { thirdLevelPostalCodes } from '../transforms/postalCodes'
 import {
-  getStates,
-  getMapOfStatesAndCities,
-  getMapOfStatesCitiesAndNeighborhoods,
+  getFirstLevel,
+  getSecondLevel,
+  getThirdLevel,
 } from '../transforms/addressFieldsOptions.js'
 
 const countryData = {
@@ -400,7 +400,7 @@ const countryData = {
 export default {
   postalCodeFrom: THREE_LEVELS,
   postalCodeLevels: ['state', 'city', 'neighborhood'],
-  neighborhoodPostalCodes: neighborhoodPostalCodes(countryData),
+  thirdLevelPostalCodes: thirdLevelPostalCodes(countryData),
   fields: [
     {
       name: 'street',
@@ -425,20 +425,20 @@ export default {
       required: true,
       size: 'large',
       isUpperCase: false,
-      options: getStates(countryData),
+      options: getFirstLevel(countryData),
     },
     {
       name: 'city',
       label: 'province',
       required: true,
       size: 'large',
-      optionsMap: getMapOfStatesAndCities(countryData),
+      optionsMap: getSecondLevel(countryData),
     },
     {
       name: 'neighborhood',
       label: 'city',
       required: true,
-      options: getMapOfStatesCitiesAndNeighborhoods(countryData),
+      options: getThirdLevel(countryData),
     },
   ],
 }

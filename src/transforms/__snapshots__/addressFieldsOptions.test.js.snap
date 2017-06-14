@@ -1,25 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Transform Address Fields Options should get an array of states 1`] = `
-Array [
-  "State01",
-  "State02",
-]
-`;
-
-exports[`Transform Address Fields Options should get map of state and an array of cities 1`] = `
-Object {
-  "State01": Array [
-    "City01",
-    "City02",
-  ],
-  "State02": Array [
-    "City03",
-  ],
-}
-`;
-
-exports[`Transform Address Fields Options should get map of state, city and an array of neighborhoods 1`] = `
+exports[`Transform Address Fields Options should get map of first and second level, and an array of third level 1`] = `
 Object {
   "State01": Object {
     "City01": Array [
@@ -36,4 +17,23 @@ Object {
     ],
   },
 }
+`;
+
+exports[`Transform Address Fields Options should get map of first level and an array of second level 1`] = `
+Object {
+  "State01": Array [
+    "City01",
+    "City02",
+  ],
+  "State02": Array [
+    "City03",
+  ],
+}
+`;
+
+exports[`Transform Address Fields Options should get of the first level 1`] = `
+Array [
+  "State01",
+  "State02",
+]
 `;
