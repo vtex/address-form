@@ -3,6 +3,7 @@
 exports[`State show state options 1`] = `
 <div>
   <label>
+    State
     <select
       onChange={[Function]}
       value=""

@@ -28,6 +28,7 @@ class State extends Component {
     return (
       <div>
         <label>
+          State
           <select
             value={this.composeValue(address) || ''}
             onChange={this.handleChange}
