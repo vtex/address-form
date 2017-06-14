@@ -1,0 +1,6 @@
+export const POSTAL_CODE = 'POSTAL_CODE'
+export const STATE = 'STATE'
+export const CITY = 'CITY'
+export const NEIGHBORHOOD = 'NEIGHBORHOOD'
+
+export const POSTAL_CODE_FROM_TYPES = [POSTAL_CODE, STATE, CITY, NEIGHBORHOOD]

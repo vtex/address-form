@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Postal Code Transforms should transform cities postal codes 1`] = `
+Object {
+  "StateName01": Array [
+    Object {
+      "city": "City01",
+      "postalCode": "1",
+    },
+    Object {
+      "city": "City02",
+      "postalCode": "2",
+    },
+  ],
+  "StateName02": Array [
+    Object {
+      "city": "City03",
+      "postalCode": "3",
+    },
+  ],
+}
+`;
+
+exports[`Postal Code Transforms should transform neighborhoods postal codes 1`] = `
+Object {
+  "StateName01": Object {
+    "City01": Array [
+      Object {
+        "neighborhood": "Neighborhood1",
+        "postalCode": "1",
+      },
+      Object {
+        "neighborhood": "Neighborhood2",
+        "postalCode": "2",
+      },
+    ],
+    "City02": Array [
+      Object {
+        "neighborhood": "Neighborhood3",
+        "postalCode": "3",
+      },
+      Object {
+        "neighborhood": "Neighborhood4",
+        "postalCode": "4",
+      },
+    ],
+  },
+  "StateName02": Object {
+    "City03": Array [
+      Object {
+        "neighborhood": "Neighborhood5",
+        "postalCode": "5",
+      },
+    ],
+  },
+}
+`;
+
+exports[`Postal Code Transforms should transform state postal codes 1`] = `
+Array [
+  Object {
+    "postalCode": "1",
+    "state": "StateName01",
+  },
+  Object {
+    "postalCode": "2",
+    "state": "StateName02",
+  },
+]
+`;
