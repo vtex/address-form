@@ -38,8 +38,8 @@ class Neighborhood extends Component {
       : '');
 
   deComposeValue = value => {
-    const [city, postalCode] = value.split('___')
-    return { city, postalCode }
+    const [neighborhood, postalCode] = value.split('___')
+    return { neighborhood, postalCode }
   };
 
   render() {
@@ -90,7 +90,7 @@ class Neighborhood extends Component {
                   ({ postalCode, neighborhood }) => (
                     <option
                       key={neighborhood}
-                      value={`"${neighborhood}"___"${postalCode}"`}
+                      value={this.composeValue({ neighborhood, postalCode })}
                     >
                       {neighborhood}
                     </option>

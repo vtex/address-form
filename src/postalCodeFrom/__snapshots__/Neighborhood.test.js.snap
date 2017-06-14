@@ -109,17 +109,17 @@ exports[`Neighborhood with state and city selected 1`] = `
         value=""
       />
       <option
-        value="\\"Canasmoro\\"___\\"90400\\""
+        value="Canasmoro___90400"
       >
         Canasmoro
       </option>
       <option
-        value="\\"San Lorenzo\\"___\\"90401\\""
+        value="San Lorenzo___90401"
       >
         San Lorenzo
       </option>
       <option
-        value="\\"Tomatitas\\"___\\"90402\\""
+        value="Tomatitas___90402"
       >
         Tomatitas
       </option>
@@ -350,17 +350,17 @@ exports[`Neighborhood with state, city and neighborhood selected and not postal 
         value=""
       />
       <option
-        value="\\"Canasmoro\\"___\\"90400\\""
+        value="Canasmoro___90400"
       >
         Canasmoro
       </option>
       <option
-        value="\\"San Lorenzo\\"___\\"90401\\""
+        value="San Lorenzo___90401"
       >
         San Lorenzo
       </option>
       <option
-        value="\\"Tomatitas\\"___\\"90402\\""
+        value="Tomatitas___90402"
       >
         Tomatitas
       </option>
@@ -478,17 +478,17 @@ exports[`Neighborhood with state, city, neighborhood and postalCode selected 1`]
         value=""
       />
       <option
-        value="\\"Canasmoro\\"___\\"90400\\""
+        value="Canasmoro___90400"
       >
         Canasmoro
       </option>
       <option
-        value="\\"San Lorenzo\\"___\\"90401\\""
+        value="San Lorenzo___90401"
       >
         San Lorenzo
       </option>
       <option
-        value="\\"Tomatitas\\"___\\"90402\\""
+        value="Tomatitas___90402"
       >
         Tomatitas
       </option>
