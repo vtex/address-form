@@ -3,58 +3,95 @@ import ReactDOM from 'react-dom'
 import { shallow } from 'enzyme'
 import CountrySelector from './CountrySelector'
 import renderer from 'react-test-renderer'
+import newAddress from './__mocks__/newAddress'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(
-    <CountrySelector
-      selected={'BRA'}
-      shipsTo={['BRA', 'USA']}
-      onChangeSelectedCountry={jest.fn()}
-    />,
-    div
-  )
-})
-
-it('show options', () => {
-  const tree = renderer
-    .create(
+describe('CountrySelector', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div')
+    ReactDOM.render(
       <CountrySelector
+        address={newAddress}
         shipsTo={['BRA', 'USA']}
-        onChangeSelectedCountry={jest.fn()}
+        onChangeAddress={jest.fn()}
+      />,
+      div
+    )
+  })
+
+  it('show options', () => {
+    const tree = renderer
+      .create(
+        <CountrySelector
+          address={newAddress}
+          shipsTo={['BRA', 'USA']}
+          onChangeAddress={jest.fn()}
+        />
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('default value', () => {
+    const tree = renderer
+      .create(
+        <CountrySelector
+          address={{
+            ...newAddress,
+            country: 'BRA',
+          }}
+          shipsTo={['BRA', 'USA']}
+          onChangeAddress={jest.fn()}
+        />
+      )
+      .toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('react to change value', () => {
+    const handleChange = jest.fn()
+    const wrapper = shallow(
+      <CountrySelector
+        address={{
+          ...newAddress,
+          country: 'BRA',
+        }}
+        shipsTo={['BRA', 'USA']}
+        onChangeAddress={handleChange}
       />
     )
-    .toJSON()
 
-  expect(tree).toMatchSnapshot()
-})
+    const event = { target: { value: 'USA' } }
+    wrapper.find('select').simulate('change', event)
 
-it('default value', () => {
-  const tree = renderer
-    .create(
+    expect(handleChange).toHaveBeenCalledWith({
+      ...newAddress,
+      country: 'USA',
+    })
+  })
+
+  it('shold clean postalCode when country changes', () => {
+    const handleChange = jest.fn()
+    const wrapper = shallow(
       <CountrySelector
-        country={'BRA'}
+        address={{
+          ...newAddress,
+          country: 'BRA',
+          postalCode: '123',
+        }}
         shipsTo={['BRA', 'USA']}
-        onChangeSelectedCountry={jest.fn()}
+        onChangeAddress={handleChange}
       />
     )
-    .toJSON()
 
-  expect(tree).toMatchSnapshot()
-})
+    const event = { target: { value: 'USA' } }
+    wrapper.find('select').simulate('change', event)
 
-it('react to change value', () => {
-  const handleChange = jest.fn()
-  const wrapper = shallow(
-    <CountrySelector
-      country={'BRA'}
-      shipsTo={['BRA', 'USA']}
-      onChangeSelectedCountry={handleChange}
-    />
-  )
-
-  const event = { target: { value: 'USA' } }
-  wrapper.find('select').simulate('change', event)
-
-  expect(handleChange).toHaveBeenCalledWith('USA')
+    expect(handleChange).toHaveBeenCalledWith({
+      ...newAddress,
+      country: 'USA',
+      postalCode: null,
+    })
+  })
 })

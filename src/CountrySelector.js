@@ -1,20 +1,25 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import CountryType from './propTypes/CountryType'
+import AddressShape from './propTypes/AddressShape'
 
 class CountrySelector extends Component {
   handleChange = e => {
-    this.props.onChangeSelectedCountry(e.target.value)
+    const country = e.target.value
+    this.props.onChangeAddress({
+      ...this.props.address,
+      postalCode: null,
+      country,
+    })
   };
 
   render() {
-    const { country, shipsTo } = this.props
+    const { address, shipsTo } = this.props
 
     return (
       <div className="country-selector">
         <label>
           País
-          <select value={country || ''} onChange={this.handleChange}>
+          <select value={address.country || ''} onChange={this.handleChange}>
             {shipsTo.map(country => (
               <option value={country} key={country}>
                 {country}
@@ -28,9 +33,9 @@ class CountrySelector extends Component {
 }
 
 CountrySelector.propTypes = {
-  country: CountryType,
+  address: PropTypes.shape(AddressShape),
   shipsTo: PropTypes.array.isRequired,
-  onChangeSelectedCountry: PropTypes.func.isRequired,
+  onChangeAddress: PropTypes.func.isRequired,
 }
 
 export default CountrySelector

@@ -1,0 +1,15 @@
+export default {
+  addressId: '1',
+  addressType: 'residential',
+  city: null,
+  complement: null,
+  country: null,
+  geoCoordinates: null,
+  neighborhood: null,
+  number: null,
+  postalCode: null,
+  receiverName: null,
+  reference: null,
+  state: null,
+  street: null,
+}

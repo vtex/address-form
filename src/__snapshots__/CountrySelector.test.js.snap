@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`default value 1`] = `
+exports[`CountrySelector default value 1`] = `
 <div
   className="country-selector"
 >
@@ -25,7 +25,7 @@ exports[`default value 1`] = `
 </div>
 `;
 
-exports[`show options 1`] = `
+exports[`CountrySelector show options 1`] = `
 <div
   className="country-selector"
 >
