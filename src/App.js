@@ -55,7 +55,14 @@ class App extends Component {
           shipsTo={shipsTo}
           onChangeAddress={this.handleChangeAddress}
         />
+
         <PostalCodeGetter
+          address={address}
+          rules={rules[address.country]}
+          onChangeAddress={this.handleChangeAddress}
+        />
+
+        <AddressForm
           address={address}
           rules={rules[address.country]}
           onChangeAddress={this.handleChangeAddress}
