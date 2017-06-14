@@ -4,7 +4,7 @@ export default {
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
-      field: 'postalCode',
+      name: 'postalCode',
       required: true,
       mask: '9999-999',
       regex: '^(?:[\\d]{4})(?:\\-|)(?:[\\d]{3}|)$',
@@ -12,24 +12,24 @@ export default {
       size: 'small',
     },
     {
-      field: 'street',
+      name: 'street',
       label: 'addressLine1',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'complement',
+      name: 'complement',
       label: 'addressLine2',
       size: 'xlarge',
     },
     {
-      field: 'city',
+      name: 'city',
       label: 'city',
       required: true,
       size: 'large',
     },
     {
-      field: 'state',
+      name: 'state',
       label: 'state',
       required: true,
       size: 'large',

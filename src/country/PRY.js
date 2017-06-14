@@ -4,31 +4,31 @@ export default {
   postalCodeFrom: CITY,
   fields: [
     {
-      field: 'street',
+      name: 'street',
       label: 'street',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'number',
+      name: 'number',
       label: 'number',
       required: true,
       size: 'mini',
     },
     {
-      field: 'complement',
+      name: 'complement',
       label: 'complement',
       size: 'large',
     },
     {
-      field: 'state',
+      name: 'state',
       label: 'department',
       required: true,
       size: 'large',
       isUpperCase: false,
     },
     {
-      field: 'city',
+      name: 'city',
       label: 'city',
       required: true,
       size: 'large',

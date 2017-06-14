@@ -36,7 +36,7 @@ class City extends Component {
   render() {
     const { address, rules } = this.props
 
-    const stateOptions = find(rules.fields, field => field.field === 'state')
+    const stateOptions = find(rules.fields, ({ name }) => name === 'state')
       .options
 
     return (

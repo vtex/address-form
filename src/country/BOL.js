@@ -402,24 +402,24 @@ export default {
   neighborhoodPostalCodes: neighborhoodPostalCodes(countryData),
   fields: [
     {
-      field: 'street',
+      name: 'street',
       label: 'street',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'number',
+      name: 'number',
       label: 'number',
       required: true,
       size: 'mini',
     },
     {
-      field: 'complement',
+      name: 'complement',
       label: 'complement',
       size: 'large',
     },
     {
-      field: 'state',
+      name: 'state',
       label: 'department',
       required: true,
       size: 'large',
@@ -427,14 +427,14 @@ export default {
       options: getStates(countryData),
     },
     {
-      field: 'city',
+      name: 'city',
       label: 'province',
       required: true,
       size: 'large',
       optionsMap: getMapOfStatesAndCities(countryData),
     },
     {
-      field: 'neighborhood',
+      name: 'neighborhood',
       label: 'city',
       required: true,
       options: getMapOfStatesCitiesAndNeighborhoods(countryData),

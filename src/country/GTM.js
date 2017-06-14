@@ -4,20 +4,20 @@ export default {
   postalCodeFrom: CITY,
   fields: [
     {
-      field: 'state',
+      name: 'state',
       label: 'department',
       required: true,
       size: 'xlarge',
       isUpperCase: false,
     },
     {
-      field: 'city',
+      name: 'city',
       label: 'municipality',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'street',
+      name: 'street',
       label: 'street',
       required: true,
       size: 'xlarge',

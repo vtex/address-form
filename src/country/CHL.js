@@ -385,24 +385,24 @@ export default {
   citiesPostalCodes: citiesPostalCodes(countryData),
   fields: [
     {
-      field: 'street',
+      name: 'street',
       label: 'street',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'number',
+      name: 'number',
       label: 'number',
       required: true,
       size: 'mini',
     },
     {
-      field: 'complement',
+      name: 'complement',
       label: 'complement',
       size: 'large',
     },
     {
-      field: 'state',
+      name: 'state',
       label: 'region',
       required: true,
       size: 'large',
@@ -410,7 +410,7 @@ export default {
       options: getStates(countryData),
     },
     {
-      field: 'neighborhood',
+      name: 'neighborhood',
       label: 'community',
       required: true,
       size: 'large',

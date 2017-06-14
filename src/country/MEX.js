@@ -4,7 +4,7 @@ export default {
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
-      field: 'postalCode',
+      name: 'postalCode',
       label: 'postalCode',
       required: true,
       mask: '99999',
@@ -14,36 +14,36 @@ export default {
       size: 'small',
     },
     {
-      field: 'street',
+      name: 'street',
       label: 'street',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'number',
+      name: 'number',
       label: 'exteriorNumber',
       required: true,
       size: 'mini',
     },
     {
-      field: 'complement',
+      name: 'complement',
       label: 'interiorNumber',
       size: 'large',
     },
     {
-      field: 'neighborhood',
+      name: 'neighborhood',
       label: 'colony',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'city',
+      name: 'city',
       label: 'municipalityDelegation',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'state',
+      name: 'state',
       label: 'state',
       required: true,
       size: 'xlarge',

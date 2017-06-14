@@ -276,24 +276,24 @@ export default {
   statePostalCodes: statePostalCodes(countryData),
   fields: [
     {
-      field: 'street',
+      name: 'street',
       label: 'street',
       required: true,
       size: 'xlarge',
     },
     {
-      field: 'number',
+      name: 'number',
       label: 'number',
       required: true,
       size: 'mini',
     },
     {
-      field: 'complement',
+      name: 'complement',
       label: 'complement',
       size: 'large',
     },
     {
-      field: 'state',
+      name: 'state',
       label: 'province',
       required: true,
       size: 'large',
@@ -301,7 +301,7 @@ export default {
       options: getStates(countryData),
     },
     {
-      field: 'city',
+      name: 'city',
       label: 'city',
       required: true,
       size: 'large',
