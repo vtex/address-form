@@ -1,4 +1,4 @@
-import { NEIGHBORHOOD } from '../constants'
+import { THREE_LEVELS } from '../constants'
 import { neighborhoodPostalCodes } from '../transforms/postalCodes'
 import {
   getStates,
@@ -398,7 +398,8 @@ const countryData = {
 }
 
 export default {
-  postalCodeFrom: NEIGHBORHOOD,
+  postalCodeFrom: THREE_LEVELS,
+  postalCodeLevels: ['state', 'city', 'neighborhood'],
   neighborhoodPostalCodes: neighborhoodPostalCodes(countryData),
   fields: [
     {

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { shallow } from 'enzyme'
 import PostalCodeGetter from './PostalCodeGetter'
-import { POSTAL_CODE, STATE, CITY, NEIGHBORHOOD } from './constants'
+import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import address from './__mocks__/newAddress'
 
 describe('PostalCodeGetter', () => {
@@ -42,13 +42,13 @@ describe('PostalCodeGetter', () => {
       <PostalCodeGetter
         address={address}
         rules={{
-          postalCodeFrom: STATE,
+          postalCodeFrom: ONE_LEVEL,
         }}
         onChangeAddress={handleChange}
       />
     )
 
-    expect(wrapper.find('State')).toHaveLength(1)
+    expect(wrapper.find('OneLevel')).toHaveLength(1)
   })
 
   it('render City', () => {
@@ -58,13 +58,13 @@ describe('PostalCodeGetter', () => {
       <PostalCodeGetter
         address={address}
         rules={{
-          postalCodeFrom: CITY,
+          postalCodeFrom: TWO_LEVELS,
         }}
         onChangeAddress={handleChange}
       />
     )
 
-    expect(wrapper.find('City')).toHaveLength(1)
+    expect(wrapper.find('TwoLevels')).toHaveLength(1)
   })
 
   it('render Neighborhood', () => {
@@ -74,12 +74,12 @@ describe('PostalCodeGetter', () => {
       <PostalCodeGetter
         address={address}
         rules={{
-          postalCodeFrom: NEIGHBORHOOD,
+          postalCodeFrom: THREE_LEVELS,
         }}
         onChangeAddress={handleChange}
       />
     )
 
-    expect(wrapper.find('Neighborhood')).toHaveLength(1)
+    expect(wrapper.find('ThreeLevels')).toHaveLength(1)
   })
 })

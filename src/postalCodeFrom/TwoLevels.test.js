@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import City from './City'
+import TwoLevels from './TwoLevels'
 import { shallow } from 'enzyme'
 import CHL from '../country/CHL'
 import newAddress from '../__mocks__/newAddress'
@@ -14,7 +14,7 @@ describe('City', () => {
 
     const tree = renderer
       .create(
-        <City address={address} rules={CHL} onChangeAddress={jest.fn()} />
+        <TwoLevels address={address} rules={CHL} onChangeAddress={jest.fn()} />
       )
       .toJSON()
 
@@ -30,7 +30,7 @@ describe('City', () => {
 
     const tree = renderer
       .create(
-        <City address={address} rules={CHL} onChangeAddress={jest.fn()} />
+        <TwoLevels address={address} rules={CHL} onChangeAddress={jest.fn()} />
       )
       .toJSON()
 
@@ -40,7 +40,7 @@ describe('City', () => {
   it('should change the state', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
-      <City
+      <TwoLevels
         address={{
           ...newAddress,
           country: 'CHL',
@@ -63,7 +63,7 @@ describe('City', () => {
   it('should change the city and postal code ', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
-      <City
+      <TwoLevels
         address={{
           ...newAddress,
           country: 'CHL',

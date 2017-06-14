@@ -1,11 +1,11 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import State from './State'
+import OneLevel from './OneLevel'
 import { shallow } from 'enzyme'
 import ECU from '../country/ECU'
 import newAddress from '../__mocks__/newAddress'
 
-describe('State', () => {
+describe('OneLevel', () => {
   it('show state options', () => {
     const address = {
       ...newAddress,
@@ -14,7 +14,7 @@ describe('State', () => {
 
     const tree = renderer
       .create(
-        <State address={address} rules={ECU} onChangeAddress={jest.fn()} />
+        <OneLevel address={address} rules={ECU} onChangeAddress={jest.fn()} />
       )
       .toJSON()
 
@@ -24,7 +24,7 @@ describe('State', () => {
   it('should change the postal code and the state', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
-      <State
+      <OneLevel
         address={{
           ...newAddress,
           country: 'ECU',

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
 import find from 'lodash/find'
 
-class State extends Component {
+class OneLevel extends Component {
   handleChange = e => {
     const value = e.target.value
 
@@ -53,10 +53,10 @@ class State extends Component {
   }
 }
 
-State.propTypes = {
+OneLevel.propTypes = {
   address: PropTypes.shape(AddressShape),
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default State
+export default OneLevel

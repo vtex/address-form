@@ -1,11 +1,11 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Neighborhood from './Neighborhood'
+import ThreeLevels from './ThreeLevels'
 import { shallow } from 'enzyme'
 import BOL from '../country/BOL'
 import newAddress from '../__mocks__/newAddress'
 
-describe('Neighborhood', () => {
+describe('ThreeLevels', () => {
   it('without state and city selected', () => {
     const address = {
       ...newAddress,
@@ -14,7 +14,7 @@ describe('Neighborhood', () => {
 
     const tree = renderer
       .create(
-        <Neighborhood
+        <ThreeLevels
           address={address}
           rules={BOL}
           onChangeAddress={jest.fn()}
@@ -34,7 +34,7 @@ describe('Neighborhood', () => {
 
     const tree = renderer
       .create(
-        <Neighborhood
+        <ThreeLevels
           address={address}
           rules={BOL}
           onChangeAddress={jest.fn()}
@@ -55,7 +55,7 @@ describe('Neighborhood', () => {
 
     const tree = renderer
       .create(
-        <Neighborhood
+        <ThreeLevels
           address={address}
           rules={BOL}
           onChangeAddress={jest.fn()}
@@ -77,7 +77,7 @@ describe('Neighborhood', () => {
 
     const tree = renderer
       .create(
-        <Neighborhood
+        <ThreeLevels
           address={address}
           rules={BOL}
           onChangeAddress={jest.fn()}
@@ -100,7 +100,7 @@ describe('Neighborhood', () => {
 
     const tree = renderer
       .create(
-        <Neighborhood
+        <ThreeLevels
           address={address}
           rules={BOL}
           onChangeAddress={jest.fn()}
@@ -114,7 +114,7 @@ describe('Neighborhood', () => {
   it('should change the state', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
-      <Neighborhood
+      <ThreeLevels
         address={{
           ...newAddress,
           country: 'BOL',
@@ -137,7 +137,7 @@ describe('Neighborhood', () => {
   it('should change the city', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
-      <Neighborhood
+      <ThreeLevels
         address={{
           ...newAddress,
           country: 'BOL',
@@ -162,7 +162,7 @@ describe('Neighborhood', () => {
   it('should change the neighborhood and postal code ', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
-      <Neighborhood
+      <ThreeLevels
         address={{
           ...newAddress,
           country: 'BOL',

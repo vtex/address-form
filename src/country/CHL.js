@@ -1,6 +1,9 @@
-import { CITY } from '../constants'
+import { TWO_LEVELS } from '../constants'
 import { citiesPostalCodes } from '../transforms/postalCodes'
-import { getStates } from '../transforms/addressFieldsOptions'
+import {
+  getStates,
+  getMapOfStatesAndCities,
+} from '../transforms/addressFieldsOptions'
 
 const countryData = {
   'Región Metropolitana': {
@@ -381,7 +384,8 @@ const countryData = {
 }
 
 export default {
-  postalCodeFrom: CITY,
+  postalCodeFrom: TWO_LEVELS,
+  postalCodeLevels: ['state', 'neighborhood'],
   citiesPostalCodes: citiesPostalCodes(countryData),
   fields: [
     {
@@ -414,6 +418,7 @@ export default {
       label: 'community',
       required: true,
       size: 'large',
+      optionsMap: getMapOfStatesAndCities(countryData),
     },
   ],
 }

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`State show state options 1`] = `
+exports[`OneLevel show state options 1`] = `
 <div>
   <label>
     province

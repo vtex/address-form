@@ -4,7 +4,7 @@ import AddressShape from '../propTypes/AddressShape'
 import find from 'lodash/find'
 import map from 'lodash/map'
 
-class Neighborhood extends Component {
+class ThreeLevels extends Component {
   handleStateChange = e => {
     const state = e.target.value
 
@@ -118,10 +118,10 @@ class Neighborhood extends Component {
   }
 }
 
-Neighborhood.propTypes = {
+ThreeLevels.propTypes = {
   address: PropTypes.shape(AddressShape),
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default Neighborhood
+export default ThreeLevels

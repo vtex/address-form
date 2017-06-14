@@ -1,7 +1,8 @@
-import { NEIGHBORHOOD } from '../constants'
+import { THREE_LEVELS } from '../constants'
 
 export default {
-  postalCodeFrom: NEIGHBORHOOD,
+  postalCodeFrom: THREE_LEVELS,
+  postalCodeLevels: ['state', 'city', 'neighborhood'],
   fields: [
     {
       name: 'street',

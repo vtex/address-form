@@ -1,4 +1,4 @@
-import { STATE } from '../constants'
+import { ONE_LEVEL } from '../constants'
 import { statePostalCodes } from '../transforms/postalCodes'
 import {
   getStates,
@@ -272,7 +272,8 @@ const countryData = {
 }
 
 export default {
-  postalCodeFrom: STATE,
+  postalCodeFrom: ONE_LEVEL,
+  postalCodeLevel: 'state',
   statePostalCodes: statePostalCodes(countryData),
   fields: [
     {
@@ -305,6 +306,7 @@ export default {
       label: 'city',
       required: true,
       size: 'large',
+      basedOn: 'state',
       optionsMap: getMapOfStatesAndCities(countryData),
     },
   ],

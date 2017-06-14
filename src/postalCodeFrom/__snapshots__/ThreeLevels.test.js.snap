@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Neighborhood with state and city selected 1`] = `
+exports[`ThreeLevels with state and city selected 1`] = `
 <div>
   <label>
     department
@@ -131,7 +131,7 @@ exports[`Neighborhood with state and city selected 1`] = `
 </div>
 `;
 
-exports[`Neighborhood with state selected and city not selected 1`] = `
+exports[`ThreeLevels with state selected and city not selected 1`] = `
 <div>
   <label>
     department
@@ -247,7 +247,7 @@ exports[`Neighborhood with state selected and city not selected 1`] = `
 </div>
 `;
 
-exports[`Neighborhood with state, city and neighborhood selected and not postal code 1`] = `
+exports[`ThreeLevels with state, city and neighborhood selected and not postal code 1`] = `
 <div>
   <label>
     department
@@ -378,7 +378,7 @@ exports[`Neighborhood with state, city and neighborhood selected and not postal 
 </div>
 `;
 
-exports[`Neighborhood with state, city, neighborhood and postalCode selected 1`] = `
+exports[`ThreeLevels with state, city, neighborhood and postalCode selected 1`] = `
 <div>
   <label>
     department
@@ -509,7 +509,7 @@ exports[`Neighborhood with state, city, neighborhood and postalCode selected 1`]
 </div>
 `;
 
-exports[`Neighborhood without state and city selected 1`] = `
+exports[`ThreeLevels without state and city selected 1`] = `
 <div>
   <label>
     department
