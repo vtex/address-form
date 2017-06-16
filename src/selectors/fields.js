@@ -6,7 +6,7 @@ export function getField(fieldName, rules) {
 }
 
 export function hasOptions(field) {
-  return field.options || field.optionsPairs || field.optionsMap
+  return !!(field.options || field.optionsPairs || field.optionsMap)
 }
 
 function toValueAndLabel(option) {
@@ -23,12 +23,8 @@ export function getListOfOptions(field, address, rules) {
   }
 
   if (field.optionsMap && field.basedOn && field.level === 2) {
-    const fieldBasedOn = getField(field.basedOn, rules)
-
-    if (
-      address[fieldBasedOn.name] && field.optionsMap[address[fieldBasedOn.name]]
-    ) {
-      const options = field.optionsMap[address[fieldBasedOn.name]]
+    if (address[field.basedOn] && field.optionsMap[address[field.basedOn]]) {
+      const options = field.optionsMap[address[field.basedOn]]
       return map(options, toValueAndLabel)
     }
 

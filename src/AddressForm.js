@@ -5,7 +5,7 @@ import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import filter from 'lodash/filter'
 import InputSelect from './addressInputs/InputSelect'
 import InputText from './addressInputs/InputText'
-import { hasOptions } from './rulesLens/fields'
+import { hasOptions } from './selectors/fields'
 
 class AddressForm extends Component {
   constructor(props) {

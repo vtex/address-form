@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
 import map from 'lodash/map'
-import { getListOfOptions } from '../rulesLens/fields'
+import { getListOfOptions } from '../selectors/fields'
 
 class InputSelect extends Component {
   handleChange = e => {
