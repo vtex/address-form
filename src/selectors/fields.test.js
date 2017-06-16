@@ -3,8 +3,13 @@ import {
   hasOptions,
   getListOfOptions,
   getDependentFields,
+  filterFields,
 } from './fields'
 import { STATE, POSTAL_CODE } from '../constants'
+import diff from 'lodash/difference'
+import useOneLevel from '../country/__mocks__/useOneLevel'
+import useTwoLevels from '../country/__mocks__/useTwoLevels'
+import useThreeLevels from '../country/__mocks__/useThreeLevels'
 
 describe('Field Selectors', () => {
   it('getField()', () => {
@@ -170,6 +175,36 @@ describe('Field Selectors', () => {
       const dependentFields = getDependentFields('state', rules)
 
       expect(dependentFields).toMatchObject(['postalCode'])
+    })
+  })
+
+  describe('filterFields()', () => {
+    function getFieldNames(fields) {
+      return fields.map(({ name }) => name)
+    }
+
+    it('should filter when postal code is from postal code', () => {
+      const fields = filterFields(useOneLevel)
+
+      expect(
+        diff(getFieldNames(useOneLevel.fields), getFieldNames(fields))
+      ).toMatchSnapshot()
+    })
+
+    it('should filter when postal code is from state', () => {
+      const fields = filterFields(useTwoLevels)
+
+      expect(
+        diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields))
+      ).toMatchSnapshot()
+    })
+
+    it('should filter when postal code is from city', () => {
+      const fields = filterFields(useThreeLevels)
+
+      expect(
+        diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields))
+      ).toMatchSnapshot()
     })
   })
 })

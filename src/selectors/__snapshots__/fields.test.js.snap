@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Field Selectors filterFields() should filter when postal code is from city 1`] = `
+Array [
+  "state",
+  "city",
+  "neighborhood",
+]
+`;
+
+exports[`Field Selectors filterFields() should filter when postal code is from postal code 1`] = `
+Array [
+  "state",
+]
+`;
+
+exports[`Field Selectors filterFields() should filter when postal code is from state 1`] = `
+Array [
+  "state",
+  "neighborhood",
+]
+`;

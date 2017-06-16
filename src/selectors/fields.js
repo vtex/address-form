@@ -1,6 +1,7 @@
 import find from 'lodash/find'
 import map from 'lodash/map'
-import { POSTAL_CODE } from '../constants'
+import filter from 'lodash/filter'
+import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 
 export function getField(fieldName, rules) {
   return find(rules.fields, ({ name }) => name === fieldName)
@@ -83,4 +84,24 @@ export function getDependentFields(fieldName, rules) {
 function getFieldBasedOn(fieldName, rules) {
   const field = find(rules.fields, ({ basedOn }) => basedOn === fieldName)
   return field ? field.name : null
+}
+
+export function filterFields(rules) {
+  switch (rules.postalCodeFrom) {
+    case THREE_LEVELS:
+      return filter(
+        rules.fields,
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
+      )
+    case TWO_LEVELS:
+      return filter(
+        rules.fields,
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
+      )
+    case ONE_LEVEL:
+      return filter(rules.fields, ({ name }) => rules.postalCodeLevel !== name)
+    default:
+    case POSTAL_CODE:
+      return filter(rules.fields, ({ name }) => name !== 'postalCode')
+  }
 }

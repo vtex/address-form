@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShape from './propTypes/AddressShape'
-import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
-import filter from 'lodash/filter'
 import InputSelect from './addressInputs/InputSelect'
 import InputText from './addressInputs/InputText'
 import InputLabel from './addressInputs/InputLabel'
-import { hasOptions } from './selectors/fields'
+import { hasOptions, filterFields } from './selectors/fields'
 
 class AddressForm extends Component {
   constructor(props) {
@@ -70,30 +68,6 @@ AddressForm.propTypes = {
   omitPostalCodeFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
-}
-
-/**
- * Remove fields already filled in PostalCodeGetter
- * @param {Object} rules
- */
-export function filterFields(rules) {
-  switch (rules.postalCodeFrom) {
-    case THREE_LEVELS:
-      return filter(
-        rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
-      )
-    case TWO_LEVELS:
-      return filter(
-        rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
-      )
-    case ONE_LEVEL:
-      return filter(rules.fields, ({ name }) => rules.postalCodeLevel !== name)
-    default:
-    case POSTAL_CODE:
-      return filter(rules.fields, ({ name }) => name !== 'postalCode')
-  }
 }
 
 export default AddressForm
