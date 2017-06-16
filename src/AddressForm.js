@@ -4,7 +4,12 @@ import AddressShape from './propTypes/AddressShape'
 import InputSelect from './addressInputs/InputSelect'
 import InputText from './addressInputs/InputText'
 import InputLabel from './addressInputs/InputLabel'
-import { hasOptions, filterFields } from './selectors/fields'
+import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
+import {
+  hasOptions,
+  filterFields,
+  isDefiningPostalCodeField,
+} from './selectors/fields'
 
 class AddressForm extends Component {
   constructor(props) {
@@ -38,20 +43,28 @@ class AddressForm extends Component {
       <div>
         {fields.map(field => (
           <div key={field.name}>
-            <InputLabel field={field}>
-              {hasOptions(field)
-                ? <InputSelect
+            {hasOptions(field)
+              ? isDefiningPostalCodeField(field.name, rules)
+                  ? <SelectPostalCode
+                    rules={rules}
+                    address={address}
+                    onChangeAddress={onChangeAddress}
+                    />
+                  : <InputLabel field={field}>
+                    <InputSelect
+                      field={field}
+                      rules={rules}
+                      address={address}
+                      onChange={onChangeAddress}
+                      />
+                  </InputLabel>
+              : <InputLabel field={field}>
+                <InputText
                   field={field}
-                  rules={rules}
                   address={address}
                   onChange={onChangeAddress}
                   />
-                : <InputText
-                  field={field}
-                  address={address}
-                  onChange={onChangeAddress}
-                  />}
-            </InputLabel>
+              </InputLabel>}
           </div>
         ))}
       </div>

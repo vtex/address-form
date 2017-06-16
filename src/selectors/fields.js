@@ -1,6 +1,7 @@
 import find from 'lodash/find'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
+import last from 'lodash/last'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 
 export function getField(fieldName, rules) {
@@ -104,4 +105,10 @@ export function filterFields(rules) {
     case POSTAL_CODE:
       return filter(rules.fields, ({ name }) => name !== 'postalCode')
   }
+}
+
+export function isDefiningPostalCodeField(fieldName, rules) {
+  const lastLevelField = rules.postalCodeLevel || last(rules.postalCodeLevels)
+
+  return fieldName === lastLevelField
 }

@@ -4,6 +4,7 @@ import {
   getListOfOptions,
   getDependentFields,
   filterFields,
+  isDefiningPostalCodeField,
 } from './fields'
 import { STATE, POSTAL_CODE } from '../constants'
 import diff from 'lodash/difference'
@@ -205,6 +206,28 @@ describe('Field Selectors', () => {
       expect(
         diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields))
       ).toMatchSnapshot()
+    })
+  })
+
+  describe('isDefiningPostalCodeField()', () => {
+    it('when rules have postalCodeLevel', () => {
+      const rules = {
+        postalCodeLevel: 'state',
+      }
+
+      const result = isDefiningPostalCodeField('state', rules)
+
+      expect(result).toBe(true)
+    })
+
+    it('when rules have postalCodeLevels', () => {
+      const rules = {
+        postalCodeLevels: ['state', 'city', 'neighborhood'],
+      }
+
+      const result = isDefiningPostalCodeField('neighborhood', rules)
+
+      expect(result).toBe(true)
     })
   })
 })
