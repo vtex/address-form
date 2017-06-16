@@ -1,11 +1,11 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import TwoLevels from './TwoLevels'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import address from '../__mocks__/newAddress'
 
-describe('City', () => {
+describe('TwoLevels', () => {
   it('without first level selected', () => {
     const tree = renderer
       .create(
@@ -39,7 +39,7 @@ describe('City', () => {
 
   it('should change the first level', () => {
     const handleChange = jest.fn()
-    const wrapper = shallow(
+    const wrapper = mount(
       <TwoLevels
         address={address}
         rules={useTwoLevels}
@@ -58,7 +58,7 @@ describe('City', () => {
 
   it('should change the second level and postal code ', () => {
     const handleChange = jest.fn()
-    const wrapper = shallow(
+    const wrapper = mount(
       <TwoLevels
         address={{
           ...address,

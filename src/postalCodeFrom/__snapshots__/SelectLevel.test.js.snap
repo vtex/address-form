@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectLevel show city options 1`] = `
+<label>
+  province
+  <select
+    name="city"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      
+    </option>
+  </select>
+</label>
+`;
+
+exports[`SelectLevel show state options 1`] = `
+<label>
+  department
+  <select
+    name="state"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      
+    </option>
+    <option
+      value="Beni"
+    >
+      Beni
+    </option>
+    <option
+      value="Cochabamba"
+    >
+      Cochabamba
+    </option>
+  </select>
+</label>
+`;

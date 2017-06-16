@@ -5,6 +5,7 @@ import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import filter from 'lodash/filter'
 import InputSelect from './addressInputs/InputSelect'
 import InputText from './addressInputs/InputText'
+import InputLabel from './addressInputs/InputLabel'
 import { hasOptions } from './selectors/fields'
 
 class AddressForm extends Component {
@@ -39,8 +40,7 @@ class AddressForm extends Component {
       <div>
         {fields.map(field => (
           <div key={field.name}>
-            <label>
-              {field.label}
+            <InputLabel field={field}>
               {hasOptions(field)
                 ? <InputSelect
                   field={field}
@@ -53,7 +53,7 @@ class AddressForm extends Component {
                   address={address}
                   onChange={onChangeAddress}
                   />}
-            </label>
+            </InputLabel>
           </div>
         ))}
       </div>

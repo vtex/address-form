@@ -3,8 +3,8 @@ import reduce from 'lodash/reduce'
 import values from 'lodash/values'
 
 export function firstLevelPostalCodes(countryData) {
-  return map(countryData, (secondLevel, firstLevelName) => ({
-    firstLevelName,
+  return map(countryData, (secondLevel, label) => ({
+    label,
     postalCode: values(secondLevel)[0],
   }))
 }
@@ -13,9 +13,9 @@ export function secondLevelPostalCodes(countryData) {
   return reduce(
     countryData,
     (memo, secondLevels, firstLevel) => {
-      memo[firstLevel] = map(secondLevels, (postalCode, secondLevelName) => ({
+      memo[firstLevel] = map(secondLevels, (postalCode, label) => ({
         postalCode,
-        secondLevelName,
+        label,
       }))
       return memo
     },
@@ -30,11 +30,9 @@ export function thirdLevelPostalCodes(countryData) {
       memo[firstLevel] = reduce(
         secondLevels,
         (memoSecond, thirdLevels, secondLevel) => {
-          memoSecond[
-            secondLevel
-          ] = map(thirdLevels, (postalCode, thirdLevelName) => ({
+          memoSecond[secondLevel] = map(thirdLevels, (postalCode, label) => ({
             postalCode,
-            thirdLevelName,
+            label,
           }))
           return memoSecond
         },

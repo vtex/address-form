@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import ThreeLevels from './ThreeLevels'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
 
@@ -96,7 +96,7 @@ describe('ThreeLevels', () => {
 
   it('should change the first level', () => {
     const handleChange = jest.fn()
-    const wrapper = shallow(
+    const wrapper = mount(
       <ThreeLevels
         address={address}
         rules={useThreeLevels}
@@ -115,7 +115,7 @@ describe('ThreeLevels', () => {
 
   it('should change the second level', () => {
     const handleChange = jest.fn()
-    const wrapper = shallow(
+    const wrapper = mount(
       <ThreeLevels
         address={{
           ...address,
@@ -138,7 +138,7 @@ describe('ThreeLevels', () => {
 
   it('should change the third level and postal code ', () => {
     const handleChange = jest.fn()
-    const wrapper = shallow(
+    const wrapper = mount(
       <ThreeLevels
         address={{
           ...address,

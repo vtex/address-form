@@ -49,9 +49,7 @@ exports[`ThreeLevels with first and second level selected 1`] = `
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
   </label>
 </div>
@@ -106,9 +104,7 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
   </label>
 </div>
@@ -163,9 +159,7 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
   </label>
 </div>
@@ -220,9 +214,7 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
   </label>
 </div>
@@ -277,9 +269,7 @@ exports[`ThreeLevels without first and second level selected 1`] = `
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
   </label>
 </div>

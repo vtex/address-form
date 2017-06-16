@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
-import { getField } from '../rulesLens/fields'
+import { getField } from '../selectors/fields'
 
 class PostalCode extends Component {
   handleChange = e => {

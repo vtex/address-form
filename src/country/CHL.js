@@ -411,6 +411,7 @@ export default {
       required: true,
       size: 'large',
       isUpperCase: false,
+      level: 1,
       options: getFirstLevel(countryData),
     },
     {
@@ -418,6 +419,8 @@ export default {
       label: 'community',
       required: true,
       size: 'large',
+      level: 2,
+      basedOn: 'state',
       optionsMap: getSecondLevel(countryData),
     },
   ],

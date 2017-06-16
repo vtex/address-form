@@ -54,6 +54,8 @@ export default {
       label: 'community',
       required: true,
       size: 'large',
+      level: 2,
+      basedOn: 'state',
       optionsMap: getSecondLevel(countryData),
     },
   ],

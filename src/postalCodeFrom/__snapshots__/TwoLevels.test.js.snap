@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`City with first level selected 1`] = `
+exports[`TwoLevels with first level selected 1`] = `
 <div>
   <label>
     region
@@ -11,7 +11,9 @@ exports[`City with first level selected 1`] = `
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
       <option
         value="I Región"
       >
@@ -64,7 +66,7 @@ exports[`City with first level selected 1`] = `
 </div>
 `;
 
-exports[`City without first level selected 1`] = `
+exports[`TwoLevels without first level selected 1`] = `
 <div>
   <label>
     region
@@ -75,7 +77,9 @@ exports[`City without first level selected 1`] = `
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
       <option
         value="I Región"
       >

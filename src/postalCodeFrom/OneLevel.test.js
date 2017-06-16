@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import OneLevel from './OneLevel'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
 
@@ -22,7 +22,7 @@ describe('OneLevel', () => {
 
   it('should change the postal code and the state', () => {
     const handleChange = jest.fn()
-    const wrapper = shallow(
+    const wrapper = mount(
       <OneLevel
         address={address}
         rules={useOneLevel}

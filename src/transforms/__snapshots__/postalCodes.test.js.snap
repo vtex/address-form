@@ -4,18 +4,18 @@ exports[`Postal Code Transforms should transform cities postal codes 1`] = `
 Object {
   "StateName01": Array [
     Object {
+      "label": "City01",
       "postalCode": "1",
-      "secondLevelName": "City01",
     },
     Object {
+      "label": "City02",
       "postalCode": "2",
-      "secondLevelName": "City02",
     },
   ],
   "StateName02": Array [
     Object {
+      "label": "City03",
       "postalCode": "3",
-      "secondLevelName": "City03",
     },
   ],
 }
@@ -26,30 +26,30 @@ Object {
   "StateName01": Object {
     "City01": Array [
       Object {
+        "label": "Neighborhood1",
         "postalCode": "1",
-        "thirdLevelName": "Neighborhood1",
       },
       Object {
+        "label": "Neighborhood2",
         "postalCode": "2",
-        "thirdLevelName": "Neighborhood2",
       },
     ],
     "City02": Array [
       Object {
+        "label": "Neighborhood3",
         "postalCode": "3",
-        "thirdLevelName": "Neighborhood3",
       },
       Object {
+        "label": "Neighborhood4",
         "postalCode": "4",
-        "thirdLevelName": "Neighborhood4",
       },
     ],
   },
   "StateName02": Object {
     "City03": Array [
       Object {
+        "label": "Neighborhood5",
         "postalCode": "5",
-        "thirdLevelName": "Neighborhood5",
       },
     ],
   },
@@ -59,11 +59,11 @@ Object {
 exports[`Postal Code Transforms should transform state postal codes 1`] = `
 Array [
   Object {
-    "firstLevelName": "StateName01",
+    "label": "StateName01",
     "postalCode": "1",
   },
   Object {
-    "firstLevelName": "StateName02",
+    "label": "StateName02",
     "postalCode": "2",
   },
 ]
