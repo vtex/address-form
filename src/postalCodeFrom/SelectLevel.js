@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
 import InputSelect from '../addressInputs/InputSelect'
 import InputLabel from '../addressInputs/InputLabel'
-import { getField } from '../selectors/fields'
+import { getField, getDependentFields } from '../selectors/fields'
+import reduce from 'lodash/reduce'
 
 class SelectLevel extends Component {
   constructor(props) {
@@ -22,9 +23,31 @@ class SelectLevel extends Component {
     this.setState({ field: this.getLevelField(nextProps) })
   }
 
+  handleChange = address => {
+    const { field: { name } } = this.state
+    const { rules } = this.props
+
+    const dependentFields = getDependentFields(name, rules)
+
+    const cleanAddress = reduce(
+      address,
+      (cleanAddress, value, prop) => {
+        if (dependentFields.indexOf(prop) !== -1) {
+          cleanAddress[prop] = null
+        } else {
+          cleanAddress[prop] = value
+        }
+        return cleanAddress
+      },
+      {}
+    )
+
+    this.props.onChangeAddress(cleanAddress)
+  };
+
   render() {
     const { field } = this.state
-    const { rules, address, onChangeAddress } = this.props
+    const { rules, address } = this.props
 
     return (
       <InputLabel field={field}>
@@ -32,7 +55,7 @@ class SelectLevel extends Component {
           field={field}
           rules={rules}
           address={address}
-          onChange={onChangeAddress}
+          onChange={this.handleChange}
         />
       </InputLabel>
     )

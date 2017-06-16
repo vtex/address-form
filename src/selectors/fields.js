@@ -1,5 +1,6 @@
 import find from 'lodash/find'
 import map from 'lodash/map'
+import { POSTAL_CODE } from '../constants'
 
 export function getField(fieldName, rules) {
   return find(rules.fields, ({ name }) => name === fieldName)
@@ -7,10 +8,6 @@ export function getField(fieldName, rules) {
 
 export function hasOptions(field) {
   return !!(field.options || field.optionsPairs || field.optionsMap)
-}
-
-function toValueAndLabel(option) {
-  return { value: option, label: option }
 }
 
 export function getListOfOptions(field, address, rules) {
@@ -57,4 +54,33 @@ export function getListOfOptions(field, address, rules) {
   } else {
     return []
   }
+}
+
+function toValueAndLabel(option) {
+  return { value: option, label: option }
+}
+
+export function getDependentFields(fieldName, rules) {
+  let dependentFields = []
+
+  if (rules.postalCodeFrom !== POSTAL_CODE) {
+    dependentFields = [...dependentFields, 'postalCode']
+  }
+
+  const dependentField = getFieldBasedOn(fieldName, rules)
+  if (dependentField) {
+    dependentFields = [...dependentFields, dependentField]
+
+    const secondLevelField = getFieldBasedOn(dependentField, rules)
+    if (secondLevelField) {
+      dependentFields = [...dependentFields, secondLevelField]
+    }
+  }
+
+  return dependentFields
+}
+
+function getFieldBasedOn(fieldName, rules) {
+  const field = find(rules.fields, ({ basedOn }) => basedOn === fieldName)
+  return field ? field.name : null
 }

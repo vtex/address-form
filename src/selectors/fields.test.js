@@ -1,4 +1,10 @@
-import { getField, hasOptions, getListOfOptions } from './fields'
+import {
+  getField,
+  hasOptions,
+  getListOfOptions,
+  getDependentFields,
+} from './fields'
+import { STATE, POSTAL_CODE } from '../constants'
 
 describe('Field Selectors', () => {
   it('getField()', () => {
@@ -116,6 +122,7 @@ describe('Field Selectors', () => {
       }
       const address = { state: 'PE', city: 'Recife' }
       const rules = {
+        postalCodeFrom: POSTAL_CODE,
         fields: [{ name: 'city', basedOn: 'state' }, { name: 'state' }],
       }
 
@@ -125,6 +132,44 @@ describe('Field Selectors', () => {
         value: 'Boa Viagem',
         label: 'Boa Viagem',
       })
+    })
+  })
+
+  describe('getDependentFields()', () => {
+    it('with one level', () => {
+      const rules = {
+        postalCodeFrom: POSTAL_CODE,
+        fields: [{ basedOn: 'state', name: 'city' }],
+      }
+
+      const dependentFields = getDependentFields('state', rules)
+
+      expect(dependentFields).toMatchObject(['city'])
+    })
+
+    it('with two levels', () => {
+      const rules = {
+        postalCodeFrom: POSTAL_CODE,
+        fields: [
+          { basedOn: 'state', name: 'city' },
+          { basedOn: 'city', name: 'neighborhood' },
+        ],
+      }
+
+      const dependentFields = getDependentFields('state', rules)
+
+      expect(dependentFields).toMatchObject(['city', 'neighborhood'])
+    })
+
+    it('postal code based on a field', () => {
+      const rules = {
+        postalCodeFrom: STATE,
+        fields: [],
+      }
+
+      const dependentFields = getDependentFields('state', rules)
+
+      expect(dependentFields).toMatchObject(['postalCode'])
     })
   })
 })
