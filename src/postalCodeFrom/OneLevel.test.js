@@ -1,7 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import OneLevel from './OneLevel'
-import { mount } from 'enzyme'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
 
@@ -18,25 +17,5 @@ describe('OneLevel', () => {
       .toJSON()
 
     expect(tree).toMatchSnapshot()
-  })
-
-  it('should change the postal code and the state', () => {
-    const handleChange = jest.fn()
-    const wrapper = mount(
-      <OneLevel
-        address={address}
-        rules={useOneLevel}
-        onChangeAddress={handleChange}
-      />
-    )
-
-    const event = { target: { value: 'Azuay___0000' } }
-    wrapper.find('select').simulate('change', event)
-
-    expect(handleChange).toHaveBeenCalledWith({
-      ...address,
-      postalCode: '0000',
-      state: 'Azuay',
-    })
   })
 })
