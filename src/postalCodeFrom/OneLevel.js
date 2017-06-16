@@ -44,7 +44,7 @@ class OneLevel extends Component {
     return (
       <div>
         <label>
-          {levelField.label}
+          {levelField.fixedLabel || levelField.label}
           <select
             name={levelField.name}
             value={this.composeValue(address) || ''}

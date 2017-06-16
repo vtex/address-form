@@ -59,13 +59,13 @@ class ThreeLevels extends Component {
     return (
       <div>
         <label>
-          {firstLevel.label}
+          {firstLevel.fixedLabel || firstLevel.label}
           <select
             name={firstLevel.name}
             value={address[firstLevel.name] || ''}
             onChange={this.handleFirstLevelChange}
           >
-            <option value="" />
+            <option value="">{firstLevel.optionsCaption || ''}</option>
             {firstLevel.options.map(firstLevelName => (
               <option key={firstLevelName} value={firstLevelName}>
                 {firstLevelName}
@@ -74,13 +74,13 @@ class ThreeLevels extends Component {
           </select>
         </label>
         <label>
-          {secondLevel.label}
+          {secondLevel.fixedLabel || secondLevel.label}
           <select
             name={secondLevel.name}
             value={address[secondLevel.name] || ''}
             onChange={this.handleSecondLevelChange}
           >
-            <option value="" />
+            <option value="">{secondLevel.optionsCaption || ''}</option>
             {address[firstLevel.name] &&
               secondLevel.optionsMap[address[firstLevel.name]]
               ? map(
@@ -96,13 +96,13 @@ class ThreeLevels extends Component {
         </label>
 
         <label>
-          {thirdLevel.label}
+          {thirdLevel.fixedLabel || thirdLevel.label}
           <select
             name={thirdLevel.name}
             value={this.composeValue(address)}
             onChange={this.handleThirdLevelChange}
           >
-            <option value="" />
+            <option value="">{thirdLevel.optionsCaption || ''}</option>
             {address[firstLevel.name] &&
               address[secondLevel.name] &&
               rules.thirdLevelPostalCodes[address[firstLevel.name]] &&

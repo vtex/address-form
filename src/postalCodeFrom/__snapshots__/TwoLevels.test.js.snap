@@ -7,16 +7,11 @@ exports[`City with first level selected 1`] = `
     <select
       name="state"
       onChange={[Function]}
-      value="XV Región"
+      value="I Región"
     >
       <option
         value=""
       />
-      <option
-        value="Región Metropolitana"
-      >
-        Región Metropolitana
-      </option>
       <option
         value="I Región"
       >
@@ -26,66 +21,6 @@ exports[`City with first level selected 1`] = `
         value="II Región"
       >
         II Región
-      </option>
-      <option
-        value="III Región"
-      >
-        III Región
-      </option>
-      <option
-        value="IV Región"
-      >
-        IV Región
-      </option>
-      <option
-        value="V Región"
-      >
-        V Región
-      </option>
-      <option
-        value="VI Región"
-      >
-        VI Región
-      </option>
-      <option
-        value="IX Región"
-      >
-        IX Región
-      </option>
-      <option
-        value="VII Región"
-      >
-        VII Región
-      </option>
-      <option
-        value="VIII Región"
-      >
-        VIII Región
-      </option>
-      <option
-        value="X Región"
-      >
-        X Región
-      </option>
-      <option
-        value="XI Región"
-      >
-        XI Región
-      </option>
-      <option
-        value="XII Región"
-      >
-        XII Región
-      </option>
-      <option
-        value="XIV Región"
-      >
-        XIV Región
-      </option>
-      <option
-        value="XV Región"
-      >
-        XV Región
       </option>
     </select>
   </label>
@@ -100,24 +35,29 @@ exports[`City with first level selected 1`] = `
         value=""
       />
       <option
-        value="Arica___1000000"
+        value="Camiña___1150000"
       >
-        Arica
+        Camiña
       </option>
       <option
-        value="Camarones___1040000"
+        value="Colchane___1160000"
       >
-        Camarones
+        Colchane
       </option>
       <option
-        value="General Lagos___1080000"
+        value="Huara___1140000"
       >
-        General Lagos
+        Huara
       </option>
       <option
-        value="Putre___1070000"
+        value="Iquique___1100000"
       >
-        Putre
+        Iquique
+      </option>
+      <option
+        value="Pica___1170000"
+      >
+        Pica
       </option>
     </select>
   </label>
@@ -137,11 +77,6 @@ exports[`City without first level selected 1`] = `
         value=""
       />
       <option
-        value="Región Metropolitana"
-      >
-        Región Metropolitana
-      </option>
-      <option
         value="I Región"
       >
         I Región
@@ -150,66 +85,6 @@ exports[`City without first level selected 1`] = `
         value="II Región"
       >
         II Región
-      </option>
-      <option
-        value="III Región"
-      >
-        III Región
-      </option>
-      <option
-        value="IV Región"
-      >
-        IV Región
-      </option>
-      <option
-        value="V Región"
-      >
-        V Región
-      </option>
-      <option
-        value="VI Región"
-      >
-        VI Región
-      </option>
-      <option
-        value="IX Región"
-      >
-        IX Región
-      </option>
-      <option
-        value="VII Región"
-      >
-        VII Región
-      </option>
-      <option
-        value="VIII Región"
-      >
-        VIII Región
-      </option>
-      <option
-        value="X Región"
-      >
-        X Región
-      </option>
-      <option
-        value="XI Región"
-      >
-        XI Región
-      </option>
-      <option
-        value="XII Región"
-      >
-        XII Región
-      </option>
-      <option
-        value="XIV Región"
-      >
-        XIV Región
-      </option>
-      <option
-        value="XV Región"
-      >
-        XV Región
       </option>
     </select>
   </label>

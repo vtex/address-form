@@ -2,21 +2,16 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import ThreeLevels from './ThreeLevels'
 import { shallow } from 'enzyme'
-import BOL from '../country/BOL'
-import newAddress from '../__mocks__/newAddress'
+import useThreeLevels from '../country/__mocks__/useThreeLevels'
+import address from '../__mocks__/newAddress'
 
 describe('ThreeLevels', () => {
   it('without first and second level selected', () => {
-    const address = {
-      ...newAddress,
-      country: 'BOL',
-    }
-
     const tree = renderer
       .create(
         <ThreeLevels
           address={address}
-          rules={BOL}
+          rules={useThreeLevels}
           onChangeAddress={jest.fn()}
         />
       )
@@ -26,17 +21,14 @@ describe('ThreeLevels', () => {
   })
 
   it('with first level selected and second level not selected', () => {
-    const address = {
-      ...newAddress,
-      country: 'BOL',
-      state: 'Tarija',
-    }
-
     const tree = renderer
       .create(
         <ThreeLevels
-          address={address}
-          rules={BOL}
+          address={{
+            ...address,
+            state: 'Tarija',
+          }}
+          rules={useThreeLevels}
           onChangeAddress={jest.fn()}
         />
       )
@@ -46,18 +38,15 @@ describe('ThreeLevels', () => {
   })
 
   it('with first and second level selected', () => {
-    const address = {
-      ...newAddress,
-      country: 'BOL',
-      state: 'Tarija',
-      city: 'Méndez',
-    }
-
     const tree = renderer
       .create(
         <ThreeLevels
-          address={address}
-          rules={BOL}
+          address={{
+            ...address,
+            state: 'Tarija',
+            city: 'Méndez',
+          }}
+          rules={useThreeLevels}
           onChangeAddress={jest.fn()}
         />
       )
@@ -67,19 +56,16 @@ describe('ThreeLevels', () => {
   })
 
   it('with first, second and third level selected and not postal code', () => {
-    const address = {
-      ...newAddress,
-      country: 'BOL',
-      state: 'Tarija',
-      city: 'Méndez',
-      neighborhood: 'Canasmoro',
-    }
-
     const tree = renderer
       .create(
         <ThreeLevels
-          address={address}
-          rules={BOL}
+          address={{
+            ...address,
+            state: 'Tarija',
+            city: 'Méndez',
+            neighborhood: 'Canasmoro',
+          }}
+          rules={useThreeLevels}
           onChangeAddress={jest.fn()}
         />
       )
@@ -89,20 +75,17 @@ describe('ThreeLevels', () => {
   })
 
   it('with first, second and third level and postalCode selected', () => {
-    const address = {
-      ...newAddress,
-      country: 'BOL',
-      state: 'Tarija',
-      city: 'Méndez',
-      neighborhood: 'Canasmoro',
-      postalCode: '90400',
-    }
-
     const tree = renderer
       .create(
         <ThreeLevels
-          address={address}
-          rules={BOL}
+          address={{
+            ...address,
+            state: 'Tarija',
+            city: 'Méndez',
+            neighborhood: 'Canasmoro',
+            postalCode: '90400',
+          }}
+          rules={useThreeLevels}
           onChangeAddress={jest.fn()}
         />
       )
@@ -115,11 +98,8 @@ describe('ThreeLevels', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <ThreeLevels
-        address={{
-          ...newAddress,
-          country: 'BOL',
-        }}
-        rules={BOL}
+        address={address}
+        rules={useThreeLevels}
         onChangeAddress={handleChange}
       />
     )
@@ -128,8 +108,7 @@ describe('ThreeLevels', () => {
     wrapper.find('select[name="state"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...newAddress,
-      country: 'BOL',
+      ...address,
       state: 'Tarija',
     })
   })
@@ -139,11 +118,10 @@ describe('ThreeLevels', () => {
     const wrapper = shallow(
       <ThreeLevels
         address={{
-          ...newAddress,
-          country: 'BOL',
+          ...address,
           state: 'Tarija',
         }}
-        rules={BOL}
+        rules={useThreeLevels}
         onChangeAddress={handleChange}
       />
     )
@@ -152,8 +130,7 @@ describe('ThreeLevels', () => {
     wrapper.find('select[name="city"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...newAddress,
-      country: 'BOL',
+      ...address,
       state: 'Tarija',
       city: 'Méndez',
     })
@@ -164,12 +141,11 @@ describe('ThreeLevels', () => {
     const wrapper = shallow(
       <ThreeLevels
         address={{
-          ...newAddress,
-          country: 'BOL',
+          ...address,
           state: 'Tarija',
           city: 'Méndez',
         }}
-        rules={BOL}
+        rules={useThreeLevels}
         onChangeAddress={handleChange}
       />
     )
@@ -178,8 +154,7 @@ describe('ThreeLevels', () => {
     wrapper.find('select[name="neighborhood"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...newAddress,
-      country: 'BOL',
+      ...address,
       state: 'Tarija',
       city: 'Méndez',
       neighborhood: 'Canasmoro',

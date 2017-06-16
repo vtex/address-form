@@ -2,8 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { shallow } from 'enzyme'
 import PostalCodeGetter from './PostalCodeGetter'
-import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import address from './__mocks__/newAddress'
+import usePostalCode from './country/__mocks__/usePostalCode'
+import useOneLevel from './country/__mocks__/useOneLevel'
+import useTwoLevels from './country/__mocks__/useTwoLevels'
+import useThreeLevels from './country/__mocks__/useThreeLevels'
 
 describe('PostalCodeGetter', () => {
   it('renders without crashing', () => {
@@ -12,7 +15,7 @@ describe('PostalCodeGetter', () => {
     ReactDOM.render(
       <PostalCodeGetter
         address={address}
-        rules={{}}
+        rules={usePostalCode}
         onChangeAddress={jest.fn()}
       />,
       div
@@ -25,9 +28,7 @@ describe('PostalCodeGetter', () => {
     const wrapper = shallow(
       <PostalCodeGetter
         address={address}
-        rules={{
-          postalCodeFrom: POSTAL_CODE,
-        }}
+        rules={usePostalCode}
         onChangeAddress={handleChange}
       />
     )
@@ -35,15 +36,13 @@ describe('PostalCodeGetter', () => {
     expect(wrapper.find('PostalCode')).toHaveLength(1)
   })
 
-  it('render State', () => {
+  it('render OneLevel', () => {
     const handleChange = jest.fn()
 
     const wrapper = shallow(
       <PostalCodeGetter
         address={address}
-        rules={{
-          postalCodeFrom: ONE_LEVEL,
-        }}
+        rules={useOneLevel}
         onChangeAddress={handleChange}
       />
     )
@@ -51,15 +50,13 @@ describe('PostalCodeGetter', () => {
     expect(wrapper.find('OneLevel')).toHaveLength(1)
   })
 
-  it('render City', () => {
+  it('render TwoLevels', () => {
     const handleChange = jest.fn()
 
     const wrapper = shallow(
       <PostalCodeGetter
         address={address}
-        rules={{
-          postalCodeFrom: TWO_LEVELS,
-        }}
+        rules={useTwoLevels}
         onChangeAddress={handleChange}
       />
     )
@@ -67,15 +64,13 @@ describe('PostalCodeGetter', () => {
     expect(wrapper.find('TwoLevels')).toHaveLength(1)
   })
 
-  it('render Neighborhood', () => {
+  it('render ThreeLevels', () => {
     const handleChange = jest.fn()
 
     const wrapper = shallow(
       <PostalCodeGetter
         address={address}
-        rules={{
-          postalCodeFrom: THREE_LEVELS,
-        }}
+        rules={useThreeLevels}
         onChangeAddress={handleChange}
       />
     )

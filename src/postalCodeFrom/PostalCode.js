@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
+import { getField } from '../rulesLens/fields'
 
 class PostalCode extends Component {
   handleChange = e => {
@@ -12,12 +13,13 @@ class PostalCode extends Component {
   };
 
   render() {
-    const { address: { postalCode } } = this.props
+    const { address: { postalCode }, rules } = this.props
+    const field = getField('postalCode', rules)
 
     return (
       <div className="postal-code">
         <label>
-          Postal code
+          {field.fixedLabel || field.label}
           <input
             type="text"
             value={postalCode || ''}

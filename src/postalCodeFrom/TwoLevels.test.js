@@ -2,19 +2,18 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import TwoLevels from './TwoLevels'
 import { shallow } from 'enzyme'
-import CHL from '../country/CHL'
-import newAddress from '../__mocks__/newAddress'
+import useTwoLevels from '../country/__mocks__/useTwoLevels'
+import address from '../__mocks__/newAddress'
 
 describe('City', () => {
   it('without first level selected', () => {
-    const address = {
-      ...newAddress,
-      country: 'CHL',
-    }
-
     const tree = renderer
       .create(
-        <TwoLevels address={address} rules={CHL} onChangeAddress={jest.fn()} />
+        <TwoLevels
+          address={address}
+          rules={useTwoLevels}
+          onChangeAddress={jest.fn()}
+        />
       )
       .toJSON()
 
@@ -22,15 +21,16 @@ describe('City', () => {
   })
 
   it('with first level selected', () => {
-    const address = {
-      ...newAddress,
-      country: 'CHL',
-      state: 'XV Región',
-    }
-
     const tree = renderer
       .create(
-        <TwoLevels address={address} rules={CHL} onChangeAddress={jest.fn()} />
+        <TwoLevels
+          address={{
+            ...address,
+            state: 'I Región',
+          }}
+          rules={useTwoLevels}
+          onChangeAddress={jest.fn()}
+        />
       )
       .toJSON()
 
@@ -41,22 +41,18 @@ describe('City', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <TwoLevels
-        address={{
-          ...newAddress,
-          country: 'CHL',
-        }}
-        rules={CHL}
+        address={address}
+        rules={useTwoLevels}
         onChangeAddress={handleChange}
       />
     )
 
-    const event = { target: { value: 'XV Región' } }
+    const event = { target: { value: 'I Región' } }
     wrapper.find('select[name="state"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...newAddress,
-      country: 'CHL',
-      state: 'XV Región',
+      ...address,
+      state: 'I Región',
     })
   })
 
@@ -65,24 +61,22 @@ describe('City', () => {
     const wrapper = shallow(
       <TwoLevels
         address={{
-          ...newAddress,
-          country: 'CHL',
-          state: 'XV Región',
+          ...address,
+          state: 'I Región',
         }}
-        rules={CHL}
+        rules={useTwoLevels}
         onChangeAddress={handleChange}
       />
     )
 
-    const event = { target: { value: 'Arica___1000000' } }
+    const event = { target: { value: 'Camiña___1150000' } }
     wrapper.find('select[name="neighborhood"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...newAddress,
-      country: 'CHL',
-      state: 'XV Región',
-      neighborhood: 'Arica',
-      postalCode: '1000000',
+      ...address,
+      state: 'I Región',
+      neighborhood: 'Camiña',
+      postalCode: '1150000',
     })
   })
 })

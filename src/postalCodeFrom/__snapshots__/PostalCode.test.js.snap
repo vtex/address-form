@@ -5,7 +5,7 @@ exports[`Postal Code show postal code 1`] = `
   className="postal-code"
 >
   <label>
-    Postal code
+    CEP
     <input
       onChange={[Function]}
       type="text"

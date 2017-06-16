@@ -2,19 +2,18 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import OneLevel from './OneLevel'
 import { shallow } from 'enzyme'
-import ECU from '../country/ECU'
-import newAddress from '../__mocks__/newAddress'
+import useOneLevel from '../country/__mocks__/useOneLevel'
+import address from '../__mocks__/newAddress'
 
 describe('OneLevel', () => {
   it('show state options', () => {
-    const address = {
-      ...newAddress,
-      country: 'ECU',
-    }
-
     const tree = renderer
       .create(
-        <OneLevel address={address} rules={ECU} onChangeAddress={jest.fn()} />
+        <OneLevel
+          address={address}
+          rules={useOneLevel}
+          onChangeAddress={jest.fn()}
+        />
       )
       .toJSON()
 
@@ -25,11 +24,8 @@ describe('OneLevel', () => {
     const handleChange = jest.fn()
     const wrapper = shallow(
       <OneLevel
-        address={{
-          ...newAddress,
-          country: 'ECU',
-        }}
-        rules={ECU}
+        address={address}
+        rules={useOneLevel}
         onChangeAddress={handleChange}
       />
     )
@@ -38,8 +34,7 @@ describe('OneLevel', () => {
     wrapper.find('select').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...newAddress,
-      country: 'ECU',
+      ...address,
       postalCode: '0000',
       state: 'Azuay',
     })

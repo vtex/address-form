@@ -11,51 +11,18 @@ exports[`ThreeLevels with first and second level selected 1`] = `
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
       <option
         value="Beni"
       >
         Beni
       </option>
       <option
-        value="Chuquisaca"
-      >
-        Chuquisaca
-      </option>
-      <option
         value="Cochabamba"
       >
         Cochabamba
-      </option>
-      <option
-        value="La Paz"
-      >
-        La Paz
-      </option>
-      <option
-        value="Oruro"
-      >
-        Oruro
-      </option>
-      <option
-        value="Pando"
-      >
-        Pando
-      </option>
-      <option
-        value="Potosí"
-      >
-        Potosí
-      </option>
-      <option
-        value="Santa Cruz"
-      >
-        Santa Cruz
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
       </option>
     </select>
   </label>
@@ -68,36 +35,8 @@ exports[`ThreeLevels with first and second level selected 1`] = `
     >
       <option
         value=""
-      />
-      <option
-        value="Aniceto Arce"
       >
-        Aniceto Arce
-      </option>
-      <option
-        value="Burnet O'Connor"
-      >
-        Burnet O'Connor
-      </option>
-      <option
-        value="Cercado"
-      >
-        Cercado
-      </option>
-      <option
-        value="Gran Chaco"
-      >
-        Gran Chaco
-      </option>
-      <option
-        value="Méndez"
-      >
-        Méndez
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
+        
       </option>
     </select>
   </label>
@@ -110,21 +49,8 @@ exports[`ThreeLevels with first and second level selected 1`] = `
     >
       <option
         value=""
-      />
-      <option
-        value="Canasmoro___90400"
       >
-        Canasmoro
-      </option>
-      <option
-        value="San Lorenzo___90401"
-      >
-        San Lorenzo
-      </option>
-      <option
-        value="Tomatitas___90402"
-      >
-        Tomatitas
+        
       </option>
     </select>
   </label>
@@ -142,51 +68,18 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
       <option
         value="Beni"
       >
         Beni
       </option>
       <option
-        value="Chuquisaca"
-      >
-        Chuquisaca
-      </option>
-      <option
         value="Cochabamba"
       >
         Cochabamba
-      </option>
-      <option
-        value="La Paz"
-      >
-        La Paz
-      </option>
-      <option
-        value="Oruro"
-      >
-        Oruro
-      </option>
-      <option
-        value="Pando"
-      >
-        Pando
-      </option>
-      <option
-        value="Potosí"
-      >
-        Potosí
-      </option>
-      <option
-        value="Santa Cruz"
-      >
-        Santa Cruz
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
       </option>
     </select>
   </label>
@@ -199,36 +92,8 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
     >
       <option
         value=""
-      />
-      <option
-        value="Aniceto Arce"
       >
-        Aniceto Arce
-      </option>
-      <option
-        value="Burnet O'Connor"
-      >
-        Burnet O'Connor
-      </option>
-      <option
-        value="Cercado"
-      >
-        Cercado
-      </option>
-      <option
-        value="Gran Chaco"
-      >
-        Gran Chaco
-      </option>
-      <option
-        value="Méndez"
-      >
-        Méndez
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
+        
       </option>
     </select>
   </label>
@@ -241,7 +106,9 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
     </select>
   </label>
 </div>
@@ -258,51 +125,18 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
       <option
         value="Beni"
       >
         Beni
       </option>
       <option
-        value="Chuquisaca"
-      >
-        Chuquisaca
-      </option>
-      <option
         value="Cochabamba"
       >
         Cochabamba
-      </option>
-      <option
-        value="La Paz"
-      >
-        La Paz
-      </option>
-      <option
-        value="Oruro"
-      >
-        Oruro
-      </option>
-      <option
-        value="Pando"
-      >
-        Pando
-      </option>
-      <option
-        value="Potosí"
-      >
-        Potosí
-      </option>
-      <option
-        value="Santa Cruz"
-      >
-        Santa Cruz
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
       </option>
     </select>
   </label>
@@ -315,36 +149,8 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
     >
       <option
         value=""
-      />
-      <option
-        value="Aniceto Arce"
       >
-        Aniceto Arce
-      </option>
-      <option
-        value="Burnet O'Connor"
-      >
-        Burnet O'Connor
-      </option>
-      <option
-        value="Cercado"
-      >
-        Cercado
-      </option>
-      <option
-        value="Gran Chaco"
-      >
-        Gran Chaco
-      </option>
-      <option
-        value="Méndez"
-      >
-        Méndez
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
+        
       </option>
     </select>
   </label>
@@ -357,21 +163,8 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
     >
       <option
         value=""
-      />
-      <option
-        value="Canasmoro___90400"
       >
-        Canasmoro
-      </option>
-      <option
-        value="San Lorenzo___90401"
-      >
-        San Lorenzo
-      </option>
-      <option
-        value="Tomatitas___90402"
-      >
-        Tomatitas
+        
       </option>
     </select>
   </label>
@@ -389,51 +182,18 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
       <option
         value="Beni"
       >
         Beni
       </option>
       <option
-        value="Chuquisaca"
-      >
-        Chuquisaca
-      </option>
-      <option
         value="Cochabamba"
       >
         Cochabamba
-      </option>
-      <option
-        value="La Paz"
-      >
-        La Paz
-      </option>
-      <option
-        value="Oruro"
-      >
-        Oruro
-      </option>
-      <option
-        value="Pando"
-      >
-        Pando
-      </option>
-      <option
-        value="Potosí"
-      >
-        Potosí
-      </option>
-      <option
-        value="Santa Cruz"
-      >
-        Santa Cruz
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
       </option>
     </select>
   </label>
@@ -446,36 +206,8 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
     >
       <option
         value=""
-      />
-      <option
-        value="Aniceto Arce"
       >
-        Aniceto Arce
-      </option>
-      <option
-        value="Burnet O'Connor"
-      >
-        Burnet O'Connor
-      </option>
-      <option
-        value="Cercado"
-      >
-        Cercado
-      </option>
-      <option
-        value="Gran Chaco"
-      >
-        Gran Chaco
-      </option>
-      <option
-        value="Méndez"
-      >
-        Méndez
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
+        
       </option>
     </select>
   </label>
@@ -488,21 +220,8 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
     >
       <option
         value=""
-      />
-      <option
-        value="Canasmoro___90400"
       >
-        Canasmoro
-      </option>
-      <option
-        value="San Lorenzo___90401"
-      >
-        San Lorenzo
-      </option>
-      <option
-        value="Tomatitas___90402"
-      >
-        Tomatitas
+        
       </option>
     </select>
   </label>
@@ -520,51 +239,18 @@ exports[`ThreeLevels without first and second level selected 1`] = `
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
       <option
         value="Beni"
       >
         Beni
       </option>
       <option
-        value="Chuquisaca"
-      >
-        Chuquisaca
-      </option>
-      <option
         value="Cochabamba"
       >
         Cochabamba
-      </option>
-      <option
-        value="La Paz"
-      >
-        La Paz
-      </option>
-      <option
-        value="Oruro"
-      >
-        Oruro
-      </option>
-      <option
-        value="Pando"
-      >
-        Pando
-      </option>
-      <option
-        value="Potosí"
-      >
-        Potosí
-      </option>
-      <option
-        value="Santa Cruz"
-      >
-        Santa Cruz
-      </option>
-      <option
-        value="Tarija"
-      >
-        Tarija
       </option>
     </select>
   </label>
@@ -577,7 +263,9 @@ exports[`ThreeLevels without first and second level selected 1`] = `
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
     </select>
   </label>
   <label>
@@ -589,7 +277,9 @@ exports[`ThreeLevels without first and second level selected 1`] = `
     >
       <option
         value=""
-      />
+      >
+        
+      </option>
     </select>
   </label>
 </div>

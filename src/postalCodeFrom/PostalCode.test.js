@@ -2,19 +2,18 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import PostalCode from './PostalCode'
 import { shallow } from 'enzyme'
-import BRA from '../country/BRA'
-import newAddress from '../__mocks__/newAddress'
+import usePostalCode from '../country/__mocks__/usePostalCode'
+import address from '../__mocks__/newAddress'
 
 describe('Postal Code', () => {
   it('show postal code', () => {
-    const address = {
-      ...newAddress,
-      country: 'BRA',
-    }
-
     const tree = renderer
       .create(
-        <PostalCode address={address} rules={BRA} onChangeAddress={jest.fn()} />
+        <PostalCode
+          address={address}
+          rules={usePostalCode}
+          onChangeAddress={jest.fn()}
+        />
       )
       .toJSON()
 
@@ -26,11 +25,10 @@ describe('Postal Code', () => {
     const wrapper = shallow(
       <PostalCode
         address={{
-          ...newAddress,
-          country: 'BRA',
+          ...address,
           postalCode: '',
         }}
-        rules={BRA}
+        rules={usePostalCode}
         onChangeAddress={handleChange}
       />
     )
@@ -39,8 +37,7 @@ describe('Postal Code', () => {
     wrapper.find('input').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...newAddress,
-      country: 'BRA',
+      ...address,
       postalCode: '2',
     })
   })
