@@ -5,6 +5,7 @@ import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import filter from 'lodash/filter'
 import InputSelect from './addressInputs/InputSelect'
 import InputText from './addressInputs/InputText'
+import { hasOptions } from './rulesLens/fields'
 
 class AddressForm extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class AddressForm extends Component {
   }
 
   render() {
-    const { address, onChangeAddress } = this.props
+    const { address, rules, onChangeAddress } = this.props
     const { fields } = this.state
 
     return (
@@ -40,9 +41,10 @@ class AddressForm extends Component {
           <div key={field.name}>
             <label>
               {field.label}
-              {isSelect(field)
+              {hasOptions(field)
                 ? <InputSelect
                   field={field}
+                  rules={rules}
                   address={address}
                   onChange={onChangeAddress}
                   />
@@ -68,10 +70,6 @@ AddressForm.propTypes = {
   omitPostalCodeFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
-}
-
-function isSelect(field) {
-  return field.options || field.optionsMap || field.optionsPairs
 }
 
 /**

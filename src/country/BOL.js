@@ -425,6 +425,7 @@ export default {
       required: true,
       size: 'large',
       isUpperCase: false,
+      level: 1,
       options: getFirstLevel(countryData),
     },
     {
@@ -432,13 +433,17 @@ export default {
       label: 'province',
       required: true,
       size: 'large',
+      level: 2,
+      basedOn: 'state',
       optionsMap: getSecondLevel(countryData),
     },
     {
       name: 'neighborhood',
       label: 'city',
       required: true,
-      options: getThirdLevel(countryData),
+      level: 3,
+      basedOn: 'city',
+      optionsMap: getThirdLevel(countryData),
     },
   ],
 }

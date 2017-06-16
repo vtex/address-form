@@ -86,7 +86,9 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       >
         <option
           value=""
-        />
+        >
+          UF
+        </option>
         <option
           value="AC"
         >

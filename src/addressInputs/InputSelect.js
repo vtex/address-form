@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
 import map from 'lodash/map'
+import { getListOfOptions } from '../rulesLens/fields'
 
 class InputSelect extends Component {
   handleChange = e => {
@@ -14,7 +15,7 @@ class InputSelect extends Component {
   };
 
   render() {
-    const { address, field } = this.props
+    const { address, rules, field } = this.props
 
     return (
       <select
@@ -22,19 +23,10 @@ class InputSelect extends Component {
         value={address[field.name] || ''}
         onChange={this.handleChange}
       >
-        <option value="" />
-        {field.options &&
-          map(field.options, optionValue => (
-            <option key={optionValue} value={optionValue}>{optionValue}</option>
-          ))}
-        {field.optionsPairs &&
-          map(field.optionsPairs, ({ value, label }) => (
-            <option key={value} value={value}>{label}</option>
-          ))}
-        {field.optionsMap &&
-          map(field.optionsMap[address[field.basedOn]], optionValue => (
-            <option key={optionValue} value={optionValue}>{optionValue}</option>
-          ))}
+        <option value="">{field.optionsCaption || ''}</option>
+        {map(getListOfOptions(field, address, rules), ({ value, label }) => (
+          <option key={value} value={value}>{label}</option>
+        ))}
       </select>
     )
   }
@@ -42,6 +34,7 @@ class InputSelect extends Component {
 
 InputSelect.propTypes = {
   field: PropTypes.object.isRequired,
+  rules: PropTypes.object.isRequired,
   address: PropTypes.shape(AddressShape),
   onChange: PropTypes.func.isRequired,
 }

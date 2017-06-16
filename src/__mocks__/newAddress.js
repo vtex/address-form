@@ -4,7 +4,7 @@ export default {
   city: null,
   complement: null,
   country: null,
-  geoCoordinates: null,
+  geoCoordinates: [],
   neighborhood: null,
   number: null,
   postalCode: null,
