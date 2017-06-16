@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShape from '../propTypes/AddressShape'
-import map from 'lodash/map'
 
 class InputText extends Component {
   handleChange = e => {
