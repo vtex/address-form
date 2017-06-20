@@ -85,7 +85,7 @@ describe('CountrySelector', () => {
     expect(handleChange).toHaveBeenCalled()
   })
 
-  it('shold clean address delivery fields when country changes', () => {
+  it('should clean all input fields when country changes', () => {
     const handleChange = jest.fn()
     const wrapper = mount(
       <CountrySelector
@@ -107,10 +107,15 @@ describe('CountrySelector', () => {
 
     expect(handleChange).toHaveBeenCalledWith({
       country: { value: 'USA' },
-      postalCode: { value: null },
-      state: { value: null },
       city: { value: null },
+      complement: { value: null },
+      geoCoordinates: { value: null },
       neighborhood: { value: null },
+      number: { value: null },
+      postalCode: { value: null },
+      reference: { value: null },
+      state: { value: null },
+      street: { value: null },
     })
   })
 })

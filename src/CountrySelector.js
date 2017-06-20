@@ -8,10 +8,15 @@ class CountrySelector extends Component {
   handleChangeCountry = countryField => {
     this.props.onChangeAddress({
       ...countryField,
-      postalCode: { value: null },
-      state: { value: null },
       city: { value: null },
+      complement: { value: null },
+      geoCoordinates: { value: null },
       neighborhood: { value: null },
+      number: { value: null },
+      postalCode: { value: null },
+      reference: { value: null },
+      state: { value: null },
+      street: { value: null },
     })
   };
 
