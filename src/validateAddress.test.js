@@ -1,4 +1,8 @@
-import validateAddress, { validateField } from './validateAddress'
+import {
+  validateAddress,
+  validateChangedFields,
+  validateField,
+} from './validateAddress'
 import address from './__mocks__/newAddress'
 import reduce from 'lodash/reduce'
 import usePostalCode from './country/__mocks__/usePostalCode'
@@ -269,5 +273,37 @@ describe('Address Validation:', () => {
       validateField(null, 'invalidProperty', address, usePostalCode)
 
     expect(validate).toThrow(/Unexpected field invalidProperty/)
+  })
+
+  it('should only validate changed fields', () => {
+    const changedFields = {
+      city: { value: 'Foo', visited: true },
+      state: { value: null, valid: true },
+    }
+
+    const result = validateChangedFields(changedFields, address, usePostalCode)
+
+    expect(result.city.valid).toBe(true)
+    expect(result.state.valid).toBe(true)
+  })
+
+  it('should show valid when changed field is not visited', () => {
+    const changedFields = {
+      postalCode: { value: '22231000' },
+    }
+
+    const result = validateChangedFields(changedFields, address, usePostalCode)
+
+    expect(result.postalCode.valid).toBe(true)
+  })
+
+  it("should not show validation when changed field is not visited and it's invalid", () => {
+    const changedFields = {
+      postalCode: { value: '2' },
+    }
+
+    const result = validateChangedFields(changedFields, address, usePostalCode)
+
+    expect(result.postalCode.valid).toBeUndefined()
   })
 })

@@ -6,6 +6,7 @@ import BOL from './country/BOL'
 import BRA from './country/BRA'
 import CHL from './country/CHL'
 import ECU from './country/ECU'
+import { validateChangedFields } from './validateAddress'
 
 class App extends Component {
   constructor(props) {
@@ -37,9 +38,22 @@ class App extends Component {
     }
   }
 
-  handleChangeAddress = address => {
-    this.setState({
-      address,
+  handleChangeAddress = changedAddressFields => {
+    this.setState(prevState => {
+      const country = changedAddressFields.country &&
+        changedAddressFields.country.value
+        ? changedAddressFields.country.value
+        : prevState.address.country.value
+
+      const rules = prevState.rules[country]
+
+      return {
+        address: validateChangedFields(
+          changedAddressFields,
+          prevState.address,
+          rules
+        ),
+      }
     })
   };
 

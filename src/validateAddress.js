@@ -10,14 +10,54 @@ import {
   EPOSTALCODE,
 } from './constants.js'
 
-export default function validateAddress(address, rules) {
+export function validateAddress(address, rules) {
   return reduce(
     address,
-    (memo, valueObj, name) => {
-      memo[name] = validateField(valueObj.value, name, address, rules)
+    (memo, { value }, name) => {
+      memo[name] = {
+        value,
+        ...validateField(value, name, address, rules),
+      }
       return memo
     },
     {}
+  )
+}
+
+export function validateChangedFields(changedFields, address, rules) {
+  const changeFieldsNames = Object.keys(changedFields)
+  const visitedFields = reduce(
+    changedFields,
+    (acc, field, name) => (field.visited ? acc.concat([name]) : acc),
+    []
+  )
+
+  const newAddress = {
+    ...address,
+    ...changedFields,
+  }
+
+  return reduce(
+    changeFieldsNames,
+    (address, fieldName) => {
+      const validationResult = validateField(
+        newAddress[fieldName].value,
+        fieldName,
+        address,
+        rules
+      )
+
+      const isVisited = visitedFields.indexOf(fieldName) !== -1
+
+      address[fieldName] = {
+        ...address[fieldName],
+        ...(isVisited || validationResult.valid === true
+          ? validationResult
+          : {}),
+      }
+      return address
+    },
+    newAddress
   )
 }
 
@@ -47,7 +87,7 @@ export function validateField(value, name, address, rules) {
   }
 }
 
-const validResult = { valid: true }
+const validResult = { valid: true, reason: undefined }
 const invalidAddressType = { valid: false, reason: EADDRESSTYPE }
 const emptyField = { valid: false, reason: EEMPTY }
 const notAnOption = { valid: false, reason: ENOTOPTION }
