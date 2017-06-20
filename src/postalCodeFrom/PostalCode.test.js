@@ -37,7 +37,6 @@ describe('Postal Code', () => {
     wrapper.find('input').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...address,
       postalCode: { value: '2' },
     })
   })

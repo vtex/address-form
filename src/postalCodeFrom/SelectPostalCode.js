@@ -25,7 +25,6 @@ class SelectPostalCode extends Component {
     const currentLevelName = this.getCurrentLevelField(rules).name
 
     this.props.onChangeAddress({
-      ...this.props.address,
       ...this.deComposeValue(currentLevelName, value),
     })
   };

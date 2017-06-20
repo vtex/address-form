@@ -40,7 +40,6 @@ describe('SelectPostalCode', () => {
         .simulate('change', event)
 
       expect(handleChange).toHaveBeenCalledWith({
-        ...address,
         [firstLevelName]: { value: 'Azuay' },
         postalCode: { value: '0000' },
       })
@@ -80,7 +79,6 @@ describe('SelectPostalCode', () => {
         .simulate('change', event)
 
       expect(handleChange).toHaveBeenCalledWith({
-        ...address,
         [secondLevelName]: { value: 'Camiña' },
         postalCode: { value: '1150000' },
       })
@@ -120,7 +118,6 @@ describe('SelectPostalCode', () => {
         .simulate('change', event)
 
       expect(handleChange).toHaveBeenCalledWith({
-        ...address,
         [thirdLevelName]: { value: 'Canasmoro' },
         postalCode: { value: '90400' },
       })

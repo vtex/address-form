@@ -37,7 +37,7 @@ describe('SelectLevel', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  it('should clear dependent fields when parent field changes', () => {
+  it('should clear dependent fields when parent field changes for two levels', () => {
     const handleChange = jest.fn()
     const wrapper = mount(
       <SelectLevel
@@ -56,13 +56,13 @@ describe('SelectLevel', () => {
     wrapper.find('select[name="state"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...address,
       state: { value: 'I Región' },
-      city: { value: null },
+      neighborhood: { value: null },
+      postalCode: { value: null },
     })
   })
 
-  it('should clear dependent fields when parent field changes', () => {
+  it('should clear dependent fields when parent field changes for three levels', () => {
     const handleChange = jest.fn()
     const wrapper = mount(
       <SelectLevel
@@ -82,10 +82,10 @@ describe('SelectLevel', () => {
     wrapper.find('select[name="state"]').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({
-      ...address,
       state: { value: 'Cochabamba' },
       city: { value: null },
       neighborhood: { value: null },
+      postalCode: { value: null },
     })
   })
 })

@@ -10,7 +10,6 @@ class InputSelect extends Component {
     const value = e.target.value
 
     this.props.onChange({
-      ...this.props.address,
       [this.props.field.name]: { value },
     })
   };

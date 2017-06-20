@@ -31,17 +31,20 @@ class SelectLevel extends Component {
     const dependentFields = getDependentFields(name, rules)
 
     const cleanAddress = reduce(
-      address,
+      this.props.address,
       (cleanAddress, value, prop) => {
         if (dependentFields.indexOf(prop) !== -1) {
           cleanAddress[prop] = { value: null }
         }
         return cleanAddress
       },
-      address
+      {}
     )
 
-    this.props.onChangeAddress(cleanAddress)
+    this.props.onChangeAddress({
+      ...cleanAddress,
+      ...address,
+    })
   };
 
   render() {
