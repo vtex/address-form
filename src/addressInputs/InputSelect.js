@@ -7,10 +7,25 @@ import { getListOfOptions } from '../selectors/fields'
 
 class InputSelect extends Component {
   handleChange = e => {
+    const { address, field, onChange } = this.props
     const value = e.target.value
 
-    this.props.onChange({
-      [this.props.field.name]: { value },
+    onChange({
+      [field.name]: {
+        ...address[field.name],
+        value,
+      },
+    })
+  };
+
+  onBlur = e => {
+    const { address, field, onChange } = this.props
+
+    onChange({
+      [field.name]: {
+        ...address[field.name],
+        visited: true,
+      },
     })
   };
 

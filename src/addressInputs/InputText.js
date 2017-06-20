@@ -5,10 +5,25 @@ import AddressShapeWithValidation
 
 class InputText extends Component {
   handleChange = e => {
+    const { address, field, onChange } = this.props
     const value = e.target.value
 
-    this.props.onChange({
-      [this.props.field.name]: { value },
+    onChange({
+      [field.name]: {
+        ...address[field.name],
+        value,
+      },
+    })
+  };
+
+  handleBlur = e => {
+    const { address, field, onChange } = this.props
+
+    onChange({
+      [field.name]: {
+        ...address[field.name],
+        visited: true,
+      },
     })
   };
 
@@ -20,6 +35,7 @@ class InputText extends Component {
         type="text"
         name={field.name}
         value={address[field.name].value || ''}
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
       />
     )

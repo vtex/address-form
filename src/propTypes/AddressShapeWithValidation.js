@@ -4,6 +4,7 @@ import reduce from 'lodash/reduce'
 import AddressShape from './AddressShape'
 
 export const ValidationType = {
+  visited: false,
   valid: PropTypes.bool,
   reason: PropTypes.objectOf(ERROR_TYPES),
 }
