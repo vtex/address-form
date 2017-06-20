@@ -4,6 +4,7 @@ import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
 import map from 'lodash/map'
 import { getListOfOptions } from '../selectors/fields'
+import cx from 'classnames'
 
 class InputSelect extends Component {
   handleChange = e => {
@@ -31,12 +32,21 @@ class InputSelect extends Component {
 
   render() {
     const { address, rules, field } = this.props
+    const fieldValue = address[field.name]
+
+    const className = cx({
+      [`input-${field.size}`]: field.size,
+      success: fieldValue.valid === true,
+      error: fieldValue.valid === false,
+    })
 
     return (
       <select
         name={field.name}
         value={address[field.name].value || ''}
         onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        className={className}
       >
         <option value="">{field.optionsCaption || ''}</option>
         {map(getListOfOptions(field, address, rules), ({ value, label }) => (

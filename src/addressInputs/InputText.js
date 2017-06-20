@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
+import cx from 'classnames'
 
 class InputText extends Component {
   handleChange = e => {
@@ -29,14 +30,22 @@ class InputText extends Component {
 
   render() {
     const { address, field } = this.props
+    const fieldValue = address[field.name]
+
+    const className = cx({
+      [`input-${field.size}`]: field.size,
+      success: fieldValue.valid === true,
+      error: fieldValue.valid === false,
+    })
 
     return (
       <input
         type="text"
         name={field.name}
-        value={address[field.name].value || ''}
+        value={fieldValue.value || ''}
         onBlur={this.handleBlur}
         onChange={this.handleChange}
+        className={className}
       />
     )
   }

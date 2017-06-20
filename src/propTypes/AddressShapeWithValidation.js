@@ -6,7 +6,7 @@ import AddressShape from './AddressShape'
 export const ValidationType = {
   visited: false,
   valid: PropTypes.bool,
-  reason: PropTypes.objectOf(ERROR_TYPES),
+  reason: PropTypes.oneOf(ERROR_TYPES),
 }
 
 const AddressShapeWithValidation = reduce(
