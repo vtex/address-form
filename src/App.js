@@ -61,7 +61,7 @@ class App extends Component {
     const { shipsTo, address, rules } = this.state
 
     return (
-      <div>
+      <div className="step" style={{ padding: '20px' }}>
         <div style={{ float: 'right', width: '50%' }}>
           <pre><small>{JSON.stringify(address, null, 2)}</small></pre>
         </div>
