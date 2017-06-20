@@ -62,25 +62,28 @@ class App extends Component {
 
     return (
       <div>
-        <pre>{JSON.stringify(address, null, 2)}</pre>
+        <div style={{ float: 'right', width: '50%' }}>
+          <pre><small>{JSON.stringify(address, null, 2)}</small></pre>
+        </div>
+        <div>
+          <CountrySelector
+            address={address}
+            shipsTo={shipsTo}
+            onChangeAddress={this.handleChangeAddress}
+          />
 
-        <CountrySelector
-          address={address}
-          shipsTo={shipsTo}
-          onChangeAddress={this.handleChangeAddress}
-        />
+          <PostalCodeGetter
+            address={address}
+            rules={rules[address.country.value]}
+            onChangeAddress={this.handleChangeAddress}
+          />
 
-        <PostalCodeGetter
-          address={address}
-          rules={rules[address.country.value]}
-          onChangeAddress={this.handleChangeAddress}
-        />
-
-        <AddressForm
-          address={address}
-          rules={rules[address.country.value]}
-          onChangeAddress={this.handleChangeAddress}
-        />
+          <AddressForm
+            address={address}
+            rules={rules[address.country.value]}
+            onChangeAddress={this.handleChangeAddress}
+          />
+        </div>
       </div>
     )
   }
