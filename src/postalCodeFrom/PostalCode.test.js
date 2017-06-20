@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import PostalCode from './PostalCode'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import usePostalCode from '../country/__mocks__/usePostalCode'
 import address from '../__mocks__/newAddress'
 
@@ -22,7 +22,7 @@ describe('Postal Code', () => {
 
   it('should change the postal code', () => {
     const handleChange = jest.fn()
-    const wrapper = shallow(
+    const wrapper = mount(
       <PostalCode
         address={{
           ...address,

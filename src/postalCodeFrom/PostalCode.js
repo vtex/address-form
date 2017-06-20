@@ -3,45 +3,18 @@ import PropTypes from 'prop-types'
 import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
 import { getField } from '../selectors/fields'
+import InputLabel from '../addressInputs/InputLabel'
+import InputText from '../addressInputs/InputText'
 
 class PostalCode extends Component {
-  handleChange = e => {
-    const postalCode = e.target.value
-    this.props.onChangeAddress({
-      postalCode: {
-        ...this.props.address.postalCode,
-        value: postalCode,
-      },
-    })
-  };
-
-  handleBlur = e => {
-    const { address, onChangeAddress } = this.props
-
-    onChangeAddress({
-      postalCode: {
-        ...address.postalCode,
-        visited: true,
-      },
-    })
-  };
-
   render() {
-    const { address: { postalCode: { value } }, rules } = this.props
+    const { address, rules, onChangeAddress } = this.props
     const field = getField('postalCode', rules)
 
     return (
-      <div className="postal-code">
-        <label>
-          {field.fixedLabel || field.label}
-          <input
-            type="text"
-            value={value || ''}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-          />
-        </label>
-      </div>
+      <InputLabel field={field}>
+        <InputText field={field} address={address} onChange={onChangeAddress} />
+      </InputLabel>
     )
   }
 }

@@ -1,17 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Postal Code show postal code 1`] = `
-<div
-  className="postal-code"
->
-  <label>
-    CEP
-    <input
-      onBlur={[Function]}
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-  </label>
-</div>
+<label>
+  CEP
+  <input
+    name="postalCode"
+    onBlur={[Function]}
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+</label>
 `;
