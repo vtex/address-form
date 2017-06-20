@@ -15,9 +15,6 @@ exports[`CountrySelector default value 1`] = `
     value="BRA"
   >
     <option
-      value=""
-    />
-    <option
       value="BRA"
     >
       BRA
@@ -46,9 +43,6 @@ exports[`CountrySelector should sort the select 1`] = `
     value="BRA"
   >
     <option
-      value=""
-    />
-    <option
       value="BRA"
     >
       BRA
@@ -76,9 +70,6 @@ exports[`CountrySelector show options 1`] = `
     onChange={[Function]}
     value=""
   >
-    <option
-      value=""
-    />
     <option
       value="BRA"
     >

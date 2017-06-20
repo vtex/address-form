@@ -31,6 +31,7 @@ class CountrySelector extends Component {
     const field = {
       name: 'country',
       label: 'country',
+      optionsCaption: false,
       optionsPairs: this.sortOptionsByLabel(
         shipsTo.map(this.addCountryTranslations)
       ),

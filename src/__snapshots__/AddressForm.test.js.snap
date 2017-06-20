@@ -102,6 +102,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
         value=""
       >
         <option
+          disabled={undefined}
           value=""
         >
           UF

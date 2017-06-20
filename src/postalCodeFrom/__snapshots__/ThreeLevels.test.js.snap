@@ -16,6 +16,7 @@ exports[`ThreeLevels with first and second level selected 1`] = `
       value="Tarija"
     >
       <option
+        disabled={true}
         value=""
       />
       <option
@@ -44,6 +45,7 @@ exports[`ThreeLevels with first and second level selected 1`] = `
       value="Méndez"
     >
       <option
+        disabled={true}
         value=""
       />
     </select>
@@ -83,6 +85,7 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
       value="Tarija"
     >
       <option
+        disabled={true}
         value=""
       />
       <option
@@ -111,6 +114,7 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
       value=""
     >
       <option
+        disabled={undefined}
         value=""
       />
     </select>
@@ -150,6 +154,7 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
       value="Tarija"
     >
       <option
+        disabled={true}
         value=""
       />
       <option
@@ -178,6 +183,7 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
       value="Méndez"
     >
       <option
+        disabled={true}
         value=""
       />
     </select>
@@ -217,6 +223,7 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
       value="Tarija"
     >
       <option
+        disabled={true}
         value=""
       />
       <option
@@ -245,6 +252,7 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
       value="Méndez"
     >
       <option
+        disabled={true}
         value=""
       />
     </select>
@@ -284,6 +292,7 @@ exports[`ThreeLevels without first and second level selected 1`] = `
       value=""
     >
       <option
+        disabled={undefined}
         value=""
       />
       <option
@@ -312,6 +321,7 @@ exports[`ThreeLevels without first and second level selected 1`] = `
       value=""
     >
       <option
+        disabled={undefined}
         value=""
       />
     </select>

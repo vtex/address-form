@@ -16,6 +16,7 @@ exports[`TwoLevels with first level selected 1`] = `
       value="I Región"
     >
       <option
+        disabled={true}
         value=""
       />
       <option
@@ -90,6 +91,7 @@ exports[`TwoLevels without first level selected 1`] = `
       value=""
     >
       <option
+        disabled={undefined}
         value=""
       />
       <option

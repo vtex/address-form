@@ -48,7 +48,17 @@ class InputSelect extends Component {
         onBlur={this.handleBlur}
         className={className}
       >
-        <option value="">{field.optionsCaption}</option>
+        {field.optionsCaption !== null &&
+          field.optionsCaption !== undefined &&
+          field.optionsCaption === false
+          ? null
+          : <option
+            value=""
+            disabled={address[field.name].value ? true : undefined}
+            >
+            {field.optionsCaption}
+
+          </option>}
         {map(getListOfOptions(field, address, rules), ({ value, label }) => (
           <option key={value} value={value}>{label}</option>
         ))}

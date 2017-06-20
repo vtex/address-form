@@ -15,6 +15,7 @@ exports[`SelectLevel show city options 1`] = `
     value=""
   >
     <option
+      disabled={undefined}
       value=""
     />
   </select>
@@ -36,6 +37,7 @@ exports[`SelectLevel show state options 1`] = `
     value=""
   >
     <option
+      disabled={undefined}
       value=""
     />
     <option
