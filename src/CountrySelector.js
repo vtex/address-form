@@ -15,9 +15,26 @@ class CountrySelector extends Component {
     })
   };
 
+  addCountryTranslations(country) {
+    return {
+      value: country,
+      label: country, // TODO use translation function
+    }
+  }
+
+  sortOptionsByLabel(options) {
+    return options.sort((a, b) => a.label.localeCompare(b.label))
+  }
+
   render() {
     const { address, shipsTo } = this.props
-    const field = { name: 'country', label: 'country', options: shipsTo }
+    const field = {
+      name: 'country',
+      label: 'country',
+      optionsPairs: this.sortOptionsByLabel(
+        shipsTo.map(this.addCountryTranslations)
+      ),
+    }
 
     return (
       <InputLabel field={field}>
