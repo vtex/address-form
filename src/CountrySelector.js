@@ -1,39 +1,33 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
+import InputLabel from './addressInputs/InputLabel'
+import InputSelect from './addressInputs/InputSelect'
 
 class CountrySelector extends Component {
-  handleChange = e => {
-    const country = e.target.value
+  handleChangeCountry = countryField => {
     this.props.onChangeAddress({
-      ...this.props.address,
+      ...countryField,
       postalCode: { value: null },
       state: { value: null },
       city: { value: null },
       neighborhood: { value: null },
-      country: { value: country },
     })
   };
 
   render() {
     const { address, shipsTo } = this.props
+    const field = { name: 'country', label: 'country', options: shipsTo }
 
     return (
-      <div className="country-selector">
-        <label>
-          País
-          <select
-            value={address.country.value || ''}
-            onChange={this.handleChange}
-          >
-            {shipsTo.map(country => (
-              <option value={country} key={country}>
-                {country}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
+      <InputLabel field={field}>
+        <InputSelect
+          field={field}
+          rules={{}}
+          address={address}
+          onChange={this.handleChangeCountry}
+        />
+      </InputLabel>
     )
   }
 }
