@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from '../propTypes/AddressShape'
+import AddressShapeWithValidation
+  from '../propTypes/AddressShapeWithValidation'
 import InputSelect from '../addressInputs/InputSelect'
 import InputLabel from '../addressInputs/InputLabel'
 import { getField, getDependentFields } from '../selectors/fields'
@@ -33,13 +34,11 @@ class SelectLevel extends Component {
       address,
       (cleanAddress, value, prop) => {
         if (dependentFields.indexOf(prop) !== -1) {
-          cleanAddress[prop] = null
-        } else {
-          cleanAddress[prop] = value
+          cleanAddress[prop] = { value: null }
         }
         return cleanAddress
       },
-      {}
+      address
     )
 
     this.props.onChangeAddress(cleanAddress)
@@ -64,7 +63,7 @@ class SelectLevel extends Component {
 
 SelectLevel.propTypes = {
   level: PropTypes.oneOf([0, 1]),
-  address: PropTypes.shape(AddressShape),
+  address: PropTypes.shape(AddressShapeWithValidation),
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

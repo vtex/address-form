@@ -44,8 +44,8 @@ describe('SelectLevel', () => {
         level={0}
         address={{
           ...address,
-          state: 'II Región',
-          neighborhood: 'Antofagasta',
+          state: { value: 'II Región' },
+          neighborhood: { value: 'Antofagasta' },
         }}
         rules={useTwoLevels}
         onChangeAddress={handleChange}
@@ -57,8 +57,8 @@ describe('SelectLevel', () => {
 
     expect(handleChange).toHaveBeenCalledWith({
       ...address,
-      state: 'I Región',
-      city: null,
+      state: { value: 'I Región' },
+      city: { value: null },
     })
   })
 
@@ -69,9 +69,9 @@ describe('SelectLevel', () => {
         level={0}
         address={{
           ...address,
-          state: 'Beni',
-          city: 'Cercado',
-          neighborhood: 'Yucumo',
+          state: { value: 'Beni' },
+          city: { value: 'Cercado' },
+          neighborhood: { value: 'Yucumo' },
         }}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
@@ -83,9 +83,9 @@ describe('SelectLevel', () => {
 
     expect(handleChange).toHaveBeenCalledWith({
       ...address,
-      state: 'Cochabamba',
-      city: null,
-      neighborhood: null,
+      state: { value: 'Cochabamba' },
+      city: { value: null },
+      neighborhood: { value: null },
     })
   })
 })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from '../propTypes/AddressShape'
+import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import SelectLevel from './SelectLevel'
 import SelectPostalCode from './SelectPostalCode'
 
@@ -27,7 +27,7 @@ class TwoLevels extends Component {
 }
 
 TwoLevels.propTypes = {
-  address: PropTypes.shape(AddressShape),
+  address: PropTypes.shape(AddressShapeWithValidation),
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

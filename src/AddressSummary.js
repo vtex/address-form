@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from './propTypes/AddressShape'
+import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 
 class AddressSummary extends Component {
   render() {
@@ -9,7 +9,7 @@ class AddressSummary extends Component {
 }
 
 AddressSummary.propTypes = {
-  address: PropTypes.shape(AddressShape).isRequired,
+  address: PropTypes.shape(AddressShapeWithValidation).isRequired,
 }
 
 export default AddressSummary

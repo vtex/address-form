@@ -22,8 +22,12 @@ export function getListOfOptions(field, address, rules) {
   }
 
   if (field.optionsMap && field.basedOn && field.level === 2) {
-    if (address[field.basedOn] && field.optionsMap[address[field.basedOn]]) {
-      const options = field.optionsMap[address[field.basedOn]]
+    if (
+      address[field.basedOn] &&
+      address[field.basedOn].value &&
+      field.optionsMap[address[field.basedOn].value]
+    ) {
+      const options = field.optionsMap[address[field.basedOn].value]
       return map(options, toValueAndLabel)
     }
 
@@ -36,14 +40,16 @@ export function getListOfOptions(field, address, rules) {
 
     if (
       address[firstLevelField.name] &&
+      address[firstLevelField.name].value &&
       address[secondLevelField.name] &&
-      field.optionsMap[address[firstLevelField.name]][
-        address[secondLevelField.name]
+      address[secondLevelField.name].value &&
+      field.optionsMap[address[firstLevelField.name].value][
+        address[secondLevelField.name].value
       ]
     ) {
       const options =
-        field.optionsMap[address[firstLevelField.name]][
-          address[secondLevelField.name]
+        field.optionsMap[address[firstLevelField.name].value][
+          address[secondLevelField.name].value
         ]
       return map(options, toValueAndLabel)
     }

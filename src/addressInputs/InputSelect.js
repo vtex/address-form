@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from '../propTypes/AddressShape'
+import AddressShapeWithValidation
+  from '../propTypes/AddressShapeWithValidation'
 import map from 'lodash/map'
 import { getListOfOptions } from '../selectors/fields'
 
@@ -10,7 +11,7 @@ class InputSelect extends Component {
 
     this.props.onChange({
       ...this.props.address,
-      [this.props.field.name]: value,
+      [this.props.field.name]: { value },
     })
   };
 
@@ -20,7 +21,7 @@ class InputSelect extends Component {
     return (
       <select
         name={field.name}
-        value={address[field.name] || ''}
+        value={address[field.name].value || ''}
         onChange={this.handleChange}
       >
         <option value="">{field.optionsCaption || ''}</option>
@@ -35,7 +36,7 @@ class InputSelect extends Component {
 InputSelect.propTypes = {
   field: PropTypes.object.isRequired,
   rules: PropTypes.object.isRequired,
-  address: PropTypes.shape(AddressShape),
+  address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
 }
 

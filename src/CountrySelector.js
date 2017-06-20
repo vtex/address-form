@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from './propTypes/AddressShape'
+import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 
 class CountrySelector extends Component {
   handleChange = e => {
     const country = e.target.value
     this.props.onChangeAddress({
       ...this.props.address,
-      postalCode: null,
-      state: null,
-      city: null,
-      neighborhood: null,
-      country,
+      postalCode: { value: null },
+      state: { value: null },
+      city: { value: null },
+      neighborhood: { value: null },
+      country: { value: country },
     })
   };
 
@@ -22,7 +22,10 @@ class CountrySelector extends Component {
       <div className="country-selector">
         <label>
           País
-          <select value={address.country || ''} onChange={this.handleChange}>
+          <select
+            value={address.country.value || ''}
+            onChange={this.handleChange}
+          >
             {shipsTo.map(country => (
               <option value={country} key={country}>
                 {country}
@@ -36,7 +39,7 @@ class CountrySelector extends Component {
 }
 
 CountrySelector.propTypes = {
-  address: PropTypes.shape(AddressShape),
+  address: PropTypes.shape(AddressShapeWithValidation),
   shipsTo: PropTypes.array.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

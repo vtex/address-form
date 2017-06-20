@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from './propTypes/AddressShape'
+import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import PostalCode from './postalCodeFrom/PostalCode'
 import OneLevel from './postalCodeFrom/OneLevel'
@@ -50,7 +50,7 @@ class PostalCodeGetter extends Component {
 }
 
 PostalCodeGetter.propTypes = {
-  address: PropTypes.shape(AddressShape),
+  address: PropTypes.shape(AddressShapeWithValidation),
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

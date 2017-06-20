@@ -26,7 +26,7 @@ describe('Postal Code', () => {
       <PostalCode
         address={{
           ...address,
-          postalCode: '',
+          postalCode: { value: '' },
         }}
         rules={usePostalCode}
         onChangeAddress={handleChange}
@@ -38,7 +38,7 @@ describe('Postal Code', () => {
 
     expect(handleChange).toHaveBeenCalledWith({
       ...address,
-      postalCode: '2',
+      postalCode: { value: '2' },
     })
   })
 })

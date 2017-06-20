@@ -25,7 +25,7 @@ describe('ThreeLevels', () => {
         <ThreeLevels
           address={{
             ...address,
-            state: 'Tarija',
+            state: { value: 'Tarija' },
           }}
           rules={useThreeLevels}
           onChangeAddress={jest.fn()}
@@ -42,8 +42,8 @@ describe('ThreeLevels', () => {
         <ThreeLevels
           address={{
             ...address,
-            state: 'Tarija',
-            city: 'Méndez',
+            state: { value: 'Tarija' },
+            city: { value: 'Méndez' },
           }}
           rules={useThreeLevels}
           onChangeAddress={jest.fn()}
@@ -60,9 +60,9 @@ describe('ThreeLevels', () => {
         <ThreeLevels
           address={{
             ...address,
-            state: 'Tarija',
-            city: 'Méndez',
-            neighborhood: 'Canasmoro',
+            state: { value: 'Tarija' },
+            city: { value: 'Méndez' },
+            neighborhood: { value: 'Canasmoro' },
           }}
           rules={useThreeLevels}
           onChangeAddress={jest.fn()}
@@ -79,10 +79,10 @@ describe('ThreeLevels', () => {
         <ThreeLevels
           address={{
             ...address,
-            state: 'Tarija',
-            city: 'Méndez',
-            neighborhood: 'Canasmoro',
-            postalCode: '90400',
+            state: { value: 'Tarija' },
+            city: { value: 'Méndez' },
+            neighborhood: { value: 'Canasmoro' },
+            postalCode: { value: '90400' },
           }}
           rules={useThreeLevels}
           onChangeAddress={jest.fn()}

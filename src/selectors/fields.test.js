@@ -107,7 +107,7 @@ describe('Field Selectors', () => {
           SP: ['São Paulo', 'Santos'],
         },
       }
-      const address = { state: 'PE' }
+      const address = { state: { value: 'PE' } }
       const rules = {}
 
       const options = getListOfOptions(field, address, rules)
@@ -126,7 +126,7 @@ describe('Field Selectors', () => {
           },
         },
       }
-      const address = { state: 'PE', city: 'Recife' }
+      const address = { state: { value: 'PE' }, city: { value: 'Recife' } }
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [{ name: 'city', basedOn: 'state' }, { name: 'state' }],

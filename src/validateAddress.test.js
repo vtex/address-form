@@ -35,8 +35,8 @@ describe('Address Validation:', () => {
     const result = validateAddress(
       {
         ...address,
-        addressId: null,
-        addressType: null,
+        addressId: { value: null },
+        addressType: { value: null },
       },
       usePostalCode
     )
@@ -151,8 +151,8 @@ describe('Address Validation:', () => {
 
     const validAddress = {
       ...address,
-      city: 'Manaus',
-      state: 'AM',
+      city: { value: 'Manaus' },
+      state: { value: 'AM' },
     }
 
     const validOption = validateField('Manaus', 'city', validAddress, rules)
@@ -183,8 +183,8 @@ describe('Address Validation:', () => {
 
     const invalidAddress = {
       ...address,
-      city: 'Foo',
-      state: 'AM',
+      city: { value: 'Foo' },
+      state: { value: 'AM' },
     }
 
     const invalidOption = validateField('Foo', 'city', invalidAddress, rules)

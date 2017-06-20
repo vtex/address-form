@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from '../propTypes/AddressShape'
+import AddressShapeWithValidation
+  from '../propTypes/AddressShapeWithValidation'
 
 class InputText extends Component {
   handleChange = e => {
@@ -8,7 +9,7 @@ class InputText extends Component {
 
     this.props.onChange({
       ...this.props.address,
-      [this.props.field.name]: value,
+      [this.props.field.name]: { value },
     })
   };
 
@@ -19,7 +20,7 @@ class InputText extends Component {
       <input
         type="text"
         name={field.name}
-        value={address[field.name] || ''}
+        value={address[field.name].value || ''}
         onChange={this.handleChange}
       />
     )
@@ -28,7 +29,7 @@ class InputText extends Component {
 
 InputText.propTypes = {
   field: PropTypes.object.isRequired,
-  address: PropTypes.shape(AddressShape),
+  address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
 }
 

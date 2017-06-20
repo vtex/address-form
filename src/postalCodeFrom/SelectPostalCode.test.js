@@ -41,8 +41,8 @@ describe('SelectPostalCode', () => {
 
       expect(handleChange).toHaveBeenCalledWith({
         ...address,
-        [firstLevelName]: 'Azuay',
-        postalCode: '0000',
+        [firstLevelName]: { value: 'Azuay' },
+        postalCode: { value: '0000' },
       })
     })
   })
@@ -81,8 +81,8 @@ describe('SelectPostalCode', () => {
 
       expect(handleChange).toHaveBeenCalledWith({
         ...address,
-        [secondLevelName]: 'Camiña',
-        postalCode: '1150000',
+        [secondLevelName]: { value: 'Camiña' },
+        postalCode: { value: '1150000' },
       })
     })
   })
@@ -121,8 +121,8 @@ describe('SelectPostalCode', () => {
 
       expect(handleChange).toHaveBeenCalledWith({
         ...address,
-        [thirdLevelName]: 'Canasmoro',
-        postalCode: '90400',
+        [thirdLevelName]: { value: 'Canasmoro' },
+        postalCode: { value: '90400' },
       })
     })
   })

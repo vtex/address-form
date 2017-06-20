@@ -25,7 +25,7 @@ describe('TwoLevels', () => {
         <TwoLevels
           address={{
             ...address,
-            state: 'I Región',
+            state: { value: 'I Región' },
           }}
           rules={useTwoLevels}
           onChangeAddress={jest.fn()}

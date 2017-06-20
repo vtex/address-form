@@ -38,7 +38,7 @@ describe('CountrySelector', () => {
         <CountrySelector
           address={{
             ...newAddress,
-            country: 'BRA',
+            country: { value: 'BRA' },
           }}
           shipsTo={['BRA', 'USA']}
           onChangeAddress={jest.fn()}
@@ -55,7 +55,7 @@ describe('CountrySelector', () => {
       <CountrySelector
         address={{
           ...newAddress,
-          country: 'BRA',
+          country: { value: 'BRA' },
         }}
         shipsTo={['BRA', 'USA']}
         onChangeAddress={handleChange}
@@ -67,7 +67,7 @@ describe('CountrySelector', () => {
 
     expect(handleChange).toHaveBeenCalledWith({
       ...newAddress,
-      country: 'USA',
+      country: { value: 'USA' },
     })
   })
 
@@ -77,11 +77,11 @@ describe('CountrySelector', () => {
       <CountrySelector
         address={{
           ...newAddress,
-          country: 'BRA',
-          postalCode: '123',
-          state: 'Foo',
-          city: 'Bar',
-          neighborhood: 'Baz',
+          country: { value: 'BRA' },
+          postalCode: { value: '123' },
+          state: { value: 'Foo' },
+          city: { value: 'Bar' },
+          neighborhood: { value: 'Baz' },
         }}
         shipsTo={['BRA', 'USA']}
         onChangeAddress={handleChange}
@@ -93,11 +93,11 @@ describe('CountrySelector', () => {
 
     expect(handleChange).toHaveBeenCalledWith({
       ...newAddress,
-      country: 'USA',
-      postalCode: null,
-      state: null,
-      city: null,
-      neighborhood: null,
+      country: { value: 'USA' },
+      postalCode: { value: null },
+      state: { value: null },
+      city: { value: null },
+      neighborhood: { value: null },
     })
   })
 })

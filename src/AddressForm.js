@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from './propTypes/AddressShape'
+import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputSelect from './addressInputs/InputSelect'
 import InputText from './addressInputs/InputText'
 import InputLabel from './addressInputs/InputLabel'
@@ -77,7 +77,7 @@ AddressForm.defaultProps = {
 }
 
 AddressForm.propTypes = {
-  address: PropTypes.shape(AddressShape),
+  address: PropTypes.shape(AddressShapeWithValidation),
   omitPostalCodeFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

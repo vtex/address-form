@@ -13,8 +13,8 @@ import {
 export default function validateAddress(address, rules) {
   return reduce(
     address,
-    (memo, value, name) => {
-      memo[name] = validateField(value, name, address, rules)
+    (memo, valueObj, name) => {
+      memo[name] = validateField(valueObj.value, name, address, rules)
       return memo
     },
     {}

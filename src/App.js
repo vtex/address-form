@@ -14,19 +14,19 @@ class App extends Component {
     this.state = {
       shipsTo: ['BRA', 'BOL', 'CHL', 'ECU'],
       address: {
-        addressId: '1',
-        addressType: 'residential',
-        city: null,
-        complement: null,
-        country: 'BRA',
-        geoCoordinates: [],
-        neighborhood: null,
-        number: null,
-        postalCode: null,
-        receiverName: null,
-        reference: null,
-        state: null,
-        street: null,
+        addressId: { value: '1' },
+        addressType: { value: 'residential' },
+        city: { value: null },
+        complement: { value: null },
+        country: { value: 'BRA' },
+        geoCoordinates: { value: [] },
+        neighborhood: { value: null },
+        number: { value: null },
+        postalCode: { value: null },
+        receiverName: { value: null },
+        reference: { value: null },
+        state: { value: null },
+        street: { value: null },
       },
       rules: {
         BOL,
@@ -58,13 +58,13 @@ class App extends Component {
 
         <PostalCodeGetter
           address={address}
-          rules={rules[address.country]}
+          rules={rules[address.country.value]}
           onChangeAddress={this.handleChangeAddress}
         />
 
         <AddressForm
           address={address}
-          rules={rules[address.country]}
+          rules={rules[address.country.value]}
           onChangeAddress={this.handleChangeAddress}
         />
       </div>

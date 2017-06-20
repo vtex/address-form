@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShape from '../propTypes/AddressShape'
+import AddressShapeWithValidation
+  from '../propTypes/AddressShapeWithValidation'
 import { getField } from '../selectors/fields'
 import find from 'lodash/find'
 import map from 'lodash/map'
@@ -42,13 +43,19 @@ class SelectPostalCode extends Component {
   }
 
   composeValue = (currentLevelName, address) =>
-    (address[currentLevelName] && address.postalCode
-      ? `${address[currentLevelName]}___${address.postalCode}`
+    (address[currentLevelName] &&
+      address[currentLevelName].value &&
+      address.postalCode &&
+      address.postalCode.value
+      ? `${address[currentLevelName].value}___${address.postalCode.value}`
       : '');
 
   deComposeValue = (currentLevelName, value) => {
     const [field, postalCode] = value.split('___')
-    return { [currentLevelName]: field, postalCode }
+    return {
+      [currentLevelName]: { value: field },
+      postalCode: { value: postalCode },
+    }
   };
 
   getPostalCodeOptions = () => {
@@ -73,8 +80,9 @@ class SelectPostalCode extends Component {
     const firstLevel = getField(rules.postalCodeLevels[0], rules)
 
     return address[firstLevel.name] &&
-      rules.secondLevelPostalCodes[address[firstLevel.name]]
-      ? rules.secondLevelPostalCodes[address[firstLevel.name]]
+      address[firstLevel.name].value &&
+      rules.secondLevelPostalCodes[address[firstLevel.name].value]
+      ? rules.secondLevelPostalCodes[address[firstLevel.name].value]
       : []
   }
 
@@ -83,13 +91,15 @@ class SelectPostalCode extends Component {
     const secondLevel = getField(rules.postalCodeLevels[1], rules)
 
     return address[firstLevel.name] &&
+      address[firstLevel.name].value &&
       address[secondLevel.name] &&
-      rules.thirdLevelPostalCodes[address[firstLevel.name]] &&
-      rules.thirdLevelPostalCodes[address[firstLevel.name]][
-        address[secondLevel.name]
+      address[secondLevel.name].value &&
+      rules.thirdLevelPostalCodes[address[firstLevel.name].value] &&
+      rules.thirdLevelPostalCodes[address[firstLevel.name].value][
+        address[secondLevel.name].value
       ]
-      ? rules.thirdLevelPostalCodes[address[firstLevel.name]][
-          address[secondLevel.name]
+      ? rules.thirdLevelPostalCodes[address[firstLevel.name].value][
+          address[secondLevel.name].value
         ]
       : []
   }
@@ -111,8 +121,8 @@ class SelectPostalCode extends Component {
             <option
               key={label}
               value={this.composeValue(currentLevelName, {
-                [currentLevelName]: label,
-                postalCode,
+                [currentLevelName]: { value: label },
+                postalCode: { value: postalCode },
               })}
             >
               {label}
@@ -155,7 +165,7 @@ function getLevels(rules) {
 }
 
 SelectPostalCode.propTypes = {
-  address: PropTypes.shape(AddressShape).isRequired,
+  address: PropTypes.shape(AddressShapeWithValidation).isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
