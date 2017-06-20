@@ -19,7 +19,7 @@ class InputSelect extends Component {
     })
   };
 
-  onBlur = e => {
+  handleBlur = e => {
     const { address, field, onChange } = this.props
 
     onChange({
@@ -48,7 +48,7 @@ class InputSelect extends Component {
         onBlur={this.handleBlur}
         className={className}
       >
-        <option value="">{field.optionsCaption || ''}</option>
+        <option value="">{field.optionsCaption}</option>
         {map(getListOfOptions(field, address, rules), ({ value, label }) => (
           <option key={value} value={value}>{label}</option>
         ))}

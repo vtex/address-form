@@ -1,35 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SelectLevel show city options 1`] = `
-<label>
-  province
+<p
+  className="input required text"
+>
+  <label>
+    province
+  </label>
   <select
+    className="input-large"
     name="city"
+    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >
     <option
       value=""
-    >
-      
-    </option>
+    />
   </select>
-</label>
+</p>
 `;
 
 exports[`SelectLevel show state options 1`] = `
-<label>
-  department
+<p
+  className="input required text"
+>
+  <label>
+    department
+  </label>
   <select
+    className="input-large"
     name="state"
+    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >
     <option
       value=""
-    >
-      
-    </option>
+    />
     <option
       value="Beni"
     >
@@ -41,5 +49,5 @@ exports[`SelectLevel show state options 1`] = `
       Cochabamba
     </option>
   </select>
-</label>
+</p>
 `;

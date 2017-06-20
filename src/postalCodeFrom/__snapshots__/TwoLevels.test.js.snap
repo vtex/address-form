@@ -2,18 +2,22 @@
 
 exports[`TwoLevels with first level selected 1`] = `
 <div>
-  <label>
-    region
+  <p
+    className="input required text"
+  >
+    <label>
+      region
+    </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value="I Región"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
       <option
         value="I Región"
       >
@@ -25,9 +29,13 @@ exports[`TwoLevels with first level selected 1`] = `
         II Región
       </option>
     </select>
-  </label>
-  <label>
-    community
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      community
+    </label>
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -62,24 +70,28 @@ exports[`TwoLevels with first level selected 1`] = `
         Pica
       </option>
     </select>
-  </label>
+  </p>
 </div>
 `;
 
 exports[`TwoLevels without first level selected 1`] = `
 <div>
-  <label>
-    region
+  <p
+    className="input required text"
+  >
+    <label>
+      region
+    </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value=""
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
       <option
         value="I Región"
       >
@@ -91,9 +103,13 @@ exports[`TwoLevels without first level selected 1`] = `
         II Región
       </option>
     </select>
-  </label>
-  <label>
-    community
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      community
+    </label>
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -103,6 +119,6 @@ exports[`TwoLevels without first level selected 1`] = `
         value=""
       />
     </select>
-  </label>
+  </p>
 </div>
 `;

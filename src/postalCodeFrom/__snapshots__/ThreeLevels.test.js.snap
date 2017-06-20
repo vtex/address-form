@@ -2,18 +2,22 @@
 
 exports[`ThreeLevels with first and second level selected 1`] = `
 <div>
-  <label>
-    department
+  <p
+    className="input required text"
+  >
+    <label>
+      department
+    </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value="Tarija"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
       <option
         value="Beni"
       >
@@ -25,23 +29,31 @@ exports[`ThreeLevels with first and second level selected 1`] = `
         Cochabamba
       </option>
     </select>
-  </label>
-  <label>
-    province
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      province
+    </label>
     <select
+      className="input-large"
       name="city"
+      onBlur={[Function]}
       onChange={[Function]}
       value="Méndez"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
-  </label>
-  <label>
-    city
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      city
+    </label>
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -51,24 +63,28 @@ exports[`ThreeLevels with first and second level selected 1`] = `
         value=""
       />
     </select>
-  </label>
+  </p>
 </div>
 `;
 
 exports[`ThreeLevels with first level selected and second level not selected 1`] = `
 <div>
-  <label>
-    department
+  <p
+    className="input required text"
+  >
+    <label>
+      department
+    </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value="Tarija"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
       <option
         value="Beni"
       >
@@ -80,23 +96,31 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
         Cochabamba
       </option>
     </select>
-  </label>
-  <label>
-    province
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      province
+    </label>
     <select
+      className="input-large"
       name="city"
+      onBlur={[Function]}
       onChange={[Function]}
       value=""
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
-  </label>
-  <label>
-    city
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      city
+    </label>
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -106,24 +130,28 @@ exports[`ThreeLevels with first level selected and second level not selected 1`]
         value=""
       />
     </select>
-  </label>
+  </p>
 </div>
 `;
 
 exports[`ThreeLevels with first, second and third level and postalCode selected 1`] = `
 <div>
-  <label>
-    department
+  <p
+    className="input required text"
+  >
+    <label>
+      department
+    </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value="Tarija"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
       <option
         value="Beni"
       >
@@ -135,23 +163,31 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
         Cochabamba
       </option>
     </select>
-  </label>
-  <label>
-    province
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      province
+    </label>
     <select
+      className="input-large"
       name="city"
+      onBlur={[Function]}
       onChange={[Function]}
       value="Méndez"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
-  </label>
-  <label>
-    city
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      city
+    </label>
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -161,24 +197,28 @@ exports[`ThreeLevels with first, second and third level and postalCode selected 
         value=""
       />
     </select>
-  </label>
+  </p>
 </div>
 `;
 
 exports[`ThreeLevels with first, second and third level selected and not postal code 1`] = `
 <div>
-  <label>
-    department
+  <p
+    className="input required text"
+  >
+    <label>
+      department
+    </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value="Tarija"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
       <option
         value="Beni"
       >
@@ -190,23 +230,31 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
         Cochabamba
       </option>
     </select>
-  </label>
-  <label>
-    province
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      province
+    </label>
     <select
+      className="input-large"
       name="city"
+      onBlur={[Function]}
       onChange={[Function]}
       value="Méndez"
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
-  </label>
-  <label>
-    city
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      city
+    </label>
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -216,24 +264,28 @@ exports[`ThreeLevels with first, second and third level selected and not postal 
         value=""
       />
     </select>
-  </label>
+  </p>
 </div>
 `;
 
 exports[`ThreeLevels without first and second level selected 1`] = `
 <div>
-  <label>
-    department
+  <p
+    className="input required text"
+  >
+    <label>
+      department
+    </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value=""
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
       <option
         value="Beni"
       >
@@ -245,23 +297,31 @@ exports[`ThreeLevels without first and second level selected 1`] = `
         Cochabamba
       </option>
     </select>
-  </label>
-  <label>
-    province
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      province
+    </label>
     <select
+      className="input-large"
       name="city"
+      onBlur={[Function]}
       onChange={[Function]}
       value=""
     >
       <option
         value=""
-      >
-        
-      </option>
+      />
     </select>
-  </label>
-  <label>
-    city
+  </p>
+  <p
+    className="input required text"
+  >
+    <label>
+      city
+    </label>
     <select
       name="neighborhood"
       onChange={[Function]}
@@ -271,6 +331,6 @@ exports[`ThreeLevels without first and second level selected 1`] = `
         value=""
       />
     </select>
-  </label>
+  </p>
 </div>
 `;

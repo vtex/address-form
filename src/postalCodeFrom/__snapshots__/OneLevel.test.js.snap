@@ -2,8 +2,12 @@
 
 exports[`OneLevel show state options 1`] = `
 <div>
-  <label>
-    province
+  <p
+    className="input required text"
+  >
+    <label>
+      province
+    </label>
     <select
       name="state"
       onChange={[Function]}
@@ -23,6 +27,6 @@ exports[`OneLevel show state options 1`] = `
         Bolivar
       </option>
     </select>
-  </label>
+  </p>
 </div>
 `;
