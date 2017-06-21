@@ -62,20 +62,20 @@ class SelectPostalCode extends Component {
 
     switch (rules.postalCodeFrom) {
       case ONE_LEVEL:
-        return this.getFirstLevelPostalCodes(address, rules)
+        return this.getOneLevelPostalCodes(address, rules)
       case TWO_LEVELS:
-        return this.getSecondLevelPostalCodes(address, rules)
+        return this.getTwoLevelsPostalCodes(address, rules)
       default:
       case THREE_LEVELS:
-        return this.getThirdLevelPostalCodes(address, rules)
+        return this.getThreeLevelsPostalCodes(address, rules)
     }
   };
 
-  getFirstLevelPostalCodes(address, rules) {
+  getOneLevelPostalCodes(address, rules) {
     return rules.firstLevelPostalCodes
   }
 
-  getSecondLevelPostalCodes(address, rules) {
+  getTwoLevelsPostalCodes(address, rules) {
     const firstLevel = getField(rules.postalCodeLevels[0], rules)
 
     return address[firstLevel.name] &&
@@ -85,7 +85,7 @@ class SelectPostalCode extends Component {
       : []
   }
 
-  getThirdLevelPostalCodes(address, rules) {
+  getThreeLevelsPostalCodes(address, rules) {
     const firstLevel = getField(rules.postalCodeLevels[0], rules)
     const secondLevel = getField(rules.postalCodeLevels[1], rules)
 

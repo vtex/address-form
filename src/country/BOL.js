@@ -1,9 +1,9 @@
 import { THREE_LEVELS } from '../constants'
 import { thirdLevelPostalCodes } from '../transforms/postalCodes'
 import {
-  getFirstLevel,
-  getSecondLevel,
-  getThirdLevel,
+  getOneLevel,
+  getTwoLevels,
+  getThreeLevels,
 } from '../transforms/addressFieldsOptions.js'
 
 const countryData = {
@@ -426,7 +426,7 @@ export default {
       size: 'large',
       isUpperCase: false,
       level: 1,
-      options: getFirstLevel(countryData),
+      options: getOneLevel(countryData),
     },
     {
       name: 'city',
@@ -435,7 +435,7 @@ export default {
       size: 'large',
       level: 2,
       basedOn: 'state',
-      optionsMap: getSecondLevel(countryData),
+      optionsMap: getTwoLevels(countryData),
     },
     {
       name: 'neighborhood',
@@ -443,7 +443,7 @@ export default {
       required: true,
       level: 3,
       basedOn: 'city',
-      optionsMap: getThirdLevel(countryData),
+      optionsMap: getThreeLevels(countryData),
     },
   ],
 }

@@ -31,7 +31,7 @@ Object {
 }
 `;
 
-exports[`Transform Address Fields Options should get of the first level 1`] = `
+exports[`Transform Address Fields Options should get one level 1`] = `
 Array [
   "State01",
   "State02",

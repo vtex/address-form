@@ -1,12 +1,12 @@
 import {
-  getFirstLevel,
-  getSecondLevel,
-  getThirdLevel,
+  getOneLevel,
+  getTwoLevels,
+  getThreeLevels,
 } from './addressFieldsOptions.js'
 
 describe('Transform Address Fields Options', () => {
-  it('should get of the first level', () => {
-    const firstLevelcountryData = {
+  it('should get one level', () => {
+    const oneLevelcountryData = {
       State01: {
         City01: '1',
         City02: '2',
@@ -16,13 +16,13 @@ describe('Transform Address Fields Options', () => {
       },
     }
 
-    const result = getFirstLevel(firstLevelcountryData)
+    const result = getOneLevel(oneLevelcountryData)
 
     expect(result).toMatchSnapshot()
   })
 
   it('should get map of first level and an array of second level', () => {
-    const secondLevelCountryData = {
+    const twoLevelsCountryData = {
       State01: {
         City01: '1',
         City02: '2',
@@ -32,13 +32,13 @@ describe('Transform Address Fields Options', () => {
       },
     }
 
-    const result = getSecondLevel(secondLevelCountryData)
+    const result = getTwoLevels(twoLevelsCountryData)
 
     expect(result).toMatchSnapshot()
   })
 
   it('should get map of first and second level, and an array of third level', () => {
-    const thirdLevelCountryData = {
+    const threeLevelCountryData = {
       State01: {
         City01: {
           Neighborhood1: '1',
@@ -55,7 +55,7 @@ describe('Transform Address Fields Options', () => {
       },
     }
 
-    const result = getThirdLevel(thirdLevelCountryData)
+    const result = getThreeLevels(threeLevelCountryData)
 
     expect(result).toMatchSnapshot()
   })

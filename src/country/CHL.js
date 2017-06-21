@@ -1,8 +1,8 @@
 import { TWO_LEVELS } from '../constants'
 import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import {
-  getFirstLevel,
-  getSecondLevel,
+  getOneLevel,
+  getTwoLevels,
 } from '../transforms/addressFieldsOptions'
 
 const countryData = {
@@ -412,7 +412,7 @@ export default {
       size: 'large',
       isUpperCase: false,
       level: 1,
-      options: getFirstLevel(countryData),
+      options: getOneLevel(countryData),
     },
     {
       name: 'neighborhood',
@@ -421,7 +421,7 @@ export default {
       size: 'large',
       level: 2,
       basedOn: 'state',
-      optionsMap: getSecondLevel(countryData),
+      optionsMap: getTwoLevels(countryData),
     },
   ],
 }
