@@ -39,23 +39,28 @@ export function validateChangedFields(changedFields, address, rules) {
 
   return reduce(
     changeFieldsNames,
-    (address, fieldName) => {
+    (resultAddress, fieldName) => {
       const validationResult = validateField(
-        newAddress[fieldName].value,
+        resultAddress[fieldName].value,
         fieldName,
-        address,
+        resultAddress,
         rules
       )
 
       const isVisited = visitedFields.indexOf(fieldName) !== -1
+      const becameValid =
+        address[fieldName].valid !== true && validationResult.valid === true
+      const becameInvalid =
+        address[fieldName].valid === true && validationResult.valid === false
 
-      address[fieldName] = {
-        ...address[fieldName],
-        ...(isVisited || validationResult.valid === true
-          ? validationResult
-          : {}),
+      const showValidationResult =
+        isVisited || (!isVisited && (becameValid || becameInvalid))
+
+      resultAddress[fieldName] = {
+        ...resultAddress[fieldName],
+        ...(showValidationResult ? validationResult : {}),
       }
-      return address
+      return resultAddress
     },
     newAddress
   )
