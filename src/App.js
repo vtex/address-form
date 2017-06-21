@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import CountrySelector from './CountrySelector'
 import AddressForm from './AddressForm'
+import AddressSummary from './AddressSummary'
 import PostalCodeGetter from './PostalCodeGetter'
 import BOL from './country/BOL'
 import BRA from './country/BRA'
 import CHL from './country/CHL'
 import ECU from './country/ECU'
 import { validateChangedFields } from './validateAddress'
+import { addValidation, removeValidation } from './transforms/address'
 
 class App extends Component {
   constructor(props) {
@@ -14,21 +16,21 @@ class App extends Component {
 
     this.state = {
       shipsTo: ['BRA', 'BOL', 'CHL', 'ECU'],
-      address: {
-        addressId: { value: '1' },
-        addressType: { value: 'residential' },
-        city: { value: null },
-        complement: { value: null },
-        country: { value: 'BRA' },
-        geoCoordinates: { value: [] },
-        neighborhood: { value: null },
-        number: { value: null },
-        postalCode: { value: null },
-        receiverName: { value: null },
-        reference: { value: null },
-        state: { value: null },
-        street: { value: null },
-      },
+      address: addValidation({
+        addressId: '1',
+        addressType: 'residential',
+        city: null,
+        complement: null,
+        country: 'BRA',
+        geoCoordinates: [],
+        neighborhood: null,
+        number: null,
+        postalCode: null,
+        receiverName: null,
+        reference: null,
+        state: null,
+        street: null,
+      }),
       rules: {
         BOL,
         BRA,
@@ -82,6 +84,13 @@ class App extends Component {
             address={address}
             rules={rules[address.country.value]}
             onChangeAddress={this.handleChangeAddress}
+          />
+
+          <hr />
+
+          <AddressSummary
+            address={removeValidation(address)}
+            rules={rules[address.country.value]}
           />
         </div>
       </div>

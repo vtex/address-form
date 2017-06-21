@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddressSummary should render address summary with all its data 1`] = `
+<div
+  className="address"
+>
+  <span
+    className="street"
+  >
+    Praia de Botafogo
+  </span>
+  , 
+  <span
+    className="number"
+  >
+    300
+  </span>
+  , 
+  <span
+    className="complement"
+  >
+    2nd floor
+  </span>
+   - 
+  <span
+    className="neighborhood"
+  >
+    Botafogo
+  </span>
+  <br />
+  <span
+    className="city"
+  >
+    Rio de Janeiro
+  </span>
+   - 
+  <span
+    className="state"
+  >
+    AM
+  </span>
+  <span
+    className="postal-code"
+  />
+   - 
+  <span
+    className="country"
+  >
+    BRA
+  </span>
+</div>
+`;
