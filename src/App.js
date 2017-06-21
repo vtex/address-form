@@ -10,6 +10,8 @@ import ECU from './country/ECU'
 import { addValidation, removeValidation } from './transforms/address'
 import AddressContainer from './AddressContainer'
 
+const ACCOUNT_NAME = 'qamarketplace'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -59,6 +61,7 @@ class App extends Component {
         </div>
         <div>
           <AddressContainer
+            accountName={ACCOUNT_NAME}
             address={address}
             rules={rules}
             onChangeAddress={this.handleAddressChange}

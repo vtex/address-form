@@ -21,3 +21,31 @@ export function removeValidation(address) {
     {}
   )
 }
+
+export function addNewField(address, fieldName, value) {
+  return reduce(
+    address,
+    (newAddress, prop, propName) => {
+      newAddress[propName] = {
+        ...prop,
+        [fieldName]: value,
+      }
+      return newAddress
+    },
+    {}
+  )
+}
+
+export function mergeValidation(changedFields, address) {
+  return reduce(
+    changedFields,
+    (result, value, fieldName) => {
+      result[fieldName] = {
+        ...address[fieldName],
+        value,
+      }
+      return result
+    },
+    {}
+  )
+}

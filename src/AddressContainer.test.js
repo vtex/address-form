@@ -7,6 +7,8 @@ import usePostalCode from './country/__mocks__/usePostalCode'
 import useOneLevel from './country/__mocks__/useOneLevel'
 
 describe('AddressContainer', () => {
+  const accountName = 'qamarketplace'
+
   const rules = {
     BRA: usePostalCode,
     ECU: useOneLevel,
@@ -22,6 +24,7 @@ describe('AddressContainer', () => {
 
     mount(
       <AddressContainer
+        accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={jest.fn()}
         rules={rules}
@@ -47,6 +50,7 @@ describe('AddressContainer', () => {
 
     mount(
       <AddressContainer
+        accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={handleAddressChange}
         rules={rules}
@@ -71,6 +75,7 @@ describe('AddressContainer', () => {
 
     mount(
       <AddressContainer
+        accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={handleAddressChange}
         rules={rules}

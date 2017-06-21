@@ -14,6 +14,7 @@ class InputSelect extends Component {
     onChange({
       [field.name]: {
         ...address[field.name],
+        autoCompleted: undefined,
         value,
       },
     })

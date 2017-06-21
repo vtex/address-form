@@ -12,6 +12,7 @@ class InputText extends Component {
     onChange({
       [field.name]: {
         ...address[field.name],
+        autoCompleted: undefined,
         value,
       },
     })
@@ -32,7 +33,7 @@ class InputText extends Component {
     const { address, field } = this.props
     const fieldValue = address[field.name]
 
-    const className = cx({
+    const className = cx(this.props.className, {
       [`input-${field.size}`]: field.size,
       success: fieldValue.valid === true,
       error: fieldValue.valid === false,
@@ -51,8 +52,13 @@ class InputText extends Component {
   }
 }
 
+InputText.defaultProps = {
+  className: '',
+}
+
 InputText.propTypes = {
   field: PropTypes.object.isRequired,
+  className: PropTypes.string,
   address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
 }

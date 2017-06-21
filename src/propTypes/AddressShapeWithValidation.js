@@ -14,6 +14,8 @@ const AddressShapeWithValidation = reduce(
   (acc, valueType, propName) => {
     acc[propName] = PropTypes.shape({
       ...ValidationType,
+      autoCompleted: PropTypes.bool,
+      loading: PropTypes.bool,
       value: valueType,
     }).isRequired
     return acc

@@ -5,15 +5,24 @@ import AddressShapeWithValidation
 import { getField } from '../selectors/fields'
 import InputLabel from '../addressInputs/InputLabel'
 import InputText from '../addressInputs/InputText'
+import PostalCodeLoader from './PostalCodeLoader'
 
 class PostalCode extends Component {
   render() {
     const { address, rules, onChangeAddress } = this.props
     const field = getField('postalCode', rules)
 
+    const loading = !!address.postalCode.loading
+
     return (
       <InputLabel field={field}>
-        <InputText field={field} address={address} onChange={onChangeAddress} />
+        <InputText
+          className={loading ? 'postal-code-loading' : null}
+          field={field}
+          address={address}
+          onChange={onChangeAddress}
+        />
+        {loading && <PostalCodeLoader />}
       </InputLabel>
     )
   }
