@@ -21,7 +21,7 @@ describe('Address Validation:', () => {
   function getRulesRequiredFields(rules, withBaseRequiredFields = true) {
     return rules.fields.reduce(
       (acc, field) => (field.required ? acc.concat([field.name]) : acc),
-      withBaseRequiredFields ? baseRequiredFields : []
+      withBaseRequiredFields ? [...baseRequiredFields] : []
     )
   }
 
