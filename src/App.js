@@ -7,8 +7,8 @@ import BOL from './country/BOL'
 import BRA from './country/BRA'
 import CHL from './country/CHL'
 import ECU from './country/ECU'
-import { validateChangedFields } from './validateAddress'
 import { addValidation, removeValidation } from './transforms/address'
+import AddressContainer from './AddressContainer'
 
 class App extends Component {
   constructor(props) {
@@ -40,23 +40,13 @@ class App extends Component {
     }
   }
 
-  handleChangeAddress = changedAddressFields => {
-    this.setState(prevState => {
-      const country = changedAddressFields.country &&
-        changedAddressFields.country.value
-        ? changedAddressFields.country.value
-        : prevState.address.country.value
-
-      const rules = prevState.rules[country]
-
-      return {
-        address: validateChangedFields(
-          changedAddressFields,
-          prevState.address,
-          rules
-        ),
-      }
-    })
+  handleAddressChange = address => {
+    this.setState(prevState => ({
+      address: {
+        ...prevState.address,
+        ...address,
+      },
+    }))
   };
 
   render() {
@@ -68,23 +58,33 @@ class App extends Component {
           <pre><small>{JSON.stringify(address, null, 2)}</small></pre>
         </div>
         <div>
-          <CountrySelector
+          <AddressContainer
             address={address}
-            shipsTo={shipsTo}
-            onChangeAddress={this.handleChangeAddress}
-          />
+            rules={rules}
+            onChangeAddress={this.handleAddressChange}
+          >
+            {({ address, rules, onChangeAddress }) => (
+              <div>
+                <CountrySelector
+                  address={address}
+                  shipsTo={shipsTo}
+                  onChangeAddress={onChangeAddress}
+                />
 
-          <PostalCodeGetter
-            address={address}
-            rules={rules[address.country.value]}
-            onChangeAddress={this.handleChangeAddress}
-          />
+                <PostalCodeGetter
+                  address={address}
+                  rules={rules}
+                  onChangeAddress={onChangeAddress}
+                />
 
-          <AddressForm
-            address={address}
-            rules={rules[address.country.value]}
-            onChangeAddress={this.handleChangeAddress}
-          />
+                <AddressForm
+                  address={address}
+                  rules={rules}
+                  onChangeAddress={onChangeAddress}
+                />
+              </div>
+            )}
+          </AddressContainer>
 
           <hr />
 
