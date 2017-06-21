@@ -49,4 +49,16 @@ describe('AddressSummary', () => {
 
     expect(wrapper.find('.postal-code')).toHaveLength(0)
   })
+
+  it('should render gift list address', () => {
+    const tree = renderer.create(
+      <AddressSummary
+        giftRegistryDescription={'João da Silva'}
+        address={address}
+        rules={usePostalCode}
+      />
+    )
+
+    expect(tree).toMatchSnapshot()
+  })
 })

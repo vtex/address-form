@@ -50,3 +50,17 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   </span>
 </div>
 `;
+
+exports[`AddressSummary should render gift list address 1`] = `
+<span>
+  <span>
+    At address of:
+  </span>
+   
+  <strong
+    className="gift-list-name"
+  >
+    João da Silva
+  </strong>
+</span>
+`;
