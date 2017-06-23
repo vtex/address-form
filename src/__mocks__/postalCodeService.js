@@ -29,26 +29,31 @@ const addresses = {
 export function getAddress({ accountName, country, postalCode }) {
   return new Promise((resolve, reject) => {
     const address = addresses[country] && addresses[country][postalCode]
-    setTimeout(
-      () =>
-        (address
-          ? resolve(address)
-          : resolve({
-            ...fallbackAddress,
-            country,
-            postalCode,
-          })),
-      5000
-    )
-    // process.nextTick(
-    //   () =>
-    //     (address
-    //       ? resolve(address)
-    //       : resolve({
-    //         ...fallbackAddress,
-    //         country,
-    //         postalCode,
-    //       }))
-    // )
+    console.log({ ENV: process.env.NODE_ENV })
+
+    if (process.env.NODE_ENV === 'test') {
+      process.nextTick(
+        () =>
+          (address
+            ? resolve(address)
+            : resolve({
+              ...fallbackAddress,
+              country,
+              postalCode,
+            }))
+      )
+    } else {
+      setTimeout(
+        () =>
+          (address
+            ? resolve(address)
+            : resolve({
+              ...fallbackAddress,
+              country,
+              postalCode,
+            })),
+        5000
+      )
+    }
   })
 }

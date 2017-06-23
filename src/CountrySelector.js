@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
-import InputLabel from './addressInputs/InputLabel'
-import InputSelect from './addressInputs/InputSelect'
+import InputFieldContainer from './InputFieldContainer'
+import Input from './addressInputs/Input'
 
 class CountrySelector extends Component {
-  handleChangeCountry = country => {
+  handleChangeCountry = changedFields => {
     this.props.onChangeAddress({
-      country: { value: country },
+      country: { value: changedFields.country.value },
       city: { value: null },
       complement: { value: null },
       geoCoordinates: { value: null },
@@ -17,15 +17,6 @@ class CountrySelector extends Component {
       reference: { value: null },
       state: { value: null },
       street: { value: null },
-    })
-  };
-
-  handleBlur = () => {
-    this.props.onChangeAddress({
-      country: {
-        ...this.props.address.country,
-        visited: true,
-      },
     })
   };
 
@@ -49,18 +40,16 @@ class CountrySelector extends Component {
     }
 
     return (
-      <InputLabel field={field}>
-        <InputSelect
-          field={field}
-          rules={{}}
-          options={this.sortOptionsByLabel(
-            shipsTo.map(this.addCountryTranslations)
-          )}
-          address={address}
-          onChange={this.handleChangeCountry}
-          onBlur={this.handleBlur}
-        />
-      </InputLabel>
+      <InputFieldContainer
+        Input={Input}
+        field={field}
+        rules={{}}
+        options={this.sortOptionsByLabel(
+          shipsTo.map(this.addCountryTranslations)
+        )}
+        address={address}
+        onChangeAddress={this.handleChangeCountry}
+      />
     )
   }
 }

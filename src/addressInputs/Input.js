@@ -5,33 +5,27 @@ import AddressShapeWithValidation
 import InputSelect from './InputSelect'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
+import PostalCodeLoader from '../postalCodeFrom/PostalCodeLoader'
 
 class Input extends Component {
-  handleChange = value => {
-    const { address, field, onChangeAddress } = this.props
-
-    onChangeAddress({
-      [field.name]: {
-        ...address[field.name],
-        autoCompleted: undefined,
-        value,
-      },
-    })
-  };
-
-  handleBlur = () => {
-    const { address, field, onChangeAddress } = this.props
-
-    onChangeAddress({
-      [field.name]: {
-        ...address[field.name],
-        visited: true,
-      },
-    })
-  };
-
   render() {
     const { field, options, address } = this.props
+    const loading = !!address[field.name].loading
+
+    if (field.name === 'postalCode') {
+      return (
+        <InputLabel field={field}>
+          <InputText
+            field={field}
+            className={loading ? 'loading-postal-code' : null}
+            address={address}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
+          />
+          {loading && <PostalCodeLoader />}
+        </InputLabel>
+      )
+    }
 
     return (
       <InputLabel field={field}>
@@ -40,14 +34,14 @@ class Input extends Component {
             field={field}
             options={options}
             address={address}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
             />
           : <InputText
             field={field}
             address={address}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
             />}
       </InputLabel>
     )
@@ -58,7 +52,8 @@ Input.propTypes = {
   field: PropTypes.object.isRequired,
   options: PropTypes.array,
   address: PropTypes.shape(AddressShapeWithValidation),
-  onChangeAddress: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
 }
 
 export default Input

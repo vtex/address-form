@@ -1,21 +1,21 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 import OneLevel from './OneLevel'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
+import MockInput from '../addressInputs/__mocks__/Input'
 
 describe('OneLevel', () => {
-  it('show state options', () => {
-    const tree = renderer
-      .create(
-        <OneLevel
-          address={address}
-          rules={useOneLevel}
-          onChangeAddress={jest.fn()}
-        />
-      )
-      .toJSON()
+  it('render it right', () => {
+    const wrapper = shallow(
+      <OneLevel
+        Input={MockInput}
+        address={address}
+        rules={useOneLevel}
+        onChangeAddress={jest.fn()}
+      />
+    )
 
-    expect(tree).toMatchSnapshot()
+    expect(wrapper.find('SelectPostalCode')).toHaveLength(1)
   })
 })

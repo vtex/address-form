@@ -1,9 +1,7 @@
-import React from 'react'
-import { mount, shallow } from 'enzyme'
+import React, { Component } from 'react'
+import { shallow, mount } from 'enzyme'
 import SelectPostalCode from './SelectPostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
-import useTwoLevels from '../country/__mocks__/useTwoLevels'
-import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
 import find from 'lodash/find'
 
@@ -14,20 +12,25 @@ describe('SelectPostalCode', () => {
     field => field.name === firstLevelName
   )
 
-  it('should call children with the right arguments', () => {
-    const idComponent = jest.fn(() => <div />)
+  class MockInput extends Component {
+    render() {
+      return <span />
+    }
+  }
 
-    shallow(
+  it('should render InputFieldContainer with the right props', () => {
+    const wrapper = shallow(
       <SelectPostalCode
+        Input={MockInput}
         address={address}
         rules={useOneLevel}
         onChangeAddress={jest.fn()}
-      >
-        {idComponent}
-      </SelectPostalCode>
+      />
     )
 
-    expect(idComponent).toHaveBeenCalledWith({
+    const props = wrapper.find('InputFieldContainer').props()
+
+    expect(props).toMatchObject({
       address,
       field: firstLevelField,
       options: expect.any(Array),
@@ -35,8 +38,7 @@ describe('SelectPostalCode', () => {
     })
   })
 
-  it('should call children with options with postal codes', () => {
-    const idComponent = jest.fn(() => <div />)
+  it('should render InputFieldContainer with options with postal codes', () => {
     const firstLevelOptions = useOneLevel.firstLevelPostalCodes.map(({
       label,
       postalCode,
@@ -45,17 +47,18 @@ describe('SelectPostalCode', () => {
       label: label,
     }))
 
-    shallow(
+    const wrapper = shallow(
       <SelectPostalCode
+        Input={MockInput}
         address={address}
         rules={useOneLevel}
         onChangeAddress={jest.fn()}
-      >
-        {idComponent}
-      </SelectPostalCode>
+      />
     )
 
-    expect(idComponent).toHaveBeenCalledWith({
+    const props = wrapper.find('InputFieldContainer').props()
+
+    expect(props).toMatchObject({
       address,
       field: expect.anything(),
       options: firstLevelOptions,
@@ -63,10 +66,10 @@ describe('SelectPostalCode', () => {
     })
   })
 
-  it('should call children with address with postal-code-defining-field with postal code appended to its value', () => {
-    const idComponent = jest.fn(() => <div />)
-    shallow(
+  it('should render InputFieldContainer with address with postal-code-defining-field with postal code appended to its value', () => {
+    const wrapper = shallow(
       <SelectPostalCode
+        Input={MockInput}
         address={{
           ...address,
           postalCode: { value: '0001' },
@@ -74,27 +77,26 @@ describe('SelectPostalCode', () => {
         }}
         rules={useOneLevel}
         onChangeAddress={jest.fn()}
-      >
-        {idComponent}
-      </SelectPostalCode>
+      />
     )
 
-    const calledWithAddress = idComponent.mock.calls[0][0].address
+    const props = wrapper.find('InputFieldContainer').props()
 
-    expect(calledWithAddress.state).toMatchObject({
+    expect(props.address.state).toMatchObject({
       value: 'Bolivar___0001',
     })
   })
 
   it('should handle change leaving postal-code-defining-field clean', () => {
-    const idComponent = jest.fn(({ onChangeAddress }) => {
-      onChangeAddress({ state: { value: 'Azuay___0000' } })
+    const Component = jest.fn(({ onChange }) => {
+      onChange('Azuay___0000')
       return <div />
     })
     const handleChange = jest.fn()
 
-    shallow(
+    mount(
       <SelectPostalCode
+        Input={Component}
         address={{
           ...address,
           postalCode: { value: '0001' },
@@ -102,9 +104,7 @@ describe('SelectPostalCode', () => {
         }}
         rules={useOneLevel}
         onChangeAddress={handleChange}
-      >
-        {idComponent}
-      </SelectPostalCode>
+      />
     )
 
     expect(handleChange).toHaveBeenCalledWith({

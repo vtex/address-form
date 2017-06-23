@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
-import PostalCode from './postalCodeFrom/PostalCode'
 import OneLevel from './postalCodeFrom/OneLevel'
 import TwoLevels from './postalCodeFrom/TwoLevels'
 import ThreeLevels from './postalCodeFrom/ThreeLevels'
+import Input from './addressInputs/Input'
+import InputFieldContainer from './InputFieldContainer'
+import { getField } from './selectors/fields'
 
 class PostalCodeGetter extends Component {
   render() {
@@ -15,6 +17,7 @@ class PostalCodeGetter extends Component {
       case THREE_LEVELS:
         return (
           <ThreeLevels
+            Input={Input}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
@@ -23,6 +26,7 @@ class PostalCodeGetter extends Component {
       case TWO_LEVELS:
         return (
           <TwoLevels
+            Input={Input}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
@@ -31,20 +35,25 @@ class PostalCodeGetter extends Component {
       case ONE_LEVEL:
         return (
           <OneLevel
+            Input={Input}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
           />
         )
       default:
-      case POSTAL_CODE:
+      case POSTAL_CODE: {
+        const field = getField('postalCode', rules)
         return (
-          <PostalCode
+          <InputFieldContainer
+            Input={Input}
+            field={field}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
           />
         )
+      }
     }
   }
 }

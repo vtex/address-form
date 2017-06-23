@@ -1,7 +1,7 @@
 import {
   getPostalCodeOptions,
-  getLevels,
-  getCurrentLevelField,
+  getLastLevelField,
+  getLevelField,
 } from '../selectors/postalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
@@ -50,79 +50,43 @@ describe('Field Selectors', () => {
     })
   })
 
-  describe('getLevels()', () => {
-    it('should return an object with fields', () => {
-      const result = getLevels(useOneLevel)
-
-      expect(Object.keys(result)).toEqual(expect.arrayContaining(['levels']))
-    })
-
+  describe('getLastLevelField()', () => {
     it('with one level', () => {
-      const result = getLevels(useOneLevel)
+      const result = getLastLevelField(useOneLevel)
 
-      expect(result.levels[0]).toBeDefined()
-      expect(result.levels[1]).toBeUndefined()
-      expect(result.levels[2]).toBeUndefined()
-      expect(result.levels[0].name).toEqual('state')
+      expect(result.name).toBe('state')
     })
 
     it('with two levels', () => {
-      const result = getLevels(useTwoLevels)
+      const result = getLastLevelField(useTwoLevels)
 
-      expect(result.levels[0]).toBeDefined()
-      expect(result.levels[1]).toBeDefined()
-      expect(result.levels[2]).toBeUndefined()
-      expect(result.levels[0].name).toEqual('state')
-      expect(result.levels[1].name).toEqual('neighborhood')
+      expect(result.name).toBe('neighborhood')
     })
 
     it('with three levels', () => {
-      const result = getLevels(useThreeLevels)
+      const result = getLastLevelField(useThreeLevels)
 
-      expect(result.levels[0]).toBeDefined()
-      expect(result.levels[1]).toBeDefined()
-      expect(result.levels[2]).toBeDefined()
-      expect(result.levels[0].name).toEqual('state')
-      expect(result.levels[1].name).toEqual('city')
-      expect(result.levels[2].name).toEqual('neighborhood')
-    })
-  })
-
-  describe('getCurrentLevelField()', () => {
-    it('with one level', () => {
-      const expected = 'expected'
-      const result = getCurrentLevelField(
-        [expected, undefined, undefined],
-        useOneLevel
-      )
-
-      expect(result).toBe(expected)
-    })
-
-    it('with two levels', () => {
-      const expected = 'expected'
-      const result = getCurrentLevelField(
-        [null, expected, undefined],
-        useTwoLevels
-      )
-
-      expect(result).toBe(expected)
-    })
-
-    it('with three levels', () => {
-      const expected = 'expected'
-      const result = getCurrentLevelField(
-        [null, null, expected],
-        useThreeLevels
-      )
-
-      expect(result).toBe(expected)
+      expect(result.name).toBe('neighborhood')
     })
 
     it('should throw when postalCodeFrom is not handled', () => {
-      const act = () => getCurrentLevelField([], { postalCodeFrom: 'foo' })
+      const act = () => getLastLevelField({ postalCodeFrom: 'foo' })
 
       expect(act).toThrow()
+    })
+  })
+
+  describe('getLevelField()', () => {
+    it('should get the right field', () => {
+      const level = 0
+      const rules = {
+        postalCodeLevels: ['foo'],
+        fields: [{ name: 'foo', label: 'Bar' }],
+      }
+
+      const result = getLevelField(level, rules)
+
+      expect(result.label).toBe('Bar')
     })
   })
 })

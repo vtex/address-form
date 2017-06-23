@@ -10,10 +10,6 @@ class InputSelect extends Component {
     this.props.onChange(e.target.value)
   };
 
-  handleBlur = () => {
-    this.props.onBlur()
-  };
-
   render() {
     const { address, options, field } = this.props
     const fieldValue = address[field.name]
@@ -29,7 +25,7 @@ class InputSelect extends Component {
         name={field.name}
         value={address[field.name].value || ''}
         onChange={this.handleChange}
-        onBlur={this.handleBlur}
+        onBlur={this.props.onBlur}
         className={className}
       >
         {field.optionsCaption !== null &&

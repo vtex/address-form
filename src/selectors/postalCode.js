@@ -1,6 +1,5 @@
 import { ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 import { getField } from './fields'
-import find from 'lodash/find'
 
 export function getPostalCodeOptions(address, rules) {
   switch (rules.postalCodeFrom) {
@@ -46,45 +45,19 @@ function getThreeLevelsPostalCodes(address, rules) {
     : []
 }
 
-export function getLevels(rules) {
-  let firstLevel, secondLevel, thirdLevel
-
-  if (rules.postalCodeLevel || rules.postalCodeLevels.length >= 1) {
-    firstLevel = find(
-      rules.fields,
-      ({ name }) =>
-        name === (rules.postalCodeLevel || rules.postalCodeLevels[0])
-    )
-  }
-
-  if (rules.postalCodeLevels && rules.postalCodeLevels.length >= 2) {
-    secondLevel = find(
-      rules.fields,
-      ({ name }) => name === rules.postalCodeLevels[1]
-    )
-  }
-
-  if (rules.postalCodeLevels && rules.postalCodeLevels.length >= 3) {
-    thirdLevel = find(
-      rules.fields,
-      ({ name }) => name === rules.postalCodeLevels[2]
-    )
-  }
-
-  return {
-    levels: [firstLevel, secondLevel, thirdLevel],
-  }
-}
-
-export function getCurrentLevelField(levels, rules) {
+export function getLastLevelField(rules) {
   switch (rules.postalCodeFrom) {
     case ONE_LEVEL:
-      return levels[0]
+      return getField(rules.postalCodeLevel, rules)
     case TWO_LEVELS:
-      return levels[1]
+      return getField(rules.postalCodeLevels[1], rules)
     case THREE_LEVELS:
-      return levels[2]
+      return getField(rules.postalCodeLevels[2], rules)
     default:
       throw new Error(`Unknown postalCodeFrom value: ${rules.postalCodeFrom}`)
   }
+}
+
+export function getLevelField(level, rules) {
+  return getField(rules.postalCodeLevels[level], rules)
 }

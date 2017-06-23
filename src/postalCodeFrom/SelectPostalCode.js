@@ -1,28 +1,17 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
 import {
   getPostalCodeOptions,
-  getLevels,
-  getCurrentLevelField,
+  getLastLevelField,
 } from '../selectors/postalCode'
+import InputFieldContainer from '../InputFieldContainer'
 
 class SelectPostalCode extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = getLevels(props.rules)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(getLevels(nextProps.rules))
-  }
-
   handleChange = value => {
     const rules = this.props.rules
-    const levels = this.state.levels
-    const currentLevelName = getCurrentLevelField(levels, rules).name
+    const currentLevelName = getLastLevelField(rules).name
 
     this.props.onChangeAddress({
       ...this.deComposeValue(currentLevelName, value[currentLevelName].value),
@@ -59,9 +48,8 @@ class SelectPostalCode extends Component {
   }
 
   render() {
-    const { address, rules } = this.props
-    const { levels } = this.state
-    const currentLevelField = getCurrentLevelField(levels, rules)
+    const { address, rules, Input } = this.props
+    const currentLevelField = getLastLevelField(rules)
     const fieldName = currentLevelField.name
 
     const newAddress = {
@@ -72,17 +60,21 @@ class SelectPostalCode extends Component {
       },
     }
 
-    return this.props.children({
-      field: currentLevelField,
-      address: newAddress,
-      options: this.getOptions(fieldName, address, rules),
-      onChangeAddress: this.handleChange,
-    })
+    return (
+      <InputFieldContainer
+        Input={Input}
+        field={currentLevelField}
+        address={newAddress}
+        options={this.getOptions(fieldName, address, rules)}
+        rules={rules}
+        onChangeAddress={this.handleChange}
+      />
+    )
   }
 }
 
 SelectPostalCode.propTypes = {
-  children: PropTypes.func.isRequired,
+  Input: PropTypes.func.isRequired,
   address: PropTypes.shape(AddressShapeWithValidation).isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

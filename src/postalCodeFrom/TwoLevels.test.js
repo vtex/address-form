@@ -1,38 +1,22 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { shallow } from 'enzyme'
 import TwoLevels from './TwoLevels'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import address from '../__mocks__/newAddress'
+import MockInput from '../addressInputs/__mocks__/Input'
 
 describe('TwoLevels', () => {
-  it('without first level selected', () => {
-    const tree = renderer
-      .create(
-        <TwoLevels
-          address={address}
-          rules={useTwoLevels}
-          onChangeAddress={jest.fn()}
-        />
-      )
-      .toJSON()
+  it('render it right', () => {
+    const wrapper = shallow(
+      <TwoLevels
+        Input={MockInput}
+        address={address}
+        rules={useTwoLevels}
+        onChangeAddress={jest.fn()}
+      />
+    )
 
-    expect(tree).toMatchSnapshot()
-  })
-
-  it('with first level selected', () => {
-    const tree = renderer
-      .create(
-        <TwoLevels
-          address={{
-            ...address,
-            state: { value: 'I Región' },
-          }}
-          rules={useTwoLevels}
-          onChangeAddress={jest.fn()}
-        />
-      )
-      .toJSON()
-
-    expect(tree).toMatchSnapshot()
+    expect(wrapper.find('SelectLevel')).toHaveLength(1)
+    expect(wrapper.find('SelectPostalCode')).toHaveLength(1)
   })
 })

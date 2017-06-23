@@ -9,10 +9,6 @@ class InputText extends Component {
     this.props.onChange(e.target.value)
   };
 
-  handleBlur = () => {
-    this.props.onBlur()
-  };
-
   render() {
     const { address, field } = this.props
     const fieldValue = address[field.name]
@@ -28,7 +24,7 @@ class InputText extends Component {
         type="text"
         name={field.name}
         value={fieldValue.value || ''}
-        onBlur={this.handleBlur}
+        onBlur={this.props.onBlur}
         onChange={this.handleChange}
         className={className}
       />

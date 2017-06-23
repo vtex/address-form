@@ -2,42 +2,24 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
-import InputSelect from '../addressInputs/InputSelect'
-import InputLabel from '../addressInputs/InputLabel'
-import {
-  getField,
-  getListOfOptions,
-  getDependentFields,
-} from '../selectors/fields'
+import { getDependentFields } from '../selectors/fields'
+import { getLevelField } from '../selectors/postalCode'
 import reduce from 'lodash/reduce'
+import InputFieldContainer from '../InputFieldContainer'
 
 class SelectLevel extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      field: this.getLevelField(props),
-    }
-  }
-
-  getLevelField({ level, rules }) {
-    return getField(rules.postalCodeLevels[level], rules)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ field: this.getLevelField(nextProps) })
-  }
-
-  handleChange = value => {
-    const { field: { name } } = this.state
-    const { rules } = this.props
+  handleChange = changedFields => {
+    const { level, address, rules, onChangeAddress } = this.props
+    const name = getLevelField(level, rules).name
+    const value = changedFields[name].value
 
     const dependentFields = getDependentFields(name, rules)
 
     const cleanAddress = reduce(
-      this.props.address,
+      address,
       (cleanAddress, value, prop) => {
-        if (dependentFields.indexOf(prop) !== -1) {
+        const isDependentField = dependentFields.indexOf(prop) !== -1
+        if (isDependentField) {
           cleanAddress[prop] = { value: null }
         }
         return cleanAddress
@@ -45,7 +27,7 @@ class SelectLevel extends Component {
       {}
     )
 
-    this.props.onChangeAddress({
+    onChangeAddress({
       ...cleanAddress,
       [name]: {
         ...cleanAddress[name],
@@ -54,37 +36,24 @@ class SelectLevel extends Component {
     })
   };
 
-  handleBlur = () => {
-    const { field } = this.state
-    const { address, onChangeAddress } = this.props
-
-    onChangeAddress({
-      [field.name]: {
-        ...address[field.name],
-        visited: true,
-      },
-    })
-  };
-
   render() {
-    const { field } = this.state
-    const { rules, address } = this.props
+    const { level, rules, address, Input } = this.props
+    const field = getLevelField(level, rules)
 
     return (
-      <InputLabel field={field}>
-        <InputSelect
-          field={field}
-          address={address}
-          options={getListOfOptions(field, address, rules)}
-          onChange={this.handleChange}
-          onBlur={this.handleBlur}
-        />
-      </InputLabel>
+      <InputFieldContainer
+        Input={Input}
+        field={field}
+        address={address}
+        rules={rules}
+        onChangeAddress={this.handleChange}
+      />
     )
   }
 }
 
 SelectLevel.propTypes = {
+  Input: PropTypes.func.isRequired,
   level: PropTypes.oneOf([0, 1]),
   address: PropTypes.shape(AddressShapeWithValidation),
   rules: PropTypes.object.isRequired,

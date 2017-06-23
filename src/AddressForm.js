@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
+import InputFieldContainer from './InputFieldContainer'
 import Input from './addressInputs/Input'
-import {
-  filterFields,
-  getListOfOptions,
-  hasOptions,
-  isDefiningPostalCodeField,
-} from './selectors/fields'
+import { filterFields, isDefiningPostalCodeField } from './selectors/fields'
 import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 
 class AddressForm extends Component {
@@ -44,29 +40,17 @@ class AddressForm extends Component {
           field =>
             (isDefiningPostalCodeField(field.name, rules)
               ? <SelectPostalCode
+                Input={Input}
                 rules={rules}
                 address={address}
                 onChangeAddress={onChangeAddress}
-                >
-                {({ field, address, onChangeAddress, options }) => (
-                  <Input
-                    key={field.name}
-                    field={field}
-                    options={options}
-                    address={address}
-                    onChangeAddress={onChangeAddress}
-                    />
-                  )}
-              </SelectPostalCode>
-              : <Input
+                />
+              : <InputFieldContainer
                 key={field.name}
+                Input={Input}
                 field={field}
-                options={
-                    hasOptions(field)
-                      ? getListOfOptions(field, address, rules)
-                      : undefined
-                  }
                 address={address}
+                rules={rules}
                 onChangeAddress={onChangeAddress}
                 />)
         )}
