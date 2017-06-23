@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
-import Input from './addressInputs/Input'
+import DefaultInput from './addressInputs/Input'
 import { filterFields, isDefiningPostalCodeField } from './selectors/fields'
 import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 
@@ -31,7 +31,7 @@ class AddressForm extends Component {
   }
 
   render() {
-    const { address, rules, onChangeAddress } = this.props
+    const { address, rules, onChangeAddress, Input } = this.props
     const { fields } = this.state
 
     return (
@@ -61,9 +61,11 @@ class AddressForm extends Component {
 
 AddressForm.defaultProps = {
   omitPostalCodeFields: true,
+  Input: DefaultInput,
 }
 
 AddressForm.propTypes = {
+  Input: PropTypes.func,
   address: PropTypes.shape(AddressShapeWithValidation),
   omitPostalCodeFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,

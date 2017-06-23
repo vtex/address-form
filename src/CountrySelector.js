@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
-import Input from './addressInputs/Input'
+import DefaultInput from './addressInputs/Input'
 
 class CountrySelector extends Component {
   handleChangeCountry = changedFields => {
@@ -32,7 +32,7 @@ class CountrySelector extends Component {
   }
 
   render() {
-    const { address, shipsTo } = this.props
+    const { address, shipsTo, Input } = this.props
     const field = {
       name: 'country',
       label: 'country',
@@ -54,7 +54,12 @@ class CountrySelector extends Component {
   }
 }
 
+CountrySelector.defaultProps = {
+  Input: DefaultInput,
+}
+
 CountrySelector.propTypes = {
+  Input: PropTypes.func,
   address: PropTypes.shape(AddressShapeWithValidation),
   shipsTo: PropTypes.array.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
