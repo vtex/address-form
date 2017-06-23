@@ -33,17 +33,13 @@ describe('AddressContainer', () => {
       </AddressContainer>
     )
 
-    expect(children).toHaveBeenCalledWith({
-      address: addressWithCountry,
-      rules: usePostalCode,
-      onChangeAddress: expect.any(Function),
-    })
+    expect(children).toHaveBeenCalledWith(expect.any(Function))
   })
 
   it('should handle the validation before calling onChangeAddress', () => {
     const handleAddressChange = jest.fn()
 
-    const children = ({ onChangeAddress }) => {
+    const children = onChangeAddress => {
       onChangeAddress({ city: { value: 'Rio de Janeiro' } })
       return <span />
     }
@@ -65,10 +61,10 @@ describe('AddressContainer', () => {
     })
   })
 
-  it('should handle the validation based on the new country', () => {
+  it('should short-circuit when country changes', () => {
     const handleAddressChange = jest.fn()
 
-    const children = jest.fn(({ onChangeAddress }) => {
+    const children = jest.fn(onChangeAddress => {
       onChangeAddress({ country: { value: 'ECU' } })
       return <span />
     })
@@ -86,12 +82,7 @@ describe('AddressContainer', () => {
 
     expect(handleAddressChange).toHaveBeenCalledWith({
       ...addressWithCountry,
-      country: { value: 'ECU', valid: true },
-    })
-    expect(children).lastCalledWith({
-      rules: usePostalCode,
-      address: expect.anything(),
-      onChangeAddress: expect.any(Function),
+      country: { value: 'ECU' },
     })
   })
 })

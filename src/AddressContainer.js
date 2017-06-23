@@ -9,30 +9,35 @@ class AddressContainer extends Component {
   handleAddressChange = changedAddressFields => {
     const { rules, address, accountName, onChangeAddress } = this.props
 
-    const country = changedAddressFields.country &&
-      changedAddressFields.country.value
-      ? changedAddressFields.country.value
-      : address.country.value
+    const countryChanged =
+      changedAddressFields.country &&
+      changedAddressFields.country.value &&
+      changedAddressFields.country.value !== address.country.value
 
-    const selectedRule = rules[country]
+    if (countryChanged) {
+      return onChangeAddress({
+        ...address,
+        ...changedAddressFields,
+      })
+    }
 
     const addressValidated = validateChangedFields(
       changedAddressFields,
       address,
-      selectedRule
+      rules
     )
 
-    if (changedAddressFields.postalCode && selectedRule) {
+    if (changedAddressFields.postalCode) {
       const postalCodeIsNowValid =
         address.postalCode.valid !== true &&
         addressValidated.postalCode.valid === true
 
-      if (selectedRule.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
+      if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
         return onChangeAddress(
           autoCompleteAddress(
             addressValidated,
             accountName,
-            selectedRule,
+            rules,
             this.handleAddressChange
           )
         )
@@ -43,13 +48,7 @@ class AddressContainer extends Component {
   };
 
   render() {
-    const { address, rules, children } = this.props
-
-    return children({
-      address,
-      rules: rules[address.country.value],
-      onChangeAddress: this.handleAddressChange,
-    })
+    return this.props.children(this.handleAddressChange)
   }
 }
 

@@ -3,12 +3,9 @@ import CountrySelector from './CountrySelector'
 import AddressForm from './AddressForm'
 import AddressSummary from './AddressSummary'
 import PostalCodeGetter from './PostalCodeGetter'
-import BOL from './country/BOL'
-import BRA from './country/BRA'
-import CHL from './country/CHL'
-import ECU from './country/ECU'
 import { addValidation, removeValidation } from './transforms/address'
 import AddressContainer from './AddressContainer'
+import Input from './addressInputs/Input'
 
 const ACCOUNT_NAME = 'qamarketplace'
 
@@ -33,14 +30,28 @@ class App extends Component {
         state: null,
         street: null,
       }),
-      rules: {
-        BOL,
-        BRA,
-        CHL,
-        ECU,
-      },
+      rules: {},
     }
   }
+
+  componentDidMount() {
+    this.loadCurrentCountryRules()
+  }
+
+  loadCurrentCountryRules = () => {
+    const country = this.state.address.country.value
+    const hasRulesLoaded = this.state.rules[country]
+
+    if (hasRulesLoaded) {
+      return this.setState({ loading: false })
+    }
+
+    import('./country/' + country).then(rules => {
+      this.setState(prevState => ({
+        rules: { ...prevState.rules, [country]: rules.default },
+      }))
+    })
+  };
 
   handleAddressChange = address => {
     this.setState(prevState => ({
@@ -51,8 +62,23 @@ class App extends Component {
     }))
   };
 
+  componentDidUpdate(_, prevState) {
+    const countryChanged =
+      this.state.address.country.value !== prevState.address.country.value
+
+    if (countryChanged) {
+      this.loadCurrentCountryRules()
+    }
+  }
+
   render() {
     const { shipsTo, address, rules } = this.state
+
+    const country = address.country.value
+    const selectedRules = rules[country]
+    if (!selectedRules) {
+      return <div>Loading...</div>
+    }
 
     return (
       <div className="step" style={{ padding: '20px' }}>
@@ -63,26 +89,29 @@ class App extends Component {
           <AddressContainer
             accountName={ACCOUNT_NAME}
             address={address}
-            rules={rules}
+            rules={selectedRules}
             onChangeAddress={this.handleAddressChange}
           >
-            {({ address, rules, onChangeAddress }) => (
+            {onChangeAddress => (
               <div>
                 <CountrySelector
+                  Input={Input}
                   address={address}
                   shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
                 />
 
                 <PostalCodeGetter
+                  Input={Input}
                   address={address}
-                  rules={rules}
+                  rules={selectedRules}
                   onChangeAddress={onChangeAddress}
                 />
 
                 <AddressForm
+                  Input={Input}
                   address={address}
-                  rules={rules}
+                  rules={selectedRules}
                   onChangeAddress={onChangeAddress}
                 />
               </div>
