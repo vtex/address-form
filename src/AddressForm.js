@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
-import InputSelect from './addressInputs/InputSelect'
-import InputText from './addressInputs/InputText'
-import InputLabel from './addressInputs/InputLabel'
-import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
+import Input from './addressInputs/Input'
 import {
-  hasOptions,
   filterFields,
+  getListOfOptions,
+  hasOptions,
   isDefiningPostalCodeField,
 } from './selectors/fields'
+import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 
 class AddressForm extends Component {
   constructor(props) {
@@ -41,32 +40,36 @@ class AddressForm extends Component {
 
     return (
       <div>
-        {fields.map(field => (
-          <div key={field.name}>
-            {hasOptions(field)
-              ? isDefiningPostalCodeField(field.name, rules)
-                  ? <SelectPostalCode
-                    rules={rules}
+        {fields.map(
+          field =>
+            (isDefiningPostalCodeField(field.name, rules)
+              ? <SelectPostalCode
+                rules={rules}
+                address={address}
+                onChangeAddress={onChangeAddress}
+                >
+                {({ field, address, onChangeAddress, options }) => (
+                  <Input
+                    key={field.name}
+                    field={field}
+                    options={options}
                     address={address}
                     onChangeAddress={onChangeAddress}
                     />
-                  : <InputLabel field={field}>
-                    <InputSelect
-                      field={field}
-                      rules={rules}
-                      address={address}
-                      onChange={onChangeAddress}
-                      />
-                  </InputLabel>
-              : <InputLabel field={field}>
-                <InputText
-                  field={field}
-                  address={address}
-                  onChange={onChangeAddress}
-                  />
-              </InputLabel>}
-          </div>
-        ))}
+                  )}
+              </SelectPostalCode>
+              : <Input
+                key={field.name}
+                field={field}
+                options={
+                    hasOptions(field)
+                      ? getListOfOptions(field, address, rules)
+                      : undefined
+                  }
+                address={address}
+                onChangeAddress={onChangeAddress}
+                />)
+        )}
       </div>
     )
   }

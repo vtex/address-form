@@ -1,126 +1,115 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import SelectPostalCode from './SelectPostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
+import find from 'lodash/find'
 
 describe('SelectPostalCode', () => {
-  describe('for one level', () => {
-    it('should render select for first level', () => {
-      const wrapper = mount(
-        <SelectPostalCode
-          address={address}
-          rules={useOneLevel}
-          onChangeAddress={jest.fn()}
-        />
-      )
+  const firstLevelName = useOneLevel.postalCodeLevel
+  const firstLevelField = find(
+    useOneLevel.fields,
+    field => field.name === firstLevelName
+  )
 
-      const firstLevelName = useOneLevel.postalCodeLevel
+  it('should call children with the right arguments', () => {
+    const idComponent = jest.fn(() => <div />)
 
-      expect(wrapper.find(`select[name="${firstLevelName}"]`)).toHaveLength(1)
-    })
+    shallow(
+      <SelectPostalCode
+        address={address}
+        rules={useOneLevel}
+        onChangeAddress={jest.fn()}
+      >
+        {idComponent}
+      </SelectPostalCode>
+    )
 
-    it('should change the right field', () => {
-      const handleChange = jest.fn()
-      const wrapper = mount(
-        <SelectPostalCode
-          address={address}
-          rules={useOneLevel}
-          onChangeAddress={handleChange}
-        />
-      )
-
-      const firstLevelName = useOneLevel.postalCodeLevel
-
-      const event = { target: { value: 'Azuay___0000' } }
-      wrapper
-        .find(`select[name="${firstLevelName}"]`)
-        .simulate('change', event)
-
-      expect(handleChange).toHaveBeenCalledWith({
-        [firstLevelName]: { value: 'Azuay' },
-        postalCode: { value: '0000' },
-      })
+    expect(idComponent).toHaveBeenCalledWith({
+      address,
+      field: firstLevelField,
+      options: expect.any(Array),
+      onChangeAddress: expect.any(Function),
     })
   })
 
-  describe('for two levels', () => {
-    it('should render select for second level', () => {
-      const wrapper = mount(
-        <SelectPostalCode
-          address={address}
-          rules={useTwoLevels}
-          onChangeAddress={jest.fn()}
-        />
-      )
+  it('should call children with options with postal codes', () => {
+    const idComponent = jest.fn(() => <div />)
+    const firstLevelOptions = useOneLevel.firstLevelPostalCodes.map(({
+      label,
+      postalCode,
+    }) => ({
+      value: `${label}___${postalCode}`,
+      label: label,
+    }))
 
-      const secondLevelName = useTwoLevels.postalCodeLevels[1]
+    shallow(
+      <SelectPostalCode
+        address={address}
+        rules={useOneLevel}
+        onChangeAddress={jest.fn()}
+      >
+        {idComponent}
+      </SelectPostalCode>
+    )
 
-      expect(wrapper.find(`select[name="${secondLevelName}"]`)).toHaveLength(1)
-    })
-
-    it('should change the right field', () => {
-      const handleChange = jest.fn()
-      const wrapper = mount(
-        <SelectPostalCode
-          address={address}
-          rules={useTwoLevels}
-          onChangeAddress={handleChange}
-        />
-      )
-
-      const secondLevelName = useTwoLevels.postalCodeLevels[1]
-
-      const event = { target: { value: 'Camiña___1150000' } }
-      wrapper
-        .find(`select[name="${secondLevelName}"]`)
-        .simulate('change', event)
-
-      expect(handleChange).toHaveBeenCalledWith({
-        [secondLevelName]: { value: 'Camiña' },
-        postalCode: { value: '1150000' },
-      })
+    expect(idComponent).toHaveBeenCalledWith({
+      address,
+      field: expect.anything(),
+      options: firstLevelOptions,
+      onChangeAddress: expect.any(Function),
     })
   })
 
-  describe('for three levels', () => {
-    it('should render select for third level', () => {
-      const wrapper = mount(
-        <SelectPostalCode
-          address={address}
-          rules={useThreeLevels}
-          onChangeAddress={jest.fn()}
-        />
-      )
+  it('should call children with address with postal-code-defining-field with postal code appended to its value', () => {
+    const idComponent = jest.fn(() => <div />)
+    shallow(
+      <SelectPostalCode
+        address={{
+          ...address,
+          postalCode: { value: '0001' },
+          state: { value: 'Bolivar' },
+        }}
+        rules={useOneLevel}
+        onChangeAddress={jest.fn()}
+      >
+        {idComponent}
+      </SelectPostalCode>
+    )
 
-      const thirdLevelName = useThreeLevels.postalCodeLevels[2]
+    const calledWithAddress = idComponent.mock.calls[0][0].address
 
-      expect(wrapper.find(`select[name="${thirdLevelName}"]`)).toHaveLength(1)
+    expect(calledWithAddress.state).toMatchObject({
+      value: 'Bolivar___0001',
     })
+  })
 
-    it('should change the right field', () => {
-      const handleChange = jest.fn()
-      const wrapper = mount(
-        <SelectPostalCode
-          address={address}
-          rules={useThreeLevels}
-          onChangeAddress={handleChange}
-        />
-      )
+  it('should handle change leaving postal-code-defining-field clean', () => {
+    const idComponent = jest.fn(({ onChangeAddress }) => {
+      onChangeAddress({ state: { value: 'Azuay___0000' } })
+      return <div />
+    })
+    const handleChange = jest.fn()
 
-      const thirdLevelName = useThreeLevels.postalCodeLevels[2]
+    shallow(
+      <SelectPostalCode
+        address={{
+          ...address,
+          postalCode: { value: '0001' },
+          state: { value: 'Bolivar' },
+        }}
+        rules={useOneLevel}
+        onChangeAddress={handleChange}
+      >
+        {idComponent}
+      </SelectPostalCode>
+    )
 
-      const event = { target: { value: 'Canasmoro___90400' } }
-      wrapper
-        .find(`select[name="${thirdLevelName}"]`)
-        .simulate('change', event)
-
-      expect(handleChange).toHaveBeenCalledWith({
-        [thirdLevelName]: { value: 'Canasmoro' },
-        postalCode: { value: '90400' },
-      })
+    expect(handleChange).toHaveBeenCalledWith({
+      postalCode: { value: '0000' },
+      state: { value: 'Azuay' },
     })
   })
 })

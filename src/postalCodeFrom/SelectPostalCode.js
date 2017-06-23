@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
-import { getField } from '../selectors/fields'
-import find from 'lodash/find'
-import map from 'lodash/map'
-import { ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
-import InputLabel from '../addressInputs/InputLabel'
+import {
+  getPostalCodeOptions,
+  getLevels,
+  getCurrentLevelField,
+} from '../selectors/postalCode'
 
 class SelectPostalCode extends Component {
   constructor(props) {
@@ -19,27 +19,15 @@ class SelectPostalCode extends Component {
     this.setState(getLevels(nextProps.rules))
   }
 
-  handleChange = e => {
-    const value = e.target.value
+  handleChange = value => {
     const rules = this.props.rules
-    const currentLevelName = this.getCurrentLevelField(rules).name
+    const levels = this.state.levels
+    const currentLevelName = getCurrentLevelField(levels, rules).name
 
     this.props.onChangeAddress({
-      ...this.deComposeValue(currentLevelName, value),
+      ...this.deComposeValue(currentLevelName, value[currentLevelName].value),
     })
   };
-
-  getCurrentLevelField(rules) {
-    switch (rules.postalCodeFrom) {
-      case ONE_LEVEL:
-        return this.state.levels[0]
-      case TWO_LEVELS:
-        return this.state.levels[1]
-      default:
-      case THREE_LEVELS:
-        return this.state.levels[2]
-    }
-  }
 
   composeValue = (currentLevelName, address) =>
     (address[currentLevelName] &&
@@ -47,7 +35,7 @@ class SelectPostalCode extends Component {
       address.postalCode &&
       address.postalCode.value
       ? `${address[currentLevelName].value}___${address.postalCode.value}`
-      : '');
+      : null);
 
   deComposeValue = (currentLevelName, value) => {
     const [field, postalCode] = value.split('___')
@@ -57,113 +45,44 @@ class SelectPostalCode extends Component {
     }
   };
 
-  getPostalCodeOptions = () => {
-    const { address, rules } = this.props
-
-    switch (rules.postalCodeFrom) {
-      case ONE_LEVEL:
-        return this.getOneLevelPostalCodes(address, rules)
-      case TWO_LEVELS:
-        return this.getTwoLevelsPostalCodes(address, rules)
-      default:
-      case THREE_LEVELS:
-        return this.getThreeLevelsPostalCodes(address, rules)
-    }
-  };
-
-  getOneLevelPostalCodes(address, rules) {
-    return rules.firstLevelPostalCodes
-  }
-
-  getTwoLevelsPostalCodes(address, rules) {
-    const firstLevel = getField(rules.postalCodeLevels[0], rules)
-
-    return address[firstLevel.name] &&
-      address[firstLevel.name].value &&
-      rules.secondLevelPostalCodes[address[firstLevel.name].value]
-      ? rules.secondLevelPostalCodes[address[firstLevel.name].value]
-      : []
-  }
-
-  getThreeLevelsPostalCodes(address, rules) {
-    const firstLevel = getField(rules.postalCodeLevels[0], rules)
-    const secondLevel = getField(rules.postalCodeLevels[1], rules)
-
-    return address[firstLevel.name] &&
-      address[firstLevel.name].value &&
-      address[secondLevel.name] &&
-      address[secondLevel.name].value &&
-      rules.thirdLevelPostalCodes[address[firstLevel.name].value] &&
-      rules.thirdLevelPostalCodes[address[firstLevel.name].value][
-        address[secondLevel.name].value
-      ]
-      ? rules.thirdLevelPostalCodes[address[firstLevel.name].value][
-          address[secondLevel.name].value
-        ]
-      : []
+  getOptions(fieldName, address, rules) {
+    return getPostalCodeOptions(address, rules).map(({
+      postalCode,
+      label,
+    }) => ({
+      label,
+      value: this.composeValue(fieldName, {
+        [fieldName]: { value: label },
+        postalCode: { value: postalCode },
+      }),
+    }))
   }
 
   render() {
     const { address, rules } = this.props
-    const currentLevelField = this.getCurrentLevelField(rules)
-    const currentLevelName = currentLevelField.name
+    const { levels } = this.state
+    const currentLevelField = getCurrentLevelField(levels, rules)
+    const fieldName = currentLevelField.name
 
-    return (
-      <InputLabel field={currentLevelField}>
-        <select
-          name={currentLevelName}
-          value={this.composeValue(currentLevelName, address)}
-          onChange={this.handleChange}
-        >
-          <option value="" />
-          {map(this.getPostalCodeOptions(), ({ postalCode, label }) => (
-            <option
-              key={label}
-              value={this.composeValue(currentLevelName, {
-                [currentLevelName]: { value: label },
-                postalCode: { value: postalCode },
-              })}
-            >
-              {label}
-            </option>
-          ))}
-        </select>
-      </InputLabel>
-    )
-  }
-}
+    const newAddress = {
+      ...address,
+      [fieldName]: {
+        ...address[fieldName],
+        value: this.composeValue(fieldName, address),
+      },
+    }
 
-function getLevels(rules) {
-  let firstLevel, secondLevel, thirdLevel
-
-  if (rules.postalCodeLevel || rules.postalCodeLevels.length >= 1) {
-    firstLevel = find(
-      rules.fields,
-      ({ name }) =>
-        name === (rules.postalCodeLevel || rules.postalCodeLevels[0])
-    )
-  }
-
-  if (rules.postalCodeLevels && rules.postalCodeLevels.length >= 2) {
-    secondLevel = find(
-      rules.fields,
-      ({ name }) => name === rules.postalCodeLevels[1]
-    )
-  }
-
-  if (rules.postalCodeLevels && rules.postalCodeLevels.length >= 3) {
-    thirdLevel = find(
-      rules.fields,
-      ({ name }) => name === rules.postalCodeLevels[2]
-    )
-  }
-
-  return {
-    levels: [firstLevel, secondLevel, thirdLevel],
+    return this.props.children({
+      field: currentLevelField,
+      address: newAddress,
+      options: this.getOptions(fieldName, address, rules),
+      onChangeAddress: this.handleChange,
+    })
   }
 }
 
 SelectPostalCode.propTypes = {
+  children: PropTypes.func.isRequired,
   address: PropTypes.shape(AddressShapeWithValidation).isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

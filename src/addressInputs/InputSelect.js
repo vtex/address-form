@@ -3,36 +3,19 @@ import PropTypes from 'prop-types'
 import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
 import map from 'lodash/map'
-import { getListOfOptions } from '../selectors/fields'
 import cx from 'classnames'
 
 class InputSelect extends Component {
   handleChange = e => {
-    const { address, field, onChange } = this.props
-    const value = e.target.value
-
-    onChange({
-      [field.name]: {
-        ...address[field.name],
-        autoCompleted: undefined,
-        value,
-      },
-    })
+    this.props.onChange(e.target.value)
   };
 
-  handleBlur = e => {
-    const { address, field, onChange } = this.props
-
-    onChange({
-      [field.name]: {
-        ...address[field.name],
-        visited: true,
-      },
-    })
+  handleBlur = () => {
+    this.props.onBlur()
   };
 
   render() {
-    const { address, rules, field } = this.props
+    const { address, options, field } = this.props
     const fieldValue = address[field.name]
 
     const className = cx({
@@ -60,7 +43,7 @@ class InputSelect extends Component {
             {field.optionsCaption}
 
           </option>}
-        {map(getListOfOptions(field, address, rules), ({ value, label }) => (
+        {map(options, ({ value, label }) => (
           <option key={value} value={value}>{label}</option>
         ))}
       </select>
@@ -70,9 +53,10 @@ class InputSelect extends Component {
 
 InputSelect.propTypes = {
   field: PropTypes.object.isRequired,
-  rules: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
   address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
 }
 
 export default InputSelect

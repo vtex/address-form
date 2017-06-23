@@ -4,7 +4,11 @@ import AddressShapeWithValidation
   from '../propTypes/AddressShapeWithValidation'
 import InputSelect from '../addressInputs/InputSelect'
 import InputLabel from '../addressInputs/InputLabel'
-import { getField, getDependentFields } from '../selectors/fields'
+import {
+  getField,
+  getListOfOptions,
+  getDependentFields,
+} from '../selectors/fields'
 import reduce from 'lodash/reduce'
 
 class SelectLevel extends Component {
@@ -24,7 +28,7 @@ class SelectLevel extends Component {
     this.setState({ field: this.getLevelField(nextProps) })
   }
 
-  handleChange = address => {
+  handleChange = value => {
     const { field: { name } } = this.state
     const { rules } = this.props
 
@@ -43,7 +47,22 @@ class SelectLevel extends Component {
 
     this.props.onChangeAddress({
       ...cleanAddress,
-      ...address,
+      [name]: {
+        ...cleanAddress[name],
+        value,
+      },
+    })
+  };
+
+  handleBlur = () => {
+    const { field } = this.state
+    const { address, onChangeAddress } = this.props
+
+    onChangeAddress({
+      [field.name]: {
+        ...address[field.name],
+        visited: true,
+      },
     })
   };
 
@@ -55,9 +74,10 @@ class SelectLevel extends Component {
       <InputLabel field={field}>
         <InputSelect
           field={field}
-          rules={rules}
           address={address}
+          options={getListOfOptions(field, address, rules)}
           onChange={this.handleChange}
+          onBlur={this.handleBlur}
         />
       </InputLabel>
     )

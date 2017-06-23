@@ -9,11 +9,14 @@ exports[`OneLevel show state options 1`] = `
       province
     </label>
     <select
+      className="input-large"
       name="state"
+      onBlur={[Function]}
       onChange={[Function]}
       value=""
     >
       <option
+        disabled={undefined}
         value=""
       />
       <option

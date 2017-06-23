@@ -38,11 +38,14 @@ exports[`TwoLevels with first level selected 1`] = `
       community
     </label>
     <select
+      className="input-large"
       name="neighborhood"
+      onBlur={[Function]}
       onChange={[Function]}
       value=""
     >
       <option
+        disabled={undefined}
         value=""
       />
       <option
@@ -113,11 +116,14 @@ exports[`TwoLevels without first level selected 1`] = `
       community
     </label>
     <select
+      className="input-large"
       name="neighborhood"
+      onBlur={[Function]}
       onChange={[Function]}
       value=""
     >
       <option
+        disabled={undefined}
         value=""
       />
     </select>

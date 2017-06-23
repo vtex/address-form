@@ -5,9 +5,9 @@ import InputLabel from './addressInputs/InputLabel'
 import InputSelect from './addressInputs/InputSelect'
 
 class CountrySelector extends Component {
-  handleChangeCountry = countryField => {
+  handleChangeCountry = country => {
     this.props.onChangeAddress({
-      ...countryField,
+      country: { value: country },
       city: { value: null },
       complement: { value: null },
       geoCoordinates: { value: null },
@@ -17,6 +17,15 @@ class CountrySelector extends Component {
       reference: { value: null },
       state: { value: null },
       street: { value: null },
+    })
+  };
+
+  handleBlur = () => {
+    this.props.onChangeAddress({
+      country: {
+        ...this.props.address.country,
+        visited: true,
+      },
     })
   };
 
@@ -37,9 +46,6 @@ class CountrySelector extends Component {
       name: 'country',
       label: 'country',
       optionsCaption: false,
-      optionsPairs: this.sortOptionsByLabel(
-        shipsTo.map(this.addCountryTranslations)
-      ),
     }
 
     return (
@@ -47,8 +53,12 @@ class CountrySelector extends Component {
         <InputSelect
           field={field}
           rules={{}}
+          options={this.sortOptionsByLabel(
+            shipsTo.map(this.addCountryTranslations)
+          )}
           address={address}
           onChange={this.handleChangeCountry}
+          onBlur={this.handleBlur}
         />
       </InputLabel>
     )

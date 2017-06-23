@@ -6,27 +6,11 @@ import cx from 'classnames'
 
 class InputText extends Component {
   handleChange = e => {
-    const { address, field, onChange } = this.props
-    const value = e.target.value
-
-    onChange({
-      [field.name]: {
-        ...address[field.name],
-        autoCompleted: undefined,
-        value,
-      },
-    })
+    this.props.onChange(e.target.value)
   };
 
-  handleBlur = e => {
-    const { address, field, onChange } = this.props
-
-    onChange({
-      [field.name]: {
-        ...address[field.name],
-        visited: true,
-      },
-    })
+  handleBlur = () => {
+    this.props.onBlur()
   };
 
   render() {
@@ -61,6 +45,7 @@ InputText.propTypes = {
   className: PropTypes.string,
   address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
 }
 
 export default InputText

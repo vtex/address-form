@@ -8,8 +8,31 @@ import InputText from '../addressInputs/InputText'
 import PostalCodeLoader from './PostalCodeLoader'
 
 class PostalCode extends Component {
+  handleChange = value => {
+    const { address, onChangeAddress } = this.props
+
+    onChangeAddress({
+      postalCode: {
+        ...address.postalCode,
+        autoCompleted: undefined,
+        value,
+      },
+    })
+  };
+
+  handleBlur = () => {
+    const { address, onChangeAddress } = this.props
+
+    onChangeAddress({
+      postalCode: {
+        ...address.postalCode,
+        visited: true,
+      },
+    })
+  };
+
   render() {
-    const { address, rules, onChangeAddress } = this.props
+    const { address, rules } = this.props
     const field = getField('postalCode', rules)
 
     const loading = !!address.postalCode.loading
@@ -17,10 +40,11 @@ class PostalCode extends Component {
     return (
       <InputLabel field={field}>
         <InputText
-          className={loading ? 'postal-code-loading' : null}
+          className={loading ? 'loading-postal-code' : null}
           field={field}
           address={address}
-          onChange={onChangeAddress}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
         />
         {loading && <PostalCodeLoader />}
       </InputLabel>
