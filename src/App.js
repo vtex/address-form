@@ -122,7 +122,7 @@ class App extends Component {
 
           <AddressSummary
             address={removeValidation(address)}
-            rules={rules[address.country.value]}
+            rules={selectedRules}
           />
         </div>
       </div>
