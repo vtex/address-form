@@ -4,7 +4,8 @@ export function getOneLevel(countryData) {
 
 export function getTwoLevels(countryData) {
   return Object.keys(countryData).reduce((result, child) => {
-    result[child] = getOneLevel(countryData[child])
+    const value = countryData[child]
+    result[child] = Array.isArray(value) ? value : getOneLevel(value)
     return result
   }, {})
 }

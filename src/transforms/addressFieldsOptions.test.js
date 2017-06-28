@@ -59,4 +59,31 @@ describe('Transform Address Fields Options', () => {
 
     expect(result).toMatchSnapshot()
   })
+
+  it('should handle the case where the second level is an array', () => {
+    const twoLevelsCountryData = {
+      State01: ['City01', 'City02'],
+      State02: ['City03'],
+    }
+
+    const result = getTwoLevels(twoLevelsCountryData)
+
+    expect(result).toMatchSnapshot()
+  })
+
+  it('should handle the case where the third level is an array', () => {
+    const threeLevelCountryData = {
+      State01: {
+        City01: ['Neighborhood1', 'Neighborhood2'],
+        City02: ['Neighborhood3'],
+      },
+      State02: {
+        City03: ['Neighborhood4'],
+      },
+    }
+
+    const result = getThreeLevels(threeLevelCountryData)
+
+    expect(result).toMatchSnapshot()
+  })
 })

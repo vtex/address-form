@@ -37,3 +37,34 @@ Array [
   "State02",
 ]
 `;
+
+exports[`Transform Address Fields Options should handle the case where the second level is an array 1`] = `
+Object {
+  "State01": Array [
+    "City01",
+    "City02",
+  ],
+  "State02": Array [
+    "City03",
+  ],
+}
+`;
+
+exports[`Transform Address Fields Options should handle the case where the third level is an array 1`] = `
+Object {
+  "State01": Object {
+    "City01": Array [
+      "Neighborhood1",
+      "Neighborhood2",
+    ],
+    "City02": Array [
+      "Neighborhood3",
+    ],
+  },
+  "State02": Object {
+    "City03": Array [
+      "Neighborhood4",
+    ],
+  },
+}
+`;
