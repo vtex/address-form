@@ -1,7 +1,7 @@
 export const POSTAL_CODE = 'POSTAL_CODE'
-export const ONE_LEVEL = 'STATE'
-export const TWO_LEVELS = 'CITY'
-export const THREE_LEVELS = 'NEIGHBORHOOD'
+export const ONE_LEVEL = 'ONE_LEVEL'
+export const TWO_LEVELS = 'TWO_LEVELS'
+export const THREE_LEVELS = 'THREE_LEVELS'
 
 export const POSTAL_CODE_FROM_TYPES = [
   POSTAL_CODE,
