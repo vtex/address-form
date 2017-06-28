@@ -6,17 +6,22 @@ import PostalCodeGetter from './PostalCodeGetter'
 import { addValidation, removeValidation } from './transforms/address'
 import AddressContainer from './AddressContainer'
 import Input from './addressInputs/Input'
+import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
+import AutocompleteInput from './geolocation/AutocompleteInput'
+import Map from './geolocation/Map'
 
 const ACCOUNT_NAME = 'qamarketplace'
+const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
+const locale = 'pt'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      shipsTo: ['BRA', 'BOL', 'CHL', 'ECU'],
+      shipsTo: ['BRA', 'BOL', 'CHL', 'ECU', 'PER', 'ARG', 'COL', 'GTM'],
       address: addValidation({
-        addressId: '1',
+        addressId: '10',
         addressType: 'residential',
         city: null,
         complement: null,
@@ -29,6 +34,7 @@ class App extends Component {
         reference: null,
         state: null,
         street: null,
+        addressQuery: null,
       }),
       rules: {},
     }
@@ -43,7 +49,7 @@ class App extends Component {
     const hasRulesLoaded = this.state.rules[country]
 
     if (hasRulesLoaded) {
-      return this.setState({ loading: false })
+      return
     }
 
     import('./country/' + country).then(rules => {
@@ -100,6 +106,43 @@ class App extends Component {
                   shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
                 />
+
+                <GoogleMapsContainer apiKey={API_KEY} locale={locale}>
+                  {({ loading, googleMaps }) => (
+                    <div>
+                      <AutocompleteInput
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                        address={address}
+                        rules={selectedRules}
+                        onChangeAddress={onChangeAddress}
+                      />
+
+                      {address.geoCoordinates &&
+                        address.geoCoordinates.valid &&
+                        address.geoCoordinates.value.length === 2 &&
+                        <Map
+                          loadingGoogle={loading}
+                          googleMaps={googleMaps}
+                          geoCoordinates={address.geoCoordinates.value}
+                          rules={selectedRules}
+                          onChangeAddress={onChangeAddress}
+                        >
+                          {refCallback => (
+                            <div
+                              id="map-canvas"
+                              ref={refCallback}
+                              style={{
+                                height: '120px',
+                                marginBottom: '10px',
+                                width: '260px',
+                              }}
+                            />
+                          )}
+                        </Map>}
+                    </div>
+                  )}
+                </GoogleMapsContainer>
 
                 <PostalCodeGetter
                   Input={Input}

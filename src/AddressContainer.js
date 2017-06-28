@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
-import autoCompleteAddress from './addressAutoComplete'
+import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 
 class AddressContainer extends Component {
   handleAddressChange = changedAddressFields => {
@@ -27,14 +27,17 @@ class AddressContainer extends Component {
       rules
     )
 
-    if (changedAddressFields.postalCode) {
+    if (
+      changedAddressFields.postalCode &&
+      !changedAddressFields.postalCode.geolocationAutoCompleted
+    ) {
       const postalCodeIsNowValid =
         address.postalCode.valid !== true &&
         addressValidated.postalCode.valid === true
 
       if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
         return onChangeAddress(
-          autoCompleteAddress(
+          postalCodeAutoCompleteAddress(
             addressValidated,
             accountName,
             rules,

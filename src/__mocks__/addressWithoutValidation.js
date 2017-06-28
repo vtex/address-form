@@ -12,4 +12,5 @@ export default {
   reference: null,
   state: null,
   street: null,
+  addressQuery: null,
 }

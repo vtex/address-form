@@ -20,4 +20,5 @@ export default {
   reference: PropTypes.string,
   state: PropTypes.string,
   street: PropTypes.string,
+  addressQuery: PropTypes.string,
 }

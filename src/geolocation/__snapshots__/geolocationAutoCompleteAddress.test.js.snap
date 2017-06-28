@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Geolocation Auto Complete Address should transform a Google address to a Checkout address 1`] = `
+Object {
+  "addressQuery": Object {
+    "geolocationAutoCompleted": true,
+    "value": "R. Barão de Itambí, 55 - Botafogo, Rio de Janeiro - RJ, Brasil",
+  },
+  "city": Object {
+    "geolocationAutoCompleted": true,
+    "value": "Rio de Janeiro",
+  },
+  "country": Object {
+    "geolocationAutoCompleted": true,
+    "value": "BRA",
+  },
+  "geoCoordinates": Object {
+    "geolocationAutoCompleted": true,
+    "value": Array [
+      -43.18075109999995,
+      -22.941129,
+    ],
+    "visited": true,
+  },
+  "neighborhood": Object {
+    "geolocationAutoCompleted": true,
+    "value": "Botafogo",
+  },
+  "number": Object {
+    "geolocationAutoCompleted": true,
+    "value": "55",
+  },
+  "postalCode": Object {
+    "geolocationAutoCompleted": true,
+    "value": "22231",
+  },
+  "state": Object {
+    "geolocationAutoCompleted": true,
+    "value": "RJ",
+  },
+  "street": Object {
+    "geolocationAutoCompleted": true,
+    "value": "Rua Barão de Itambí",
+  },
+}
+`;

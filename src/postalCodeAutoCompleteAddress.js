@@ -2,7 +2,7 @@ import { getAddress } from './__mocks__/postalCodeService'
 import { mergeValidation, addNewField } from './transforms/address'
 import flow from 'lodash/flow'
 
-export default function autoCompleteAddress(
+export default function postalCodeAutoCompleteAddress(
   address,
   accountName,
   rules,
@@ -15,7 +15,7 @@ export default function autoCompleteAddress(
   }).then(responseAddress => {
     const autoCompletedFields = flow([
       fields => mergeValidation(fields, address),
-      fields => addNewField(fields, 'autoCompleted', true),
+      fields => addNewField(fields, 'postalCodeAutoCompleted', true),
       removePostalCodeLoading,
     ])(responseAddress)
 

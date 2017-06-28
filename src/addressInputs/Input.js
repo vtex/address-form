@@ -28,6 +28,23 @@ class Input extends Component {
       )
     }
 
+    if (field.name === 'addressQuery') {
+      return (
+        <InputLabel field={field}>
+          <InputText
+            field={field}
+            className={loading ? 'loading-postal-code' : null}
+            address={address}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
+            disabled={loading}
+            inputRef={inputRef}
+          />
+          {loading && <PostalCodeLoader />}
+        </InputLabel>
+      )
+    }
+
     return (
       <InputLabel field={field}>
         {options
