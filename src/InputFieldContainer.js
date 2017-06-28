@@ -1,13 +1,39 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
-import { getListOfOptions, hasOptions } from './selectors/fields'
+import {
+  getListOfOptions,
+  hasOptions,
+  getDependentFields,
+} from './selectors/fields'
+import reduce from 'lodash/reduce'
 
 class InputFieldContainer extends Component {
+  clearDependentFields(address, dependentFields) {
+    if (dependentFields && dependentFields.length === 0) return {}
+
+    return reduce(
+      address,
+      (cleanAddress, value, prop) => {
+        const isDependentField = dependentFields.indexOf(prop) !== -1
+        if (isDependentField) {
+          cleanAddress[prop] = { value: null }
+        }
+        return cleanAddress
+      },
+      {}
+    )
+  }
+
   bindOnChange = () => {
-    const { field, address, onChangeAddress } = this.props
+    const { field, address, rules, onChangeAddress } = this.props
+    const dependentFields = getDependentFields(field.name, rules)
+
     return value => {
+      const clearedFields = this.clearDependentFields(address, dependentFields)
+
       onChangeAddress({
+        ...clearedFields,
         [field.name]: {
           ...address[field.name],
           autoCompleted: undefined,

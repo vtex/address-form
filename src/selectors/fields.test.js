@@ -6,7 +6,7 @@ import {
   filterFields,
   isDefiningPostalCodeField,
 } from './fields'
-import { STATE, POSTAL_CODE } from '../constants'
+import { ONE_LEVEL, TWO_LEVELS, POSTAL_CODE } from '../constants'
 import diff from 'lodash/difference'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
@@ -150,6 +150,7 @@ describe('Field Selectors', () => {
 
       const dependentFields = getDependentFields('state', rules)
 
+      expect(dependentFields).toHaveLength(1)
       expect(dependentFields).toMatchObject(['city'])
     })
 
@@ -164,18 +165,33 @@ describe('Field Selectors', () => {
 
       const dependentFields = getDependentFields('state', rules)
 
+      expect(dependentFields).toHaveLength(2)
       expect(dependentFields).toMatchObject(['city', 'neighborhood'])
     })
 
     it('postal code based on a field', () => {
       const rules = {
-        postalCodeFrom: STATE,
+        postalCodeFrom: ONE_LEVEL,
+        postalCodeLevel: 'state',
         fields: [],
       }
 
       const dependentFields = getDependentFields('state', rules)
 
+      expect(dependentFields).toHaveLength(1)
       expect(dependentFields).toMatchObject(['postalCode'])
+    })
+
+    it("should not clear any if it's a field that doesn't define a postal code", () => {
+      const rules = {
+        postalCodeFrom: TWO_LEVELS,
+        postalCodeLevels: ['state', 'city'],
+        fields: [],
+      }
+
+      const dependentFields = getDependentFields('street', rules)
+
+      expect(dependentFields).toHaveLength(0)
     })
   })
 

@@ -69,7 +69,7 @@ function toValueAndLabel(option) {
 export function getDependentFields(fieldName, rules) {
   let dependentFields = []
 
-  if (rules.postalCodeFrom !== POSTAL_CODE) {
+  if (isDefiningPostalCodeField(fieldName, rules)) {
     dependentFields = [...dependentFields, 'postalCode']
   }
 
