@@ -1,4 +1,4 @@
-import { getOneLevel, getTwoLevels} from '../transforms/addressFieldsOptions'
+import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 import { POSTAL_CODE } from '../constants'
 
 const countryData = {
