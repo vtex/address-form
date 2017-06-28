@@ -10,7 +10,7 @@ class InputText extends Component {
   };
 
   render() {
-    const { address, field } = this.props
+    const { address, field, disabled, inputRef } = this.props
     const fieldValue = address[field.name]
 
     const className = cx(this.props.className, {
@@ -27,6 +27,8 @@ class InputText extends Component {
         onBlur={this.props.onBlur}
         onChange={this.handleChange}
         className={className}
+        disabled={disabled}
+        ref={inputRef}
       />
     )
   }
@@ -34,6 +36,7 @@ class InputText extends Component {
 
 InputText.defaultProps = {
   className: '',
+  disabled: false,
 }
 
 InputText.propTypes = {
@@ -42,6 +45,8 @@ InputText.propTypes = {
   address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  inputRef: PropTypes.func,
 }
 
 export default InputText

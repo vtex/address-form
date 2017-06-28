@@ -27,6 +27,7 @@ class InputSelect extends Component {
         onChange={this.handleChange}
         onBlur={this.props.onBlur}
         className={className}
+        ref={this.props.inputRef}
       >
         {field.optionsCaption !== null &&
           field.optionsCaption !== undefined &&
@@ -53,6 +54,7 @@ InputSelect.propTypes = {
   address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  inputRef: PropTypes.func,
 }
 
 export default InputSelect

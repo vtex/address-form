@@ -10,6 +10,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     </label>
     <input
       className="input-xlarge"
+      disabled={false}
       name="street"
       onBlur={[Function]}
       onChange={[Function]}
@@ -25,6 +26,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     </label>
     <input
       className="input-mini"
+      disabled={false}
       name="number"
       onBlur={[Function]}
       onChange={[Function]}
@@ -40,6 +42,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     </label>
     <input
       className="input-large"
+      disabled={false}
       name="complement"
       onBlur={[Function]}
       onChange={[Function]}
@@ -55,6 +58,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     </label>
     <input
       className="input-large"
+      disabled={false}
       name="neighborhood"
       onBlur={[Function]}
       onChange={[Function]}
@@ -70,6 +74,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     </label>
     <input
       className="input-large"
+      disabled={false}
       name="city"
       onBlur={[Function]}
       onChange={[Function]}

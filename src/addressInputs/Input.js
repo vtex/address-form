@@ -9,7 +9,7 @@ import PostalCodeLoader from '../postalCodeFrom/PostalCodeLoader'
 
 class Input extends Component {
   render() {
-    const { field, options, address } = this.props
+    const { field, options, address, inputRef } = this.props
     const loading = !!address[field.name].loading
 
     if (field.name === 'postalCode') {
@@ -21,6 +21,7 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
+            inputRef={inputRef}
           />
           {loading && <PostalCodeLoader />}
         </InputLabel>
@@ -36,16 +37,22 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
+            inputRef={inputRef}
             />
           : <InputText
             field={field}
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
+            inputRef={inputRef}
             />}
       </InputLabel>
     )
   }
+}
+
+Input.defaultProps = {
+  inputRef: () => {},
 }
 
 Input.propTypes = {
@@ -54,6 +61,7 @@ Input.propTypes = {
   address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  inputRef: PropTypes.func,
 }
 
 export default Input
