@@ -1,6 +1,8 @@
 import { TWO_LEVELS } from '../constants'
 
 export default {
+  country: 'PRY',
+  abbr: 'PY',
   postalCodeFrom: TWO_LEVELS,
   postalCodeLevels: ['state'],
   fields: [
@@ -35,4 +37,39 @@ export default {
       size: 'large',
     },
   ],
+  geolocation: {
+    postalCode: {
+      valueIn: 'long_name',
+      types: ['postal_code'],
+      required: false,
+    },
+    complement: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+    },
+    street: { valueIn: 'long_name', types: ['route'], required: false },
+    neighborhood: {
+      valueIn: 'long_name',
+      types: [
+        'neighborhood',
+        'sublocality_level_1',
+        'sublocality_level_2',
+        'sublocality_level_3',
+        'sublocality_level_4',
+        'sublocality_level_5',
+      ],
+      required: false,
+    },
+    state: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_1'],
+      required: false,
+    },
+    city: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_2', 'locality'],
+      required: false,
+    },
+  },
 }

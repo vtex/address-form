@@ -1,6 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
+  country: 'ESP',
+  abbr: 'ES',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -99,4 +101,24 @@ export default {
       size: 'large',
     },
   ],
+  geolocation: {
+    postalCode: { valueIn: 'long_name', types: ['postal_code'], required: true },
+    number: { valueIn: 'long_name', types: ['street_number'], required: false },
+    street: { valueIn: 'long_name', types: ['route'], required: false },
+    neighborhood: {
+      valueIn: 'long_name',
+      types: ['neighborhood'],
+      required: false,
+    },
+    state: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_1'],
+      required: false,
+    },
+    city: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_2', 'locality'],
+      required: false,
+    },
+  },
 }

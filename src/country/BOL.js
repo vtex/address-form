@@ -398,6 +398,8 @@ const countryData = {
 }
 
 export default {
+  country: 'BOL',
+  abbr: 'BO',
   postalCodeFrom: THREE_LEVELS,
   postalCodeLevels: ['state', 'city', 'neighborhood'],
   thirdLevelPostalCodes: thirdLevelPostalCodes(countryData),
@@ -446,4 +448,28 @@ export default {
       optionsMap: getThreeLevels(countryData),
     },
   ],
+  geolocation: {
+    postalCode: {
+      valueIn: 'long_name',
+      types: ['postal_code'],
+      required: false,
+    },
+    number: { valueIn: 'long_name', types: ['street_number'], required: false },
+    street: { valueIn: 'long_name', types: ['route'], required: true },
+    state: {
+      valueIn: 'short_name',
+      types: ['administrative_area_level_1'],
+      required: true,
+    },
+    city: {
+      valueIn: 'long_name',
+      types: ['locality', 'administrative_area_level_2'],
+      required: true,
+    },
+    neighborhood: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_3'],
+      required: false,
+    },
+  },
 }

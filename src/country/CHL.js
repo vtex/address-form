@@ -1,9 +1,6 @@
 import { TWO_LEVELS } from '../constants'
 import { secondLevelPostalCodes } from '../transforms/postalCodes'
-import {
-  getOneLevel,
-  getTwoLevels,
-} from '../transforms/addressFieldsOptions'
+import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 
 const countryData = {
   'Región Metropolitana': {
@@ -384,6 +381,8 @@ const countryData = {
 }
 
 export default {
+  country: 'CHL',
+  abbr: 'CL',
   postalCodeFrom: TWO_LEVELS,
   postalCodeLevels: ['state', 'neighborhood'],
   secondLevelPostalCodes: secondLevelPostalCodes(countryData),
@@ -424,4 +423,35 @@ export default {
       optionsMap: getTwoLevels(countryData),
     },
   ],
+  geolocation: {
+    postalCode: {
+      valueIn: 'long_name',
+      types: ['postal_code'],
+      required: false,
+    },
+    number: { valueIn: 'long_name', types: ['street_number'], required: false },
+    street: { valueIn: 'long_name', types: ['route'], required: false },
+    neighborhood: {
+      valueIn: 'long_name',
+      types: [
+        'neighborhood',
+        'sublocality_level_1',
+        'sublocality_level_2',
+        'sublocality_level_3',
+        'sublocality_level_4',
+        'sublocality_level_5',
+      ],
+      required: false,
+    },
+    state: {
+      valueIn: 'short_name',
+      types: ['administrative_area_level_1'],
+      required: false,
+    },
+    city: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_2', 'locality'],
+      required: false,
+    },
+  },
 }
