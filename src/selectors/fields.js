@@ -45,6 +45,7 @@ export function getListOfOptions(field, address, rules) {
     if (
       firstLevelValue &&
       secondLevelValue &&
+      field.optionsMap[firstLevelValue] &&
       field.optionsMap[firstLevelValue][secondLevelValue]
     ) {
       const options = field.optionsMap[firstLevelValue][secondLevelValue]

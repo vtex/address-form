@@ -9,12 +9,13 @@ import {
 import InputFieldContainer from '../InputFieldContainer'
 
 class SelectPostalCode extends Component {
-  handleChange = value => {
+  handleChange = changedFields => {
     const rules = this.props.rules
     const currentLevelName = getLastLevelField(rules).name
+    const value = changedFields[currentLevelName].value
 
     this.props.onChangeAddress({
-      ...this.deComposeValue(currentLevelName, value[currentLevelName].value),
+      ...this.deComposeValue(currentLevelName, value || ''),
     })
   };
 
