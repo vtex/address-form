@@ -1,8 +1,6 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
 import SelectLevel from './SelectLevel'
 import { shallow, mount } from 'enzyme'
-import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
 import MockInput from '../addressInputs/__mocks__/Input'
@@ -59,15 +57,20 @@ describe('SelectLevel', () => {
           city: { value: 'Calama' },
           postalCode: { value: '1390000' },
         }}
-        rules={useTwoLevels}
+        rules={useThreeLevels}
         onChangeAddress={handleChange}
       />
     )
 
     expect(handleChange).toHaveBeenCalledWith({
-      state: { value: 'II Región' },
-      postalCode: { value: null },
+      state: {
+        value: 'II Región',
+        geolocationAutoCompleted: undefined,
+        postalCodeAutoCompleted: undefined,
+      },
+      city: { value: null },
       neighborhood: { value: null },
+      postalCode: { value: null },
     })
   })
 })

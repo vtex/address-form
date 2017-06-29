@@ -69,7 +69,7 @@ function toValueAndLabel(option) {
 export function getDependentFields(fieldName, rules) {
   let dependentFields = []
 
-  if (isDefiningPostalCodeField(fieldName, rules)) {
+  if (fieldAffectsPostalCode(fieldName, rules)) {
     dependentFields = [...dependentFields, 'postalCode']
   }
 
@@ -109,6 +109,13 @@ export function filterFields(rules) {
     case POSTAL_CODE:
       return filter(rules.fields, ({ name }) => name !== 'postalCode')
   }
+}
+
+function fieldAffectsPostalCode(fieldName, rules) {
+  return (
+    fieldName === rules.postalCodeLevel ||
+    (rules.postalCodeLevels && rules.postalCodeLevels.indexOf(fieldName) !== -1)
+  )
 }
 
 export function isDefiningPostalCodeField(fieldName, rules) {
