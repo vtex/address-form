@@ -1,4 +1,3 @@
-import isFunction from 'lodash/isFunction'
 import find from 'lodash/find'
 import reduce from 'lodash/reduce'
 import map from 'lodash/map'
