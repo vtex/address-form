@@ -36,7 +36,8 @@ class InputFieldContainer extends Component {
         ...clearedFields,
         [field.name]: {
           ...address[field.name],
-          autoCompleted: undefined,
+          postalCodeAutoCompleted: undefined,
+          geolocationAutoCompleted: undefined,
           value,
         },
       })
