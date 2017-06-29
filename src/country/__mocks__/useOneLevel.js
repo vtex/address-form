@@ -18,6 +18,8 @@ const countryData = {
 }
 
 export default {
+  country: 'ECU',
+  abbr: 'EC',
   postalCodeFrom: ONE_LEVEL,
   postalCodeLevel: 'state',
   firstLevelPostalCodes: firstLevelPostalCodes(countryData),
@@ -56,4 +58,44 @@ export default {
       optionsMap: getTwoLevels(countryData),
     },
   ],
+  geolocation: {
+    postalCode: {
+      valueIn: 'long_name',
+      types: ['postal_code'],
+      required: false,
+      handler: address => {
+        if (
+          !address.state ||
+          !address.city ||
+          !address.state.value ||
+          !address.city.value
+        ) {
+          return address
+        }
+
+        if (
+          countryData[address.state.value] &&
+          countryData[address.state.value][address.city.value]
+        ) {
+          address.postalCode = {
+            value: countryData[address.state.value][address.city.value],
+          }
+        }
+
+        return address
+      },
+    },
+    number: { valueIn: 'long_name', types: ['street_number'], required: false },
+    street: { valueIn: 'long_name', types: ['route'], required: false },
+    state: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_1'],
+      required: false,
+    },
+    city: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_2', 'locality'],
+      required: false,
+    },
+  },
 }

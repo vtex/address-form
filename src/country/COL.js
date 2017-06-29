@@ -1241,7 +1241,14 @@ export default {
       types: ['postal_code'],
       required: false,
       handler: address => {
-        if (!address.state || !address.city) { return address }
+        if (
+          !address.state ||
+          !address.city ||
+          !address.state.value ||
+          !address.city.value
+        ) {
+          return address
+        }
 
         if (
           countryData[address.state.value] &&
@@ -1281,7 +1288,7 @@ export default {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
       required: false,
-      handler: (address) => {
+      handler: address => {
         if (address.state && address.state.value === 'Bogotá') {
           address.state.value = 'Bogotá, D.C.'
         }
@@ -1292,7 +1299,7 @@ export default {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
       required: false,
-      handler: (address) => {
+      handler: address => {
         if (address.city && address.city.value === 'Bogotá') {
           address.city.value = 'Bogotá, D.c.'
         }
