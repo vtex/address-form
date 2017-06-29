@@ -54,10 +54,7 @@ export default function geolocationAutoCompleteAddress(
 
     address.geoCoordinates = {
       visited: true,
-      value: [
-        isFunction(location.lng) ? location.lng() : location.lng,
-        isFunction(location.lat) ? location.lat() : location.lat,
-      ],
+      value: [location.lng, location.lat],
     }
 
     return address
