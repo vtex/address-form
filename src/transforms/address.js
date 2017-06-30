@@ -35,17 +35,3 @@ export function addNewField(address, fieldName, value) {
     {}
   )
 }
-
-export function mergeValidation(changedFields, address) {
-  return reduce(
-    changedFields,
-    (result, value, fieldName) => {
-      result[fieldName] = {
-        ...address[fieldName],
-        value,
-      }
-      return result
-    },
-    {}
-  )
-}
