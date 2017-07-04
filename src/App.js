@@ -19,13 +19,25 @@ class App extends Component {
     super(props)
 
     this.state = {
-      shipsTo: ['BRA', 'BOL', 'CHL', 'ECU', 'PER', 'ARG', 'COL', 'GTM'],
+      shipsTo: [
+        'BRA',
+        'BOL',
+        'CHL',
+        'ECU',
+        'PER',
+        'ARG',
+        'COL',
+        'GTM',
+        'MEX',
+        'CAN',
+        'ESP',
+      ],
       address: addValidation({
         addressId: '10',
         addressType: 'residential',
         city: null,
         complement: null,
-        country: 'BRA',
+        country: 'ESP',
         geoCoordinates: [],
         neighborhood: null,
         number: null,
