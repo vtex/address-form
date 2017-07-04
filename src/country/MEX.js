@@ -4,6 +4,7 @@ export default {
   country: 'MEX',
   abbr: 'MX',
   postalCodeFrom: POSTAL_CODE,
+  postalCodeProtectedFields: ['state', 'city'],
   fields: [
     {
       name: 'postalCode',
@@ -86,7 +87,11 @@ export default {
     },
   ],
   geolocation: {
-    postalCode: { valueIn: 'long_name', types: ['postal_code'], required: true },
+    postalCode: {
+      valueIn: 'long_name',
+      types: ['postal_code'],
+      required: true,
+    },
     number: { valueIn: 'long_name', types: ['street_number'], required: false },
     street: { valueIn: 'long_name', types: ['route'], required: false },
     neighborhood: {

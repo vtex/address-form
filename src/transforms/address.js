@@ -35,3 +35,28 @@ export function addNewField(address, fieldName, value) {
     {}
   )
 }
+
+export function addDisabledToProtectedFields(fields, rules) {
+  return reduce(
+    fields,
+    (newFields, prop, propName) => {
+      const hasValue = prop && prop.value
+      const isProtectField =
+        rules.postalCodeProtectedFields &&
+        rules.postalCodeProtectedFields.indexOf(propName) !== -1
+
+      newFields[propName] = prop
+
+      if (isProtectField && hasValue) {
+        newFields[propName] = {
+          ...prop,
+          disabled: true,
+        }
+      }
+
+      return newFields
+    },
+    {}
+  )
+}
+

@@ -1,5 +1,9 @@
-import { getAddress } from './__mocks__/postalCodeService'
-import { addValidation, addNewField } from './transforms/address'
+import { getAddress } from './postalCodeService'
+import {
+  addValidation,
+  addNewField,
+  addDisabledToProtectedFields,
+} from './transforms/address'
 import flow from 'lodash/flow'
 
 export default function postalCodeAutoCompleteAddress(
@@ -16,6 +20,7 @@ export default function postalCodeAutoCompleteAddress(
     const autoCompletedFields = flow([
       fields => addValidation(fields, address),
       fields => addNewField(fields, 'postalCodeAutoCompleted', true),
+      fields => addDisabledToProtectedFields(fields, rules),
       removePostalCodeLoading,
     ])(responseAddress)
 

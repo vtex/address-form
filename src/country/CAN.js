@@ -4,6 +4,7 @@ export default {
   country: 'CAN',
   abbr: 'CA',
   postalCodeFrom: POSTAL_CODE,
+  postalCodeProtectedFields: ['state', 'city'],
   fields: [
     {
       name: 'postalCode',
@@ -25,6 +26,12 @@ export default {
       name: 'complement',
       label: 'addressLine2',
       size: 'xlarge',
+    },
+    {
+      name: 'number',
+      label: 'number',
+      visible: false,
+      defaultValue: 'N/A',
     },
     {
       name: 'city',
@@ -52,12 +59,6 @@ export default {
         { label: 'Saskatchewan', value: 'SK' },
         { label: 'Yukon', value: 'YK' },
       ],
-    },
-    {
-      name: 'number',
-      label: 'number',
-      visible: false,
-      defaultValue: 'N/A',
     },
   ],
   geolocation: {

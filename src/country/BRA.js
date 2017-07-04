@@ -4,6 +4,7 @@ export default {
   country: 'BRA',
   abbr: 'BR',
   postalCodeFrom: POSTAL_CODE,
+  postalCodeProtectedFields: ['state', 'city'],
   fields: [
     {
       name: 'postalCode',
