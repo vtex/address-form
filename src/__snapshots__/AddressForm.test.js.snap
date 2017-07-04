@@ -90,6 +90,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     </label>
     <select
       className="input-mini"
+      disabled={false}
       name="state"
       onBlur={[Function]}
       onChange={[Function]}
@@ -104,17 +105,17 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       <option
         value="AC"
       >
-        AC
+        Acre
       </option>
       <option
         value="AL"
       >
-        AL
+        Alagoas
       </option>
       <option
-        value="AM"
+        value="AP"
       >
-        AM
+        Amapá
       </option>
     </select>
   </p>

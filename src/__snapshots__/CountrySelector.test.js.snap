@@ -9,6 +9,7 @@ exports[`CountrySelector default value 1`] = `
   </label>
   <select
     className=""
+    disabled={false}
     name="country"
     onBlur={[Function]}
     onChange={[Function]}
@@ -37,6 +38,7 @@ exports[`CountrySelector should sort the select 1`] = `
   </label>
   <select
     className=""
+    disabled={false}
     name="country"
     onBlur={[Function]}
     onChange={[Function]}
@@ -65,6 +67,7 @@ exports[`CountrySelector show options 1`] = `
   </label>
   <select
     className=""
+    disabled={false}
     name="country"
     onBlur={[Function]}
     onChange={[Function]}
