@@ -29,5 +29,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "deploy": "react-scripts deploy"
-  }
+  },
+  "proxy": "http://qamarketplace.vtexcommercestable.com.br:80"
 }
