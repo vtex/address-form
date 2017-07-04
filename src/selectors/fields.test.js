@@ -172,7 +172,7 @@ describe('Field Selectors', () => {
     it('postal code based on a field', () => {
       const rules = {
         postalCodeFrom: ONE_LEVEL,
-        postalCodeLevel: 'state',
+        postalCodeLevels: ['state'],
         fields: [],
       }
 
@@ -226,16 +226,6 @@ describe('Field Selectors', () => {
   })
 
   describe('isDefiningPostalCodeField()', () => {
-    it('when rules have postalCodeLevel', () => {
-      const rules = {
-        postalCodeLevel: 'state',
-      }
-
-      const result = isDefiningPostalCodeField('state', rules)
-
-      expect(result).toBe(true)
-    })
-
     it('when rules have postalCodeLevels', () => {
       const rules = {
         postalCodeLevels: ['state', 'city', 'neighborhood'],

@@ -21,7 +21,7 @@ export default {
   country: 'ECU',
   abbr: 'EC',
   postalCodeFrom: ONE_LEVEL,
-  postalCodeLevel: 'state',
+  postalCodeLevels: ['state'],
   firstLevelPostalCodes: firstLevelPostalCodes(countryData),
   fields: [
     {

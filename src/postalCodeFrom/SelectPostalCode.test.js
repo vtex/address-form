@@ -6,7 +6,7 @@ import address from '../__mocks__/newAddress'
 import find from 'lodash/find'
 
 describe('SelectPostalCode', () => {
-  const firstLevelName = useOneLevel.postalCodeLevel
+  const firstLevelName = useOneLevel.postalCodeLevels[0]
   const firstLevelField = find(
     useOneLevel.fields,
     field => field.name === firstLevelName

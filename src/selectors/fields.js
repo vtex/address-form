@@ -104,7 +104,10 @@ export function filterFields(rules) {
         ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
       )
     case ONE_LEVEL:
-      return filter(rules.fields, ({ name }) => rules.postalCodeLevel !== name)
+      return filter(
+        rules.fields,
+        ({ name }) => rules.postalCodeLevels[0] !== name
+      )
     default:
     case POSTAL_CODE:
       return filter(rules.fields, ({ name }) => name !== 'postalCode')
@@ -112,14 +115,11 @@ export function filterFields(rules) {
 }
 
 function fieldAffectsPostalCode(fieldName, rules) {
-  return (
-    fieldName === rules.postalCodeLevel ||
-    (rules.postalCodeLevels && rules.postalCodeLevels.indexOf(fieldName) !== -1)
-  )
+  return rules.postalCodeLevels && rules.postalCodeLevels.indexOf(fieldName) !== -1
 }
 
 export function isDefiningPostalCodeField(fieldName, rules) {
-  const lastLevelField = rules.postalCodeLevel || last(rules.postalCodeLevels)
+  const lastLevelField = last(rules.postalCodeLevels)
 
   return fieldName === lastLevelField
 }

@@ -1,5 +1,6 @@
 import { ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 import { getField } from './fields'
+import last from 'lodash/last'
 
 export function getPostalCodeOptions(address, rules) {
   switch (rules.postalCodeFrom) {
@@ -48,11 +49,9 @@ function getThreeLevelsPostalCodes(address, rules) {
 export function getLastLevelField(rules) {
   switch (rules.postalCodeFrom) {
     case ONE_LEVEL:
-      return getField(rules.postalCodeLevel, rules)
     case TWO_LEVELS:
-      return getField(rules.postalCodeLevels[1], rules)
     case THREE_LEVELS:
-      return getField(rules.postalCodeLevels[2], rules)
+      return getField(last(rules.postalCodeLevels), rules)
     default:
       throw new Error(`Unknown postalCodeFrom value: ${rules.postalCodeFrom}`)
   }
