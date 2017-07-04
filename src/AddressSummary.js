@@ -27,7 +27,6 @@ class AddressSummary extends Component {
 
     const { rules, address, canEditData } = this.props
     const postalCodeByInput = rules.postalCodeFrom === POSTAL_CODE
-    const stateField = getField('state', rules)
     const numberField = getField('number', rules)
     const complementField = getField('complement', rules)
     const neighborhoodField = getField('complement', rules)
@@ -73,7 +72,7 @@ class AddressSummary extends Component {
         {state && ' - '}
         {state &&
           <span className="state">
-            {stateField.isUpperCase ? state.toUpperCase() : state}
+            {state}
           </span>}
 
         {postalCodeByInput && postalCode && ' - '}

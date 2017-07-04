@@ -11,6 +11,7 @@ class Input extends Component {
   render() {
     const { field, options, address, inputRef } = this.props
     const loading = !!address[field.name].loading
+    const disabled = !!address[field.name].disabled
 
     if (field.name === 'postalCode') {
       return (
@@ -54,6 +55,7 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
+            disabled={disabled}
             inputRef={inputRef}
             />
           : <InputText
@@ -61,6 +63,7 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
+            disabled={disabled}
             inputRef={inputRef}
             />}
       </InputLabel>

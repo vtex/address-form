@@ -48,7 +48,6 @@ export default {
       name: 'state',
       label: 'state',
       required: true,
-      isUpperCase: true,
       size: 'medium',
       optionsCaption: 'UF',
       optionsPairs: [

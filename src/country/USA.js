@@ -36,7 +36,6 @@ export default {
       label: 'state',
       required: true,
       size: 'large',
-      isUpperCase: true,
       optionPairs: [
         { label: 'Alabama', value: 'AL' },
         { label: 'Alaska', value: 'AK' },

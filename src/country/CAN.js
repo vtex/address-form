@@ -37,7 +37,6 @@ export default {
       label: 'province',
       required: true,
       size: 'large',
-      isUpperCase: true,
       optionsPairs: [
         { label: 'Alberta', value: 'AB' },
         { label: 'British Columbia', value: 'BC' },

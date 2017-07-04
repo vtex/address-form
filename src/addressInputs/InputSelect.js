@@ -11,7 +11,7 @@ class InputSelect extends Component {
   };
 
   render() {
-    const { address, options, field } = this.props
+    const { address, options, field, disabled } = this.props
     const fieldValue = address[field.name]
 
     const className = cx({
@@ -26,6 +26,7 @@ class InputSelect extends Component {
         value={address[field.name].value || ''}
         onChange={this.handleChange}
         onBlur={this.props.onBlur}
+        disabled={disabled}
         className={className}
         ref={this.props.inputRef}
       >
@@ -54,6 +55,7 @@ InputSelect.propTypes = {
   address: PropTypes.shape(AddressShapeWithValidation),
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
   inputRef: PropTypes.func,
 }
 

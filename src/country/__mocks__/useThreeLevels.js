@@ -57,7 +57,6 @@ export default {
       label: 'department',
       required: true,
       size: 'large',
-      isUpperCase: false,
       level: 1,
       options: getOneLevel(countryData),
     },

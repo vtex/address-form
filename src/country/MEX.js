@@ -49,7 +49,6 @@ export default {
       label: 'state',
       required: true,
       size: 'xlarge',
-      isUpperCase: false,
       options: [
         'Aguascalientes',
         'Baja California',

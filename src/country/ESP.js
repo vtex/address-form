@@ -42,7 +42,6 @@ export default {
       name: 'state',
       label: 'province',
       required: true,
-      isUpperCase: false,
       optionsCaption: '',
       options: [
         'Álava',

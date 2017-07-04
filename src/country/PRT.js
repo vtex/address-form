@@ -35,7 +35,6 @@ export default {
       label: 'state',
       required: true,
       size: 'large',
-      isUpperCase: false,
     },
   ],
   geolocation: {

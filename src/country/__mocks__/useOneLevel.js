@@ -46,7 +46,6 @@ export default {
       label: 'province',
       required: true,
       size: 'large',
-      isUpperCase: false,
       options: getOneLevel(countryData),
     },
     {
