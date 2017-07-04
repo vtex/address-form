@@ -3,6 +3,7 @@ import {
   addValidation,
   addNewField,
   addDisabledToProtectedFields,
+  handleMultipleValues,
 } from './transforms/address'
 import flow from 'lodash/flow'
 
@@ -19,6 +20,7 @@ export default function postalCodeAutoCompleteAddress(
   }).then(responseAddress => {
     const autoCompletedFields = flow([
       fields => addValidation(fields, address),
+      fields => handleMultipleValues(fields),
       fields => addNewField(fields, 'postalCodeAutoCompleted', true),
       fields => addDisabledToProtectedFields(fields, rules),
       removePostalCodeLoading,

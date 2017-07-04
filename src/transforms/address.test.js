@@ -3,6 +3,7 @@ import {
   removeValidation,
   addNewField,
   addDisabledToProtectedFields,
+  handleMultipleValues,
 } from './address'
 import address from '../__mocks__/newAddress'
 import addressWithoutValidation from '../__mocks__/addressWithoutValidation'
@@ -78,5 +79,21 @@ describe('Address Transform', () => {
     const result = addDisabledToProtectedFields(fields, rules)
 
     expect(result.state.disabled).toBeUndefined()
+  })
+
+  it('should split multiple values', () => {
+    const fields = {
+      city: { value: 'MIGUEL HIDALGO' },
+      state: { value: 'Ciudad de México' },
+      country: { value: 'MEX' },
+      neighborhood: {
+        value: 'Lomas de Chapultepec I Sección;Lomas de Chapultepec II Sección;Lomas de Chapultepec VIII Sección;Lomas de Chapultepec VI Sección;Lomas de Chapultepec IV Sección;Lomas de Chapultepec V Sección;Lomas de Chapultepec VII Sección;Lomas de Chapultepec III Sección',
+      },
+    }
+
+    const result = handleMultipleValues(fields)
+
+    expect(result.neighborhood.valueOptions).toHaveLength(8)
+    expect(result.neighborhood.value).toBe(null)
   })
 })

@@ -60,3 +60,24 @@ export function addDisabledToProtectedFields(fields, rules) {
   )
 }
 
+export function handleMultipleValues(fields) {
+  return reduce(
+    fields,
+    (newFields, prop, propName) => {
+      const hasMultipleValues = prop.value.indexOf(';') !== -1
+
+      newFields[propName] = prop
+
+      if (hasMultipleValues) {
+        newFields[propName] = {
+          ...prop,
+          value: null,
+          valueOptions: prop.value.split(';'),
+        }
+      }
+
+      return newFields
+    },
+    {}
+  )
+}

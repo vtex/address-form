@@ -61,7 +61,9 @@ class InputFieldContainer extends Component {
 
     const _options =
       options ||
-      (hasOptions(field) ? getListOfOptions(field, address, rules) : undefined)
+      (hasOptions(field, address)
+        ? getListOfOptions(field, address, rules)
+        : undefined)
 
     return (
       <Input

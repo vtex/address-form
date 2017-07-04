@@ -8,8 +8,14 @@ export function getField(fieldName, rules) {
   return find(rules.fields, ({ name }) => name === fieldName)
 }
 
-export function hasOptions(field) {
-  return !!(field.options || field.optionsPairs || field.optionsMap)
+export function hasOptions(field, address) {
+  const hasValueOptions =
+    address && address[field.name] && address[field.name].valueOptions
+
+  return !!(field.options ||
+    field.optionsPairs ||
+    field.optionsMap ||
+    hasValueOptions)
 }
 
 function getFieldValue(field) {
@@ -17,6 +23,10 @@ function getFieldValue(field) {
 }
 
 export function getListOfOptions(field, address, rules) {
+  if (address && address[field.name] && address[field.name].valueOptions) {
+    return map(address[field.name].valueOptions, toValueAndLabel)
+  }
+
   if (field.options) {
     return map(field.options, toValueAndLabel)
   }
