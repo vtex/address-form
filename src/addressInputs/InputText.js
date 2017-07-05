@@ -42,7 +42,7 @@ InputText.defaultProps = {
 InputText.propTypes = {
   field: PropTypes.object.isRequired,
   className: PropTypes.string,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   disabled: PropTypes.bool,

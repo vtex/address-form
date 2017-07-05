@@ -37,7 +37,7 @@ class InputSelect extends Component {
           : <option
             value=""
             disabled={address[field.name].value ? true : undefined}
-            >
+          >
             {field.optionsCaption}
 
           </option>}
@@ -52,7 +52,7 @@ class InputSelect extends Component {
 InputSelect.propTypes = {
   field: PropTypes.object.isRequired,
   options: PropTypes.array.isRequired,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   disabled: PropTypes.bool,

@@ -57,7 +57,7 @@ class AddressContainer extends Component {
 
 AddressContainer.propTypes = {
   accountName: PropTypes.string.isRequired,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   children: PropTypes.func.isRequired,

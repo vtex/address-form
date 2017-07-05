@@ -106,7 +106,7 @@ class AutocompleteInput extends Component {
         }}
         options={null}
         address={newAddress}
-        onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
+        onChange={!loadingGoogle ? this.handleChangeInput : () => { }}
         onBlur={value => console.log(value)}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
       />
@@ -121,7 +121,7 @@ AutocompleteInput.defaultProps = {
 AutocompleteInput.propTypes = {
   Input: PropTypes.func,
   rules: PropTypes.object.isRequired,
-  address: PropTypes.shape(AddressShapeWithValidation).isRequired,
+  address: AddressShapeWithValidation.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   loadingGoogle: PropTypes.bool,
   googleMaps: PropTypes.object,

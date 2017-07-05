@@ -91,7 +91,7 @@ AddressSummary.defaultProps = {
 
 AddressSummary.propTypes = {
   canEditData: PropTypes.bool,
-  address: PropTypes.shape(AddressShape).isRequired,
+  address: AddressShape.isRequired,
   rules: PropTypes.object.isRequired,
   giftRegistryDescription: PropTypes.string,
 }

@@ -44,7 +44,7 @@ class AddressForm extends Component {
                 rules={rules}
                 address={address}
                 onChangeAddress={onChangeAddress}
-                />
+              />
               : <InputFieldContainer
                 key={field.name}
                 Input={Input}
@@ -52,7 +52,7 @@ class AddressForm extends Component {
                 address={address}
                 rules={rules}
                 onChangeAddress={onChangeAddress}
-                />)
+              />)
         )}
       </div>
     )
@@ -66,7 +66,7 @@ AddressForm.defaultProps = {
 
 AddressForm.propTypes = {
   Input: PropTypes.func,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   omitPostalCodeFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

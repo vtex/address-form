@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { ERROR_TYPES } from '../constants'
 import reduce from 'lodash/reduce'
-import AddressShape from './AddressShape'
+import { Address } from './AddressShape'
 
 export const ValidationType = {
   visited: false,
@@ -9,8 +9,8 @@ export const ValidationType = {
   reason: PropTypes.oneOf(ERROR_TYPES),
 }
 
-const AddressShapeWithValidation = reduce(
-  AddressShape,
+export const AddressWithValidation = reduce(
+  Address,
   (acc, valueType, propName) => {
     acc[propName] = PropTypes.shape({
       ...ValidationType,
@@ -23,4 +23,4 @@ const AddressShapeWithValidation = reduce(
   {}
 )
 
-export default AddressShapeWithValidation
+export default PropTypes.shape(AddressWithValidation)

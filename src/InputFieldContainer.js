@@ -80,7 +80,7 @@ class InputFieldContainer extends Component {
 InputFieldContainer.propTypes = {
   Input: PropTypes.func.isRequired,
   field: PropTypes.object.isRequired,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,

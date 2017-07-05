@@ -76,7 +76,7 @@ class SelectPostalCode extends Component {
 
 SelectPostalCode.propTypes = {
   Input: PropTypes.func.isRequired,
-  address: PropTypes.shape(AddressShapeWithValidation).isRequired,
+  address: AddressShapeWithValidation.isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

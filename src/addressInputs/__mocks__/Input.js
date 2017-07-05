@@ -12,7 +12,7 @@ class MockInput extends Component {
 MockInput.propTypes = {
   field: PropTypes.object.isRequired,
   options: PropTypes.array,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
 }

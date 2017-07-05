@@ -60,7 +60,7 @@ CountrySelector.defaultProps = {
 
 CountrySelector.propTypes = {
   Input: PropTypes.func,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   shipsTo: PropTypes.array.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

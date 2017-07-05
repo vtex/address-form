@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import CountryType from './CountryType'
 
-export default {
+export const Address = {
   addressId: PropTypes.string.isRequired,
   addressType: PropTypes.oneOf([
     'residential',
@@ -22,3 +22,5 @@ export default {
   street: PropTypes.string,
   addressQuery: PropTypes.string,
 }
+
+export default PropTypes.shape(Address)

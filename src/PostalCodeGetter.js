@@ -64,7 +64,7 @@ PostalCodeGetter.defaultProps = {
 
 PostalCodeGetter.propTypes = {
   Input: PropTypes.func,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

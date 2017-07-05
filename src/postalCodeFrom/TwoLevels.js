@@ -31,7 +31,7 @@ class TwoLevels extends Component {
 
 TwoLevels.propTypes = {
   Input: PropTypes.func.isRequired,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

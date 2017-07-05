@@ -25,7 +25,7 @@ class SelectLevel extends Component {
 SelectLevel.propTypes = {
   Input: PropTypes.func.isRequired,
   level: PropTypes.oneOf([0, 1]),
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

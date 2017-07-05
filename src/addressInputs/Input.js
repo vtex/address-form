@@ -57,7 +57,7 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={disabled}
             inputRef={inputRef}
-            />
+          />
           : <InputText
             field={field}
             address={address}
@@ -65,20 +65,20 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={disabled}
             inputRef={inputRef}
-            />}
+          />}
       </InputLabel>
     )
   }
 }
 
 Input.defaultProps = {
-  inputRef: () => {},
+  inputRef: () => { },
 }
 
 Input.propTypes = {
   field: PropTypes.object.isRequired,
   options: PropTypes.array,
-  address: PropTypes.shape(AddressShapeWithValidation),
+  address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   inputRef: PropTypes.func,
