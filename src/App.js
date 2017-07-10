@@ -69,7 +69,7 @@ class App extends Component {
         rules: { ...prevState.rules, [country]: rules.default },
       }))
     })
-  };
+  }
 
   handleAddressChange = address => {
     this.setState(prevState => ({
@@ -78,7 +78,7 @@ class App extends Component {
         ...address,
       },
     }))
-  };
+  }
 
   componentDidUpdate(_, prevState) {
     const countryChanged =
@@ -101,7 +101,11 @@ class App extends Component {
     return (
       <div className="step" style={{ padding: '20px' }}>
         <div style={{ float: 'right', width: '50%' }}>
-          <pre><small>{JSON.stringify(address, null, 2)}</small></pre>
+          <pre>
+            <small>
+              {JSON.stringify(address, null, 2)}
+            </small>
+          </pre>
         </div>
         <div>
           <AddressContainer
@@ -110,8 +114,8 @@ class App extends Component {
             rules={selectedRules}
             onChangeAddress={this.handleAddressChange}
           >
-            {onChangeAddress => (
-              <div>
+            {onChangeAddress =>
+              (<div>
                 <CountrySelector
                   Input={Input}
                   address={address}
@@ -120,8 +124,8 @@ class App extends Component {
                 />
 
                 <GoogleMapsContainer apiKey={API_KEY} locale={locale}>
-                  {({ loading, googleMaps }) => (
-                    <div>
+                  {({ loading, googleMaps }) =>
+                    (<div>
                       <AutocompleteInput
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
@@ -140,8 +144,8 @@ class App extends Component {
                           rules={selectedRules}
                           onChangeAddress={onChangeAddress}
                         >
-                          {refCallback => (
-                            <div
+                          {refCallback =>
+                            (<div
                               id="map-canvas"
                               ref={refCallback}
                               style={{
@@ -149,11 +153,9 @@ class App extends Component {
                                 marginBottom: '10px',
                                 width: '260px',
                               }}
-                            />
-                          )}
+                            />)}
                         </Map>}
-                    </div>
-                  )}
+                    </div>)}
                 </GoogleMapsContainer>
 
                 <PostalCodeGetter
@@ -169,8 +171,7 @@ class App extends Component {
                   rules={selectedRules}
                   onChangeAddress={onChangeAddress}
                 />
-              </div>
-            )}
+              </div>)}
           </AddressContainer>
 
           <hr />

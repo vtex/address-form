@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DefaultInput from '../addressInputs/Input'
-import AddressShapeWithValidation
-  from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 
 class AutocompleteInput extends Component {
@@ -56,7 +55,7 @@ class AutocompleteInput extends Component {
         this.handlePlaceChanged(googleAddress)
       }
     )
-  };
+  }
 
   handlePlaceChanged = googleAddress => {
     this.props.onChangeAddress(
@@ -66,7 +65,7 @@ class AutocompleteInput extends Component {
         this.props.rules.country
       )
     )
-  };
+  }
 
   handleChangeInput = value => {
     this.setState(prevState => ({
@@ -106,7 +105,7 @@ class AutocompleteInput extends Component {
         }}
         options={null}
         address={newAddress}
-        onChange={!loadingGoogle ? this.handleChangeInput : () => { }}
+        onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
         onBlur={value => console.log(value)}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
       />

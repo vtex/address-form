@@ -37,7 +37,7 @@ class Map extends Component {
     const location = this.getLocation(this.props.geoCoordinates)
     this.createMap(mapElement, location)
     this.changeMarkerPosition(location)
-  };
+  }
 
   createMap = (mapElement, location) => {
     this._mapElement = mapElement
@@ -55,7 +55,7 @@ class Map extends Component {
     }
 
     this.map = new this.props.googleMaps.Map(this._mapElement, mapOptions)
-  };
+  }
 
   changeMarkerPosition = location => {
     if (!this.map) return
@@ -80,19 +80,19 @@ class Map extends Component {
         this.handleMarkerPositionChange(newPosition)
       }, 1500)
     )
-  };
+  }
 
   getLocation = geoCoordinates => {
     const [lng, lat] = this.props.geoCoordinates
     const location = new this.props.googleMaps.LatLng(lat, lng)
     return location
-  };
+  }
 
   recenterMap = location => {
     if (!this.map) return
 
     this.map.panTo(location)
-  };
+  }
 
   isDifferentGeoCoords(a, b) {
     return a[0] !== b[0] || a[1] !== b[1]
@@ -107,7 +107,7 @@ class Map extends Component {
       { location: newPosition },
       this.handleNewMarkerPosition
     )
-  };
+  }
 
   handleNewMarkerPosition = (results, status) => {
     const { googleMaps, onChangeAddress, rules } = this.props
@@ -129,7 +129,7 @@ class Map extends Component {
     } else {
       console.warn('Google Maps Error: ' + status)
     }
-  };
+  }
 
   render() {
     return this.props.loadingGoogle
