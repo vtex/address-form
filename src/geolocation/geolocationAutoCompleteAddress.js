@@ -1,3 +1,4 @@
+import isFunction from 'lodash/isFunction'
 import find from 'lodash/find'
 import reduce from 'lodash/reduce'
 import map from 'lodash/map'
@@ -53,7 +54,10 @@ export default function geolocationAutoCompleteAddress(
 
     address.geoCoordinates = {
       visited: true,
-      value: [location.lng, location.lat],
+      value: [
+        isFunction(location.lng) ? location.lng() : location.lng,
+        isFunction(location.lat) ? location.lat() : location.lat,
+      ],
     }
 
     return address
