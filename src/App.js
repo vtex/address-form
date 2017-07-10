@@ -37,7 +37,7 @@ class App extends Component {
         addressType: 'residential',
         city: null,
         complement: null,
-        country: 'ESP',
+        country: 'BRA',
         geoCoordinates: [],
         neighborhood: null,
         number: null,
