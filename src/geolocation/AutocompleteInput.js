@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import DefaultInput from '../addressInputs/Input'
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
+import { EGOOGLEADDRESS } from '../constants'
 
 class AutocompleteInput extends Component {
   constructor(props) {
@@ -52,6 +53,12 @@ class AutocompleteInput extends Component {
       'place_changed',
       () => {
         const googleAddress = this.autocomplete.getPlace()
+        const isValidAddress = !!googleAddress.geometry
+        if (isValidAddress === false) {
+          this.setState({ invalidGoogleAddress: true })
+          return
+        }
+        this.setState({ invalidGoogleAddress: false })
         this.handlePlaceChanged(googleAddress)
       }
     )
@@ -77,23 +84,21 @@ class AutocompleteInput extends Component {
         },
       },
     }))
-  };
+  }
 
   render() {
     const { Input, rules, loadingGoogle } = this.props
-    const { address } = this.state
+    const { address, invalidGoogleAddress } = this.state
 
     const newAddress = {
       ...address,
-      addressQuery: address.addressQuery
-        ? {
-          ...address.addressQuery,
-          loading: loadingGoogle,
-        }
-        : {
-          value: '',
-          loading: loadingGoogle,
-        },
+      addressQuery: {
+        ...(address.addressQuery ? address.addressQuery : { value: '' }),
+        ...(invalidGoogleAddress
+          ? { valid: false, reason: EGOOGLEADDRESS }
+          : {}),
+        loading: loadingGoogle,
+      },
     }
 
     return (
