@@ -1,5 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 import App from './App'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const renderApp = Root => {
+  ReactDOM.render(
+    <AppContainer>
+      <App />
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
+
+renderApp(App)
+
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    const NewApp = require('./App').default
+    renderApp(NewApp)
+  })
+}
