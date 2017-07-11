@@ -1,4 +1,6 @@
 import reduce from 'lodash/reduce'
+import { getField } from '../selectors/fields'
+import msk from 'msk'
 
 export function addValidation(address) {
   return reduce(
@@ -77,6 +79,27 @@ export function handleMultipleValues(fields) {
       }
 
       return newFields
+    },
+    {}
+  )
+}
+
+export function maskFields(rules, addressFields) {
+  return reduce(
+    addressFields,
+    (newAddressFields, prop, propName) => {
+      const fieldRule = getField(propName, rules)
+
+      newAddressFields[propName] = prop
+
+      if (fieldRule && fieldRule.mask) {
+        newAddressFields[propName] = {
+          ...prop,
+          ...(prop.value ? { value: msk(prop.value, fieldRule.mask) } : {}),
+        }
+      }
+
+      return newAddressFields
     },
     {}
   )

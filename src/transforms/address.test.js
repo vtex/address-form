@@ -4,6 +4,7 @@ import {
   addNewField,
   addDisabledToProtectedFields,
   handleMultipleValues,
+  maskFields,
 } from './address'
 import address from '../__mocks__/newAddress'
 import addressWithoutValidation from '../__mocks__/addressWithoutValidation'
@@ -87,7 +88,8 @@ describe('Address Transform', () => {
       state: { value: 'Ciudad de México' },
       country: { value: 'MEX' },
       neighborhood: {
-        value: 'Lomas de Chapultepec I Sección;Lomas de Chapultepec II Sección;Lomas de Chapultepec VIII Sección;Lomas de Chapultepec VI Sección;Lomas de Chapultepec IV Sección;Lomas de Chapultepec V Sección;Lomas de Chapultepec VII Sección;Lomas de Chapultepec III Sección',
+        value:
+          'Lomas de Chapultepec I Sección;Lomas de Chapultepec II Sección;Lomas de Chapultepec VIII Sección;Lomas de Chapultepec VI Sección;Lomas de Chapultepec IV Sección;Lomas de Chapultepec V Sección;Lomas de Chapultepec VII Sección;Lomas de Chapultepec III Sección',
       },
     }
 
@@ -95,5 +97,57 @@ describe('Address Transform', () => {
 
     expect(result.neighborhood.valueOptions).toHaveLength(8)
     expect(result.neighborhood.value).toBe(null)
+  })
+
+  describe('maskFields()', () => {
+    const rules = {
+      fields: [
+        {
+          name: 'postalCode',
+          mask: '9.99.999',
+        },
+        {
+          name: 'city',
+        },
+      ],
+    }
+
+    it('should mask fields', () => {
+      const fields = {
+        postalCode: { value: '123456' },
+      }
+
+      const result = maskFields(rules, fields)
+
+      expect(result.postalCode.value).toBe('1.23.456')
+    })
+
+    it("should not throw when there's no rule for field", () => {
+      const fields = {
+        neighborhood: { value: 'Botafogo' },
+      }
+      expect(() => maskFields(rules, fields)).not.toThrow()
+    })
+
+    it('should not mask fields that have no mask', () => {
+      const value = 'Botafogo'
+      const fields = {
+        postalCode: { value: '123456' },
+        neighborhood: { value },
+      }
+
+      const result = maskFields(rules, fields)
+
+      expect(result.neighborhood.value).toBe(value)
+    })
+
+    it('should not throw when field have no value', () => {
+      const fields = {
+        postalCode: {},
+        neighborhood: {},
+      }
+
+      expect(() => maskFields(rules, fields)).not.toThrow()
+    })
   })
 })

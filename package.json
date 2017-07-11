@@ -6,6 +6,7 @@
     "classnames": "^2.2.5",
     "load-google-maps-api": "^1.0.0",
     "lodash": "^4.17.4",
+    "msk": "^1.0.0",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"

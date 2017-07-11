@@ -7,6 +7,7 @@ import {
   getDependentFields,
 } from './selectors/fields'
 import reduce from 'lodash/reduce'
+import msk from 'msk'
 
 class InputFieldContainer extends Component {
   clearDependentFields(address, dependentFields) {
@@ -42,19 +43,24 @@ class InputFieldContainer extends Component {
         },
       })
     }
-  };
+  }
 
   bindOnBlur = () => {
     const { field, address, onChangeAddress } = this.props
+    const value = address[field.name] ? address[field.name].value : ''
+
+    const maskedValue = field.mask ? msk(value, field.mask) : value
+
     return () => {
       onChangeAddress({
         [field.name]: {
           ...address[field.name],
+          value: maskedValue,
           visited: true,
         },
       })
     }
-  };
+  }
 
   render() {
     const { Input, field, address, options, rules } = this.props
