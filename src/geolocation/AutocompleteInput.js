@@ -53,13 +53,13 @@ class AutocompleteInput extends Component {
       'place_changed',
       () => {
         const googleAddress = this.autocomplete.getPlace()
-        const isValidAddress = !!googleAddress.geometry
-        if (isValidAddress === false) {
-          this.setState({ invalidGoogleAddress: true })
+        const isValidGoogleAddress = !!googleAddress.geometry
+        if (isValidGoogleAddress) {
+          this.setState({ isValidGoogleAddress })
+          this.handlePlaceChanged(googleAddress)
           return
         }
-        this.setState({ invalidGoogleAddress: false })
-        this.handlePlaceChanged(googleAddress)
+        this.setState({ isValidGoogleAddress })
       }
     )
   }
@@ -88,15 +88,15 @@ class AutocompleteInput extends Component {
 
   render() {
     const { Input, rules, loadingGoogle } = this.props
-    const { address, invalidGoogleAddress } = this.state
+    const { address, isValidGoogleAddress } = this.state
 
     const newAddress = {
       ...address,
       addressQuery: {
         ...(address.addressQuery ? address.addressQuery : { value: '' }),
-        ...(invalidGoogleAddress
-          ? { valid: false, reason: EGOOGLEADDRESS }
-          : {}),
+        ...(isValidGoogleAddress
+          ? {}
+          : { valid: false, reason: EGOOGLEADDRESS }),
         loading: loadingGoogle,
       },
     }
