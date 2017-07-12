@@ -1,6 +1,7 @@
 import find from 'lodash/find'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
+import reduce from 'lodash/reduce'
 import last from 'lodash/last'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 
@@ -103,7 +104,7 @@ function getFieldBasedOn(fieldName, rules) {
   return field ? field.name : null
 }
 
-export function filterFields(rules) {
+export function filterPostalCodeFields(rules) {
   switch (rules.postalCodeFrom) {
     case THREE_LEVELS:
       return filter(
@@ -136,4 +137,24 @@ export function isDefiningPostalCodeField(fieldName, rules) {
   const lastLevelField = last(rules.postalCodeLevels)
 
   return fieldName === lastLevelField
+}
+
+export function filterAutoCompletedFields(rules, address) {
+  return reduce(
+    rules.fields,
+    (fields, field) => {
+      const addressField = address[field.name]
+
+      if (
+        addressField &&
+        (addressField.postalCodeAutoCompleted ||
+          addressField.geolocationAutoCompleted)
+      ) {
+        return fields
+      }
+
+      return fields.concat(field)
+    },
+    []
+  )
 }
