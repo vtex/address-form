@@ -8,6 +8,7 @@ import AddressContainer from './AddressContainer'
 import Input from './addressInputs/Input'
 import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
 import AutocompleteInput from './geolocation/AutocompleteInput'
+import AutoCompletedFields from './AutoCompletedFields'
 import Map from './geolocation/Map'
 
 const ACCOUNT_NAME = 'qamarketplace'
@@ -160,6 +161,12 @@ class App extends Component {
 
                 <PostalCodeGetter
                   Input={Input}
+                  address={address}
+                  rules={selectedRules}
+                  onChangeAddress={onChangeAddress}
+                />
+
+                <AutoCompletedFields
                   address={address}
                   rules={selectedRules}
                   onChangeAddress={onChangeAddress}

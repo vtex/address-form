@@ -25,7 +25,7 @@ class AddressSummary extends Component {
       )
     }
 
-    const { rules, address, canEditData } = this.props
+    const { rules, address, canEditData, children } = this.props
     const postalCodeByInput = rules.postalCodeFrom === POSTAL_CODE
     const numberField = getField('number', rules)
     const complementField = getField('complement', rules)
@@ -99,6 +99,8 @@ class AddressSummary extends Component {
           <span className="country">
             {country}
           </span>}
+
+        {children}
       </div>
     )
   }
@@ -112,6 +114,7 @@ AddressSummary.propTypes = {
   canEditData: PropTypes.bool,
   address: AddressShape.isRequired,
   rules: PropTypes.object.isRequired,
+  children: PropTypes.node,
   giftRegistryDescription: PropTypes.string,
 }
 
