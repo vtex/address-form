@@ -11,7 +11,7 @@ class AddressSummary extends Component {
     if (window && window.$) {
       window.$(window).trigger('showMessage.vtex', ['maskedInfo'])
     }
-  };
+  }
 
   render() {
     if (this.props.giftRegistryDescription) {
@@ -43,17 +43,27 @@ class AddressSummary extends Component {
 
     return (
       <div className="address">
-        <span className="street">{street}</span>
+        <span className="street">
+          {street}
+        </span>
 
         {numberField && number && ', '}
-        {numberField && <span className="number">{number}</span>}
+        {numberField &&
+          <span className="number">
+            {number}
+          </span>}
 
         {complementField && complement && ', '}
-        {complementField && <span className="complement">{complement}</span>}
+        {complementField &&
+          <span className="complement">
+            {complement}
+          </span>}
 
         {neighborhoodField && neighborhood && ' - '}
         {neighborhoodField &&
-          <span className="neighborhood">{neighborhood}</span>}
+          <span className="neighborhood">
+            {neighborhood}
+          </span>}
 
         {!canEditData && ' '}
         {!canEditData &&
@@ -67,7 +77,10 @@ class AddressSummary extends Component {
 
         <br />
 
-        {city && <span className="city">{city}</span>}
+        {city &&
+          <span className="city">
+            {city}
+          </span>}
 
         {state && ' - '}
         {state &&
@@ -76,10 +89,16 @@ class AddressSummary extends Component {
           </span>}
 
         {postalCodeByInput && postalCode && ' - '}
-        {postalCodeByInput && <span className="postal-code">{postalCode}</span>}
+        {postalCodeByInput &&
+          <span className="postal-code">
+            {postalCode}
+          </span>}
 
         {country && ' - '}
-        {country && <span className="country">{country}</span>}
+        {country &&
+          <span className="country">
+            {country}
+          </span>}
       </div>
     )
   }

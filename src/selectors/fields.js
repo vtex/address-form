@@ -12,10 +12,12 @@ export function hasOptions(field, address) {
   const hasValueOptions =
     address && address[field.name] && address[field.name].valueOptions
 
-  return !!(field.options ||
+  return !!(
+    field.options ||
     field.optionsPairs ||
     field.optionsMap ||
-    hasValueOptions)
+    hasValueOptions
+  )
 }
 
 function getFieldValue(field) {
@@ -125,7 +127,9 @@ export function filterFields(rules) {
 }
 
 function fieldAffectsPostalCode(fieldName, rules) {
-  return rules.postalCodeLevels && rules.postalCodeLevels.indexOf(fieldName) !== -1
+  return (
+    rules.postalCodeLevels && rules.postalCodeLevels.indexOf(fieldName) !== -1
+  )
 }
 
 export function isDefiningPostalCodeField(fieldName, rules) {

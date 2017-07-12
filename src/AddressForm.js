@@ -38,13 +38,13 @@ class AddressForm extends Component {
       <div>
         {fields.map(
           field =>
-            (isDefiningPostalCodeField(field.name, rules)
+            isDefiningPostalCodeField(field.name, rules)
               ? <SelectPostalCode
                 Input={Input}
                 rules={rules}
                 address={address}
                 onChangeAddress={onChangeAddress}
-              />
+                />
               : <InputFieldContainer
                 key={field.name}
                 Input={Input}
@@ -52,7 +52,7 @@ class AddressForm extends Component {
                 address={address}
                 rules={rules}
                 onChangeAddress={onChangeAddress}
-              />)
+                />
         )}
       </div>
     )
