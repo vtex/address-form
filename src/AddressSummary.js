@@ -5,14 +5,6 @@ import { getField } from './selectors/fields'
 import { POSTAL_CODE } from './constants'
 
 class AddressSummary extends Component {
-  handleMaskedInfoClick = e => {
-    e.preventDefault()
-
-    if (window && window.$) {
-      window.$(window).trigger('showMessage.vtex', ['maskedInfo'])
-    }
-  }
-
   render() {
     if (this.props.giftRegistryDescription) {
       return (
@@ -70,7 +62,7 @@ class AddressSummary extends Component {
           <a
             data-i18n="[title]modal.maskedInfoHello"
             className="client-masked-info"
-            onClick={this.handleMaskedInfoClick}
+            onClick={this.props.onClickMaskedInfoIcon}
           >
             <i className="icon-question-sign" />
           </a>}
@@ -116,6 +108,7 @@ AddressSummary.propTypes = {
   rules: PropTypes.object.isRequired,
   children: PropTypes.node,
   giftRegistryDescription: PropTypes.string,
+  onClickMaskedInfoIcon: PropTypes.func,
 }
 
 export default AddressSummary

@@ -90,6 +90,14 @@ class App extends Component {
     }
   }
 
+  handleClickMaskedInfoIcon = e => {
+    e.preventDefault()
+
+    if (window && window.$) {
+      window.$(window).trigger('showMessage.vtex', ['maskedInfo'])
+    }
+  }
+
   render() {
     const { shipsTo, address, rules } = this.state
 
@@ -186,6 +194,7 @@ class App extends Component {
           <AddressSummary
             address={removeValidation(address)}
             rules={selectedRules}
+            onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
           />
         </div>
       </div>

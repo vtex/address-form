@@ -64,6 +64,24 @@ describe('AddressSummary', () => {
     expect(wrapper.find('MyChild')).toHaveLength(1)
   })
 
+  it('should call click handler', () => {
+    const handleClick = jest.fn()
+
+    const wrapper = shallow(
+      <AddressSummary
+        address={address}
+        rules={useOneLevel}
+        canEditData={false}
+        onClickMaskedInfoIcon={handleClick}
+      />
+    )
+
+    const maskedInfoIcon = wrapper.find('.client-masked-info')
+    maskedInfoIcon.simulate('click', { preventDefault() {} })
+
+    expect(handleClick).toHaveBeenCalled()
+  })
+
   it('should render gift list address', () => {
     const tree = renderer.create(
       <AddressSummary
