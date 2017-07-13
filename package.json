@@ -1,32 +1,37 @@
 {
-  "name": "address-form",
-  "version": "0.1.0",
-  "dependencies": {
-    "axios": "^0.16.2",
-    "classnames": "^2.2.5",
-    "load-google-maps-api": "^1.0.0",
-    "lodash": "^4.17.4",
-    "msk": "^1.0.0",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+  "name": "address-form-lib",
+  "version": "1.0.0",
+  "description": "address-form-lib React component",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "15.x"
   },
   "devDependencies": {
-    "@vtex/react-scripts": "1.0.13",
-    "enzyme": "^2.8.2",
-    "jest-enzyme": "^3.2.0",
-    "react-hot-loader": "next",
-    "react-intl": "^2.3.0",
-    "react-test-renderer": "^15.5.4"
+    "nwb": "0.18.x",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   },
-  "main": "index.html",
-  "backend": "https://io.vtex.com.br/",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "react-scripts deploy"
-  },
-  "proxy": "http://qamarketplace.vtexcommercestable.com.br:80"
+  "author": "",
+  "homepage": "",
+  "license": "MIT",
+  "repository": "",
+  "keywords": [
+    "react-component"
+  ]
 }
