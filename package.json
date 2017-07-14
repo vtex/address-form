@@ -1,32 +1,89 @@
 {
-  "name": "address-form",
-  "version": "0.1.0",
+  "name": "address-form-lib",
+  "version": "1.0.0",
+  "description": "address-form-lib React component",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "build": "nwb build-react-component && rm -rf es/**/__mocks__ && rm -rf lib/**/__mocks__ && rm -rf es/__mocks__ && rm -rf lib/__mocks__",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "jest --env=jsdom",
+    "test:coverage": "jest --env=jsdom --coverage",
+    "test:watch": "jest --env=jsdom --watch"
+  },
   "dependencies": {
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "load-google-maps-api": "^1.0.0",
     "lodash": "^4.17.4",
-    "msk": "^1.0.0",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "msk": "^1.0.2",
+    "prop-types": "^15.5.10"
+  },
+  "peerDependencies": {
+    "react": "15.x"
   },
   "devDependencies": {
-    "@vtex/react-scripts": "1.0.13",
-    "enzyme": "^2.8.2",
-    "jest-enzyme": "^3.2.0",
+    "babel-eslint": "7",
+    "babel-jest": "^20.0.3",
+    "babel-preset-react-app": "^3.0.1",
+    "enzyme": "^2.9.1",
+    "eslint": "3",
+    "eslint-config-vtex": "5.1.0",
+    "eslint-config-vtex-react": "3.0.2",
+    "eslint-config-vtex-react-app": "^1.0.4",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "5",
+    "eslint-plugin-react": "7",
+    "jest": "^20.0.4",
+    "jest-enzyme": "^3.5.3",
+    "nwb": "^0.18.7",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "react-hot-loader": "next",
-    "react-intl": "^2.3.0",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.6.1"
   },
-  "main": "index.html",
-  "backend": "https://io.vtex.com.br/",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "react-scripts deploy"
-  },
-  "proxy": "http://qamarketplace.vtexcommercestable.com.br:80"
+  "author": "Breno Calazans (@breno_calazans)",
+  "homepage": "https://github.com/vtex/address-form",
+  "license": "MIT",
+  "repository": "https://github.com/vtex/address-form",
+  "keywords": [
+    "react-component",
+    "vtex",
+    "checkout",
+    "address"
+  ],
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]es[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
+  }
 }

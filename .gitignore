@@ -7,7 +7,10 @@
 /coverage
 
 # production
-/build
+/demo/dist
+/es
+/lib
+/umd
 
 # misc
 .DS_Store
