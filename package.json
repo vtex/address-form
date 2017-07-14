@@ -42,12 +42,15 @@
     "react-hot-loader": "next",
     "react-test-renderer": "^15.6.1"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Breno Calazans (@breno_calazans)",
+  "homepage": "https://github.com/vtex/address-form",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/vtex/address-form",
   "keywords": [
-    "react-component"
+    "react-component",
+    "vtex",
+    "checkout",
+    "address"
   ],
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
