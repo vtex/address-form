@@ -30,10 +30,18 @@
     "react": "15.x"
   },
   "devDependencies": {
+    "babel-eslint": "7",
     "babel-jest": "^20.0.3",
     "babel-preset-react-app": "^3.0.1",
     "enzyme": "^2.9.1",
+    "eslint": "3",
+    "eslint-config-vtex": "5.1.0",
+    "eslint-config-vtex-react": "3.0.2",
     "eslint-config-vtex-react-app": "^1.0.4",
+    "eslint-plugin-flowtype": "^2.35.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "5",
+    "eslint-plugin-react": "7",
     "jest": "^20.0.4",
     "jest-enzyme": "^3.5.3",
     "nwb": "^0.18.7",
@@ -54,8 +62,17 @@
   ],
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
-    "testPathIgnorePatterns": ["/node_modules/", "<rootDir>/es/", "<rootDir>/lib/", "<rootDir>/umd/"],
-    "modulePathIgnorePatterns": ["<rootDir>/es/", "<rootDir>/lib/", "<rootDir>/umd/"],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
     "transformIgnorePatterns": [
       "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
       "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
