@@ -5,14 +5,6 @@ import { getField } from './selectors/fields'
 import { POSTAL_CODE } from './constants'
 
 class AddressSummary extends Component {
-  handleMaskedInfoClick = e => {
-    e.preventDefault()
-
-    if (window && window.$) {
-      window.$(window).trigger('showMessage.vtex', ['maskedInfo'])
-    }
-  };
-
   render() {
     if (this.props.giftRegistryDescription) {
       return (
@@ -25,7 +17,7 @@ class AddressSummary extends Component {
       )
     }
 
-    const { rules, address, canEditData } = this.props
+    const { rules, address, canEditData, children } = this.props
     const postalCodeByInput = rules.postalCodeFrom === POSTAL_CODE
     const numberField = getField('number', rules)
     const complementField = getField('complement', rules)
@@ -43,31 +35,44 @@ class AddressSummary extends Component {
 
     return (
       <div className="address">
-        <span className="street">{street}</span>
+        <span className="street">
+          {street}
+        </span>
 
         {numberField && number && ', '}
-        {numberField && <span className="number">{number}</span>}
+        {numberField &&
+          <span className="number">
+            {number}
+          </span>}
 
         {complementField && complement && ', '}
-        {complementField && <span className="complement">{complement}</span>}
+        {complementField &&
+          <span className="complement">
+            {complement}
+          </span>}
 
         {neighborhoodField && neighborhood && ' - '}
         {neighborhoodField &&
-          <span className="neighborhood">{neighborhood}</span>}
+          <span className="neighborhood">
+            {neighborhood}
+          </span>}
 
         {!canEditData && ' '}
         {!canEditData &&
           <a
             data-i18n="[title]modal.maskedInfoHello"
             className="client-masked-info"
-            onClick={this.handleMaskedInfoClick}
+            onClick={this.props.onClickMaskedInfoIcon}
           >
             <i className="icon-question-sign" />
           </a>}
 
         <br />
 
-        {city && <span className="city">{city}</span>}
+        {city &&
+          <span className="city">
+            {city}
+          </span>}
 
         {state && ' - '}
         {state &&
@@ -76,10 +81,18 @@ class AddressSummary extends Component {
           </span>}
 
         {postalCodeByInput && postalCode && ' - '}
-        {postalCodeByInput && <span className="postal-code">{postalCode}</span>}
+        {postalCodeByInput &&
+          <span className="postal-code">
+            {postalCode}
+          </span>}
 
         {country && ' - '}
-        {country && <span className="country">{country}</span>}
+        {country &&
+          <span className="country">
+            {country}
+          </span>}
+
+        {children}
       </div>
     )
   }
@@ -93,7 +106,9 @@ AddressSummary.propTypes = {
   canEditData: PropTypes.bool,
   address: AddressShape.isRequired,
   rules: PropTypes.object.isRequired,
+  children: PropTypes.node,
   giftRegistryDescription: PropTypes.string,
+  onClickMaskedInfoIcon: PropTypes.func,
 }
 
 export default AddressSummary

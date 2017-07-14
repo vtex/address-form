@@ -3,48 +3,43 @@ import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
 import DefaultInput from './addressInputs/Input'
-import { filterFields, isDefiningPostalCodeField } from './selectors/fields'
+import {
+  filterPostalCodeFields,
+  filterAutoCompletedFields,
+  isDefiningPostalCodeField,
+} from './selectors/fields'
 import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 
 class AddressForm extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      fields: props.omitPostalCodeFields
-        ? filterFields(props.rules)
-        : props.rules.fields,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.rules.postalCodeFrom !== this.props.rules.postalCodeFrom ||
-      nextProps.omitPostalCodeFields !== this.props.omitPostalCodeFields
-    ) {
-      this.setState({
-        fields: nextProps.omitPostalCodeFields
-          ? filterFields(nextProps.rules)
-          : nextProps.rules.fields,
-      })
-    }
-  }
-
   render() {
-    const { address, rules, onChangeAddress, Input } = this.props
-    const { fields } = this.state
+    const {
+      address,
+      rules,
+      onChangeAddress,
+      Input,
+      omitPostalCodeFields,
+      omitAutoCompletedFields,
+    } = this.props
+
+    let fields = omitPostalCodeFields
+      ? filterPostalCodeFields(rules)
+      : rules.fields
+
+    fields = omitAutoCompletedFields
+      ? filterAutoCompletedFields({ fields }, address)
+      : fields
 
     return (
       <div>
         {fields.map(
           field =>
-            (isDefiningPostalCodeField(field.name, rules)
+            isDefiningPostalCodeField(field.name, rules)
               ? <SelectPostalCode
                 Input={Input}
                 rules={rules}
                 address={address}
                 onChangeAddress={onChangeAddress}
-              />
+                />
               : <InputFieldContainer
                 key={field.name}
                 Input={Input}
@@ -52,7 +47,7 @@ class AddressForm extends Component {
                 address={address}
                 rules={rules}
                 onChangeAddress={onChangeAddress}
-              />)
+                />
         )}
       </div>
     )
@@ -61,6 +56,7 @@ class AddressForm extends Component {
 
 AddressForm.defaultProps = {
   omitPostalCodeFields: true,
+  omitAutoCompletedFields: true,
   Input: DefaultInput,
 }
 
@@ -68,6 +64,7 @@ AddressForm.propTypes = {
   Input: PropTypes.func,
   address: AddressShapeWithValidation,
   omitPostalCodeFields: PropTypes.bool,
+  omitAutoCompletedFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

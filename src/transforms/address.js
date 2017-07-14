@@ -38,6 +38,18 @@ export function addNewField(address, fieldName, value) {
   )
 }
 
+export function removeField(address, fieldName) {
+  return reduce(
+    address,
+    (newAddress, prop, propName) => {
+      newAddress[propName] = { ...prop }
+      delete newAddress[propName][fieldName]
+      return newAddress
+    },
+    {}
+  )
+}
+
 export function addDisabledToProtectedFields(fields, rules) {
   return reduce(
     fields,

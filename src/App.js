@@ -8,6 +8,7 @@ import AddressContainer from './AddressContainer'
 import Input from './addressInputs/Input'
 import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
 import AutocompleteInput from './geolocation/AutocompleteInput'
+import AutoCompletedFields from './AutoCompletedFields'
 import Map from './geolocation/Map'
 
 const ACCOUNT_NAME = 'qamarketplace'
@@ -89,6 +90,14 @@ class App extends Component {
     }
   }
 
+  handleClickMaskedInfoIcon = e => {
+    e.preventDefault()
+
+    if (window && window.$) {
+      window.$(window).trigger('showMessage.vtex', ['maskedInfo'])
+    }
+  }
+
   render() {
     const { shipsTo, address, rules } = this.state
 
@@ -165,6 +174,12 @@ class App extends Component {
                   onChangeAddress={onChangeAddress}
                 />
 
+                <AutoCompletedFields
+                  address={address}
+                  rules={selectedRules}
+                  onChangeAddress={onChangeAddress}
+                />
+
                 <AddressForm
                   Input={Input}
                   address={address}
@@ -179,6 +194,7 @@ class App extends Component {
           <AddressSummary
             address={removeValidation(address)}
             rules={selectedRules}
+            onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
           />
         </div>
       </div>

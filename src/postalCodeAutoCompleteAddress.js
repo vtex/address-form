@@ -7,6 +7,7 @@ import {
   maskFields,
 } from './transforms/address'
 import flow from 'lodash/flow'
+import pickBy from 'lodash/pickBy'
 
 export default function postalCodeAutoCompleteAddress(
   address,
@@ -20,6 +21,11 @@ export default function postalCodeAutoCompleteAddress(
     postalCode: address.postalCode.value,
   }).then(responseAddress => {
     const autoCompletedFields = flow([
+      fields =>
+        pickBy(
+          fields,
+          field => field !== null && field !== '' && field !== undefined
+        ),
       fields => addValidation(fields, address),
       fields => handleMultipleValues(fields),
       fields => maskFields(rules, fields),

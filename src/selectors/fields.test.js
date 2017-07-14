@@ -3,7 +3,8 @@ import {
   hasOptions,
   getListOfOptions,
   getDependentFields,
-  filterFields,
+  filterPostalCodeFields,
+  filterAutoCompletedFields,
   isDefiningPostalCodeField,
 } from './fields'
 import { ONE_LEVEL, TWO_LEVELS, POSTAL_CODE } from '../constants'
@@ -195,13 +196,13 @@ describe('Field Selectors', () => {
     })
   })
 
-  describe('filterFields()', () => {
+  describe('filterPostalCodeFields()', () => {
     function getFieldNames(fields) {
       return fields.map(({ name }) => name)
     }
 
     it('should filter when postal code is from postal code', () => {
-      const fields = filterFields(useOneLevel)
+      const fields = filterPostalCodeFields(useOneLevel)
 
       expect(
         diff(getFieldNames(useOneLevel.fields), getFieldNames(fields))
@@ -209,7 +210,7 @@ describe('Field Selectors', () => {
     })
 
     it('should filter when postal code is from state', () => {
-      const fields = filterFields(useTwoLevels)
+      const fields = filterPostalCodeFields(useTwoLevels)
 
       expect(
         diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields))
@@ -217,7 +218,7 @@ describe('Field Selectors', () => {
     })
 
     it('should filter when postal code is from city', () => {
-      const fields = filterFields(useThreeLevels)
+      const fields = filterPostalCodeFields(useThreeLevels)
 
       expect(
         diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields))
@@ -234,6 +235,24 @@ describe('Field Selectors', () => {
       const result = isDefiningPostalCodeField('neighborhood', rules)
 
       expect(result).toBe(true)
+    })
+  })
+
+  describe('filterAutoCompletedFields()', () => {
+    it('should filter auto completed fields', () => {
+      const address = {
+        neighborhood: { value: 'Botafogo', geolocationAutoCompleted: true },
+        city: { value: 'Rio de Janeiro', postalCodeAutoCompleted: true },
+        state: { value: 'RJ' },
+      }
+      const rules = {
+        fields: [{ name: 'neighborhood' }, { name: 'city' }, { name: 'state' }],
+      }
+
+      const result = filterAutoCompletedFields(rules, address)
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name).toBe('state')
     })
   })
 })
