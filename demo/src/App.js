@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
+import AddressContainer from '../../src/AddressContainer'
 import CountrySelector from '../../src/CountrySelector'
 import AddressForm from '../../src/AddressForm'
 import AddressSummary from '../../src/AddressSummary'
 import PostalCodeGetter from '../../src/PostalCodeGetter'
-import { addValidation, removeValidation } from '../../src/transforms/address'
-import AddressContainer from '../../src/AddressContainer'
-import Input from '../../src/addressInputs/Input'
-import GoogleMapsContainer from '../../src/geolocation/GoogleMapsContainer'
-import AutocompleteInput from '../../src/geolocation/AutocompleteInput'
 import AutoCompletedFields from '../../src/AutoCompletedFields'
+import { DefaultInput, addValidation, removeValidation } from '../../src/index'
+import GoogleMapsContainer from '../../src/geolocation/GoogleMapsContainer'
+import GeolocationInput from '../../src/geolocation/GeolocationInput'
 import Map from '../../src/geolocation/Map'
 
 const ACCOUNT_NAME = 'qamarketplace'
@@ -126,7 +125,7 @@ class App extends Component {
             {onChangeAddress =>
               (<div>
                 <CountrySelector
-                  Input={Input}
+                  Input={DefaultInput}
                   address={address}
                   shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
@@ -135,7 +134,7 @@ class App extends Component {
                 <GoogleMapsContainer apiKey={API_KEY} locale={locale}>
                   {({ loading, googleMaps }) =>
                     (<div>
-                      <AutocompleteInput
+                      <GeolocationInput
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
                         address={address}
@@ -168,7 +167,7 @@ class App extends Component {
                 </GoogleMapsContainer>
 
                 <PostalCodeGetter
-                  Input={Input}
+                  Input={DefaultInput}
                   address={address}
                   rules={selectedRules}
                   onChangeAddress={onChangeAddress}
@@ -181,7 +180,7 @@ class App extends Component {
                 />
 
                 <AddressForm
-                  Input={Input}
+                  Input={DefaultInput}
                   address={address}
                   rules={selectedRules}
                   onChangeAddress={onChangeAddress}

@@ -5,7 +5,7 @@ import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { EGOOGLEADDRESS } from '../constants'
 
-class AutocompleteInput extends Component {
+class GeolocationInput extends Component {
   constructor(props) {
     super(props)
 
@@ -118,11 +118,11 @@ class AutocompleteInput extends Component {
   }
 }
 
-AutocompleteInput.defaultProps = {
+GeolocationInput.defaultProps = {
   Input: DefaultInput,
 }
 
-AutocompleteInput.propTypes = {
+GeolocationInput.propTypes = {
   Input: PropTypes.func,
   rules: PropTypes.object.isRequired,
   address: AddressShapeWithValidation.isRequired,
@@ -131,4 +131,4 @@ AutocompleteInput.propTypes = {
   googleMaps: PropTypes.object,
 }
 
-export default AutocompleteInput
+export default GeolocationInput

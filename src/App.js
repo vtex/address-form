@@ -7,7 +7,7 @@ import { addValidation, removeValidation } from './transforms/address'
 import AddressContainer from './AddressContainer'
 import Input from './addressInputs/Input'
 import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
-import AutocompleteInput from './geolocation/AutocompleteInput'
+import GeolocationInput from './geolocation/GeolocationInput'
 import AutoCompletedFields from './AutoCompletedFields'
 import Map from './geolocation/Map'
 
@@ -135,7 +135,7 @@ class App extends Component {
                 <GoogleMapsContainer apiKey={API_KEY} locale={locale}>
                   {({ loading, googleMaps }) =>
                     (<div>
-                      <AutocompleteInput
+                      <GeolocationInput
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
                         address={address}
