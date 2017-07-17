@@ -134,7 +134,7 @@ class Map extends Component {
   render() {
     return this.props.loadingGoogle
       ? this.props.loadingElement
-      : this.props.children(this.mapMounted)
+      : <div id="map-canvas" ref={this.mapMounted} {...this.props.mapProps} />
   }
 }
 
@@ -144,7 +144,7 @@ Map.defaultProps = {
 
 Map.propTypes = {
   loadingElement: PropTypes.node,
-  children: PropTypes.func.isRequired,
+  mapProps: PropTypes.object,
   geoCoordinates: PropTypes.array.isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

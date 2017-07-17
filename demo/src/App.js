@@ -151,18 +151,14 @@ class App extends Component {
                           geoCoordinates={address.geoCoordinates.value}
                           rules={selectedRules}
                           onChangeAddress={onChangeAddress}
-                        >
-                          {refCallback =>
-                            (<div
-                              id="map-canvas"
-                              ref={refCallback}
-                              style={{
-                                height: '120px',
-                                marginBottom: '10px',
-                                width: '260px',
-                              }}
-                            />)}
-                        </Map>}
+                          mapProps={{
+                            style: {
+                              height: '120px',
+                              marginBottom: '10px',
+                              width: '260px',
+                            },
+                          }}
+                        />}
                     </div>)}
                 </GoogleMapsContainer>
 
