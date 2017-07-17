@@ -94,9 +94,9 @@ class AutocompleteInput extends Component {
       ...address,
       addressQuery: {
         ...(address.addressQuery ? address.addressQuery : { value: '' }),
-        ...(isValidGoogleAddress
-          ? {}
-          : { valid: false, reason: EGOOGLEADDRESS }),
+        ...(isValidGoogleAddress === false
+          ? { valid: false, reason: EGOOGLEADDRESS }
+          : {}),
         loading: loadingGoogle,
       },
     }
