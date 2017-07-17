@@ -14,6 +14,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       name="street"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -30,6 +31,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       name="number"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -46,6 +48,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       name="complement"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -62,6 +65,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       name="neighborhood"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -78,6 +82,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       name="city"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
