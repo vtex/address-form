@@ -3,7 +3,6 @@ import { shallow, mount } from 'enzyme'
 import Map from './Map'
 
 describe('Map', () => {
-  const mockFn = jest.fn(() => <div />)
   let shallowWrapper, shallowInstance
 
   function shallowRenderComponent() {
@@ -15,16 +14,13 @@ describe('Map', () => {
         onChangeAddress={jest.fn()}
         loadingGoogle={false}
         googleMaps={null}
-      >
-        {mockFn}
-      </Map>
+      />
     )
 
     shallowInstance = shallowWrapper.instance()
   }
 
   beforeEach(() => {
-    mockFn.mockClear()
     shallowRenderComponent()
   })
 
@@ -37,14 +33,8 @@ describe('Map', () => {
         onChangeAddress={jest.fn()}
         loadingGoogle
         googleMaps={null}
-      >
-        {jest.fn(() => <div />)}
-      </Map>
+      />
     )
-  })
-
-  it('should pass a function to child', () => {
-    expect(mockFn).toHaveBeenCalledWith(expect.any(Function))
   })
 
   it("should not re-render if rules and geoCoords didn't change", () => {
