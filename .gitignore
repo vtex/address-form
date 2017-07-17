@@ -11,6 +11,7 @@
 /es
 /lib
 /umd
+/build
 
 # misc
 .DS_Store
