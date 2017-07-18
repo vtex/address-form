@@ -6,12 +6,17 @@ import renderer from 'react-test-renderer'
 import newAddress from './__mocks__/newAddress'
 
 describe('CountrySelector', () => {
+  const shipsTo = [
+    { value: 'BRA', label: 'Brazil' },
+    { value: 'USA', label: 'United States of America' },
+  ]
+
   it('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
       <CountrySelector
         address={newAddress}
-        shipsTo={['BRA', 'USA']}
+        shipsTo={shipsTo}
         onChangeAddress={jest.fn()}
       />,
       div
@@ -23,7 +28,7 @@ describe('CountrySelector', () => {
       .create(
         <CountrySelector
           address={newAddress}
-          shipsTo={['BRA', 'USA']}
+          shipsTo={shipsTo}
           onChangeAddress={jest.fn()}
         />
       )
@@ -40,7 +45,7 @@ describe('CountrySelector', () => {
             ...newAddress,
             country: { value: 'BRA' },
           }}
-          shipsTo={['BRA', 'USA']}
+          shipsTo={shipsTo}
           onChangeAddress={jest.fn()}
         />
       )
@@ -57,7 +62,7 @@ describe('CountrySelector', () => {
             ...newAddress,
             country: { value: 'BRA' },
           }}
-          shipsTo={['USA', 'BRA']}
+          shipsTo={shipsTo}
           onChangeAddress={jest.fn()}
         />
       )
@@ -74,7 +79,7 @@ describe('CountrySelector', () => {
           ...newAddress,
           country: { value: 'BRA' },
         }}
-        shipsTo={['BRA', 'USA']}
+        shipsTo={shipsTo}
         onChangeAddress={handleChange}
       />
     )
@@ -97,7 +102,7 @@ describe('CountrySelector', () => {
           city: { value: 'Bar' },
           neighborhood: { value: 'Baz' },
         }}
-        shipsTo={['BRA', 'USA']}
+        shipsTo={shipsTo}
         onChangeAddress={handleChange}
       />
     )

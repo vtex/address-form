@@ -18,12 +18,12 @@ exports[`CountrySelector default value 1`] = `
     <option
       value="BRA"
     >
-      BRA
+      Brazil
     </option>
     <option
       value="USA"
     >
-      USA
+      United States of America
     </option>
   </select>
 </p>
@@ -47,12 +47,12 @@ exports[`CountrySelector should sort the select 1`] = `
     <option
       value="BRA"
     >
-      BRA
+      Brazil
     </option>
     <option
       value="USA"
     >
-      USA
+      United States of America
     </option>
   </select>
 </p>
@@ -76,12 +76,12 @@ exports[`CountrySelector show options 1`] = `
     <option
       value="BRA"
     >
-      BRA
+      Brazil
     </option>
     <option
       value="USA"
     >
-      USA
+      United States of America
     </option>
   </select>
 </p>

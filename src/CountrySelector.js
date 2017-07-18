@@ -18,13 +18,6 @@ class CountrySelector extends Component {
       state: { value: null },
       street: { value: null },
     })
-  };
-
-  addCountryTranslations(country) {
-    return {
-      value: country,
-      label: country, // TODO use translation function
-    }
   }
 
   sortOptionsByLabel(options) {
@@ -44,9 +37,7 @@ class CountrySelector extends Component {
         Input={Input}
         field={field}
         rules={{}}
-        options={this.sortOptionsByLabel(
-          shipsTo.map(this.addCountryTranslations)
-        )}
+        options={this.sortOptionsByLabel(shipsTo)}
         address={address}
         onChangeAddress={this.handleChangeCountry}
       />
