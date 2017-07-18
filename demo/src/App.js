@@ -1,37 +1,28 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import AddressContainer from '../../src/AddressContainer'
 import CountrySelector from '../../src/CountrySelector'
 import AddressForm from '../../src/AddressForm'
 import AddressSummary from '../../src/AddressSummary'
 import PostalCodeGetter from '../../src/PostalCodeGetter'
 import AutoCompletedFields from '../../src/AutoCompletedFields'
-import { DefaultInput, addValidation, removeValidation } from '../../src/index'
+
+import { addValidation, removeValidation } from '../../src/index'
+
+import DefaultInput from '../../src/addressInputs/Input'
+
 import GoogleMapsContainer from '../../src/geolocation/GoogleMapsContainer'
 import GeolocationInput from '../../src/geolocation/GeolocationInput'
 import Map from '../../src/geolocation/Map'
 
-const ACCOUNT_NAME = 'qamarketplace'
-const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
-const locale = 'pt'
+import { injectIntl, intlShape } from 'react-intl'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      shipsTo: [
-        'BRA',
-        'BOL',
-        'CHL',
-        'ECU',
-        'PER',
-        'ARG',
-        'COL',
-        'GTM',
-        'MEX',
-        'CAN',
-        'ESP',
-      ],
       address: addValidation({
         addressId: '10',
         addressType: 'residential',
@@ -49,11 +40,25 @@ class App extends Component {
         addressQuery: null,
       }),
       rules: {},
+      shipsTo: this.addCountryLabel(props.intl, props.shipsTo),
     }
   }
 
   componentDidMount() {
     this.loadCurrentCountryRules()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      shipsTo: this.addCountryLabel(nextProps.intl, nextProps.shipsTo),
+    })
+  }
+
+  addCountryLabel(intl, countries) {
+    return countries.map(countryCode => ({
+      label: intl.formatMessage({ id: 'country.' + countryCode }),
+      value: countryCode,
+    }))
   }
 
   loadCurrentCountryRules = () => {
@@ -98,7 +103,8 @@ class App extends Component {
   }
 
   render() {
-    const { shipsTo, address, rules } = this.state
+    const { address, rules, shipsTo } = this.state
+    const { accountName, googleMapsAPIKey, locale } = this.props
 
     const country = address.country.value
     const selectedRules = rules[country]
@@ -117,7 +123,7 @@ class App extends Component {
         </div>
         <div>
           <AddressContainer
-            accountName={ACCOUNT_NAME}
+            accountName={accountName}
             address={address}
             rules={selectedRules}
             onChangeAddress={this.handleAddressChange}
@@ -131,7 +137,7 @@ class App extends Component {
                   onChangeAddress={onChangeAddress}
                 />
 
-                <GoogleMapsContainer apiKey={API_KEY} locale={locale}>
+                <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
                   {({ loading, googleMaps }) =>
                     (<div>
                       <GeolocationInput
@@ -197,4 +203,12 @@ class App extends Component {
   }
 }
 
-export default App
+App.propTypes = {
+  intl: intlShape,
+  accountName: PropTypes.string.isRequired,
+  googleMapsAPIKey: PropTypes.string.isRequired,
+  locale: PropTypes.string.isRequired,
+  shipsTo: PropTypes.array.isRequired,
+}
+
+export default injectIntl(App)

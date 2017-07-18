@@ -5,15 +5,14 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      street
-    </label>
+    <label />
     <input
       className="input-xlarge"
       disabled={false}
       name="street"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -21,15 +20,14 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      number
-    </label>
+    <label />
     <input
       className="input-mini"
       disabled={false}
       name="number"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -37,15 +35,14 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input text"
   >
-    <label>
-      complement
-    </label>
+    <label />
     <input
       className="input-large"
       disabled={false}
       name="complement"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -53,15 +50,14 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      neighborhood
-    </label>
+    <label />
     <input
       className="input-large"
       disabled={false}
       name="neighborhood"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -69,15 +65,14 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      city
-    </label>
+    <label />
     <input
       className="input-large"
       disabled={false}
       name="city"
       onBlur={[Function]}
       onChange={[Function]}
+      placeholder={undefined}
       type="text"
       value=""
     />
@@ -85,9 +80,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      state
-    </label>
+    <label />
     <select
       className="input-mini"
       disabled={false}

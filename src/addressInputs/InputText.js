@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation
-  from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import cx from 'classnames'
 
 class InputText extends Component {
   handleChange = e => {
     this.props.onChange(e.target.value)
-  };
+  }
 
   render() {
-    const { address, field, disabled, inputRef } = this.props
+    const { address, field, disabled, inputRef, placeholder } = this.props
     const fieldValue = address[field.name]
 
     const className = cx(this.props.className, {
@@ -24,6 +23,7 @@ class InputText extends Component {
         type="text"
         name={field.name}
         value={fieldValue.value || ''}
+        placeholder={placeholder}
         onBlur={this.props.onBlur}
         onChange={this.handleChange}
         className={className}
@@ -42,6 +42,7 @@ InputText.defaultProps = {
 InputText.propTypes = {
   field: PropTypes.object.isRequired,
   className: PropTypes.string,
+  placeholder: PropTypes.string,
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
