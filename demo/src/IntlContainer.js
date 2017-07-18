@@ -112,21 +112,18 @@ class IntlContainer extends Component {
   }
 
   render() {
-    const { children } = this.props
+    const { locale, messages } = this.state
 
     return (
-      <IntlProvider
-        key={this.state.locale}
-        locale={this.state.locale}
-        messages={this.state.messages}
-      >
-        {children}
+      <IntlProvider key={locale} locale={locale} messages={messages}>
+        {this.props.children}
       </IntlProvider>
     )
   }
 }
 
 IntlContainer.propTypes = {
+  locale: PropTypes.string.isRequired,
   children: PropTypes.element,
 }
 

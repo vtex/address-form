@@ -5,7 +5,7 @@ import App from './App'
 
 const ACCOUNT_NAME = 'qamarketplace'
 const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
-const locale = 'pt'
+const locale = 'en'
 const shipsTo = [
   'BRA',
   'BOL',
@@ -23,7 +23,7 @@ const shipsTo = [
 class Container extends Component {
   render() {
     return (
-      <IntlContainer>
+      <IntlContainer locale={locale}>
         <Styles>
           <App
             accountName={ACCOUNT_NAME}
