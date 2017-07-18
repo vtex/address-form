@@ -4,6 +4,7 @@ import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import InputSelect from './InputSelect'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
+import InputError from './InputError'
 import PostalCodeLoader from '../postalCodeFrom/PostalCodeLoader'
 import { injectIntl, intlShape } from 'react-intl'
 
@@ -12,6 +13,7 @@ class Input extends Component {
     const { field, options, address, inputRef } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
+    const valid = address[field.name].valid
 
     if (field.name === 'postalCode') {
       return (
@@ -25,6 +27,9 @@ class Input extends Component {
             inputRef={inputRef}
           />
           {loading && <PostalCodeLoader />}
+          {valid === false
+            ? <InputError reason={address[field.name].reason} />
+            : null}
         </InputLabel>
       )
     }
@@ -48,6 +53,9 @@ class Input extends Component {
             inputRef={inputRef}
           />
           {loading && <PostalCodeLoader />}
+          {valid === false
+            ? <InputError reason={address[field.name].reason} />
+            : null}
         </InputLabel>
       )
     }
@@ -72,6 +80,9 @@ class Input extends Component {
             disabled={disabled}
             inputRef={inputRef}
             />}
+        {valid === false
+          ? <InputError reason={address[field.name].reason} />
+          : null}
       </InputLabel>
     )
   }
