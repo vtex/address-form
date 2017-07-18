@@ -8,7 +8,7 @@ describe('Geolocation Auto Complete Address', () => {
   it('should transform a Google address to a Checkout address', () => {
     const address = geolocationAutoCompleteAddress(
       postalCodeGoogleAddress,
-      usePostalCode.geolocation,
+      usePostalCode,
       usePostalCode.country
     )
 
@@ -18,7 +18,7 @@ describe('Geolocation Auto Complete Address', () => {
   it('should call handlers to fill postalCode', () => {
     const address = geolocationAutoCompleteAddress(
       oneLevelGoogleAddress,
-      useOneLevel.geolocation,
+      useOneLevel,
       useOneLevel.country
     )
 

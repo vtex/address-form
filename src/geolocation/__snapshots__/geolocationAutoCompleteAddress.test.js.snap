@@ -32,7 +32,7 @@ Object {
   },
   "postalCode": Object {
     "geolocationAutoCompleted": true,
-    "value": "22231",
+    "value": "22231000",
   },
   "state": Object {
     "geolocationAutoCompleted": true,

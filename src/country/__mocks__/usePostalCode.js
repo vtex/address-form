@@ -12,7 +12,8 @@ export default {
       mask: '99999-999',
       regex: '^([\\d]{5})\\-?([\\d]{3})$',
       postalCodeAPI: true,
-      forgottenURL: 'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
+      forgottenURL:
+        'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
       size: 'small',
     },
     {
@@ -53,6 +54,7 @@ export default {
         { value: 'AC', label: 'Acre' },
         { value: 'AL', label: 'Alagoas' },
         { value: 'AP', label: 'Amapá' },
+        { value: 'RJ', label: 'Rio de Janeiro' },
       ],
       size: 'mini',
     },

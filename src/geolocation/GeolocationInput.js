@@ -65,13 +65,13 @@ class GeolocationInput extends Component {
   }
 
   handlePlaceChanged = googleAddress => {
-    this.props.onChangeAddress(
-      geolocationAutoCompleteAddress(
-        googleAddress,
-        this.props.rules.geolocation,
-        this.props.rules.country
-      )
+    const address = geolocationAutoCompleteAddress(
+      googleAddress,
+      this.props.rules,
+      this.props.rules.country
     )
+
+    this.props.onChangeAddress(address)
   }
 
   handleChangeInput = value => {

@@ -25,12 +25,13 @@ export default {
     },
     { long_name: 'Brasil', short_name: 'BR', types: ['country', 'political'] },
     {
-      long_name: '22231',
-      short_name: '22231',
+      long_name: '22231000',
+      short_name: '22231000',
       types: ['postal_code_prefix', 'postal_code'],
     },
   ],
-  formatted_address: 'R. Barão de Itambí, 55 - Botafogo, Rio de Janeiro - RJ, Brasil',
+  formatted_address:
+    'R. Barão de Itambí, 55 - Botafogo, Rio de Janeiro - RJ, Brasil',
   geometry: {
     location: { lat: -22.941129, lng: -43.18075109999995 },
     viewport: {
