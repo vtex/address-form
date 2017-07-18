@@ -1,19 +1,20 @@
 module.exports = {
-  type: "react-component",
+  type: 'react-component',
   devServer: {
-    host: "qamarketplace.vtexlocal.com.br",
+    host: 'qamarketplace.vtexlocal.com.br',
     proxy: {
-      "*": "http://qamarketplace.vtexcommercestable.com.br:80"
-    }
+      '*': 'http://qamarketplace.vtexcommercestable.com.br:80',
+    },
   },
-  testFiles: ["**/__mock__/**", "*.spec.js", "*.test.js", "*-test.js"],
+  testFiles: ['**/__mock__/**', '*.spec.js', '*.test.js', '*-test.js'],
   npm: {
     esModules: true,
     umd: {
-      global: "AddressForm",
+      global: 'AddressForm',
       externals: {
-        react: "React"
-      }
-    }
-  }
-};
+        react: 'React',
+        'prop-types': 'PropTypes',
+      },
+    },
+  },
+}

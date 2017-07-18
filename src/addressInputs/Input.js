@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation
-  from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import InputSelect from './InputSelect'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
@@ -57,7 +56,7 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={disabled}
             inputRef={inputRef}
-          />
+            />
           : <InputText
             field={field}
             address={address}
@@ -65,14 +64,14 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={disabled}
             inputRef={inputRef}
-          />}
+            />}
       </InputLabel>
     )
   }
 }
 
 Input.defaultProps = {
-  inputRef: () => { },
+  inputRef: () => {},
 }
 
 Input.propTypes = {
