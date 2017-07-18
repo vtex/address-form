@@ -46,6 +46,7 @@ export default {
       label: 'province',
       required: true,
       size: 'large',
+      level: 1,
       options: getOneLevel(countryData),
     },
     {
@@ -54,6 +55,7 @@ export default {
       required: true,
       size: 'large',
       basedOn: 'state',
+      level: 2,
       optionsMap: getTwoLevels(countryData),
     },
   ],
