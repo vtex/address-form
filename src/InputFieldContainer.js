@@ -62,6 +62,29 @@ class InputFieldContainer extends Component {
     }
   }
 
+  inputRef = el => {
+    this.el = el
+  }
+
+  componentDidUpdate() {
+    this.addFocusIfNeeded()
+  }
+
+  addFocusIfNeeded() {
+    const { address, field, onChangeAddress } = this.props
+
+    const fieldValue = address[field.name]
+    if (this.el && fieldValue.focus) {
+      this.el.focus()
+      onChangeAddress({
+        [field.name]: {
+          ...fieldValue,
+          focus: undefined,
+        },
+      })
+    }
+  }
+
   render() {
     const { Input, field, address, options, rules } = this.props
 
@@ -78,6 +101,7 @@ class InputFieldContainer extends Component {
         address={address}
         onChange={this.bindOnChange(field)}
         onBlur={this.bindOnBlur(field)}
+        inputRef={this.inputRef}
       />
     )
   }

@@ -123,9 +123,6 @@ export function maskFields(rules, addressFields) {
 }
 
 export function addFocusToNextInvalidField(fields, rules) {
-  const requiredFields = filter(rules.fields, field => field.required)
-  const requiredFieldsNames = map(requiredFields, field => field.name)
-
   const allFieldsVisited = addNewField(fields, 'visited', true)
   const validatedFields = validateChangedFields(
     allFieldsVisited,
@@ -144,10 +141,12 @@ export function addFocusToNextInvalidField(fields, rules) {
       [firstInvalidFieldName]: {
         ...validatedFields[firstInvalidFieldName],
         focus: true,
-        visited: undefined,
       },
     }
   }
+
+  const requiredFields = filter(rules.fields, field => field.required)
+  const requiredFieldsNames = map(requiredFields, field => field.name)
 
   const fieldsNames = Object.keys(fields)
   const requiredFieldNotFilled = difference(requiredFieldsNames, fieldsNames)
