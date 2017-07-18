@@ -4,9 +4,7 @@ exports[`CountrySelector default value 1`] = `
 <p
   className="input text"
 >
-  <label>
-    country
-  </label>
+  <label />
   <select
     className=""
     disabled={false}
@@ -33,9 +31,7 @@ exports[`CountrySelector should sort the select 1`] = `
 <p
   className="input text"
 >
-  <label>
-    country
-  </label>
+  <label />
   <select
     className=""
     disabled={false}
@@ -62,9 +58,7 @@ exports[`CountrySelector show options 1`] = `
 <p
   className="input text"
 >
-  <label>
-    country
-  </label>
+  <label />
   <select
     className=""
     disabled={false}

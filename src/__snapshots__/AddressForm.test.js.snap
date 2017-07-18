@@ -5,9 +5,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      street
-    </label>
+    <label />
     <input
       className="input-xlarge"
       disabled={false}
@@ -22,9 +20,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      number
-    </label>
+    <label />
     <input
       className="input-mini"
       disabled={false}
@@ -39,9 +35,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input text"
   >
-    <label>
-      complement
-    </label>
+    <label />
     <input
       className="input-large"
       disabled={false}
@@ -56,9 +50,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      neighborhood
-    </label>
+    <label />
     <input
       className="input-large"
       disabled={false}
@@ -73,9 +65,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      city
-    </label>
+    <label />
     <input
       className="input-large"
       disabled={false}
@@ -90,9 +80,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
   <p
     className="input required text"
   >
-    <label>
-      state
-    </label>
+    <label />
     <select
       className="input-mini"
       disabled={false}

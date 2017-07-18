@@ -5,6 +5,7 @@ import InputSelect from './InputSelect'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
 import PostalCodeLoader from '../postalCodeFrom/PostalCodeLoader'
+import { injectIntl, intlShape } from 'react-intl'
 
 class Input extends Component {
   render() {
@@ -35,6 +36,12 @@ class Input extends Component {
             field={field}
             className={loading ? 'loading-postal-code' : null}
             address={address}
+            placeholder={this.props.intl.formatMessage({
+              id: `address-form.geolocation.example.${address.country.value}`,
+              defaultMessage: this.props.intl.formatMessage({
+                id: 'address-form.geolocation.example.UNI',
+              }),
+            })}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading}
@@ -81,6 +88,7 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   inputRef: PropTypes.func,
+  intl: intlShape,
 }
 
-export default Input
+export default injectIntl(Input)

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import { injectIntl, intlShape } from 'react-intl'
 
 class InputLabel extends Component {
   render() {
-    const { field, children } = this.props
+    const { field, children, intl } = this.props
 
     const className = cx('input', {
       required: field.required,
@@ -14,7 +15,8 @@ class InputLabel extends Component {
     return (
       <p className={className}>
         <label>
-          {field.fixedLabel || field.label}
+          {field.fixedLabel ||
+            intl.formatMessage({ id: `address-form.field.${field.label}` })}
         </label>
         {children}
       </p>
@@ -25,6 +27,7 @@ class InputLabel extends Component {
 InputLabel.propTypes = {
   field: PropTypes.object,
   children: PropTypes.node.isRequired,
+  intl: intlShape,
 }
 
-export default InputLabel
+export default injectIntl(InputLabel)
