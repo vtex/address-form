@@ -5,6 +5,7 @@ import {
   addDisabledToProtectedFields,
   handleMultipleValues,
   maskFields,
+  addFocusToNextInvalidField,
 } from './address'
 import address from '../__mocks__/newAddress'
 import addressWithoutValidation from '../__mocks__/addressWithoutValidation'
@@ -148,6 +149,73 @@ describe('Address Transform', () => {
       }
 
       expect(() => maskFields(rules, fields)).not.toThrow()
+    })
+  })
+
+  describe('addFocusToNextInvalidField()', () => {
+    it('should add property focus to the next invalid field', () => {
+      const fields = {
+        street: { value: 'Praia de Botafogo' },
+        number: { value: '300' },
+      }
+
+      const rules = {
+        fields: [
+          { name: 'street' },
+          { name: 'number' },
+          { name: 'state', required: true },
+        ],
+      }
+
+      const newFields = addFocusToNextInvalidField(fields, rules)
+
+      expect(newFields.state).not.toBeUndefined()
+      expect(newFields.state.focus).toBe(true)
+    })
+
+    it("should not add a thing if there's no required field left to fill", () => {
+      const fields = {
+        street: { value: 'Praia de Botafogo' },
+        number: { value: '300' },
+        state: { value: 'RJ' },
+      }
+
+      const rules = {
+        fields: [
+          { name: 'street' },
+          { name: 'number' },
+          { name: 'state', required: true },
+        ],
+      }
+
+      const newFields = addFocusToNextInvalidField(fields, rules)
+
+      expect(newFields).toBe(fields)
+    })
+
+    it('should add focus if field is filled but is invalid', () => {
+      const fields = {
+        postalCode: { value: '22231' },
+        number: { value: '300' },
+        state: { value: 'RJ' },
+      }
+
+      const rules = {
+        fields: [
+          {
+            name: 'postalCode',
+            required: true,
+            regex: '^([\\d]{5})\\-?([\\d]{3})$',
+          },
+          { name: 'number' },
+          { name: 'state' },
+        ],
+      }
+
+      const newFields = addFocusToNextInvalidField(fields, rules)
+
+      expect(newFields.postalCode.valid).toBe(false)
+      expect(newFields.postalCode.focus).toBe(true)
     })
   })
 })
