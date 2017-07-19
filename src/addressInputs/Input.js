@@ -10,7 +10,7 @@ import { injectIntl, intlShape } from 'react-intl'
 
 class Input extends Component {
   render() {
-    const { field, options, address, inputRef } = this.props
+    const { field, options, address, inputRef, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
     const valid = address[field.name].valid
@@ -41,9 +41,9 @@ class Input extends Component {
             field={field}
             className={loading ? 'loading-postal-code' : null}
             address={address}
-            placeholder={this.props.intl.formatMessage({
+            placeholder={intl.formatMessage({
               id: `address-form.geolocation.example.${address.country.value}`,
-              defaultMessage: this.props.intl.formatMessage({
+              defaultMessage: intl.formatMessage({
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
@@ -76,6 +76,11 @@ class Input extends Component {
             field={field}
             address={address}
             onChange={this.props.onChange}
+            placeholder={
+                field.required !== true
+                  ? intl.formatMessage({ id: 'address-form.optional' })
+                  : null
+              }
             onBlur={this.props.onBlur}
             disabled={disabled}
             inputRef={inputRef}
