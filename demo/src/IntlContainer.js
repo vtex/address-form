@@ -1,24 +1,34 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { IntlProvider, addLocaleData } from 'react-intl'
-import ptLocale from 'react-intl/locale-data/pt'
-import translation from '../../src/locales/pt.json'
 import reduce from 'lodash/reduce'
 import { getISOAlpha3 } from './countryISO'
 
-addLocaleData(ptLocale)
+import enLocaleData from 'react-intl/locale-data/en'
+import enAdressFormTranslations from '../../src/locales/en.json'
+import enCountryCodeTranslations from 'i18n-iso-countries/langs/en.json'
+
+addLocaleData(enLocaleData)
 
 class IntlContainer extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      locale: 'pt-BR',
-      messages: translation,
+      locale: 'en',
+      messages: {
+        ...enAdressFormTranslations,
+        ...this.addCountryCodeNameSpace(enCountryCodeTranslations),
+      },
     }
   }
 
   componentDidMount() {
-    this.handleLocaleChange({}, this.state.locale)
+    this.handleLocaleChange({}, this.props.locale)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.handleLocaleChange({}, nextProps.locale)
   }
 
   getBaseLocale(locale) {
@@ -70,15 +80,18 @@ class IntlContainer extends Component {
 
   importCountryCodeTranslations(baseLocale, locale) {
     return import(`i18n-iso-countries/langs/${baseLocale}.json`).then(
-      translations =>
-        reduce(
-          translations,
-          (acc, value, key) => {
-            acc[`country.${getISOAlpha3(key)}`] = value
-            return acc
-          },
-          {}
-        )
+      this.addCountryCodeNameSpace
+    )
+  }
+
+  addCountryCodeNameSpace(obj) {
+    return reduce(
+      obj,
+      (acc, value, key) => {
+        acc[`country.${getISOAlpha3(key)}`] = value
+        return acc
+      },
+      {}
     )
   }
 
@@ -99,21 +112,18 @@ class IntlContainer extends Component {
   }
 
   render() {
-    const { children } = this.props
+    const { locale, messages } = this.state
 
     return (
-      <IntlProvider
-        key={this.state.locale}
-        locale={this.state.locale}
-        messages={this.state.messages}
-      >
-        {children}
+      <IntlProvider key={locale} locale={locale} messages={messages}>
+        {this.props.children}
       </IntlProvider>
     )
   }
 }
 
 IntlContainer.propTypes = {
+  locale: PropTypes.string.isRequired,
   children: PropTypes.element,
 }
 
