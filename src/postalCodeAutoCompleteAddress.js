@@ -5,6 +5,7 @@ import {
   addDisabledToProtectedFields,
   handleMultipleValues,
   maskFields,
+  addFocusToNextInvalidField,
 } from './transforms/address'
 import flow from 'lodash/flow'
 import pickBy from 'lodash/pickBy'
@@ -32,6 +33,7 @@ export default function postalCodeAutoCompleteAddress(
       fields => addNewField(fields, 'postalCodeAutoCompleted', true),
       fields => addDisabledToProtectedFields(fields, rules),
       removePostalCodeLoading,
+      fields => addFocusToNextInvalidField(fields, rules),
     ])(responseAddress)
 
     callback(autoCompletedFields)

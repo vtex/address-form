@@ -1,5 +1,10 @@
 import reduce from 'lodash/reduce'
+import filter from 'lodash/filter'
+import map from 'lodash/map'
+import difference from 'lodash/difference'
+import findKey from 'lodash/findKey'
 import { getField } from '../selectors/fields'
+import { validateChangedFields } from '../validateAddress'
 import msk from 'msk'
 
 export function addValidation(address) {
@@ -115,4 +120,45 @@ export function maskFields(rules, addressFields) {
     },
     {}
   )
+}
+
+export function addFocusToNextInvalidField(fields, rules) {
+  const allFieldsVisited = addNewField(fields, 'visited', true)
+  const validatedFields = validateChangedFields(
+    allFieldsVisited,
+    allFieldsVisited,
+    rules
+  )
+
+  const firstInvalidFieldName = findKey(
+    validatedFields,
+    field => field.valid === false
+  )
+
+  if (firstInvalidFieldName) {
+    return {
+      ...fields,
+      [firstInvalidFieldName]: {
+        ...validatedFields[firstInvalidFieldName],
+        focus: true,
+      },
+    }
+  }
+
+  const requiredFields = filter(rules.fields, field => field.required)
+  const requiredFieldsNames = map(requiredFields, field => field.name)
+
+  const fieldsNames = Object.keys(fields)
+  const requiredFieldNotFilled = difference(requiredFieldsNames, fieldsNames)
+
+  if (requiredFieldNotFilled && requiredFieldNotFilled.length > 0) {
+    const nextRequiredFieldName = requiredFieldNotFilled[0]
+
+    return {
+      ...fields,
+      [nextRequiredFieldName]: { focus: true },
+    }
+  }
+
+  return fields
 }

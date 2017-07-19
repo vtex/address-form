@@ -117,7 +117,7 @@ class Map extends Component {
         const googleAddress = results[0]
         const address = geolocationAutoCompleteAddress(
           googleAddress,
-          rules.geolocation,
+          rules,
           rules.country
         )
         const possibleChangedFields = {

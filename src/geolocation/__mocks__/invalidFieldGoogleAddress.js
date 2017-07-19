@@ -25,8 +25,8 @@ export default {
     },
     { long_name: 'Brasil', short_name: 'BR', types: ['country', 'political'] },
     {
-      long_name: '22231000',
-      short_name: '22231000',
+      long_name: '22231',
+      short_name: '22231',
       types: ['postal_code_prefix', 'postal_code'],
     },
   ],

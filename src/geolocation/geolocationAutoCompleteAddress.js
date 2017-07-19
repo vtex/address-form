@@ -4,13 +4,15 @@ import reduce from 'lodash/reduce'
 import map from 'lodash/map'
 import getCountryISO2 from '../countryISOMap'
 import flow from 'lodash/flow'
-import { addNewField } from '../transforms/address'
+import { addNewField, addFocusToNextInvalidField } from '../transforms/address'
 
 export default function geolocationAutoCompleteAddress(
   googleAddress,
-  geolocationRules,
+  rules,
   fallbackCountry
 ) {
+  const geolocationRules = rules.geolocation
+
   const address = flow([
     setAddressFields,
     runGeolocationFieldHandlers,
@@ -18,6 +20,7 @@ export default function geolocationAutoCompleteAddress(
     setCountry,
     setAddressQuery,
     address => addNewField(address, 'geolocationAutoCompleted', true),
+    address => addFocusToNextInvalidField(address, rules),
   ])()
 
   // The functions below use googleAddress and geolocationRules

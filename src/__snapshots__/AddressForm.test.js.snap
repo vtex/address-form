@@ -110,6 +110,11 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       >
         Amapá
       </option>
+      <option
+        value="RJ"
+      >
+        Rio de Janeiro
+      </option>
     </select>
   </p>
 </div>
