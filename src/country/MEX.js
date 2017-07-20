@@ -13,7 +13,8 @@ export default {
       mask: '99999',
       regex: '^\\d{5}$',
       postalCodeAPI: true,
-      forgottenURL: 'http://www.sepomex.gob.mx/servicioslinea/paginas/ccpostales.aspx',
+      forgottenURL:
+        'http://www.sepomex.gob.mx/servicioslinea/paginas/ccpostales.aspx',
       size: 'small',
     },
     {

@@ -13,7 +13,8 @@ export default {
       mask: 'A9A 9A9',
       regex: '^[A-z][0-9][A-z]\\ ?[0-9][A-z][0-9]$',
       postalCodeAPI: true,
-      forgottenURL: 'https://www.canadapost.ca/cpo/mc/personal/postalcode/fpc.jsf',
+      forgottenURL:
+        'https://www.canadapost.ca/cpo/mc/personal/postalcode/fpc.jsf',
       size: 'small',
     },
     {
