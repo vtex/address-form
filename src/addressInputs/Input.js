@@ -77,7 +77,7 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             placeholder={
-                field.required !== true
+                !field.hidden && !field.required
                   ? intl.formatMessage({ id: 'address-form.optional' })
                   : null
               }
