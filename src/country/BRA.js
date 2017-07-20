@@ -7,13 +7,20 @@ export default {
   postalCodeProtectedFields: ['state', 'city'],
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       fixedLabel: 'CEP',
       required: true,
       mask: '99999-999',
       regex: '^([\\d]{5})\\-?([\\d]{3})$',
       postalCodeAPI: true,
-      forgottenURL: 'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
+      forgottenURL:
+        'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
       size: 'small',
     },
     {
@@ -37,6 +44,12 @@ export default {
       name: 'neighborhood',
       label: 'neighborhood',
       required: true,
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
       size: 'large',
     },
     {
@@ -80,6 +93,12 @@ export default {
         { value: 'SE', label: 'Sergipe' },
         { value: 'TO', label: 'Tocantins' },
       ],
+    },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
     },
   ],
   geolocation: {

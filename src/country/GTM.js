@@ -585,6 +585,18 @@ export default {
   secondLevelPostalCodes: secondLevelPostalCodes(countryData),
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
+      hidden: true,
+      name: 'postalCode',
+      label: 'postalCode',
+      size: 'small',
+    },
+    {
       name: 'state',
       label: 'department',
       required: true,
@@ -602,14 +614,48 @@ export default {
       optionsMap: getTwoLevels(countryData),
     },
     {
+      hidden: true,
+      name: 'neighborhood',
+      label: 'neighborhood',
+      size: 'large',
+    },
+    {
       name: 'street',
       label: 'street',
       required: true,
       size: 'xlarge',
     },
+    {
+      hidden: true,
+      name: 'number',
+      label: 'number',
+      size: 'small',
+    },
+    {
+      hidden: true,
+      name: 'complement',
+      label: 'complement',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
+      size: 'large',
+    },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
-    postalCode: { valueIn: 'long_name', types: ['postal_code'], required: true },
+    postalCode: {
+      valueIn: 'long_name',
+      types: ['postal_code'],
+      required: true,
+    },
     number: { valueIn: 'long_name', types: ['street_number'], required: false },
     street: { valueIn: 'long_name', types: ['route'], required: false },
     neighborhood: {

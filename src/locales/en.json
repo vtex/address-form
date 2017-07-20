@@ -52,5 +52,6 @@
   "address-form.field.municipality": "Municipality",
   "address-form.field.delegation": "Delegation",
   "address-form.field.municipalityDelegation": "Municipality/Delegation",
-  "address-form.field.province": "Province"
+  "address-form.field.province": "Province",
+  "address-form.field.receiverName": "Receiver"
 }

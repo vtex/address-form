@@ -7,13 +7,20 @@ export default {
   postalCodeProtectedFields: ['state', 'city'],
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       label: 'postalCode',
       required: true,
       mask: '99999',
       regex: '^\\d{5}$',
       postalCodeAPI: true,
-      forgottenURL: 'http://www.sepomex.gob.mx/servicioslinea/paginas/ccpostales.aspx',
+      forgottenURL:
+        'http://www.sepomex.gob.mx/servicioslinea/paginas/ccpostales.aspx',
       size: 'small',
     },
     {
@@ -31,6 +38,12 @@ export default {
     {
       name: 'complement',
       label: 'interiorNumber',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
       size: 'large',
     },
     {
@@ -84,6 +97,12 @@ export default {
         'Yucatán',
         'Zacatecas',
       ],
+    },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
     },
   ],
   geolocation: {

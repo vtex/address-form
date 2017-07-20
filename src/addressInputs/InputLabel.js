@@ -9,6 +9,7 @@ class InputLabel extends Component {
 
     const className = cx('input', {
       required: field.required,
+      hide: field.hidden,
       text: true, // That's a bug in the Checkout's CSS
     })
 

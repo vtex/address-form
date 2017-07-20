@@ -7,13 +7,20 @@ export default {
   postalCodeProtectedFields: ['state'],
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       label: 'postalCode',
       required: true,
       mask: '99999',
       regex: /^\d{5}$/,
       postalCodeAPI: true,
-      forgottenURL: 'http://www.correos.es/ss/Satellite/site/Aplicacion_C-1349167812778-1363184049882/includeTemplate=COR_Aplicacion-sidioma=es_ES',
+      forgottenURL:
+        'http://www.correos.es/ss/Satellite/site/Aplicacion_C-1349167812778-1363184049882/includeTemplate=COR_Aplicacion-sidioma=es_ES',
       size: 'small',
     },
     {
@@ -31,6 +38,18 @@ export default {
     {
       name: 'complement',
       label: 'floorAndLetter',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'neighborhood',
+      label: 'neighborhood',
       size: 'large',
     },
     {
@@ -99,6 +118,12 @@ export default {
         'Melilla',
       ],
       size: 'large',
+    },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
     },
   ],
   geolocation: {

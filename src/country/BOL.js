@@ -405,6 +405,18 @@ export default {
   thirdLevelPostalCodes: thirdLevelPostalCodes(countryData),
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
+      hidden: true,
+      name: 'postalCode',
+      label: 'postalCode',
+      size: 'small',
+    },
+    {
       name: 'street',
       label: 'street',
       required: true,
@@ -419,6 +431,12 @@ export default {
     {
       name: 'complement',
       label: 'complement',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
       size: 'large',
     },
     {
@@ -445,6 +463,12 @@ export default {
       level: 3,
       basedOn: 'city',
       optionsMap: getThreeLevels(countryData),
+    },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
     },
   ],
   geolocation: {

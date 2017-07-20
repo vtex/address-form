@@ -52,5 +52,6 @@
   "address-form.field.municipality": "Municipi",
   "address-form.field.delegation": "Delegació",
   "address-form.field.municipalityDelegation": "Delegació municipal",
-  "address-form.field.province": "Província"
+  "address-form.field.province": "Província",
+  "address-form.field.receiverName": "Destinatari"
 }

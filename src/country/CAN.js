@@ -7,13 +7,20 @@ export default {
   postalCodeProtectedFields: ['state', 'city'],
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       label: 'postalCode',
       required: true,
       mask: 'A9A 9A9',
       regex: '^[A-z][0-9][A-z]\\ ?[0-9][A-z][0-9]$',
       postalCodeAPI: true,
-      forgottenURL: 'https://www.canadapost.ca/cpo/mc/personal/postalcode/fpc.jsf',
+      forgottenURL:
+        'https://www.canadapost.ca/cpo/mc/personal/postalcode/fpc.jsf',
       size: 'small',
     },
     {
@@ -28,10 +35,22 @@ export default {
       size: 'xlarge',
     },
     {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
+      size: 'large',
+    },
+    {
       name: 'number',
       label: 'number',
       visible: false,
       defaultValue: 'N/A',
+    },
+    {
+      hidden: true,
+      name: 'neighborhood',
+      label: 'neighborhood',
+      size: 'large',
     },
     {
       name: 'city',
@@ -59,6 +78,12 @@ export default {
         { label: 'Saskatchewan', value: 'SK' },
         { label: 'Yukon', value: 'YK' },
       ],
+    },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
     },
   ],
   geolocation: {

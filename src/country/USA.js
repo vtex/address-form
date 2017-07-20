@@ -6,6 +6,12 @@ export default {
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       fixedLabel: 'ZIP',
       required: true,
@@ -24,6 +30,18 @@ export default {
       name: 'complement',
       label: 'addressLine2',
       size: 'xlarge',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'neighborhood',
+      label: 'neighborhood',
+      size: 'large',
     },
     {
       name: 'city',
@@ -96,6 +114,12 @@ export default {
       label: 'number',
       visible: false,
       defaultValue: 'N/A',
+    },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
     },
   ],
   geolocation: {
