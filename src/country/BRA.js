@@ -7,6 +7,12 @@ export default {
   postalCodeProtectedFields: ['state', 'city'],
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       fixedLabel: 'CEP',
       required: true,
@@ -38,6 +44,12 @@ export default {
       name: 'neighborhood',
       label: 'neighborhood',
       required: true,
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
       size: 'large',
     },
     {

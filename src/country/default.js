@@ -6,6 +6,12 @@ export default {
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       label: 'postalCode',
       size: 'small',
@@ -17,9 +23,27 @@ export default {
       size: 'xlarge',
     },
     {
+      hidden: true,
+      name: 'number',
+      label: 'number',
+      size: 'small',
+    },
+    {
       name: 'complement',
       label: 'addressLine2',
       size: 'xlarge',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'neighborhood',
+      label: 'neighborhood',
+      size: 'large',
     },
     {
       name: 'city',

@@ -7,6 +7,12 @@ export default {
   postalCodeProtectedFields: ['state'],
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       label: 'postalCode',
       required: true,
@@ -32,6 +38,18 @@ export default {
     {
       name: 'complement',
       label: 'floorAndLetter',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'neighborhood',
+      label: 'neighborhood',
       size: 'large',
     },
     {

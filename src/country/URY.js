@@ -340,6 +340,12 @@ export default {
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
       name: 'postalCode',
       label: 'postalCode',
       required: true,
@@ -367,6 +373,12 @@ export default {
       size: 'large',
     },
     {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
+      size: 'large',
+    },
+    {
       name: 'state',
       label: 'department',
       required: true,
@@ -382,6 +394,12 @@ export default {
       level: 2,
       basedOn: 'state',
       optionsMap: getTwoLevels(countryData),
+    },
+    {
+      hidden: true,
+      name: 'neighborhood',
+      label: 'neighborhood',
+      size: 'large',
     },
     {
       name: 'receiverName',

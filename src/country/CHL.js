@@ -388,6 +388,18 @@ export default {
   secondLevelPostalCodes: secondLevelPostalCodes(countryData),
   fields: [
     {
+      hidden: true,
+      name: 'country',
+      label: 'country',
+      size: 'medium',
+    },
+    {
+      hidden: true,
+      name: 'postalCode',
+      label: 'postalCode',
+      size: 'large',
+    },
+    {
       name: 'street',
       label: 'street',
       required: true,
@@ -402,6 +414,12 @@ export default {
     {
       name: 'complement',
       label: 'complement',
+      size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      label: 'reference',
       size: 'large',
     },
     {
@@ -420,6 +438,12 @@ export default {
       level: 2,
       basedOn: 'state',
       optionsMap: getTwoLevels(countryData),
+    },
+    {
+      hidden: true,
+      name: 'city',
+      label: 'city',
+      size: 'large',
     },
     {
       name: 'receiverName',
