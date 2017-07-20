@@ -246,6 +246,12 @@ export default {
       required: true,
       size: 'large',
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {

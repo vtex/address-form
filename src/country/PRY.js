@@ -374,6 +374,12 @@ export default {
       basedOn: 'state',
       optionsMap: getTwoLevels(countryData),
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {

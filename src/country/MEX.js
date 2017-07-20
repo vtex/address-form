@@ -86,6 +86,12 @@ export default {
         'Zacatecas',
       ],
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {

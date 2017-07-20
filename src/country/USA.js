@@ -97,6 +97,12 @@ export default {
       visible: false,
       defaultValue: 'N/A',
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {

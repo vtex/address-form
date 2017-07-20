@@ -82,6 +82,12 @@ export default {
         { value: 'TO', label: 'Tocantins' },
       ],
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {

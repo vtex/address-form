@@ -61,6 +61,12 @@ export default {
         { label: 'Yukon', value: 'YK' },
       ],
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {
