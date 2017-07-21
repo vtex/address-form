@@ -48,7 +48,7 @@ class AutoCompletedFields extends Component {
             addressId: '',
             addressType: 'residential',
             postalCode: '',
-            country: '',
+            country: null,
           }}
           rules={rules}
         >
