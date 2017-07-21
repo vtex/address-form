@@ -118,7 +118,7 @@ describe('Address Transform', () => {
         postalCode: { value: '123456' },
       }
 
-      const result = maskFields(rules, fields)
+      const result = maskFields(fields, rules)
 
       expect(result.postalCode.value).toBe('1.23.456')
     })
@@ -127,7 +127,7 @@ describe('Address Transform', () => {
       const fields = {
         neighborhood: { value: 'Botafogo' },
       }
-      expect(() => maskFields(rules, fields)).not.toThrow()
+      expect(() => maskFields(fields, rules)).not.toThrow()
     })
 
     it('should not mask fields that have no mask', () => {
@@ -137,7 +137,7 @@ describe('Address Transform', () => {
         neighborhood: { value },
       }
 
-      const result = maskFields(rules, fields)
+      const result = maskFields(fields, rules)
 
       expect(result.neighborhood.value).toBe(value)
     })
@@ -148,7 +148,7 @@ describe('Address Transform', () => {
         neighborhood: {},
       }
 
-      expect(() => maskFields(rules, fields)).not.toThrow()
+      expect(() => maskFields(fields, rules)).not.toThrow()
     })
   })
 

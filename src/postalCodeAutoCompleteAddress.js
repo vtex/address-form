@@ -29,7 +29,7 @@ export default function postalCodeAutoCompleteAddress(
         ),
       fields => addValidation(fields, address),
       fields => handleMultipleValues(fields),
-      fields => maskFields(rules, fields),
+      fields => maskFields(fields, rules),
       fields => addNewField(fields, 'postalCodeAutoCompleted', true),
       fields => addDisabledToProtectedFields(fields, rules),
       removePostalCodeLoading,
