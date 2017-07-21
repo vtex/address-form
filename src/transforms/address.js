@@ -2,7 +2,8 @@ import reduce from 'lodash/reduce'
 import filter from 'lodash/filter'
 import map from 'lodash/map'
 import difference from 'lodash/difference'
-import findKey from 'lodash/findKey'
+import find from 'lodash/find'
+import findIndex from 'lodash/findIndex'
 import { getField } from '../selectors/fields'
 import { validateChangedFields } from '../validateAddress'
 import msk from 'msk'
@@ -123,6 +124,32 @@ export function maskFields(addressFields, rules) {
 }
 
 export function addFocusToNextInvalidField(fields, rules) {
+  const invalidFilledField = getFirstInvalidFilledField(fields, rules)
+
+  if (invalidFilledField) {
+    const { fieldName, field } = invalidFilledField
+
+    return {
+      ...fields,
+      [fieldName]: field,
+    }
+  }
+
+  const requiredField = getFirstRequiredFieldNotFilled(fields, rules)
+
+  if (requiredField) {
+    const { fieldName, field } = requiredField
+
+    return {
+      ...fields,
+      [fieldName]: field,
+    }
+  }
+
+  return fields
+}
+
+function getFirstInvalidFilledField(fields, rules) {
   const allFieldsVisited = addNewField(fields, 'visited', true)
   const validatedFields = validateChangedFields(
     allFieldsVisited,
@@ -130,21 +157,44 @@ export function addFocusToNextInvalidField(fields, rules) {
     rules
   )
 
-  const firstInvalidFieldName = findKey(
-    validatedFields,
-    field => field.valid === false
+  const orderedValidatedFields = orderFieldsByRules(validatedFields, rules)
+
+  const firstInvalidField = find(
+    orderedValidatedFields,
+    field => field && field.valid === false
   )
 
-  if (firstInvalidFieldName) {
+  if (firstInvalidField) {
     return {
-      ...fields,
-      [firstInvalidFieldName]: {
-        ...validatedFields[firstInvalidFieldName],
+      fieldName: firstInvalidField.name,
+      field: {
+        ...validatedFields[firstInvalidField.name],
         focus: true,
       },
     }
   }
 
+  return null
+}
+
+function orderFieldsByRules(fields, rules) {
+  return reduce(
+    fields,
+    (acc, field, fieldName) => {
+      const index = findIndex(
+        rules.fields,
+        ruleField => ruleField.name === fieldName
+      )
+      if (index === -1) return acc
+
+      acc[index] = { ...field, name: fieldName }
+      return acc
+    },
+    Array(Object.keys(fields).length)
+  )
+}
+
+function getFirstRequiredFieldNotFilled(fields, rules) {
   const requiredFields = filter(rules.fields, field => field.required)
   const requiredFieldsNames = map(requiredFields, field => field.name)
 
@@ -154,11 +204,8 @@ export function addFocusToNextInvalidField(fields, rules) {
   if (requiredFieldNotFilled && requiredFieldNotFilled.length > 0) {
     const nextRequiredFieldName = requiredFieldNotFilled[0]
 
-    return {
-      ...fields,
-      [nextRequiredFieldName]: { focus: true },
-    }
+    return { fieldName: nextRequiredFieldName, field: { focus: true } }
   }
 
-  return fields
+  return null
 }
