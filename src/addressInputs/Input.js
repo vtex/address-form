@@ -27,6 +27,12 @@ class Input extends Component {
             inputRef={inputRef}
           />
           {loading && <PostalCodeLoader />}
+          {field.forgottenURL &&
+            <small>
+              <a href={field.forgottenURL} target="_blank">
+                {intl.formatMessage({ id: 'address-form.dontKnowPostalCode' })}
+              </a>
+            </small>}
           {valid === false
             ? <InputError reason={address[field.name].reason} />
             : null}
