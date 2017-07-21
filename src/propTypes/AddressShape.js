@@ -11,7 +11,7 @@ export const Address = {
   ]).isRequired,
   city: PropTypes.string,
   complement: PropTypes.string,
-  country: CountryType.isRequired,
+  country: CountryType,
   geoCoordinates: PropTypes.array,
   neighborhood: PropTypes.string,
   number: PropTypes.string,

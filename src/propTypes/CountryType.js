@@ -4,7 +4,7 @@ export default function(props, propName, componentName) {
     return null
   }
 
-  if (!/[A-Z]{3}/.test(value)) {
+  if (!/^[A-Z]{3}$/.test(value)) {
     return new Error(
       'Invalid prop `' +
         propName +
