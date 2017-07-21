@@ -5,13 +5,17 @@ import newAddress from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
 
 describe('AutoCompletedFields', () => {
+  const children = <span className="link-edit">Edit</span>
+
   it('renders without crashing', () => {
     shallow(
       <AutoCompletedFields
         rules={usePostalCode}
         address={newAddress}
         onChangeAddress={jest.fn()}
-      />
+      >
+        {children}
+      </AutoCompletedFields>
     )
   })
 
@@ -21,7 +25,9 @@ describe('AutoCompletedFields', () => {
         rules={usePostalCode}
         address={newAddress}
         onChangeAddress={jest.fn()}
-      />
+      >
+        {children}
+      </AutoCompletedFields>
     )
 
     expect(wrapper.isEmptyRender()).toBe(true)
@@ -46,7 +52,9 @@ describe('AutoCompletedFields', () => {
           rules={usePostalCode}
           address={address}
           onChangeAddress={onChangeAddress}
-        />
+        >
+          {children}
+        </AutoCompletedFields>
       )
     })
 

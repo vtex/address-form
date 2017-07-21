@@ -2,6 +2,7 @@
   "address-form.loading": "Please wait...",
   "address-form.dontKnowPostalCode": "I don't know my postal code",
   "address-form.optional": "Optional",
+  "address-form.edit": "Edit",
 
   "address-form.field.addressQuery": "Address",
   "address-form.geolocation.example.ARG": "Eg: Av. del Libertador 1473, Buenos Aires",
