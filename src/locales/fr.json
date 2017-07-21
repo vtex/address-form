@@ -2,6 +2,7 @@
   "address-form.loading": "Chargement en cours...",
   "address-form.dontKnowPostalCode": "Je ne me souviens pas de mon code postal",
   "address-form.optional": "Facultatif",
+  "address-form.edit": "Modifier",
 
   "address-form.field.addressQuery": "Adresse",
   "address-form.geolocation.example.ARG": "Ex: Av. del Libertador 1473, Buenos Aires",

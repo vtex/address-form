@@ -28,7 +28,7 @@ class AutoCompletedFields extends Component {
   }
 
   render() {
-    const { address, rules } = this.props
+    const { address, rules, children } = this.props
 
     if (this.hasAutoCompletedField(address) === undefined) {
       return null
@@ -53,13 +53,11 @@ class AutoCompletedFields extends Component {
           rules={rules}
         >
           <span> - </span>
-          <a
-            className="link-edit"
-            onClick={this.handleClickChange}
-            id="force-shipping-fields"
-          >
-            Edit
-          </a>
+          {React.Children.map(children, child =>
+            React.cloneElement(child, {
+              onClick: this.handleClickChange,
+            })
+          )}
         </AddressSummary>
       </div>
     )
@@ -67,6 +65,7 @@ class AutoCompletedFields extends Component {
 }
 
 AutoCompletedFields.propTypes = {
+  children: PropTypes.node.isRequired,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

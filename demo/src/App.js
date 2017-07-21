@@ -104,7 +104,7 @@ class App extends Component {
 
   render() {
     const { address, rules, shipsTo } = this.state
-    const { accountName, googleMapsAPIKey, locale } = this.props
+    const { intl, accountName, googleMapsAPIKey, locale } = this.props
 
     const country = address.country.value
     const selectedRules = rules[country]
@@ -179,7 +179,11 @@ class App extends Component {
                   address={address}
                   rules={selectedRules}
                   onChangeAddress={onChangeAddress}
-                />
+                >
+                  <a className="link-edit" id="force-shipping-fields">
+                    {intl.formatMessage({ id: 'address-form.edit' })}
+                  </a>
+                </AutoCompletedFields>
 
                 <AddressForm
                   Input={DefaultInput}
