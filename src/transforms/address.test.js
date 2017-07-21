@@ -217,5 +217,66 @@ describe('Address Transform', () => {
       expect(newFields.postalCode.valid).toBe(false)
       expect(newFields.postalCode.focus).toBe(true)
     })
+
+    it('should add focus to the first invalid field in the order defined by the rules', () => {
+      const address = {
+        addressId: { value: '10' },
+        addressType: { value: 'residential' },
+        city: { value: null },
+        complement: { value: null },
+        country: { value: 'BRA' },
+        geoCoordinates: { value: [] },
+        neighborhood: { value: null },
+        number: { value: null },
+        postalCode: { value: '22231000', valid: true },
+        receiverName: { value: null },
+        reference: { value: null },
+        state: { value: null },
+        street: { value: null },
+        addressQuery: { value: null },
+      }
+
+      const rules = {
+        fields: [
+          {
+            name: 'postalCode',
+            required: true,
+          },
+          {
+            name: 'street',
+            label: 'street',
+            required: true,
+          },
+          {
+            name: 'number',
+            label: 'number',
+            required: true,
+          },
+          {
+            name: 'complement',
+            label: 'complement',
+          },
+          {
+            name: 'neighborhood',
+            label: 'neighborhood',
+            required: true,
+          },
+          {
+            name: 'city',
+            label: 'city',
+            required: true,
+          },
+          {
+            name: 'state',
+            label: 'state',
+            required: true,
+          },
+        ],
+      }
+
+      const newFields = addFocusToNextInvalidField(address, rules)
+
+      expect(newFields.street.focus).toBe(true)
+    })
   })
 })
