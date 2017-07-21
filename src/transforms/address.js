@@ -101,7 +101,7 @@ export function handleMultipleValues(fields) {
   )
 }
 
-export function maskFields(rules, addressFields) {
+export function maskFields(addressFields, rules) {
   return reduce(
     addressFields,
     (newAddressFields, prop, propName) => {

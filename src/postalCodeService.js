@@ -5,7 +5,8 @@ export function getAddress({ accountName, country, postalCode }) {
 
   const cleanPostalCode = postalCode.replace(/ /g, '')
 
-  if (process.env.NODE_ENV !== 'production') {
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV === 'development') {
     endpoint = `/api/checkout/pub/postal-code/${country}/${cleanPostalCode}`
   } else {
     endpoint = `https://${accountName}.vtexcommercestable.com.br/api/checkout/pub/postal-code/${country}/${cleanPostalCode}`
