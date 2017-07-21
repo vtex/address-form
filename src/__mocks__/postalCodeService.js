@@ -19,10 +19,11 @@ const addresses = {
       street: 'Rua Barão de Itambi',
       number: '',
       neighborhood: 'Botafogo',
-      complement: '',
-      reference: '',
+      complement: undefined,
+      reference: null,
       geoCoordinates: [],
     },
+    '22251000': { reject: true },
   },
 }
 
@@ -30,29 +31,19 @@ export function getAddress({ accountName, country, postalCode }) {
   return new Promise((resolve, reject) => {
     const address = addresses[country] && addresses[country][postalCode]
 
-    if (process.env.NODE_ENV === 'test') {
-      process.nextTick(
-        () =>
-          (address
-            ? resolve(address)
+    const shouldResolve = !address || !address.reject
+
+    process.nextTick(
+      () =>
+        shouldResolve
+          ? address
+            ? resolve({ ...address })
             : resolve({
               ...fallbackAddress,
               country,
               postalCode,
-            }))
-      )
-    } else {
-      setTimeout(
-        () =>
-          (address
-            ? resolve(address)
-            : resolve({
-              ...fallbackAddress,
-              country,
-              postalCode,
-            })),
-        1000
-      )
-    }
+            })
+          : reject('Error')
+    )
   })
 }
