@@ -34,25 +34,29 @@ class AddressSummary extends Component {
     } = address
 
     return (
-      <div className="address">
-        <span className="street">
-          {street}
-        </span>
+      <div className="address-summary">
+        {street &&
+          <span className="street">
+            {street}
+          </span>}
 
         {numberField && number && ', '}
         {numberField &&
+          number &&
           <span className="number">
             {number}
           </span>}
 
         {complementField && complement && ', '}
         {complementField &&
+          complement &&
           <span className="complement">
             {complement}
           </span>}
 
         {neighborhoodField && neighborhood && ' - '}
         {neighborhoodField &&
+          neighborhood &&
           <span className="neighborhood">
             {neighborhood}
           </span>}
@@ -67,7 +71,7 @@ class AddressSummary extends Component {
             <i className="icon-question-sign" />
           </a>}
 
-        <br />
+        {street || number || complement || neighborhood ? <br /> : null}
 
         {city &&
           <span className="city">
