@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation
-  from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import map from 'lodash/map'
 import cx from 'classnames'
 
 class InputSelect extends Component {
   handleChange = e => {
     this.props.onChange(e.target.value)
-  };
+  }
 
   render() {
     const { address, options, field, disabled } = this.props
@@ -32,19 +31,20 @@ class InputSelect extends Component {
         ref={this.props.inputRef}
       >
         {field.optionsCaption !== null &&
-          field.optionsCaption !== undefined &&
-          field.optionsCaption === false
+        field.optionsCaption !== undefined &&
+        field.optionsCaption === false
           ? null
           : <option
             value=""
             disabled={address[field.name].value ? true : undefined}
-          >
+            >
             {field.optionsCaption}
-
           </option>}
-        {map(options, ({ value, label }) => (
-          <option key={value} value={value}>{label}</option>
-        ))}
+        {map(options, ({ value, label }) =>
+          (<option key={value} value={value}>
+            {label}
+          </option>)
+        )}
       </select>
     )
   }
