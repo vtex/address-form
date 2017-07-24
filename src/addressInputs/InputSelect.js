@@ -23,6 +23,7 @@ class InputSelect extends Component {
     return (
       <select
         name={field.name}
+        id={`ship-${field.name}`}
         value={address[field.name].value || ''}
         onChange={this.handleChange}
         onBlur={this.props.onBlur}

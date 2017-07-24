@@ -2,12 +2,15 @@
 
 exports[`CountrySelector default value 1`] = `
 <p
-  className="input text"
+  className="input ship-country text"
 >
-  <label />
+  <label
+    htmlFor="ship-country"
+  />
   <select
     className=""
     disabled={false}
+    id="ship-country"
     name="country"
     onBlur={[Function]}
     onChange={[Function]}
@@ -29,12 +32,15 @@ exports[`CountrySelector default value 1`] = `
 
 exports[`CountrySelector should sort the select 1`] = `
 <p
-  className="input text"
+  className="input ship-country text"
 >
-  <label />
+  <label
+    htmlFor="ship-country"
+  />
   <select
     className=""
     disabled={false}
+    id="ship-country"
     name="country"
     onBlur={[Function]}
     onChange={[Function]}
@@ -56,12 +62,15 @@ exports[`CountrySelector should sort the select 1`] = `
 
 exports[`CountrySelector show options 1`] = `
 <p
-  className="input text"
+  className="input ship-country text"
 >
-  <label />
+  <label
+    htmlFor="ship-country"
+  />
   <select
     className=""
     disabled={false}
+    id="ship-country"
     name="country"
     onBlur={[Function]}
     onChange={[Function]}
