@@ -50,16 +50,4 @@ describe('googleMaps', () => {
 
     expect(mockLoad).not.toHaveBeenCalled()
   })
-
-  it('should use cached version', () => {
-    shouldResolve = true
-    mockLoad.mockClear()
-
-    loadGoogleMaps({ locale: 'es', apiKey: API_KEY })
-
-    expect(mockLoad).toHaveBeenCalledWith({
-      ...expectedCall,
-      language: 'es',
-    })
-  })
 })

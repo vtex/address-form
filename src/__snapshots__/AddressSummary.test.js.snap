@@ -2,7 +2,7 @@
 
 exports[`AddressSummary should render address summary with all its data 1`] = `
 <div
-  className="address"
+  className="address-summary"
 >
   <span
     className="street"

@@ -21,6 +21,7 @@ class InputText extends Component {
     return (
       <input
         type="text"
+        id={`ship-${field.name}`}
         name={field.name}
         value={fieldValue.value || ''}
         placeholder={placeholder}
