@@ -114,13 +114,6 @@ class App extends Component {
 
     return (
       <div className="step" style={{ padding: '20px' }}>
-        <div style={{ float: 'right', width: '50%' }}>
-          <pre>
-            <small>
-              {JSON.stringify(address, null, 2)}
-            </small>
-          </pre>
-        </div>
         <div>
           <AddressContainer
             accountName={accountName}
