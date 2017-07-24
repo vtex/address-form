@@ -1,10 +1,9 @@
 import loadGoogleMapsAPI from 'load-google-maps-api'
 
 let cachedGoogleMapsAPI = null
-let cachedLocale = null
 
 export default function loadGoogleMaps({ locale, apiKey }) {
-  if (cachedGoogleMapsAPI && locale === cachedLocale) {
+  if (cachedGoogleMapsAPI) {
     return Promise.resolve(cachedGoogleMapsAPI)
   }
 
@@ -16,7 +15,6 @@ export default function loadGoogleMaps({ locale, apiKey }) {
     })
       .then(googleMaps => {
         cachedGoogleMapsAPI = googleMaps
-        cachedLocale = locale
         return resolve(googleMaps)
       })
       .catch(error => {
