@@ -10,7 +10,7 @@ import AutoCompletedFields from '../../src/AutoCompletedFields'
 
 import { addValidation, removeValidation } from '../../src/index'
 
-import DefaultInput from '../../src/addressInputs/Input'
+import DefaultInput from '../../src/DefaultInput'
 
 import GoogleMapsContainer from '../../src/geolocation/GoogleMapsContainer'
 import GeolocationInput from '../../src/geolocation/GeolocationInput'

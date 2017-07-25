@@ -105,7 +105,7 @@ Renders a select that shows all the countries options.
 
 #### Props
 
-- **`Input`**: (default: `address-form/addressInputs/Input.js`) A custom React component to render the inputs
+- **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
 - **`shipsTo`**: An array of an object of shape `{ value: String, label: String }`
 - **`onChangeAddress`**: Callback function to be called when a field has changed
@@ -148,7 +148,7 @@ Renders an address form base on rules of the selected country.
 
 #### Props
 
-- **`Input`**: (default: `address-form/addressInputs/Input.js`) A custom React component to render the inputs
+- **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
 - **`omitPostalCodeFields`**: (default: `true`) Option to omit or not the fields that are rendered by `<PostalCodeGetter/>`
 - **`omitAutoCompletedFields`**: (default: `true`) Option to omit or not the fields that were auto completed
@@ -227,7 +227,7 @@ Renders the requried components to get the postal code of an address. Some count
 
 #### Props
 
-- **`Input`**: (default: `address-form/addressInputs/Input.js`) A custom React component to render the inputs
+- **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
 - **`rules`**: The rules of the selected country
 - **`onChangeAddress`**: Callback function to be called when a field has changed
@@ -353,7 +353,7 @@ Renders an input with the Google Maps auto complete feature. When the user selec
 
 #### Props
 
-- **`Input`**: (default: `address-form/addressInputs/Input.js`) A custom React component to render the inputs
+- **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
 - **`rules`**: The selected country rules
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
 - **`onChangeAddress`**: Callback function to be called when a field has changed

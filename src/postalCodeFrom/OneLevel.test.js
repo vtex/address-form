@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import OneLevel from './OneLevel'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
-import MockInput from '../addressInputs/__mocks__/Input'
+import MockInput from '../DefaultInput/__mocks__/Input'
 
 describe('OneLevel', () => {
   it('render it right', () => {

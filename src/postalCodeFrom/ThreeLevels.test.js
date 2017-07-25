@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import ThreeLevels from './ThreeLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
-import MockInput from '../addressInputs/__mocks__/Input'
+import MockInput from '../DefaultInput/__mocks__/Input'
 
 describe('ThreeLevels', () => {
   it('without first and second level selected', () => {

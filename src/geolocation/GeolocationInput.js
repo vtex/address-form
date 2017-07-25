@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DefaultInput from '../addressInputs/Input'
+import DefaultInput from '../DefaultInput'
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { EGOOGLEADDRESS } from '../constants'
