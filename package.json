@@ -9,8 +9,9 @@
     "lib"
   ],
   "scripts": {
-    "build": "nwb build-react-component && npm run removeMocks",
+    "build": "nwb build-react-component && npm run removeMocks && npm run addLocales",
     "removeMocks": "rm -rf es/**/__mocks__ && rm -rf lib/**/__mocks__ && rm -rf es/__mocks__ && rm -rf lib/__mocks__",
+    "addLocales": "cp -R -f src/locales/ lib/locales/ && cp -R -f src/locales/ es/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "test": "jest --env=jsdom",
