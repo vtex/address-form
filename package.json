@@ -6,8 +6,7 @@
   "module": "es/index.js",
   "files": [
     "es",
-    "lib",
-    "umd"
+    "lib"
   ],
   "scripts": {
     "build": "nwb build-react-component && npm run removeMocks",

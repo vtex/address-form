@@ -9,12 +9,5 @@ module.exports = {
   testFiles: ['**/__mock__/**', '*.spec.js', '*.test.js', '*-test.js'],
   npm: {
     esModules: true,
-    umd: {
-      global: 'AddressForm',
-      externals: {
-        react: 'React',
-        'prop-types': 'PropTypes',
-      },
-    },
   },
 }
