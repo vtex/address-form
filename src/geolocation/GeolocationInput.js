@@ -56,6 +56,7 @@ class GeolocationInput extends Component {
         const isValidGoogleAddress = !!googleAddress.geometry
         if (isValidGoogleAddress) {
           this.setState({ isValidGoogleAddress })
+          this.handleChangeInput(googleAddress.formatted_address)
           this.handlePlaceChanged(googleAddress)
           return
         }
