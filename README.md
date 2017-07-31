@@ -29,6 +29,7 @@ $ npm install @vtex/address-form
 
 - [addValidation](#addValidation)
 - [removeValidation](#removeValidation)
+- [isValidAddress](#isValidAddress)
 
 ### Public modules
 
@@ -540,6 +541,61 @@ removeValidation(address)
 //   state: null,
 //   street: null,
 //   addressQuery: null,
+// }
+```
+
+### isValidAddress
+
+
+#### Params
+
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`rules`**: The selected country rules
+
+#### Returns
+
+- **`valid`**: A boolean if the address is valid or not
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation) with fields validated
+
+#### Example
+
+```js
+const address = {
+  addressId: { value: '10' },
+  addressType: { value: 'residential' },
+  city: { value: 'Rio de Janeiro' },
+  complement: { value: null },
+  country: { value: 'BRA' },
+  geoCoordinates: { value: [] },
+  neighborhood: { value: 'Botafogo' },
+  number: { value: '300' },
+  postalCode: { value: '22231000' },
+  receiverName: { value: 'João' },
+  reference: { value: null },
+  state: { value: 'RJ' },
+  street: { value: '' },
+  addressQuery: { value: null },
+}
+
+isValidAddress(address, rules)
+// {
+//   valid: false,
+//   address: {
+//     addressId: { value: '10' },
+//     addressType: { value: 'residential' },
+//     city: { value: 'Rio de Janeiro' },
+//     complement: { value: null },
+//     country: { value: 'BRA' },
+//     geoCoordinates: { value: [] },
+//     neighborhood: { value: 'Botafogo' },
+//     number: { value: '300' },
+//     postalCode: { value: '22231000' },
+//     receiverName: { value: 'João' },
+//     reference: { value: null },
+//     state: { value: 'RJ' },
+//     street: { value: '', valid: false, focus: true, reason: 'ERROR_EMPTY_FIELD' },
+//     addressQuery: { value: null },
+//   }
 // }
 ```
 
