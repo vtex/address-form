@@ -355,6 +355,7 @@ Renders an input with the Google Maps auto complete feature. When the user selec
 #### Props
 
 - **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
+- **`inputProps`**: (default: `{}`) An object with props to be passed down to the Input component
 - **`rules`**: The selected country rules
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
 - **`onChangeAddress`**: Callback function to be called when a field has changed
@@ -364,6 +365,7 @@ Renders an input with the Google Maps auto complete feature. When the user selec
 ```js
 GeolocationInput.propTypes = {
   Input: PropTypes.func,
+  inputProps: PropTypes.object,
   rules: PropTypes.object.isRequired,
   address: AddressShapeWithValidation.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
