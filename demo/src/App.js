@@ -102,12 +102,17 @@ class App extends Component {
     }
   }
 
+  getCurrentRules(state) {
+    const country = state.address.country.value
+    const selectedRules = state.rules[country]
+    return selectedRules
+  }
+
   render() {
-    const { address, rules, shipsTo } = this.state
+    const { address, shipsTo } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
 
-    const country = address.country.value
-    const selectedRules = rules[country]
+    const selectedRules = this.getCurrentRules(this.state)
     if (!selectedRules) {
       return <div>Loading...</div>
     }
