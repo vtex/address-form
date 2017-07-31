@@ -8,7 +8,11 @@ import AddressSummary from '../../src/AddressSummary'
 import PostalCodeGetter from '../../src/PostalCodeGetter'
 import AutoCompletedFields from '../../src/AutoCompletedFields'
 
-import { addValidation, removeValidation } from '../../src/index'
+import {
+  addValidation,
+  removeValidation,
+  isValidAddress,
+} from '../../src/index'
 
 import DefaultInput from '../../src/DefaultInput'
 
@@ -102,6 +106,20 @@ class App extends Component {
     }
   }
 
+  handleSubmit = e => {
+    e.preventDefault()
+    const rules = this.getCurrentRules(this.state)
+
+    const { valid, address } = isValidAddress(this.state.address, rules)
+
+    if (valid) {
+      this.setState({ submitted: true, address })
+      return
+    }
+
+    this.setState({ address })
+  }
+
   getCurrentRules(state) {
     const country = state.address.country.value
     const selectedRules = state.rules[country]
@@ -117,89 +135,95 @@ class App extends Component {
       return <div>Loading...</div>
     }
 
-    return (
-      <div className="step" style={{ padding: '20px' }}>
-        <div>
-          <AddressContainer
-            accountName={accountName}
-            address={address}
-            rules={selectedRules}
-            onChangeAddress={this.handleAddressChange}
-          >
-            {onChangeAddress =>
-              (<div>
-                <CountrySelector
-                  Input={DefaultInput}
-                  address={address}
-                  shipsTo={shipsTo}
-                  onChangeAddress={onChangeAddress}
-                />
-
-                <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-                  {({ loading, googleMaps }) =>
-                    (<div>
-                      <GeolocationInput
-                        loadingGoogle={loading}
-                        googleMaps={googleMaps}
-                        address={address}
-                        rules={selectedRules}
-                        onChangeAddress={onChangeAddress}
-                      />
-
-                      {address.geoCoordinates &&
-                        address.geoCoordinates.valid &&
-                        address.geoCoordinates.value.length === 2 &&
-                        <Map
-                          loadingGoogle={loading}
-                          googleMaps={googleMaps}
-                          geoCoordinates={address.geoCoordinates.value}
-                          rules={selectedRules}
-                          onChangeAddress={onChangeAddress}
-                          mapProps={{
-                            style: {
-                              height: '120px',
-                              marginBottom: '10px',
-                              width: '260px',
-                            },
-                          }}
-                        />}
-                    </div>)}
-                </GoogleMapsContainer>
-
-                <PostalCodeGetter
-                  Input={DefaultInput}
-                  address={address}
-                  rules={selectedRules}
-                  onChangeAddress={onChangeAddress}
-                />
-
-                <AutoCompletedFields
-                  address={address}
-                  rules={selectedRules}
-                  onChangeAddress={onChangeAddress}
-                >
-                  <a className="link-edit" id="force-shipping-fields">
-                    {intl.formatMessage({ id: 'address-form.edit' })}
-                  </a>
-                </AutoCompletedFields>
-
-                <AddressForm
-                  Input={DefaultInput}
-                  address={address}
-                  rules={selectedRules}
-                  onChangeAddress={onChangeAddress}
-                />
-              </div>)}
-          </AddressContainer>
-
-          <hr />
-
+    if (this.state.submitted) {
+      return (
+        <div className="step" style={{ padding: '20px' }}>
           <AddressSummary
             address={removeValidation(address)}
             rules={selectedRules}
             onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
           />
         </div>
+      )
+    }
+
+    return (
+      <div className="step" style={{ padding: '20px' }}>
+        <AddressContainer
+          accountName={accountName}
+          address={address}
+          rules={selectedRules}
+          onChangeAddress={this.handleAddressChange}
+        >
+          {onChangeAddress =>
+            (<div>
+              <CountrySelector
+                Input={DefaultInput}
+                address={address}
+                shipsTo={shipsTo}
+                onChangeAddress={onChangeAddress}
+              />
+
+              <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
+                {({ loading, googleMaps }) =>
+                  (<div>
+                    <GeolocationInput
+                      loadingGoogle={loading}
+                      googleMaps={googleMaps}
+                      address={address}
+                      rules={selectedRules}
+                      onChangeAddress={onChangeAddress}
+                    />
+
+                    {address.geoCoordinates &&
+                      address.geoCoordinates.valid &&
+                      address.geoCoordinates.value.length === 2 &&
+                      <Map
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                        geoCoordinates={address.geoCoordinates.value}
+                        rules={selectedRules}
+                        onChangeAddress={onChangeAddress}
+                        mapProps={{
+                          style: {
+                            height: '120px',
+                            marginBottom: '10px',
+                            width: '260px',
+                          },
+                        }}
+                      />}
+                  </div>)}
+              </GoogleMapsContainer>
+
+              <PostalCodeGetter
+                Input={DefaultInput}
+                address={address}
+                rules={selectedRules}
+                onChangeAddress={onChangeAddress}
+              />
+
+              <AutoCompletedFields
+                address={address}
+                rules={selectedRules}
+                onChangeAddress={onChangeAddress}
+              >
+                <a className="link-edit" id="force-shipping-fields">
+                  {intl.formatMessage({ id: 'address-form.edit' })}
+                </a>
+              </AutoCompletedFields>
+
+              <AddressForm
+                Input={DefaultInput}
+                address={address}
+                rules={selectedRules}
+                onChangeAddress={onChangeAddress}
+              />
+            </div>)}
+        </AddressContainer>
+
+        <button className="btn btn-default" onClick={this.handleSubmit}>
+          Submit
+        </button>
       </div>
     )
   }
