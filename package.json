@@ -1,13 +1,10 @@
 {
   "name": "@vtex/address-form",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "address-form React component",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "files": [
-    "es",
-    "lib"
-  ],
+  "files": ["es", "lib"],
   "scripts": {
     "build": "nwb build-react-component && npm run removeMocks && npm run addLocales",
     "removeMocks": "rm -rf es/**/__mocks__ && rm -rf lib/**/__mocks__ && rm -rf es/__mocks__ && rm -rf lib/__mocks__",
@@ -56,12 +53,7 @@
   "homepage": "https://github.com/vtex/address-form",
   "license": "MIT",
   "repository": "https://github.com/vtex/address-form",
-  "keywords": [
-    "react-component",
-    "vtex",
-    "checkout",
-    "address"
-  ],
+  "keywords": ["react-component", "vtex", "checkout", "address"],
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
     "testPathIgnorePatterns": [
