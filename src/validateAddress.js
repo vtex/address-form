@@ -1,6 +1,7 @@
 import reduce from 'lodash/reduce'
 import find from 'lodash/find'
 import { hasOptions, getField, getListOfOptions } from './selectors/fields'
+import { addFocusToNextInvalidField } from './transforms/address'
 import {
   EEMPTY,
   EADDRESSTYPE,
@@ -9,6 +10,16 @@ import {
   EGEOCOORDS,
   EPOSTALCODE,
 } from './constants.js'
+
+export function isValidAddress(address, rules) {
+  const validatedAddress = addFocusToNextInvalidField(address, rules)
+  const hasInvalidField = find(validatedAddress, field => field.valid === false)
+
+  return {
+    valid: !hasInvalidField,
+    address: validatedAddress,
+  }
+}
 
 export function validateAddress(address, rules) {
   return reduce(

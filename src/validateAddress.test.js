@@ -1,4 +1,5 @@
 import {
+  isValidAddress,
   validateAddress,
   validateChangedFields,
   validateField,
@@ -32,6 +33,50 @@ describe('Address Validation:', () => {
       []
     )
   }
+
+  describe('isValidAddress()', () => {
+    it('should tell if an address is invalid', () => {
+      const invalidAddress = {
+        ...address,
+        postalCode: { value: '22231000' },
+        city: { value: 'Rio de Janeiro' },
+        street: { value: '' },
+      }
+
+      const result = isValidAddress(invalidAddress, usePostalCode)
+
+      expect(result.valid).toBe(false)
+    })
+
+    it('should focus on the next invalid field', () => {
+      const invalidAddress = {
+        ...address,
+        postalCode: { value: '22231000' },
+        city: { value: 'Rio de Janeiro' },
+        street: { value: '' },
+      }
+
+      const result = isValidAddress(invalidAddress, usePostalCode)
+
+      expect(result.address.street.focus).toBe(true)
+    })
+
+    it('should tell if an address is valid', () => {
+      const invalidAddress = {
+        ...address,
+        postalCode: { value: '22231000' },
+        city: { value: 'Rio de Janeiro' },
+        street: { value: 'Praia de Botafogo' },
+        number: { value: '300' },
+        neighborhood: { value: 'Botafogo' },
+        state: { value: 'RJ' },
+      }
+
+      const result = isValidAddress(invalidAddress, usePostalCode)
+
+      expect(result.valid).toBe(true)
+    })
+  })
 
   it('should have all required fields as invalid when an empty address is submitted', () => {
     const requiredFields = getRulesRequiredFields(usePostalCode)

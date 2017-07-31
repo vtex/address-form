@@ -5,7 +5,7 @@ import difference from 'lodash/difference'
 import find from 'lodash/find'
 import findIndex from 'lodash/findIndex'
 import { getField } from '../selectors/fields'
-import { validateChangedFields } from '../validateAddress'
+import { validateAddress } from '../validateAddress'
 import msk from 'msk'
 
 export function addValidation(address) {
@@ -151,11 +151,7 @@ export function addFocusToNextInvalidField(fields, rules) {
 
 function getFirstInvalidFilledField(fields, rules) {
   const allFieldsVisited = addNewField(fields, 'visited', true)
-  const validatedFields = validateChangedFields(
-    allFieldsVisited,
-    allFieldsVisited,
-    rules
-  )
+  const validatedFields = validateAddress(allFieldsVisited, rules)
 
   const firstInvalidField = find(
     rules.fields,
