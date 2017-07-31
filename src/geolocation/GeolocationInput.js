@@ -87,7 +87,7 @@ class GeolocationInput extends Component {
   }
 
   render() {
-    const { Input, rules, loadingGoogle } = this.props
+    const { Input, rules, loadingGoogle, inputProps } = this.props
     const { address, isValidGoogleAddress } = this.state
 
     const newAddress = {
@@ -103,6 +103,7 @@ class GeolocationInput extends Component {
 
     return (
       <Input
+        {...inputProps}
         key={rules.country}
         field={{
           label: 'addressQuery',
@@ -120,10 +121,12 @@ class GeolocationInput extends Component {
 
 GeolocationInput.defaultProps = {
   Input: DefaultInput,
+  inputProps: {},
 }
 
 GeolocationInput.propTypes = {
   Input: PropTypes.func,
+  inputProps: PropTypes.object,
   rules: PropTypes.object.isRequired,
   address: AddressShapeWithValidation.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
