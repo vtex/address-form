@@ -157,11 +157,10 @@ function getFirstInvalidFilledField(fields, rules) {
     rules
   )
 
-  const orderedValidatedFields = orderFieldsByRules(validatedFields, rules)
-
   const firstInvalidField = find(
-    orderedValidatedFields,
-    field => field && field.valid === false
+    rules.fields,
+    field =>
+      validatedFields[field.name] && validatedFields[field.name].valid === false
   )
 
   if (firstInvalidField) {
@@ -175,23 +174,6 @@ function getFirstInvalidFilledField(fields, rules) {
   }
 
   return null
-}
-
-function orderFieldsByRules(fields, rules) {
-  return reduce(
-    fields,
-    (acc, field, fieldName) => {
-      const index = findIndex(
-        rules.fields,
-        ruleField => ruleField.name === fieldName
-      )
-      if (index === -1) return acc
-
-      acc[index] = { ...field, name: fieldName }
-      return acc
-    },
-    Array(Object.keys(fields).length)
-  )
 }
 
 function getFirstRequiredFieldNotFilled(fields, rules) {
