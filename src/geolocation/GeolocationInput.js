@@ -18,7 +18,7 @@ class GeolocationInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      adddres: nextProps.address,
+      address: nextProps.address,
     })
   }
 
