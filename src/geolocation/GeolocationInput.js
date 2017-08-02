@@ -113,7 +113,6 @@ class GeolocationInput extends Component {
         options={null}
         address={newAddress}
         onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
-        onBlur={value => console.log(value)}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
       />
     )
