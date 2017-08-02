@@ -18,7 +18,7 @@ class GeolocationInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      adddres: nextProps.address,
+      address: nextProps.address,
     })
   }
 
@@ -113,7 +113,6 @@ class GeolocationInput extends Component {
         options={null}
         address={newAddress}
         onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
-        onBlur={value => console.log(value)}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
       />
     )
