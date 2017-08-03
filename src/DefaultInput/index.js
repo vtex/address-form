@@ -101,6 +101,7 @@ class Input extends Component {
 
 Input.defaultProps = {
   inputRef: () => {},
+  onBlur: () => {},
 }
 
 Input.propTypes = {
@@ -108,7 +109,7 @@ Input.propTypes = {
   options: PropTypes.array,
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
   inputRef: PropTypes.func,
   intl: intlShape,
 }
