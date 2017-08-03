@@ -7,6 +7,8 @@ import pickBy from 'lodash/pickBy'
 import find from 'lodash/find'
 import flow from 'lodash/flow'
 
+const IRRELEVANT_FIELDS = ['country', 'geoCoordinates']
+
 const removeAutoCompletedFields = flow([
   address => removeField(address, 'postalCodeAutoCompleted'),
   address => removeField(address, 'geolocationAutoCompleted'),
@@ -27,6 +29,27 @@ class AutoCompletedFields extends Component {
     )
   }
 
+  filterRelevantFields(address) {
+    return pickBy(address, (field, name) => {
+      const autoCompleted =
+        field.postalCodeAutoCompleted || field.geolocationAutoCompleted
+
+      const postalCodeGeolocationAutoCompleted =
+        name !== 'postalCode' ||
+        (name === 'postalCode' && field.geolocationAutoCompleted)
+
+      const isRelevantField = IRRELEVANT_FIELDS.indexOf(name) === -1
+
+      return (
+        autoCompleted && postalCodeGeolocationAutoCompleted && isRelevantField
+      )
+    })
+  }
+
+  isEmpty(address) {
+    return Object.keys(address).length === 0
+  }
+
   render() {
     const { address, rules, children } = this.props
 
@@ -34,32 +57,29 @@ class AutoCompletedFields extends Component {
       return null
     }
 
-    const filteredAddress = pickBy(
-      address,
-      field => field.postalCodeAutoCompleted || field.geolocationAutoCompleted
-    )
+    const filteredAddress = this.filterRelevantFields(address)
+
+    if (this.isEmpty(filteredAddress)) {
+      return null
+    }
 
     return (
-      <div>
-        <AddressSummary
-          canEditData
-          address={{
-            ...removeValidation(filteredAddress),
-            addressId: '',
-            addressType: 'residential',
-            postalCode: '',
-            country: null,
-          }}
-          rules={rules}
-        >
-          <span> - </span>
-          {React.Children.map(children, child =>
-            React.cloneElement(child, {
-              onClick: this.handleClickChange,
-            })
-          )}
-        </AddressSummary>
-      </div>
+      <AddressSummary
+        canEditData
+        address={{
+          ...removeValidation(filteredAddress),
+          addressId: '',
+          addressType: 'residential',
+        }}
+        rules={rules}
+      >
+        <span> - </span>
+        {React.Children.map(children, child =>
+          React.cloneElement(child, {
+            onClick: this.handleClickChange,
+          })
+        )}
+      </AddressSummary>
     )
   }
 }

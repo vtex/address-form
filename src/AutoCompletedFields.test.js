@@ -94,4 +94,59 @@ describe('AutoCompletedFields', () => {
       )
     })
   })
+
+  it('should not show postal code when address is completed with postal code', () => {
+    const onChangeAddress = jest.fn()
+    const address = {
+      ...newAddress,
+      postalCode: { value: '22231000', postalCodeAutoCompleted: true },
+      state: { value: 'RJ', postalCodeAutoCompleted: true },
+      city: { value: 'Rio de Janeiro', postalCodeAutoCompleted: true },
+      neighborhood: { value: 'Botafogo', postalCodeAutoCompleted: true },
+      number: { value: '300', postalCodeAutoCompleted: true },
+      street: { value: 'Praia de Botafogo', postalCodeAutoCompleted: true },
+    }
+
+    const wrapper = shallow(
+      <AutoCompletedFields
+        rules={usePostalCode}
+        address={address}
+        onChangeAddress={onChangeAddress}
+      >
+        {children}
+      </AutoCompletedFields>
+    )
+
+    const AddressSummary = wrapper.find('AddressSummary')
+
+    expect(AddressSummary.prop('address').postalCode).toBe(undefined)
+  })
+
+  it('should show postal code when address is completed with geolocation', () => {
+    const onChangeAddress = jest.fn()
+    const postalCode = '22231000'
+    const address = {
+      ...newAddress,
+      postalCode: { value: postalCode, geolocationAutoCompleted: true },
+      state: { value: 'RJ', geolocationAutoCompleted: true },
+      city: { value: 'Rio de Janeiro', geolocationAutoCompleted: true },
+      neighborhood: { value: 'Botafogo', geolocationAutoCompleted: true },
+      number: { value: '300', geolocationAutoCompleted: true },
+      street: { value: 'Praia de Botafogo', geolocationAutoCompleted: true },
+    }
+
+    const wrapper = shallow(
+      <AutoCompletedFields
+        rules={usePostalCode}
+        address={address}
+        onChangeAddress={onChangeAddress}
+      >
+        {children}
+      </AutoCompletedFields>
+    )
+
+    const AddressSummary = wrapper.find('AddressSummary')
+
+    expect(AddressSummary.prop('address').postalCode).toBe(postalCode)
+  })
 })
