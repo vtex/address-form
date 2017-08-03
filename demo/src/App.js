@@ -159,6 +159,7 @@ class App extends Component {
           address={address}
           rules={selectedRules}
           onChangeAddress={this.handleAddressChange}
+          autoCompletePostalCode={!validGeoCoords}
         >
           {onChangeAddress =>
             (<div>
@@ -225,6 +226,7 @@ class App extends Component {
                 address={address}
                 rules={selectedRules}
                 onChangeAddress={onChangeAddress}
+                omitPostalCodeFields={!validGeoCoords}
               />
             </div>)}
         </AddressContainer>
