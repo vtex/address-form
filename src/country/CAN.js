@@ -43,7 +43,7 @@ export default {
     {
       name: 'number',
       label: 'number',
-      visible: false,
+      hidden: true,
       defaultValue: 'N/A',
     },
     {

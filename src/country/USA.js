@@ -54,7 +54,7 @@ export default {
       label: 'state',
       required: true,
       size: 'large',
-      optionPairs: [
+      optionsPairs: [
         { label: 'Alabama', value: 'AL' },
         { label: 'Alaska', value: 'AK' },
         { label: 'Arizona', value: 'AZ' },
@@ -112,7 +112,7 @@ export default {
     {
       name: 'number',
       label: 'number',
-      visible: false,
+      hidden: true,
       defaultValue: 'N/A',
     },
     {
