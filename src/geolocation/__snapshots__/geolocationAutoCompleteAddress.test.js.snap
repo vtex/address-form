@@ -34,6 +34,9 @@ Object {
     "geolocationAutoCompleted": true,
     "value": "22231000",
   },
+  "receiverName": Object {
+    "focus": true,
+  },
   "state": Object {
     "geolocationAutoCompleted": true,
     "value": "RJ",

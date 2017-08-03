@@ -58,6 +58,12 @@ export default {
       level: 2,
       optionsMap: getTwoLevels(countryData),
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {

@@ -70,6 +70,7 @@ describe('Address Validation:', () => {
         number: { value: '300' },
         neighborhood: { value: 'Botafogo' },
         state: { value: 'RJ' },
+        receiverName: { value: 'Linus' },
       }
 
       const result = isValidAddress(invalidAddress, usePostalCode)
