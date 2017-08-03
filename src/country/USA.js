@@ -128,12 +128,15 @@ export default {
       types: ['postal_code'],
       required: false,
     },
-    complement: {
+    street: {
       valueIn: 'long_name',
-      types: ['street_number'],
+      types: ['route'],
       required: false,
+      handler: (address, googleAddress) => {
+        address.street = { value: googleAddress.name }
+        return address
+      },
     },
-    street: { valueIn: 'long_name', types: ['route'], required: false },
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -147,13 +150,13 @@ export default {
       required: false,
     },
     state: {
-      valueIn: 'long_name',
+      valueIn: 'short_name',
       types: ['administrative_area_level_1'],
       required: false,
     },
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['locality'],
       required: false,
     },
   },
