@@ -66,6 +66,10 @@ class InputFieldContainer extends Component {
     this.el = el
   }
 
+  componentDidMount() {
+    this.addFocusIfNeeded()
+  }
+
   componentDidUpdate() {
     this.addFocusIfNeeded()
   }
