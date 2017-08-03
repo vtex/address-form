@@ -1,4 +1,3 @@
-/* eslint react/prop-types: 0 */
 import React from 'react'
 import { mount } from 'enzyme'
 import AddressContainer from './AddressContainer'
@@ -8,11 +7,6 @@ import useOneLevel from './country/__mocks__/useOneLevel'
 
 describe('AddressContainer', () => {
   const accountName = 'qamarketplace'
-
-  const rules = {
-    BRA: usePostalCode,
-    ECU: useOneLevel,
-  }
 
   const addressWithCountry = {
     ...address,
@@ -27,7 +21,7 @@ describe('AddressContainer', () => {
         accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={jest.fn()}
-        rules={rules}
+        rules={usePostalCode}
       >
         {children}
       </AddressContainer>
@@ -49,7 +43,7 @@ describe('AddressContainer', () => {
         accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={handleAddressChange}
-        rules={rules}
+        rules={usePostalCode}
       >
         {children}
       </AddressContainer>
@@ -74,7 +68,7 @@ describe('AddressContainer', () => {
         accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={handleAddressChange}
-        rules={rules}
+        rules={usePostalCode}
       >
         {children}
       </AddressContainer>
