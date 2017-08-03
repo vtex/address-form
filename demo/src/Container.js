@@ -18,6 +18,7 @@ const shipsTo = [
   'MEX',
   'CAN',
   'ESP',
+  'USA',
 ]
 
 class Container extends Component {
