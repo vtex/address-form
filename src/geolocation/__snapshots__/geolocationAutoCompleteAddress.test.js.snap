@@ -2,13 +2,22 @@
 
 exports[`Geolocation Auto Complete Address should transform a Google address to a Checkout address 1`] = `
 Object {
+  "addressId": Object {
+    "value": "1",
+  },
   "addressQuery": Object {
     "geolocationAutoCompleted": true,
     "value": "R. Barão de Itambí, 55 - Botafogo, Rio de Janeiro - RJ, Brasil",
   },
+  "addressType": Object {
+    "value": "residential",
+  },
   "city": Object {
     "geolocationAutoCompleted": true,
     "value": "Rio de Janeiro",
+  },
+  "complement": Object {
+    "value": null,
   },
   "country": Object {
     "geolocationAutoCompleted": true,
@@ -36,6 +45,12 @@ Object {
   },
   "receiverName": Object {
     "focus": true,
+    "reason": "ERROR_EMPTY_FIELD",
+    "valid": false,
+    "value": null,
+  },
+  "reference": Object {
+    "value": null,
   },
   "state": Object {
     "geolocationAutoCompleted": true,

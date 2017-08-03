@@ -7,11 +7,12 @@ import flow from 'lodash/flow'
 import { addNewField, addFocusToNextInvalidField } from '../transforms/address'
 
 export default function geolocationAutoCompleteAddress(
+  baseAddress,
   googleAddress,
-  rules,
-  fallbackCountry
+  rules
 ) {
   const geolocationRules = rules.geolocation
+  const fallbackCountry = rules.country
 
   const address = flow([
     setAddressFields,
@@ -20,6 +21,7 @@ export default function geolocationAutoCompleteAddress(
     setCountry,
     setAddressQuery,
     address => addNewField(address, 'geolocationAutoCompleted', true),
+    address => ({ ...baseAddress, ...address }),
     address => addFocusToNextInvalidField(address, rules),
   ])()
 
