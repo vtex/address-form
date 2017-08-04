@@ -4,13 +4,14 @@ import oneLevelGoogleAddress from './__mocks__/oneLevelGoogleAddress'
 import invalidFieldGoogleAddress from './__mocks__/invalidFieldGoogleAddress'
 import usePostalCode from '../country/__mocks__/usePostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
+import newAddress from '../__mocks__/newAddress'
 
 describe('Geolocation Auto Complete Address', () => {
   it('should transform a Google address to a Checkout address', () => {
     const address = geolocationAutoCompleteAddress(
+      newAddress,
       postalCodeGoogleAddress,
-      usePostalCode,
-      usePostalCode.country
+      usePostalCode
     )
 
     expect(address).toMatchSnapshot()
@@ -18,9 +19,9 @@ describe('Geolocation Auto Complete Address', () => {
 
   it('should call handlers to fill postalCode', () => {
     const address = geolocationAutoCompleteAddress(
+      newAddress,
       oneLevelGoogleAddress,
-      useOneLevel,
-      useOneLevel.country
+      useOneLevel
     )
 
     expect(address.postalCode.value).toBe('0000')
@@ -28,12 +29,24 @@ describe('Geolocation Auto Complete Address', () => {
 
   it('should get an address with a focus on the first invalid field', () => {
     const address = geolocationAutoCompleteAddress(
+      newAddress,
       invalidFieldGoogleAddress,
-      usePostalCode,
-      usePostalCode.country
+      usePostalCode
     )
 
     expect(address.postalCode.valid).toBe(false)
     expect(address.postalCode.focus).toBe(true)
+  })
+
+  it('should not override receiverName', () => {
+    const receiverName = 'Linus'
+
+    const address = geolocationAutoCompleteAddress(
+      { ...newAddress, receiverName: { value: receiverName } },
+      postalCodeGoogleAddress,
+      usePostalCode
+    )
+
+    expect(address.receiverName.value).toBe(receiverName)
   })
 })

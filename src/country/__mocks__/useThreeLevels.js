@@ -77,5 +77,11 @@ export default {
       basedOn: 'city',
       optionsMap: getThreeLevels(countryData),
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
 }

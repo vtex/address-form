@@ -147,6 +147,11 @@ class App extends Component {
       )
     }
 
+    const validGeoCoords =
+      address.geoCoordinates &&
+      address.geoCoordinates.valid &&
+      address.geoCoordinates.value.length === 2
+
     return (
       <div className="step" style={{ padding: '20px' }}>
         <AddressContainer
@@ -154,6 +159,7 @@ class App extends Component {
           address={address}
           rules={selectedRules}
           onChangeAddress={this.handleAddressChange}
+          autoCompletePostalCode={!validGeoCoords}
         >
           {onChangeAddress =>
             (<div>
@@ -175,9 +181,7 @@ class App extends Component {
                       onChangeAddress={onChangeAddress}
                     />
 
-                    {address.geoCoordinates &&
-                      address.geoCoordinates.valid &&
-                      address.geoCoordinates.value.length === 2 &&
+                    {validGeoCoords &&
                       <Map
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
@@ -195,19 +199,24 @@ class App extends Component {
                   </div>)}
               </GoogleMapsContainer>
 
-              <PostalCodeGetter
-                Input={DefaultInput}
-                address={address}
-                rules={selectedRules}
-                onChangeAddress={onChangeAddress}
-              />
+              {!validGeoCoords &&
+                <PostalCodeGetter
+                  Input={DefaultInput}
+                  address={address}
+                  rules={selectedRules}
+                  onChangeAddress={onChangeAddress}
+                />}
 
               <AutoCompletedFields
                 address={address}
                 rules={selectedRules}
                 onChangeAddress={onChangeAddress}
               >
-                <a className="link-edit" id="force-shipping-fields">
+                <a
+                  className="link-edit"
+                  id="force-shipping-fields"
+                  style={{ cursor: 'pointer' }}
+                >
                   {intl.formatMessage({ id: 'address-form.edit' })}
                 </a>
               </AutoCompletedFields>
@@ -217,6 +226,7 @@ class App extends Component {
                 address={address}
                 rules={selectedRules}
                 onChangeAddress={onChangeAddress}
+                omitPostalCodeFields={!validGeoCoords}
               />
             </div>)}
         </AddressContainer>

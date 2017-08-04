@@ -74,6 +74,7 @@ onChangeAddress({
 - **`rules`**: The selected country rules
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 - **`children`**: A callback child function
+- **`autoCompletePostalCode`**: (default: `true`) Should auto complete address when postal code is valid
 
 ```js
 AddressContainer.propTypes = {
@@ -82,6 +83,7 @@ AddressContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   children: PropTypes.func.isRequired,
+  autoCompletePostalCode: PropTypes.bool,
 }
 ```
 

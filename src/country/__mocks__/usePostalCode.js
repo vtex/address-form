@@ -58,6 +58,12 @@ export default {
       ],
       size: 'mini',
     },
+    {
+      name: 'receiverName',
+      label: 'receiverName',
+      size: 'large',
+      required: true,
+    },
   ],
   geolocation: {
     postalCode: {

@@ -135,5 +135,23 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       </option>
     </select>
   </p>
+  <p
+    className="input ship-receiverName required text"
+  >
+    <label
+      htmlFor="ship-receiverName"
+    />
+    <input
+      className="input-large"
+      disabled={false}
+      id="ship-receiverName"
+      name="receiverName"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder={null}
+      type="text"
+      value=""
+    />
+  </p>
 </div>
 `;
