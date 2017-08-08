@@ -21,7 +21,12 @@ export default function geolocationAutoCompleteAddress(
     setCountry,
     setAddressQuery,
     address => addNewField(address, 'geolocationAutoCompleted', true),
-    address => ({ ...baseAddress, ...address }),
+    address => ({
+      ...address,
+      addressId: baseAddress.addressId,
+      addressType: baseAddress.addressType,
+      receiverName: baseAddress.receiverName,
+    }),
     address => addFocusToNextInvalidField(address, rules),
   ])()
 

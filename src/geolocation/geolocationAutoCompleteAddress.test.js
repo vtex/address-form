@@ -38,15 +38,39 @@ describe('Geolocation Auto Complete Address', () => {
     expect(address.postalCode.focus).toBe(true)
   })
 
-  it('should not override receiverName', () => {
+  it('should keep addressId, addressType and receiverName', () => {
+    const addressId = '1'
+    const addressType = 'residential'
     const receiverName = 'Linus'
 
     const address = geolocationAutoCompleteAddress(
-      { ...newAddress, receiverName: { value: receiverName } },
+      {
+        ...newAddress,
+        addressId: { value: addressId },
+        addressType: { value: addressType },
+        receiverName: { value: receiverName },
+      },
       postalCodeGoogleAddress,
       usePostalCode
     )
 
+    expect(address.addressId.value).toBe(addressId)
+    expect(address.addressType.value).toBe(addressType)
     expect(address.receiverName.value).toBe(receiverName)
+  })
+
+  it('should remove fields that are not auto completed', () => {
+    const complement = 'apt 505'
+
+    const address = geolocationAutoCompleteAddress(
+      {
+        ...newAddress,
+        complement: { value: complement },
+      },
+      postalCodeGoogleAddress,
+      usePostalCode
+    )
+
+    expect(address.complement).toBeUndefined()
   })
 })
