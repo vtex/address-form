@@ -8,6 +8,8 @@ export const Address = {
     'inStore',
     'commercial',
     'giftRegistry',
+    'pickup',
+    'search',
   ]).isRequired,
   city: PropTypes.string,
   complement: PropTypes.string,
