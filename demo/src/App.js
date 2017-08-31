@@ -155,6 +155,7 @@ class App extends Component {
     return (
       <div className="step" style={{ padding: '20px' }}>
         <AddressContainer
+          cors
           accountName={accountName}
           address={address}
           rules={selectedRules}

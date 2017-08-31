@@ -27,7 +27,7 @@ const addresses = {
   },
 }
 
-export function getAddress({ accountName, country, postalCode }) {
+export function getAddress({ country, postalCode }) {
   return new Promise((resolve, reject) => {
     const address = addresses[country] && addresses[country][postalCode]
 
