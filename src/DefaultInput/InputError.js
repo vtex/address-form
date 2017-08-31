@@ -13,11 +13,7 @@ class InputError extends Component {
       }),
     })
 
-    return (
-      <span className="help error">
-        {message}
-      </span>
-    )
+    return <span className="help error">{message}</span>
   }
 }
 

@@ -2,9 +2,7 @@ import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 import { POSTAL_CODE } from '../constants'
 
 const countryData = {
-  'Ciudad Autónoma de Buenos Aires': [
-    'Ciudad Autónoma Buenos Aires',
-  ],
+  'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma Buenos Aires'],
   'Buenos Aires': [
     '12 De Agosto',
     '12 De Octubre',
@@ -2068,7 +2066,7 @@ const countryData = {
     'Zona Delta Tigre',
     'Zubiaurre',
   ],
-  'Catamarca': [
+  Catamarca: [
     'Achalco',
     'Acheral',
     'Aconquija',
@@ -2895,7 +2893,7 @@ const countryData = {
     'Zarcito',
     'Zarza',
   ],
-  'Chaco': [
+  Chaco: [
     '2 De Mayo',
     '9 De Julio',
     'Agua Buena',
@@ -3571,7 +3569,7 @@ const countryData = {
     'Zaparinqui',
     'Zuberbuhler',
   ],
-  'Chubut': [
+  Chubut: [
     '28 De Julio',
     'Aguada De Las Tejas',
     'Aguada Del Pito',
@@ -3890,7 +3888,7 @@ const countryData = {
     'Villa Futalaufquen',
     'Villa Inés',
   ],
-  'Corrientes': [
+  Corrientes: [
     '2 De Julio',
     '8 De Diciembre',
     '9 De Julio',
@@ -4998,7 +4996,7 @@ const countryData = {
     'Zapallar',
     'Zapallos',
   ],
-  'Córdoba': [
+  Córdoba: [
     '9 De Julio',
     'Abburra',
     'Achiras',
@@ -7803,7 +7801,7 @@ const countryData = {
     'Álcete',
     'Ñandubaysal',
   ],
-  'Formosa': [
+  Formosa: [
     '19 De Marzo',
     '9 De Julio',
     'Agente Argentino Alegre',
@@ -8322,7 +8320,7 @@ const countryData = {
     'Yunca',
     'Zorrilla Cue',
   ],
-  'Jujuy': [
+  Jujuy: [
     '23 De Agosto',
     'Abdon Castro Tolay',
     'Abra De Peñas',
@@ -10083,7 +10081,7 @@ const countryData = {
     'Villa Unión',
     'Vinchina',
   ],
-  'Mendoza': [
+  Mendoza: [
     '12 De Octubre',
     '25 De Mayo',
     '3 De Mayo',
@@ -11513,7 +11511,7 @@ const countryData = {
     'Ñacuñan',
     'Ñancuñan',
   ],
-  'Misiones': [
+  Misiones: [
     '1 De Mayo',
     '2 De Mayo',
     '22 De Diciembre',
@@ -11975,7 +11973,7 @@ const countryData = {
     'Yapeyu Centro',
     'Yerbal Mamboreta',
   ],
-  'Neuquén': [
+  Neuquén: [
     'Achico',
     'Agrio Balsa',
     'Aguada Chacay Co',
@@ -12716,7 +12714,7 @@ const countryData = {
     'Villa Turismo',
     'Yuquinche',
   ],
-  'Salta': [
+  Salta: [
     '20 De Febrero',
     'Ablome',
     'Abra Del Gallo',
@@ -18602,7 +18600,7 @@ const countryData = {
     'Tolhuin',
     'Ushuaia',
   ],
-  'Tucumán': [
+  Tucumán: [
     '25 De Mayo',
     '7 De Abril',
     '9 De Julio',

@@ -161,8 +161,8 @@ class App extends Component {
           onChangeAddress={this.handleAddressChange}
           autoCompletePostalCode={!validGeoCoords}
         >
-          {onChangeAddress =>
-            (<div>
+          {onChangeAddress => (
+            <div>
               <CountrySelector
                 Input={DefaultInput}
                 address={address}
@@ -171,8 +171,8 @@ class App extends Component {
               />
 
               <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-                {({ loading, googleMaps }) =>
-                  (<div>
+                {({ loading, googleMaps }) => (
+                  <div>
                     <GeolocationInput
                       loadingGoogle={loading}
                       googleMaps={googleMaps}
@@ -181,7 +181,7 @@ class App extends Component {
                       onChangeAddress={onChangeAddress}
                     />
 
-                    {validGeoCoords &&
+                    {validGeoCoords && (
                       <Map
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
@@ -195,17 +195,20 @@ class App extends Component {
                             width: '260px',
                           },
                         }}
-                      />}
-                  </div>)}
+                      />
+                    )}
+                  </div>
+                )}
               </GoogleMapsContainer>
 
-              {!validGeoCoords &&
+              {!validGeoCoords && (
                 <PostalCodeGetter
                   Input={DefaultInput}
                   address={address}
                   rules={selectedRules}
                   onChangeAddress={onChangeAddress}
-                />}
+                />
+              )}
 
               <AutoCompletedFields
                 address={address}
@@ -228,7 +231,8 @@ class App extends Component {
                 onChangeAddress={onChangeAddress}
                 omitPostalCodeFields={!validGeoCoords}
               />
-            </div>)}
+            </div>
+          )}
         </AddressContainer>
 
         <button className="btn btn-default" onClick={this.handleSubmit}>
