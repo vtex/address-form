@@ -31,7 +31,7 @@ class AddressContainer extends Component {
     const addressValidated = validateChangedFields(
       changedAddressFields,
       address,
-      rules
+      rules,
     )
 
     if (
@@ -48,10 +48,10 @@ class AddressContainer extends Component {
           postalCodeAutoCompleteAddress({
             cors,
             accountName,
-            addressValidated,
+            address: addressValidated,
             rules,
             callback: this.handleAddressChange,
-          })
+          }),
         )
       }
     }
