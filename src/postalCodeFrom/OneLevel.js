@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation
-  from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import SelectPostalCode from './SelectPostalCode'
 
 class OneLevel extends Component {

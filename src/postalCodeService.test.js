@@ -25,6 +25,7 @@ test('should compose the endpoint right', () => {
   expect.assertions(1)
 
   return getAddress({
+    cors: true,
     accountName,
     country,
     postalCode: '22231 000',

@@ -27,15 +27,16 @@ class Input extends Component {
             inputRef={inputRef}
           />
           {loading && <PostalCodeLoader />}
-          {field.forgottenURL &&
+          {field.forgottenURL && (
             <small>
               <a href={field.forgottenURL} target="_blank">
                 {intl.formatMessage({ id: 'address-form.dontKnowPostalCode' })}
               </a>
-            </small>}
-          {valid === false
-            ? <InputError reason={address[field.name].reason} />
-            : null}
+            </small>
+          )}
+          {valid === false ? (
+            <InputError reason={address[field.name].reason} />
+          ) : null}
         </InputLabel>
       )
     }
@@ -59,17 +60,17 @@ class Input extends Component {
             inputRef={inputRef}
           />
           {loading && <PostalCodeLoader />}
-          {valid === false
-            ? <InputError reason={address[field.name].reason} />
-            : null}
+          {valid === false ? (
+            <InputError reason={address[field.name].reason} />
+          ) : null}
         </InputLabel>
       )
     }
 
     return (
       <InputLabel field={field}>
-        {options
-          ? <InputSelect
+        {options ? (
+          <InputSelect
             field={field}
             options={options}
             address={address}
@@ -77,23 +78,25 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={disabled}
             inputRef={inputRef}
-            />
-          : <InputText
+          />
+        ) : (
+          <InputText
             field={field}
             address={address}
             onChange={this.props.onChange}
             placeholder={
-                !field.hidden && !field.required
-                  ? intl.formatMessage({ id: 'address-form.optional' })
-                  : null
-              }
+              !field.hidden && !field.required ? (
+                intl.formatMessage({ id: 'address-form.optional' })
+              ) : null
+            }
             onBlur={this.props.onBlur}
             disabled={disabled}
             inputRef={inputRef}
-            />}
-        {valid === false
-          ? <InputError reason={address[field.name].reason} />
-          : null}
+          />
+        )}
+        {valid === false ? (
+          <InputError reason={address[field.name].reason} />
+        ) : null}
       </InputLabel>
     )
   }

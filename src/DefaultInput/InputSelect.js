@@ -32,19 +32,19 @@ class InputSelect extends Component {
       >
         {field.optionsCaption !== null &&
         field.optionsCaption !== undefined &&
-        field.optionsCaption === false
-          ? null
-          : <option
+        field.optionsCaption === false ? null : (
+          <option
             value=""
             disabled={address[field.name].value ? true : undefined}
-            >
+          >
             {field.optionsCaption}
-          </option>}
-        {map(options, ({ value, label }) =>
-          (<option key={value} value={value}>
-            {label}
-          </option>)
+          </option>
         )}
+        {map(options, ({ value, label }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
       </select>
     )
   }

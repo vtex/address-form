@@ -11,13 +11,15 @@ import flow from 'lodash/flow'
 import pickBy from 'lodash/pickBy'
 import isNil from 'lodash/isNil'
 
-export default function postalCodeAutoCompleteAddress(
-  address,
+export default function postalCodeAutoCompleteAddress({
+  cors,
   accountName,
+  address,
   rules,
-  callback
-) {
+  callback,
+}) {
   getAddress({
+    cors,
     accountName,
     country: address.country.value,
     postalCode: address.postalCode.value,

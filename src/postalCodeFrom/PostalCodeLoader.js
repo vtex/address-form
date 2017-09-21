@@ -4,9 +4,7 @@ class PostalCodeLoader extends Component {
   render() {
     return (
       <i className="loading-inline icon-spinner icon-spin">
-        <span>
-          Loading
-        </span>
+        <span>Loading</span>
       </i>
     )
   }

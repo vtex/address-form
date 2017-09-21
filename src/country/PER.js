@@ -2375,15 +2375,22 @@ export default {
       types: ['postal_code'],
       required: true,
       handler: address => {
-        if (!address.state || !address.city || !address.neighborhood) { return address }
+        if (!address.state || !address.city || !address.neighborhood) {
+          return address
+        }
 
         if (
           countryData[address.state.value] &&
           countryData[address.state.value][address.city.value] &&
-          countryData[address.state.value][address.city.value][address.neighborhood.value]
+          countryData[address.state.value][address.city.value][
+            address.neighborhood.value
+          ]
         ) {
           address.postalCode = {
-            value: countryData[address.state.value][address.city.value][address.neighborhood.value],
+            value:
+              countryData[address.state.value][address.city.value][
+                address.neighborhood.value
+              ],
           }
         }
 
@@ -2396,7 +2403,7 @@ export default {
       valueIn: 'long_name',
       types: ['neighborhood'],
       required: false,
-      handler: (address) => {
+      handler: address => {
         if (
           address.city &&
           (address.city.value === 'Provincia de Lima' ||
@@ -2413,7 +2420,7 @@ export default {
       valueIn: 'long_name',
       types: ['administrative_area_level_1', 'locality'],
       required: false,
-      handler: (address) => {
+      handler: address => {
         if (!address.city || !address.state) {
           return address
         }
@@ -2445,7 +2452,7 @@ export default {
       valueIn: 'long_name',
       types: ['administrative_area_level_2'],
       required: false,
-      handler: (address) => {
+      handler: address => {
         if (address.city && address.city.value === 'Provincia de Lima') {
           address.city.value = 'Lima'
         }

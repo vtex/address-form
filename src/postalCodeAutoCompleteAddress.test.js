@@ -6,7 +6,8 @@ jest.mock('./transforms/address')
 jest.mock('./postalCodeService')
 
 describe('postalCodeAutoCompleteAddress()', () => {
-  const accountName = 'qamarketplace'
+  const cors = false
+  const accountName = null
   const address = {
     ...newAddress,
     country: { value: 'BRA' },
@@ -16,12 +17,13 @@ describe('postalCodeAutoCompleteAddress()', () => {
   it('should return the postal code field with loading true', () => {
     const callback = jest.fn()
 
-    const resultAddress = postalCodeAutoCompleteAddress(
-      address,
+    const resultAddress = postalCodeAutoCompleteAddress({
+      cors,
       accountName,
-      usePostalCode,
-      callback
-    )
+      address,
+      rules: usePostalCode,
+      callback,
+    })
 
     expect(resultAddress.postalCode.loading).toBe(true)
   })
@@ -31,7 +33,13 @@ describe('postalCodeAutoCompleteAddress()', () => {
       done()
     }
 
-    postalCodeAutoCompleteAddress(address, accountName, usePostalCode, callback)
+    postalCodeAutoCompleteAddress({
+      cors,
+      accountName,
+      address,
+      rules: usePostalCode,
+      callback,
+    })
   })
 
   it('should call callback function with the postal code loading false', done => {
@@ -40,7 +48,13 @@ describe('postalCodeAutoCompleteAddress()', () => {
       done()
     }
 
-    postalCodeAutoCompleteAddress(address, accountName, usePostalCode, callback)
+    postalCodeAutoCompleteAddress({
+      cors,
+      accountName,
+      address,
+      rules: usePostalCode,
+      callback,
+    })
   })
 
   it('should handle promise rejection', done => {
@@ -54,12 +68,13 @@ describe('postalCodeAutoCompleteAddress()', () => {
       done()
     }
 
-    postalCodeAutoCompleteAddress(
-      rejectionAddress,
+    postalCodeAutoCompleteAddress({
+      cors,
       accountName,
-      usePostalCode,
-      callback
-    )
+      address: rejectionAddress,
+      rules: usePostalCode,
+      callback,
+    })
   })
 
   it('should remove empty fields', done => {
@@ -70,6 +85,12 @@ describe('postalCodeAutoCompleteAddress()', () => {
       done()
     }
 
-    postalCodeAutoCompleteAddress(address, accountName, usePostalCode, callback)
+    postalCodeAutoCompleteAddress({
+      cors,
+      accountName,
+      address,
+      rules: usePostalCode,
+      callback,
+    })
   })
 })

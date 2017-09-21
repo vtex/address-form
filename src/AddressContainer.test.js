@@ -20,6 +20,7 @@ describe('AddressContainer', () => {
 
     mount(
       <AddressContainer
+        cors
         accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={jest.fn()}
@@ -42,6 +43,7 @@ describe('AddressContainer', () => {
 
     mount(
       <AddressContainer
+        cors
         accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={handleAddressChange}
@@ -67,6 +69,7 @@ describe('AddressContainer', () => {
 
     mount(
       <AddressContainer
+        cors
         accountName={accountName}
         address={addressWithCountry}
         onChangeAddress={handleAddressChange}
@@ -97,6 +100,7 @@ describe('AddressContainer', () => {
 
       mount(
         <AddressContainer
+          cors
           accountName={accountName}
           address={addressWithCountry}
           onChangeAddress={handleAddressChange}
@@ -119,6 +123,7 @@ describe('AddressContainer', () => {
 
       mount(
         <AddressContainer
+          cors
           accountName={accountName}
           address={addressWithCountry}
           onChangeAddress={handleAddressChange}
@@ -143,6 +148,7 @@ describe('AddressContainer', () => {
 
       mount(
         <AddressContainer
+          cors
           accountName={accountName}
           address={addressWithCountry}
           onChangeAddress={handleAddressChange}
@@ -167,6 +173,7 @@ describe('AddressContainer', () => {
 
       mount(
         <AddressContainer
+          cors
           accountName={accountName}
           address={addressWithCountry}
           onChangeAddress={handleAddressChange}

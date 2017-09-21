@@ -132,9 +132,11 @@ class Map extends Component {
   }
 
   render() {
-    return this.props.loadingGoogle
-      ? this.props.loadingElement
-      : <div id="map-canvas" ref={this.mapMounted} {...this.props.mapProps} />
+    return this.props.loadingGoogle ? (
+      this.props.loadingElement
+    ) : (
+      <div id="map-canvas" ref={this.mapMounted} {...this.props.mapProps} />
+    )
   }
 }
 

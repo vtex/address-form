@@ -8,9 +8,10 @@ import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 class AddressContainer extends Component {
   handleAddressChange = changedAddressFields => {
     const {
+      cors,
+      accountName,
       rules,
       address,
-      accountName,
       onChangeAddress,
       autoCompletePostalCode,
     } = this.props
@@ -44,12 +45,13 @@ class AddressContainer extends Component {
 
       if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
         return onChangeAddress(
-          postalCodeAutoCompleteAddress(
-            addressValidated,
+          postalCodeAutoCompleteAddress({
+            cors,
             accountName,
+            addressValidated,
             rules,
-            this.handleAddressChange
-          )
+            callback: this.handleAddressChange,
+          })
         )
       }
     }
@@ -63,11 +65,13 @@ class AddressContainer extends Component {
 }
 
 AddressContainer.defaultProps = {
+  cors: false,
   autoCompletePostalCode: true,
 }
 
 AddressContainer.propTypes = {
-  accountName: PropTypes.string.isRequired,
+  cors: PropTypes.bool,
+  accountName: PropTypes.string,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

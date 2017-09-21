@@ -69,7 +69,8 @@ onChangeAddress({
 
 #### Props
 
-- **`accountName`**: The account name of the store, to be used by the Postal Code Service.
+- **`cors`**: (default: `false`) If the app is running outside the VTEX servers.
+- **`accountName`**: This parameter it's only used when the `cors` prop is `true`. The account name of the store, to be used by the Postal Code Service.
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
 - **`rules`**: The selected country rules
 - **`onChangeAddress`**: Callback function to be called when a field has changed
@@ -78,7 +79,8 @@ onChangeAddress({
 
 ```js
 AddressContainer.propTypes = {
-  accountName: PropTypes.string.isRequired,
+  cors: PropTypes.bool,
+  accountName: PropTypes.string,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
@@ -91,7 +93,6 @@ AddressContainer.propTypes = {
 
 ```js
 <AddressContainer
-  accountName="qamarketplace"
   address={address}
   rules={rules}
   onChangeAddress={this.handleAddressChange}
@@ -126,7 +127,6 @@ CountrySelector.propTypes = {
 
 ```js
 <AddressContainer
-  accountName={accountName}
   address={address}
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
@@ -173,7 +173,6 @@ AddressForm.propTypes = {
 
 ```js
 <AddressContainer
-  accountName={accountName}
   address={address}
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
@@ -248,7 +247,6 @@ PostalCodeGetter.propTypes = {
 
 ```js
 <AddressContainer
-  accountName={accountName}
   address={address}
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
@@ -291,7 +289,6 @@ AutoCompletedFields.propTypes = {
 
 ```js
 <AddressContainer
-  accountName={accountName}
   address={address}
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
