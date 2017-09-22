@@ -16,7 +16,8 @@
     "start": "nwb serve-react-demo",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
-    "test:watch": "jest --env=jsdom --watch"
+    "test:watch": "jest --env=jsdom --watch",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "axios": "^0.16.2",
