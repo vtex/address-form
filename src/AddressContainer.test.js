@@ -27,7 +27,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         {children}
-      </AddressContainer>
+      </AddressContainer>,
     )
 
     expect(children).toHaveBeenCalledWith(expect.any(Function))
@@ -50,7 +50,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         {children}
-      </AddressContainer>
+      </AddressContainer>,
     )
 
     expect(handleAddressChange).toHaveBeenCalledWith({
@@ -76,7 +76,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         {children}
-      </AddressContainer>
+      </AddressContainer>,
     )
 
     expect(handleAddressChange).toHaveBeenCalledWith({
@@ -107,7 +107,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           {children}
-        </AddressContainer>
+        </AddressContainer>,
       )
 
       expect(postalCodeAutoCompleteAddress).toHaveBeenCalled()
@@ -130,7 +130,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           {children}
-        </AddressContainer>
+        </AddressContainer>,
       )
 
       expect(postalCodeAutoCompleteAddress).not.toHaveBeenCalled()
@@ -155,7 +155,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           {children}
-        </AddressContainer>
+        </AddressContainer>,
       )
 
       expect(postalCodeAutoCompleteAddress).not.toHaveBeenCalled()
@@ -181,7 +181,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           {children}
-        </AddressContainer>
+        </AddressContainer>,
       )
 
       expect(postalCodeAutoCompleteAddress).not.toHaveBeenCalled()
