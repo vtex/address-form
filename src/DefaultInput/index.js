@@ -24,6 +24,7 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
+            disabled={loading}
             inputRef={inputRef}
           />
           {loading && <PostalCodeLoader />}
