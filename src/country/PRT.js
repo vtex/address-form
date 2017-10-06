@@ -15,7 +15,7 @@ export default {
       name: 'postalCode',
       required: true,
       mask: '9999-999',
-      regex: '^(?:[\\d]{4})(?:\\-|)(?:[\\d]{3}|)$',
+      regex: '^(?:[\\d]{4})(?:\\-|)(?:[\\d]{3})$',
       forgottenURL:
         'https://www.ctt.pt/feapl_2/app/open/objectSearch/objectSearch.jspx',
       size: 'small',
