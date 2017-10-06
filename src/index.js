@@ -11,4 +11,4 @@ export constants from './constants'
 
 // Helper Functions
 export { addValidation, removeValidation } from './transforms/address'
-export { isValidAddress } from './validateAddress'
+export { isValidAddress, validateField } from './validateAddress'
