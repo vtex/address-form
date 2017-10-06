@@ -671,6 +671,16 @@ const countryData = {
       Vilcanchos: '051012',
     },
   },
+  Callao: {
+    Callao: {
+      Bellavista: '070102',
+      Callao: '070101',
+      'Carmen De La Legua Reynoso': '070103',
+      'La Perla': '070104',
+      'La Punta': '070105',
+      Ventanilla: '070106',
+    }
+  },
   Cajamarca: {
     Cajabamba: {
       Cachachi: '060202',
