@@ -30,6 +30,7 @@ $ npm install @vtex/address-form
 - [addValidation](#addValidation)
 - [removeValidation](#removeValidation)
 - [isValidAddress](#isValidAddress)
+- [validateField](#validateField)
 
 ### Public modules
 
@@ -597,6 +598,51 @@ isValidAddress(address, rules)
 //     street: { value: '', valid: false, focus: true, reason: 'ERROR_EMPTY_FIELD' },
 //     addressQuery: { value: null },
 //   }
+// }
+```
+
+### validateField
+
+
+#### Params
+
+validateField(value, name, address, rules)
+- **`value`**: Value of the field
+- **`name`**: Name of the field
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`rules`**: The selected country rules
+
+#### Returns
+
+An object with the properties:
+
+- **`valid`**: A boolean if the field is valid or not
+- **`reason`**: An error constant
+
+#### Example
+
+```js
+const address = {
+  addressId: { value: '10' },
+  addressType: { value: 'residential' },
+  city: { value: '' },
+  complement: { value: null },
+  country: { value: 'BRA' },
+  geoCoordinates: { value: [] },
+  neighborhood: { value: '' },
+  number: { value: '' },
+  postalCode: { value: '222' },
+  receiverName: { value: 'João' },
+  reference: { value: null },
+  state: { value: '' },
+  street: { value: '' },
+  addressQuery: { value: null },
+}
+
+validateField('222', 'postalCode', address, rules)
+// {
+//    valid: false,
+//    reason: 'ERROR_POSTAL_CODE'
 // }
 ```
 
