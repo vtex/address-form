@@ -18,7 +18,7 @@ export default function Styles({ children }) {
       />
       <link
         rel="stylesheet"
-        href="//io.vtex.com.br/checkout-ui/5.5.2/style/style.css"
+        href="//io.vtex.com.br/checkout-ui/5.6.15/style/style.css"
       />
       {children}
     </div>
