@@ -62,7 +62,7 @@ export default {
       name: 'state',
       label: 'state',
       required: true,
-      size: 'medium',
+      size: 'mini',
       optionsCaption: 'UF',
       optionsPairs: [
         { value: 'AC', label: 'AC' },
