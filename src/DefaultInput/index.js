@@ -26,6 +26,7 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={loading}
             inputRef={inputRef}
+            loading={loading}
           />
           {loading && <PostalCodeLoader />}
           {field.forgottenURL && (
