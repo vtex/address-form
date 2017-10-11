@@ -11,10 +11,11 @@ class InputText extends Component {
   render() {
     const { address, field, disabled, inputRef, placeholder } = this.props
     const fieldValue = address[field.name]
+    const loading = !!address[field.name].loading
 
     const className = cx(this.props.className, {
       [`input-${field.size}`]: field.size,
-      success: fieldValue.valid === true,
+      success: !loading && fieldValue.valid === true,
       error: fieldValue.valid === false,
     })
 
