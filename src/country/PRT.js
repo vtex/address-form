@@ -41,7 +41,7 @@ export default {
       hidden: true,
       name: 'reference',
       label: 'reference',
-      size: 'large',
+      size: 'xlarge',
     },
     {
       hidden: true,
@@ -64,7 +64,7 @@ export default {
     {
       name: 'receiverName',
       label: 'receiverName',
-      size: 'large',
+      size: 'xlarge',
       required: true,
     },
   ],
