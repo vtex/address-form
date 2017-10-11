@@ -420,7 +420,7 @@ export default {
       hidden: true,
       name: 'reference',
       label: 'reference',
-      size: 'large',
+      size: 'xlarge',
     },
     {
       name: 'state',
@@ -448,7 +448,7 @@ export default {
     {
       name: 'receiverName',
       label: 'receiverName',
-      size: 'large',
+      size: 'xlarge',
       required: true,
     },
   ],
