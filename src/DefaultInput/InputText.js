@@ -9,8 +9,9 @@ class InputText extends Component {
   }
 
   render() {
-    const { address, field, disabled, inputRef, placeholder, loading } = this.props
+    const { address, field, disabled, inputRef, placeholder } = this.props
     const fieldValue = address[field.name]
+    const loading = !!address[field.name].loading
 
     const className = cx(this.props.className, {
       [`input-${field.size}`]: field.size,
@@ -38,7 +39,6 @@ class InputText extends Component {
 InputText.defaultProps = {
   className: '',
   disabled: false,
-  loading: false,
 }
 
 InputText.propTypes = {
@@ -50,7 +50,6 @@ InputText.propTypes = {
   onBlur: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   inputRef: PropTypes.func,
-  loading: PropTypes.loading,
 }
 
 export default InputText
