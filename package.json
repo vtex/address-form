@@ -51,16 +51,11 @@
     "react-intl": "^2.3.0",
     "react-test-renderer": "^15.6.1"
   },
-  "author": "Breno Calazans (@breno_calazans)",
+  "author": "Breno Calazans (@klzns)",
   "homepage": "https://github.com/vtex/address-form",
   "license": "MIT",
   "repository": "https://github.com/vtex/address-form",
-  "keywords": [
-    "react-component",
-    "vtex",
-    "checkout",
-    "address"
-  ],
+  "keywords": ["react-component", "vtex", "checkout", "address"],
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
     "testPathIgnorePatterns": [
@@ -81,7 +76,8 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
     "moduleNameMapper": {
-      "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
+      "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$":
+        "identity-obj-proxy"
     },
     "transform": {
       "^.+\\.js$": "<rootDir>/jest.transform.js"
