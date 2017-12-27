@@ -21,7 +21,7 @@ class CountrySelector extends Component {
   }
 
   sortOptionsByLabel(options) {
-    return options.sort((a, b) => a.label.localeCompare(b.label))
+    return options.slice().sort((a, b) => a.label.localeCompare(b.label))
   }
 
   render() {
