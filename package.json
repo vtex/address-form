@@ -25,7 +25,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
-    "react": "15.x"
+    "react": "15.x || 16.x",
+    "react-intl": "^2.4.0"
   },
   "devDependencies": {
     "babel-eslint": "7",
@@ -43,7 +44,7 @@
     "i18n-iso-countries": "^1.13.0",
     "jest": "^20.0.4",
     "jest-enzyme": "^3.5.3",
-    "nwb": "^0.18.7",
+    "nwb": "^0.20.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
