@@ -24,6 +24,7 @@ class InputText extends Component {
         type="text"
         id={`ship-${field.name}`}
         name={field.name}
+        maxLength={field.maxLength}
         value={fieldValue.value || ''}
         placeholder={placeholder}
         onBlur={this.props.onBlur}

@@ -12,6 +12,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       className="input-xlarge"
       disabled={false}
       id="ship-street"
+      maxLength={undefined}
       name="street"
       onBlur={[Function]}
       onChange={[Function]}
@@ -30,6 +31,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       className="input-mini"
       disabled={false}
       id="ship-number"
+      maxLength={750}
       name="number"
       onBlur={[Function]}
       onChange={[Function]}
@@ -48,6 +50,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       className="input-large"
       disabled={false}
       id="ship-complement"
+      maxLength={750}
       name="complement"
       onBlur={[Function]}
       onChange={[Function]}
@@ -66,6 +69,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       className="input-large"
       disabled={false}
       id="ship-neighborhood"
+      maxLength={100}
       name="neighborhood"
       onBlur={[Function]}
       onChange={[Function]}
@@ -84,6 +88,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       className="input-large"
       disabled={false}
       id="ship-city"
+      maxLength={undefined}
       name="city"
       onBlur={[Function]}
       onChange={[Function]}
@@ -145,6 +150,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       className="input-large"
       disabled={false}
       id="ship-receiverName"
+      maxLength={750}
       name="receiverName"
       onBlur={[Function]}
       onChange={[Function]}
