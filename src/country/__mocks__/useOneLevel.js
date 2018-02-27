@@ -32,17 +32,20 @@ export default {
     },
     {
       name: 'number',
+      maxLength: 750,
       label: 'number',
       required: true,
       size: 'mini',
     },
     {
       name: 'complement',
+      maxLength: 750,
       label: 'complement',
       size: 'large',
     },
     {
       name: 'state',
+      maxLength: 100,
       label: 'province',
       required: true,
       size: 'large',
@@ -60,6 +63,7 @@ export default {
     },
     {
       name: 'receiverName',
+      maxLength: 750,
       label: 'receiverName',
       size: 'large',
       required: true,

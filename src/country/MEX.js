@@ -9,11 +9,13 @@ export default {
     {
       hidden: true,
       name: 'country',
+      maxLength: 100,
       label: 'country',
       size: 'medium',
     },
     {
       name: 'postalCode',
+      maxLength: 50,
       label: 'postalCode',
       required: true,
       mask: '99999',
@@ -31,35 +33,41 @@ export default {
     },
     {
       name: 'number',
+      maxLength: 750,
       label: 'exteriorNumber',
       required: true,
       size: 'mini',
     },
     {
       name: 'complement',
+      maxLength: 750,
       label: 'interiorNumber',
       size: 'large',
     },
     {
       hidden: true,
       name: 'reference',
+      maxLength: 750,
       label: 'reference',
       size: 'xlarge',
     },
     {
       name: 'neighborhood',
+      maxLength: 100,
       label: 'colony',
       required: true,
       size: 'xlarge',
     },
     {
       name: 'city',
+      maxLength: 100,
       label: 'municipalityDelegation',
       required: true,
       size: 'xlarge',
     },
     {
       name: 'state',
+      maxLength: 100,
       label: 'state',
       required: true,
       size: 'xlarge',
@@ -100,6 +108,7 @@ export default {
     },
     {
       name: 'receiverName',
+      maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
       required: true,
