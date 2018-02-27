@@ -7,6 +7,7 @@ export default {
   fields: [
     {
       name: 'postalCode',
+      maxLength: 50,
       fixedLabel: 'CEP',
       required: true,
       mask: '99999-999',
@@ -24,17 +25,20 @@ export default {
     },
     {
       name: 'number',
+      maxLength: 750,
       label: 'number',
       required: true,
       size: 'mini',
     },
     {
       name: 'complement',
+      maxLength: 750,
       label: 'complement',
       size: 'large',
     },
     {
       name: 'neighborhood',
+      maxLength: 100,
       label: 'neighborhood',
       required: true,
       size: 'large',
@@ -47,6 +51,7 @@ export default {
     },
     {
       name: 'state',
+      maxLength: 100,
       label: 'state',
       required: true,
       optionsCaption: 'UF',
@@ -60,6 +65,7 @@ export default {
     },
     {
       name: 'receiverName',
+      maxLength: 750,
       label: 'receiverName',
       size: 'large',
       required: true,

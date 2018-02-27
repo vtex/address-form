@@ -43,17 +43,20 @@ export default {
     },
     {
       name: 'number',
+      maxLength: 750,
       label: 'number',
       required: true,
       size: 'mini',
     },
     {
       name: 'complement',
+      maxLength: 750,
       label: 'complement',
       size: 'large',
     },
     {
       name: 'state',
+      maxLength: 100,
       label: 'department',
       required: true,
       size: 'large',
@@ -71,6 +74,7 @@ export default {
     },
     {
       name: 'neighborhood',
+      maxLength: 100,
       label: 'city',
       required: true,
       level: 3,
@@ -79,6 +83,7 @@ export default {
     },
     {
       name: 'receiverName',
+      maxLength: 750,
       label: 'receiverName',
       size: 'large',
       required: true,

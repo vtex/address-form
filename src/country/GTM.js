@@ -587,17 +587,20 @@ export default {
     {
       hidden: true,
       name: 'country',
+      maxLength: 100,
       label: 'country',
       size: 'medium',
     },
     {
       hidden: true,
       name: 'postalCode',
+      maxLength: 50,
       label: 'postalCode',
       size: 'small',
     },
     {
       name: 'state',
+      maxLength: 100,
       label: 'department',
       required: true,
       size: 'xlarge',
@@ -606,6 +609,7 @@ export default {
     },
     {
       name: 'city',
+      maxLength: 100,
       label: 'municipality',
       required: true,
       size: 'xlarge',
@@ -616,6 +620,7 @@ export default {
     {
       hidden: true,
       name: 'neighborhood',
+      maxLength: 100,
       label: 'neighborhood',
       size: 'large',
     },
@@ -628,23 +633,27 @@ export default {
     {
       hidden: true,
       name: 'number',
+      maxLength: 750,
       label: 'number',
       size: 'small',
     },
     {
       hidden: true,
       name: 'complement',
+      maxLength: 750,
       label: 'complement',
       size: 'large',
     },
     {
       hidden: true,
       name: 'reference',
+      maxLength: 750,
       label: 'reference',
       size: 'xlarge',
     },
     {
       name: 'receiverName',
+      maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
       required: true,
