@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputText should render custom class 1`] = `
+<input
+  className="my-class input-small error"
+  disabled={false}
+  id="ship-postalCode"
+  maxLength="9"
+  name="postalCode"
+  onBlur={[Function]}
+  onChange={[Function]}
+  placeholder={undefined}
+  type="text"
+  value=""
+/>
+`;
+
+exports[`InputText should render default case 1`] = `
+<input
+  className="input-small error"
+  disabled={false}
+  id="ship-postalCode"
+  maxLength="9"
+  name="postalCode"
+  onBlur={[Function]}
+  onChange={[Function]}
+  placeholder={undefined}
+  type="text"
+  value=""
+/>
+`;
+
+exports[`InputText should render different id 1`] = `
+<input
+  className="input-small error"
+  disabled={false}
+  id="summary-postal-code"
+  maxLength="9"
+  name="postalCode"
+  onBlur={[Function]}
+  onChange={[Function]}
+  placeholder={undefined}
+  type="text"
+  value=""
+/>
+`;
+
+exports[`InputText should render different id based on fieldName 1`] = `
+<input
+  className="input-small error"
+  disabled={false}
+  id="my-context-postalCode"
+  maxLength="9"
+  name="postalCode"
+  onBlur={[Function]}
+  onChange={[Function]}
+  placeholder={undefined}
+  type="text"
+  value=""
+/>
+`;
+
+exports[`InputText should render different input type 1`] = `
+<input
+  className="input-small error"
+  disabled={false}
+  id="ship-postalCode"
+  maxLength="9"
+  name="postalCode"
+  onBlur={[Function]}
+  onChange={[Function]}
+  placeholder={undefined}
+  type="tel"
+  value=""
+/>
+`;
+
+exports[`InputText should render disabled input 1`] = `
+<input
+  className="input-small error"
+  disabled={true}
+  id="ship-postalCode"
+  maxLength="9"
+  name="postalCode"
+  onBlur={[Function]}
+  onChange={[Function]}
+  placeholder={undefined}
+  type="text"
+  value=""
+/>
+`;

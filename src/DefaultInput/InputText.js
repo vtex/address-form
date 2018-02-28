@@ -9,7 +9,8 @@ class InputText extends Component {
   }
 
   render() {
-    const { address, field, disabled, inputRef, placeholder } = this.props
+    const { address, field, disabled, inputRef, placeholder, type } = this.props
+    const id = this.props.id.replace('{{fieldName}}', field.name)
     const fieldValue = address[field.name]
     const loading = !!address[field.name].loading
 
@@ -21,8 +22,8 @@ class InputText extends Component {
 
     return (
       <input
-        type="text"
-        id={`ship-${field.name}`}
+        id={id}
+        type={type}
         name={field.name}
         maxLength={field.maxLength}
         value={fieldValue.value || ''}
@@ -38,18 +39,22 @@ class InputText extends Component {
 }
 
 InputText.defaultProps = {
+  id: 'ship-{{fieldName}}',
+  type: 'text',
   className: '',
   disabled: false,
 }
 
 InputText.propTypes = {
   field: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  placeholder: PropTypes.string,
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  type: PropTypes.string,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
   inputRef: PropTypes.func,
 }
 
