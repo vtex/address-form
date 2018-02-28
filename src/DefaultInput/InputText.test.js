@@ -59,4 +59,24 @@ describe('InputText', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  it('should render different id', () => {
+    const props = {
+      ...DEFAULT_PROPS,
+      id: 'summary-postal-code',
+    }
+    const tree = renderer.create(<InputText {...props} />).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('should render different id based on fieldName', () => {
+    const props = {
+      ...DEFAULT_PROPS,
+      id: 'my-context-{{fieldName}}',
+    }
+    const tree = renderer.create(<InputText {...props} />).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })
