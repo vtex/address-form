@@ -9,7 +9,7 @@ class InputText extends Component {
   }
 
   render() {
-    const { address, field, disabled, inputRef, placeholder } = this.props
+    const { address, field, disabled, inputRef, placeholder, type } = this.props
     const fieldValue = address[field.name]
     const loading = !!address[field.name].loading
 
@@ -21,7 +21,7 @@ class InputText extends Component {
 
     return (
       <input
-        type="text"
+        type={type}
         id={`ship-${field.name}`}
         name={field.name}
         maxLength={field.maxLength}
@@ -40,6 +40,7 @@ class InputText extends Component {
 InputText.defaultProps = {
   className: '',
   disabled: false,
+  type: 'text',
 }
 
 InputText.propTypes = {
@@ -49,6 +50,7 @@ InputText.propTypes = {
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  type: PropTypes.string,
   disabled: PropTypes.bool,
   inputRef: PropTypes.func,
 }
