@@ -10,6 +10,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     />
     <input
       className="input-xlarge"
+      data-hj-whitelist={true}
       disabled={false}
       id="ship-street"
       maxLength={undefined}
@@ -29,6 +30,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     />
     <input
       className="input-mini"
+      data-hj-whitelist={true}
       disabled={false}
       id="ship-number"
       maxLength={750}
@@ -48,6 +50,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     />
     <input
       className="input-large"
+      data-hj-whitelist={true}
       disabled={false}
       id="ship-complement"
       maxLength={750}
@@ -67,6 +70,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     />
     <input
       className="input-large"
+      data-hj-whitelist={true}
       disabled={false}
       id="ship-neighborhood"
       maxLength={100}
@@ -86,6 +90,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     />
     <input
       className="input-large"
+      data-hj-whitelist={true}
       disabled={false}
       id="ship-city"
       maxLength={undefined}
@@ -148,6 +153,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     />
     <input
       className="input-large"
+      data-hj-whitelist={true}
       disabled={false}
       id="ship-receiverName"
       maxLength={750}

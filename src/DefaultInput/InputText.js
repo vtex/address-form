@@ -33,6 +33,7 @@ class InputText extends Component {
         className={className}
         disabled={disabled}
         ref={inputRef}
+        data-hj-whitelist
       />
     )
   }
