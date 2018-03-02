@@ -3,6 +3,7 @@
 exports[`InputText should render custom class 1`] = `
 <input
   className="my-class input-small error"
+  data-hj-whitelist={true}
   disabled={false}
   id="ship-postalCode"
   maxLength="9"
@@ -18,6 +19,7 @@ exports[`InputText should render custom class 1`] = `
 exports[`InputText should render default case 1`] = `
 <input
   className="input-small error"
+  data-hj-whitelist={true}
   disabled={false}
   id="ship-postalCode"
   maxLength="9"
@@ -33,6 +35,7 @@ exports[`InputText should render default case 1`] = `
 exports[`InputText should render different id 1`] = `
 <input
   className="input-small error"
+  data-hj-whitelist={true}
   disabled={false}
   id="summary-postal-code"
   maxLength="9"
@@ -48,6 +51,7 @@ exports[`InputText should render different id 1`] = `
 exports[`InputText should render different id based on fieldName 1`] = `
 <input
   className="input-small error"
+  data-hj-whitelist={true}
   disabled={false}
   id="my-context-postalCode"
   maxLength="9"
@@ -63,6 +67,7 @@ exports[`InputText should render different id based on fieldName 1`] = `
 exports[`InputText should render different input type 1`] = `
 <input
   className="input-small error"
+  data-hj-whitelist={true}
   disabled={false}
   id="ship-postalCode"
   maxLength="9"
@@ -78,6 +83,7 @@ exports[`InputText should render different input type 1`] = `
 exports[`InputText should render disabled input 1`] = `
 <input
   className="input-small error"
+  data-hj-whitelist={true}
   disabled={true}
   id="ship-postalCode"
   maxLength="9"
