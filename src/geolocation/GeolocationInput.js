@@ -32,16 +32,18 @@ class GeolocationInput extends Component {
 
     this.input = input
 
-    const options = {
-      types: ['address'],
-      componentRestrictions: {
-        country: this.props.rules.abbr,
-      },
-    }
+    const options = this.props.rules.abbr
+      ? {
+        types: ['address'],
+        componentRestrictions: {
+          country: this.props.rules.abbr,
+        },
+      }
+      : { types: ['address'] }
 
     this.autocomplete = new this.props.googleMaps.places.Autocomplete(
       this.input,
-      options
+      options,
     )
 
     if (this.autocompleteListener) {
@@ -61,7 +63,7 @@ class GeolocationInput extends Component {
           return
         }
         this.setState({ isValidGoogleAddress })
-      }
+      },
     )
   }
 
@@ -69,7 +71,7 @@ class GeolocationInput extends Component {
     const address = geolocationAutoCompleteAddress(
       this.state.address,
       googleAddress,
-      this.props.rules
+      this.props.rules,
     )
 
     this.props.onChangeAddress(address)
