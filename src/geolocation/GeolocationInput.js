@@ -90,7 +90,7 @@ class GeolocationInput extends Component {
   }
 
   render() {
-    const { Input, rules, loadingGoogle, inputProps } = this.props
+    const { Input, rules, loadingGoogle, inputProps, placeholder } = this.props
     const { address, isValidGoogleAddress } = this.state
 
     const newAddress = {
@@ -114,6 +114,7 @@ class GeolocationInput extends Component {
         }}
         options={null}
         address={newAddress}
+        placeholder={placeholder}
         onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
       />
