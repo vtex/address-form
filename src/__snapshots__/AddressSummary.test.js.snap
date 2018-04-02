@@ -9,19 +9,31 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   >
     Praia de Botafogo
   </span>
-  , 
+  <span
+    className="number-comma"
+  >
+    , 
+  </span>
   <span
     className="number"
   >
     300
   </span>
-  , 
+  <span
+    className="complement-comma"
+  >
+    , 
+  </span>
   <span
     className="complement"
   >
     2nd floor
   </span>
-   - 
+  <span
+    className="neighborhood-dash"
+  >
+     - 
+  </span>
   <span
     className="neighborhood"
   >
@@ -33,7 +45,11 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   >
     Rio de Janeiro
   </span>
-   - 
+  <span
+    className="state-dash"
+  >
+     - 
+  </span>
   <span
     className="state"
   >
@@ -42,7 +58,11 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="postal-code"
   />
-   - 
+  <span
+    className="country-dash"
+  >
+     - 
+  </span>
   <span
     className="country"
   >
