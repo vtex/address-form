@@ -35,66 +35,45 @@ class AddressSummary extends Component {
 
     return (
       <div className="address-summary">
-        {street &&
-          <span className="street">
-            {street}
-          </span>}
+        {street && <span className="street">{street}</span>}
 
-        {numberField && number && ', '}
-        {numberField &&
-          number &&
-          <span className="number">
-            {number}
-          </span>}
+        {numberField && number && <span className="number-comma">{', '}</span>}
+        {numberField && number && <span className="number">{number}</span>}
 
-        {complementField && complement && ', '}
         {complementField &&
-          complement &&
-          <span className="complement">
-            {complement}
-          </span>}
+          complement && <span className="complement-comma">{', '}</span>}
+        {complementField &&
+          complement && <span className="complement">{complement}</span>}
 
-        {neighborhoodField && neighborhood && ' - '}
         {neighborhoodField &&
-          neighborhood &&
-          <span className="neighborhood">
-            {neighborhood}
-          </span>}
+          neighborhood && <span className="neighborhood-dash">{' - '}</span>}
+        {neighborhoodField &&
+          neighborhood && <span className="neighborhood">{neighborhood}</span>}
 
         {!canEditData && ' '}
-        {!canEditData &&
+        {!canEditData && (
           <a
             data-i18n="[title]modal.maskedInfoHello"
             className="client-masked-info"
             onClick={this.props.onClickMaskedInfoIcon}
           >
             <i className="icon-question-sign" />
-          </a>}
+          </a>
+        )}
 
         {street || number || complement || neighborhood ? <br /> : null}
 
-        {city &&
-          <span className="city">
-            {city}
-          </span>}
+        {city && <span className="city">{city}</span>}
 
-        {state && ' - '}
-        {state &&
-          <span className="state">
-            {state}
-          </span>}
+        {state && <span className="state-dash">{' - '}</span>}
+        {state && <span className="state">{state}</span>}
 
-        {postalCodeByInput && postalCode && ' - '}
         {postalCodeByInput &&
-          <span className="postal-code">
-            {postalCode}
-          </span>}
+          postalCode && <span className="postal-code-dash">{' - '}</span>}
+        {postalCodeByInput && <span className="postal-code">{postalCode}</span>}
 
-        {country && ' - '}
-        {country &&
-          <span className="country">
-            {country}
-          </span>}
+        {country && <span className="country-dash">{' - '}</span>}
+        {country && <span className="country">{country}</span>}
 
         {children}
       </div>
