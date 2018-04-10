@@ -17,10 +17,36 @@ describe('Address Transform', () => {
     expect(result).toMatchObject(address)
   })
 
+  it('should add validation only once, even with multiple calls', () => {
+    const result = addValidation(addValidation(addressWithoutValidation))
+
+    expect(result).toMatchObject(address)
+  })
+
   it('should remove validation object from fields', () => {
     const result = removeValidation(address)
 
     expect(result).toMatchObject(addressWithoutValidation)
+  })
+
+  it('should remove validation only once, even with multiple calls', () => {
+    const result = removeValidation(removeValidation(address))
+
+    expect(result).toMatchObject(addressWithoutValidation)
+  })
+
+  it('should maintain original object when removing and adding validation at sequence', () => {
+    const result = removeValidation(addValidation(address))
+
+    expect(result).toMatchObject(addressWithoutValidation)
+  })
+
+  it('should maintain original object when removing and adding validation at sequence multiple times', () => {
+    const result1 = removeValidation(addValidation(removeValidation(addValidation(address))))
+    const result2 = removeValidation(removeValidation(addValidation(addValidation(address))))
+
+    expect(result1).toMatchObject(addressWithoutValidation)
+    expect(result2).toMatchObject(addressWithoutValidation)
   })
 
   it('should add a new field to all address properties', () => {

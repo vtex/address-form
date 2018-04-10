@@ -3,6 +3,7 @@ import filter from 'lodash/filter'
 import map from 'lodash/map'
 import difference from 'lodash/difference'
 import find from 'lodash/find'
+import isUndefined from 'lodash/isUndefined'
 import { getField } from '../selectors/fields'
 import { validateAddress } from '../validateAddress'
 import msk from 'msk'
@@ -10,22 +11,25 @@ import msk from 'msk'
 export function addValidation(address) {
   return reduce(
     address,
-    (newAddress, value, propName) => {
-      newAddress[propName] = { value }
+    (newAddress, propValue, propName) => {
+      newAddress[propName] = {
+        value: propValue && !isUndefined(propValue.value) ? propValue.value : propValue,
+      }
       return newAddress
     },
-    {}
+    {},
   )
 }
 
 export function removeValidation(address) {
   return reduce(
     address,
-    (newAddress, { value }, propName) => {
-      newAddress[propName] = value
+    (newAddress, propValue, propName) => {
+      newAddress[propName] =
+        !propValue || isUndefined(propValue.value) ? propValue : propValue.value
       return newAddress
     },
-    {}
+    {},
   )
 }
 
@@ -39,7 +43,7 @@ export function addNewField(address, fieldName, value) {
       }
       return newAddress
     },
-    {}
+    {},
   )
 }
 
@@ -51,7 +55,7 @@ export function removeField(address, fieldName) {
       delete newAddress[propName][fieldName]
       return newAddress
     },
-    {}
+    {},
   )
 }
 
@@ -75,7 +79,7 @@ export function addDisabledToProtectedFields(fields, rules) {
 
       return newFields
     },
-    {}
+    {},
   )
 }
 
@@ -97,7 +101,7 @@ export function handleMultipleValues(fields) {
 
       return newFields
     },
-    {}
+    {},
   )
 }
 
@@ -118,7 +122,7 @@ export function maskFields(addressFields, rules) {
 
       return newAddressFields
     },
-    {}
+    {},
   )
 }
 
@@ -155,7 +159,8 @@ function getFirstInvalidFilledField(fields, rules) {
   const firstInvalidField = find(
     rules.fields,
     field =>
-      validatedFields[field.name] && validatedFields[field.name].valid === false
+      validatedFields[field.name] &&
+      validatedFields[field.name].valid === false,
   )
 
   if (firstInvalidField) {
