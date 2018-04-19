@@ -1,6 +1,6 @@
 {
   "name": "@vtex/address-form",
-  "version": "1.4.10",
+  "version": "1.4.11",
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
@@ -43,7 +43,8 @@
     "eslint-plugin-jsx-a11y": "5",
     "eslint-plugin-react": "7",
     "i18n-iso-countries": "^1.13.0",
-    "jest": "^20.0.4",
+    "jest": "^22.0.4",
+    "jest-cli": "^22.4.3",
     "jest-enzyme": "^3.5.3",
     "nwb": "^0.20.0",
     "react": "^15.6.1",

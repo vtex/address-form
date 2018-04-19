@@ -9,6 +9,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       htmlFor="ship-street"
     />
     <input
+      autoFocus={false}
       className="input-xlarge"
       data-hj-whitelist={true}
       disabled={false}
@@ -29,6 +30,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       htmlFor="ship-number"
     />
     <input
+      autoFocus={false}
       className="input-mini"
       data-hj-whitelist={true}
       disabled={false}
@@ -49,6 +51,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       htmlFor="ship-complement"
     />
     <input
+      autoFocus={false}
       className="input-large"
       data-hj-whitelist={true}
       disabled={false}
@@ -69,6 +72,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       htmlFor="ship-neighborhood"
     />
     <input
+      autoFocus={false}
       className="input-large"
       data-hj-whitelist={true}
       disabled={false}
@@ -89,6 +93,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       htmlFor="ship-city"
     />
     <input
+      autoFocus={false}
       className="input-large"
       data-hj-whitelist={true}
       disabled={false}
@@ -152,6 +157,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       htmlFor="ship-receiverName"
     />
     <input
+      autoFocus={false}
       className="input-large"
       data-hj-whitelist={true}
       disabled={false}

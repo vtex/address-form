@@ -9,7 +9,15 @@ class InputText extends Component {
   }
 
   render() {
-    const { address, field, disabled, inputRef, placeholder, type } = this.props
+    const {
+      address,
+      field,
+      disabled,
+      inputRef,
+      placeholder,
+      type,
+      autoFocus,
+    } = this.props
     const id = this.props.id.replace('{{fieldName}}', field.name)
     const fieldValue = address[field.name]
     const loading = !!address[field.name].loading
@@ -22,6 +30,7 @@ class InputText extends Component {
 
     return (
       <input
+        autoFocus={autoFocus}
         id={id}
         type={type}
         name={field.name}
@@ -44,9 +53,11 @@ InputText.defaultProps = {
   type: 'text',
   className: '',
   disabled: false,
+  autoFocus: false,
 }
 
 InputText.propTypes = {
+  autoFocus: PropTypes.bool.isRequired,
   field: PropTypes.object.isRequired,
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
