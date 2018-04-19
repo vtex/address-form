@@ -90,7 +90,14 @@ class GeolocationInput extends Component {
   }
 
   render() {
-    const { Input, rules, loadingGoogle, inputProps, placeholder } = this.props
+    const {
+      Input,
+      rules,
+      loadingGoogle,
+      inputProps,
+      placeholder,
+      autoFocus,
+    } = this.props
     const { address, isValidGoogleAddress } = this.state
 
     const newAddress = {
@@ -115,6 +122,7 @@ class GeolocationInput extends Component {
         options={null}
         address={newAddress}
         placeholder={placeholder}
+        autoFocus={autoFocus}
         onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
       />
@@ -125,6 +133,7 @@ class GeolocationInput extends Component {
 GeolocationInput.defaultProps = {
   Input: DefaultInput,
   inputProps: {},
+  autofocus: false,
 }
 
 GeolocationInput.propTypes = {
@@ -134,6 +143,7 @@ GeolocationInput.propTypes = {
   address: AddressShapeWithValidation.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   loadingGoogle: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   googleMaps: PropTypes.object,
 }
 
