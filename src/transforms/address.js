@@ -3,6 +3,7 @@ import filter from 'lodash/filter'
 import map from 'lodash/map'
 import difference from 'lodash/difference'
 import find from 'lodash/find'
+import isPlainObject from 'lodash/isPlainObject'
 import isUndefined from 'lodash/isUndefined'
 import { getField } from '../selectors/fields'
 import { validateAddress } from '../validateAddress'
@@ -13,7 +14,10 @@ export function addValidation(address) {
     address,
     (newAddress, propValue, propName) => {
       newAddress[propName] = {
-        value: propValue && !isUndefined(propValue.value) ? propValue.value : propValue,
+        value:
+          propValue && !isUndefined(propValue.value)
+            ? propValue.value
+            : propValue,
       }
       return newAddress
     },
@@ -25,8 +29,16 @@ export function removeValidation(address) {
   return reduce(
     address,
     (newAddress, propValue, propName) => {
-      newAddress[propName] =
-        !propValue || isUndefined(propValue.value) ? propValue : propValue.value
+      if (!propValue) {
+        newAddress[propName] = propValue
+        return newAddress
+      }
+
+      newAddress[propName] = isUndefined(propValue.value)
+        ? isPlainObject(propValue)
+          ? null
+          : propValue
+        : propValue.value
       return newAddress
     },
     {},

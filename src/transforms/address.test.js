@@ -29,6 +29,17 @@ describe('Address Transform', () => {
     expect(result).toMatchObject(addressWithoutValidation)
   })
 
+  it('should remove validation object from fields even without property value', () => {
+    const result = removeValidation({
+      ...address,
+      number: {
+        focus: true,
+      },
+    })
+
+    expect(result).toMatchObject(addressWithoutValidation)
+  })
+
   it('should remove validation only once, even with multiple calls', () => {
     const result = removeValidation(removeValidation(address))
 
@@ -42,8 +53,12 @@ describe('Address Transform', () => {
   })
 
   it('should maintain original object when removing and adding validation at sequence multiple times', () => {
-    const result1 = removeValidation(addValidation(removeValidation(addValidation(address))))
-    const result2 = removeValidation(removeValidation(addValidation(addValidation(address))))
+    const result1 = removeValidation(
+      addValidation(removeValidation(addValidation(address))),
+    )
+    const result2 = removeValidation(
+      removeValidation(addValidation(addValidation(address))),
+    )
 
     expect(result1).toMatchObject(addressWithoutValidation)
     expect(result2).toMatchObject(addressWithoutValidation)
