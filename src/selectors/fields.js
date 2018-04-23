@@ -3,6 +3,7 @@ import map from 'lodash/map'
 import filter from 'lodash/filter'
 import reduce from 'lodash/reduce'
 import last from 'lodash/last'
+import forEach from 'lodash/forEach'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 
 export function getField(fieldName, rules) {
@@ -25,6 +26,16 @@ function getFieldValue(field) {
   return typeof field === 'object' ? field.value : field
 }
 
+function normalizeOptions(options) {
+  const normalizedOptions = {}
+
+  forEach(options, (option, key) => {
+    normalizedOptions[key.toLowerCase()] = option
+  })
+
+  return normalizedOptions
+}
+
 export function getListOfOptions(field, address, rules) {
   if (address && address[field.name] && address[field.name].valueOptions) {
     return map(address[field.name].valueOptions, toValueAndLabel)
@@ -40,8 +51,10 @@ export function getListOfOptions(field, address, rules) {
 
   if (field.optionsMap && field.basedOn && field.level === 2) {
     const basedOn = getFieldValue(address[field.basedOn])
-    if (basedOn && field.optionsMap[basedOn]) {
-      const options = field.optionsMap[basedOn]
+    const normalizedBasedOn = basedOn.toLowerCase()
+    const normalizedOptionsMap = normalizeOptions(field.optionsMap)
+    if (normalizedBasedOn && normalizedOptionsMap[normalizedBasedOn]) {
+      const options = normalizedOptionsMap[normalizedBasedOn]
       return map(options, toValueAndLabel)
     }
 
@@ -109,17 +122,17 @@ export function filterPostalCodeFields(rules) {
     case THREE_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1,
       )
     case TWO_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1,
       )
     case ONE_LEVEL:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels[0] !== name
+        ({ name }) => rules.postalCodeLevels[0] !== name,
       )
     default:
     case POSTAL_CODE:
@@ -155,6 +168,6 @@ export function filterAutoCompletedFields(rules, address) {
 
       return fields.concat(field)
     },
-    []
+    [],
   )
 }
