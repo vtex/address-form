@@ -22,7 +22,7 @@ describe('Address Validation:', () => {
   function getRulesRequiredFields(rules, withBaseRequiredFields = true) {
     return rules.fields.reduce(
       (acc, field) => (field.required ? acc.concat([field.name]) : acc),
-      withBaseRequiredFields ? [...baseRequiredFields] : []
+      withBaseRequiredFields ? [...baseRequiredFields] : [],
     )
   }
 
@@ -30,7 +30,7 @@ describe('Address Validation:', () => {
     return reduce(
       validationResult,
       (acc, value, field) => (value.valid ? acc : acc.concat([field])),
-      []
+      [],
     )
   }
 
@@ -88,7 +88,7 @@ describe('Address Validation:', () => {
         addressId: { value: null },
         addressType: { value: null },
       },
-      usePostalCode
+      usePostalCode,
     )
 
     const invalidFields = getAllInvalidFieldsNames(result)
@@ -210,6 +210,45 @@ describe('Address Validation:', () => {
     expect(validOption.valid).toBe(true)
   })
 
+  it('should validate if a city is a valid option in optionsMap even if city or state has not the same case', () => {
+    const rules = {
+      fields: [
+        {
+          name: 'state',
+          required: true,
+          level: 1,
+          optionsPairs: [{ value: 'Amazon', label: 'Amazon' }],
+        },
+        {
+          name: 'city',
+          required: true,
+          basedOn: 'state',
+          level: 2,
+          optionsMap: {
+            Amazon: ['Manaus'],
+          },
+        },
+      ],
+    }
+
+    const validAddress = {
+      ...address,
+      city: { value: 'Manaus' },
+      state: { value: 'AMAZON' },
+    }
+
+    const validcityOption = validateField('MANAUS', 'city', validAddress, rules)
+    const validStateOption = validateField(
+      'AMAZON',
+      'state',
+      validAddress,
+      rules,
+    )
+
+    expect(validcityOption.valid).toBe(true)
+    expect(validStateOption.valid).toBe(true)
+  })
+
   it('should invalidate if a city is a valid option in optionsMap', () => {
     const rules = {
       fields: [
@@ -250,7 +289,7 @@ describe('Address Validation:', () => {
       validGeoCoords,
       'geoCoordinates',
       address,
-      usePostalCode
+      usePostalCode,
     )
 
     expect(validResult.valid).toBe(true)
@@ -263,7 +302,7 @@ describe('Address Validation:', () => {
       invalidGeoCoords,
       'geoCoordinates',
       address,
-      usePostalCode
+      usePostalCode,
     )
 
     expect(invalidResult.valid).toBe(false)
@@ -277,7 +316,7 @@ describe('Address Validation:', () => {
       invalidPostalCode,
       'postalCode',
       address,
-      usePostalCode
+      usePostalCode,
     )
 
     expect(result.valid).toBe(false)
@@ -291,7 +330,7 @@ describe('Address Validation:', () => {
       validPostalCode,
       'postalCode',
       address,
-      usePostalCode
+      usePostalCode,
     )
 
     expect(result.valid).toBe(true)
@@ -360,7 +399,7 @@ describe('Address Validation:', () => {
     const validatedAddress = validateChangedFields(
       changedFieldsValid,
       address,
-      usePostalCode
+      usePostalCode,
     )
 
     const changedFieldsInvalid = {
@@ -370,7 +409,7 @@ describe('Address Validation:', () => {
     const result = validateChangedFields(
       changedFieldsInvalid,
       validatedAddress,
-      usePostalCode
+      usePostalCode,
     )
 
     expect(result.postalCode.valid).toBe(false)

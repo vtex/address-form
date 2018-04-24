@@ -1,6 +1,6 @@
 {
   "name": "@vtex/address-form",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
+    "build:link": "npm link && watch 'npm run build' src",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
     "addLocales": "cp -R -f src/locales/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
@@ -51,7 +52,8 @@
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
     "react-intl": "^2.3.0",
-    "react-test-renderer": "^15.6.1"
+    "react-test-renderer": "^15.6.1",
+    "watch": "^1.0.2"
   },
   "author": "Breno Calazans (@klzns)",
   "homepage": "https://github.com/vtex/address-form",

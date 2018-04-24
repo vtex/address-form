@@ -104,16 +104,18 @@ describe('Field Selectors', () => {
         basedOn: 'state',
         level: 2,
         optionsMap: {
-          PE: ['Recife', 'Olinda'],
-          SP: ['São Paulo', 'Santos'],
+          Antioquia: ['Barranco Minas', 'Cacahual'],
         },
       }
-      const address = { state: { value: 'PE' } }
+      const address = { state: { value: 'ANTIOQUIA' } }
       const rules = {}
 
       const options = getListOfOptions(field, address, rules)
 
-      expect(options[0]).toMatchObject({ value: 'Recife', label: 'Recife' })
+      expect(options[0]).toMatchObject({
+        value: 'Barranco Minas',
+        label: 'Barranco Minas',
+      })
     })
 
     it('field with optionsMap level 3 should get options based on other field value', () => {
@@ -205,7 +207,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useOneLevel)
 
       expect(
-        diff(getFieldNames(useOneLevel.fields), getFieldNames(fields))
+        diff(getFieldNames(useOneLevel.fields), getFieldNames(fields)),
       ).toMatchSnapshot()
     })
 
@@ -213,7 +215,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useTwoLevels)
 
       expect(
-        diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields))
+        diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields)),
       ).toMatchSnapshot()
     })
 
@@ -221,7 +223,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useThreeLevels)
 
       expect(
-        diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields))
+        diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields)),
       ).toMatchSnapshot()
     })
   })

@@ -31,7 +31,7 @@ export function validateAddress(address, rules) {
       }
       return memo
     },
-    {}
+    {},
   )
 }
 
@@ -40,7 +40,7 @@ export function validateChangedFields(changedFields, address, rules) {
   const visitedFields = reduce(
     changedFields,
     (acc, field, name) => (field.visited ? acc.concat([name]) : acc),
-    []
+    [],
   )
 
   const newAddress = {
@@ -55,7 +55,7 @@ export function validateChangedFields(changedFields, address, rules) {
         resultAddress[fieldName].value,
         fieldName,
         resultAddress,
-        rules
+        rules,
       )
 
       const isVisited = visitedFields.indexOf(fieldName) !== -1
@@ -76,7 +76,7 @@ export function validateChangedFields(changedFields, address, rules) {
       }
       return resultAddress
     },
-    newAddress
+    newAddress,
   )
 }
 
@@ -116,11 +116,18 @@ const invalidGeoCoords = { valid: false, reason: EGEOCOORDS }
 const invalidPostalCode = { valid: false, reason: EPOSTALCODE }
 
 function valueInOptions(value, options) {
-  return options.indexOf(value) !== -1
+  const normalizedValue = value.toLowerCase()
+  const normalizedOptions = options.map(option => option.toLowerCase())
+  return normalizedOptions.indexOf(normalizedValue) !== -1
 }
 
 function valueInOptionsPairs(value, optionsPairs) {
-  return find(optionsPairs, optionPair => optionPair.value === value) || false
+  return (
+    find(
+      optionsPairs,
+      optionPair => optionPair.value.toLowerCase() === value.toLowerCase(),
+    ) || false
+  )
 }
 
 function valueInOptionsMap(value, field, address, rules) {
