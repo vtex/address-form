@@ -1,11 +1,22 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 
 class AddressContainer extends Component {
+  componentDidMount() {
+    if (
+      this.props &&
+      this.props.shouldHandleAddressChangeOnMount &&
+      get(this.props, 'address.postalCode.value')
+    ) {
+      this.handleAddressChange(this.props.address)
+    }
+  }
+
   handleAddressChange = changedAddressFields => {
     const {
       cors,
@@ -67,6 +78,7 @@ class AddressContainer extends Component {
 AddressContainer.defaultProps = {
   cors: false,
   autoCompletePostalCode: true,
+  shouldHandleAddressChangeOnMount: false,
 }
 
 AddressContainer.propTypes = {
@@ -77,6 +89,7 @@ AddressContainer.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
   children: PropTypes.func.isRequired,
   autoCompletePostalCode: PropTypes.bool,
+  shouldHandleAddressChangeOnMount: PropTypes.bool,
 }
 
 export default AddressContainer
