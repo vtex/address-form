@@ -22,7 +22,7 @@ class InputFieldContainer extends Component {
         }
         return cleanAddress
       },
-      {}
+      {},
     )
   }
 
@@ -90,7 +90,14 @@ class InputFieldContainer extends Component {
   }
 
   render() {
-    const { Input, field, address, options, rules } = this.props
+    const {
+      Input,
+      field,
+      address,
+      options,
+      rules,
+      inputExtraProps,
+    } = this.props
 
     const _options =
       options ||
@@ -106,6 +113,7 @@ class InputFieldContainer extends Component {
         onChange={this.bindOnChange(field)}
         onBlur={this.bindOnBlur(field)}
         inputRef={this.inputRef}
+        {...inputExtraProps}
       />
     )
   }
@@ -117,6 +125,7 @@ InputFieldContainer.propTypes = {
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   options: PropTypes.array,
+  inputExtraProps: PropTypes.object,
   onChangeAddress: PropTypes.func.isRequired,
 }
 

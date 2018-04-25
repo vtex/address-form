@@ -6,7 +6,14 @@ import InputFieldContainer from '../InputFieldContainer'
 
 class SelectLevel extends Component {
   render() {
-    const { level, rules, address, Input, onChangeAddress } = this.props
+    const {
+      level,
+      rules,
+      address,
+      Input,
+      onChangeAddress,
+      inputExtraProps,
+    } = this.props
     const field = getLevelField(level, rules)
 
     return (
@@ -16,6 +23,7 @@ class SelectLevel extends Component {
         address={address}
         rules={rules}
         onChangeAddress={onChangeAddress}
+        inputExtraProps={inputExtraProps}
       />
     )
   }
@@ -26,6 +34,7 @@ SelectLevel.propTypes = {
   level: PropTypes.oneOf([0, 1]),
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
+  inputExtraProps: PropTypes.object,
   onChangeAddress: PropTypes.func.isRequired,
 }
 

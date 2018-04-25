@@ -11,7 +11,13 @@ import { getField } from './selectors/fields'
 
 class PostalCodeGetter extends Component {
   render() {
-    const { address, rules, onChangeAddress, Input } = this.props
+    const {
+      address,
+      rules,
+      onChangeAddress,
+      Input,
+      inputExtraProps,
+    } = this.props
 
     switch (rules.postalCodeFrom) {
       case THREE_LEVELS:
@@ -21,6 +27,7 @@ class PostalCodeGetter extends Component {
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            inputExtraProps={inputExtraProps}
           />
         )
       case TWO_LEVELS:
@@ -30,6 +37,7 @@ class PostalCodeGetter extends Component {
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            inputExtraProps={inputExtraProps}
           />
         )
       case ONE_LEVEL:
@@ -39,6 +47,7 @@ class PostalCodeGetter extends Component {
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            inputExtraProps={inputExtraProps}
           />
         )
       default:
@@ -51,6 +60,7 @@ class PostalCodeGetter extends Component {
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            inputExtraProps={inputExtraProps}
           />
         )
       }
@@ -66,6 +76,7 @@ PostalCodeGetter.propTypes = {
   Input: PropTypes.func,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
+  inputExtraProps: PropTypes.object,
   onChangeAddress: PropTypes.func.isRequired,
 }
 

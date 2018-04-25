@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme'
 import SelectPostalCode from './SelectPostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
+import INPUT_EXTRA_PROPS from '../__mocks__/inputExtraProps'
 import find from 'lodash/find'
 
 describe('SelectPostalCode', () => {
@@ -35,6 +36,28 @@ describe('SelectPostalCode', () => {
       field: firstLevelField,
       options: expect.any(Array),
       onChangeAddress: expect.any(Function),
+    })
+  })
+
+  it('should render InputFieldContainer with the right props and inputExtraProps', () => {
+    const wrapper = shallow(
+      <SelectPostalCode
+        Input={MockInput}
+        address={address}
+        rules={useOneLevel}
+        onChangeAddress={jest.fn()}
+        inputExtraProps={INPUT_EXTRA_PROPS}
+      />
+    )
+
+    const props = wrapper.find('InputFieldContainer').props()
+
+    expect(props).toMatchObject({
+      address,
+      field: firstLevelField,
+      options: expect.any(Array),
+      onChangeAddress: expect.any(Function),
+      inputExtraProps: INPUT_EXTRA_PROPS,
     })
   })
 
