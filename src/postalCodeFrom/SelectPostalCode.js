@@ -35,20 +35,19 @@ class SelectPostalCode extends Component {
   }
 
   getOptions(fieldName, address, rules) {
-    return getPostalCodeOptions(
-      address,
-      rules
-    ).map(({ postalCode, label }) => ({
-      label,
-      value: this.composeValue(fieldName, {
-        [fieldName]: { value: label },
-        postalCode: { value: postalCode },
+    return getPostalCodeOptions(address, rules).map(
+      ({ postalCode, label }) => ({
+        label,
+        value: this.composeValue(fieldName, {
+          [fieldName]: { value: label },
+          postalCode: { value: postalCode },
+        }),
       }),
-    }))
+    )
   }
 
   render() {
-    const { address, rules, Input } = this.props
+    const { address, rules, Input, inputExtraProps } = this.props
     const currentLevelField = getLastLevelField(rules)
     const fieldName = currentLevelField.name
 
@@ -68,6 +67,7 @@ class SelectPostalCode extends Component {
         options={this.getOptions(fieldName, address, rules)}
         rules={rules}
         onChangeAddress={this.handleChange}
+        inputExtraProps={inputExtraProps}
       />
     )
   }
@@ -76,6 +76,7 @@ class SelectPostalCode extends Component {
 SelectPostalCode.propTypes = {
   Input: PropTypes.func.isRequired,
   address: AddressShapeWithValidation.isRequired,
+  inputExtraProps: PropTypes.object,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }

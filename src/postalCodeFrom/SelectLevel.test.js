@@ -3,6 +3,7 @@ import SelectLevel from './SelectLevel'
 import { shallow, mount } from 'enzyme'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
+import INPUT_EXTRA_PROPS from '../__mocks__/inputExtraProps'
 import MockInput from '../DefaultInput/__mocks__/Input'
 
 describe('SelectLevel', () => {
@@ -14,10 +15,27 @@ describe('SelectLevel', () => {
         address={address}
         rules={useThreeLevels}
         onChangeAddress={jest.fn()}
-      />
+      />,
     )
 
     expect(wrapper.find('InputFieldContainer')).toHaveLength(1)
+  })
+
+  it('render it right with inputExtraProps', () => {
+    const wrapper = shallow(
+      <SelectLevel
+        level={0}
+        Input={MockInput}
+        address={address}
+        rules={useThreeLevels}
+        onChangeAddress={jest.fn()}
+        inputExtraProps={INPUT_EXTRA_PROPS}
+      />,
+    )
+
+    expect(wrapper.find('InputFieldContainer').prop('inputExtraProps')).toEqual(
+      INPUT_EXTRA_PROPS,
+    )
   })
 
   it('should call handleChange', () => {
@@ -34,7 +52,7 @@ describe('SelectLevel', () => {
         address={address}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
-      />
+      />,
     )
 
     expect(handleChange).toHaveBeenCalled()
@@ -59,7 +77,7 @@ describe('SelectLevel', () => {
         }}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
-      />
+      />,
     )
 
     expect(handleChange).toHaveBeenCalledWith({

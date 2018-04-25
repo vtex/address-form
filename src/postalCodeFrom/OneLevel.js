@@ -5,7 +5,13 @@ import SelectPostalCode from './SelectPostalCode'
 
 class OneLevel extends Component {
   render() {
-    const { address, rules, onChangeAddress, Input } = this.props
+    const {
+      address,
+      rules,
+      onChangeAddress,
+      Input,
+      inputExtraProps,
+    } = this.props
 
     return (
       <div>
@@ -14,6 +20,7 @@ class OneLevel extends Component {
           rules={rules}
           address={address}
           onChangeAddress={onChangeAddress}
+          inputExtraProps={inputExtraProps}
         />
       </div>
     )
@@ -23,6 +30,7 @@ class OneLevel extends Component {
 OneLevel.propTypes = {
   Input: PropTypes.func.isRequired,
   address: AddressShapeWithValidation,
+  inputExtraProps: PropTypes.object,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
