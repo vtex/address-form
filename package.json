@@ -19,6 +19,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "@vtex/styleguide": "^2.0.0-rc.41",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "load-google-maps-api": "^1.0.0",
