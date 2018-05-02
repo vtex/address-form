@@ -12,7 +12,7 @@ class CustomInput extends Component {
     super(props)
 
     this.state = {
-      isInputValid: this.props.address[this.props.field.name].valid || true,
+      isInputValid: props.address[props.field.name].valid || true,
     }
   }
 
