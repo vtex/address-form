@@ -5,6 +5,7 @@ import Input from '@vtex/styleguide/lib/Input'
 import Button from '@vtex/styleguide/lib/Button'
 import Spinner from '@vtex/styleguide/lib/Spinner'
 import { injectIntl, intlShape } from 'react-intl'
+import 'vtex-tachyons'
 
 class CustomInput extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class CustomInput extends Component {
   }
 
   render() {
-    const { field, options, address, inputRef, intl } = this.props
+    const { field, options, address, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
@@ -66,7 +67,7 @@ class CustomInput extends Component {
           )}
           <div className="pt6">
             <Button neutral onClick={this.handleClick}>
-              {this.props.intl.formatMessage({
+              {intl.formatMessage({
                 id: 'address-form.dontKnowPostalCode',
               })}
             </Button>
@@ -82,7 +83,7 @@ class CustomInput extends Component {
             options={options}
             value={address[field.name].value}
             disabled={disabled}
-            label={this.props.intl.formatMessage({
+            label={intl.formatMessage({
               id: `address-form.field.${field.label}`,
             })}
             onChange={this.handleChange}
@@ -100,7 +101,7 @@ class CustomInput extends Component {
           })}
           errorMessage={
             address[field.name].reason &&
-            this.props.intl.formatMessage({
+            intl.formatMessage({
               id: `${address[field.name].reason}`,
             })
           }
@@ -125,6 +126,7 @@ CustomInput.defaultProps = {
 }
 
 CustomInput.propTypes = {
+  address: PropTypes.object,
   field: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChange: PropTypes.func.isRequired,
