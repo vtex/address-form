@@ -10,14 +10,7 @@ import { injectIntl, intlShape } from 'react-intl'
 
 class Input extends Component {
   render() {
-    const {
-      field,
-      options,
-      address,
-      hasInputAutoFocus,
-      inputRef,
-      intl,
-    } = this.props
+    const { field, options, address, autoFocus, inputRef, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
     const valid = address[field.name].valid
@@ -29,7 +22,7 @@ class Input extends Component {
             field={field}
             className={loading ? 'loading-postal-code' : null}
             address={address}
-            autoFocus={hasInputAutoFocus}
+            autoFocus={autoFocus}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading}
@@ -57,7 +50,7 @@ class Input extends Component {
             field={field}
             className={loading ? 'loading-postal-code' : null}
             address={address}
-            autoFocus={hasInputAutoFocus}
+            autoFocus={autoFocus}
             placeholder={intl.formatMessage({
               id: `address-form.geolocation.example.${address.country.value}`,
               defaultMessage: intl.formatMessage({
@@ -93,7 +86,7 @@ class Input extends Component {
           <InputText
             field={field}
             address={address}
-            autoFocus={hasInputAutoFocus}
+            autoFocus={autoFocus}
             onChange={this.props.onChange}
             placeholder={
               !field.hidden && !field.required
@@ -116,12 +109,12 @@ class Input extends Component {
 Input.defaultProps = {
   inputRef: () => {},
   onBlur: () => {},
-  hasInputAutoFocus: false,
+  autoFocus: false,
 }
 
 Input.propTypes = {
   field: PropTypes.object.isRequired,
-  hasInputAutoFocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   options: PropTypes.array,
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,

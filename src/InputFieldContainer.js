@@ -90,14 +90,7 @@ class InputFieldContainer extends Component {
   }
 
   render() {
-    const {
-      Input,
-      field,
-      hasInputAutoFocus,
-      address,
-      options,
-      rules,
-    } = this.props
+    const { Input, field, autoFocus, address, options, rules } = this.props
 
     const _options =
       options ||
@@ -109,7 +102,7 @@ class InputFieldContainer extends Component {
       <Input
         address={address}
         field={field}
-        hasInputAutoFocus={hasInputAutoFocus}
+        autoFocus={autoFocus}
         options={_options}
         onChange={this.bindOnChange(field)}
         onBlur={this.bindOnBlur(field)}
@@ -120,12 +113,12 @@ class InputFieldContainer extends Component {
 }
 
 InputFieldContainer.propTypes = {
-  hasInputAutoFocus: false,
+  autoFocus: false,
 }
 
 InputFieldContainer.propTypes = {
   Input: PropTypes.func.isRequired,
-  hasInputAutoFocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
