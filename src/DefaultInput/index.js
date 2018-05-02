@@ -10,7 +10,14 @@ import { injectIntl, intlShape } from 'react-intl'
 
 class Input extends Component {
   render() {
-    const { field, options, address, inputRef, intl } = this.props
+    const {
+      field,
+      options,
+      address,
+      hasInputAutoFocus,
+      inputRef,
+      intl,
+    } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
     const valid = address[field.name].valid
@@ -22,6 +29,7 @@ class Input extends Component {
             field={field}
             className={loading ? 'loading-postal-code' : null}
             address={address}
+            autoFocus={hasInputAutoFocus}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading}
@@ -49,6 +57,7 @@ class Input extends Component {
             field={field}
             className={loading ? 'loading-postal-code' : null}
             address={address}
+            autoFocus={hasInputAutoFocus}
             placeholder={intl.formatMessage({
               id: `address-form.geolocation.example.${address.country.value}`,
               defaultMessage: intl.formatMessage({
@@ -84,11 +93,12 @@ class Input extends Component {
           <InputText
             field={field}
             address={address}
+            autoFocus={hasInputAutoFocus}
             onChange={this.props.onChange}
             placeholder={
-              !field.hidden && !field.required ? (
-                intl.formatMessage({ id: 'address-form.optional' })
-              ) : null
+              !field.hidden && !field.required
+                ? intl.formatMessage({ id: 'address-form.optional' })
+                : null
             }
             onBlur={this.props.onBlur}
             disabled={disabled}
@@ -106,10 +116,12 @@ class Input extends Component {
 Input.defaultProps = {
   inputRef: () => {},
   onBlur: () => {},
+  hasInputAutoFocus: false,
 }
 
 Input.propTypes = {
   field: PropTypes.object.isRequired,
+  hasInputAutoFocus: PropTypes.bool,
   options: PropTypes.array,
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
