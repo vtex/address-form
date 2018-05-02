@@ -48,7 +48,7 @@ class CustomInput extends Component {
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
             })}
-            value={address[field.name].value}
+            value={address[field.name].value || ''}
             disabled={disabled}
             error={!this.state.isInputValid}
             errorMessage={
@@ -78,10 +78,10 @@ class CustomInput extends Component {
 
     if (options) {
       return (
-        <div className="vtex-address-form__select pt3">
+        <div className={`vtex-address-form__${field.name} pt3`}>
           <Dropdown
             options={options}
-            value={address[field.name].value}
+            value={address[field.name].value || ''}
             disabled={disabled}
             label={intl.formatMessage({
               id: `address-form.field.${field.label}`,
@@ -94,7 +94,7 @@ class CustomInput extends Component {
     }
 
     return (
-      <div className={`vtex-address-form__input ${field.hidden ? 'dn' : ''} pt3`}>
+      <div className={`vtex-address-form__${field.name} ${field.hidden ? 'dn' : ''} pt3`}>
         <Input
           label={this.props.intl.formatMessage({
             id: `address-form.field.${field.label}`,
@@ -105,7 +105,7 @@ class CustomInput extends Component {
               id: `address-form.error.${address[field.name].reason}`,
             })
           }
-          value={address[field.name].value}
+          value={address[field.name].value || ''}
           disabled={disabled}
           error={!this.state.isInputValid}
           placeholder={
