@@ -43,7 +43,7 @@ class CustomInput extends Component {
 
     if (field.name === 'postalCode') {
       return (
-        <div className="flex flex-row pt3 pb2">
+        <div className="vtex-address-form__postalCode flex flex-row pt3 pb2">
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -54,7 +54,7 @@ class CustomInput extends Component {
             errorMessage={
               address[field.name].reason &&
               this.props.intl.formatMessage({
-                id: `${address[field.name].reason}`,
+                id: `address-form.error.${address[field.name].reason}`,
               })
             }
             onBlur={this.props.onBlur}
@@ -78,7 +78,7 @@ class CustomInput extends Component {
 
     if (options) {
       return (
-        <div className="pt3">
+        <div className="vtex-address-form__select pt3">
           <Dropdown
             options={options}
             value={address[field.name].value}
@@ -94,7 +94,7 @@ class CustomInput extends Component {
     }
 
     return (
-      <div className="pt3">
+      <div className={`vtex-address-form__input ${field.hidden ? 'dn' : ''} pt3`}>
         <Input
           label={this.props.intl.formatMessage({
             id: `address-form.field.${field.label}`,
@@ -102,7 +102,7 @@ class CustomInput extends Component {
           errorMessage={
             address[field.name].reason &&
             intl.formatMessage({
-              id: `${address[field.name].reason}`,
+              id: `address-form.error.${address[field.name].reason}`,
             })
           }
           value={address[field.name].value}
