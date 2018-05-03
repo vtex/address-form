@@ -15,6 +15,7 @@ export default {
     {
       name: 'postalCode',
       maxLength: 50,
+      label: 'postalCode',
       required: true,
       mask: '9999-999',
       regex: '^(?:[\\d]{4})(?:\\-|)(?:[\\d]{3})$',
