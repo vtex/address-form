@@ -6,6 +6,10 @@ import DefaultInput from './DefaultInput'
 
 class CountrySelector extends Component {
   handleChangeCountry = changedFields => {
+    const { address } = this.props
+
+    if (changedFields.country.value === address.country.value) return
+
     this.props.onChangeAddress({
       country: { value: changedFields.country.value },
       city: { value: null },
@@ -30,6 +34,7 @@ class CountrySelector extends Component {
       name: 'country',
       label: 'country',
       optionsCaption: false,
+      value: address.country.value,
     }
 
     return (
