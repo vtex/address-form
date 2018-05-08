@@ -17,6 +17,7 @@ export default function postalCodeAutoCompleteAddress({
   address,
   rules,
   callback,
+  shouldAddFocusToNextInvalidField = true,
 }) {
   getAddress({
     cors,
@@ -25,7 +26,7 @@ export default function postalCodeAutoCompleteAddress({
     postalCode: address.postalCode.value,
   })
     .then(responseAddress => {
-      const autoCompletedFields = flow([
+      const functionsFlow = [
         fields => pickBy(fields, field => !isNil(field) && field !== ''),
         fields => addValidation(fields, address),
         fields => handleMultipleValues(fields),
@@ -34,7 +35,13 @@ export default function postalCodeAutoCompleteAddress({
         fields => addDisabledToProtectedFields(fields, rules),
         removePostalCodeLoading,
         fields => addFocusToNextInvalidField(fields, rules),
-      ])(responseAddress)
+      ]
+
+      if (!shouldAddFocusToNextInvalidField) {
+        functionsFlow.splice(-1,1)
+      }
+
+      const autoCompletedFields = flow(functionsFlow)(responseAddress)
 
       callback(autoCompletedFields)
     })

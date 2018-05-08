@@ -25,6 +25,7 @@ class AddressContainer extends Component {
       address,
       onChangeAddress,
       autoCompletePostalCode,
+      shouldAddFocusToNextInvalidField,
     } = this.props
 
     const countryChanged =
@@ -62,6 +63,7 @@ class AddressContainer extends Component {
             address: addressValidated,
             rules,
             callback: this.handleAddressChange,
+            shouldAddFocusToNextInvalidField,
           }),
         )
       }
@@ -79,6 +81,7 @@ AddressContainer.defaultProps = {
   cors: false,
   autoCompletePostalCode: true,
   shouldHandleAddressChangeOnMount: false,
+  shouldAddFocusToNextInvalidField: true,
 }
 
 AddressContainer.propTypes = {
@@ -90,6 +93,7 @@ AddressContainer.propTypes = {
   children: PropTypes.func.isRequired,
   autoCompletePostalCode: PropTypes.bool,
   shouldHandleAddressChangeOnMount: PropTypes.bool,
+  shouldAddFocusToNextInvalidField: PropTypes.bool,
 }
 
 export default AddressContainer
