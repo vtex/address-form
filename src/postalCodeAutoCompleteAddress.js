@@ -38,7 +38,7 @@ export default function postalCodeAutoCompleteAddress({
       ]
 
       if (!shouldAddFocusToNextInvalidField) {
-        functionsFlow.splice(-1,1)
+        functionsFlow.splice(-1, 1)
       }
 
       const autoCompletedFields = flow(functionsFlow)(responseAddress)
