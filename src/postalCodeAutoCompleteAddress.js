@@ -34,12 +34,10 @@ export default function postalCodeAutoCompleteAddress({
         fields => addNewField(fields, 'postalCodeAutoCompleted', true),
         fields => addDisabledToProtectedFields(fields, rules),
         removePostalCodeLoading,
-        fields => addFocusToNextInvalidField(fields, rules),
+        ...(shouldAddFocusToNextInvalidField
+          ? [fields => addFocusToNextInvalidField(fields, rules)]
+          : []),
       ]
-
-      if (!shouldAddFocusToNextInvalidField) {
-        functionsFlow.splice(-1, 1)
-      }
 
       const autoCompletedFields = flow(functionsFlow)(responseAddress)
 
@@ -56,7 +54,7 @@ export default function postalCodeAutoCompleteAddress({
         // the promise will catch the error and go to this branch
         // of the code. This console error makes the Jest error visible.
         console.error(error)
-      }
+      },
     )
 
   return addPostalCodeLoading(address)
