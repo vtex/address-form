@@ -23,6 +23,8 @@ class GeolocationInput extends Component {
   }
 
   handleMountInput = input => {
+    const { useSearchBox, rules, googleMaps } = this.props
+
     if (!input) {
       this.input = null
       this.autocomplete = null
@@ -32,39 +34,77 @@ class GeolocationInput extends Component {
 
     this.input = input
 
-    const options = this.props.rules.abbr
+    const options = rules.abbr
       ? {
         types: ['address'],
         componentRestrictions: {
-          country: this.props.rules.abbr,
+          country: rules.abbr,
         },
       }
       : { types: ['address'] }
 
-    this.autocomplete = new this.props.googleMaps.places.Autocomplete(
-      this.input,
-      options,
-    )
+    if (useSearchBox) {
+      this.autocomplete = new googleMaps.places.SearchBox(this.input)
+      this.geocoder = new googleMaps.Geocoder()
+    } else {
+      this.autocomplete = new googleMaps.places.Autocomplete(
+        this.input,
+        options,
+      )
+    }
 
     if (this.autocompleteListener) {
       this.autocompleteListener.remove()
     }
 
-    this.autocompleteListener = this.props.googleMaps.event.addListener(
+    this.autocompleteListener = useSearchBox
+      ? this.addSearchBoxListener()
+      : this.addAutocompleteListener()
+  }
+
+  addAutocompleteListener = () => {
+    return this.props.googleMaps.event.addListener(
       this.autocomplete,
       'place_changed',
       () => {
         const googleAddress = this.autocomplete.getPlace()
-        const isValidGoogleAddress = !!googleAddress.geometry
-        if (isValidGoogleAddress) {
-          this.setState({ isValidGoogleAddress })
-          this.handleChangeInput(googleAddress.formatted_address)
-          this.handlePlaceChanged(googleAddress)
+
+        if (googleAddress.geometry) {
+          this.handleAddress(googleAddress)
           return
         }
-        this.setState({ isValidGoogleAddress })
       },
     )
+  }
+
+  addSearchBoxListener = () => {
+    return this.props.googleMaps.event.addListener(
+      this.autocomplete,
+      'places_changed',
+      () => {
+        const googleAddresses = this.autocomplete.getPlaces()
+        let firstPlaceFound = googleAddresses && googleAddresses[0]
+
+        if (!firstPlaceFound) return
+
+        if (!firstPlaceFound.address_components) {
+          this.geocoder.geocode(
+            { address: firstPlaceFound.formatted_address },
+            address => (firstPlaceFound = address),
+          )
+        }
+
+        if (firstPlaceFound.geometry) {
+          this.handleAddress(firstPlaceFound)
+          return
+        }
+      },
+    )
+  }
+
+  handleAddress = googleAddress => {
+    this.handleChangeInput(googleAddress.formatted_address)
+    this.handlePlaceChanged(googleAddress)
   }
 
   handlePlaceChanged = googleAddress => {
@@ -134,11 +174,14 @@ GeolocationInput.defaultProps = {
   Input: DefaultInput,
   inputProps: {},
   autofocus: false,
+  useSearchBox: false,
 }
 
 GeolocationInput.propTypes = {
   Input: PropTypes.func,
   inputProps: PropTypes.object,
+  placeholder: PropTypes.string,
+  useSearchBox: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   address: AddressShapeWithValidation.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
