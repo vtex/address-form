@@ -51,7 +51,7 @@ export function getListOfOptions(field, address, rules) {
 
   if (field.optionsMap && field.basedOn && field.level === 2) {
     const basedOn = getFieldValue(address[field.basedOn])
-    const normalizedBasedOn = basedOn.toLowerCase()
+    const normalizedBasedOn = basedOn && basedOn.toLowerCase()
     const normalizedOptionsMap = normalizeOptions(field.optionsMap)
     if (normalizedBasedOn && normalizedOptionsMap[normalizedBasedOn]) {
       const options = normalizedOptionsMap[normalizedBasedOn]
