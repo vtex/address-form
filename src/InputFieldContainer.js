@@ -51,7 +51,11 @@ class InputFieldContainer extends Component {
 
     const maskedValue = field.mask ? msk(value, field.mask) : value
 
+    const isPostalCode = field.name === 'postalCode'
+
     return () => {
+      if (isPostalCode && !value) return
+
       onChangeAddress({
         [field.name]: {
           ...address[field.name],
