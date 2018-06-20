@@ -10,7 +10,15 @@ import { injectIntl, intlShape } from 'react-intl'
 
 class Input extends Component {
   render() {
-    const { field, options, address, autoFocus, inputRef, intl } = this.props
+    const {
+      field,
+      options,
+      address,
+      autoFocus,
+      inputRef,
+      intl,
+      shouldShowNumberKeyboard,
+    } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
     const valid = address[field.name].valid
@@ -27,6 +35,7 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={loading}
             inputRef={inputRef}
+            type={shouldShowNumberKeyboard ? 'tel' : 'text'}
           />
           {loading && <PostalCodeLoader />}
           {field.forgottenURL && (
@@ -121,6 +130,7 @@ Input.propTypes = {
   onBlur: PropTypes.func,
   inputRef: PropTypes.func,
   intl: intlShape,
+  shouldShowNumberKeyboard: PropTypes.bool,
 }
 
 export default injectIntl(Input)

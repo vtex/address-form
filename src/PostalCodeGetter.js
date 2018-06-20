@@ -11,7 +11,14 @@ import { getField } from './selectors/fields'
 
 class PostalCodeGetter extends Component {
   render() {
-    const { address, autoFocus, rules, onChangeAddress, Input } = this.props
+    const {
+      address,
+      autoFocus,
+      rules,
+      onChangeAddress,
+      Input,
+      shouldShowNumberKeyboard,
+    } = this.props
 
     switch (rules.postalCodeFrom) {
       case THREE_LEVELS:
@@ -52,6 +59,7 @@ class PostalCodeGetter extends Component {
             autoFocus={autoFocus}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            shouldShowNumberKeyboard={shouldShowNumberKeyboard}
           />
         )
       }
@@ -62,6 +70,7 @@ class PostalCodeGetter extends Component {
 PostalCodeGetter.defaultProps = {
   autoFocus: false,
   Input: DefaultInput,
+  shouldShowNumberKeyboard: false,
 }
 
 PostalCodeGetter.propTypes = {
@@ -70,6 +79,7 @@ PostalCodeGetter.propTypes = {
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
+  shouldShowNumberKeyboard: PropTypes.bool,
 }
 
 export default PostalCodeGetter

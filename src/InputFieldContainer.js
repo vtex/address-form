@@ -94,7 +94,15 @@ class InputFieldContainer extends Component {
   }
 
   render() {
-    const { Input, field, autoFocus, address, options, rules } = this.props
+    const {
+      Input,
+      field,
+      autoFocus,
+      address,
+      options,
+      rules,
+      shouldShowNumberKeyboard,
+    } = this.props
 
     const _options =
       options ||
@@ -111,6 +119,7 @@ class InputFieldContainer extends Component {
         onChange={this.bindOnChange(field)}
         onBlur={this.bindOnBlur(field)}
         inputRef={this.inputRef}
+        shouldShowNumberKeyboard={shouldShowNumberKeyboard}
       />
     )
   }
@@ -118,6 +127,7 @@ class InputFieldContainer extends Component {
 
 InputFieldContainer.propTypes = {
   autoFocus: false,
+  shouldShowNumberKeyboard: false,
 }
 
 InputFieldContainer.propTypes = {
@@ -128,6 +138,7 @@ InputFieldContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,
+  shouldShowNumberKeyboard: PropTypes.bool.isRequired,
 }
 
 export default InputFieldContainer
