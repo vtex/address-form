@@ -57,6 +57,10 @@ const countryData = {
     Talagante: '9670000',
     Tiltil: '9420000',
     Vitacura: '7630000',
+    'Valle Nevado': '7690001',
+    'El Colorado': '7690002',
+    Farellones: '7690003',
+    'La Parva': '7690004',
   },
   'I Región': {
     Camiña: '1150000',
@@ -214,6 +218,8 @@ const countryData = {
     Victoria: '4720000',
     Vilcún: '4880000',
     Villarrica: '4930000',
+    Malalcahuello: '4780001',
+    Corralco: '4780002',
   },
   'VII Región': {
     Cauquenes: '3690000',
