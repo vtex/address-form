@@ -21,7 +21,8 @@ class AddressSummary extends Component {
     const postalCodeByInput = rules.postalCodeFrom === POSTAL_CODE
     const numberField = getField('number', rules)
     const complementField = getField('complement', rules)
-    const neighborhoodField = getField('complement', rules)
+    const neighborhoodField = getField('neighborhood', rules)
+
     const {
       street,
       country,
@@ -40,16 +41,6 @@ class AddressSummary extends Component {
         {numberField && number && <span className="number-comma">{', '}</span>}
         {numberField && number && <span className="number">{number}</span>}
 
-        {complementField &&
-          complement && <span className="complement-comma">{', '}</span>}
-        {complementField &&
-          complement && <span className="complement">{complement}</span>}
-
-        {neighborhoodField &&
-          neighborhood && <span className="neighborhood-dash">{' - '}</span>}
-        {neighborhoodField &&
-          neighborhood && <span className="neighborhood">{neighborhood}</span>}
-
         {!canEditData && ' '}
         {!canEditData && (
           <a
@@ -61,15 +52,23 @@ class AddressSummary extends Component {
           </a>
         )}
 
-        {street || number || complement || neighborhood ? <br /> : null}
+        {street || number || complement ? <br /> : null}
 
+        {complementField &&
+          complement && <span className="complement">{complement}</span>}
+
+        {neighborhood &&
+          complement && <span className="neighborhood-comma">{', '}</span>}
+        {neighborhoodField &&
+          neighborhood && <span className="neighborhood">{neighborhood}</span>}
+
+        {city && <span className="city-dash">{' - '}</span>}
         {city && <span className="city">{city}</span>}
 
         {state && <span className="state-dash">{' - '}</span>}
         {state && <span className="state">{state}</span>}
 
-        {postalCodeByInput &&
-          postalCode && <span className="postal-code-dash">{' - '}</span>}
+        {postalCode || country ? <br /> : null}
         {postalCodeByInput && <span className="postal-code">{postalCode}</span>}
 
         {country && <span className="country-dash">{' - '}</span>}
