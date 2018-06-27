@@ -19,27 +19,27 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   >
     300
   </span>
-  <span
-    className="complement-comma"
-  >
-    , 
-  </span>
+  <br />
   <span
     className="complement"
   >
     2nd floor
   </span>
   <span
-    className="neighborhood-dash"
+    className="neighborhood-comma"
   >
-     - 
+    , 
   </span>
   <span
     className="neighborhood"
   >
     Botafogo
   </span>
-  <br />
+  <span
+    className="city-dash"
+  >
+     - 
+  </span>
   <span
     className="city"
   >
@@ -55,6 +55,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   >
     AM
   </span>
+  <br />
   <span
     className="postal-code"
   />
