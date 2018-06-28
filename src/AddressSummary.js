@@ -38,8 +38,13 @@ class AddressSummary extends Component {
       <div className="address-summary">
         {street && <span className="street">{street}</span>}
 
-        {numberField && number && <span className="number-comma">{', '}</span>}
+        {numberField && number && ' '}
         {numberField && number && <span className="number">{number}</span>}
+
+        {complementField &&
+          complement && <span className="complement-comma">{', '}</span>}
+        {complementField &&
+          complement && <span className="complement">{complement}</span>}
 
         {!canEditData && ' '}
         {!canEditData && (
@@ -52,13 +57,8 @@ class AddressSummary extends Component {
           </a>
         )}
 
-        {street || number || complement ? <br /> : null}
+        {street || number || complement || neighborhood ? <br /> : null}
 
-        {complementField &&
-          complement && <span className="complement">{complement}</span>}
-
-        {neighborhood &&
-          complement && <span className="neighborhood-comma">{', '}</span>}
         {neighborhoodField &&
           neighborhood && <span className="neighborhood">{neighborhood}</span>}
 
