@@ -116,8 +116,8 @@ class InputFieldContainer extends Component {
         field={field}
         autoFocus={autoFocus}
         options={_options}
-        onChange={this.bindOnChange(field)}
-        onBlur={this.bindOnBlur(field)}
+        onChange={this.bindOnChange()}
+        onBlur={this.bindOnBlur()}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
       />

@@ -9,27 +9,23 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   >
     Praia de Botafogo
   </span>
-  <span
-    className="number-comma"
-  >
-    , 
-  </span>
+   
   <span
     className="number"
   >
     300
   </span>
-  <br />
+  <span
+    className="complement-comma"
+  >
+    , 
+  </span>
   <span
     className="complement"
   >
     2nd floor
   </span>
-  <span
-    className="neighborhood-comma"
-  >
-    , 
-  </span>
+  <br />
   <span
     className="neighborhood"
   >

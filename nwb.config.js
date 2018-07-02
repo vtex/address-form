@@ -1,5 +1,8 @@
 module.exports = {
   type: 'react-component',
+  babel: {
+    plugins: ['add-react-displayname'],
+  },
   devServer: {
     host: 'qamarketplace.vtexlocal.com.br',
     proxy: {
