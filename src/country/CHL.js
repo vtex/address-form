@@ -288,6 +288,7 @@ const countryData = {
     Hualqui: '4180000',
     Laja: '4560000',
     Lebu: '4350000',
+    Lirquen: '4140001',
     'Los Alamos': '4380000',
     'Los Ángeles': '4430000',
     Lota: '4210000',
