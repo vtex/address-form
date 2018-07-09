@@ -356,6 +356,7 @@ export default {
       forgottenURL:
         'http://geo.correo.com.uy/IsisBusquedaDireccionPlugin/cp.jsp',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -369,6 +370,7 @@ export default {
       label: 'number',
       required: true,
       size: 'mini',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',

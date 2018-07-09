@@ -24,6 +24,7 @@ export default {
       forgottenURL:
         'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -37,6 +38,7 @@ export default {
       label: 'number',
       required: true,
       size: 'mini',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',

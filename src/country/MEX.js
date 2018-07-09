@@ -24,6 +24,7 @@ export default {
       forgottenURL:
         'http://www.sepomex.gob.mx/servicioslinea/paginas/ccpostales.aspx',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -37,6 +38,7 @@ export default {
       label: 'exteriorNumber',
       required: true,
       size: 'mini',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',

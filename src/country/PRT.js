@@ -22,6 +22,7 @@ export default {
       forgottenURL:
         'https://www.ctt.pt/feapl_2/app/open/objectSearch/objectSearch.jspx',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -35,6 +36,7 @@ export default {
       maxLength: 750,
       label: 'number',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',

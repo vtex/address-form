@@ -24,6 +24,7 @@ export default {
       forgottenURL:
         'http://www.correos.es/ss/Satellite/site/Aplicacion_C-1349167812778-1363184049882/includeTemplate=COR_Aplicacion-sidioma=es_ES',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -37,6 +38,7 @@ export default {
       label: 'number',
       required: true,
       size: 'mini',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',
