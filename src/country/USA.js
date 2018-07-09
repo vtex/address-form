@@ -22,6 +22,7 @@ export default {
       postalCodeAPI: true,
       forgottenURL: 'https://tools.usps.com/go/ZipLookupAction!input.action',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -123,6 +124,7 @@ export default {
       label: 'number',
       hidden: true,
       defaultValue: 'N/A',
+      autoComplete: 'nope',
     },
     {
       name: 'receiverName',

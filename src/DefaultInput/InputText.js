@@ -31,6 +31,7 @@ class InputText extends Component {
     return (
       <input
         autoFocus={autoFocus}
+        autoComplete={field.autoComplete || 'on'}
         id={id}
         type={type}
         name={field.name}

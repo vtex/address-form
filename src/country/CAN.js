@@ -24,6 +24,7 @@ export default {
       forgottenURL:
         'https://www.canadapost.ca/cpo/mc/personal/postalcode/fpc.jsf',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -50,6 +51,7 @@ export default {
       label: 'number',
       hidden: true,
       defaultValue: 'N/A',
+      autoComplete: 'nope',
     },
     {
       hidden: true,

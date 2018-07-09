@@ -2,6 +2,7 @@
 
 exports[`InputText should render custom class 1`] = `
 <input
+  autoComplete="on"
   autoFocus={false}
   className="my-class input-small error"
   data-hj-whitelist={true}
@@ -19,6 +20,7 @@ exports[`InputText should render custom class 1`] = `
 
 exports[`InputText should render default case 1`] = `
 <input
+  autoComplete="on"
   autoFocus={false}
   className="input-small error"
   data-hj-whitelist={true}
@@ -36,6 +38,7 @@ exports[`InputText should render default case 1`] = `
 
 exports[`InputText should render different id 1`] = `
 <input
+  autoComplete="on"
   autoFocus={false}
   className="input-small error"
   data-hj-whitelist={true}
@@ -53,6 +56,7 @@ exports[`InputText should render different id 1`] = `
 
 exports[`InputText should render different id based on fieldName 1`] = `
 <input
+  autoComplete="on"
   autoFocus={false}
   className="input-small error"
   data-hj-whitelist={true}
@@ -70,6 +74,7 @@ exports[`InputText should render different id based on fieldName 1`] = `
 
 exports[`InputText should render different input type 1`] = `
 <input
+  autoComplete="on"
   autoFocus={false}
   className="input-small error"
   data-hj-whitelist={true}
@@ -87,6 +92,7 @@ exports[`InputText should render different input type 1`] = `
 
 exports[`InputText should render disabled input 1`] = `
 <input
+  autoComplete="on"
   autoFocus={false}
   className="input-small error"
   data-hj-whitelist={true}

@@ -138,7 +138,7 @@ InputFieldContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,
-  shouldShowNumberKeyboard: PropTypes.bool.isRequired,
+  shouldShowNumberKeyboard: PropTypes.bool,
 }
 
 export default InputFieldContainer

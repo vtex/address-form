@@ -17,6 +17,7 @@ export default {
       maxLength: 50,
       label: 'postalCode',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -30,6 +31,7 @@ export default {
       maxLength: 750,
       label: 'number',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',

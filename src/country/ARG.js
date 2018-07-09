@@ -1,5 +1,5 @@
-import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions';
-import { POSTAL_CODE } from '../constants';
+import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
+import { POSTAL_CODE } from '../constants'
 
 const countryData = {
   'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma Buenos Aires'],
@@ -20563,6 +20563,7 @@ export default {
       postalCodeAPI: true,
       forgottenURL: 'http://www.correoargentino.com.ar/formularios/cpa',
       size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'street',
@@ -20576,6 +20577,7 @@ export default {
       label: 'number',
       required: true,
       size: 'mini',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',

@@ -94,7 +94,11 @@ class CustomInput extends Component {
     }
 
     return (
-      <div className={`vtex-address-form__${field.name} ${field.hidden ? 'dn' : ''} pt3`}>
+      <div
+        className={`vtex-address-form__${field.name} ${
+          field.hidden ? 'dn' : ''
+        } pt3`}
+      >
         <Input
           label={this.props.intl.formatMessage({
             id: `address-form.field.${field.label}`,
