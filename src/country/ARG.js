@@ -1650,6 +1650,7 @@ const countryData = {
     'Recalde',
     'Reginaldo J Neild',
     'Remedios De Escalada',
+    'Remedios de Escalada de San Martin',
     'Requena',
     'Reta',
     'Retiro San Pablo',
