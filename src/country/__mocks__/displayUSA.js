@@ -178,8 +178,8 @@ export default {
         name: 'street',
       },
       {
-        delimiterBefore: ', ',
-        delimiterBeforeName: 'complement-comma',
+        delimiter: ', ',
+        delimiterName: 'complement-comma',
         name: 'complement',
       },
     ],
@@ -188,8 +188,8 @@ export default {
         name: 'city',
       },
       {
-        delimiterBefore: ', ',
-        delimiterBeforeName: 'state-comma',
+        delimiter: ', ',
+        delimiterName: 'state-comma',
         name: 'state',
       },
       {
