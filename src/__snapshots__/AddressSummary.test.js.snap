@@ -1,5 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AddressSummary should format address according to rules 1`] = `
+<div
+  className="address-summary"
+>
+  <span
+    className="street"
+  >
+    Av. Praia de Botafogo
+  </span>
+  <span
+    className="number-comma"
+  >
+    ,
+  <span
+    className="number"
+  >
+    300
+  </span>
+  <span
+    className="complement-comma"
+  >
+    ,
+  </span>
+  <span
+    className="complement"
+  >
+    ap. 322
+  </span>
+  <br />
+  <span
+    className="neighborhood"
+  >
+    Botafogo
+  </span>
+  <span
+    className="city-dash"
+  >
+     -
+  </span>
+  <span
+    className="city"
+  >
+    Rio de Janeiro
+  </span>
+  <span
+    className="state-dash"
+  >
+     -
+  </span>
+  <span
+    className="state"
+  >
+    RJ
+  </span>
+  <br />
+  <span
+    className="postal-code"
+  >
+    22250-040
+  </span>
+  <br />
+  <span
+    className="country"
+  >
+    Brasil
+  </span>
+</div>
+`;
+
+exports[`AddressSummary should format address according to rules 2`] = `
+<div
+  className="address-summary"
+>
+  <span
+    className="street"
+  >
+    1 Infinite Loop
+  </span>
+  <span
+    className="complement-comma"
+  >
+    ,
+  </span>
+  <span
+    className="complement"
+  >
+    Suite 306
+  </span>
+  <br />
+  <span
+    className="city"
+  >
+    Cupertino
+  </span>
+  <span
+    className="state-comma"
+  >
+     ,
+  </span>
+  <span
+    className="state"
+  >
+    CA
+  </span>
+  <span
+    className="postal-code"
+  >
+    95014
+  </span>
+  <span
+    className="country"
+  >
+    USA
+  </span>
+</div>
+`;
+
 exports[`AddressSummary should render address summary with all its data 1`] = `
 <div
   className="address-summary"
@@ -9,7 +126,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   >
     Praia de Botafogo
   </span>
-   
+
   <span
     className="number"
   >
@@ -18,7 +135,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="complement-comma"
   >
-    , 
+    ,
   </span>
   <span
     className="complement"
@@ -34,7 +151,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="city-dash"
   >
-     - 
+     -
   </span>
   <span
     className="city"
@@ -44,7 +161,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="state-dash"
   >
-     - 
+     -
   </span>
   <span
     className="state"
@@ -58,7 +175,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="country-dash"
   >
-     - 
+     -
   </span>
   <span
     className="country"
@@ -73,7 +190,7 @@ exports[`AddressSummary should render gift list address 1`] = `
   <span>
     At address of:
   </span>
-   
+
   <strong
     className="gift-list-name"
   >
