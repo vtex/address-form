@@ -172,5 +172,34 @@ export default {
       required: false,
     },
   },
-  summary: [],
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiterBefore: ', ',
+        delimiterBeforeName: 'complement-comma',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'city',
+      },
+      {
+        delimiterBefore: ', ',
+        delimiterBeforeName: 'state-comma',
+        name: 'state',
+      },
+      {
+        name: 'postalCode',
+      },
+    ],
+    [
+      {
+        name: 'country',
+      },
+    ],
+  ],
 }

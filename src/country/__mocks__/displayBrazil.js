@@ -151,5 +151,46 @@ export default {
       required: false,
     },
   },
-  summary: [],
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiterBefore: ', ',
+        delimiterBeforeName: 'number-comma',
+        name: 'number',
+      },
+      {
+        delimiterBefore: ', ',
+        delimiterBeforeName: 'complement-comma',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'neighborhood',
+      },
+      {
+        delimiterBefore: ' - ',
+        delimiterBeforeName: 'city-dash',
+        name: 'city',
+      },
+      {
+        delimiterBefore: ' - ',
+        delimiterBeforeName: 'state-dash',
+        name: 'state',
+      },
+    ],
+    [
+      {
+        name: 'postalCode',
+      },
+    ],
+    [
+      {
+        name: 'country',
+      },
+    ],
+  ],
 }

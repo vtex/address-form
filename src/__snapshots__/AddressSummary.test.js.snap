@@ -12,7 +12,7 @@ exports[`AddressSummary should format address according to rules 1`] = `
   <span
     className="number-comma"
   >
-    ,
+    , 
   <span
     className="number"
   >
@@ -21,7 +21,7 @@ exports[`AddressSummary should format address according to rules 1`] = `
   <span
     className="complement-comma"
   >
-    ,
+    , 
   </span>
   <span
     className="complement"
@@ -37,7 +37,7 @@ exports[`AddressSummary should format address according to rules 1`] = `
   <span
     className="city-dash"
   >
-     -
+     - 
   </span>
   <span
     className="city"
@@ -47,7 +47,7 @@ exports[`AddressSummary should format address according to rules 1`] = `
   <span
     className="state-dash"
   >
-     -
+     - 
   </span>
   <span
     className="state"
@@ -81,7 +81,7 @@ exports[`AddressSummary should format address according to rules 2`] = `
   <span
     className="complement-comma"
   >
-    ,
+    , 
   </span>
   <span
     className="complement"
@@ -97,7 +97,7 @@ exports[`AddressSummary should format address according to rules 2`] = `
   <span
     className="state-comma"
   >
-     ,
+     , 
   </span>
   <span
     className="state"
@@ -126,7 +126,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   >
     Praia de Botafogo
   </span>
-
+   
   <span
     className="number"
   >
@@ -135,7 +135,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="complement-comma"
   >
-    ,
+    , 
   </span>
   <span
     className="complement"
@@ -151,7 +151,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="city-dash"
   >
-     -
+     - 
   </span>
   <span
     className="city"
@@ -161,7 +161,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="state-dash"
   >
-     -
+     - 
   </span>
   <span
     className="state"
@@ -175,7 +175,7 @@ exports[`AddressSummary should render address summary with all its data 1`] = `
   <span
     className="country-dash"
   >
-     -
+     - 
   </span>
   <span
     className="country"
@@ -190,7 +190,7 @@ exports[`AddressSummary should render gift list address 1`] = `
   <span>
     At address of:
   </span>
-
+   
   <strong
     className="gift-list-name"
   >
