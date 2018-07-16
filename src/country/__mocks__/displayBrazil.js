@@ -157,13 +157,11 @@ export default {
         name: 'street',
       },
       {
-        delimiter: ', ',
-        delimiterName: 'number-comma',
+        delimiter: ' ',
         name: 'number',
       },
       {
         delimiter: ', ',
-        delimiterName: 'complement-comma',
         name: 'complement',
       },
     ],
@@ -173,23 +171,16 @@ export default {
       },
       {
         delimiter: ' - ',
-        delimiterName: 'city-dash',
         name: 'city',
       },
       {
         delimiter: ' - ',
-        delimiterName: 'state-dash',
         name: 'state',
       },
     ],
     [
       {
         name: 'postalCode',
-      },
-    ],
-    [
-      {
-        name: 'country',
       },
     ],
   ],

@@ -179,7 +179,6 @@ export default {
       },
       {
         delimiter: ', ',
-        delimiterName: 'complement-comma',
         name: 'complement',
       },
     ],
@@ -189,16 +188,11 @@ export default {
       },
       {
         delimiter: ', ',
-        delimiterName: 'state-comma',
         name: 'state',
       },
       {
+        delimiter: ' ',
         name: 'postalCode',
-      },
-    ],
-    [
-      {
-        name: 'country',
       },
     ],
   ],
