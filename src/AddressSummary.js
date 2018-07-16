@@ -48,7 +48,7 @@ class AddressSummary extends Component {
                   </span>
                 ) : null,
             ),
-            index === 0 && canEditData ? maskedInfoIcon : null,
+            index === 0 && !canEditData ? maskedInfoIcon : null,
           ])
           .reduce(
             (acc, line) =>
