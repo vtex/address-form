@@ -417,12 +417,13 @@ export default {
       size: 'medium',
     },
     {
-      hidden: true,
-      name: 'postalCode',
-      maxLength: 50,
-      label: 'postalCode',
-      size: 'large',
       autoComplete: 'nope',
+      hidden: true,
+      label: 'postalCode',
+      maxLength: 50,
+      name: 'postalCode',
+      regex: /^([\d]{7})$/,
+      size: 'large',
     },
     {
       name: 'street',
