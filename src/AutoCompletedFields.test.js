@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import AutoCompletedFields from './AutoCompletedFields'
 import newAddress from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
@@ -8,7 +8,7 @@ describe('AutoCompletedFields', () => {
   const children = <span className="link-edit">Edit</span>
 
   it('renders without crashing', () => {
-    shallow(
+    mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={newAddress}
@@ -20,7 +20,7 @@ describe('AutoCompletedFields', () => {
   })
 
   it("should render nothing if there's no autocompleted fields", () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={newAddress}
@@ -107,7 +107,7 @@ describe('AutoCompletedFields', () => {
       street: { value: 'Praia de Botafogo', postalCodeAutoCompleted: true },
     }
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={address}
@@ -135,7 +135,7 @@ describe('AutoCompletedFields', () => {
       street: { value: 'Praia de Botafogo', geolocationAutoCompleted: true },
     }
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={address}
