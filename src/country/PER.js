@@ -2319,12 +2319,13 @@ export default {
       size: 'medium',
     },
     {
-      hidden: true,
-      name: 'postalCode',
-      maxLength: 50,
-      label: 'postalCode',
-      size: 'small',
       autoComplete: 'nope',
+      hidden: true,
+      label: 'postalCode',
+      maxLength: 50,
+      name: 'postalCode',
+      regex: /^(\d{5,6})$/,
+      size: 'small',
     },
     {
       name: 'street',
