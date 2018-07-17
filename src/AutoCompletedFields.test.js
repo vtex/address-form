@@ -93,6 +93,10 @@ describe('AutoCompletedFields', () => {
         undefined,
       )
     })
+
+    it('should not display country information', () => {
+      expect(wrapper.find('.country')).toHaveLength(0)
+    })
   })
 
   it('should not show postal code when address is completed with postal code', () => {

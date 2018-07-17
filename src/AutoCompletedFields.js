@@ -25,7 +25,7 @@ class AutoCompletedFields extends Component {
   hasAutoCompletedField(address) {
     return find(
       address,
-      field => field.postalCodeAutoCompleted || field.geolocationAutoCompleted
+      field => field.postalCodeAutoCompleted || field.geolocationAutoCompleted,
     )
   }
 
@@ -66,6 +66,7 @@ class AutoCompletedFields extends Component {
     return (
       <AddressSummary
         canEditData
+        showCountry={false}
         address={{
           ...removeValidation(filteredAddress),
           addressId: '',
@@ -77,7 +78,7 @@ class AutoCompletedFields extends Component {
         {React.Children.map(children, child =>
           React.cloneElement(child, {
             onClick: this.handleClickChange,
-          })
+          }),
         )}
       </AddressSummary>
     )
