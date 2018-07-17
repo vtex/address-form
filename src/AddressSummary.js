@@ -5,26 +5,31 @@ import AddressShape from './propTypes/AddressShape'
 
 class AddressSummary extends Component {
   render() {
-    if (this.props.giftRegistryDescription) {
+    const {
+      rules,
+      canEditData,
+      address,
+      children,
+      onClickMaskedInfoIcon,
+      giftRegistryDescription,
+    } = this.props
+
+    if (giftRegistryDescription) {
       return (
         <span>
           <span>At address of:</span>{' '}
-          <strong className="gift-list-name">
-            {this.props.giftRegistryDescription}
-          </strong>
+          <strong className="gift-list-name">{giftRegistryDescription}</strong>
         </span>
       )
     }
 
-    const { rules, canEditData, address } = this.props
     const maskedInfoIcon = (
-      <span>
+      <span key="maskedInfoIcon">
         {' '}
         <a
-          key="maskedInfoIcon"
           data-i18n="[title]modal.maskedInfoHello"
           className="client-masked-info"
-          onClick={this.props.onClickMaskedInfoIcon}
+          onClick={onClickMaskedInfoIcon}
         >
           <i className="icon-question-sign" />
         </a>
@@ -34,32 +39,40 @@ class AddressSummary extends Component {
     return (
       <div className="address-summary">
         {rules.summary
-          .map((line, index) => [
-            ...line.map(
-              field =>
-                address[field.name] ? (
-                  <span key={field.name}>
-                    {field.delimiter && (
-                      <span className={field.name + '-delimiter'}>
-                        {field.delimiter}
-                      </span>
-                    )}
-                    <span className={field.name}>{address[field.name]}</span>
-                  </span>
-                ) : null,
-            ),
-            index === 0 && !canEditData ? maskedInfoIcon : null,
-          ])
-          .reduce(
-            (acc, line) =>
-              acc == null ? [line] : [...acc, <br key={acc.length} />, line],
-          )}
+          .map((line, index) =>
+            [
+              ...line.map(
+                field =>
+                  address[field.name] ? (
+                    <span key={field.name}>
+                      {field.delimiter && (
+                        <span className={field.name + '-delimiter'}>
+                          {field.delimiter}
+                        </span>
+                      )}
+                      <span className={field.name}>{address[field.name]}</span>
+                    </span>
+                  ) : null,
+              ),
+              index === 0 && !canEditData ? maskedInfoIcon : null,
+            ].reduce((line, field) => {
+              if (field == null) return line
+              else if (line == null) return [field]
+              return [...line, field]
+            }, null),
+          )
+          .reduce((summary, line) => {
+            if (line == null) return summary
+            else if (summary == null) return [line]
+            return [...summary, <br key={summary.length} />, line]
+          }, null)}
         <br />
         <span key="country">
           <span className="country">
             {this.props.intl.formatMessage({ id: `country.${rules.country}` })}
           </span>
         </span>
+        {children}
       </div>
     )
   }
