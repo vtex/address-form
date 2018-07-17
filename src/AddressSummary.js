@@ -15,6 +15,8 @@ class AddressSummary extends Component {
       giftRegistryDescription,
     } = this.props
 
+    console.log(address)
+
     if (giftRegistryDescription) {
       return (
         <span>
@@ -52,6 +54,11 @@ class AddressSummary extends Component {
                         </span>
                       )}
                       <span className={field.name}>{address[field.name]}</span>
+                      {field.delimiterAfter && (
+                        <span className={field.name + '-delimiter-after'}>
+                          {field.delimiterAfter}
+                        </span>
+                      )}
                     </span>
                   ) : null,
               ),
