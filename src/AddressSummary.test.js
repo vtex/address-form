@@ -1,55 +1,57 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 import AddressSummary from './AddressSummary'
 import address from './__mocks__/addressWithoutValidation'
 import usePostalCode from './country/__mocks__/usePostalCode'
-import useOneLevel from './country/__mocks__/useOneLevel'
 import displayBrazil from './country/__mocks__/displayBrazil'
 import displayUSA from './country/__mocks__/displayUSA'
 
 describe('AddressSummary', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(
-      <AddressSummary address={address} rules={usePostalCode} />,
+    const wrapper = mount(
+      <AddressSummary address={address} rules={displayBrazil} />,
     )
     expect(wrapper.find('div')).toHaveLength(1)
   })
 
-  it('should render address summary with all its data', () => {
-    const tree = renderer.create(
+  it('should render each field in its own span', () => {
+    const wrapper = mount(
       <AddressSummary
         address={{
           ...address,
-          street: 'Praia de Botafogo',
-          number: '300',
+          street: '1 Hacker Way',
           complement: '2nd floor',
-          neighborhood: 'Botafogo',
-          city: 'Rio de Janeiro',
-          state: 'AM',
-          country: 'BRA',
+          city: 'Menlo Park',
+          state: 'CA',
+          country: 'USA',
         }}
-        rules={usePostalCode}
+        rules={displayUSA}
       />,
     )
 
-    expect(tree).toMatchSnapshot()
+    expect(wrapper.find('.street')).toHaveText('1 Hacker Way')
+    expect(wrapper.find('.complement')).toHaveText('2nd floor')
+    expect(wrapper.find('.city')).toHaveText('Menlo Park')
+    expect(wrapper.find('.state')).toHaveText('CA')
   })
 
-  it('should render the postal code if country show its input', () => {
-    const wrapper = shallow(
-      <AddressSummary address={address} rules={usePostalCode} />,
+  it('should not render spans for empty fields', () => {
+    const wrapper = mount(
+      <AddressSummary
+        address={{
+          ...address,
+          street: '1 Hacker Way',
+          complement: null,
+          city: 'Menlo Park',
+          state: 'CA',
+          country: 'USA',
+        }}
+        rules={displayUSA}
+      />,
     )
 
-    expect(wrapper.find('.postal-code')).toHaveLength(1)
-  })
-
-  it('should not render postal code if the country sets it by another input', () => {
-    const wrapper = shallow(
-      <AddressSummary address={address} rules={useOneLevel} />,
-    )
-
-    expect(wrapper.find('.postal-code')).toHaveLength(0)
+    expect(wrapper.find('.complement')).toHaveLength(0)
   })
 
   it('should render child component', () => {
@@ -57,8 +59,8 @@ describe('AddressSummary', () => {
       return <div />
     }
 
-    const wrapper = shallow(
-      <AddressSummary address={address} rules={useOneLevel}>
+    const wrapper = mount(
+      <AddressSummary address={address} rules={displayBrazil}>
         <MyChild />
       </AddressSummary>,
     )
@@ -69,10 +71,10 @@ describe('AddressSummary', () => {
   it('should call click handler', () => {
     const handleClick = jest.fn()
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <AddressSummary
         address={address}
-        rules={useOneLevel}
+        rules={displayBrazil}
         canEditData={false}
         onClickMaskedInfoIcon={handleClick}
       />,
@@ -124,45 +126,6 @@ describe('AddressSummary', () => {
           city: 'Cupertino',
           state: 'CA',
           country: 'USA',
-        }}
-        rules={displayBrazil}
-      />,
-    )
-
-    expect(brazilianAddress).toMatchSnapshot()
-    expect(americanAddress).toMatchSnapshot()
-  })
-
-  it('should format address according to rules', () => {
-    const brazilianAddress = renderer.create(
-      <AddressSummary
-        address={{
-          ...address,
-          street: 'Av. Praia de Botafogo',
-          number: '300',
-          complement: 'ap. 322',
-          neighborhood: 'Botafogo',
-          city: 'Rio de Janeiro',
-          state: 'RJ',
-          country: 'BRA',
-          postalCode: '22250-040',
-        }}
-        rules={displayBrazil}
-      />,
-    )
-
-    const americanAddress = renderer.create(
-      <AddressSummary
-        address={{
-          ...address,
-          street: '1 Infinite Loop',
-          number: null,
-          complement: 'Suite 306',
-          neighborhood: null,
-          city: 'Cupertino',
-          state: 'CA',
-          country: 'USA',
-          postalCode: '95014',
         }}
         rules={displayUSA}
       />,
