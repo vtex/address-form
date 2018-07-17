@@ -3,6 +3,7 @@ import { mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 import AddressSummary from './AddressSummary'
 import address from './__mocks__/addressWithoutValidation'
+import fbAddress from './__mocks__/facebookAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import displayBrazil from './country/__mocks__/displayBrazil'
 import displayUSA from './country/__mocks__/displayUSA'
@@ -17,17 +18,7 @@ describe('AddressSummary', () => {
 
   it('should render each field in its own span', () => {
     const wrapper = mount(
-      <AddressSummary
-        address={{
-          ...address,
-          street: '1 Hacker Way',
-          complement: '2nd floor',
-          city: 'Menlo Park',
-          state: 'CA',
-          country: 'USA',
-        }}
-        rules={displayUSA}
-      />,
+      <AddressSummary address={fbAddress} rules={displayUSA} />,
     )
 
     expect(wrapper.find('.street')).toHaveText('1 Hacker Way')
@@ -40,18 +31,26 @@ describe('AddressSummary', () => {
     const wrapper = mount(
       <AddressSummary
         address={{
-          ...address,
-          street: '1 Hacker Way',
+          ...fbAddress,
           complement: null,
-          city: 'Menlo Park',
-          state: 'CA',
-          country: 'USA',
         }}
         rules={displayUSA}
       />,
     )
 
     expect(wrapper.find('.complement')).toHaveLength(0)
+  })
+
+  it('should not show country span if set so', () => {
+    const wrapper = mount(
+      <AddressSummary
+        address={fbAddress}
+        rules={displayUSA}
+        showCountry={false}
+      />,
+    )
+
+    expect(wrapper.find('.country')).toHaveLength(0)
   })
 
   it('should render child component', () => {

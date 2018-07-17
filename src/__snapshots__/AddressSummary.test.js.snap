@@ -68,11 +68,9 @@ exports[`AddressSummary should format address according to rules 1`] = `
     </span>
   </span>
   <br />
-  <span>
-    <span
-      className="country"
-    />
-  </span>
+  <span
+    className="country"
+  />
 </div>
 `;
 
@@ -120,11 +118,9 @@ exports[`AddressSummary should format address according to rules 2`] = `
     </span>
   </span>
   <br />
-  <span>
-    <span
-      className="country"
-    />
-  </span>
+  <span
+    className="country"
+  />
 </div>
 `;
 
