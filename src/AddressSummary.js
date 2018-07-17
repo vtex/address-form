@@ -8,6 +8,7 @@ class AddressSummary extends Component {
     const {
       rules,
       canEditData,
+      showCountry,
       address,
       children,
       onClickMaskedInfoIcon,
@@ -66,12 +67,14 @@ class AddressSummary extends Component {
             else if (summary == null) return [line]
             return [...summary, <br key={summary.length} />, line]
           }, null)}
-        <br />
-        <span key="country">
-          <span className="country">
-            {this.props.intl.formatMessage({ id: `country.${rules.country}` })}
-          </span>
-        </span>
+        {showCountry && [
+          <br key="break" />,
+          <span key="country" className="country">
+            {this.props.intl.formatMessage({
+              id: `country.${rules.country}`,
+            })}
+          </span>,
+        ]}
         {children}
       </div>
     )
@@ -80,10 +83,12 @@ class AddressSummary extends Component {
 
 AddressSummary.defaultProps = {
   canEditData: true,
+  showCountry: true,
 }
 
 AddressSummary.propTypes = {
   canEditData: PropTypes.bool,
+  showCountry: PropTypes.bool,
   address: AddressShape.isRequired,
   rules: PropTypes.object.isRequired,
   children: PropTypes.node,
