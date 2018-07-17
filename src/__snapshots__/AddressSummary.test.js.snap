@@ -4,67 +4,74 @@ exports[`AddressSummary should format address according to rules 1`] = `
 <div
   className="address-summary"
 >
-  <span
-    className="street"
-  >
-    Av. Praia de Botafogo
+  <span>
+    <span
+      className="street"
+    >
+      Av. Praia de Botafogo
+    </span>
   </span>
-  <span
-    className="number-comma"
-  >
-    , 
-  <span
-    className="number"
-  >
-    300
+  <span>
+    <span
+      className="number-delimiter"
+    >
+       
+    </span>
+    <span
+      className="number"
+    >
+      300
+    </span>
   </span>
-  <span
-    className="complement-comma"
-  >
-    , 
-  </span>
-  <span
-    className="complement"
-  >
-    ap. 322
-  </span>
-  <br />
-  <span
-    className="neighborhood"
-  >
-    Botafogo
-  </span>
-  <span
-    className="city-dash"
-  >
-     - 
-  </span>
-  <span
-    className="city"
-  >
-    Rio de Janeiro
-  </span>
-  <span
-    className="state-dash"
-  >
-     - 
-  </span>
-  <span
-    className="state"
-  >
-    RJ
+  <span>
+    <span
+      className="complement-delimiter"
+    >
+      , 
+    </span>
+    <span
+      className="complement"
+    >
+      ap. 322
+    </span>
   </span>
   <br />
-  <span
-    className="postal-code"
-  >
-    22250-040
+  <span>
+    <span
+      className="neighborhood"
+    >
+      Botafogo
+    </span>
+  </span>
+  <span>
+    <span
+      className="city-delimiter"
+    >
+       - 
+    </span>
+    <span
+      className="city"
+    >
+      Rio de Janeiro
+    </span>
+  </span>
+  <span>
+    <span
+      className="state-delimiter"
+    >
+       - 
+    </span>
+    <span
+      className="state"
+    >
+      RJ
+    </span>
   </span>
   <br />
-  <span
-    className="country"
-  >
-    Brasil
+  <span>
+    <span
+      className="country"
+    />
   </span>
 </div>
 `;
@@ -73,114 +80,50 @@ exports[`AddressSummary should format address according to rules 2`] = `
 <div
   className="address-summary"
 >
-  <span
-    className="street"
-  >
-    1 Infinite Loop
+  <span>
+    <span
+      className="street"
+    >
+      1 Infinite Loop
+    </span>
   </span>
-  <span
-    className="complement-comma"
-  >
-    , 
-  </span>
-  <span
-    className="complement"
-  >
-    Suite 306
-  </span>
-  <br />
-  <span
-    className="city"
-  >
-    Cupertino
-  </span>
-  <span
-    className="state-comma"
-  >
-     , 
-  </span>
-  <span
-    className="state"
-  >
-    CA
-  </span>
-  <span
-    className="postal-code"
-  >
-    95014
-  </span>
-  <span
-    className="country"
-  >
-    USA
-  </span>
-</div>
-`;
-
-exports[`AddressSummary should render address summary with all its data 1`] = `
-<div
-  className="address-summary"
->
-  <span
-    className="street"
-  >
-    Praia de Botafogo
-  </span>
-   
-  <span
-    className="number"
-  >
-    300
-  </span>
-  <span
-    className="complement-comma"
-  >
-    , 
-  </span>
-  <span
-    className="complement"
-  >
-    2nd floor
+  <span>
+    <span
+      className="complement-delimiter"
+    >
+      , 
+    </span>
+    <span
+      className="complement"
+    >
+      Suite 306
+    </span>
   </span>
   <br />
-  <span
-    className="neighborhood"
-  >
-    Botafogo
+  <span>
+    <span
+      className="city"
+    >
+      Cupertino
+    </span>
   </span>
-  <span
-    className="city-dash"
-  >
-     - 
-  </span>
-  <span
-    className="city"
-  >
-    Rio de Janeiro
-  </span>
-  <span
-    className="state-dash"
-  >
-     - 
-  </span>
-  <span
-    className="state"
-  >
-    AM
+  <span>
+    <span
+      className="state-delimiter"
+    >
+      , 
+    </span>
+    <span
+      className="state"
+    >
+      CA
+    </span>
   </span>
   <br />
-  <span
-    className="postal-code"
-  />
-  <span
-    className="country-dash"
-  >
-     - 
-  </span>
-  <span
-    className="country"
-  >
-    BRA
+  <span>
+    <span
+      className="country"
+    />
   </span>
 </div>
 `;
