@@ -230,8 +230,6 @@ const countryData = {
     Victoria: '4720000',
     Vilcún: '4880000',
     Villarrica: '4930000',
-    Malalcahuello: '4780001',
-    Corralco: '4780002',
   },
   'VII Región': {
     Cauquenes: '3690000',
@@ -517,4 +515,32 @@ export default {
       required: false,
     },
   },
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ', ',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'neighborhood',
+      },
+      {
+        delimiter: ', ',
+        name: 'city',
+      },
+      {
+        delimiter: ', ',
+        name: 'state',
+      },
+    ],
+  ],
 }

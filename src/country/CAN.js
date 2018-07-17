@@ -128,4 +128,32 @@ export default {
       required: false,
     },
   },
+  summary: [
+    [
+      {
+        name: 'complement',
+        delimiterAfter: '-',
+      },
+      {
+        name: 'number',
+      },
+      {
+        delimiter: ' ',
+        name: 'street',
+      },
+    ],
+    [
+      {
+        name: 'city',
+      },
+      {
+        delimiter: ' ',
+        name: 'state',
+      },
+      {
+        delimiter: '  ',
+        name: 'postalCode',
+      },
+    ],
+  ],
 }
