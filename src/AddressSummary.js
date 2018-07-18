@@ -15,8 +15,6 @@ class AddressSummary extends Component {
       giftRegistryDescription,
     } = this.props
 
-    console.log(address)
-
     if (giftRegistryDescription) {
       return (
         <span>
