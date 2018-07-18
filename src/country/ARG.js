@@ -20539,7 +20539,7 @@ const countryData = {
     'Zavalia',
     'Zurita',
   ],
-};
+}
 
 export default {
   country: 'ARG',
@@ -20658,4 +20658,34 @@ export default {
       required: false,
     },
   },
-};
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+    ],
+    [
+      {
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'postalCode',
+      },
+    ],
+    [
+      {
+        name: 'city',
+      },
+      {
+        delimiter: ', ',
+        name: 'state',
+      },
+    ],
+  ],
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import AutoCompletedFields from './AutoCompletedFields'
 import newAddress from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
@@ -8,26 +8,26 @@ describe('AutoCompletedFields', () => {
   const children = <span className="link-edit">Edit</span>
 
   it('renders without crashing', () => {
-    shallow(
+    mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={newAddress}
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
   })
 
   it("should render nothing if there's no autocompleted fields", () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={newAddress}
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
 
     expect(wrapper.isEmptyRender()).toBe(true)
@@ -47,24 +47,24 @@ describe('AutoCompletedFields', () => {
 
     let wrapper
     beforeEach(() => {
-      wrapper = shallow(
+      wrapper = mount(
         <AutoCompletedFields
           rules={usePostalCode}
           address={address}
           onChangeAddress={onChangeAddress}
         >
           {children}
-        </AutoCompletedFields>
+        </AutoCompletedFields>,
       )
     })
 
-    it('AddressSummary component', () => {
+    it('should contain an AddressSummary component', () => {
       const AddressSummary = wrapper.find('AddressSummary')
 
       expect(AddressSummary).toHaveLength(1)
     })
 
-    it('only the autocompleted fields', () => {
+    it('should show only the autocompleted fields', () => {
       const AddressSummary = wrapper.find('AddressSummary')
 
       expect(AddressSummary.prop('address').city).toBe(city)
@@ -85,13 +85,17 @@ describe('AutoCompletedFields', () => {
       expect(onChangeAddressArgument.state).toHaveProperty('value', state)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'geolocationAutoCompleted',
-        undefined
+        undefined,
       )
       expect(onChangeAddressArgument.city).toHaveProperty('value', city)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'postalCodeAutoCompleted',
-        undefined
+        undefined,
       )
+    })
+
+    it('should not display country information', () => {
+      expect(wrapper.find('.country')).toHaveLength(0)
     })
   })
 
@@ -107,14 +111,14 @@ describe('AutoCompletedFields', () => {
       street: { value: 'Praia de Botafogo', postalCodeAutoCompleted: true },
     }
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={address}
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
 
     const AddressSummary = wrapper.find('AddressSummary')
@@ -135,14 +139,14 @@ describe('AutoCompletedFields', () => {
       street: { value: 'Praia de Botafogo', geolocationAutoCompleted: true },
     }
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <AutoCompletedFields
         rules={usePostalCode}
         address={address}
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
 
     const AddressSummary = wrapper.find('AddressSummary')

@@ -104,4 +104,38 @@ export default {
       required: false,
     },
   },
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ' ',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'neighborhood',
+      },
+    ],
+    [
+      {
+        name: 'city',
+      },
+    ],
+    [
+      {
+        name: 'postalCode',
+      },
+      {
+        delimiter: ' ',
+        name: 'state',
+      },
+    ],
+  ],
 }

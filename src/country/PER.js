@@ -2482,4 +2482,33 @@ export default {
       },
     },
   },
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ' ',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'neighborhood',
+      },
+    ],
+    [
+      {
+        name: 'city',
+      },
+      {
+        delimiter: ', ',
+        name: 'state',
+      },
+    ],
+  ],
 }

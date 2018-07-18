@@ -7,18 +7,22 @@ const ACCOUNT_NAME = 'qamarketplace'
 const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
 const locale = 'en'
 const shipsTo = [
-  'BRA',
-  'BOL',
-  'CHL',
-  'ECU',
-  'PER',
   'ARG',
+  'BOL',
+  'BRA',
+  'CAN',
+  'CHL',
   'COL',
+  'ECU',
+  'ESP',
   'GTM',
   'MEX',
-  'CAN',
-  'ESP',
+  'PER',
+  'PRT',
+  'PRY',
+  'URY',
   'USA',
+  'VEN',
 ]
 
 class Container extends Component {

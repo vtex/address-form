@@ -14,7 +14,7 @@ import {
   isValidAddress,
 } from '../../src/index'
 
-import DefaultInput from '../../src/DefaultInput'
+import CustomInput from '../../src/CustomInput'
 
 import GoogleMapsContainer from '../../src/geolocation/GoogleMapsContainer'
 import GeolocationInput from '../../src/geolocation/GeolocationInput'
@@ -164,7 +164,7 @@ class App extends Component {
           {onChangeAddress => (
             <div>
               <CountrySelector
-                Input={DefaultInput}
+                Input={CustomInput}
                 address={address}
                 shipsTo={shipsTo}
                 onChangeAddress={onChangeAddress}
@@ -174,6 +174,7 @@ class App extends Component {
                 {({ loading, googleMaps }) => (
                   <div>
                     <GeolocationInput
+                      Input={CustomInput}
                       loadingGoogle={loading}
                       googleMaps={googleMaps}
                       address={address}
@@ -203,7 +204,7 @@ class App extends Component {
 
               {!validGeoCoords && (
                 <PostalCodeGetter
-                  Input={DefaultInput}
+                  Input={CustomInput}
                   address={address}
                   rules={selectedRules}
                   onChangeAddress={onChangeAddress}
@@ -225,7 +226,7 @@ class App extends Component {
               </AutoCompletedFields>
 
               <AddressForm
-                Input={DefaultInput}
+                Input={CustomInput}
                 address={address}
                 rules={selectedRules}
                 onChangeAddress={onChangeAddress}

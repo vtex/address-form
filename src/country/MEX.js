@@ -140,4 +140,39 @@ export default {
       required: false,
     },
   },
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ', ',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'neighborhood',
+      },
+    ],
+    [
+      {
+        delimiter: 'C.P. ',
+        name: 'postalCode',
+      },
+    ],
+    [
+      {
+        name: 'city',
+      },
+      {
+        delimiter: ', ',
+        name: 'state',
+      },
+    ],
+  ],
 }
