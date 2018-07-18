@@ -77,7 +77,7 @@ class AddressSummary extends Component {
           <span key="country" className="country">
             {this.props.intl.formatMessage({
               id: `country.${rules.country}`,
-            })}
+            }) || rules.country}
           </span>,
         ]}
         {children}

@@ -70,7 +70,9 @@ exports[`AddressSummary should format address according to rules 1`] = `
   <br />
   <span
     className="country"
-  />
+  >
+    BRA
+  </span>
 </div>
 `;
 
@@ -120,7 +122,9 @@ exports[`AddressSummary should format address according to rules 2`] = `
   <br />
   <span
     className="country"
-  />
+  >
+    USA
+  </span>
 </div>
 `;
 
