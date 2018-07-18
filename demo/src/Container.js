@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import IntlContainer from './IntlContainer'
 import Styles from './Styles'
 import App from './App'
+import IntlApp from './IntlApp'
 
 const ACCOUNT_NAME = 'qamarketplace'
 const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
@@ -27,18 +28,19 @@ const shipsTo = [
 
 class Container extends Component {
   render() {
-    return (
-      <IntlContainer locale={locale}>
-        <Styles>
-          <App
-            accountName={ACCOUNT_NAME}
-            googleMapsAPIKey={API_KEY}
-            locale={locale}
-            shipsTo={shipsTo}
-          />
-        </Styles>
-      </IntlContainer>
-    )
+    // return (
+    //   <IntlContainer locale={locale}>
+    //     <Styles>
+    //       <App
+    //         accountName={ACCOUNT_NAME}
+    //         googleMapsAPIKey={API_KEY}
+    //         locale={locale}
+    //         shipsTo={shipsTo}
+    //       />
+    //     </Styles>
+    //   </IntlContainer>
+    // )
+    return <IntlApp shipsTo={shipsTo} />
   }
 }
 
