@@ -161,4 +161,33 @@ export default {
       required: false,
     },
   },
+  summary: [
+    [
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ' ',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'postalCode',
+      },
+      {
+        delimiter: ' ',
+        name: 'city',
+      },
+      {
+        delimiter: ' (',
+        name: 'state',
+        delimiterAfter: ')',
+      },
+    ],
+  ],
 }
