@@ -7,21 +7,18 @@ class AddressIntl extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: {},
+      messages: null,
+      locale: null,
     }
   }
 
   componentDidMount() {
-    const { imports, locale } = this.props
-
-    this.handleTranslations(imports(locale, this.getBaseLocale(locale)))
+    this.updateTranslations()
   }
 
   componentDidUpdate(prevProps) {
-    const { imports, locale } = this.props
-
-    if (prevProps.locale !== locale) {
-      this.handleTranslations(imports(locale, this.getBaseLocale(locale)))
+    if (prevProps.locale !== this.props.locale) {
+      this.updateTranslations()
     }
   }
 
@@ -39,7 +36,17 @@ class AddressIntl extends Component {
     return locale.indexOf('-') !== -1 ? locale.split('-')[0] : locale
   }
 
-  handleTranslations(localePromises) {
+  updateTranslations() {
+    const { imports, locale } = this.props
+
+    this.setState({
+      locale: locale,
+    })
+
+    this.handleTranslationPromises(imports(locale, this.getBaseLocale(locale)))
+  }
+
+  handleTranslationPromises(localePromises) {
     const {
       countryData,
       reactData,
@@ -48,7 +55,7 @@ class AddressIntl extends Component {
     } = localePromises
 
     this.setState(() => ({
-      messages: {},
+      messages: null,
     }))
 
     Promise.all([countryData, reactData, addressBaseData, addressData]).then(
@@ -66,14 +73,17 @@ class AddressIntl extends Component {
   }
 
   render() {
-    const { children, locale } = this.props
-    const { messages } = this.state
-    const messagesArrived = Object.keys(messages).length > 0
+    const { children } = this.props
+    const { messages, locale } = this.state
 
     return (
-      <IntlProvider locale={locale} messages={messages}>
-        {messagesArrived ? children : <div />}
-      </IntlProvider>
+      <div>
+        {messages && locale ? (
+          <IntlProvider locale={locale} messages={messages}>
+            {children}
+          </IntlProvider>
+        ) : null}
+      </div>
     )
   }
 }
