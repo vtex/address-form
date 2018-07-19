@@ -78,15 +78,16 @@ class AddressSummary extends Component {
             else if (summary == null) return [line]
             return [...summary, <br key={summary.length} />, line]
           }, null)}
-        {showCountry && [
-          <br key="break" />,
-          <span key="country" className="country">
-            {this.props.intl.formatMessage({
-              id: `country.${rules.country}`,
-              defaultMessage: rules.country,
-            })}
-          </span>,
-        ]}
+        {showCountry &&
+          rules.country && [
+            <br key="break" />,
+            <span key="country" className="country">
+              {this.props.intl.formatMessage({
+                id: `country.${rules.country}`,
+                defaultMessage: rules.country,
+              })}
+            </span>,
+          ]}
         {children}
       </div>
     )
