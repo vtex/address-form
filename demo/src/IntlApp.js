@@ -9,14 +9,17 @@ import PostalCodeGetter from '../../src/PostalCodeGetter'
 import AutoCompletedFields from '../../src/AutoCompletedFields'
 import AddressForm from '../../src/AddressForm'
 import CustomInput from '../../src/CustomInput'
+import { addValidation } from '../../src/index'
 
 import mockRules from '../../src/country/BRA'
 
 class IntlApp extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      address: {
+      address: addValidation({
+        addressId: '1',
         addressType: 'residential',
         city: null,
         complement: null,
@@ -28,14 +31,30 @@ class IntlApp extends Component {
         reference: null,
         state: null,
         street: null,
+        geoCoordinates: [],
         addressQuery: null,
-      },
+      }),
     }
+  }
+
+  handleAddressChange = address => {
+    this.setState(prevState => ({
+      address: {
+        ...prevState.address,
+        ...address,
+      },
+    }))
   }
 
   render() {
     const { shipsTo, intl } = this.props
     const { address } = this.state
+
+    const shipsMap = shipsTo.map(countryCode => ({
+      label: intl.formatMessage({ id: 'country.' + countryCode }),
+      value: countryCode,
+    }))
+
     return (
       <form>
         <AddressContainer
@@ -49,7 +68,7 @@ class IntlApp extends Component {
               <CountrySelector
                 Input={CustomInput}
                 address={address}
-                shipsTo={shipsTo}
+                shipsTo={shipsMap}
                 onChangeAddress={onChangeAddress}
               />
 
@@ -83,7 +102,7 @@ class IntlApp extends Component {
             </div>
           )}
         </AddressContainer>
-        <Button type="submit" variation="secondary" block size="small">
+        <Button type="submit" variation="primary" block size="small">
           Submit
         </Button>
       </form>
