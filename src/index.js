@@ -5,7 +5,7 @@ export AddressSummary from './AddressSummary'
 export PostalCodeGetter from './PostalCodeGetter'
 export AddressContainer from './AddressContainer'
 export AutoCompletedFields from './AutoCompletedFields'
-export AddressIntl from './AddressIntl'
+export AddressRules from './AddressRules'
 
 // Constants
 export constants from './constants'
