@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import IntlContainer from './IntlContainer'
 import Styles from './Styles'
 import App from './App'
-import IntlHandler from './IntlHandler'
 import IntlApp from './IntlApp'
 import { IntlProvider } from 'react-intl'
 import AddressIntl from '../../src/AddressIntl'
+import RulesApp from './RulesApp'
 
 const ACCOUNT_NAME = 'qamarketplace'
 const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
@@ -67,14 +67,6 @@ class Container extends Component {
     return (
       <IntlProvider locale={'en'} messages={null}>
         <div>
-          <IntlHandler>
-            <IntlApp shipsTo={shipsTo} />
-          </IntlHandler>
-          <hr className="mv9" />
-          <button onClick={this.handleClick}>Switch locale to pt-BR</button>
-          <button onClick={this.handleClick}>Switch locale to en</button>
-
-          <hr className="mv9" />
           <AddressIntl
             locale={locale}
             imports={(locale, baseLocale) => {
@@ -90,7 +82,16 @@ class Container extends Component {
               }
             }}
           >
-            <IntlApp shipsTo={shipsTo} />
+            <div>
+              <h3>AddressIntl demo:</h3>
+              <button className="mv6" onClick={this.handleClick}>
+                Switch locale to {locale == 'pt-BR' ? 'en' : 'pt-BR'}
+              </button>
+              <IntlApp shipsTo={shipsTo} />
+              <hr className="mv8" />
+              <h3>AddressRules demo:</h3>
+              <RulesApp />
+            </div>
           </AddressIntl>
         </div>
       </IntlProvider>
