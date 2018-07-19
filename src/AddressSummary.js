@@ -3,6 +3,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import AddressShape from './propTypes/AddressShape'
 import defaultRules from './country/default'
+import { injectRules } from './addressRulesContext'
 
 class AddressSummary extends Component {
   render() {
@@ -110,4 +111,4 @@ AddressSummary.propTypes = {
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(AddressSummary)
+export default injectRules(injectIntl(AddressSummary))
