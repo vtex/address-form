@@ -9,7 +9,6 @@ import AddressIntl from '../../src/AddressIntl'
 
 const ACCOUNT_NAME = 'qamarketplace'
 const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
-const locale = 'en'
 const shipsTo = [
   'ARG',
   'BOL',
@@ -30,6 +29,25 @@ const shipsTo = [
 ]
 
 class Container extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      locale: 'en',
+    }
+  }
+
+  handleClick = () => {
+    if (this.state.locale === 'en') {
+      this.setState({
+        locale: 'pt-BR',
+      })
+    } else {
+      this.setState({
+        locale: 'en',
+      })
+    }
+  }
+
   render() {
     // return (
     //   <IntlContainer locale={locale}>
@@ -43,6 +61,9 @@ class Container extends Component {
     //     </Styles>
     //   </IntlContainer>
     // )
+
+    const { locale } = this.state
+
     return (
       <IntlProvider locale={'en'} messages={null}>
         <div>
@@ -50,7 +71,25 @@ class Container extends Component {
             <IntlApp shipsTo={shipsTo} />
           </IntlHandler>
           <hr className="mv9" />
-          <AddressIntl>
+          <button onClick={this.handleClick}>Switch locale to pt-BR</button>
+          <button onClick={this.handleClick}>Switch locale to en</button>
+
+          <hr className="mv9" />
+          <AddressIntl
+            locale={locale}
+            imports={(locale, baseLocale) => {
+              return {
+                countryData: import('i18n-iso-countries/langs/' +
+                  baseLocale +
+                  '.json'),
+                reactData: import('react-intl/locale-data/' + baseLocale),
+                addressBaseData: import('../../src/locales/' +
+                  baseLocale +
+                  '.json'),
+                addressData: import('../../src/locales/' + locale + '.json'),
+              }
+            }}
+          >
             <IntlApp shipsTo={shipsTo} />
           </AddressIntl>
         </div>
