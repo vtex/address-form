@@ -1,5 +1,6 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { RulesContext } from './addressRulesContext'
 
 import defaultRules from './country/default'
 
@@ -57,12 +58,14 @@ class AddressRules extends Component {
     const { children } = this.props
     const { rules } = this.state
 
-    return rules ? children(rules) : null
+    return rules ? (
+      <RulesContext.Provider value={rules}>{children}</RulesContext.Provider>
+    ) : null
   }
 }
 
 AddressRules.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.any.isRequired,
   country: PropTypes.string.isRequired,
   fetch: PropTypes.func.isRequired,
 }
