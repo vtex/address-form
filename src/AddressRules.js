@@ -40,8 +40,9 @@ class AddressRules extends Component {
           this.setState(prevState => ({
             rules: defaultRules,
           }))
+        } else {
+          console.warn('An unknown error occurred.')
         }
-        console.warn('An unknown error occurred.')
       })
   }
 
