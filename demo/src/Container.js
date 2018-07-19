@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import IntlContainer from './IntlContainer'
 import Styles from './Styles'
 import App from './App'
+import IntlHandler from './IntlHandler'
 import IntlApp from './IntlApp'
+import { IntlProvider } from 'react-intl'
+import AddressIntl from '../../src/AddressIntl'
 
 const ACCOUNT_NAME = 'qamarketplace'
 const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
@@ -40,7 +43,19 @@ class Container extends Component {
     //     </Styles>
     //   </IntlContainer>
     // )
-    return <IntlApp shipsTo={shipsTo} />
+    return (
+      <IntlProvider locale={'en'} messages={null}>
+        <div>
+          <IntlHandler>
+            <IntlApp shipsTo={shipsTo} />
+          </IntlHandler>
+          <hr className="mv9" />
+          <AddressIntl>
+            <IntlApp shipsTo={shipsTo} />
+          </AddressIntl>
+        </div>
+      </IntlProvider>
+    )
   }
 }
 
