@@ -31,7 +31,7 @@ class AddressRules extends Component {
         this.setState(prevState => ({
           rules: rules.default,
         }))
-        return rules
+        return rules.default
       })
       .catch(error => {
         const errorType = this.parseError(error)
@@ -42,14 +42,14 @@ class AddressRules extends Component {
           this.setState(prevState => ({
             rules: defaultRules,
           }))
-        } else {
-          console.warn('An unknown error occurred.')
+          return defaultRules
         }
+        console.warn('An unknown error occurred.')
       })
   }
 
   parseError(e) {
-    const regex = new RegExp(/Cannot find module '\.\/([A-z-]{1,7})'\./)
+    const regex = new RegExp(/Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/)
     const result = regex.exec(e.message)
     if (!result) return false
     return result[1]
