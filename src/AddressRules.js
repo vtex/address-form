@@ -28,7 +28,7 @@ class AddressRules extends Component {
 
     return fetch(country)
       .then(rules => {
-        this.setState(prevState => ({
+        this.setState(() => ({
           rules: rules.default,
         }))
         return rules.default
@@ -39,7 +39,7 @@ class AddressRules extends Component {
           console.warn(
             `Couldn't load rules for country ${errorType}, using default rules instead.`,
           )
-          this.setState(prevState => ({
+          this.setState(() => ({
             rules: defaultRules,
           }))
           return defaultRules
