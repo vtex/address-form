@@ -13,6 +13,7 @@ $ npm install @vtex/address-form
 ### Base Components
 
 - [AddressContainer](#addresscontainer)
+- [AddressRules](#addressrules)
 - [CountrySelector](#countryselector)
 - [AddressForm](#addressform)
 - [AddressSummary](#addresssummary)
@@ -103,6 +104,38 @@ AddressContainer.propTypes = {
     <YourComponent onChange={onChangeAddress}>
   }
 </AddressContainer>
+```
+
+### AddressRules
+
+This component contains functionality for easily fetching address formatting rules for a given country. It also smoothly switches between countries as its `country` prop updates.
+
+The component will then instantiate a Context and provide such rules to any component in its tree. All AddressForm components with a `rules` prop are automatically injected with the current country rules; it is not necessary to provide them such prop if they are inside an `AddressRules` component.
+
+#### Props
+
+- **`children`**: The components which will be rendered inside this component and, therefore, receive the provided rules
+- **`country`**: The `Alpha3` string identifier for the country which rules are to be provided
+- **`fetch`**:Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/address-form/lib/country/' + country)}` as its value
+
+```js
+AddressRules.propTypes = {
+  children: PropTypes.any.isRequired,
+  country: PropTypes.string.isRequired,
+  fetch: PropTypes.func.isRequired,
+}
+```
+
+#### Example
+
+```js
+<AddressRules
+  country={'BRA'}
+  fetch={country => import('../../src/country/' + country)}
+>
+  {/* AddressSummary will automatically receive Brazilian formatting */}
+  <AddressSummary address={address1} />
+</AddressRules>
 ```
 
 ### CountrySelector
