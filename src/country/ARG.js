@@ -2,7 +2,7 @@ import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 import { POSTAL_CODE } from '../constants'
 
 const countryData = {
-  'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma Buenos Aires'],
+  'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma de Buenos Aires'],
   'Buenos Aires': [
     '12 De Agosto',
     '12 De Octubre',
