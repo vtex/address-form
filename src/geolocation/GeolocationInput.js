@@ -4,6 +4,7 @@ import DefaultInput from '../DefaultInput'
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { EGOOGLEADDRESS } from '../constants'
+import { injectRules } from '../addressRulesContext'
 
 class GeolocationInput extends Component {
   constructor(props) {
@@ -36,11 +37,11 @@ class GeolocationInput extends Component {
 
     const options = rules.abbr
       ? {
-        types: ['address'],
-        componentRestrictions: {
-          country: rules.abbr,
-        },
-      }
+          types: ['address'],
+          componentRestrictions: {
+            country: rules.abbr,
+          },
+        }
       : { types: ['address'] }
 
     if (useSearchBox) {
@@ -190,4 +191,4 @@ GeolocationInput.propTypes = {
   googleMaps: PropTypes.object,
 }
 
-export default GeolocationInput
+export default injectRules(GeolocationInput)

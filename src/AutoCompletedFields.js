@@ -6,6 +6,7 @@ import { removeValidation, removeField } from './transforms/address'
 import pickBy from 'lodash/pickBy'
 import find from 'lodash/find'
 import flow from 'lodash/flow'
+import { injectRules } from './addressRulesContext'
 
 const IRRELEVANT_FIELDS = ['country', 'geoCoordinates']
 
@@ -92,4 +93,4 @@ AutoCompletedFields.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default AutoCompletedFields
+export default injectRules(AutoCompletedFields)

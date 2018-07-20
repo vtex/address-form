@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
+import { injectRules } from '../addressRulesContext'
 
 class Map extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Map extends Component {
     const rulesChanged = prevProps.rules.country !== this.props.rules.country
     const geoCoordsChanged = this.isDifferentGeoCoords(
       prevProps.geoCoordinates,
-      this.props.geoCoordinates
+      this.props.geoCoordinates,
     )
 
     return geoCoordsChanged || rulesChanged
@@ -78,7 +79,7 @@ class Map extends Component {
       debounce(() => {
         const newPosition = this.marker.getPosition()
         this.handleMarkerPositionChange(newPosition)
-      }, 1500)
+      }, 1500),
     )
   }
 
@@ -105,7 +106,7 @@ class Map extends Component {
 
     this.geocoder.geocode(
       { location: newPosition },
-      this.handleNewMarkerPosition
+      this.handleNewMarkerPosition,
     )
   }
 
@@ -118,7 +119,7 @@ class Map extends Component {
         const address = geolocationAutoCompleteAddress(
           googleAddress,
           rules,
-          rules.country
+          rules.country,
         )
         const possibleChangedFields = {
           geoCoordinates: address.geoCoordinates,
@@ -154,4 +155,4 @@ Map.propTypes = {
   googleMaps: PropTypes.object,
 }
 
-export default Map
+export default injectRules(Map)
