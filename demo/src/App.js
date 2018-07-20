@@ -21,6 +21,7 @@ import GeolocationInput from '../../src/geolocation/GeolocationInput'
 import Map from '../../src/geolocation/Map'
 
 import { injectIntl, intlShape } from 'react-intl'
+import AddressRules from '../../src/AddressRules'
 
 class App extends Component {
   constructor(props) {
@@ -129,6 +130,7 @@ class App extends Component {
   render() {
     const { address, shipsTo } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
+    const cleanAddress = removeValidation(address)
 
     const selectedRules = this.getCurrentRules(this.state)
     if (!selectedRules) {
@@ -138,11 +140,15 @@ class App extends Component {
     if (this.state.submitted) {
       return (
         <div className="step" style={{ padding: '20px' }}>
-          <AddressSummary
-            address={removeValidation(address)}
-            rules={selectedRules}
-            onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
-          />
+          <AddressRules
+            country={cleanAddress.country}
+            fetch={country => import('../../src/country/' + country)}
+          >
+            <AddressSummary
+              address={cleanAddress}
+              onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
+            />
+          </AddressRules>
         </div>
       )
     }
