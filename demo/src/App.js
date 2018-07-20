@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
-import AddressContainer from '../../src/AddressContainer'
-import CountrySelector from '../../src/CountrySelector'
-import AddressForm from '../../src/AddressForm'
-import AddressSummary from '../../src/AddressSummary'
-import PostalCodeGetter from '../../src/PostalCodeGetter'
-import AutoCompletedFields from '../../src/AutoCompletedFields'
+import find from 'lodash'
+import { injectIntl, intlShape } from 'react-intl'
 
 import {
+  AddressContainer,
+  AddressRules,
+  CountrySelector,
+  AddressForm,
+  AddressSummary,
+  PostalCodeGetter,
+  AutoCompletedFields,
   addValidation,
   removeValidation,
-  isValidAddress,
 } from '../../src/index'
 
+import {
+  GeolocationInput,
+  GoogleMapsContainer,
+  Map,
+} from '../../src/geolocation/index'
+
 import CustomInput from '../../src/CustomInput'
-
-import GoogleMapsContainer from '../../src/geolocation/GoogleMapsContainer'
-import GeolocationInput from '../../src/geolocation/GeolocationInput'
-import Map from '../../src/geolocation/Map'
-
-import { injectIntl, intlShape } from 'react-intl'
-import AddressRules from '../../src/AddressRules'
 import DefaultInput from '../../src/DefaultInput'
 
 class App extends Component {
@@ -66,18 +66,16 @@ class App extends Component {
     }))
   }
 
+  // #FIXME
   handleSubmit = e => {
     e.preventDefault()
-    const rules = this.getCurrentRules(this.state)
 
-    const { valid, address } = isValidAddress(this.state.address, rules)
+    const { address } = this.state
+    const hasInvalidField = find(address, field => field.valid === false)
 
-    if (valid) {
-      this.setState({ submitted: true, address })
-      return
+    if (hasInvalidField) {
+      this.setState({ submitted: true })
     }
-
-    this.setState({ address })
   }
 
   render() {
