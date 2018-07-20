@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
+import AddressSummary from '../../src/AddressSummary'
+
+import AddressRules from '../../src/AddressRules'
+import mockRules from '../../src/country/BRA'
 
 class RulesApp extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      country: 'BRA',
       address1: {
         addressId: '1',
         addressType: 'residential',
@@ -22,32 +26,43 @@ class RulesApp extends Component {
         street: 'Av. Brig. Faria Lima',
         addressQuery: null,
       },
-
-      address2: {
-        addressId: '1',
-        addressType: 'residential',
-        city: 'Cupertino',
-        complement: 'Room 42',
-        country: 'USA',
-        geoCoordinates: [],
-        neighborhood: null,
-        number: null,
-        postalCode: '95014',
-        receiverName: 'Steve Jobs',
-        reference: null,
-        state: 'CA',
-        street: '1 Infinite Loop',
-        addressQuery: null,
-      },
     }
   }
 
+  setBRA = () => {
+    this.setState({
+      country: 'BRA',
+    })
+  }
+
+  setUSA = () => {
+    this.setState({
+      country: 'USA',
+    })
+  }
+
+  setWrong = () => {
+    this.setState({
+      country: 'XXX',
+    })
+  }
+
   render() {
-    const { address1, address2 } = this.state
+    const { address1, country } = this.state
     return (
-      <div className="flex mb10">
-        <div className="w-50">Oi</div>
-        <div className="w-50">Oi</div>
+      <div className="pa6">
+        <h3>AddressRules demo:</h3>
+        <button onClick={this.setBRA}>Set rule to BRA</button>
+        <button onClick={this.setUSA}>Set rule to USA</button>
+        <button onClick={this.setWrong}>Set rule to malformed country</button>
+        <div className="mt8">
+          <AddressRules
+            country={country}
+            fetch={country => import('../../src/country/' + country)}
+          >
+            <AddressSummary address={address1} />
+          </AddressRules>
+        </div>
       </div>
     )
   }
