@@ -5,6 +5,7 @@ import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
+import { injectRules } from './addressRulesContext'
 
 class AddressContainer extends Component {
   componentDidMount() {
@@ -96,4 +97,4 @@ AddressContainer.propTypes = {
   shouldAddFocusToNextInvalidField: PropTypes.bool,
 }
 
-export default AddressContainer
+export default injectRules(AddressContainer)
