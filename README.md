@@ -131,7 +131,7 @@ AddressRules.propTypes = {
 ```js
 <AddressRules
   country={'BRA'}
-  fetch={country => import('../../src/country/' + country)}
+  fetch={country => import('@vtex/address-form/lib/country/' + country)}
 >
   {/* AddressSummary will automatically receive Brazilian formatting */}
   <AddressSummary address={address1} />
