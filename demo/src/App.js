@@ -22,6 +22,7 @@ import Map from '../../src/geolocation/Map'
 
 import { injectIntl, intlShape } from 'react-intl'
 import AddressRules from '../../src/AddressRules'
+import DefaultInput from '../../src/DefaultInput'
 
 class App extends Component {
   constructor(props) {
@@ -160,87 +161,86 @@ class App extends Component {
 
     return (
       <div className="step" style={{ padding: '20px' }}>
-        <AddressContainer
-          accountName={accountName}
-          address={address}
-          rules={selectedRules}
-          onChangeAddress={this.handleAddressChange}
-          autoCompletePostalCode={!validGeoCoords}
+        <AddressRules
+          country={cleanAddress.country}
+          fetch={country => import('../../src/country/' + country)}
         >
-          {onChangeAddress => (
-            <div>
-              <CountrySelector
-                Input={CustomInput}
-                address={address}
-                shipsTo={shipsTo}
-                onChangeAddress={onChangeAddress}
-              />
-
-              <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-                {({ loading, googleMaps }) => (
-                  <div>
-                    <GeolocationInput
-                      Input={CustomInput}
-                      loadingGoogle={loading}
-                      googleMaps={googleMaps}
-                      address={address}
-                      rules={selectedRules}
-                      onChangeAddress={onChangeAddress}
-                    />
-
-                    {validGeoCoords && (
-                      <Map
-                        loadingGoogle={loading}
-                        googleMaps={googleMaps}
-                        geoCoordinates={address.geoCoordinates.value}
-                        rules={selectedRules}
-                        onChangeAddress={onChangeAddress}
-                        mapProps={{
-                          style: {
-                            height: '120px',
-                            marginBottom: '10px',
-                            width: '260px',
-                          },
-                        }}
-                      />
-                    )}
-                  </div>
-                )}
-              </GoogleMapsContainer>
-
-              {!validGeoCoords && (
-                <PostalCodeGetter
+          <AddressContainer
+            accountName={accountName}
+            address={address}
+            onChangeAddress={this.handleAddressChange}
+            autoCompletePostalCode={!validGeoCoords}
+          >
+            {onChangeAddress => (
+              <div>
+                <CountrySelector
                   Input={CustomInput}
                   address={address}
-                  rules={selectedRules}
+                  shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
                 />
-              )}
 
-              <AutoCompletedFields
-                address={address}
-                rules={selectedRules}
-                onChangeAddress={onChangeAddress}
-              >
-                <a
-                  className="link-edit"
-                  id="force-shipping-fields"
-                  style={{ cursor: 'pointer' }}
+                <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
+                  {({ loading, googleMaps }) => (
+                    <div>
+                      <GeolocationInput
+                        Input={DefaultInput}
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                        address={address}
+                        onChangeAddress={onChangeAddress}
+                      />
+
+                      {validGeoCoords && (
+                        <Map
+                          loadingGoogle={loading}
+                          googleMaps={googleMaps}
+                          geoCoordinates={address.geoCoordinates.value}
+                          onChangeAddress={onChangeAddress}
+                          mapProps={{
+                            style: {
+                              height: '120px',
+                              marginBottom: '10px',
+                              width: '260px',
+                            },
+                          }}
+                        />
+                      )}
+                    </div>
+                  )}
+                </GoogleMapsContainer>
+
+                {!validGeoCoords && (
+                  <PostalCodeGetter
+                    Input={CustomInput}
+                    address={address}
+                    onChangeAddress={onChangeAddress}
+                  />
+                )}
+
+                <AutoCompletedFields
+                  address={address}
+                  onChangeAddress={onChangeAddress}
                 >
-                  {intl.formatMessage({ id: 'address-form.edit' })}
-                </a>
-              </AutoCompletedFields>
+                  <a
+                    className="link-edit"
+                    id="force-shipping-fields"
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {intl.formatMessage({ id: 'address-form.edit' })}
+                  </a>
+                </AutoCompletedFields>
 
-              <AddressForm
-                Input={CustomInput}
-                address={address}
-                rules={selectedRules}
-                onChangeAddress={onChangeAddress}
-                omitPostalCodeFields={!validGeoCoords}
-              />
-            </div>
-          )}
-        </AddressContainer>
+                <AddressForm
+                  Input={CustomInput}
+                  address={address}
+                  onChangeAddress={onChangeAddress}
+                  omitPostalCodeFields={!validGeoCoords}
+                />
+              </div>
+            )}
+          </AddressContainer>
+        </AddressRules>
 
         <button className="btn btn-default" onClick={this.handleSubmit}>
           Submit
