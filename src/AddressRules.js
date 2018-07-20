@@ -14,23 +14,24 @@ class AddressRules extends Component {
   }
 
   componentDidMount() {
-    this.updateRules()
+    return this.updateRules()
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.country !== this.props.country) {
-      this.updateRules()
+      return this.updateRules()
     }
   }
 
   updateRules() {
     const { country, fetch } = this.props
 
-    fetch(country)
+    return fetch(country)
       .then(rules => {
         this.setState(prevState => ({
           rules: rules.default,
         }))
+        return rules
       })
       .catch(error => {
         const errorType = this.parseError(error)
