@@ -3,7 +3,7 @@ import React from 'react'
 export const RulesContext = React.createContext()
 
 export function injectRules(Component) {
-  return function InjectedComponent(props) {
+  return function RulesInjectedComponent(props) {
     // eslint-disable-next-line react/prop-types
     if (props.rules) return <Component {...props} />
 
