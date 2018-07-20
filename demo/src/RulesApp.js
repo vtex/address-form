@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import { intlShape, injectIntl } from 'react-intl'
 import AddressSummary from '../../src/AddressSummary'
-
 import AddressRules from '../../src/AddressRules'
-import mockRules from '../../src/country/BRA'
 
 class RulesApp extends Component {
   constructor(props) {
     super(props)
     this.state = {
       country: 'BRA',
-      address1: {
+      address: {
         addressId: '1',
         addressType: 'residential',
         city: 'São Paulo',
@@ -29,38 +26,40 @@ class RulesApp extends Component {
     }
   }
 
-  setBRA = () => {
+  handleBRA = () => {
     this.setState({
       country: 'BRA',
     })
   }
 
-  setUSA = () => {
+  handleUSA = () => {
     this.setState({
       country: 'USA',
     })
   }
 
-  setWrong = () => {
+  handleWrong = () => {
     this.setState({
       country: 'XXX',
     })
   }
 
   render() {
-    const { address1, country } = this.state
+    const { address, country } = this.state
     return (
       <div className="pa6">
         <h3>AddressRules demo:</h3>
-        <button onClick={this.setBRA}>Set rule to BRA</button>
-        <button onClick={this.setUSA}>Set rule to USA</button>
-        <button onClick={this.setWrong}>Set rule to malformed country</button>
+        <button onClick={this.handleBRA}>Set rule to BRA</button>
+        <button onClick={this.handleUSA}>Set rule to USA</button>
+        <button onClick={this.handleWrong}>
+          Set rule to malformed country
+        </button>
         <div className="mt8">
           <AddressRules
             country={country}
             fetch={country => import('../../src/country/' + country)}
           >
-            <AddressSummary address={address1} />
+            <AddressSummary address={address} />
           </AddressRules>
         </div>
       </div>
@@ -68,8 +67,6 @@ class RulesApp extends Component {
   }
 }
 
-RulesApp.propTypes = {
-  intl: intlShape.isRequired,
-}
+RulesApp.propTypes = {}
 
-export default injectIntl(RulesApp)
+export default RulesApp
