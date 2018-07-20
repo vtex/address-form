@@ -18,7 +18,7 @@ describe('PostalCodeGetter', () => {
         rules={usePostalCode}
         onChangeAddress={jest.fn()}
       />,
-      div
+      div,
     )
   })
 
@@ -30,8 +30,8 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={usePostalCode}
         onChangeAddress={handleChange}
-      />
-    )
+      />,
+    ).dive()
 
     expect(wrapper.find('InputFieldContainer')).toHaveLength(1)
   })
@@ -44,8 +44,8 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useOneLevel}
         onChangeAddress={handleChange}
-      />
-    )
+      />,
+    ).dive()
 
     expect(wrapper.find('OneLevel')).toHaveLength(1)
   })
@@ -58,8 +58,8 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useTwoLevels}
         onChangeAddress={handleChange}
-      />
-    )
+      />,
+    ).dive()
 
     expect(wrapper.find('TwoLevels')).toHaveLength(1)
   })
@@ -72,8 +72,8 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
-      />
-    )
+      />,
+    ).dive()
 
     expect(wrapper.find('ThreeLevels')).toHaveLength(1)
   })
