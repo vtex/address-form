@@ -74,7 +74,7 @@ onChangeAddress({
 
 - **`cors`**: (default: `false`) If the app is running outside the VTEX servers.
 - **`accountName`**: This parameter it's only used when the `cors` prop is `true`. The account name of the store, to be used by the Postal Code Service.
-- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`rules`**: The selected country rules
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 - **`children`**: A callback child function
@@ -145,7 +145,7 @@ Renders a select that shows all the countries options.
 #### Props
 
 - **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
-- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`shipsTo`**: An array of an object of shape `{ value: String, label: String }`
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 
@@ -167,14 +167,12 @@ CountrySelector.propTypes = {
   onChangeAddress={this.handleAddressChange}
 >
   {onChangeAddress => (
-    <div>
-      <CountrySelector
-        Input={DefaultInput}
-        address={address}
-        shipsTo={shipsTo}
-        onChangeAddress={onChangeAddress}
-      />
-    </div>
+    <CountrySelector
+      Input={DefaultInput}
+      address={address}
+      shipsTo={shipsTo}
+      onChangeAddress={onChangeAddress}
+    />
   )}
 </AddressContainer>
 ```
@@ -186,7 +184,7 @@ Renders an address form base on rules of the selected country.
 #### Props
 
 - **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
-- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`omitPostalCodeFields`**: (default: `true`) Option to omit or not the fields that are rendered by `<PostalCodeGetter/>`
 - **`omitAutoCompletedFields`**: (default: `true`) Option to omit or not the fields that were auto completed
 - **`rules`**: The rules of the selected country
@@ -212,14 +210,12 @@ AddressForm.propTypes = {
   onChangeAddress={this.handleAddressChange}
 >
   {onChangeAddress => (
-    <div>
-      <AddressForm
-        Input={DefaultInput}
-        address={address}
-        rules={selectedRules}
-        onChangeAddress={onChangeAddress}
-      />
-    </div>
+    <AddressForm
+      Input={DefaultInput}
+      address={address}
+      rules={selectedRules}
+      onChangeAddress={onChangeAddress}
+    />
   )}
 </AddressContainer>
 ```
@@ -230,7 +226,7 @@ Renders a summary of the address.
 
 #### Props
 
-- **`address`**: The current address in the shape of [`AddressShape`](#AddressShape)
+- **`address`**: The current address in the shape of [`AddressShape`](#addressshape)
 - **`rules`**: The rules of the selected country
 - **`giftRegistryDescription`**: If the address is from a gift list, pass the description of it here
 - **`canEditData`**: (default: `true`) Boolean that tells if the data is masked, the same property of the `orderForm`.
@@ -263,7 +259,7 @@ Renders the requried components to get the postal code of an address. Some count
 #### Props
 
 - **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
-- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`rules`**: The rules of the selected country
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 
@@ -304,7 +300,7 @@ Renders a summary of the fields that were auto completed by the postal code or b
 #### Props
 
 - **`children`**: Node element that can be rendered for the "Edit" element
-- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`rules`**: The rules of the selected country
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 
@@ -351,7 +347,7 @@ This component handles the loading of the Google Maps JavaScript Library.
 
 It provides an object with `{ loading, googleMaps }` to the child function.
 
-- **`loading`**: Loading when the
+- **`loading`**: Resolves to `true` while the Google Maps Library is loading; `false` otherwise
 - **`googleMaps`**: Google Maps JavaScript library object
 
 #### Props
@@ -387,7 +383,7 @@ Renders an input with the Google Maps auto complete feature. When the user selec
 - **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
 - **`inputProps`**: (default: `{}`) An object with props to be passed down to the Input component
 - **`rules`**: The selected country rules
-- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 - **`loadingGoogle`**: Boolean if the Google Maps JavaScript Library is loading
 - **`googleMaps`**: The Google Maps JavaScript Library object
@@ -483,11 +479,11 @@ Map.propTypes = {
 
 #### Params
 
-- **`address`**: An address in the shape of [`AddressShape`](#AddressShape)
+- **`address`**: An address in the shape of [`AddressShape`](#addressshape)
 
 #### Returns
 
-- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 
 #### Example
 
@@ -532,11 +528,11 @@ addValidation(address)
 
 #### Params
 
-- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 
 #### Returns
 
-- **`address`**: An address in the shape of [`AddressShape`](#AddressShape)
+- **`address`**: An address in the shape of [`AddressShape`](#addressshape)
 
 #### Example
 
@@ -581,13 +577,13 @@ removeValidation(address)
 
 #### Params
 
-- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`rules`**: The selected country rules
 
 #### Returns
 
 - **`valid`**: A boolean if the address is valid or not
-- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation) with fields validated
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation) with fields validated
 
 #### Example
 
@@ -639,7 +635,7 @@ validateField(value, name, address, rules)
 
 - **`value`**: Value of the field
 - **`name`**: Name of the field
-- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
+- **`address`**: An address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`rules`**: The selected country rules
 
 #### Returns
