@@ -1,6 +1,6 @@
 # Address Form
 
-> A React component that renders VTEX's address forms 
+> A React component that renders VTEX's address forms
 
 ## Setup
 
@@ -12,25 +12,25 @@ $ npm install @vtex/address-form
 
 ### Base Components
 
-- [AddressContainer](#AddressContainer)
-- [CountrySelector](#CountrySelector)
-- [AddressForm](#AddressForm)
-- [AddressSummary](#AddressSummary)
-- [PostalCodeGetter](#PostalCodeGetter)
-- [AutoCompletedFields](#AutoCompletedFields)
+- [AddressContainer](#addresscontainer)
+- [CountrySelector](#countryselector)
+- [AddressForm](#addressform)
+- [AddressSummary](#addresssummary)
+- [PostalCodeGetter](#postalcodegetter)
+- [AutoCompletedFields](#autocompletedfields)
 
 ### Geolocation Components
 
-- [GoogleMapsContainer](#GoogleMapsContainer)
-- [GeolocationInput](#GeolocationInput)
-- [Map](#Map)
+- [GoogleMapsContainer](#googlemapscontainer)
+- [GeolocationInput](#geolocationinput)
+- [Map](#map)
 
 ### Helper Functions
 
-- [addValidation](#addValidation)
-- [removeValidation](#removeValidation)
-- [isValidAddress](#isValidAddress)
-- [validateField](#validateField)
+- [addValidation](#addvalidation)
+- [removeValidation](#removevalidation)
+- [isValidAddress](#isvalidaddress)
+- [validateField](#validatefield)
 
 ### Public modules
 
@@ -39,8 +39,8 @@ $ npm install @vtex/address-form
 
 ### Types
 
-- [AddressShape](#AddressShape)
-- [AddressShapeWithValidation](#AddressShapeWithValidation)
+- [AddressShape](#addressshape)
+- [AddressShapeWithValidation](#addressshapewithvalidation)
 
 ---
 
@@ -56,15 +56,16 @@ When a field change its value, it should call the function with an object like s
 
 ```js
 onChangeAddress({
-  street: { value: 'newValueHere' }
+  street: { value: 'newValueHere' },
 })
 ```
 
 You can also call it with more than one field:
+
 ```js
 onChangeAddress({
   street: { value: 'newValueHere' },
-  number: { value: 'newValueHere' }
+  number: { value: 'newValueHere' },
 })
 ```
 
@@ -122,7 +123,7 @@ CountrySelector.propTypes = {
   shipsTo: PropTypes.array.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
-````
+```
 
 #### Example
 
@@ -132,8 +133,8 @@ CountrySelector.propTypes = {
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
 >
-  {onChangeAddress =>
-    (<div>
+  {onChangeAddress => (
+    <div>
       <CountrySelector
         Input={DefaultInput}
         address={address}
@@ -141,8 +142,7 @@ CountrySelector.propTypes = {
         onChangeAddress={onChangeAddress}
       />
     </div>
-    )
-  }
+  )}
 </AddressContainer>
 ```
 
@@ -178,8 +178,8 @@ AddressForm.propTypes = {
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
 >
-  {onChangeAddress =>
-    (<div>
+  {onChangeAddress => (
+    <div>
       <AddressForm
         Input={DefaultInput}
         address={address}
@@ -187,8 +187,7 @@ AddressForm.propTypes = {
         onChangeAddress={onChangeAddress}
       />
     </div>
-    )
-  }
+  )}
 </AddressContainer>
 ```
 
@@ -217,7 +216,7 @@ AddressSummary.propTypes = {
 #### Example
 
 ```js
- <AddressSummary
+<AddressSummary
   address={removeValidation(address)}
   rules={selectedRules}
   onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
@@ -252,8 +251,8 @@ PostalCodeGetter.propTypes = {
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
 >
-  {onChangeAddress =>
-    (<div>
+  {onChangeAddress => (
+    <div>
       <PostalCodeGetter
         Input={DefaultInput}
         address={address}
@@ -261,8 +260,7 @@ PostalCodeGetter.propTypes = {
         onChangeAddress={onChangeAddress}
       />
     </div>
-    )
-  }
+  )}
 </AddressContainer>
 ```
 
@@ -294,8 +292,8 @@ AutoCompletedFields.propTypes = {
   rules={selectedRules}
   onChangeAddress={this.handleAddressChange}
 >
-  {onChangeAddress =>
-    (<div>
+  {onChangeAddress => (
+    <div>
       <AutoCompletedFields
         address={address}
         rules={selectedRules}
@@ -306,8 +304,7 @@ AutoCompletedFields.propTypes = {
         </a>
       </AutoCompletedFields>
     </div>
-    )
-  }
+  )}
 </AddressContainer>
 ```
 
@@ -321,7 +318,7 @@ This component handles the loading of the Google Maps JavaScript Library.
 
 It provides an object with `{ loading, googleMaps }` to the child function.
 
-- **`loading`**: Loading when the 
+- **`loading`**: Loading when the
 - **`googleMaps`**: Google Maps JavaScript library object
 
 #### Props
@@ -378,8 +375,8 @@ GeolocationInput.propTypes = {
 
 ```js
 <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-  {({ loading, googleMaps }) =>
-    (<div>
+  {({ loading, googleMaps }) => (
+    <div>
       <GeolocationInput
         loadingGoogle={loading}
         googleMaps={googleMaps}
@@ -388,8 +385,7 @@ GeolocationInput.propTypes = {
         onChangeAddress={onChangeAddress}
       />
     </div>
-    )
-  }
+  )}
 </GoogleMapsContainer>
 ```
 
@@ -423,26 +419,28 @@ Map.propTypes = {
 
 ```js
 <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-  {({ loading, googleMaps }) =>
-    (<div>
+  {({ loading, googleMaps }) => (
+    <div>
       {address.geoCoordinates &&
         address.geoCoordinates.valid &&
-        address.geoCoordinates.value.length === 2 &&
-        <Map
-          loadingGoogle={loading}
-          googleMaps={googleMaps}
-          geoCoordinates={address.geoCoordinates.value}
-          rules={selectedRules}
-          onChangeAddress={onChangeAddress}
-          mapProps={{
-            style: {
-              height: '120px',
-              marginBottom: '10px',
-              width: '260px',
-            },
-          }}
-        />}
-    </div>)}
+        address.geoCoordinates.value.length === 2 && (
+          <Map
+            loadingGoogle={loading}
+            googleMaps={googleMaps}
+            geoCoordinates={address.geoCoordinates.value}
+            rules={selectedRules}
+            onChangeAddress={onChangeAddress}
+            mapProps={{
+              style: {
+                height: '120px',
+                marginBottom: '10px',
+                width: '260px',
+              },
+            }}
+          />
+        )}
+    </div>
+  )}
 </GoogleMapsContainer>
 ```
 
@@ -548,7 +546,6 @@ removeValidation(address)
 
 ### isValidAddress
 
-
 #### Params
 
 - **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
@@ -603,10 +600,10 @@ isValidAddress(address, rules)
 
 ### validateField
 
-
 #### Params
 
 validateField(value, name, address, rules)
+
 - **`value`**: Value of the field
 - **`name`**: Name of the field
 - **`address`**: An address in the shape of [`AddressShapeWithValidation`](#AddressShapeWithValidation)
