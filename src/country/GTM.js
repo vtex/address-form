@@ -703,9 +703,9 @@ export default {
     [
       {
         name: 'neighborhood',
+        delimiterAfter: ' - ',
       },
       {
-        delimiter: ' - ',
         name: 'city',
       },
       {
