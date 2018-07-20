@@ -66,7 +66,6 @@ class App extends Component {
     }))
   }
 
-  // #FIXME
   handleSubmit = e => {
     e.preventDefault()
 
