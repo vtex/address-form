@@ -89,10 +89,7 @@ class App extends Component {
             country={cleanAddress.country}
             fetch={country => import('../../src/country/' + country)}
           >
-            <AddressSummary
-              address={cleanAddress}
-              onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
-            />
+            <AddressSummary address={cleanAddress} />
           </AddressRules>
         </div>
       )
