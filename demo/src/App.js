@@ -50,36 +50,11 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.loadCurrentCountryRules()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      shipsTo: this.addCountryLabel(nextProps.intl, nextProps.shipsTo),
-    })
-  }
-
   addCountryLabel(intl, countries) {
     return countries.map(countryCode => ({
       label: intl.formatMessage({ id: 'country.' + countryCode }),
       value: countryCode,
     }))
-  }
-
-  loadCurrentCountryRules = () => {
-    const country = this.state.address.country.value
-    const hasRulesLoaded = this.state.rules[country]
-
-    if (hasRulesLoaded) {
-      return
-    }
-
-    import('../../src/country/' + country).then(rules => {
-      this.setState(prevState => ({
-        rules: { ...prevState.rules, [country]: rules.default },
-      }))
-    })
   }
 
   handleAddressChange = address => {
@@ -89,23 +64,6 @@ class App extends Component {
         ...address,
       },
     }))
-  }
-
-  componentDidUpdate(_, prevState) {
-    const countryChanged =
-      this.state.address.country.value !== prevState.address.country.value
-
-    if (countryChanged) {
-      this.loadCurrentCountryRules()
-    }
-  }
-
-  handleClickMaskedInfoIcon = e => {
-    e.preventDefault()
-
-    if (window && window.$) {
-      window.$(window).trigger('showMessage.vtex', ['maskedInfo'])
-    }
   }
 
   handleSubmit = e => {
@@ -122,21 +80,10 @@ class App extends Component {
     this.setState({ address })
   }
 
-  getCurrentRules(state) {
-    const country = state.address.country.value
-    const selectedRules = state.rules[country]
-    return selectedRules
-  }
-
   render() {
     const { address, shipsTo } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
     const cleanAddress = removeValidation(address)
-
-    const selectedRules = this.getCurrentRules(this.state)
-    if (!selectedRules) {
-      return <div>Loading...</div>
-    }
 
     if (this.state.submitted) {
       return (
