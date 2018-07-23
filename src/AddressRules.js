@@ -30,9 +30,7 @@ class AddressRules extends Component {
       .then(ruleData => {
         const rules = ruleData.default || ruleData
 
-        this.setState({
-          rules: rules,
-        })
+        this.setState({ rules })
         return rules
       })
       .catch(error => {
