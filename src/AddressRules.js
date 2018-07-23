@@ -27,11 +27,11 @@ class AddressRules extends Component {
     const { country, fetch } = this.props
 
     return fetch(country)
-      .then(rules => {
-        this.setState({
-          rules: rules.default,
-        })
-        return rules.default
+      .then(ruleData => {
+        const rules = ruleData.default || ruleData
+
+        this.setState({ rules })
+        return rules
       })
       .catch(error => {
         const errorType = this.parseError(error)
