@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import AddressShape from './propTypes/AddressShape'
+import defaultRules from './country/default'
 
 class AddressSummary extends Component {
   render() {
@@ -22,6 +23,11 @@ class AddressSummary extends Component {
           <strong className="gift-list-name">{giftRegistryDescription}</strong>
         </span>
       )
+    }
+
+    if (!rules.summary) {
+      rules.summary = defaultRules.summary
+      console.warn('Summary rules not found; applying default instead.')
     }
 
     const maskedInfoIcon = (
