@@ -28,9 +28,9 @@ class AddressRules extends Component {
 
     return fetch(country)
       .then(rules => {
-        this.setState(() => ({
+        this.setState({
           rules: rules.default,
-        }))
+        })
         return rules.default
       })
       .catch(error => {
@@ -39,9 +39,9 @@ class AddressRules extends Component {
           console.warn(
             `Couldn't load rules for country ${errorType}, using default rules instead.`,
           )
-          this.setState(() => ({
+          this.setState({
             rules: defaultRules,
-          }))
+          })
           return defaultRules
         }
         console.warn('An unknown error occurred.')
