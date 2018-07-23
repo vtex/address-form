@@ -28,7 +28,9 @@ class AddressSummary extends Component {
 
     if (!rules.summary) {
       rules.summary = defaultRules.summary
-      console.warn('Summary rules not found; applying default instead.')
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('Summary rules not found; applying default instead.')
+      }
     }
 
     const maskedInfoIcon = (

@@ -36,15 +36,19 @@ class AddressRules extends Component {
       .catch(error => {
         const errorType = this.parseError(error)
         if (errorType) {
-          console.warn(
-            `Couldn't load rules for country ${errorType}, using default rules instead.`,
-          )
+          if (process.env.NODE_ENV !== 'production') {
+            console.warn(
+              `Couldn't load rules for country ${errorType}, using default rules instead.`,
+            )
+          }
           this.setState({
             rules: defaultRules,
           })
           return defaultRules
         }
-        console.warn('An unknown error occurred.')
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn('An unknown error occurred.')
+        }
       })
   }
 
