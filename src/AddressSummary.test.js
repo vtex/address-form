@@ -7,6 +7,9 @@ import fbAddress from './__mocks__/facebookAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import displayBrazil from './country/__mocks__/displayBrazil'
 import displayUSA from './country/__mocks__/displayUSA'
+import displayNoSummary from './country/__mocks__/displayNoSummary'
+
+import defaultRules from './country/default'
 
 describe('AddressSummary', () => {
   it('renders without crashing', () => {
@@ -132,5 +135,13 @@ describe('AddressSummary', () => {
 
     expect(brazilianAddress).toMatchSnapshot()
     expect(americanAddress).toMatchSnapshot()
+  })
+
+  it('should render using default if rules do not contain summary', () => {
+    const wrapper = renderer.create(
+      <AddressSummary address={fbAddress} rules={displayNoSummary} />,
+    )
+
+    expect(wrapper).toMatchSnapshot()
   })
 })
