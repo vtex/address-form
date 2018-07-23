@@ -21,6 +21,7 @@ import {
   Map,
 } from '../../src/geolocation/index'
 
+import { injectIntl, intlShape } from 'react-intl'
 import CustomInput from '../../src/CustomInput'
 import DefaultInput from '../../src/DefaultInput'
 
@@ -125,6 +126,14 @@ class App extends Component {
                   {({ loading, googleMaps }) => (
                     <div>
                       <GeolocationInput
+                        Input={CustomInput}
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                        address={address}
+                        onChangeAddress={onChangeAddress}
+                      />
+
+                      <GeolocationInput
                         Input={DefaultInput}
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
@@ -136,15 +145,8 @@ class App extends Component {
                         <Map
                           loadingGoogle={loading}
                           googleMaps={googleMaps}
-                          geoCoordinates={address.geoCoordinates.value}
+                          address={address}
                           onChangeAddress={onChangeAddress}
-                          mapProps={{
-                            style: {
-                              height: '120px',
-                              marginBottom: '10px',
-                              width: '260px',
-                            },
-                          }}
                         />
                       )}
                     </div>
