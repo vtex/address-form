@@ -8,6 +8,7 @@ import ThreeLevels from './postalCodeFrom/ThreeLevels'
 import DefaultInput from './DefaultInput'
 import InputFieldContainer from './InputFieldContainer'
 import { getField } from './selectors/fields'
+import { injectRules } from './addressRulesContext'
 
 class PostalCodeGetter extends Component {
   render() {
@@ -82,4 +83,4 @@ PostalCodeGetter.propTypes = {
   shouldShowNumberKeyboard: PropTypes.bool,
 }
 
-export default PostalCodeGetter
+export default injectRules(PostalCodeGetter)

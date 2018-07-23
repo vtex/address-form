@@ -168,11 +168,6 @@ exports[`AddressSummary should render using default if rules do not contain summ
   <br />
   <span>
     <span
-      className="city-delimiter"
-    >
-       - 
-    </span>
-    <span
       className="city"
     >
       Menlo Park
@@ -190,9 +185,5 @@ exports[`AddressSummary should render using default if rules do not contain summ
       CA
     </span>
   </span>
-  <br />
-  <span
-    className="country"
-  />
 </div>
 `;

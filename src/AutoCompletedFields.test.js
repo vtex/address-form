@@ -19,7 +19,7 @@ describe('AutoCompletedFields', () => {
     )
   })
 
-  it("should render nothing if there's no autocompleted fields", () => {
+  it("should display nothing if there's no autocompleted fields", () => {
     const wrapper = mount(
       <AutoCompletedFields
         rules={usePostalCode}
@@ -29,8 +29,7 @@ describe('AutoCompletedFields', () => {
         {children}
       </AutoCompletedFields>,
     )
-
-    expect(wrapper.isEmptyRender()).toBe(true)
+    expect(wrapper.html()).toBe(null)
   })
 
   describe('', () => {

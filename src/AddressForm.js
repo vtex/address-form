@@ -9,6 +9,7 @@ import {
   isDefiningPostalCodeField,
 } from './selectors/fields'
 import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
+import { injectRules } from './addressRulesContext'
 
 class AddressForm extends Component {
   render() {
@@ -33,21 +34,23 @@ class AddressForm extends Component {
       <div>
         {fields.map(
           field =>
-            isDefiningPostalCodeField(field.name, rules)
-              ? <SelectPostalCode
+            isDefiningPostalCodeField(field.name, rules) ? (
+              <SelectPostalCode
                 Input={Input}
                 rules={rules}
                 address={address}
                 onChangeAddress={onChangeAddress}
-                />
-              : <InputFieldContainer
+              />
+            ) : (
+              <InputFieldContainer
                 key={field.name}
                 Input={Input}
                 field={field}
                 address={address}
                 rules={rules}
                 onChangeAddress={onChangeAddress}
-                />
+              />
+            ),
         )}
       </div>
     )
@@ -69,4 +72,4 @@ AddressForm.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default AddressForm
+export default injectRules(AddressForm)

@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
-import AddressContainer from '../../src/AddressContainer'
-import CountrySelector from '../../src/CountrySelector'
-import AddressForm from '../../src/AddressForm'
-import AddressSummary from '../../src/AddressSummary'
-import PostalCodeGetter from '../../src/PostalCodeGetter'
-import AutoCompletedFields from '../../src/AutoCompletedFields'
+import find from 'lodash'
+import { injectIntl, intlShape } from 'react-intl'
 
 import {
+  AddressContainer,
+  AddressRules,
+  CountrySelector,
+  AddressForm,
+  AddressSummary,
+  PostalCodeGetter,
+  AutoCompletedFields,
   addValidation,
   removeValidation,
-  isValidAddress,
 } from '../../src/index'
 
+import {
+  GeolocationInput,
+  GoogleMapsContainer,
+  Map,
+} from '../../src/geolocation/index'
+
 import CustomInput from '../../src/CustomInput'
-
-import GoogleMapsContainer from '../../src/geolocation/GoogleMapsContainer'
-import GeolocationInput from '../../src/geolocation/GeolocationInput'
-import Map from '../../src/geolocation/Map'
-
-import { injectIntl, intlShape } from 'react-intl'
+import DefaultInput from '../../src/DefaultInput'
 
 class App extends Component {
   constructor(props) {
@@ -48,36 +50,11 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
-    this.loadCurrentCountryRules()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      shipsTo: this.addCountryLabel(nextProps.intl, nextProps.shipsTo),
-    })
-  }
-
   addCountryLabel(intl, countries) {
     return countries.map(countryCode => ({
       label: intl.formatMessage({ id: 'country.' + countryCode }),
       value: countryCode,
     }))
-  }
-
-  loadCurrentCountryRules = () => {
-    const country = this.state.address.country.value
-    const hasRulesLoaded = this.state.rules[country]
-
-    if (hasRulesLoaded) {
-      return
-    }
-
-    import('../../src/country/' + country).then(rules => {
-      this.setState(prevState => ({
-        rules: { ...prevState.rules, [country]: rules.default },
-      }))
-    })
   }
 
   handleAddressChange = address => {
@@ -89,60 +66,31 @@ class App extends Component {
     }))
   }
 
-  componentDidUpdate(_, prevState) {
-    const countryChanged =
-      this.state.address.country.value !== prevState.address.country.value
-
-    if (countryChanged) {
-      this.loadCurrentCountryRules()
-    }
-  }
-
-  handleClickMaskedInfoIcon = e => {
-    e.preventDefault()
-
-    if (window && window.$) {
-      window.$(window).trigger('showMessage.vtex', ['maskedInfo'])
-    }
-  }
-
   handleSubmit = e => {
     e.preventDefault()
-    const rules = this.getCurrentRules(this.state)
 
-    const { valid, address } = isValidAddress(this.state.address, rules)
+    const { address } = this.state
+    const hasInvalidField = find(address, field => field.valid === false)
 
-    if (valid) {
-      this.setState({ submitted: true, address })
-      return
+    if (hasInvalidField) {
+      this.setState({ submitted: true })
     }
-
-    this.setState({ address })
-  }
-
-  getCurrentRules(state) {
-    const country = state.address.country.value
-    const selectedRules = state.rules[country]
-    return selectedRules
   }
 
   render() {
     const { address, shipsTo } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
-
-    const selectedRules = this.getCurrentRules(this.state)
-    if (!selectedRules) {
-      return <div>Loading...</div>
-    }
+    const cleanAddress = removeValidation(address)
 
     if (this.state.submitted) {
       return (
         <div className="step" style={{ padding: '20px' }}>
-          <AddressSummary
-            address={removeValidation(address)}
-            rules={selectedRules}
-            onClickMaskedInfoIcon={this.handleClickMaskedInfoIcon}
-          />
+          <AddressRules
+            country={cleanAddress.country}
+            fetch={country => import('../../src/country/' + country)}
+          >
+            <AddressSummary address={cleanAddress} />
+          </AddressRules>
         </div>
       )
     }
@@ -154,87 +102,86 @@ class App extends Component {
 
     return (
       <div className="step" style={{ padding: '20px' }}>
-        <AddressContainer
-          accountName={accountName}
-          address={address}
-          rules={selectedRules}
-          onChangeAddress={this.handleAddressChange}
-          autoCompletePostalCode={!validGeoCoords}
+        <AddressRules
+          country={cleanAddress.country}
+          fetch={country => import('../../src/country/' + country)}
         >
-          {onChangeAddress => (
-            <div>
-              <CountrySelector
-                Input={CustomInput}
-                address={address}
-                shipsTo={shipsTo}
-                onChangeAddress={onChangeAddress}
-              />
-
-              <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-                {({ loading, googleMaps }) => (
-                  <div>
-                    <GeolocationInput
-                      Input={CustomInput}
-                      loadingGoogle={loading}
-                      googleMaps={googleMaps}
-                      address={address}
-                      rules={selectedRules}
-                      onChangeAddress={onChangeAddress}
-                    />
-
-                    {validGeoCoords && (
-                      <Map
-                        loadingGoogle={loading}
-                        googleMaps={googleMaps}
-                        geoCoordinates={address.geoCoordinates.value}
-                        rules={selectedRules}
-                        onChangeAddress={onChangeAddress}
-                        mapProps={{
-                          style: {
-                            height: '120px',
-                            marginBottom: '10px',
-                            width: '260px',
-                          },
-                        }}
-                      />
-                    )}
-                  </div>
-                )}
-              </GoogleMapsContainer>
-
-              {!validGeoCoords && (
-                <PostalCodeGetter
+          <AddressContainer
+            accountName={accountName}
+            address={address}
+            onChangeAddress={this.handleAddressChange}
+            autoCompletePostalCode={!validGeoCoords}
+          >
+            {onChangeAddress => (
+              <div>
+                <CountrySelector
                   Input={CustomInput}
                   address={address}
-                  rules={selectedRules}
+                  shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
                 />
-              )}
 
-              <AutoCompletedFields
-                address={address}
-                rules={selectedRules}
-                onChangeAddress={onChangeAddress}
-              >
-                <a
-                  className="link-edit"
-                  id="force-shipping-fields"
-                  style={{ cursor: 'pointer' }}
+                <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
+                  {({ loading, googleMaps }) => (
+                    <div>
+                      <GeolocationInput
+                        Input={DefaultInput}
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                        address={address}
+                        onChangeAddress={onChangeAddress}
+                      />
+
+                      {validGeoCoords && (
+                        <Map
+                          loadingGoogle={loading}
+                          googleMaps={googleMaps}
+                          geoCoordinates={address.geoCoordinates.value}
+                          onChangeAddress={onChangeAddress}
+                          mapProps={{
+                            style: {
+                              height: '120px',
+                              marginBottom: '10px',
+                              width: '260px',
+                            },
+                          }}
+                        />
+                      )}
+                    </div>
+                  )}
+                </GoogleMapsContainer>
+
+                {!validGeoCoords && (
+                  <PostalCodeGetter
+                    Input={CustomInput}
+                    address={address}
+                    onChangeAddress={onChangeAddress}
+                  />
+                )}
+
+                <AutoCompletedFields
+                  address={address}
+                  onChangeAddress={onChangeAddress}
                 >
-                  {intl.formatMessage({ id: 'address-form.edit' })}
-                </a>
-              </AutoCompletedFields>
+                  <a
+                    className="link-edit"
+                    id="force-shipping-fields"
+                    style={{ cursor: 'pointer' }}
+                  >
+                    {intl.formatMessage({ id: 'address-form.edit' })}
+                  </a>
+                </AutoCompletedFields>
 
-              <AddressForm
-                Input={CustomInput}
-                address={address}
-                rules={selectedRules}
-                onChangeAddress={onChangeAddress}
-                omitPostalCodeFields={!validGeoCoords}
-              />
-            </div>
-          )}
-        </AddressContainer>
+                <AddressForm
+                  Input={CustomInput}
+                  address={address}
+                  onChangeAddress={onChangeAddress}
+                  omitPostalCodeFields={!validGeoCoords}
+                />
+              </div>
+            )}
+          </AddressContainer>
+        </AddressRules>
 
         <button className="btn btn-default" onClick={this.handleSubmit}>
           Submit

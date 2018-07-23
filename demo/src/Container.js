@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import IntlContainer from './IntlContainer'
-import Styles from './Styles'
 import App from './App'
+import RulesApp from './RulesApp'
 
 const ACCOUNT_NAME = 'qamarketplace'
 const API_KEY = 'AIzaSyATLp76vkHxfMZqJF_sJbjQqZwvSIBhsTM'
@@ -29,14 +29,16 @@ class Container extends Component {
   render() {
     return (
       <IntlContainer locale={locale}>
-        <Styles>
+        <React.Fragment>
           <App
             accountName={ACCOUNT_NAME}
             googleMapsAPIKey={API_KEY}
             locale={locale}
             shipsTo={shipsTo}
           />
-        </Styles>
+          <hr className="mv4" />
+          <RulesApp />
+        </React.Fragment>
       </IntlContainer>
     )
   }

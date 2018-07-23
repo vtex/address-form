@@ -3,6 +3,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import PropTypes from 'prop-types'
 import AddressShape from './propTypes/AddressShape'
 import defaultRules from './country/default'
+import { injectRules } from './addressRulesContext'
 
 class AddressSummary extends Component {
   render() {
@@ -27,7 +28,9 @@ class AddressSummary extends Component {
 
     if (!rules.summary) {
       rules.summary = defaultRules.summary
-      console.warn('Summary rules not found; applying default instead.')
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('Summary rules not found; applying default instead.')
+      }
     }
 
     const maskedInfoIcon = (
@@ -78,15 +81,16 @@ class AddressSummary extends Component {
             else if (summary == null) return [line]
             return [...summary, <br key={summary.length} />, line]
           }, null)}
-        {showCountry && [
-          <br key="break" />,
-          <span key="country" className="country">
-            {this.props.intl.formatMessage({
-              id: `country.${rules.country}`,
-              defaultMessage: rules.country,
-            })}
-          </span>,
-        ]}
+        {showCountry &&
+          rules.country && [
+            <br key="break" />,
+            <span key="country" className="country">
+              {this.props.intl.formatMessage({
+                id: `country.${rules.country}`,
+                defaultMessage: rules.country,
+              })}
+            </span>,
+          ]}
         {children}
       </div>
     )
@@ -109,4 +113,4 @@ AddressSummary.propTypes = {
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(AddressSummary)
+export default injectRules(injectIntl(AddressSummary))
