@@ -31,7 +31,7 @@ class CustomInput extends Component {
       this.props.address[this.props.field.name]
     ) {
       this.setState({
-        isInputValid: this.props.address[this.props.field.name].valid,
+        isInputValid: this.props.address[this.props.field.name].valid || true,
       })
     }
   }
@@ -72,6 +72,38 @@ class CustomInput extends Component {
               })}
             </Button>
           </div>
+        </div>
+      )
+    }
+
+    if (field.name === 'addressQuery') {
+      return (
+        <div className="pt3 pb2">
+          <Input
+            label={
+              field.fixedLabel ||
+              intl.formatMessage({ id: `address-form.field.${field.label}` })
+            }
+            className={loading ? 'loading-postal-code' : null}
+            address={address}
+            error={!this.state.isInputValid}
+            errorMessage={
+              address[field.name].reason &&
+              this.props.intl.formatMessage({
+                id: `address-form.error.${address[field.name].reason}`,
+              })
+            }
+            placeholder={intl.formatMessage({
+              id: `address-form.geolocation.example.${address.country.value}`,
+              defaultMessage: intl.formatMessage({
+                id: 'address-form.geolocation.example.UNI',
+              }),
+            })}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
+            disabled={loading || disabled}
+          />
+          {loading && <PostalCodeLoader />}
         </div>
       )
     }
