@@ -138,6 +138,8 @@ describe('AddressSummary', () => {
   })
 
   it('should render using default if rules do not contain summary', () => {
+    global.console = { warn: jest.fn() }
+
     const wrapper = renderer.create(
       <AddressSummary address={fbAddress} rules={displayNoSummary} />,
     )

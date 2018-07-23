@@ -1,3 +1,1 @@
-export default {
-  country: 'BRA',
-}
+export default {}
