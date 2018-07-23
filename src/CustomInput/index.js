@@ -43,7 +43,7 @@ class CustomInput extends Component {
 
     if (field.name === 'postalCode') {
       return (
-        <div className="vtex-address-form__postalCode flex flex-row pt3 pb2">
+        <div className="vtex-address-form__postalCode flex flex-row items-center pt3 pb2">
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -61,7 +61,7 @@ class CustomInput extends Component {
             onChange={this.handleChange}
           />
           {loading && (
-            <div className="pl1 pt7">
+            <div className="pl2 pt6">
               <Spinner size={15} />
             </div>
           )}
@@ -78,7 +78,7 @@ class CustomInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div className="pt3 pb2">
+        <div className="vtex-address-form__addressQuery flex flex-row items-center pt3 pb2">
           <Input
             label={
               field.fixedLabel ||
@@ -103,7 +103,11 @@ class CustomInput extends Component {
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
           />
-          {loading && <PostalCodeLoader />}
+          {loading && (
+            <div className="pl2 pt6">
+              <Spinner size={15} />
+            </div>
+          )}
         </div>
       )
     }
