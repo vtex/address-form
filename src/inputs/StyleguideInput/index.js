@@ -5,7 +5,6 @@ import Input from '@vtex/styleguide/lib/Input'
 import Button from '@vtex/styleguide/lib/Button'
 import Spinner from '@vtex/styleguide/lib/Spinner'
 import { injectIntl, intlShape } from 'react-intl'
-import 'vtex-tachyons'
 
 class CustomInput extends Component {
   constructor(props) {
@@ -37,25 +36,13 @@ class CustomInput extends Component {
   }
 
   render() {
-    const {
-      field,
-      options,
-      address,
-      autoFocus,
-      padLevel,
-      inputRef,
-      intl,
-    } = this.props
+    const { field, options, address, autoFocus, inputRef, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
-    const padding = padLevel ? 'pb' + padLevel : ''
-
     if (field.name === 'postalCode') {
       return (
-        <div
-          className={`vtex-address-form__postalCode flex flex-row ${padding}`}
-        >
+        <div className={`vtex-address-form__postalCode flex flex-row pb6`}>
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -96,9 +83,7 @@ class CustomInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div
-          className={`vtex-address-form__addressQuery flex flex-row ${padding}`}
-        >
+        <div className={`vtex-address-form__addressQuery flex flex-row pb6`}>
           <Input
             label={
               field.fixedLabel ||
@@ -135,7 +120,7 @@ class CustomInput extends Component {
 
     if (options) {
       return (
-        <div className={`vtex-address-form__${field.name} ${padding}`}>
+        <div className={`vtex-address-form__${field.name} pb6`}>
           <Dropdown
             options={options}
             value={address[field.name].value || ''}
@@ -156,7 +141,7 @@ class CustomInput extends Component {
       <div
         className={`vtex-address-form__${field.name} ${
           field.hidden ? 'dn' : ''
-        } ${padding}`}
+        } pb6`}
       >
         <Input
           label={this.props.intl.formatMessage({
@@ -188,7 +173,6 @@ class CustomInput extends Component {
 
 CustomInput.defaultProps = {
   onBlur: () => {},
-  padLevel: 3,
   autoFocus: false,
 }
 
@@ -199,7 +183,6 @@ CustomInput.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
-  padLevel: PropTypes.number,
   inputRef: PropTypes.func,
   intl: intlShape,
 }
