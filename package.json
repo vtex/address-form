@@ -19,7 +19,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@vtex/styleguide": "^2.0.0-rc.41",
+    "@vtex/styleguide": "^5.4.1",
     "axios": "^0.16.2",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "classnames": "^2.2.5",
