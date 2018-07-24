@@ -42,7 +42,7 @@ class CustomInput extends Component {
 
     if (field.name === 'postalCode') {
       return (
-        <div className={`vtex-address-form__postalCode flex flex-row pb6`}>
+        <div className={`vtex-address-form__postalCode flex flex-row pb7`}>
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -83,7 +83,7 @@ class CustomInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div className={`vtex-address-form__addressQuery flex flex-row pb6`}>
+        <div className={`vtex-address-form__addressQuery flex flex-row pb7`}>
           <Input
             label={
               field.fixedLabel ||
@@ -120,7 +120,7 @@ class CustomInput extends Component {
 
     if (options) {
       return (
-        <div className={`vtex-address-form__${field.name} pb6`}>
+        <div className={`vtex-address-form__${field.name} pb7`}>
           <Dropdown
             options={options}
             value={address[field.name].value || ''}
@@ -141,7 +141,7 @@ class CustomInput extends Component {
       <div
         className={`vtex-address-form__${field.name} ${
           field.hidden ? 'dn' : ''
-        } pb6`}
+        } pb7`}
       >
         <Input
           label={this.props.intl.formatMessage({
