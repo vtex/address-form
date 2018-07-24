@@ -48,6 +48,7 @@ class App extends Component {
       }),
       rules: {},
       shipsTo: this.addCountryLabel(props.intl, props.shipsTo),
+      PaddedInput: withPadding(CustomInput, 4),
     }
   }
 
@@ -79,7 +80,7 @@ class App extends Component {
   }
 
   render() {
-    const { address, shipsTo } = this.state
+    const { address, shipsTo, PaddedInput } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
     const cleanAddress = removeValidation(address)
 
@@ -100,8 +101,6 @@ class App extends Component {
       address.geoCoordinates &&
       address.geoCoordinates.valid &&
       address.geoCoordinates.value.length === 2
-
-    const PaddedInput = CustomInput
 
     return (
       <div className="step" style={{ padding: '20px' }}>
@@ -135,12 +134,27 @@ class App extends Component {
                         onChangeAddress={onChangeAddress}
                       />
 
+                      <GeolocationInput
+                        Input={PaddedInput}
+                        loadingGoogle={loading}
+                        googleMaps={googleMaps}
+                        address={address}
+                        onChangeAddress={onChangeAddress}
+                      />
+
                       {validGeoCoords && (
                         <Map
                           loadingGoogle={loading}
                           googleMaps={googleMaps}
-                          address={address}
+                          geoCoordinates={address.geoCoordinates.value}
                           onChangeAddress={onChangeAddress}
+                          mapProps={{
+                            style: {
+                              height: '120px',
+                              marginBottom: '10px',
+                              width: '260px',
+                            },
+                          }}
                         />
                       )}
                     </div>

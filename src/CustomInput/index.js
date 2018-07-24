@@ -37,7 +37,7 @@ class CustomInput extends Component {
   }
 
   render() {
-    const { field, options, address, padLevel, intl } = this.props
+    const { field, options, address, padLevel, inputRef, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
@@ -70,7 +70,11 @@ class CustomInput extends Component {
             </div>
           )}
           <div className="pt6">
-            <Button neutral onClick={this.handleClick}>
+            <Button
+              variation="tertiary"
+              size="small"
+              onClick={this.handleClick}
+            >
               {intl.formatMessage({
                 id: 'address-form.dontKnowPostalCode',
               })}
@@ -82,13 +86,14 @@ class CustomInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div className="vtex-address-form__addressQuery flex flex-row items-center pt3 pb2">
+        <div
+          className={`vtex-address-form__addressQuery flex flex-row pt3 pb2 ${padding}`}
+        >
           <Input
             label={
               field.fixedLabel ||
               intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
-            className={loading ? 'loading-postal-code' : null}
             address={address}
             error={!this.state.isInputValid}
             errorMessage={
@@ -103,12 +108,13 @@ class CustomInput extends Component {
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
+            ref={inputRef}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
           />
           {loading && (
-            <div className="pl2 pt6">
+            <div className="pl1 pt7">
               <Spinner size={15} />
             </div>
           )}
@@ -176,6 +182,7 @@ CustomInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   padLevel: PropTypes.number,
+  inputRef: PropTypes.func,
   intl: intlShape,
 }
 
