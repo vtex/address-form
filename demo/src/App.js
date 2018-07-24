@@ -21,8 +21,8 @@ import {
   Map,
 } from '../../src/geolocation/index'
 
+import Button from '@vtex/styleguide/lib/Button'
 import CustomInput from '../../src/CustomInput'
-import DefaultInput from '../../src/DefaultInput'
 import { withPadding } from '../../src/CustomInput/withPadding'
 
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
       }),
       rules: {},
       shipsTo: this.addCountryLabel(props.intl, props.shipsTo),
-      PaddedInput: withPadding(CustomInput, 4),
+      PaddedInput: withPadding(CustomInput, 5),
     }
   }
 
@@ -127,14 +127,6 @@ class App extends Component {
                   {({ loading, googleMaps }) => (
                     <div>
                       <GeolocationInput
-                        Input={DefaultInput}
-                        loadingGoogle={loading}
-                        googleMaps={googleMaps}
-                        address={address}
-                        onChangeAddress={onChangeAddress}
-                      />
-
-                      <GeolocationInput
                         Input={PaddedInput}
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
@@ -193,9 +185,9 @@ class App extends Component {
           </AddressContainer>
         </AddressRules>
 
-        <button className="btn btn-default" onClick={this.handleSubmit}>
+        <Button size="small" block onClick={this.handleSubmit}>
           Submit
-        </button>
+        </Button>
       </div>
     )
   }
