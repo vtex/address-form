@@ -22,8 +22,9 @@ import {
 } from '../../src/geolocation/index'
 
 import Button from '@vtex/styleguide/lib/Button'
-import CustomInput from '../../src/CustomInput'
-import { withPadding } from '../../src/CustomInput/withPadding'
+import StyleguideInput from '../../src/inputs/StyleguideInput'
+
+import 'vtex-tachyons'
 
 class App extends Component {
   constructor(props) {
@@ -48,7 +49,6 @@ class App extends Component {
       }),
       rules: {},
       shipsTo: this.addCountryLabel(props.intl, props.shipsTo),
-      PaddedInput: withPadding(CustomInput, 5),
     }
   }
 
@@ -80,7 +80,7 @@ class App extends Component {
   }
 
   render() {
-    const { address, shipsTo, PaddedInput } = this.state
+    const { address, shipsTo } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
     const cleanAddress = removeValidation(address)
 
@@ -117,7 +117,7 @@ class App extends Component {
             {onChangeAddress => (
               <div>
                 <CountrySelector
-                  Input={PaddedInput}
+                  Input={StyleguideInput}
                   address={address}
                   shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
@@ -127,7 +127,7 @@ class App extends Component {
                   {({ loading, googleMaps }) => (
                     <div>
                       <GeolocationInput
-                        Input={PaddedInput}
+                        Input={StyleguideInput}
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
                         address={address}
@@ -155,7 +155,7 @@ class App extends Component {
 
                 {!validGeoCoords && (
                   <PostalCodeGetter
-                    Input={PaddedInput}
+                    Input={StyleguideInput}
                     address={address}
                     onChangeAddress={onChangeAddress}
                   />
@@ -175,7 +175,7 @@ class App extends Component {
                 </AutoCompletedFields>
 
                 <AddressForm
-                  Input={PaddedInput}
+                  Input={StyleguideInput}
                   address={address}
                   onChangeAddress={onChangeAddress}
                   omitPostalCodeFields={!validGeoCoords}
