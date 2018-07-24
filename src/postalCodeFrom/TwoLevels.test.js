@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import TwoLevels from './TwoLevels'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import address from '../__mocks__/newAddress'
-import MockInput from '../DefaultInput/__mocks__/Input'
+import MockInput from '../inputs/DefaultInput/__mocks__/Input'
 
 describe('TwoLevels', () => {
   it('render it right', () => {
@@ -13,7 +13,7 @@ describe('TwoLevels', () => {
         address={address}
         rules={useTwoLevels}
         onChangeAddress={jest.fn()}
-      />
+      />,
     )
 
     expect(wrapper.find('SelectLevel')).toHaveLength(1)

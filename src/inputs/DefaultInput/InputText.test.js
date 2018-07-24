@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import address from '../__mocks__/newAddress'
+import address from '../../__mocks__/newAddress'
 
 import InputText from './InputText'
 

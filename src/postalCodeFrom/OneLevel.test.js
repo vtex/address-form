@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import OneLevel from './OneLevel'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
-import MockInput from '../DefaultInput/__mocks__/Input'
+import MockInput from '../inputs/DefaultInput/__mocks__/Input'
 
 describe('OneLevel', () => {
   it('render it right', () => {
@@ -13,7 +13,7 @@ describe('OneLevel', () => {
         address={address}
         rules={useOneLevel}
         onChangeAddress={jest.fn()}
-      />
+      />,
     )
 
     expect(wrapper.find('SelectPostalCode')).toHaveLength(1)

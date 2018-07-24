@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import cx from 'classnames'
 
 class InputText extends Component {

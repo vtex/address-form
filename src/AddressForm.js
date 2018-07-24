@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
-import DefaultInput from './DefaultInput'
+import DefaultInput from './inputs/DefaultInput'
 import {
   filterPostalCodeFields,
   filterAutoCompletedFields,
