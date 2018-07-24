@@ -37,7 +37,15 @@ class CustomInput extends Component {
   }
 
   render() {
-    const { field, options, address, padLevel, inputRef, intl } = this.props
+    const {
+      field,
+      options,
+      address,
+      autoFocus,
+      padLevel,
+      inputRef,
+      intl,
+    } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
@@ -54,7 +62,9 @@ class CustomInput extends Component {
             })}
             value={address[field.name].value || ''}
             disabled={disabled}
+            autoFocus={autoFocus}
             error={!this.state.isInputValid}
+            ref={inputRef}
             errorMessage={
               address[field.name].reason &&
               this.props.intl.formatMessage({
@@ -95,7 +105,6 @@ class CustomInput extends Component {
               intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
             address={address}
-            error={!this.state.isInputValid}
             errorMessage={
               address[field.name].reason &&
               this.props.intl.formatMessage({
@@ -108,10 +117,12 @@ class CustomInput extends Component {
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
-            ref={inputRef}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
+            autoFocus={autoFocus}
+            error={!this.state.isInputValid}
+            ref={inputRef}
           />
           {loading && (
             <div className="pl1 pt7">
@@ -129,6 +140,8 @@ class CustomInput extends Component {
             options={options}
             value={address[field.name].value || ''}
             disabled={disabled}
+            autoFocus={autoFocus}
+            ref={inputRef}
             label={intl.formatMessage({
               id: `address-form.field.${field.label}`,
             })}
@@ -157,7 +170,9 @@ class CustomInput extends Component {
           }
           value={address[field.name].value || ''}
           disabled={disabled}
+          autoFocus={autoFocus}
           error={!this.state.isInputValid}
+          ref={inputRef}
           placeholder={
             !field.hidden && !field.required
               ? this.props.intl.formatMessage({ id: 'address-form.optional' })
@@ -174,10 +189,12 @@ class CustomInput extends Component {
 CustomInput.defaultProps = {
   onBlur: () => {},
   padLevel: 3,
+  autoFocus: false,
 }
 
 CustomInput.propTypes = {
   address: PropTypes.object,
+  autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChange: PropTypes.func.isRequired,
