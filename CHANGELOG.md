@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - **[BREAKING]** Both inputs moved to an `inputs` folder
-- **[BREAKING]** CustomInput renamed to StyleguideInput [#103](#103)
+- **[BREAKING]** CustomInput renamed to StyleguideInput [(#103)](https://github.com/vtex/address-form/pull/103)
 
 ### Added
 
