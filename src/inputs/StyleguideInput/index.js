@@ -6,7 +6,7 @@ import Button from '@vtex/styleguide/lib/Button'
 import Spinner from '@vtex/styleguide/lib/Spinner'
 import { injectIntl, intlShape } from 'react-intl'
 
-class CustomInput extends Component {
+class StyleguideInput extends Component {
   constructor(props) {
     super(props)
 
@@ -171,12 +171,12 @@ class CustomInput extends Component {
   }
 }
 
-CustomInput.defaultProps = {
+StyleguideInput.defaultProps = {
   onBlur: () => {},
   autoFocus: false,
 }
 
-CustomInput.propTypes = {
+StyleguideInput.propTypes = {
   address: PropTypes.object,
   autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,
@@ -187,4 +187,4 @@ CustomInput.propTypes = {
   intl: intlShape,
 }
 
-export default injectIntl(CustomInput)
+export default injectIntl(StyleguideInput)
