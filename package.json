@@ -27,13 +27,13 @@
     "enzyme-to-json": "^3.3.4",
     "load-google-maps-api": "^1.0.0",
     "lodash": "^4.17.4",
-    "msk": "1.0.3",
-    "vtex-tachyons": "^2.4.0"
+    "msk": "1.0.3"
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
     "react": "15.x || 16.x",
-    "react-intl": "^2.4.0"
+    "react-intl": "^2.4.0",
+    "vtex-tachyons": "^2.5.0"
   },
   "devDependencies": {
     "babel-eslint": "7",
