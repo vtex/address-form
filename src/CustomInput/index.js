@@ -37,13 +37,17 @@ class CustomInput extends Component {
   }
 
   render() {
-    const { field, options, address, intl } = this.props
+    const { field, options, address, padLevel, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
+    const padding = padLevel ? 'pb' + padLevel : ''
+
     if (field.name === 'postalCode') {
       return (
-        <div className="vtex-address-form__postalCode flex flex-row items-center pt3 pb2">
+        <div
+          className={`vtex-address-form__postalCode flex flex-row pt3 ${padding}`}
+        >
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -61,7 +65,7 @@ class CustomInput extends Component {
             onChange={this.handleChange}
           />
           {loading && (
-            <div className="pl2 pt6">
+            <div className="pl1 pt7">
               <Spinner size={15} />
             </div>
           )}
@@ -114,7 +118,7 @@ class CustomInput extends Component {
 
     if (options) {
       return (
-        <div className={`vtex-address-form__${field.name} pt3`}>
+        <div className={`vtex-address-form__${field.name} pt3 ${padding}`}>
           <Dropdown
             options={options}
             value={address[field.name].value || ''}
@@ -133,7 +137,7 @@ class CustomInput extends Component {
       <div
         className={`vtex-address-form__${field.name} ${
           field.hidden ? 'dn' : ''
-        } pt3`}
+        } pt3 ${padding}`}
       >
         <Input
           label={this.props.intl.formatMessage({
@@ -171,6 +175,7 @@ CustomInput.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
+  padLevel: PropTypes.number,
   intl: intlShape,
 }
 

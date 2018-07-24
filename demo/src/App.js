@@ -21,9 +21,9 @@ import {
   Map,
 } from '../../src/geolocation/index'
 
-import { injectIntl, intlShape } from 'react-intl'
 import CustomInput from '../../src/CustomInput'
 import DefaultInput from '../../src/DefaultInput'
+import { withPadding } from '../../src/CustomInput/withPadding'
 
 class App extends Component {
   constructor(props) {
@@ -101,6 +101,8 @@ class App extends Component {
       address.geoCoordinates.valid &&
       address.geoCoordinates.value.length === 2
 
+    const PaddedInput = CustomInput
+
     return (
       <div className="step" style={{ padding: '20px' }}>
         <AddressRules
@@ -116,7 +118,7 @@ class App extends Component {
             {onChangeAddress => (
               <div>
                 <CountrySelector
-                  Input={CustomInput}
+                  Input={PaddedInput}
                   address={address}
                   shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
@@ -125,14 +127,6 @@ class App extends Component {
                 <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
                   {({ loading, googleMaps }) => (
                     <div>
-                      <GeolocationInput
-                        Input={CustomInput}
-                        loadingGoogle={loading}
-                        googleMaps={googleMaps}
-                        address={address}
-                        onChangeAddress={onChangeAddress}
-                      />
-
                       <GeolocationInput
                         Input={DefaultInput}
                         loadingGoogle={loading}
@@ -155,7 +149,7 @@ class App extends Component {
 
                 {!validGeoCoords && (
                   <PostalCodeGetter
-                    Input={CustomInput}
+                    Input={PaddedInput}
                     address={address}
                     onChangeAddress={onChangeAddress}
                   />
@@ -175,7 +169,7 @@ class App extends Component {
                 </AutoCompletedFields>
 
                 <AddressForm
-                  Input={CustomInput}
+                  Input={PaddedInput}
                   address={address}
                   onChangeAddress={onChangeAddress}
                   omitPostalCodeFields={!validGeoCoords}
