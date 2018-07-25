@@ -13,18 +13,23 @@ class Map extends Component {
     this.mapMounted = this.mapMounted.bind(this)
   }
 
+  getCoordinatesFromProps(props) {
+    const { geoCoordinates, address } = props
+    return geoCoordinates || address.geoCoordinates.value
+  }
+
   shouldComponentUpdate(prevProps) {
     const rulesChanged = prevProps.rules.country !== this.props.rules.country
     const geoCoordsChanged = this.isDifferentGeoCoords(
-      prevProps.geoCoordinates,
-      this.props.geoCoordinates,
+      this.getCoordinatesFromProps(prevProps),
+      this.getCoordinatesFromProps(this.props),
     )
 
     return geoCoordsChanged || rulesChanged
   }
 
   componentDidUpdate() {
-    const location = this.getLocation(this.props.geoCoordinates)
+    const location = this.getLocation(this.getCoordinatesFromProps(this.props))
     this.changeMarkerPosition(location)
     this.recenterMap(location)
   }
@@ -37,7 +42,7 @@ class Map extends Component {
       return
     }
 
-    const location = this.getLocation(this.props.geoCoordinates)
+    const location = this.getLocation(this.getCoordinatesFromProps(this.props))
     this.createMap(mapElement, location)
     this.changeMarkerPosition(location)
   }
@@ -86,7 +91,7 @@ class Map extends Component {
   }
 
   getLocation = geoCoordinates => {
-    const [lng, lat] = this.props.geoCoordinates
+    const [lng, lat] = this.getCoordinatesFromProps(this.props)
     const location = new this.props.googleMaps.LatLng(lat, lng)
     return location
   }
@@ -150,7 +155,8 @@ Map.defaultProps = {
 Map.propTypes = {
   loadingElement: PropTypes.node,
   mapProps: PropTypes.object,
-  geoCoordinates: PropTypes.array.isRequired,
+  geoCoordinates: PropTypes.array,
+  address: PropTypes.object,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   loadingGoogle: PropTypes.bool,
