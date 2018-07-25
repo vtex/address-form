@@ -5,14 +5,9 @@ import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { injectRules } from '../addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from '../addressContainerContext'
+import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 
 class Map extends Component {
-  constructor(props) {
-    super(props)
-
-    this.mapMounted = this.mapMounted.bind(this)
-  }
-
   getCoordinatesFromProps(props) {
     const { geoCoordinates, address } = props
     return geoCoordinates || address.geoCoordinates.value
@@ -29,7 +24,7 @@ class Map extends Component {
   }
 
   componentDidUpdate() {
-    const location = this.getLocation(this.getCoordinatesFromProps(this.props))
+    const location = this.getLocation()
     this.changeMarkerPosition(location)
     this.recenterMap(location)
   }
@@ -42,7 +37,7 @@ class Map extends Component {
       return
     }
 
-    const location = this.getLocation(this.getCoordinatesFromProps(this.props))
+    const location = this.getLocation()
     this.createMap(mapElement, location)
     this.changeMarkerPosition(location)
   }
@@ -90,7 +85,7 @@ class Map extends Component {
     )
   }
 
-  getLocation = geoCoordinates => {
+  getLocation = () => {
     const [lng, lat] = this.getCoordinatesFromProps(this.props)
     const location = new this.props.googleMaps.LatLng(lat, lng)
     return location
@@ -156,7 +151,7 @@ Map.propTypes = {
   loadingElement: PropTypes.node,
   mapProps: PropTypes.object,
   geoCoordinates: PropTypes.array,
-  address: PropTypes.object,
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   loadingGoogle: PropTypes.bool,
