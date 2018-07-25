@@ -10,6 +10,8 @@ import {
 } from './selectors/fields'
 import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 import { injectRules } from './addressRulesContext'
+import { compose } from 'recompose'
+import { injectAddressContext } from './addressContainerContext'
 
 class AddressForm extends Component {
   render() {
@@ -72,4 +74,8 @@ AddressForm.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default injectRules(AddressForm)
+const enhance = compose(
+  injectAddressContext,
+  injectRules,
+)
+export default enhance(AddressForm)

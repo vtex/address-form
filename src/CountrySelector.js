@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
 import DefaultInput from './inputs/DefaultInput'
+import { injectAddressContext } from './addressContainerContext'
 
 class CountrySelector extends Component {
   handleChangeCountry = changedFields => {
@@ -61,4 +62,4 @@ CountrySelector.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default CountrySelector
+export default injectAddressContext(CountrySelector)

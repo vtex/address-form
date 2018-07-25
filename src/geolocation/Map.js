@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { injectRules } from '../addressRulesContext'
+import { compose } from 'recompose'
+import { injectAddressContext } from '../addressContainerContext'
 
 class Map extends Component {
   constructor(props) {
@@ -155,4 +157,8 @@ Map.propTypes = {
   googleMaps: PropTypes.object,
 }
 
-export default injectRules(Map)
+const enhance = compose(
+  injectAddressContext,
+  injectRules,
+)
+export default enhance(Map)

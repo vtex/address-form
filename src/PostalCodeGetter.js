@@ -9,6 +9,8 @@ import DefaultInput from './inputs/DefaultInput'
 import InputFieldContainer from './InputFieldContainer'
 import { getField } from './selectors/fields'
 import { injectRules } from './addressRulesContext'
+import { compose } from 'recompose'
+import { injectAddressContext } from './addressContainerContext'
 
 class PostalCodeGetter extends Component {
   render() {
@@ -83,4 +85,8 @@ PostalCodeGetter.propTypes = {
   shouldShowNumberKeyboard: PropTypes.bool,
 }
 
-export default injectRules(PostalCodeGetter)
+const enhance = compose(
+  injectAddressContext,
+  injectRules,
+)
+export default enhance(PostalCodeGetter)

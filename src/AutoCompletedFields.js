@@ -7,6 +7,8 @@ import pickBy from 'lodash/pickBy'
 import find from 'lodash/find'
 import flow from 'lodash/flow'
 import { injectRules } from './addressRulesContext'
+import { injectAddressContext } from './addressContainerContext'
+import { compose } from 'recompose'
 
 const IRRELEVANT_FIELDS = ['country', 'geoCoordinates']
 
@@ -93,4 +95,8 @@ AutoCompletedFields.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default injectRules(AutoCompletedFields)
+const enhance = compose(
+  injectAddressContext,
+  injectRules,
+)
+export default enhance(AutoCompletedFields)
