@@ -1,10 +1,8 @@
 import React from 'react'
 import AddressRules from './AddressRules'
-import { mount, shallow, render } from 'enzyme'
+import { shallow } from 'enzyme'
 import defaultRules from './country/default'
 import braRules from './country/BRA'
-import fbAddress from './__mocks__/facebookAddress'
-import AddressSummary from './AddressSummary'
 
 describe('AddressRules', () => {
   it('should load the defined rules', async () => {
