@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
-import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
+import AddressShape from './propTypes/AddressShape'
 import { validateChangedFields, isValidAddress } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
-import { removeValidation } from './transforms/address'
+import { addValidation, removeValidation } from './transforms/address'
 
 class AddressContainer extends Component {
   componentDidMount() {
     this.setState({
       address: {
-        ...this.props.address,
+        ...addValidation(this.props.address),
       },
     })
 
@@ -133,7 +133,7 @@ AddressContainer.defaultProps = {
 AddressContainer.propTypes = {
   cors: PropTypes.bool,
   accountName: PropTypes.string,
-  address: AddressShapeWithValidation,
+  address: AddressShape,
   rules: PropTypes.object.isRequired,
   Input: PropTypes.func,
   onChangeAddress: PropTypes.func,
