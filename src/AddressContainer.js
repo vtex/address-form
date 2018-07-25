@@ -1,10 +1,11 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
+import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
 
 class AddressContainer extends Component {
@@ -74,7 +75,13 @@ class AddressContainer extends Component {
   }
 
   render() {
-    return this.props.children(this.handleAddressChange)
+    const { address, children } = this.props
+    const handleAddressChange = this.handleAddressChange
+    return (
+      <AddressContext.Provider value={{ address, handleAddressChange }}>
+        {children}
+      </AddressContext.Provider>
+    )
   }
 }
 
