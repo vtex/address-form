@@ -75,10 +75,10 @@ class AddressContainer extends Component {
   }
 
   render() {
-    const { address, children } = this.props
+    const { address, children, Input } = this.props
     const handleAddressChange = this.handleAddressChange
     return (
-      <AddressContext.Provider value={{ address, handleAddressChange }}>
+      <AddressContext.Provider value={{ address, handleAddressChange, Input }}>
         {children}
       </AddressContext.Provider>
     )
@@ -97,8 +97,9 @@ AddressContainer.propTypes = {
   accountName: PropTypes.string,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
+  Input: PropTypes.func,
   onChangeAddress: PropTypes.func.isRequired,
-  children: PropTypes.func.isRequired,
+  children: PropTypes.any.isRequired,
   autoCompletePostalCode: PropTypes.bool,
   shouldHandleAddressChangeOnMount: PropTypes.bool,
   shouldAddFocusToNextInvalidField: PropTypes.bool,
