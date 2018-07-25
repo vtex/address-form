@@ -7,9 +7,16 @@ import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
+import { removeValidation } from './transforms/address'
 
 class AddressContainer extends Component {
   componentDidMount() {
+    this.setState({
+      address: {
+        ...this.props.address,
+      },
+    })
+
     if (
       this.props &&
       this.props.shouldHandleAddressChangeOnMount &&
@@ -24,11 +31,11 @@ class AddressContainer extends Component {
       cors,
       accountName,
       rules,
-      address,
-      onChangeAddress,
       autoCompletePostalCode,
       shouldAddFocusToNextInvalidField,
     } = this.props
+
+    const { address } = this.state
 
     const countryChanged =
       changedAddressFields.country &&
@@ -36,13 +43,13 @@ class AddressContainer extends Component {
       changedAddressFields.country.value !== address.country.value
 
     if (countryChanged) {
-      return onChangeAddress({
+      return this.updateAddress({
         ...address,
         ...changedAddressFields,
       })
     }
 
-    const addressValidated = validateChangedFields(
+    const validatedAddress = validateChangedFields(
       changedAddressFields,
       address,
       rules,
@@ -55,14 +62,14 @@ class AddressContainer extends Component {
     ) {
       const postalCodeIsNowValid =
         address.postalCode.valid !== true &&
-        addressValidated.postalCode.valid === true
+        validatedAddress.postalCode.valid === true
 
       if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
-        return onChangeAddress(
+        return this.updateAddress(
           postalCodeAutoCompleteAddress({
             cors,
             accountName,
-            address: addressValidated,
+            address: validatedAddress,
             rules,
             callback: this.handleAddressChange,
             shouldAddFocusToNextInvalidField,
@@ -71,24 +78,41 @@ class AddressContainer extends Component {
       }
     }
 
-    onChangeAddress(addressValidated)
+    this.updateAddress(validatedAddress)
   }
 
   handleSubmit = e => {
     e.preventDefault()
 
-    const { rules, onSubmit, address } = this.props
+    const { rules, onSubmit } = this.props
+    const { address } = this.state
     const { valid, address: validatedAddress } = isValidAddress(address, rules)
+    this.updateAddress(validatedAddress)
 
     if (onSubmit) {
-      onSubmit(valid, validatedAddress)
+      onSubmit(valid, removeValidation(validatedAddress))
+    }
+  }
+
+  updateAddress(newAddress) {
+    const { onChangeAddress } = this.props
+    this.setState(() => ({
+      address: {
+        ...newAddress,
+      },
+    }))
+
+    if (onChangeAddress) {
+      onChangeAddress(newAddress)
     }
   }
 
   render() {
-    const { address, children, Input } = this.props
+    const { children, Input } = this.props
+    const { address } = this.state
     const handleAddressChange = this.handleAddressChange
     const handleSubmit = this.handleSubmit
+
     return (
       <AddressContext.Provider
         value={{ address, handleAddressChange, handleSubmit, Input }}
@@ -112,7 +136,7 @@ AddressContainer.propTypes = {
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   Input: PropTypes.func,
-  onChangeAddress: PropTypes.func.isRequired,
+  onChangeAddress: PropTypes.func,
   onSubmit: PropTypes.func,
   children: PropTypes.any.isRequired,
   autoCompletePostalCode: PropTypes.bool,
