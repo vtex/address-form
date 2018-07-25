@@ -11,6 +11,7 @@ import {
   AddressSummary,
   PostalCodeGetter,
   AutoCompletedFields,
+  AddressSubmitter,
   addValidation,
   removeValidation,
 } from '../../src/index'
@@ -68,13 +69,8 @@ class App extends Component {
     }))
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-
-    const { address } = this.state
-    const hasInvalidField = find(address, field => field.valid === false)
-
-    if (hasInvalidField) {
+  handleSubmit = valid => {
+    if (valid) {
       this.setState({ submitted: true })
     }
   }
@@ -111,83 +107,64 @@ class App extends Component {
           <AddressContainer
             accountName={accountName}
             address={address}
+            Input={StyleguideInput}
             onChangeAddress={this.handleAddressChange}
+            onSubmit={this.handleSubmit}
             autoCompletePostalCode={!validGeoCoords}
           >
-            {onChangeAddress => (
-              <div>
-                <CountrySelector
-                  Input={StyleguideInput}
-                  address={address}
-                  shipsTo={shipsTo}
-                  onChangeAddress={onChangeAddress}
-                />
+            <div>
+              <CountrySelector shipsTo={shipsTo} />
 
-                <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-                  {({ loading, googleMaps }) => (
-                    <div>
-                      <GeolocationInput
-                        Input={StyleguideInput}
+              <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
+                {({ loading, googleMaps }) => (
+                  <div>
+                    <GeolocationInput
+                      loadingGoogle={loading}
+                      googleMaps={googleMaps}
+                    />
+
+                    {validGeoCoords && (
+                      <Map
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
-                        address={address}
-                        onChangeAddress={onChangeAddress}
+                        geoCoordinates={address.geoCoordinates.value}
+                        mapProps={{
+                          style: {
+                            height: '120px',
+                            marginBottom: '10px',
+                            width: '260px',
+                          },
+                        }}
                       />
-
-                      {validGeoCoords && (
-                        <Map
-                          loadingGoogle={loading}
-                          googleMaps={googleMaps}
-                          geoCoordinates={address.geoCoordinates.value}
-                          onChangeAddress={onChangeAddress}
-                          mapProps={{
-                            style: {
-                              height: '120px',
-                              marginBottom: '10px',
-                              width: '260px',
-                            },
-                          }}
-                        />
-                      )}
-                    </div>
-                  )}
-                </GoogleMapsContainer>
-
-                {!validGeoCoords && (
-                  <PostalCodeGetter
-                    Input={StyleguideInput}
-                    address={address}
-                    onChangeAddress={onChangeAddress}
-                  />
+                    )}
+                  </div>
                 )}
+              </GoogleMapsContainer>
 
-                <AutoCompletedFields
-                  address={address}
-                  onChangeAddress={onChangeAddress}
+              {!validGeoCoords && <PostalCodeGetter />}
+
+              <AutoCompletedFields>
+                <a
+                  className="link-edit"
+                  id="force-shipping-fields"
+                  style={{ cursor: 'pointer' }}
                 >
-                  <a
-                    className="link-edit"
-                    id="force-shipping-fields"
-                    style={{ cursor: 'pointer' }}
-                  >
-                    {intl.formatMessage({ id: 'address-form.edit' })}
-                  </a>
-                </AutoCompletedFields>
+                  {intl.formatMessage({ id: 'address-form.edit' })}
+                </a>
+              </AutoCompletedFields>
 
-                <AddressForm
-                  Input={StyleguideInput}
-                  address={address}
-                  onChangeAddress={onChangeAddress}
-                  omitPostalCodeFields={!validGeoCoords}
-                />
-              </div>
-            )}
+              <AddressForm omitPostalCodeFields={!validGeoCoords} />
+
+              <AddressSubmitter>
+                {handleSubmit => (
+                  <Button size="small" block onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                )}
+              </AddressSubmitter>
+            </div>
           </AddressContainer>
         </AddressRules>
-
-        <Button size="small" block onClick={this.handleSubmit}>
-          Submit
-        </Button>
       </div>
     )
   }

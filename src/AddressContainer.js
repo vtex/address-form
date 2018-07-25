@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
-import { validateChangedFields } from './validateAddress'
+import { validateChangedFields, isValidAddress } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import { AddressContext } from './addressContainerContext'
@@ -74,11 +74,25 @@ class AddressContainer extends Component {
     onChangeAddress(addressValidated)
   }
 
+  handleSubmit = e => {
+    e.preventDefault()
+
+    const { rules, onSubmit, address } = this.props
+    const { valid, address: validatedAddress } = isValidAddress(address, rules)
+
+    if (onSubmit) {
+      onSubmit(valid, validatedAddress)
+    }
+  }
+
   render() {
     const { address, children, Input } = this.props
     const handleAddressChange = this.handleAddressChange
+    const handleSubmit = this.handleSubmit
     return (
-      <AddressContext.Provider value={{ address, handleAddressChange, Input }}>
+      <AddressContext.Provider
+        value={{ address, handleAddressChange, handleSubmit, Input }}
+      >
         {children}
       </AddressContext.Provider>
     )
@@ -99,6 +113,7 @@ AddressContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   Input: PropTypes.func,
   onChangeAddress: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   children: PropTypes.any.isRequired,
   autoCompletePostalCode: PropTypes.bool,
   shouldHandleAddressChangeOnMount: PropTypes.bool,

@@ -5,7 +5,8 @@ export const AddressContext = React.createContext()
 export function injectAddressContext(Component) {
   return function AddressInjectedComponent(props) {
     // eslint-disable-next-line react/prop-types
-    if (props.address || props.onChangeAddress) return <Component {...props} />
+    if (props.address || props.onChangeAddress || props.onSubmit)
+      return <Component {...props} />
 
     return (
       <AddressContext.Consumer>
@@ -14,6 +15,7 @@ export function injectAddressContext(Component) {
             {...props}
             address={ctx.address}
             onChangeAddress={ctx.handleAddressChange}
+            onSubmit={ctx.handleSubmit}
             Input={ctx.Input}
           />
         )}
