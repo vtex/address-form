@@ -11,8 +11,6 @@ import {
   PostalCodeGetter,
   AutoCompletedFields,
   AddressSubmitter,
-  addValidation,
-  removeValidation,
 } from '../../src/index'
 
 import {
@@ -31,7 +29,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      address: addValidation({
+      address: {
         addressId: '10',
         addressType: 'residential',
         city: null,
@@ -46,7 +44,7 @@ class App extends Component {
         state: null,
         street: null,
         addressQuery: null,
-      }),
+      },
       shipsTo: this.addCountryLabel(props.intl, props.shipsTo),
     }
   }
@@ -77,16 +75,15 @@ class App extends Component {
   render() {
     const { address, shipsTo, validGeoCoords } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
-    const cleanAddress = removeValidation(address)
 
     if (this.state.submitted) {
       return (
         <div className="step" style={{ padding: '20px' }}>
           <AddressRules
-            country={cleanAddress.country}
+            country={address.country}
             fetch={country => import('../../src/country/' + country)}
           >
-            <AddressSummary address={cleanAddress} />
+            <AddressSummary address={address} />
           </AddressRules>
         </div>
       )
@@ -95,7 +92,7 @@ class App extends Component {
     return (
       <div className="step" style={{ padding: '20px' }}>
         <AddressRules
-          country={cleanAddress.country}
+          country={address.country}
           fetch={country => import('../../src/country/' + country)}
         >
           <AddressContainer
@@ -121,7 +118,6 @@ class App extends Component {
                       <Map
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
-                        geoCoordinates={address.geoCoordinates.value}
                         mapProps={{
                           style: {
                             height: '120px',
