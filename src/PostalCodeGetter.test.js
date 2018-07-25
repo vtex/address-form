@@ -31,7 +31,9 @@ describe('PostalCodeGetter', () => {
         rules={usePostalCode}
         onChangeAddress={handleChange}
       />,
-    ).dive()
+    )
+      .dive()
+      .dive()
 
     expect(wrapper.find('InputFieldContainer')).toHaveLength(1)
   })
@@ -45,7 +47,9 @@ describe('PostalCodeGetter', () => {
         rules={useOneLevel}
         onChangeAddress={handleChange}
       />,
-    ).dive()
+    )
+      .dive()
+      .dive()
 
     expect(wrapper.find('OneLevel')).toHaveLength(1)
   })
@@ -59,7 +63,9 @@ describe('PostalCodeGetter', () => {
         rules={useTwoLevels}
         onChangeAddress={handleChange}
       />,
-    ).dive()
+    )
+      .dive()
+      .dive()
 
     expect(wrapper.find('TwoLevels')).toHaveLength(1)
   })
@@ -73,7 +79,9 @@ describe('PostalCodeGetter', () => {
         rules={useThreeLevels}
         onChangeAddress={handleChange}
       />,
-    ).dive()
+    )
+      .dive()
+      .dive()
 
     expect(wrapper.find('ThreeLevels')).toHaveLength(1)
   })

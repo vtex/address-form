@@ -15,7 +15,9 @@ describe('Map', () => {
         loadingGoogle={false}
         googleMaps={null}
       />,
-    ).dive()
+    )
+      .dive()
+      .dive()
 
     shallowInstance = shallowWrapper.instance()
   }
