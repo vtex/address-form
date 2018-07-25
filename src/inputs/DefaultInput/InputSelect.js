@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import map from 'lodash/map'
 import cx from 'classnames'
 

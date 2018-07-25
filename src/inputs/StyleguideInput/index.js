@@ -5,9 +5,8 @@ import Input from '@vtex/styleguide/lib/Input'
 import Button from '@vtex/styleguide/lib/Button'
 import Spinner from '@vtex/styleguide/lib/Spinner'
 import { injectIntl, intlShape } from 'react-intl'
-import 'vtex-tachyons'
 
-class CustomInput extends Component {
+class StyleguideInput extends Component {
   constructor(props) {
     super(props)
 
@@ -31,26 +30,28 @@ class CustomInput extends Component {
       this.props.address[this.props.field.name]
     ) {
       this.setState({
-        isInputValid: this.props.address[this.props.field.name].valid,
+        isInputValid: this.props.address[this.props.field.name].valid || true,
       })
     }
   }
 
   render() {
-    const { field, options, address, intl } = this.props
+    const { field, options, address, autoFocus, inputRef, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
     if (field.name === 'postalCode') {
       return (
-        <div className="vtex-address-form__postalCode flex flex-row pt3 pb2">
+        <div className={`vtex-address-form__postalCode flex flex-row pb7`}>
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
             })}
             value={address[field.name].value || ''}
             disabled={disabled}
+            autoFocus={autoFocus}
             error={!this.state.isInputValid}
+            ref={inputRef}
             errorMessage={
               address[field.name].reason &&
               this.props.intl.formatMessage({
@@ -66,7 +67,11 @@ class CustomInput extends Component {
             </div>
           )}
           <div className="pt6">
-            <Button neutral onClick={this.handleClick}>
+            <Button
+              variation="tertiary"
+              size="small"
+              onClick={this.handleClick}
+            >
               {intl.formatMessage({
                 id: 'address-form.dontKnowPostalCode',
               })}
@@ -76,13 +81,52 @@ class CustomInput extends Component {
       )
     }
 
+    if (field.name === 'addressQuery') {
+      return (
+        <div className={`vtex-address-form__addressQuery flex flex-row pb7`}>
+          <Input
+            label={
+              field.fixedLabel ||
+              intl.formatMessage({ id: `address-form.field.${field.label}` })
+            }
+            address={address}
+            errorMessage={
+              address[field.name].reason &&
+              this.props.intl.formatMessage({
+                id: `address-form.error.${address[field.name].reason}`,
+              })
+            }
+            placeholder={intl.formatMessage({
+              id: `address-form.geolocation.example.${address.country.value}`,
+              defaultMessage: intl.formatMessage({
+                id: 'address-form.geolocation.example.UNI',
+              }),
+            })}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur}
+            disabled={loading || disabled}
+            autoFocus={autoFocus}
+            error={!this.state.isInputValid}
+            ref={inputRef}
+          />
+          {loading && (
+            <div className="pl1 pt7">
+              <Spinner size={15} />
+            </div>
+          )}
+        </div>
+      )
+    }
+
     if (options) {
       return (
-        <div className={`vtex-address-form__${field.name} pt3`}>
+        <div className={`vtex-address-form__${field.name} pb7`}>
           <Dropdown
             options={options}
             value={address[field.name].value || ''}
             disabled={disabled}
+            autoFocus={autoFocus}
+            ref={inputRef}
             label={intl.formatMessage({
               id: `address-form.field.${field.label}`,
             })}
@@ -97,7 +141,7 @@ class CustomInput extends Component {
       <div
         className={`vtex-address-form__${field.name} ${
           field.hidden ? 'dn' : ''
-        } pt3`}
+        } pb7`}
       >
         <Input
           label={this.props.intl.formatMessage({
@@ -111,7 +155,9 @@ class CustomInput extends Component {
           }
           value={address[field.name].value || ''}
           disabled={disabled}
+          autoFocus={autoFocus}
           error={!this.state.isInputValid}
+          ref={inputRef}
           placeholder={
             !field.hidden && !field.required
               ? this.props.intl.formatMessage({ id: 'address-form.optional' })
@@ -125,17 +171,20 @@ class CustomInput extends Component {
   }
 }
 
-CustomInput.defaultProps = {
+StyleguideInput.defaultProps = {
   onBlur: () => {},
+  autoFocus: false,
 }
 
-CustomInput.propTypes = {
+StyleguideInput.propTypes = {
   address: PropTypes.object,
+  autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
+  inputRef: PropTypes.func,
   intl: intlShape,
 }
 
-export default injectIntl(CustomInput)
+export default injectIntl(StyleguideInput)

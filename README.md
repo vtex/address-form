@@ -37,6 +37,7 @@ $ npm install @vtex/address-form
 
 - [locales/](#locales)
 - [country/](#country)
+- [inputs/](#inputs)
 
 ### Types
 
@@ -693,6 +694,13 @@ Each country has their own set of rules on how an address form should be rendere
 - List of postal codes (not all modules)
 
 If a selected country does not exists in the country folder. Use the `default.js`
+
+### inputs/
+
+This folder provides inputs to be used as building blocks for the address form.
+
+- **`DefaultInput`** is meant to be used in Checkout-related projects.
+- **`StyleguideInput`** follows the [VTEX Styleguide](https://vtex.github.io/styleguide/#input) and should be used in projects which also adopt such styleguide.
 
 ## Types
 

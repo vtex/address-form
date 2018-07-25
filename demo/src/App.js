@@ -21,8 +21,10 @@ import {
   Map,
 } from '../../src/geolocation/index'
 
-import CustomInput from '../../src/CustomInput'
-import DefaultInput from '../../src/DefaultInput'
+import Button from '@vtex/styleguide/lib/Button'
+import StyleguideInput from '../../src/inputs/StyleguideInput'
+
+import 'vtex-tachyons'
 
 class App extends Component {
   constructor(props) {
@@ -115,7 +117,7 @@ class App extends Component {
             {onChangeAddress => (
               <div>
                 <CountrySelector
-                  Input={CustomInput}
+                  Input={StyleguideInput}
                   address={address}
                   shipsTo={shipsTo}
                   onChangeAddress={onChangeAddress}
@@ -125,7 +127,7 @@ class App extends Component {
                   {({ loading, googleMaps }) => (
                     <div>
                       <GeolocationInput
-                        Input={DefaultInput}
+                        Input={StyleguideInput}
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
                         address={address}
@@ -153,7 +155,7 @@ class App extends Component {
 
                 {!validGeoCoords && (
                   <PostalCodeGetter
-                    Input={CustomInput}
+                    Input={StyleguideInput}
                     address={address}
                     onChangeAddress={onChangeAddress}
                   />
@@ -173,7 +175,7 @@ class App extends Component {
                 </AutoCompletedFields>
 
                 <AddressForm
-                  Input={CustomInput}
+                  Input={StyleguideInput}
                   address={address}
                   onChangeAddress={onChangeAddress}
                   omitPostalCodeFields={!validGeoCoords}
@@ -183,9 +185,9 @@ class App extends Component {
           </AddressContainer>
         </AddressRules>
 
-        <button className="btn btn-default" onClick={this.handleSubmit}>
+        <Button size="small" block onClick={this.handleSubmit}>
           Submit
-        </button>
+        </Button>
       </div>
     )
   }

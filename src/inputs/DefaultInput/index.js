@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import InputSelect from './InputSelect'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
 import InputError from './InputError'
-import PostalCodeLoader from '../postalCodeFrom/PostalCodeLoader'
+import PostalCodeLoader from '../../postalCodeFrom/PostalCodeLoader'
 import { injectIntl, intlShape } from 'react-intl'
 
 class Input extends Component {

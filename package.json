@@ -19,7 +19,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@vtex/styleguide": "^2.0.0-rc.41",
+    "@vtex/styleguide": "^5.4.1",
     "axios": "^0.16.2",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "classnames": "^2.2.5",
@@ -27,13 +27,13 @@
     "enzyme-to-json": "^3.3.4",
     "load-google-maps-api": "^1.0.0",
     "lodash": "^4.17.4",
-    "msk": "1.0.3",
-    "vtex-tachyons": "^2.4.0"
+    "msk": "1.0.3"
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
     "react": "15.x || 16.x",
-    "react-intl": "^2.4.0"
+    "react-intl": "^2.4.0",
+    "vtex-tachyons": "^2.5.0"
   },
   "devDependencies": {
     "babel-eslint": "7",
