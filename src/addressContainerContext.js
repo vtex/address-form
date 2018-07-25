@@ -5,7 +5,7 @@ export const AddressContext = React.createContext()
 export function injectAddressContext(Component) {
   return function AddressInjectedComponent(props) {
     // eslint-disable-next-line react/prop-types
-    if (props.address) return <Component {...props} />
+    if (props.address || props.onChangeAddress) return <Component {...props} />
 
     return (
       <AddressContext.Consumer>
