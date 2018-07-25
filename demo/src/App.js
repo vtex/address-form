@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import find from 'lodash'
 import { injectIntl, intlShape } from 'react-intl'
 
 import {
@@ -48,7 +47,6 @@ class App extends Component {
         street: null,
         addressQuery: null,
       }),
-      rules: {},
       shipsTo: this.addCountryLabel(props.intl, props.shipsTo),
     }
   }
@@ -61,22 +59,23 @@ class App extends Component {
   }
 
   handleAddressChange = address => {
-    this.setState(prevState => ({
-      address: {
-        ...prevState.address,
-        ...address,
-      },
-    }))
+    const validGeoCoords =
+      address.geoCoordinates &&
+      address.geoCoordinates.valid &&
+      address.geoCoordinates.value.length === 2
+    this.setState({
+      validGeoCoords,
+    })
   }
 
-  handleSubmit = valid => {
+  handleSubmit = (valid, address) => {
     if (valid) {
       this.setState({ submitted: true })
     }
   }
 
   render() {
-    const { address, shipsTo } = this.state
+    const { address, shipsTo, validGeoCoords } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
     const cleanAddress = removeValidation(address)
 
@@ -93,11 +92,6 @@ class App extends Component {
       )
     }
 
-    const validGeoCoords =
-      address.geoCoordinates &&
-      address.geoCoordinates.valid &&
-      address.geoCoordinates.value.length === 2
-
     return (
       <div className="step" style={{ padding: '20px' }}>
         <AddressRules
@@ -108,8 +102,8 @@ class App extends Component {
             accountName={accountName}
             address={address}
             Input={StyleguideInput}
-            onChangeAddress={this.handleAddressChange}
             onSubmit={this.handleSubmit}
+            onChangeAddress={this.handleAddressChange}
             autoCompletePostalCode={!validGeoCoords}
           >
             <div>
