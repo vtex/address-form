@@ -11,18 +11,27 @@ import { addValidation } from './transforms/address'
 
 class AddressContainer extends Component {
   componentDidMount() {
-    this.setState({
-      address: {
-        ...addValidation(this.props.address),
-      },
-    })
+    const address = addValidation(this.props.address)
+
+    this.setState({ address })
 
     if (
       this.props &&
       this.props.shouldHandleAddressChangeOnMount &&
       get(this.props, 'address.postalCode.value')
     ) {
-      this.handleAddressChange(this.props.address)
+      this.handleAddressChange(address)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.address !== this.props.address) {
+      const address = addValidation(this.props.address)
+
+      this.setState({ address })
+      console.log('will explode')
+      console.log(this.props.address)
+      this.handleAddressChange(address)
     }
   }
 
