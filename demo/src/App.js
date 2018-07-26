@@ -68,7 +68,9 @@ class App extends Component {
 
   handleSubmit = (valid, address) => {
     if (valid) {
-      this.setState({ submitted: true })
+      this.setState({ submitted: true, address })
+      console.log('Address is valid!')
+      console.log(address)
     }
   }
 
