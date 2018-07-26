@@ -29,8 +29,6 @@ class AddressContainer extends Component {
       const address = addValidation(this.props.address)
 
       this.setState({ address })
-      console.log('will explode')
-      console.log(this.props.address)
       this.handleAddressChange(address)
     }
   }
