@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
-import AddressShape from './propTypes/AddressShape'
+import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
@@ -11,25 +11,21 @@ import { addValidation } from './transforms/address'
 
 class AddressContainer extends Component {
   componentDidMount() {
-    const address = addValidation(this.props.address)
-
-    this.setState({ address })
+    this.setState({ address: this.props.address })
 
     if (
       this.props &&
       this.props.shouldHandleAddressChangeOnMount &&
       get(this.props, 'address.postalCode.value')
     ) {
-      this.handleAddressChange(address)
+      this.handleAddressChange(this.props.address)
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.address !== this.props.address) {
-      const address = addValidation(this.props.address)
-
-      this.setState({ address })
-      this.handleAddressChange(address)
+      this.setState({ address: this.props.address })
+      this.handleAddressChange(this.props.address)
     }
   }
 
@@ -124,7 +120,7 @@ AddressContainer.defaultProps = {
 AddressContainer.propTypes = {
   cors: PropTypes.bool,
   accountName: PropTypes.string,
-  address: AddressShape,
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   Input: PropTypes.func,
   onChangeAddress: PropTypes.func,
