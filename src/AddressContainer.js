@@ -1,10 +1,11 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
+import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
 
 class AddressContainer extends Component {
@@ -41,7 +42,7 @@ class AddressContainer extends Component {
       })
     }
 
-    const addressValidated = validateChangedFields(
+    const validatedAddress = validateChangedFields(
       changedAddressFields,
       address,
       rules,
@@ -54,14 +55,14 @@ class AddressContainer extends Component {
     ) {
       const postalCodeIsNowValid =
         address.postalCode.valid !== true &&
-        addressValidated.postalCode.valid === true
+        validatedAddress.postalCode.valid === true
 
       if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
         return onChangeAddress(
           postalCodeAutoCompleteAddress({
             cors,
             accountName,
-            address: addressValidated,
+            address: validatedAddress,
             rules,
             callback: this.handleAddressChange,
             shouldAddFocusToNextInvalidField,
@@ -70,11 +71,18 @@ class AddressContainer extends Component {
       }
     }
 
-    onChangeAddress(addressValidated)
+    onChangeAddress(validatedAddress)
   }
 
   render() {
-    return this.props.children(this.handleAddressChange)
+    const { children, Input, address } = this.props
+    const handleAddressChange = this.handleAddressChange
+
+    return (
+      <AddressContext.Provider value={{ address, handleAddressChange, Input }}>
+        {children}
+      </AddressContext.Provider>
+    )
   }
 }
 
@@ -90,8 +98,9 @@ AddressContainer.propTypes = {
   accountName: PropTypes.string,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
+  Input: PropTypes.func,
   onChangeAddress: PropTypes.func.isRequired,
-  children: PropTypes.func.isRequired,
+  children: PropTypes.any.isRequired,
   autoCompletePostalCode: PropTypes.bool,
   shouldHandleAddressChangeOnMount: PropTypes.bool,
   shouldAddFocusToNextInvalidField: PropTypes.bool,

@@ -1,6 +1,6 @@
 {
   "name": "@vtex/address-form",
-  "version": "1.7.1",
+  "version": "2.0.1",
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
@@ -27,7 +27,8 @@
     "enzyme-to-json": "^3.3.4",
     "load-google-maps-api": "^1.0.0",
     "lodash": "^4.17.4",
-    "msk": "1.0.3"
+    "msk": "1.0.3",
+    "recompose": "^0.27.1"
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",

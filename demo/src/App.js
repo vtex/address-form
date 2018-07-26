@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import find from 'lodash'
 import { injectIntl, intlShape } from 'react-intl'
 
 import {
@@ -11,6 +10,7 @@ import {
   AddressSummary,
   PostalCodeGetter,
   AutoCompletedFields,
+  AddressSubmitter,
   addValidation,
   removeValidation,
 } from '../../src/index'
@@ -47,7 +47,6 @@ class App extends Component {
         street: null,
         addressQuery: null,
       }),
-      rules: {},
       shipsTo: this.addCountryLabel(props.intl, props.shipsTo),
     }
   }
@@ -60,28 +59,30 @@ class App extends Component {
   }
 
   handleAddressChange = address => {
+    const validGeoCoords =
+      address.geoCoordinates &&
+      address.geoCoordinates.valid &&
+      address.geoCoordinates.value.length === 2
+
     this.setState(prevState => ({
       address: {
         ...prevState.address,
         ...address,
       },
+      validGeoCoords,
     }))
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-
-    const { address } = this.state
-    const hasInvalidField = find(address, field => field.valid === false)
-
-    if (hasInvalidField) {
-      this.setState({ submitted: true })
+  handleSubmit = (valid, address) => {
+    if (valid) {
+      this.setState({ submitted: true, address })
     }
   }
 
   render() {
-    const { address, shipsTo } = this.state
+    const { address, shipsTo, validGeoCoords } = this.state
     const { intl, accountName, googleMapsAPIKey, locale } = this.props
+
     const cleanAddress = removeValidation(address)
 
     if (this.state.submitted) {
@@ -97,11 +98,6 @@ class App extends Component {
       )
     }
 
-    const validGeoCoords =
-      address.geoCoordinates &&
-      address.geoCoordinates.valid &&
-      address.geoCoordinates.value.length === 2
-
     return (
       <div className="step" style={{ padding: '20px' }}>
         <AddressRules
@@ -111,83 +107,62 @@ class App extends Component {
           <AddressContainer
             accountName={accountName}
             address={address}
+            Input={StyleguideInput}
             onChangeAddress={this.handleAddressChange}
             autoCompletePostalCode={!validGeoCoords}
           >
-            {onChangeAddress => (
-              <div>
-                <CountrySelector
-                  Input={StyleguideInput}
-                  address={address}
-                  shipsTo={shipsTo}
-                  onChangeAddress={onChangeAddress}
-                />
+            <div>
+              <CountrySelector shipsTo={shipsTo} />
 
-                <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
-                  {({ loading, googleMaps }) => (
-                    <div>
-                      <GeolocationInput
-                        Input={StyleguideInput}
+              <GoogleMapsContainer apiKey={googleMapsAPIKey} locale={locale}>
+                {({ loading, googleMaps }) => (
+                  <div>
+                    <GeolocationInput
+                      loadingGoogle={loading}
+                      googleMaps={googleMaps}
+                    />
+
+                    {validGeoCoords && (
+                      <Map
                         loadingGoogle={loading}
                         googleMaps={googleMaps}
-                        address={address}
-                        onChangeAddress={onChangeAddress}
+                        mapProps={{
+                          style: {
+                            height: '120px',
+                            marginBottom: '10px',
+                            width: '260px',
+                          },
+                        }}
                       />
-
-                      {validGeoCoords && (
-                        <Map
-                          loadingGoogle={loading}
-                          googleMaps={googleMaps}
-                          geoCoordinates={address.geoCoordinates.value}
-                          onChangeAddress={onChangeAddress}
-                          mapProps={{
-                            style: {
-                              height: '120px',
-                              marginBottom: '10px',
-                              width: '260px',
-                            },
-                          }}
-                        />
-                      )}
-                    </div>
-                  )}
-                </GoogleMapsContainer>
-
-                {!validGeoCoords && (
-                  <PostalCodeGetter
-                    Input={StyleguideInput}
-                    address={address}
-                    onChangeAddress={onChangeAddress}
-                  />
+                    )}
+                  </div>
                 )}
+              </GoogleMapsContainer>
 
-                <AutoCompletedFields
-                  address={address}
-                  onChangeAddress={onChangeAddress}
+              {!validGeoCoords && <PostalCodeGetter />}
+
+              <AutoCompletedFields>
+                <a
+                  className="link-edit"
+                  id="force-shipping-fields"
+                  style={{ cursor: 'pointer' }}
                 >
-                  <a
-                    className="link-edit"
-                    id="force-shipping-fields"
-                    style={{ cursor: 'pointer' }}
-                  >
-                    {intl.formatMessage({ id: 'address-form.edit' })}
-                  </a>
-                </AutoCompletedFields>
+                  {intl.formatMessage({ id: 'address-form.edit' })}
+                </a>
+              </AutoCompletedFields>
 
-                <AddressForm
-                  Input={StyleguideInput}
-                  address={address}
-                  onChangeAddress={onChangeAddress}
-                  omitPostalCodeFields={!validGeoCoords}
-                />
-              </div>
-            )}
+              <AddressForm omitPostalCodeFields={!validGeoCoords} />
+
+              <AddressSubmitter onSubmit={this.handleSubmit}>
+                {handleSubmit => (
+                  <Button size="small" block onClick={handleSubmit}>
+                    Submit
+                  </Button>
+                )}
+              </AddressSubmitter>
+            </div>
           </AddressContainer>
         </AddressRules>
-
-        <Button size="small" block onClick={this.handleSubmit}>
-          Submit
-        </Button>
       </div>
     )
   }

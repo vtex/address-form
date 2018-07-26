@@ -5,6 +5,8 @@ import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { EGOOGLEADDRESS } from '../constants'
 import { injectRules } from '../addressRulesContext'
+import { compose } from 'recompose'
+import { injectAddressContext } from '../addressContainerContext'
 
 class GeolocationInput extends Component {
   constructor(props) {
@@ -191,4 +193,8 @@ GeolocationInput.propTypes = {
   googleMaps: PropTypes.object,
 }
 
-export default injectRules(GeolocationInput)
+const enhance = compose(
+  injectAddressContext,
+  injectRules,
+)
+export default enhance(GeolocationInput)

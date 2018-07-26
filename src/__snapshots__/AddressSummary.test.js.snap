@@ -185,5 +185,13 @@ exports[`AddressSummary should render using default if rules do not contain summ
       CA
     </span>
   </span>
+  <br />
+  <span>
+    <span
+      className="postalCode"
+    >
+      94025
+    </span>
+  </span>
 </div>
 `;

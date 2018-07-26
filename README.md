@@ -19,6 +19,7 @@ $ npm install @vtex/address-form
 - [AddressSummary](#addresssummary)
 - [PostalCodeGetter](#postalcodegetter)
 - [AutoCompletedFields](#autocompletedfields)
+- [AddressSubmitter](#addresssubmitter)
 
 ### Geolocation Components
 
@@ -52,7 +53,7 @@ $ npm install @vtex/address-form
 
 This component handles the input validation based on the country rules provided. It also calls the Postal Code service to autocomplete the address fields.
 
-It provides an `onChangeAddress()` function to the child function.
+It provides an `onChangeAddress()` function and the `address` object to its child components by context. The components will receive such parameters injected to their props. It may also provide an `Input` parameter via context, representing the input component that the children components should use to display their data.
 
 When a field change its value, it should call the function with an object like so:
 
@@ -77,6 +78,7 @@ onChangeAddress({
 - **`accountName`**: This parameter it's only used when the `cors` prop is `true`. The account name of the store, to be used by the Postal Code Service.
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`rules`**: The selected country rules
+- **`Input`**: The input component that child components will use to display their content
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 - **`children`**: A callback child function
 - **`autoCompletePostalCode`**: (default: `true`) Should auto complete address when postal code is valid
@@ -87,6 +89,7 @@ AddressContainer.propTypes = {
   accountName: PropTypes.string,
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
+  Input: PropTypes.func,
   onChangeAddress: PropTypes.func.isRequired,
   children: PropTypes.func.isRequired,
   autoCompletePostalCode: PropTypes.bool,
@@ -338,6 +341,41 @@ AutoCompletedFields.propTypes = {
 </AddressContainer>
 ```
 
+### AddressSubmitter
+
+This component provides adequated space for adding submit-related components (such as a button) to the form. It receives an `onSubmit` function and will call it to inform the results of validating the form. It provides a render prop with a `handleSubmit` hook that children might call when they want to submit the form.
+
+#### Props
+
+- **`onSubmit`**: function that will be called when the form is submitted. It will be called with two arguments: a boolean `valid` indicating if validation was successful, and the current `address` stripped of its validation fields, ready to be used elsewhere.
+- **`onChangeAddress`**: this function is injected by the AddressContainer and is used by this component to inform the container after validation is performed (and therefore fields changed)
+- **`rules`**: the current country rules in use
+- **`children`**: a function providing a `handleSubmit` action that child components should trigger when they want to submit the form
+- **`address`**: the current address to perform validation on
+
+```js
+AddressSubmitter.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  rules: PropTypes.object.isRequired,
+  address: AddressShapeWithValidation,
+  onChangeAddress: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
+}
+```
+
+#### Example
+
+```js
+<AddressSubmitter onSubmit={this.handleSubmit}>
+  {handleSubmit => (
+    <Button size="small" block onClick={handleSubmit}>
+      Submit
+    </Button>
+  )}
+</AddressSubmitter>
+```
+
+
 ## Geolocation Components
 
 **Important!**: The Geolocation Components are recommended to be loaded async using dynamic import.
@@ -421,13 +459,14 @@ GeolocationInput.propTypes = {
 
 ### Map
 
-Renders a Google Map with a marker at the point of the address' geocoordinates.
+Renders a Google Map with a marker at given coordinates. Will use coordinates from the `geoCoordinates` prop or pluck them from the address provided at the `address` prop if the former is not available.
 
 #### Props
 
 - **`loadingElement`**: (default: `<div>Loading...</div>`) Node element that is rendered while it's loading
 - **`mapProps`**: Props passed to the map element
-- **`geoCoordinates`**: Address` geocoordinates
+- `geoCoordinates`: Standalone geocoordinates to be displayed
+- `address`: Address to pick geocoordinates from
 - **`rules`**: The selected country rules
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 - **`loadingGoogle`**: Boolean if the Google Maps JavaScript Library is loading
@@ -437,7 +476,8 @@ Renders a Google Map with a marker at the point of the address' geocoordinates.
 Map.propTypes = {
   loadingElement: PropTypes.node,
   mapProps: PropTypes.object,
-  geoCoordinates: PropTypes.array.isRequired,
+  geoCoordinates: PropTypes.array,
+  address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   loadingGoogle: PropTypes.bool,
