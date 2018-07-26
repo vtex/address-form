@@ -101,7 +101,6 @@ class App extends Component {
             accountName={accountName}
             address={address}
             Input={StyleguideInput}
-            onSubmit={this.handleSubmit}
             onChangeAddress={this.handleAddressChange}
             autoCompletePostalCode={!validGeoCoords}
           >
@@ -147,7 +146,7 @@ class App extends Component {
 
               <AddressForm omitPostalCodeFields={!validGeoCoords} />
 
-              <AddressSubmitter>
+              <AddressSubmitter onSubmit={this.handleSubmit}>
                 {handleSubmit => (
                   <Button size="small" block onClick={handleSubmit}>
                     Submit
