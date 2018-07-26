@@ -81,19 +81,6 @@ class AddressContainer extends Component {
     this.updateAddress(validatedAddress)
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-
-    const { rules, onSubmit } = this.props
-    const { address } = this.state
-    const { valid, address: validatedAddress } = isValidAddress(address, rules)
-    this.updateAddress(validatedAddress)
-
-    if (onSubmit) {
-      onSubmit(valid, removeValidation(validatedAddress))
-    }
-  }
-
   updateAddress(newAddress) {
     const { onChangeAddress } = this.props
     this.setState(() => ({
@@ -111,12 +98,9 @@ class AddressContainer extends Component {
     const { children, Input } = this.props
     const { address } = this.state
     const handleAddressChange = this.handleAddressChange
-    const handleSubmit = this.handleSubmit
 
     return (
-      <AddressContext.Provider
-        value={{ address, handleAddressChange, handleSubmit, Input }}
-      >
+      <AddressContext.Provider value={{ address, handleAddressChange, Input }}>
         {children}
       </AddressContext.Provider>
     )
@@ -137,7 +121,6 @@ AddressContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   Input: PropTypes.func,
   onChangeAddress: PropTypes.func,
-  onSubmit: PropTypes.func,
   children: PropTypes.any.isRequired,
   autoCompletePostalCode: PropTypes.bool,
   shouldHandleAddressChangeOnMount: PropTypes.bool,
