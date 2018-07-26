@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import AddressShape from './propTypes/AddressShape'
-import { validateChangedFields, isValidAddress } from './validateAddress'
+import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
-import { addValidation, removeValidation } from './transforms/address'
+import { addValidation } from './transforms/address'
 
 class AddressContainer extends Component {
   componentDidMount() {
