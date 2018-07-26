@@ -1,3 +1,4 @@
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectAddressContext } from './addressContainerContext'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
@@ -6,20 +7,18 @@ import { removeValidation } from './transforms/address'
 import { compose } from 'recompose'
 import { injectRules } from './addressRulesContext'
 
-const AddressSubmitter = ({
-  rules,
-  onSubmit,
-  onChangeAddress,
-  address,
-  children,
-}) => {
-  const handleSubmit = () => {
+class AddressSubmitter extends Component {
+  handleSubmit = () => {
+    const { address, rules, onSubmit, onChangeAddress } = this.props
     const { valid, address: validatedAddress } = isValidAddress(address, rules)
     onChangeAddress(validatedAddress)
     onSubmit(valid, removeValidation(validatedAddress))
   }
 
-  return children(handleSubmit)
+  render() {
+    const { children } = this.props
+    return children(this.handleSubmit)
+  }
 }
 
 AddressSubmitter.propTypes = {
