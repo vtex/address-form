@@ -7,12 +7,9 @@ import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
-import { addValidation } from './transforms/address'
 
 class AddressContainer extends Component {
   componentDidMount() {
-    this.setState({ address: this.props.address })
-
     if (
       this.props &&
       this.props.shouldHandleAddressChangeOnMount &&
@@ -22,23 +19,16 @@ class AddressContainer extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.address !== this.props.address) {
-      this.setState({ address: this.props.address })
-      this.handleAddressChange(this.props.address)
-    }
-  }
-
   handleAddressChange = changedAddressFields => {
     const {
       cors,
       accountName,
       rules,
+      address,
+      onChangeAddress,
       autoCompletePostalCode,
       shouldAddFocusToNextInvalidField,
     } = this.props
-
-    const { address } = this.state
 
     const countryChanged =
       changedAddressFields.country &&
@@ -46,7 +36,7 @@ class AddressContainer extends Component {
       changedAddressFields.country.value !== address.country.value
 
     if (countryChanged) {
-      return this.updateAddress({
+      return onChangeAddress({
         ...address,
         ...changedAddressFields,
       })
@@ -68,7 +58,7 @@ class AddressContainer extends Component {
         validatedAddress.postalCode.valid === true
 
       if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
-        return this.updateAddress(
+        return onChangeAddress(
           postalCodeAutoCompleteAddress({
             cors,
             accountName,
@@ -81,25 +71,11 @@ class AddressContainer extends Component {
       }
     }
 
-    this.updateAddress(validatedAddress)
-  }
-
-  updateAddress(newAddress) {
-    const { onChangeAddress } = this.props
-    this.setState(() => ({
-      address: {
-        ...newAddress,
-      },
-    }))
-
-    if (onChangeAddress) {
-      onChangeAddress(newAddress)
-    }
+    onChangeAddress(validatedAddress)
   }
 
   render() {
-    const { children, Input } = this.props
-    const { address } = this.state
+    const { children, Input, address } = this.props
     const handleAddressChange = this.handleAddressChange
 
     return (
@@ -123,7 +99,7 @@ AddressContainer.propTypes = {
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   Input: PropTypes.func,
-  onChangeAddress: PropTypes.func,
+  onChangeAddress: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
   autoCompletePostalCode: PropTypes.bool,
   shouldHandleAddressChangeOnMount: PropTypes.bool,

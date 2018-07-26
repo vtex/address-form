@@ -64,7 +64,13 @@ class App extends Component {
       address.geoCoordinates.valid &&
       address.geoCoordinates.value.length === 2
 
-    this.setState({ validGeoCoords })
+    this.setState(prevState => ({
+      address: {
+        ...prevState.address,
+        ...address,
+      },
+      validGeoCoords,
+    }))
   }
 
   handleSubmit = (valid, address) => {
