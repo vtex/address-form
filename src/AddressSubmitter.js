@@ -13,8 +13,7 @@ const AddressSubmitter = ({
   address,
   children,
 }) => {
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = () => {
     const { valid, address: validatedAddress } = isValidAddress(address, rules)
     onChangeAddress(validatedAddress)
     onSubmit(valid, removeValidation(validatedAddress))
