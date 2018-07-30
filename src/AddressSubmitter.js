@@ -11,7 +11,8 @@ class AddressSubmitter extends Component {
   handleSubmit = () => {
     const { address, rules, onSubmit, onChangeAddress } = this.props
     const { valid, address: validatedAddress } = isValidAddress(address, rules)
-    onChangeAddress(validatedAddress)
+    const { postalCode, ...changedAddress } = validatedAddress
+    onChangeAddress(changedAddress)
     onSubmit(valid, removeValidation(validatedAddress))
   }
 
