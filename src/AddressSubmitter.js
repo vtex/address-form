@@ -1,18 +1,26 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import filter from 'lodash/filter'
 import { injectAddressContext } from './addressContainerContext'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { isValidAddress } from './validateAddress'
 import { removeValidation } from './transforms/address'
-import { compose } from 'recompose'
 import { injectRules } from './addressRulesContext'
 
 class AddressSubmitter extends Component {
   handleSubmit = () => {
     const { address, rules, onSubmit, onChangeAddress } = this.props
     const { valid, address: validatedAddress } = isValidAddress(address, rules)
-    const { postalCode, ...changedAddress } = validatedAddress
-    onChangeAddress(changedAddress)
+
+    const invalidFields = Object.keys(validatedAddress)
+      .filter(key => validatedAddress[key].valid === false)
+      .reduce((filteredAddress, key) => {
+        filteredAddress[key] = validatedAddress[key]
+        return filteredAddress
+      }, {})
+
+    onChangeAddress(invalidFields)
     onSubmit(valid, removeValidation(validatedAddress))
   }
 
