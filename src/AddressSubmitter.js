@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
-import filter from 'lodash/filter'
 import { injectAddressContext } from './addressContainerContext'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { isValidAddress } from './validateAddress'
