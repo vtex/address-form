@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.2] - 2018-07-31
+
+### Fixed
+
+- Triggering postal code autocompletion on submit
+
 ## [2.0.1] - 2018-07-26
 
-## Changed
+### Changed
 
 - Updated README to include `v2.0.0` changes
 
