@@ -13164,6 +13164,7 @@ const countryData = {
     'La Bodega',
     'La Bodeguita',
     'La Calavera',
+    'La Caldera',
     'La Cancha',
     'La Candelaria',
     'La Carretera',
