@@ -36,20 +36,19 @@ class StyleguideInput extends Component {
   }
 
   render() {
-    const { field, options, address, autoFocus, inputRef, intl } = this.props
+    const { field, options, address, inputRef, intl } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
     if (field.name === 'postalCode') {
       return (
-        <div className={`vtex-address-form__postalCode flex flex-row pb7`}>
+        <div className="vtex-address-form__postalCode flex flex-row pb7">
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
             })}
             value={address[field.name].value || ''}
             disabled={disabled}
-            autoFocus={autoFocus}
             error={!this.state.isInputValid}
             ref={inputRef}
             errorMessage={
@@ -66,7 +65,7 @@ class StyleguideInput extends Component {
               <Spinner size={15} />
             </div>
           )}
-          <div className="pt6">
+          <div className="pt6 flex-none">
             <Button
               variation="tertiary"
               size="small"
@@ -83,13 +82,12 @@ class StyleguideInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div className={`vtex-address-form__addressQuery flex flex-row pb7`}>
+        <div className="vtex-address-form__addressQuery flex flex-row pb7">
           <Input
             label={
               field.fixedLabel ||
               intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
-            address={address}
             errorMessage={
               address[field.name].reason &&
               this.props.intl.formatMessage({
@@ -105,7 +103,6 @@ class StyleguideInput extends Component {
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
-            autoFocus={autoFocus}
             error={!this.state.isInputValid}
             ref={inputRef}
           />
@@ -125,7 +122,6 @@ class StyleguideInput extends Component {
             options={options}
             value={address[field.name].value || ''}
             disabled={disabled}
-            autoFocus={autoFocus}
             ref={inputRef}
             label={intl.formatMessage({
               id: `address-form.field.${field.label}`,
@@ -155,8 +151,8 @@ class StyleguideInput extends Component {
           }
           value={address[field.name].value || ''}
           disabled={disabled}
-          autoFocus={autoFocus}
           error={!this.state.isInputValid}
+          maxLength={field.maxLength}
           ref={inputRef}
           placeholder={
             !field.hidden && !field.required
@@ -173,12 +169,10 @@ class StyleguideInput extends Component {
 
 StyleguideInput.defaultProps = {
   onBlur: () => {},
-  autoFocus: false,
 }
 
 StyleguideInput.propTypes = {
   address: PropTypes.object,
-  autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChange: PropTypes.func.isRequired,

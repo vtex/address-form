@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.4] - 2018-08-09
+
+### Fixed
+
+- Exporting `injectAddressContext` from index
+- "I don't know my postal code" button text wrapping
+
 ## [2.0.2] - 2018-07-31
 
 ### Fixed
