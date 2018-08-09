@@ -42,7 +42,7 @@ class StyleguideInput extends Component {
 
     if (field.name === 'postalCode') {
       return (
-        <div className={`vtex-address-form__postalCode flex flex-row pb7`}>
+        <div className={'vtex-address-form__postalCode flex flex-row pb7'}>
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -66,7 +66,7 @@ class StyleguideInput extends Component {
               <Spinner size={15} />
             </div>
           )}
-          <div className="pt6">
+          <div className="pt6 flex-none">
             <Button
               variation="tertiary"
               size="small"
@@ -83,13 +83,12 @@ class StyleguideInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div className={`vtex-address-form__addressQuery flex flex-row pb7`}>
+        <div className={'vtex-address-form__addressQuery flex flex-row pb7'}>
           <Input
             label={
               field.fixedLabel ||
               intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
-            address={address}
             errorMessage={
               address[field.name].reason &&
               this.props.intl.formatMessage({
@@ -157,6 +156,7 @@ class StyleguideInput extends Component {
           disabled={disabled}
           autoFocus={autoFocus}
           error={!this.state.isInputValid}
+          maxLength={field.maxLength}
           ref={inputRef}
           placeholder={
             !field.hidden && !field.required
