@@ -1,0 +1,38 @@
+[
+  {
+    "name": "address-form",
+    "description": "",
+    "source": "https://github.com/vtex/address-form.git",
+    "script": {
+      "deploy": ".vtex/deploy.yml",
+      "ci": ".vtex/ci.yml"
+    },
+    "build": {
+      "type": "codebuild",
+      "image":
+        "053131491888.dkr.ecr.us-east-1.amazonaws.com/awsbuild/ubuntu/node:8",
+      "vpc": {
+        "id": "vpc-d4f109b1",
+        "subnets": ["subnet-955f63d3", "subnet-245f030c", "subnet-0e35267a"],
+        "securityGroups": ["sg-c84127b3"]
+      }
+    },
+    "service": {
+      "type": "front"
+    },
+    "tags": [
+      {
+        "key": "Product",
+        "value": "address-form"
+      },
+      {
+        "key": "Owner",
+        "value": "Post Purchase XP"
+      },
+      {
+        "key": "Team",
+        "value": "Post Purchase XP"
+      }
+    ]
+  }
+]

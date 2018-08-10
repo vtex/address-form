@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo Installing Packages...
+      - npm install
+      - echo Packages installed!
+  pre_build:
+    commands:
+      - echo Building application...
+      - npm run build
+      - echo Build finished!
+      - echo Running tests...
+      - npm run test
+      - echo Tests finished!
