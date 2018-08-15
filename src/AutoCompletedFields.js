@@ -23,29 +23,23 @@ class AutoCompletedFields extends Component {
     const { address, onChangeAddress } = this.props
 
     onChangeAddress(removeAutoCompletedFields(address))
-  }
-
-  hasAutoCompletedField(address) {
-    return find(
-      address,
-      field => field.postalCodeAutoCompleted || field.geolocationAutoCompleted,
-    )
-  }
+  };
 
   filterRelevantFields(address) {
     return pickBy(address, (field, name) => {
-      const autoCompleted =
-        field.postalCodeAutoCompleted || field.geolocationAutoCompleted
+      const autoCompleted = field.postalCodeAutoCompleted ||
+        field.geolocationAutoCompleted
 
-      const postalCodeGeolocationAutoCompleted =
-        name !== 'postalCode' ||
+      const postalCodeGeolocationAutoCompleted = name !== 'postalCode' ||
         (name === 'postalCode' && field.geolocationAutoCompleted)
 
       const isRelevantField = IRRELEVANT_FIELDS.indexOf(name) === -1
+      const hasValue = address[name].value && address[name].value.length > 0
 
-      return (
-        autoCompleted && postalCodeGeolocationAutoCompleted && isRelevantField
-      )
+      return autoCompleted &&
+        hasValue &&
+        postalCodeGeolocationAutoCompleted &&
+        isRelevantField
     })
   }
 
@@ -55,10 +49,6 @@ class AutoCompletedFields extends Component {
 
   render() {
     const { address, rules, children } = this.props
-
-    if (this.hasAutoCompletedField(address) === undefined) {
-      return null
-    }
 
     const filteredAddress = this.filterRelevantFields(address)
 
@@ -78,11 +68,9 @@ class AutoCompletedFields extends Component {
         rules={rules}
       >
         <span> - </span>
-        {React.Children.map(children, child =>
-          React.cloneElement(child, {
-            onClick: this.handleClickChange,
-          }),
-        )}
+        {React.Children.map(children, child => React.cloneElement(child, {
+          onClick: this.handleClickChange,
+        }))}
       </AddressSummary>
     )
   }
@@ -95,8 +83,5 @@ AutoCompletedFields.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-)
+const enhance = compose(injectAddressContext, injectRules)
 export default enhance(AutoCompletedFields)

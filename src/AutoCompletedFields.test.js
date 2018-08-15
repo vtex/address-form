@@ -15,7 +15,7 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
     )
   })
 
@@ -27,7 +27,27 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
+    )
+    expect(wrapper.html()).toBe(null)
+  })
+
+  it('should display nothing if there are autocompleted fields with no value', () => {
+    const wrapper = mount(
+      <AutoCompletedFields
+        rules={usePostalCode}
+        address={{
+          ...newAddress,
+          state: {
+            postalCodeAutoCompleted: true,
+            value: null,
+            valueOptions: ['Buenos Aires', 'Entre Ríos'],
+          },
+        }}
+        onChangeAddress={jest.fn()}
+      >
+        {children}
+      </AutoCompletedFields>
     )
     expect(wrapper.html()).toBe(null)
   })
@@ -53,7 +73,7 @@ describe('AutoCompletedFields', () => {
           onChangeAddress={onChangeAddress}
         >
           {children}
-        </AutoCompletedFields>,
+        </AutoCompletedFields>
       )
     })
 
@@ -84,12 +104,12 @@ describe('AutoCompletedFields', () => {
       expect(onChangeAddressArgument.state).toHaveProperty('value', state)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'geolocationAutoCompleted',
-        undefined,
+        undefined
       )
       expect(onChangeAddressArgument.city).toHaveProperty('value', city)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'postalCodeAutoCompleted',
-        undefined,
+        undefined
       )
     })
 
@@ -117,7 +137,7 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
     )
 
     const AddressSummary = wrapper.find('AddressSummary')
@@ -145,7 +165,7 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
     )
 
     const AddressSummary = wrapper.find('AddressSummary')
