@@ -14879,7 +14879,6 @@ const countryData = {
     'Domínguez',
     'Dormida',
     'Duraznito',
-    'El Valle',
     'El Aguila',
     'El Alto',
     'El Amparo',
