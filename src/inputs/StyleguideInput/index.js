@@ -17,12 +17,12 @@ class StyleguideInput extends Component {
 
   handleChange = e => {
     this.props.onChange(e.target.value)
-  }
+  };
 
   handleClick = () => {
     this.props.field.forgottenURL &&
       window.open(this.props.field.forgottenURL, '_blank')
-  }
+  };
 
   componentDidUpdate(prevProps) {
     if (
@@ -53,18 +53,17 @@ class StyleguideInput extends Component {
             ref={inputRef}
             errorMessage={
               address[field.name].reason &&
-              this.props.intl.formatMessage({
-                id: `address-form.error.${address[field.name].reason}`,
-              })
+                this.props.intl.formatMessage({
+                  id: `address-form.error.${address[field.name].reason}`,
+                })
             }
             onBlur={this.props.onBlur}
             onChange={this.handleChange}
           />
-          {loading && (
+          {loading &&
             <div className="pl1 pt7">
               <Spinner size={15} />
-            </div>
-          )}
+            </div>}
           <div className="pt6 flex-none">
             <Button
               variation="tertiary"
@@ -86,13 +85,13 @@ class StyleguideInput extends Component {
           <Input
             label={
               field.fixedLabel ||
-              intl.formatMessage({ id: `address-form.field.${field.label}` })
+                intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
             errorMessage={
               address[field.name].reason &&
-              this.props.intl.formatMessage({
-                id: `address-form.error.${address[field.name].reason}`,
-              })
+                this.props.intl.formatMessage({
+                  id: `address-form.error.${address[field.name].reason}`,
+                })
             }
             placeholder={intl.formatMessage({
               id: `address-form.geolocation.example.${address.country.value}`,
@@ -106,11 +105,10 @@ class StyleguideInput extends Component {
             error={!this.state.isInputValid}
             ref={inputRef}
           />
-          {loading && (
+          {loading &&
             <div className="pl1 pt7">
               <Spinner size={15} />
-            </div>
-          )}
+            </div>}
         </div>
       )
     }
@@ -135,9 +133,9 @@ class StyleguideInput extends Component {
 
     return (
       <div
-        className={`vtex-address-form__${field.name} ${
-          field.hidden ? 'dn' : ''
-        } pb7`}
+        className={
+          `vtex-address-form__${field.name} ${field.hidden ? 'dn' : ''} pb7`
+        }
       >
         <Input
           label={this.props.intl.formatMessage({
@@ -145,9 +143,9 @@ class StyleguideInput extends Component {
           })}
           errorMessage={
             address[field.name].reason &&
-            intl.formatMessage({
-              id: `address-form.error.${address[field.name].reason}`,
-            })
+              intl.formatMessage({
+                id: `address-form.error.${address[field.name].reason}`,
+              })
           }
           value={address[field.name].value || ''}
           disabled={disabled}

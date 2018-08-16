@@ -85,8 +85,5 @@ PostalCodeGetter.propTypes = {
   shouldShowNumberKeyboard: PropTypes.bool,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-)
+const enhance = compose(injectAddressContext, injectRules)
 export default enhance(PostalCodeGetter)

@@ -18,7 +18,7 @@ describe('PostalCodeGetter', () => {
         rules={usePostalCode}
         onChangeAddress={jest.fn()}
       />,
-      div,
+      div
     )
   })
 
@@ -30,7 +30,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={usePostalCode}
         onChangeAddress={handleChange}
-      />,
+      />
     )
       .dive()
       .dive()
@@ -46,7 +46,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useOneLevel}
         onChangeAddress={handleChange}
-      />,
+      />
     )
       .dive()
       .dive()
@@ -62,7 +62,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useTwoLevels}
         onChangeAddress={handleChange}
-      />,
+      />
     )
       .dive()
       .dive()
@@ -78,7 +78,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
-      />,
+      />
     )
       .dive()
       .dive()

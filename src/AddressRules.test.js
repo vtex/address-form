@@ -9,10 +9,10 @@ describe('AddressRules', () => {
     const instance = shallow(
       <AddressRules
         country={'BRA'}
-        fetch={country => import('./country/' + country)}
+        fetch={country => import(`./country/${country}`)}
       >
         <h1>It works!</h1>
-      </AddressRules>,
+      </AddressRules>
     ).instance()
 
     const rules = await instance.componentDidMount()
@@ -23,10 +23,10 @@ describe('AddressRules', () => {
     const wrapper = shallow(
       <AddressRules
         country={'BRA'}
-        fetch={country => import('./country/' + country)}
+        fetch={country => import(`./country/${country}`)}
       >
         <h1>It works!</h1>
-      </AddressRules>,
+      </AddressRules>
     )
 
     const instance = wrapper.instance()
@@ -43,10 +43,10 @@ describe('AddressRules', () => {
     const instance = shallow(
       <AddressRules
         country={'XXX'}
-        fetch={country => import('./country/' + country)}
+        fetch={country => import(`./country/${country}`)}
       >
         <h1>It works!</h1>
-      </AddressRules>,
+      </AddressRules>
     ).instance()
 
     const rules = await instance.componentDidMount()

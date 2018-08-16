@@ -11,14 +11,16 @@ import flow from 'lodash/flow'
 import pickBy from 'lodash/pickBy'
 import isNil from 'lodash/isNil'
 
-export default function postalCodeAutoCompleteAddress({
-  cors,
-  accountName,
-  address,
-  rules,
-  callback,
-  shouldAddFocusToNextInvalidField = true,
-}) {
+export default function postalCodeAutoCompleteAddress(
+  {
+    cors,
+    accountName,
+    address,
+    rules,
+    callback,
+    shouldAddFocusToNextInvalidField = true,
+  }
+) {
   getAddress({
     cors,
     accountName,
@@ -54,7 +56,7 @@ export default function postalCodeAutoCompleteAddress({
         // the promise will catch the error and go to this branch
         // of the code. This console error makes the Jest error visible.
         console.error(error)
-      },
+      }
     )
 
   return addPostalCodeLoading(address)

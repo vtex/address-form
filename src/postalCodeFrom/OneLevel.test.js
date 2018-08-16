@@ -13,7 +13,7 @@ describe('OneLevel', () => {
         address={address}
         rules={useOneLevel}
         onChangeAddress={jest.fn()}
-      />,
+      />
     )
 
     expect(wrapper.find('SelectPostalCode')).toHaveLength(1)

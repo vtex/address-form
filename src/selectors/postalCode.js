@@ -22,8 +22,8 @@ function getTwoLevelsPostalCodes(address, rules) {
   const firstLevel = getField(rules.postalCodeLevels[0], rules)
 
   return address[firstLevel.name] &&
-  address[firstLevel.name].value &&
-  rules.secondLevelPostalCodes[address[firstLevel.name].value]
+    address[firstLevel.name].value &&
+    rules.secondLevelPostalCodes[address[firstLevel.name].value]
     ? rules.secondLevelPostalCodes[address[firstLevel.name].value]
     : []
 }
@@ -33,16 +33,16 @@ function getThreeLevelsPostalCodes(address, rules) {
   const secondLevel = getField(rules.postalCodeLevels[1], rules)
 
   return address[firstLevel.name] &&
-  address[firstLevel.name].value &&
-  address[secondLevel.name] &&
-  address[secondLevel.name].value &&
-  rules.thirdLevelPostalCodes[address[firstLevel.name].value] &&
-  rules.thirdLevelPostalCodes[address[firstLevel.name].value][
-    address[secondLevel.name].value
-  ]
+    address[firstLevel.name].value &&
+    address[secondLevel.name] &&
+    address[secondLevel.name].value &&
+    rules.thirdLevelPostalCodes[address[firstLevel.name].value] &&
+    rules.thirdLevelPostalCodes[address[firstLevel.name].value][
+      address[secondLevel.name].value
+    ]
     ? rules.thirdLevelPostalCodes[address[firstLevel.name].value][
-        address[secondLevel.name].value
-      ]
+      address[secondLevel.name].value
+    ]
     : []
 }
 

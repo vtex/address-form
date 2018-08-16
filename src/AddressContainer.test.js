@@ -9,11 +9,7 @@ import PostalCodeGetter from './PostalCodeGetter'
 jest.mock('./postalCodeAutoCompleteAddress')
 
 const descendToChild = wrapper =>
-  wrapper
-    .children()
-    .children()
-    .children()
-    .children()
+  wrapper.children().children().children().children()
 
 describe('AddressContainer', () => {
   const accountName = 'qamarketplace'
@@ -34,7 +30,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <span className="unique" />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
@@ -56,7 +52,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
@@ -82,7 +78,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
@@ -113,7 +109,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
@@ -136,7 +132,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
@@ -159,7 +155,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
@@ -185,7 +181,7 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act

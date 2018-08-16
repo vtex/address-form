@@ -30,8 +30,7 @@ class AddressContainer extends Component {
       shouldAddFocusToNextInvalidField,
     } = this.props
 
-    const countryChanged =
-      changedAddressFields.country &&
+    const countryChanged = changedAddressFields.country &&
       changedAddressFields.country.value &&
       changedAddressFields.country.value !== address.country.value
 
@@ -45,7 +44,7 @@ class AddressContainer extends Component {
     const validatedAddress = validateChangedFields(
       changedAddressFields,
       address,
-      rules,
+      rules
     )
 
     if (
@@ -53,8 +52,7 @@ class AddressContainer extends Component {
       changedAddressFields.postalCode &&
       !changedAddressFields.postalCode.geolocationAutoCompleted
     ) {
-      const postalCodeIsNowValid =
-        address.postalCode.valid !== true &&
+      const postalCodeIsNowValid = address.postalCode.valid !== true &&
         validatedAddress.postalCode.valid === true
 
       if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
@@ -66,13 +64,13 @@ class AddressContainer extends Component {
             rules,
             callback: this.handleAddressChange,
             shouldAddFocusToNextInvalidField,
-          }),
+          })
         )
       }
     }
 
     onChangeAddress(validatedAddress)
-  }
+  };
 
   render() {
     const { children, Input, address } = this.props

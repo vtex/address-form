@@ -14,14 +14,13 @@ export function addValidation(address) {
     address,
     (newAddress, propValue, propName) => {
       newAddress[propName] = {
-        value:
-          propValue && !isUndefined(propValue.value)
-            ? propValue.value
-            : propValue,
+        value: propValue && !isUndefined(propValue.value)
+          ? propValue.value
+          : propValue,
       }
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -35,13 +34,11 @@ export function removeValidation(address) {
       }
 
       newAddress[propName] = isUndefined(propValue.value)
-        ? isPlainObject(propValue)
-          ? null
-          : propValue
+        ? isPlainObject(propValue) ? null : propValue
         : propValue.value
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -55,7 +52,7 @@ export function addNewField(address, fieldName, value) {
       }
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -67,7 +64,7 @@ export function removeField(address, fieldName) {
       delete newAddress[propName][fieldName]
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -76,8 +73,7 @@ export function addDisabledToProtectedFields(fields, rules) {
     fields,
     (newFields, prop, propName) => {
       const hasValue = prop && prop.value
-      const isProtectField =
-        rules.postalCodeProtectedFields &&
+      const isProtectField = rules.postalCodeProtectedFields &&
         rules.postalCodeProtectedFields.indexOf(propName) !== -1
 
       newFields[propName] = prop
@@ -91,7 +87,7 @@ export function addDisabledToProtectedFields(fields, rules) {
 
       return newFields
     },
-    {},
+    {}
   )
 }
 
@@ -113,7 +109,7 @@ export function handleMultipleValues(fields) {
 
       return newFields
     },
-    {},
+    {}
   )
 }
 
@@ -134,7 +130,7 @@ export function maskFields(addressFields, rules) {
 
       return newAddressFields
     },
-    {},
+    {}
   )
 }
 
@@ -171,8 +167,7 @@ function getFirstInvalidFilledField(fields, rules) {
   const firstInvalidField = find(
     rules.fields,
     field =>
-      validatedFields[field.name] &&
-      validatedFields[field.name].valid === false,
+      validatedFields[field.name] && validatedFields[field.name].valid === false
   )
 
   if (firstInvalidField) {

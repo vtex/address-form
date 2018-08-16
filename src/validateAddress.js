@@ -13,7 +13,10 @@ import {
 
 export function isValidAddress(address, rules) {
   const validatedAddress = addFocusToNextInvalidField(address, rules)
-  const hasInvalidField = find(validatedAddress, field => field.valid === false)
+  const hasInvalidField = find(
+    validatedAddress,
+    field => field.valid === false
+  )
 
   return {
     valid: !hasInvalidField,
@@ -31,7 +34,7 @@ export function validateAddress(address, rules) {
       }
       return memo
     },
-    {},
+    {}
   )
 }
 
@@ -39,8 +42,8 @@ export function validateChangedFields(changedFields, address, rules) {
   const changeFieldsNames = Object.keys(changedFields)
   const visitedFields = reduce(
     changedFields,
-    (acc, field, name) => (field.visited ? acc.concat([name]) : acc),
-    [],
+    (acc, field, name) => field.visited ? acc.concat([name]) : acc,
+    []
   )
 
   const newAddress = {
@@ -55,20 +58,19 @@ export function validateChangedFields(changedFields, address, rules) {
         resultAddress[fieldName].value,
         fieldName,
         resultAddress,
-        rules,
+        rules
       )
 
       const isVisited = visitedFields.indexOf(fieldName) !== -1
-      const becameValid =
-        (!address[fieldName] || address[fieldName].valid !== true) &&
+      const becameValid = (!address[fieldName] ||
+        address[fieldName].valid !== true) &&
         validationResult.valid === true
-      const becameInvalid =
-        address[fieldName] &&
+      const becameInvalid = address[fieldName] &&
         address[fieldName].valid === true &&
         validationResult.valid === false
 
-      const showValidationResult =
-        isVisited || (!isVisited && (becameValid || becameInvalid))
+      const showValidationResult = isVisited ||
+        (!isVisited && (becameValid || becameInvalid))
 
       resultAddress[fieldName] = {
         ...resultAddress[fieldName],
@@ -76,7 +78,7 @@ export function validateChangedFields(changedFields, address, rules) {
       }
       return resultAddress
     },
-    newAddress,
+    newAddress
   )
 }
 
@@ -122,24 +124,20 @@ function valueInOptions(value, options) {
 }
 
 function valueInOptionsPairs(value, optionsPairs) {
-  return (
-    find(
-      optionsPairs,
-      optionPair => optionPair.value.toLowerCase() === value.toLowerCase(),
-    ) || false
-  )
+  return find(
+    optionsPairs,
+    optionPair => optionPair.value.toLowerCase() === value.toLowerCase()
+  ) || false
 }
 
 function valueInOptionsMap(value, field, address, rules) {
   const options = getListOfOptions(field, address, rules)
 
-  return (
-    options &&
+  return options &&
     options.length > 0 &&
     (typeof options[0] === 'object'
       ? valueInOptionsPairs(value, options)
       : valueInOptions(value, options))
-  )
 }
 
 function validateOptions(value, field, address, rules) {

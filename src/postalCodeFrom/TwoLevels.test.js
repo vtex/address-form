@@ -13,7 +13,7 @@ describe('TwoLevels', () => {
         address={address}
         rules={useTwoLevels}
         onChangeAddress={jest.fn()}
-      />,
+      />
     )
 
     expect(wrapper.find('SelectLevel')).toHaveLength(1)

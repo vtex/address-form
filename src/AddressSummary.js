@@ -49,48 +49,51 @@ class AddressSummary extends Component {
     return (
       <div className="address-summary">
         {rules.summary
-          .map((line, index) =>
-            [
-              ...line.map(
-                field =>
-                  address[field.name] ? (
-                    <span key={field.name}>
-                      {field.delimiter && (
-                        <span className={field.name + '-delimiter'}>
-                          {field.delimiter}
-                        </span>
-                      )}
-                      <span className={field.name}>{address[field.name]}</span>
-                      {field.delimiterAfter && (
-                        <span className={field.name + '-delimiter-after'}>
-                          {field.delimiterAfter}
-                        </span>
-                      )}
-                    </span>
-                  ) : null,
-              ),
-              index === 0 && !canEditData ? maskedInfoIcon : null,
-            ].reduce((line, field) => {
+          .map((line, index) => [
+            ...line.map(
+              field => address[field.name]
+                ? <span key={field.name}>
+                  {field.delimiter &&
+                  <span className={`${field.name}-delimiter`}>
+                    {field.delimiter}
+                  </span>}
+                  <span className={field.name}>{address[field.name]}</span>
+                  {field.delimiterAfter &&
+                  <span className={`${field.name}-delimiter-after`}>
+                    {field.delimiterAfter}
+                  </span>}
+                </span>
+                : null
+            ),
+            index === 0 && !canEditData ? maskedInfoIcon : null,
+          ].reduce(
+            (line, field) => {
               if (field == null) return line
               else if (line == null) return [field]
               return [...line, field]
-            }, null),
-          )
-          .reduce((summary, line) => {
-            if (line == null) return summary
-            else if (summary == null) return [line]
-            return [...summary, <br key={summary.length} />, line]
-          }, null)}
+            },
+            null
+          ))
+          .reduce(
+            (summary, line) => {
+              if (line == null) return summary
+              else if (summary == null) return [line]
+              return [...summary, <br key={summary.length} />, line]
+            },
+            null
+          )}
         {showCountry &&
-          rules.country && [
-            <br key="break" />,
+        rules.country && [
+          <br key="break" />,
+          (
             <span key="country" className="country">
               {this.props.intl.formatMessage({
                 id: `country.${rules.country}`,
                 defaultMessage: rules.country,
               })}
-            </span>,
-          ]}
+            </span>
+          ),
+        ]}
         {children}
       </div>
     )

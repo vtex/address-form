@@ -38,7 +38,7 @@ class AddressRules extends Component {
         if (errorType) {
           if (process.env.NODE_ENV !== 'production') {
             console.warn(
-              `Couldn't load rules for country ${errorType}, using default rules instead.`,
+              `Couldn't load rules for country ${errorType}, using default rules instead.`
             )
           }
           this.setState({
@@ -63,9 +63,9 @@ class AddressRules extends Component {
     const { children } = this.props
     const { rules } = this.state
 
-    return rules ? (
-      <RulesContext.Provider value={rules}>{children}</RulesContext.Provider>
-    ) : null
+    return rules
+      ? <RulesContext.Provider value={rules}>{children}</RulesContext.Provider>
+      : null
   }
 }
 

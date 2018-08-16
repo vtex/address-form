@@ -34,16 +34,15 @@ export function getAddress({ country, postalCode }) {
     const shouldResolve = !address || !address.reject
 
     process.nextTick(
-      () =>
-        shouldResolve
-          ? address
-            ? resolve({ ...address })
-            : resolve({
-              ...fallbackAddress,
-              country,
-              postalCode,
-            })
-          : reject('Error')
+      () => shouldResolve
+        ? address
+          ? resolve({ ...address })
+          : resolve({
+            ...fallbackAddress,
+            country,
+            postalCode,
+          })
+        : reject('Error')
     )
   })
 }

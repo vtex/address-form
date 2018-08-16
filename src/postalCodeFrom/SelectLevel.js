@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation
+  from '../propTypes/AddressShapeWithValidation'
 import { getLevelField } from '../selectors/postalCode'
 import InputFieldContainer from '../InputFieldContainer'
 

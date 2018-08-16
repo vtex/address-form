@@ -9,7 +9,7 @@ import { addNewField, addFocusToNextInvalidField } from '../transforms/address'
 export default function geolocationAutoCompleteAddress(
   baseAddress,
   googleAddress,
-  rules,
+  rules
 ) {
   const geolocationRules = rules.geolocation
   const fallbackCountry = rules.country
@@ -41,7 +41,7 @@ export default function geolocationAutoCompleteAddress(
       (address, component) => {
         const checkoutFieldName = getCheckoutFieldName(
           component.types,
-          indexedRules,
+          indexedRules
         )
 
         if (checkoutFieldName) {
@@ -49,13 +49,13 @@ export default function geolocationAutoCompleteAddress(
             address,
             checkoutFieldName,
             geolocationRules,
-            component,
+            component
           )
         }
 
         return address
       },
-      {},
+      {}
     )
   }
 
@@ -132,7 +132,7 @@ function revertRuleIndex(geolocationRules) {
       }
       return acc
     },
-    {},
+    {}
   )
 }
 
@@ -146,7 +146,7 @@ function setAddressFieldValue(
   address,
   fieldName,
   geolocationRules,
-  addressComponent,
+  addressComponent
 ) {
   const geolocationField = geolocationRules[fieldName]
   address[fieldName] = { value: addressComponent[geolocationField.valueIn] }
@@ -156,7 +156,7 @@ function setAddressFieldValue(
 function getCountry(googleAddress) {
   const countryComponent = find(
     googleAddress.address_components,
-    component => component.types.indexOf('country') !== -1,
+    component => component.types.indexOf('country') !== -1
   )
 
   return countryComponent ? getCountryISO2(countryComponent.short_name) : null
