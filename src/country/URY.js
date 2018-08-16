@@ -353,8 +353,7 @@ export default {
       required: true,
       mask: '99999',
       regex: '^([\\d]{5})$',
-      forgottenURL:
-        'http://geo.correo.com.uy/IsisBusquedaDireccionPlugin/cp.jsp',
+      forgottenURL: 'http://geo.correo.com.uy/IsisBusquedaDireccionPlugin/cp.jsp',
       size: 'small',
       autoComplete: 'nope',
     },

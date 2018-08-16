@@ -21,8 +21,7 @@ export default {
       mask: '99999',
       regex: /^\d{5}$/,
       postalCodeAPI: true,
-      forgottenURL:
-        'http://www.correos.es/ss/Satellite/site/Aplicacion_C-1349167812778-1363184049882/includeTemplate=COR_Aplicacion-sidioma=es_ES',
+      forgottenURL: 'http://www.correos.es/ss/Satellite/site/Aplicacion_C-1349167812778-1363184049882/includeTemplate=COR_Aplicacion-sidioma=es_ES',
       size: 'small',
       autoComplete: 'nope',
     },

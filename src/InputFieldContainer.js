@@ -22,7 +22,7 @@ class InputFieldContainer extends Component {
         }
         return cleanAddress
       },
-      {},
+      {}
     )
   }
 
@@ -43,7 +43,7 @@ class InputFieldContainer extends Component {
         },
       })
     }
-  }
+  };
 
   bindOnBlur = () => {
     const { field, address, onChangeAddress } = this.props
@@ -64,11 +64,11 @@ class InputFieldContainer extends Component {
         },
       })
     }
-  }
+  };
 
   inputRef = el => {
     this.el = el
-  }
+  };
 
   componentDidMount() {
     this.addFocusIfNeeded()
@@ -104,8 +104,7 @@ class InputFieldContainer extends Component {
       shouldShowNumberKeyboard,
     } = this.props
 
-    const _options =
-      options ||
+    const _options = options ||
       (hasOptions(field, address)
         ? getListOfOptions(field, address, rules)
         : undefined)

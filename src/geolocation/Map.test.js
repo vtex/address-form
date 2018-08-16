@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import Map from './Map'
 
 describe('Map', () => {
@@ -14,7 +14,7 @@ describe('Map', () => {
         onChangeAddress={jest.fn()}
         loadingGoogle={false}
         googleMaps={null}
-      />,
+      />
     )
       .dive()
       .dive()
@@ -35,7 +35,7 @@ describe('Map', () => {
         onChangeAddress={jest.fn()}
         loadingGoogle
         googleMaps={null}
-      />,
+      />
     )
   })
 
@@ -45,7 +45,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       currentProps,
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(false)
@@ -57,7 +57,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       { ...currentProps, rules: { country: 'USA' } },
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(true)
@@ -69,7 +69,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       { ...currentProps, geoCoordinates: [2, 3] },
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(true)
@@ -81,7 +81,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       { ...currentProps, geoCoordinates: [2, 3] },
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(true)

@@ -14,14 +14,17 @@ class AddressSubmitter extends Component {
 
     const invalidFields = Object.keys(validatedAddress)
       .filter(key => validatedAddress[key].valid === false)
-      .reduce((filteredAddress, key) => {
-        filteredAddress[key] = validatedAddress[key]
-        return filteredAddress
-      }, {})
+      .reduce(
+        (filteredAddress, key) => {
+          filteredAddress[key] = validatedAddress[key]
+          return filteredAddress
+        },
+        {}
+      )
 
     onChangeAddress(invalidFields)
     onSubmit(valid, removeValidation(validatedAddress))
-  }
+  };
 
   render() {
     const { children } = this.props
@@ -37,8 +40,5 @@ AddressSubmitter.propTypes = {
   children: PropTypes.func.isRequired,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-)
+const enhance = compose(injectAddressContext, injectRules)
 export default enhance(AddressSubmitter)

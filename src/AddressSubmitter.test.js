@@ -21,9 +21,7 @@ describe('AddressSubmitter', () => {
         {onSubmit => <button className="unique" onClick={onSubmit} />}
       </AddressSubmitter>
     )
-    wrapper = shallow(Component)
-      .dive()
-      .dive()
+    wrapper = shallow(Component).dive().dive()
   })
 
   it('should render without crashing', () => {

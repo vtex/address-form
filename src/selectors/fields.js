@@ -11,15 +11,14 @@ export function getField(fieldName, rules) {
 }
 
 export function hasOptions(field, address) {
-  const hasValueOptions =
-    address && address[field.name] && address[field.name].valueOptions
+  const hasValueOptions = address &&
+    address[field.name] &&
+    address[field.name].valueOptions
 
-  return !!(
-    field.options ||
+  return !!(field.options ||
     field.optionsPairs ||
     field.optionsMap ||
-    hasValueOptions
-  )
+    hasValueOptions)
 }
 
 function getFieldValue(field) {
@@ -122,17 +121,17 @@ export function filterPostalCodeFields(rules) {
     case THREE_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1,
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
       )
     case TWO_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1,
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
       )
     case ONE_LEVEL:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels[0] !== name,
+        ({ name }) => rules.postalCodeLevels[0] !== name
       )
     default:
     case POSTAL_CODE:
@@ -141,9 +140,8 @@ export function filterPostalCodeFields(rules) {
 }
 
 function fieldAffectsPostalCode(fieldName, rules) {
-  return (
-    rules.postalCodeLevels && rules.postalCodeLevels.indexOf(fieldName) !== -1
-  )
+  return rules.postalCodeLevels &&
+    rules.postalCodeLevels.indexOf(fieldName) !== -1
 }
 
 export function isDefiningPostalCodeField(fieldName, rules) {
@@ -168,6 +166,6 @@ export function filterAutoCompletedFields(rules, address) {
 
       return fields.concat(field)
     },
-    [],
+    []
   )
 }

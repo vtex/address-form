@@ -39,12 +39,13 @@ describe('SelectPostalCode', () => {
   })
 
   it('should render InputFieldContainer with options with postal codes', () => {
-    const firstLevelOptions = useOneLevel.firstLevelPostalCodes.map(
-      ({ label, postalCode }) => ({
-        value: `${label}___${postalCode}`,
-        label: label,
-      })
-    )
+    const firstLevelOptions = useOneLevel.firstLevelPostalCodes.map(({
+      label,
+      postalCode,
+    }) => ({
+      value: `${label}___${postalCode}`,
+      label: label,
+    }))
 
     const wrapper = shallow(
       <SelectPostalCode

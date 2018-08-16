@@ -23,7 +23,7 @@ class CountrySelector extends Component {
       state: { value: null },
       street: { value: null },
     })
-  }
+  };
 
   sortOptionsByLabel(options) {
     return options.slice().sort((a, b) => a.label.localeCompare(b.label))

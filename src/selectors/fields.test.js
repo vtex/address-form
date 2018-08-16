@@ -207,7 +207,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useOneLevel)
 
       expect(
-        diff(getFieldNames(useOneLevel.fields), getFieldNames(fields)),
+        diff(getFieldNames(useOneLevel.fields), getFieldNames(fields))
       ).toMatchSnapshot()
     })
 
@@ -215,7 +215,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useTwoLevels)
 
       expect(
-        diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields)),
+        diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields))
       ).toMatchSnapshot()
     })
 
@@ -223,7 +223,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useThreeLevels)
 
       expect(
-        diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields)),
+        diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields))
       ).toMatchSnapshot()
     })
   })

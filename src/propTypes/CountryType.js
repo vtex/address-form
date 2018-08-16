@@ -6,12 +6,8 @@ export default function(props, propName, componentName) {
 
   if (!/^[A-Z]{3}$/.test(value)) {
     return new Error(
-      'Invalid prop `' +
-        propName +
-        '` supplied to' +
-        ' `' +
-        componentName +
-        '`. It should be 3 alpha digits.'
+      `Invalid prop \`${propName}\` supplied to` +
+        ` \`${componentName}\`. It should be 3 alpha digits.`
     )
   }
 }

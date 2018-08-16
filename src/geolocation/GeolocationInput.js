@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DefaultInput from '../inputs/DefaultInput'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+import AddressShapeWithValidation
+  from '../propTypes/AddressShapeWithValidation'
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { EGOOGLEADDRESS } from '../constants'
 import { injectRules } from '../addressRulesContext'
@@ -39,11 +40,11 @@ class GeolocationInput extends Component {
 
     const options = rules.abbr
       ? {
-          types: ['address'],
-          componentRestrictions: {
-            country: rules.abbr,
-          },
-        }
+        types: ['address'],
+        componentRestrictions: {
+          country: rules.abbr,
+        },
+      }
       : { types: ['address'] }
 
     if (useSearchBox) {
@@ -52,7 +53,7 @@ class GeolocationInput extends Component {
     } else {
       this.autocomplete = new googleMaps.places.Autocomplete(
         this.input,
-        options,
+        options
       )
     }
 
@@ -63,7 +64,7 @@ class GeolocationInput extends Component {
     this.autocompleteListener = useSearchBox
       ? this.addSearchBoxListener()
       : this.addAutocompleteListener()
-  }
+  };
 
   addAutocompleteListener = () => {
     return this.props.googleMaps.event.addListener(
@@ -76,9 +77,9 @@ class GeolocationInput extends Component {
           this.handleAddress(googleAddress)
           return
         }
-      },
+      }
     )
-  }
+  };
 
   addSearchBoxListener = () => {
     return this.props.googleMaps.event.addListener(
@@ -93,7 +94,9 @@ class GeolocationInput extends Component {
         if (!firstPlaceFound.address_components) {
           this.geocoder.geocode(
             { address: firstPlaceFound.formatted_address },
-            address => (firstPlaceFound = address),
+            address => {
+              firstPlaceFound = address
+            }
           )
         }
 
@@ -101,24 +104,24 @@ class GeolocationInput extends Component {
           this.handleAddress(firstPlaceFound)
           return
         }
-      },
+      }
     )
-  }
+  };
 
   handleAddress = googleAddress => {
     this.handleChangeInput(googleAddress.formatted_address)
     this.handlePlaceChanged(googleAddress)
-  }
+  };
 
   handlePlaceChanged = googleAddress => {
     const address = geolocationAutoCompleteAddress(
       this.state.address,
       googleAddress,
-      this.props.rules,
+      this.props.rules
     )
 
     this.props.onChangeAddress(address)
-  }
+  };
 
   handleChangeInput = value => {
     this.setState(prevState => ({
@@ -130,7 +133,7 @@ class GeolocationInput extends Component {
         },
       },
     }))
-  }
+  };
 
   render() {
     const {
@@ -193,8 +196,5 @@ GeolocationInput.propTypes = {
   googleMaps: PropTypes.object,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-)
+const enhance = compose(injectAddressContext, injectRules)
 export default enhance(GeolocationInput)
