@@ -15,14 +15,19 @@ class InputFieldContainer extends Component {
 
     return reduce(
       address,
-      (cleanAddress, value, prop) => {
+      (cleanAddress, addressField, prop) => {
         const isDependentField = dependentFields.indexOf(prop) !== -1
-        if (isDependentField) {
-          cleanAddress[prop] = { value: null }
-        }
-        return cleanAddress
+        return isDependentField
+          ? {
+            ...cleanAddress,
+            [prop]: {
+              valueOptions: addressField.valueOptions,
+              value: null,
+            },
+          }
+          : cleanAddress
       },
-      {},
+      {}
     )
   }
 
