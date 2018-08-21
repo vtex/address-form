@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Handle postal code response of multiple values (Fix vtex/omnishipping#826)
+
+### Fixed
+
+- Fix StyleguideInput maxLength prop
+- Fix focus being called when ref was wrong
+- Only show AddressSummary delimiters if previous or next field has value
+
 ## [2.0.4] - 2018-08-09
 
 ### Fixed
