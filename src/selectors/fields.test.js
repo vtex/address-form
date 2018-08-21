@@ -142,6 +142,96 @@ describe('Field Selectors', () => {
         label: 'Boa Viagem',
       })
     })
+
+    it('should filter options suggested by postal code service', () => {
+      const stateField = {
+        name: 'state',
+        options: ['Foo', 'Bar', 'Zoo'],
+      }
+      const address = { state: { value: null, valueOptions: ['Bar', 'Too'] } }
+      const rules = {
+        postalCodeFrom: POSTAL_CODE,
+        fields: [stateField],
+      }
+
+      const options = getListOfOptions(stateField, address, rules)
+
+      expect(options).toHaveLength(1)
+      expect(options[0]).toMatchObject({
+        value: 'Bar',
+        label: 'Bar',
+      })
+    })
+
+    it('should fix options suggested by postal code service', () => {
+      const stateField = {
+        name: 'state',
+        options: ['Foo', 'Bar', 'Zóo'],
+      }
+      const address = { state: { value: null, valueOptions: ['Bar', 'zoo'] } }
+      const rules = {
+        postalCodeFrom: POSTAL_CODE,
+        fields: [stateField],
+      }
+
+      const options = getListOfOptions(stateField, address, rules)
+
+      expect(options).toHaveLength(2)
+      expect(options[1]).toMatchObject({
+        value: 'Zóo',
+        label: 'Zóo',
+      })
+    })
+
+    it('should not display options if basedOn field is not filled', () => {
+      const stateField = {
+        name: 'state',
+        options: ['Foo', 'Bar', 'Zóo'],
+      }
+      const cityField = {
+        name: 'city',
+        basedOn: 'state',
+        level: 2,
+        optionsMap: { Foo: ['Foolite'], Bar: ['Bartoo'] },
+      }
+      const address = {
+        state: { value: null, valueOptions: ['Bar', 'zoo'] },
+        city: { value: null, valueOptions: ['Foolite', 'Bartoo'] },
+      }
+      const rules = {
+        postalCodeFrom: POSTAL_CODE,
+        fields: [stateField, cityField],
+      }
+
+      const options = getListOfOptions(cityField, address, rules)
+
+      expect(options).toHaveLength(0)
+    })
+
+    it('should display only the suggested options of the basedOn field', () => {
+      const stateField = {
+        name: 'state',
+        options: ['Foo', 'Bar', 'Zóo'],
+      }
+      const cityField = {
+        name: 'city',
+        basedOn: 'state',
+        level: 2,
+        optionsMap: { Foo: ['Foolite'], Bar: ['Bartoo'] },
+      }
+      const address = {
+        state: { value: 'Bar', valueOptions: ['Bar', 'zoo'] },
+        city: { value: null, valueOptions: ['Foolite', 'Bartoo'] },
+      }
+      const rules = {
+        postalCodeFrom: POSTAL_CODE,
+        fields: [stateField, cityField],
+      }
+
+      const options = getListOfOptions(cityField, address, rules)
+
+      expect(options).toHaveLength(1)
+    })
   })
 
   describe('getDependentFields()', () => {

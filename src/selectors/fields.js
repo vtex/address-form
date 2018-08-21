@@ -5,21 +5,22 @@ import reduce from 'lodash/reduce'
 import last from 'lodash/last'
 import forEach from 'lodash/forEach'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
+import hasOption from './hasOption'
+import cleanStr from './cleanStr'
 
 export function getField(fieldName, rules) {
   return find(rules.fields, ({ name }) => name === fieldName)
 }
 
 export function hasOptions(field, address) {
-  const hasValueOptions =
-    address && address[field.name] && address[field.name].valueOptions
+  const hasValueOptions = address &&
+    address[field.name] &&
+    address[field.name].valueOptions
 
-  return !!(
-    field.options ||
+  return !!(field.options ||
     field.optionsPairs ||
     field.optionsMap ||
-    hasValueOptions
-  )
+    hasValueOptions)
 }
 
 function getFieldValue(field) {
@@ -27,17 +28,55 @@ function getFieldValue(field) {
 }
 
 function normalizeOptions(options) {
-  const normalizedOptions = {}
+  return reduce(
+    options,
+    (acc, option, key) => {
+      acc[cleanStr(key)] = option
+      return acc
+    },
+    {}
+  )
+}
 
-  forEach(options, (option, key) => {
-    normalizedOptions[key.toLowerCase()] = option
-  })
-
-  return normalizedOptions
+function fixOptions(options, fieldOptions) {
+  return reduce(
+    options,
+    (acc, option) => {
+      const cleanOption = hasOption(option, fieldOptions)
+      return cleanOption ? acc.concat(cleanOption) : acc
+    },
+    []
+  )
 }
 
 export function getListOfOptions(field, address, rules) {
-  if (address && address[field.name] && address[field.name].valueOptions) {
+  // Has options provided by Postal Code
+  const postalCodeOptions = address &&
+    address[field.name] &&
+    address[field.name].valueOptions
+
+  if (postalCodeOptions) {
+    if (field.options && !field.basedOn) {
+      return map(fixOptions(postalCodeOptions, field.options), toValueAndLabel)
+    }
+
+    if (field.optionsMap && field.basedOn && field.level === 2) {
+      return map(
+        fixOptions(postalCodeOptions, getSecondLevelOptions(field, address)),
+        toValueAndLabel
+      )
+    }
+
+    if (field.optionsMap && field.basedOn && field.level === 3) {
+      return map(
+        fixOptions(
+          postalCodeOptions,
+          getThirdLevelOptions(field, address, rules)
+        ),
+        toValueAndLabel
+      )
+    }
+
     return map(address[field.name].valueOptions, toValueAndLabel)
   }
 
@@ -50,35 +89,11 @@ export function getListOfOptions(field, address, rules) {
   }
 
   if (field.optionsMap && field.basedOn && field.level === 2) {
-    const basedOn = getFieldValue(address[field.basedOn])
-    const normalizedBasedOn = basedOn && basedOn.toLowerCase()
-    const normalizedOptionsMap = normalizeOptions(field.optionsMap)
-    if (normalizedBasedOn && normalizedOptionsMap[normalizedBasedOn]) {
-      const options = normalizedOptionsMap[normalizedBasedOn]
-      return map(options, toValueAndLabel)
-    }
-
-    return []
+    return map(getSecondLevelOptions(field, address), toValueAndLabel)
   }
 
   if (field.optionsMap && field.basedOn && field.level === 3) {
-    const secondLevelField = getField(field.basedOn, rules)
-    const firstLevelField = getField(secondLevelField.basedOn, rules)
-
-    const secondLevelValue = getFieldValue(address[secondLevelField.name])
-    const firstLevelValue = getFieldValue(address[firstLevelField.name])
-
-    if (
-      firstLevelValue &&
-      secondLevelValue &&
-      field.optionsMap[firstLevelValue] &&
-      field.optionsMap[firstLevelValue][secondLevelValue]
-    ) {
-      const options = field.optionsMap[firstLevelValue][secondLevelValue]
-      return map(options, toValueAndLabel)
-    }
-
-    return []
+    return map(getThirdLevelOptions(field, address, rules), toValueAndLabel)
   }
 
   if (process.env.NODE_ENV !== 'production') {
@@ -86,6 +101,36 @@ export function getListOfOptions(field, address, rules) {
   } else {
     return []
   }
+}
+
+function getSecondLevelOptions(field, address) {
+  const basedOn = getFieldValue(address[field.basedOn])
+  const cleanBasedOn = cleanStr(basedOn)
+  const normalizedOptionsMap = normalizeOptions(field.optionsMap)
+  if (cleanBasedOn && normalizedOptionsMap[cleanBasedOn]) {
+    return normalizedOptionsMap[cleanBasedOn]
+  }
+
+  return []
+}
+
+function getThirdLevelOptions(field, address, rules) {
+  const secondLevelField = getField(field.basedOn, rules)
+  const firstLevelField = getField(secondLevelField.basedOn, rules)
+
+  const secondLevelValue = getFieldValue(address[secondLevelField.name])
+  const firstLevelValue = getFieldValue(address[firstLevelField.name])
+
+  if (
+    firstLevelValue &&
+    secondLevelValue &&
+    field.optionsMap[firstLevelValue] &&
+    field.optionsMap[firstLevelValue][secondLevelValue]
+  ) {
+    return field.optionsMap[firstLevelValue][secondLevelValue]
+  }
+
+  return []
 }
 
 function toValueAndLabel(option) {
@@ -160,6 +205,7 @@ export function filterAutoCompletedFields(rules, address) {
 
       if (
         addressField &&
+        !addressField.valueOptions &&
         (addressField.postalCodeAutoCompleted ||
           addressField.geolocationAutoCompleted)
       ) {
