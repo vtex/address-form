@@ -87,7 +87,7 @@ class InputFieldContainer extends Component {
     const { address, field, onChangeAddress } = this.props
 
     const fieldValue = address[field.name]
-    if (this.el && fieldValue.focus) {
+    if (this.el && typeof this.el.focus === 'function' && fieldValue.focus) {
       this.el.focus()
       onChangeAddress({
         [field.name]: {
