@@ -155,11 +155,6 @@ exports[`AddressSummary should render using default if rules do not contain summ
   </span>
   <span>
     <span
-      className="complement-delimiter"
-    >
-      , 
-    </span>
-    <span
       className="complement"
     >
       2nd floor
