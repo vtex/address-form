@@ -152,7 +152,7 @@ class StyleguideInput extends Component {
           value={address[field.name].value || ''}
           disabled={disabled}
           error={!this.state.isInputValid}
-          maxLength={field.maxLength}
+          maxLength={`${field.maxLength}`}
           ref={inputRef}
           placeholder={
             !field.hidden && !field.required
