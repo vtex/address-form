@@ -24,14 +24,15 @@ export function isValidAddress(address, rules) {
 export function validateAddress(address, rules) {
   return reduce(
     address,
-    (memo, { value }, name) => {
+    (memo, { value, valueOptions }, name) => {
       memo[name] = {
         value,
+        valueOptions,
         ...validateField(value, name, address, rules),
       }
       return memo
     },
-    {},
+    {}
   )
 }
 

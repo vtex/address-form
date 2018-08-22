@@ -17,6 +17,7 @@ export const AddressWithValidation = reduce(
       autoCompleted: PropTypes.bool,
       loading: PropTypes.bool,
       value: valueType,
+      valueOptions: PropTypes.arrayOf(PropTypes.string),
     }).isRequired
     return acc
   },

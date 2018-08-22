@@ -15,14 +15,19 @@ class InputFieldContainer extends Component {
 
     return reduce(
       address,
-      (cleanAddress, value, prop) => {
+      (cleanAddress, addressField, prop) => {
         const isDependentField = dependentFields.indexOf(prop) !== -1
-        if (isDependentField) {
-          cleanAddress[prop] = { value: null }
-        }
-        return cleanAddress
+        return isDependentField
+          ? {
+            ...cleanAddress,
+            [prop]: {
+              valueOptions: addressField.valueOptions,
+              value: null,
+            },
+          }
+          : cleanAddress
       },
-      {},
+      {}
     )
   }
 
@@ -82,7 +87,7 @@ class InputFieldContainer extends Component {
     const { address, field, onChangeAddress } = this.props
 
     const fieldValue = address[field.name]
-    if (this.el && fieldValue.focus) {
+    if (this.el && typeof this.el.focus === 'function' && fieldValue.focus) {
       this.el.focus()
       onChangeAddress({
         [field.name]: {

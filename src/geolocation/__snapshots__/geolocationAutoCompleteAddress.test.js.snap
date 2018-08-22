@@ -45,6 +45,7 @@ Object {
     "reason": "ERROR_EMPTY_FIELD",
     "valid": false,
     "value": null,
+    "valueOptions": undefined,
   },
   "state": Object {
     "geolocationAutoCompleted": true,
