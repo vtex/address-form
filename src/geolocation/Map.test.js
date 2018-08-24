@@ -86,4 +86,16 @@ describe('Map', () => {
 
     expect(shouldUpdate).toBe(true)
   })
+
+  it('should re-render if loadingGoogle changed', () => {
+    const currentProps = shallowInstance.props
+    const currentState = shallowInstance.state
+
+    const shouldUpdate = shallowInstance.shouldComponentUpdate(
+      { ...currentProps, loadingGoogle: true },
+      currentState,
+    )
+
+    expect(shouldUpdate).toBe(true)
+  })
 })
