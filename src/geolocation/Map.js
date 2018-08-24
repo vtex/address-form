@@ -15,12 +15,13 @@ class Map extends Component {
 
   shouldComponentUpdate(prevProps) {
     const rulesChanged = prevProps.rules.country !== this.props.rules.country
+    const loadingGoogleChanged = prevProps.loadingGoogle !== this.props.loadingGoogle
     const geoCoordsChanged = this.isDifferentGeoCoords(
       this.getCoordinatesFromProps(prevProps),
       this.getCoordinatesFromProps(this.props),
     )
 
-    return geoCoordsChanged || rulesChanged
+    return geoCoordsChanged || rulesChanged || loadingGoogleChanged
   }
 
   componentDidUpdate() {
