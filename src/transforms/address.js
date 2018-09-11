@@ -101,7 +101,7 @@ export function handleMultipleValues(fields) {
   return reduce(
     fields,
     (newFields, prop, propName) => {
-      const hasMultipleValues = prop.value.indexOf(MULTIPLE_OPTIONS_SEPARATOR_REGEX) !== -1
+      const hasMultipleValues = MULTIPLE_OPTIONS_SEPARATOR_REGEX.test(prop.value)
 
       newFields[propName] = prop
 
