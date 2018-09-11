@@ -95,11 +95,13 @@ export function addDisabledToProtectedFields(fields, rules) {
   )
 }
 
+const MULTIPLE_OPTIONS_SEPARATOR_REGEX = new RegExp(/;|(?:::)/)
+
 export function handleMultipleValues(fields) {
   return reduce(
     fields,
     (newFields, prop, propName) => {
-      const hasMultipleValues = prop.value.indexOf(';') !== -1
+      const hasMultipleValues = prop.value.indexOf(MULTIPLE_OPTIONS_SEPARATOR_REGEX) !== -1
 
       newFields[propName] = prop
 
@@ -107,7 +109,7 @@ export function handleMultipleValues(fields) {
         newFields[propName] = {
           ...prop,
           value: null,
-          valueOptions: prop.value.split(';'),
+          valueOptions: prop.value.split(MULTIPLE_OPTIONS_SEPARATOR_REGEX),
         }
       }
 
