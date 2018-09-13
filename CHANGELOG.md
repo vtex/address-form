@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.3.0] - 2018-09-13
+
 ### Added
 - Add support to new separator of multiple options of Postal Code service
 
