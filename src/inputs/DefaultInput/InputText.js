@@ -34,7 +34,7 @@ class InputText extends Component {
         autoComplete={field.autoComplete || 'on'}
         id={id}
         type={type}
-        name={field.name}
+        name={field.elementName || field.name}
         maxLength={field.maxLength}
         value={fieldValue.value || ''}
         placeholder={placeholder}
