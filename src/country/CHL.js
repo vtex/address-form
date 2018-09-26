@@ -31,6 +31,7 @@ const countryData = {
     Lampa: '9380000',
     'Las Condes': '7550000',
     'Lo Barnechea': '7690000',
+    'Lo Barnechea (Excepto Cordillera)': '7690100',
     'Lo Espejo': '9120000',
     'Lo Prado': '8980000',
     Macul: '7810000',
