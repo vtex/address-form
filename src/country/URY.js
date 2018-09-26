@@ -413,6 +413,7 @@ export default {
     },
     {
       name: 'receiverName',
+      elementName: 'receiver',
       maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',

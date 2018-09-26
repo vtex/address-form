@@ -169,7 +169,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       disabled={false}
       id="ship-receiverName"
       maxLength={750}
-      name="receiverName"
+      name="receiver"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder={null}
