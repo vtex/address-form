@@ -114,7 +114,7 @@ describe('CountrySelector', () => {
       country: { value: 'USA' },
       city: { value: null },
       complement: { value: null },
-      geoCoordinates: { value: null },
+      geoCoordinates: { value: [] },
       neighborhood: { value: null },
       number: { value: null },
       postalCode: { value: null },
