@@ -15,6 +15,7 @@ const shipsTo = [
   'COL',
   'ECU',
   'ESP',
+  'FRA',
   'GTM',
   'MEX',
   'PER',

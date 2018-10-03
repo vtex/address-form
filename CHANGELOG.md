@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.1] - 2018-10-03
+
 ## [2.5.0] - 2018-10-02
 - Add France validation rules
 
