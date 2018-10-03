@@ -64,7 +64,7 @@
   },
   "author": "Breno Calazans (@klzns)",
   "homepage": "https://github.com/vtex/address-form",
-  "license": "MIT",
+  "license": "AGPL 3.0",
   "repository": "https://github.com/vtex/address-form",
   "keywords": [
     "react-component",
