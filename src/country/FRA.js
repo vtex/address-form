@@ -35,11 +35,11 @@ export default {
       size: 'xlarge',
     },
     {
-      hidden: true,
-      name: 'reference',
-      maxLength: 750,
-      label: 'reference',
-      size: 'xlarge',
+      name: 'city',
+      maxLength: 100,
+      label: 'city',
+      required: true,
+      size: 'large',
     },
     {
       name: 'state',
@@ -47,6 +47,13 @@ export default {
       label: 'department',
       required: true,
       size: 'large',
+    },
+    {
+      hidden: true,
+      name: 'reference',
+      maxLength: 750,
+      label: 'reference',
+      size: 'xlarge',
     },
     {
       name: 'receiverName',
@@ -72,6 +79,11 @@ export default {
         return address
       },
     },
+    city: {
+      valueIn: 'long_name',
+      types: ['locality'],
+      required: false,
+    },
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
@@ -95,7 +107,7 @@ export default {
       },
       {
         delimiter: ' ',
-        name: 'state',
+        name: 'city',
       },
     ],
   ],
