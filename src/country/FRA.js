@@ -14,6 +14,7 @@ export default {
     },
     {
       name: 'postalCode',
+      label: 'postalCode',
       maxLength: 50,
       required: true,
       mask: '99999',
