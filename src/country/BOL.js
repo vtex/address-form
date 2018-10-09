@@ -438,7 +438,7 @@ export default {
       name: 'complement',
       maxLength: 750,
       label: 'complement',
-      size: 'medium',
+      size: 'small',
     },
     {
       hidden: true,
@@ -461,7 +461,7 @@ export default {
       maxLength: 100,
       label: 'province',
       required: true,
-      size: 'medium',
+      size: 'small',
       level: 2,
       basedOn: 'state',
       optionsMap: getTwoLevels(countryData),

@@ -1,4 +1,4 @@
-import { POSTAL_CODE } from '../constants'
+smallimport { POSTAL_CODE } from '../constants'
 
 export default {
   country: 'BRA',
