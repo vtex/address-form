@@ -30,20 +30,20 @@ export default {
       name: 'street',
       label: 'addressLine1',
       required: true,
-      size: 'xlarge',
+      size: 'large',
     },
     {
       name: 'complement',
       maxLength: 750,
       label: 'addressLine2',
-      size: 'xlarge',
+      size: 'large',
     },
     {
       hidden: true,
       name: 'reference',
       maxLength: 750,
       label: 'reference',
-      size: 'xlarge',
+      size: 'large',
     },
     {
       name: 'number',
@@ -51,6 +51,7 @@ export default {
       label: 'number',
       hidden: true,
       defaultValue: 'N/A',
+      size: 'mini',
       autoComplete: 'nope',
     },
     {
