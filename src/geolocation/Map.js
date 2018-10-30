@@ -15,7 +15,8 @@ class Map extends Component {
 
   shouldComponentUpdate(prevProps) {
     const rulesChanged = prevProps.rules.country !== this.props.rules.country
-    const loadingGoogleChanged = prevProps.loadingGoogle !== this.props.loadingGoogle
+    const loadingGoogleChanged =
+      prevProps.loadingGoogle !== this.props.loadingGoogle
     const geoCoordsChanged = this.isDifferentGeoCoords(
       this.getCoordinatesFromProps(prevProps),
       this.getCoordinatesFromProps(this.props),
@@ -120,9 +121,9 @@ class Map extends Component {
       if (results[0]) {
         const googleAddress = results[0]
         const address = geolocationAutoCompleteAddress(
+          this.props.address,
           googleAddress,
           rules,
-          rules.country,
         )
         const possibleChangedFields = {
           geoCoordinates: address.geoCoordinates,
