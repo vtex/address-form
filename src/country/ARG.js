@@ -2110,7 +2110,8 @@ const countryData = {
     'Zona Delta Tigre', 
     'Zona Delta Zarate', 
     'Zubiaurre',   ],
-  Catamarca: [    'Achalco', 
+  Catamarca: [
+    'Achalco', 
     'Acheral', 
     'Aconquija', 
     'Acostilla', 
@@ -2950,7 +2951,8 @@ const countryData = {
     'Zanja', 
     'Zarcito', 
     'Zarza',   ],
-  Chaco: [    '10 De Mayo', 
+  Chaco: [
+    '10 De Mayo', 
     '2 De Mayo', 
     '9 De Julio', 
     'Agua Buena', 
@@ -3639,7 +3641,8 @@ const countryData = {
     'Zaparinqui', 
     'Zuberbhuler', 
     'Zuberbuhler',   ],
-  Chubut: [    '28 De Julio', 
+  Chubut: [
+    '28 De Julio', 
     'Aguada De Las Tejas', 
     'Aguada Del Pito', 
     'Aldea Apeleg', 
@@ -3970,7 +3973,8 @@ const countryData = {
     'Villa Futalaufquen', 
     'Villa Inés', 
     'Villa Lago Rivadavia',   ],
-  Córdoba: [    '9 De Julio', 
+  Córdoba: [
+    '9 De Julio', 
     'Abburra', 
     'Achiras', 
     'Acollarado', 
@@ -5768,7 +5772,8 @@ const countryData = {
     'Yocsina', 
     'Zapata', 
     'Zapoloco',   ],
-  Corrientes: [    '2 De Julio', 
+  Corrientes: [
+    '2 De Julio', 
     '8 De Diciembre', 
     '9 De Julio', 
     'Abalo', 
@@ -6899,7 +6904,8 @@ const countryData = {
     'Yurucua', 
     'Zapallar', 
     'Zapallos',   ],
-  Entre Ríos: [    '1 De Mayo', 
+  'Entre Ríos': [
+    '1 De Mayo', 
     '20 De Septiembre', 
     'Achiras', 
     'Aero Club Canal', 
@@ -8032,7 +8038,8 @@ const countryData = {
     'Yuqueri', 
     'Zenon Roca', 
     'Zona Delta Del Parana',   ],
-  Formosa: [    '19 De Marzo', 
+  Formosa: [
+    '19 De Marzo', 
     '9 De Julio', 
     'Agente Argentino Alegre', 
     'Agente Felipe Santiago Ibañez', 
@@ -8580,7 +8587,8 @@ const countryData = {
     'Virasol', 
     'Yunca', 
     'Zorrilla Cue',   ],
-  Jujuy: [    '23 De Agosto', 
+  Jujuy: [
+    '23 De Agosto', 
     'Abdon Castro Tolay', 
     'Abra De Peñas', 
     'Abra De Pives', 
@@ -9258,7 +9266,8 @@ const countryData = {
     'Yoscaba', 
     'Yuto', 
     'Zapla',   ],
-  La Pampa: [    '25 De Mayo', 
+  'La Pampa': [
+    '25 De Mayo', 
     'Abramo', 
     'Adolfo Van Praet', 
     'Agua De Torre', 
@@ -9935,7 +9944,8 @@ const countryData = {
     'Zona Rural De Vertiz', 
     'Zona Rural Dorila', 
     'Zona Urbana Norte',   ],
-  La Rioja: [    'Abra Verde', 
+  'La Rioja': [
+    'Abra Verde', 
     'Adolfo E Carranza', 
     'Agua Blanca', 
     'Agua Colorada', 
@@ -10377,7 +10387,8 @@ const countryData = {
     'Villa Santa Rita', 
     'Villa Unión', 
     'Vinchina',   ],
-  Mendoza: [    '12 De Octubre', 
+  Mendoza: [
+    '12 De Octubre', 
     '25 De Mayo', 
     '3 De Mayo', 
     '9 De Julio', 
@@ -11822,7 +11833,8 @@ const countryData = {
     'Zanjón Amarillo', 
     'Zanon Canal', 
     'Zapata',   ],
-  Misiones: [    '1 De Mayo', 
+  Misiones: [
+    '1 De Mayo', 
     '17 De Agosto', 
     '2 De Abril', 
     '2 De Mayo', 
@@ -12326,7 +12338,8 @@ const countryData = {
     'Yacutinga', 
     'Yapeyu Centro', 
     'Yerbal Mamboreta',   ],
-  Neuquén: [    'Achico', 
+  Neuquén: [
+    'Achico', 
     'Agrio Balsa', 
     'Aguada Chacay Co', 
     'Aguada Florencio', 
@@ -12765,7 +12778,8 @@ const countryData = {
     'Zápala', 
     'Zingone Y Cia M', 
     'Zulemita',   ],
-  Río Negro: [    '6 De Octubre', 
+  'Río Negro': [
+    '6 De Octubre', 
     'Aguada Cecilio', 
     'Aguada De Guerra', 
     'Aguada De Los Pajaritos', 
@@ -13110,7 +13124,8 @@ const countryData = {
     'Villa Turismo', 
     'Yaminue', 
     'Yuquinche',   ],
-  Salta: [    '20 De Febrero', 
+  Salta: [
+    '20 De Febrero', 
     'Ablome', 
     'Abra De Araguyoc', 
     'Abra Del Gallo', 
@@ -14220,7 +14235,8 @@ const countryData = {
     'Zanja Honda', 
     'Zanjón', 
     'Zapallito',   ],
-  San Juan: [    '9 De Julio', 
+  'San Juan': [
+    '9 De Julio', 
     'Acerillos', 
     'Adán Quiroga', 
     'Aeropuerto San Juan', 
@@ -15053,7 +15069,8 @@ const countryData = {
     'Yoca', 
     'Zavalla', 
     'Zonda',   ],
-  San Luis: [    '11 De Mayo', 
+  'San Luis': [
+    '11 De Mayo', 
     '13 De Enero', 
     '20 De Febrero', 
     '3 Esquinas', 
@@ -16139,7 +16156,8 @@ const countryData = {
     'Volcán Estanzuela', 
     'Yacoro', 
     'Zampal',   ],
-  Santa Cruz: [    '28 De Noviembre', 
+  'Santa Cruz': [
+    '28 De Noviembre', 
     'Aguada A Pique', 
     'Aguada Alegre', 
     'Aguada Escondida', 
@@ -16349,7 +16367,8 @@ const countryData = {
     'Yacimiento Cerro Vanguardia', 
     'Yegua Muerta', 
     'Zanjón Del Pescado',   ],
-  Santa Fé: [    '29', 
+  'Santa Fé': [
+    '29', 
     '22 De Mayo', 
     '4 De Febrero', 
     'Aaron Castellanos', 
@@ -17310,7 +17329,8 @@ const countryData = {
     'Zanetti', 
     'Zavalla', 
     'Zenon Pereyra',   ],
-  Santiago Del Estero: [    '25 De Mayo', 
+  'Santiago Del Estero': [
+    '25 De Mayo', 
     '25 De Mayo De Barnegas', 
     '25 De Mayo Sud', 
     '3 De Marzo', 
@@ -19028,7 +19048,8 @@ const countryData = {
     'Zanjón', 
     'Zapi Pozo', 
     'Zorro Huarcuna',   ],
-  Tierra Del Fuego: [    'Aserradero Arroyo', 
+  'Tierra Del Fuego': [
+    'Aserradero Arroyo', 
     'Bahía Lapataia', 
     'Base Aérea Teniente Matienzo', 
     'Base Aérea Vicecomod Marambio', 
@@ -19124,7 +19145,8 @@ const countryData = {
     'Sección Avilés  Estancia San J', 
     'Tolhuin', 
     'Ushuaia',   ],
-  Tucumán: [    '25 De Mayo', 
+  Tucumán: [
+    '25 De Mayo', 
     '7 De Abril', 
     '9 De Julio', 
     'Abra Baya', 
