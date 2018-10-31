@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.5] - 2018-10-31
+
 ## [2.5.4] - 2018-10-30
 - Fix `geolocationAutoCompleteAddress` of `Map` component
 
