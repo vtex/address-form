@@ -2,7 +2,7 @@
 
 exports[`AddressSummary should format address according to rules 1`] = `
 <div
-  className="address-summary"
+  className="address-summary-BRA"
 >
   <span>
     <span
@@ -70,7 +70,7 @@ exports[`AddressSummary should format address according to rules 1`] = `
     </span>
   </span>
   <br
-    className="line3-delimiter"
+    className="line2-delimiter"
   />
   <span
     className="country"
@@ -82,7 +82,7 @@ exports[`AddressSummary should format address according to rules 1`] = `
 
 exports[`AddressSummary should format address according to rules 2`] = `
 <div
-  className="address-summary"
+  className="address-summary-USA"
 >
   <span>
     <span
@@ -152,7 +152,7 @@ exports[`AddressSummary should render gift list address 1`] = `
 
 exports[`AddressSummary should render using default if rules do not contain summary 1`] = `
 <div
-  className="address-summary"
+  className="address-summary-default"
 >
   <span>
     <span
