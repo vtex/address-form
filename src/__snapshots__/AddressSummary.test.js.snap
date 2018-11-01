@@ -35,7 +35,9 @@ exports[`AddressSummary should format address according to rules 1`] = `
       ap. 322
     </span>
   </span>
-  <br />
+  <br
+    className=".line1-delimiter"
+  />
   <span>
     <span
       className="neighborhood"
@@ -67,7 +69,9 @@ exports[`AddressSummary should format address according to rules 1`] = `
       RJ
     </span>
   </span>
-  <br />
+  <br
+    className=".line3-delimiter"
+  />
   <span
     className="country"
   >
@@ -99,7 +103,9 @@ exports[`AddressSummary should format address according to rules 2`] = `
       Suite 306
     </span>
   </span>
-  <br />
+  <br
+    className=".line1-delimiter"
+  />
   <span>
     <span
       className="city"
@@ -119,7 +125,9 @@ exports[`AddressSummary should format address according to rules 2`] = `
       CA
     </span>
   </span>
-  <br />
+  <br
+    className=".line2-delimiter"
+  />
   <span
     className="country"
   >
@@ -160,7 +168,9 @@ exports[`AddressSummary should render using default if rules do not contain summ
       2nd floor
     </span>
   </span>
-  <br />
+  <br
+    className=".line1-delimiter"
+  />
   <span>
     <span
       className="city"
@@ -180,7 +190,9 @@ exports[`AddressSummary should render using default if rules do not contain summ
       CA
     </span>
   </span>
-  <br />
+  <br
+    className=".line2-delimiter"
+  />
   <span>
     <span
       className="postalCode"
