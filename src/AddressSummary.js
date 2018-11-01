@@ -49,7 +49,7 @@ class AddressSummary extends Component {
     let lineCounter = 0
 
     return (
-      <div className={`address-summary-${country}`}>
+      <div className={`address-summary address-summary-${country}`}>
         {rules.summary
           .map((line, index) => [
             ...line.map((field, index, summary) => {
