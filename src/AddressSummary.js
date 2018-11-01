@@ -45,7 +45,6 @@ class AddressSummary extends Component {
         </a>
       </span>
     )
-    const LAST_LINE = 1
     let lineCounter = -1
 
     return (
@@ -86,17 +85,17 @@ class AddressSummary extends Component {
             null
           ))
           .reduce(
-            (summary, line) => {
-              lineCounter++
+            (summary, line, index) => {
+              lineCounter = index
               if (line == null) return summary
               else if (summary == null) return [line]
-              return [...summary, <br className={'.line' + lineCounter + '-delimiter'} key={summary.length} />, line]
+              return [...summary, <br className={'line' + index + '-delimiter'} key={summary.length} />, line]
             },
             null
           )}
         {showCountry &&
         rules.country && [
-          <br className={'.line' + (lineCounter + LAST_LINE) + '-delimiter'} key="break" />,
+          <br className={'line' + (lineCounter + 1) + '-delimiter'} key="break" />,
           (
             <span key="country" className="country">
             {this.props.intl.formatMessage({
