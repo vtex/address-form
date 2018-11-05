@@ -45,9 +45,11 @@ class AddressSummary extends Component {
         </a>
       </span>
     )
+    const country = rules.country ? rules.country : 'default'
+    let lineCounter = 0
 
     return (
-      <div className="address-summary">
+      <div className={`address-summary address-summary-${country}`}>
         {rules.summary
           .map((line, index) => [
             ...line.map((field, index, summary) => {
@@ -87,13 +89,14 @@ class AddressSummary extends Component {
             (summary, line) => {
               if (line == null) return summary
               else if (summary == null) return [line]
-              return [...summary, <br key={summary.length} />, line]
+              lineCounter++
+              return [...summary, <br className={'line' + lineCounter + '-delimiter'} key={summary.length} />, line]
             },
             null
           )}
         {showCountry &&
         rules.country && [
-          <br key="break" />,
+          <br className={'line' + (lineCounter + 1) + '-delimiter'} key="break" />,
           (
             <span key="country" className="country">
             {this.props.intl.formatMessage({
