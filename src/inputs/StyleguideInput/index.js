@@ -42,7 +42,7 @@ class StyleguideInput extends Component {
 
     if (field.name === 'postalCode') {
       return (
-        <div className="vtex-address-form__postalCode flex flex-row pb7">
+        <div className="vtex-address-form__postalCode flex-m flex-row pb7">
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -65,7 +65,7 @@ class StyleguideInput extends Component {
               <Spinner size={15} />
             </div>
           )}
-          <div className="pt6 flex-none">
+          <div className="pt6-m tc flex-none-m">
             <Button
               variation="tertiary"
               size="small"
