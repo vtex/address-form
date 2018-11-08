@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Fix "Dont know postal code" in mobile
+
 ## [2.5.6] - 2018-11-05
 
 ## [2.5.5] - 2018-10-31
@@ -17,7 +20,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.5.3] - 2018-10-08
 
 ## [2.5.2] - 2018-10-03
-
 ## [2.5.1] - 2018-10-03
 
 ## [2.5.0] - 2018-10-02
