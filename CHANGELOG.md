@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Improve app performance
+
 ## [2.5.7] - 2018-11-08
 
 ### Fixed
