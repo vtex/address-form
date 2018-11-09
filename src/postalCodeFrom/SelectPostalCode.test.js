@@ -18,7 +18,7 @@ describe('SelectPostalCode', () => {
     }
   }
 
-  it('should render InputFieldContainer with the right props', () => {
+  it('should render PureInput with the right props', () => {
     const wrapper = shallow(
       <SelectPostalCode
         Input={MockInput}
@@ -28,7 +28,7 @@ describe('SelectPostalCode', () => {
       />
     )
 
-    const props = wrapper.find('InputFieldContainer').props()
+    const props = wrapper.find('PureInput').props()
 
     expect(props).toMatchObject({
       address,
@@ -38,7 +38,7 @@ describe('SelectPostalCode', () => {
     })
   })
 
-  it('should render InputFieldContainer with options with postal codes', () => {
+  it('should render PureInput with options with postal codes', () => {
     const firstLevelOptions = useOneLevel.firstLevelPostalCodes.map(
       ({ label, postalCode }) => ({
         value: `${label}___${postalCode}`,
@@ -55,7 +55,7 @@ describe('SelectPostalCode', () => {
       />
     )
 
-    const props = wrapper.find('InputFieldContainer').props()
+    const props = wrapper.find('PureInput').props()
 
     expect(props).toMatchObject({
       address,
@@ -65,7 +65,7 @@ describe('SelectPostalCode', () => {
     })
   })
 
-  it('should render InputFieldContainer with address with postal-code-defining-field with postal code appended to its value', () => {
+  it('should render PureInput with address with postal-code-defining-field with postal code appended to its value', () => {
     const wrapper = shallow(
       <SelectPostalCode
         Input={MockInput}
@@ -79,7 +79,7 @@ describe('SelectPostalCode', () => {
       />
     )
 
-    const props = wrapper.find('InputFieldContainer').props()
+    const props = wrapper.find('PureInput').props()
 
     expect(props.address.state).toMatchObject({
       value: 'Bolivar___0001',
