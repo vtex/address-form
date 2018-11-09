@@ -35,7 +35,7 @@ describe('PostalCodeGetter', () => {
       .dive()
       .dive()
 
-    expect(wrapper.find('InputFieldContainer')).toHaveLength(1)
+    expect(wrapper.find('PureInput')).toHaveLength(1)
   })
 
   it('render OneLevel', () => {

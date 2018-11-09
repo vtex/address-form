@@ -8,6 +8,7 @@ import {
 } from './selectors/fields'
 import reduce from 'lodash/reduce'
 import msk from 'msk'
+import pureInputField from './pureInputField'
 
 class InputFieldContainer extends Component {
   clearDependentFields(address, dependentFields) {
@@ -146,4 +147,4 @@ InputFieldContainer.propTypes = {
   shouldShowNumberKeyboard: PropTypes.bool,
 }
 
-export default InputFieldContainer
+export default pureInputField(InputFieldContainer)

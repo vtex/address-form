@@ -1,6 +1,6 @@
 {
   "name": "@vtex/address-form",
-  "version": "2.5.7",
+  "version": "2.5.8",
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
@@ -73,6 +73,7 @@
     "address"
   ],
   "jest": {
+    "testURL": "http://localhost/",
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
     "testPathIgnorePatterns": [
       "/node_modules/",

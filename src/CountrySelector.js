@@ -25,6 +25,22 @@ class CountrySelector extends Component {
     })
   }
 
+  shouldComponentUpdate(prevProps) {
+    if (prevProps.address.country.value !== this.props.address.country.value) {
+      return true
+    }
+
+    if (prevProps.Input !== this.props.Input) {
+      return true
+    }
+
+    if (prevProps.shipsTo !== this.props.shipsTo) {
+      return true
+    }
+
+    return false
+  }
+
   sortOptionsByLabel(options) {
     return options.slice().sort((a, b) => a.label.localeCompare(b.label))
   }

@@ -13,3 +13,6 @@ phases:
       - echo Running tests...
       - npm run test
       - echo Tests finished!
+cache:
+  paths:
+    - 'node_modules/**/*'
