@@ -73,6 +73,7 @@
     "address"
   ],
   "jest": {
+    "testURL": "http://localhost/",
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
     "testPathIgnorePatterns": [
       "/node_modules/",
