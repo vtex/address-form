@@ -1,0 +1,17 @@
+.git/
+.eslintrc
+.gitignore
+package.json
+README.md
+CHANGELOG.md
+node_modules/
+react/node_modules
+react/coverage
+react/.vscode
+react/__tests__
+react/.babelrc
+react/.eslintrc
+react/setupTests.js
+**/__tests__/**
+lib/
+**/**.test.js

@@ -8,9 +8,6 @@ export { default as AutoCompletedFields } from './AutoCompletedFields'
 export { default as AddressRules } from './AddressRules'
 export { default as AddressSubmitter } from './AddressSubmitter'
 
-// Constants
-export { default as constants } from './constants'
-
 // Helper Functions
 export { addValidation, removeValidation } from './transforms/address'
 export { isValidAddress, validateField } from './validateAddress'

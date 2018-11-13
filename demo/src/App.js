@@ -13,16 +13,16 @@ import {
   AddressSubmitter,
   addValidation,
   removeValidation,
-} from '../../src/index'
+} from '../../react/index'
 
 import {
   GeolocationInput,
   GoogleMapsContainer,
   Map,
-} from '../../src/geolocation/index'
+} from '../../react/geolocation/index'
 
 import Button from '@vtex/styleguide/lib/Button'
-import StyleguideInput from '../../src/inputs/StyleguideInput'
+import StyleguideInput from '../../react/inputs/StyleguideInput'
 
 import 'vtex-tachyons'
 
@@ -90,7 +90,7 @@ class App extends Component {
         <div className="step" style={{ padding: '20px' }}>
           <AddressRules
             country={cleanAddress.country}
-            fetch={country => import('../../src/country/' + country)}
+            fetch={country => import('../../react/country/' + country)}
           >
             <AddressSummary address={cleanAddress} />
           </AddressRules>
@@ -102,7 +102,7 @@ class App extends Component {
       <div className="step" style={{ padding: '20px' }}>
         <AddressRules
           country={cleanAddress.country}
-          fetch={country => import('../../src/country/' + country)}
+          fetch={country => import('../../react/country/' + country)}
         >
           <AddressContainer
             accountName={accountName}

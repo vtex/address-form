@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AddressSummary from '../../src/AddressSummary'
-import AddressRules from '../../src/AddressRules'
+import AddressSummary from '../../react/AddressSummary'
+import AddressRules from '../../react/AddressRules'
 
 class RulesApp extends Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class RulesApp extends Component {
         <div className="mt8">
           <AddressRules
             country={country}
-            fetch={country => import('../../src/country/' + country)}
+            fetch={country => import('../../react/country/' + country)}
           >
             <AddressSummary address={address} />
           </AddressRules>

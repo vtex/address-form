@@ -10,13 +10,15 @@
     "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
     "build:link": "npm link && watch 'npm run build' src",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
-    "addLocales": "cp -R -f src/locales/ lib/locales/",
+    "addLocales": "cp -R -f react/locales/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
+    "symlink": "ln -s react src",
+    "symlink:remove": "rm -rf src",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run symlink:remove && npm run symlink && npm run build && npm run symlink:remove",
     "postreleasy": "npm publish --access public"
   },
   "dependencies": {
@@ -74,7 +76,7 @@
   ],
   "jest": {
     "testURL": "http://localhost/",
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/react/setupTests.js",
     "testPathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/es/",
