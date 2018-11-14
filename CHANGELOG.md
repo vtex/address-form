@@ -7,14 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Transpose library to VTEX IO scaffolding and configuration
+- Add `Shapes`, `helpers`, `components` and `inputs` exports to be imported by vtex io components
+
 ## [2.5.8] - 2018-11-09
 
 ### Fixed
+
 - Improve app performance
 
 ## [2.5.7] - 2018-11-08
 
 ### Fixed
+
 - Fix "Dont know postal code" in mobile
 
 ## [2.5.6] - 2018-11-05
@@ -22,14 +27,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.5.5] - 2018-10-31
 
 ## [2.5.4] - 2018-10-30
+
 - Fix `geolocationAutoCompleteAddress` of `Map` component
 
 ## [2.5.3] - 2018-10-08
 
 ## [2.5.2] - 2018-10-03
+
 ## [2.5.1] - 2018-10-03
 
 ## [2.5.0] - 2018-10-02
+
 - Add France validation rules
 
 ## [2.4.0] - 2018-09-26
@@ -37,16 +45,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.3.0] - 2018-09-13
 
 ### Added
+
 - Add support to new separator of multiple options of Postal Code service
 
 ## [2.2.0] - 2018-08-29
 
 ### Added
+
 - Add Romanian translation
 
 ## [2.1.1] - 2018-08-24
 
 ### Fixed
+
 - Fix `shouldComponentUpdate` of `Map` component
 
 ## [2.1.0] - 2018-08-22
