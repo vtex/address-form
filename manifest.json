@@ -7,9 +7,7 @@
   "defaultLocale": "en",
   "mustUpdateAt": "2019-01-08",
   "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "settingsSchema": {},
   "dependencies": {
     "vtex.checkout": "0.x",
@@ -19,6 +17,6 @@
     "react": "2.x"
   },
   "scripts": {
-    "postreleasy": "vtex publish --public"
+    "postreleasy": "vtex publish --public && npm publish"
   }
 }
