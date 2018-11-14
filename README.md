@@ -4,8 +4,30 @@
 
 ## Setup
 
+Through **NPM**:
+
 ```sh
 $ npm install @vtex/address-form
+```
+
+```js
+import AddressContainer from '@vtex/address-form/AddressContainer'
+```
+
+Through **vtex.io**:
+
+Add `vtex.address-form` to your `manifest.json` dependencies
+
+```js
+import { AddressContainer } from 'vtex.address-form'
+```
+
+Helper functions are properties of the `helpers` import
+
+```js
+import { helpers } from 'vtex.address-form'
+
+const { addValidation } = helpers
 ```
 
 ## API
@@ -374,7 +396,6 @@ AddressSubmitter.propTypes = {
   )}
 </AddressSubmitter>
 ```
-
 
 ## Geolocation Components
 

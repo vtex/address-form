@@ -1,0 +1,61 @@
+{
+  "name": "@vtex/address-form",
+  "version": "2.5.8",
+  "description": "address-form React component",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@vtex/styleguide": "^5.6.2",
+    "axios": "^0.16.2",
+    "classnames": "^2.2.5",
+    "load-google-maps-api": "^1.0.0",
+    "lodash": "^4.17.4",
+    "msk": "1.0.3",
+    "recompose": "^0.27.1"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.10",
+    "react": "15.x || 16.x",
+    "react-intl": "^2.4.0",
+    "vtex-tachyons": "^2.5.0"
+  },
+  "author": "Breno Calazans (@klzns)",
+  "homepage": "https://github.com/vtex/address-form",
+  "license": "AGPL-3.0-only",
+  "repository": "https://github.com/vtex/address-form",
+  "keywords": [
+    "react-component",
+    "vtex",
+    "checkout",
+    "address"
+  ],
+  "jest": {
+    "testURL": "http://localhost/",
+    "setupTestFrameworkScriptFile": "<rootDir>/react/setupTests.js",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/es/",
+      "<rootDir>/lib/",
+      "<rootDir>/umd/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]es[/\\\\].+\\.(js|jsx)$",
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.js$": "<rootDir>/jest.transform.js"
+    }
+  }
+}

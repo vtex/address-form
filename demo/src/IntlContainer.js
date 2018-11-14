@@ -5,7 +5,7 @@ import reduce from 'lodash/reduce'
 import { getISOAlpha3 } from './countryISO'
 
 import enLocaleData from 'react-intl/locale-data/en'
-import enAdressFormTranslations from '../../src/locales/en.json'
+import enAdressFormTranslations from '../../react/locales/en.json'
 import enCountryCodeTranslations from 'i18n-iso-countries/langs/en.json'
 
 addLocaleData(enLocaleData)
@@ -61,8 +61,8 @@ class IntlContainer extends Component {
 
   importTranslations(baseLocale, locale) {
     return Promise.all([
-      import('../../src/locales/' + baseLocale),
-      import('../../src/locales/' + locale),
+      import('../../react/locales/' + baseLocale),
+      import('../../react/locales/' + locale),
     ])
       .then(([baseTranslation, translation]) => {
         return {
@@ -74,7 +74,7 @@ class IntlContainer extends Component {
         const module = this.couldNotFindModuleError(e)
         if (!module) return Promise.reject(e)
 
-        return import('../../src/locales/' + baseLocale)
+        return import('../../react/locales/' + baseLocale)
       })
   }
 
