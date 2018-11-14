@@ -15,3 +15,4 @@ react/setupTests.js
 **/__tests__/**
 lib/
 **/**.test.js
+demo/

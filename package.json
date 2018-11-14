@@ -12,7 +12,7 @@
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
     "addLocales": "cp -R -f react/locales/ lib/locales/",
     "clean": "nwb clean-module && nwb clean-demo",
-    "start": "nwb serve-react-demo",
+    "start": "npm run symlink:remove && npm run symlink && nwb serve-react-demo",
     "symlink": "ln -s react src",
     "symlink:remove": "rm -rf src",
     "test": "jest --env=jsdom",
