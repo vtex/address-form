@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.0] - 2018-11-14
+
 - Transpose library to VTEX IO scaffolding and configuration
 - Add `Shapes`, `helpers`, `components` and `inputs` exports to be imported by vtex io components
 
