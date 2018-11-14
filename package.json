@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
+    "build:symlinks": "npm run symlink:remove && npm run symlink && npm run build && npm run symlink:remove",
     "build:link": "npm link && watch 'npm run build' src",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
     "addLocales": "cp -R -f react/locales/ lib/locales/",
@@ -18,7 +19,7 @@
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
-    "prepublishOnly": "npm run symlink:remove && npm run symlink && npm run build && npm run symlink:remove",
+    "prepublishOnly": "npm run build:symlinks",
     "postreleasy": "npm publish --access public"
   },
   "dependencies": {
