@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.1] - 2018-11-14
+
+- Add VTEX IO fetching to `AddressRules` component
+
 ## [3.0.0] - 2018-11-14
 
 - Transpose library to VTEX IO scaffolding and configuration
