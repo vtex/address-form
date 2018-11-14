@@ -24,32 +24,35 @@ class AddressRules extends Component {
   }
 
   updateRules() {
-    const { country, fetch } = this.props
+    const { shouldUseIOFetching, fetch, country } = this.props
 
-    return fetch(country)
-      .then(ruleData => {
-        const rules = ruleData.default || ruleData
+    const rulePromise = shouldUseIOFetching
+      ? import(`./country/${country}`)
+      : fetch(country)
+    return this.fetchRules(rulePromise)
+  }
 
-        this.setState({ rules })
-        return rules
-      })
-      .catch(error => {
-        const errorType = this.parseError(error)
-        if (errorType) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.warn(
-              `Couldn't load rules for country ${errorType}, using default rules instead.`,
-            )
-          }
-          this.setState({
-            rules: defaultRules,
-          })
-          return defaultRules
-        }
+  async fetchRules(rulePromise) {
+    try {
+      const ruleData = await rulePromise
+      const rules = ruleData.default || ruleData
+      this.setState({ rules })
+      return rules
+    } catch (error) {
+      const errorType = this.parseError(error)
+      if (errorType) {
         if (process.env.NODE_ENV !== 'production') {
-          console.warn('An unknown error occurred.')
+          console.warn(
+            `Couldn't load rules for country ${errorType}, using default rules instead.`,
+          )
         }
-      })
+        this.setState({ rules: defaultRules })
+        return defaultRules
+      }
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('An unknown error occurred.')
+      }
+    }
   }
 
   parseError(e) {
@@ -72,7 +75,9 @@ class AddressRules extends Component {
 AddressRules.propTypes = {
   children: PropTypes.any.isRequired,
   country: PropTypes.string.isRequired,
-  fetch: PropTypes.func.isRequired,
+  fetch: PropTypes.func,
+  /** Whether to use IO built-in file fetching */
+  shouldUseIOFetching: PropTypes.bool,
 }
 
 export default AddressRules
