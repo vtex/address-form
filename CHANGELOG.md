@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Add `GeolocationInput` to inputs for io imports
+- Add `GoogleMapsContainer` and `Map` to components for io imports
+
 ## [3.0.1] - 2018-11-14
 
 - Add VTEX IO fetching to `AddressRules` component
