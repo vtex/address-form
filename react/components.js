@@ -7,15 +7,19 @@ import AutoCompletedFields from './AutoCompletedFields'
 import AddressRules from './AddressRules'
 import AddressSubmitter from './AddressSubmitter'
 import PostalCodeLoader from './postalCodeFrom/PostalCodeLoader'
+import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
+import Map from './geolocation/Map'
 
 export default {
-  CountrySelector,
-  AddressForm,
-  AddressSummary,
-  PostalCodeGetter,
   AddressContainer,
-  AutoCompletedFields,
+  AddressForm,
   AddressRules,
   AddressSubmitter,
+  AddressSummary,
+  AutoCompletedFields,
+  CountrySelector,
+  GoogleMapsContainer,
+  Map,
+  PostalCodeGetter,
   PostalCodeLoader,
 }
