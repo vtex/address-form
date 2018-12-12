@@ -18,9 +18,12 @@ class Input extends Component {
       inputRef,
       intl,
       shouldShowNumberKeyboard,
+      disabled,
+      value,
     } = this.props
-    const loading = !!address[field.name].loading
-    const disabled = !!address[field.name].disabled
+
+    const loading = disabled || !!address[field.name].loading
+    const disabledInput = disabled || !!address[field.name].disabled
     const valid = address[field.name].valid
 
     if (field.name === 'postalCode') {
@@ -36,6 +39,7 @@ class Input extends Component {
             disabled={loading}
             inputRef={inputRef}
             type={shouldShowNumberKeyboard ? 'tel' : 'text'}
+            value={value}
           />
           {loading && <PostalCodeLoader />}
           {field.forgottenURL && (
@@ -70,6 +74,7 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={loading}
             inputRef={inputRef}
+            value={value}
           />
           {loading && <PostalCodeLoader />}
           {valid === false ? (
@@ -88,8 +93,9 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
-            disabled={disabled}
+            disabled={disabledInput}
             inputRef={inputRef}
+            value={value}
           />
         ) : (
           <InputText
@@ -103,8 +109,9 @@ class Input extends Component {
                 : null
             }
             onBlur={this.props.onBlur}
-            disabled={disabled}
+            disabled={disabledInput}
             inputRef={inputRef}
+            value={value}
           />
         )}
         {valid === false ? (
@@ -131,6 +138,8 @@ Input.propTypes = {
   inputRef: PropTypes.func,
   intl: intlShape,
   shouldShowNumberKeyboard: PropTypes.bool,
+  disabled: PropTypes.bool,
+  value: PropTypes.string,
 }
 
 export default injectIntl(Input)

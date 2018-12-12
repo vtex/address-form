@@ -108,6 +108,8 @@ class InputFieldContainer extends Component {
       options,
       rules,
       shouldShowNumberKeyboard,
+      disabled,
+      value,
     } = this.props
 
     const _options =
@@ -126,6 +128,8 @@ class InputFieldContainer extends Component {
         onBlur={this.bindOnBlur()}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
+        disabled={disabled}
+        value={value}
       />
     )
   }
@@ -145,6 +149,8 @@ InputFieldContainer.propTypes = {
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,
   shouldShowNumberKeyboard: PropTypes.bool,
+  disabled: PropTypes.bool,
+  value: PropTypes.string,
 }
 
 export default pureInputField(InputFieldContainer)

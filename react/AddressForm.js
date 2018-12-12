@@ -12,8 +12,32 @@ import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 import { injectRules } from './addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
+import GeolocationNumberForm from './GeolocationNumberForm'
 
 class AddressForm extends Component {
+
+  handleChecked = () => {
+    const {
+      onNumberInputChange,
+      isNumberInputEnabled,
+    } = this.props
+
+    onNumberInputChange(!isNumberInputEnabled)
+  }
+
+  bindOnChange = () => {
+    const { address, onChangeAddress } = this.props
+    return () => {
+      onChangeAddress({
+        ['number']: {
+          ...address['number'],
+          value: !address['number'].disabled ? ' ' : '',
+          disabled: !address['number'].disabled,
+        },
+      })
+    }
+  }
+
   render() {
     const {
       address,
@@ -22,6 +46,8 @@ class AddressForm extends Component {
       Input,
       omitPostalCodeFields,
       omitAutoCompletedFields,
+      geolocation,
+      isNumberInputEnabled,
     } = this.props
 
     let fields = omitPostalCodeFields
@@ -33,9 +59,9 @@ class AddressForm extends Component {
       : fields
 
     return (
-      <div>
+      <div className="flex items-center">
         {fields.map(
-          field =>
+          (field, index) =>
             isDefiningPostalCodeField(field.name, rules) ? (
               <SelectPostalCode
                 Input={Input}
@@ -43,15 +69,32 @@ class AddressForm extends Component {
                 address={address}
                 onChangeAddress={onChangeAddress}
               />
-            ) : (
-              <InputFieldContainer
-                key={field.name}
-                Input={Input}
-                field={field}
+            ) : index === 0 && geolocation && fields.length > 3 ? (
+              <GeolocationNumberForm
+                key={index}
+                testeIndex={this.bindOnChange()}
                 address={address}
                 rules={rules}
+                field={field}
                 onChangeAddress={onChangeAddress}
-              />
+                Input={Input}
+                omitPostalCodeFields={omitPostalCodeFields}
+                omitAutoCompletedFields={omitAutoCompletedFields}
+                geolocation={geolocation}
+                isNumberInputEnabled={isNumberInputEnabled}
+
+                />
+            ) : (
+              <div key={index}>
+                <InputFieldContainer
+                  key={field.name}
+                  Input={Input}
+                  field={field}
+                  address={address}
+                  rules={rules}
+                  onChangeAddress={onChangeAddress}
+          />
+              </div>
             ),
         )}
       </div>
@@ -63,15 +106,19 @@ AddressForm.defaultProps = {
   omitPostalCodeFields: true,
   omitAutoCompletedFields: true,
   Input: DefaultInput,
+  isNumberInputEnabled: false,
 }
 
 AddressForm.propTypes = {
   Input: PropTypes.func,
   address: AddressShapeWithValidation,
+  onNumberInputChange: PropTypes.func,
   omitPostalCodeFields: PropTypes.bool,
   omitAutoCompletedFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
+  geolocation: PropTypes.bool,
+  isNumberInputEnabled: PropTypes.bool,
 }
 
 const enhance = compose(
