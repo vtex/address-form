@@ -130,6 +130,7 @@ class InputFieldContainer extends Component {
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
         disabled={disabled}
         value={value}
+        onFocus={onNumberInputFocus}
       />
     )
   }
@@ -148,6 +149,7 @@ InputFieldContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,
+  onNumberInputFocus: PropTypes.func,
   shouldShowNumberKeyboard: PropTypes.bool,
   disabled: PropTypes.bool,
   value: PropTypes.string,

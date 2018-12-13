@@ -18,6 +18,7 @@ class InputText extends Component {
       type,
       autoFocus,
       value,
+      onFocus,
     } = this.props
     
     const id = this.props.id.replace('{{fieldName}}', field.name)
@@ -42,6 +43,7 @@ class InputText extends Component {
         value={fieldValue.value || value || ''}
         placeholder={placeholder}
         onBlur={this.props.onBlur}
+        onFocus={onFocus}
         onChange={this.handleChange}
         className={className}
         disabled={fieldDisabled || disabled}
@@ -73,6 +75,7 @@ InputText.propTypes = {
   placeholder: PropTypes.string,
   inputRef: PropTypes.func,
   value: PropTypes.string,
+  onFocus: PropTypes.func,
 }
 
 export default InputText

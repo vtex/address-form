@@ -16,6 +16,7 @@ class GeolocationNumberForm extends Component {
       rules,
       field,
       onChangeAddress,
+      onNumberInputFocus,
       Input,
     } = this.props
 
@@ -31,6 +32,7 @@ class GeolocationNumberForm extends Component {
               address={address}
               rules={rules}
               onChangeAddress={onChangeAddress}
+              onNumberInputFocus={onNumberInputFocus}
             />
             <div className="flex" style={{display: 'flex', margin: '10px'}}>
               <input
@@ -94,6 +96,7 @@ GeolocationNumberForm.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
   geolocation: PropTypes.bool,
   isNumberInputEnabled: PropTypes.bool,
+  onNumberInputFocus: PropTypes.func,
 }
 
 const enhance = compose(

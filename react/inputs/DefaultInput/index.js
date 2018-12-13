@@ -20,6 +20,7 @@ class Input extends Component {
       shouldShowNumberKeyboard,
       disabled,
       value,
+      onFocus,
     } = this.props
 
     const loading = disabled || !!address[field.name].loading
@@ -135,6 +136,7 @@ Input.propTypes = {
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
   inputRef: PropTypes.func,
   intl: intlShape,
   shouldShowNumberKeyboard: PropTypes.bool,

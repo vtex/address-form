@@ -39,6 +39,7 @@ class AddressForm extends Component {
       omitAutoCompletedFields,
       geolocation,
       isNumberInputEnabled,
+      onNumberInputFocus,
     } = this.props
 
     let fields = omitPostalCodeFields
@@ -73,6 +74,7 @@ class AddressForm extends Component {
                 omitAutoCompletedFields={omitAutoCompletedFields}
                 geolocation={geolocation}
                 isNumberInputEnabled={isNumberInputEnabled}
+                onNumberInputFocus={onNumberInputFocus}
 
                 />
             ) : (
@@ -110,6 +112,7 @@ AddressForm.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
   geolocation: PropTypes.bool,
   isNumberInputEnabled: PropTypes.bool,
+  onNumberInputFocus: PropTypes.func,
 }
 
 const enhance = compose(
