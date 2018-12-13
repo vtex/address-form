@@ -16,22 +16,13 @@ import GeolocationNumberForm from './GeolocationNumberForm'
 
 class AddressForm extends Component {
 
-  handleChecked = () => {
-    const {
-      onNumberInputChange,
-      isNumberInputEnabled,
-    } = this.props
-
-    onNumberInputChange(!isNumberInputEnabled)
-  }
-
   bindOnChange = () => {
     const { address, onChangeAddress } = this.props
     return () => {
       onChangeAddress({
         ['number']: {
           ...address['number'],
-          value: !address['number'].disabled ? ' ' : '',
+          value: !address['number'].disabled ? 'N/A' : '',
           disabled: !address['number'].disabled,
         },
       })

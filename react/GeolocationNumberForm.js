@@ -9,18 +9,7 @@ import { injectAddressContext } from './addressContainerContext'
 
 class GeolocationNumberForm extends Component {
 
-  handleChecked = () => {
-    const {
-      onNumberInputChange,
-      isNumberInputEnabled,
-    } = this.props
-
-    onNumberInputChange(!isNumberInputEnabled)
-  }
-
-
   render() {
-    console.log('RENDERIZEEEEI')
     const {
       testeIndex,
       address,
@@ -28,9 +17,8 @@ class GeolocationNumberForm extends Component {
       field,
       onChangeAddress,
       Input,
-      isNumberInputEnabled,
     } = this.props
-    console.log(`address['number'].disabled`, address['number'].disabled)
+
     const checked = !!address['number'].disabled
     return (
       <div className="flex items-center">
@@ -77,7 +65,7 @@ class GeolocationNumberForm extends Component {
                   />
                 </div>
                 <div className="flex" style={{display: 'flex', alignItems: 'center', alignContent: 'center', marginTop: '5px'}}>
-                  Sem núme
+                  Sem número
                   </div>
               </div>
 

@@ -142,7 +142,7 @@ class GeolocationInput extends Component {
       autoFocus,
     } = this.props
     const { address, isValidGoogleAddress } = this.state
-
+    console.log('OIEEEEEN ENTREI AQUI')
     const newAddress = {
       ...address,
       addressQuery: {
