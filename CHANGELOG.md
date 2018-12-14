@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Add `ROU` and `GBR` validations
+
 ## [3.0.2] - 2018-11-26
 
 - Add `GeolocationInput` to inputs for io imports
