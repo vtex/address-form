@@ -43,6 +43,7 @@
   "address-form.field.neighborhood": "Cartier",
   "address-form.field.commercial": "Adresă comerciala",
   "address-form.field.city": "Oraș",
+  "address-form.field.town": "Oraș",
   "address-form.field.locality": "Localitate",
   "address-form.field.state": "Județ",
   "address-form.field.region": "Regiune",
@@ -54,5 +55,6 @@
   "address-form.field.delegation": "Delegație",
   "address-form.field.municipalityDelegation": "Municipalitate/Delegație",
   "address-form.field.province": "Provincie",
-  "address-form.field.receiverName": "Destinatar"
+  "address-form.field.receiverName": "Destinatar",
+  "address-form.field.county": "Județ"
 }

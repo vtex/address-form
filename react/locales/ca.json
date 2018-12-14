@@ -28,7 +28,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adreça no válida.",
   "address-form.error.generic": "Camp no válid.",
 
-  "address-form.field.country": "País",  
+  "address-form.field.country": "País",
   "address-form.field.postalCode": "Codi postal",
   "address-form.field.street": "Carrer",
   "address-form.field.addressLine1": "Adreça Línia 1",
@@ -43,6 +43,7 @@
   "address-form.field.neighborhood": "Barri",
   "address-form.field.commercial": "Adreça professional",
   "address-form.field.city": "Ciutat",
+  "address-form.field.town": "Poble",
   "address-form.field.locality": "Població",
   "address-form.field.state": "Estat",
   "address-form.field.region": "Regió",
@@ -54,5 +55,6 @@
   "address-form.field.delegation": "Delegació",
   "address-form.field.municipalityDelegation": "Delegació municipal",
   "address-form.field.province": "Província",
-  "address-form.field.receiverName": "Destinatari"
+  "address-form.field.receiverName": "Destinatari",
+  "address-form.field.county": "Comtat"
 }

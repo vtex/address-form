@@ -43,6 +43,7 @@
   "address-form.field.neighborhood": "Bairro",
   "address-form.field.commercial": "Endereço comercial",
   "address-form.field.city": "Cidade",
+  "address-form.field.town": "Cidade",
   "address-form.field.locality": "Localidade",
   "address-form.field.state": "Estado",
   "address-form.field.region": "Região",
@@ -54,5 +55,6 @@
   "address-form.field.delegation": "Delegação",
   "address-form.field.municipalityDelegation": "Municipalidade/Delegação",
   "address-form.field.province": "Província",
-  "address-form.field.receiverName": "Destinatário"
+  "address-form.field.receiverName": "Destinatário",
+  "address-form.field.county": "Condado"
 }
