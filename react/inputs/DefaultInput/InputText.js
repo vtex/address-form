@@ -20,7 +20,7 @@ class InputText extends Component {
       value,
       onFocus,
     } = this.props
-    
+
     const id = this.props.id.replace('{{fieldName}}', field.name)
     const fieldValue = address[field.name]
     const fieldDisabled = address[field.name].disabled
@@ -31,7 +31,7 @@ class InputText extends Component {
       success: !loading && fieldValue.valid === true,
       error: fieldValue.valid === false,
     })
-    console.log('fieldDisabled || disabled', fieldDisabled, disabled)
+
     return (
       <input
         autoFocus={autoFocus}

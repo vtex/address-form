@@ -15,12 +15,11 @@ import { injectAddressContext } from './addressContainerContext'
 import GeolocationNumberForm from './GeolocationNumberForm'
 
 class AddressForm extends Component {
-
   bindOnChange = () => {
     const { address, onChangeAddress } = this.props
     return () => {
       onChangeAddress({
-        ['number']: {
+        'number': {
           ...address['number'],
           value: !address['number'].disabled ? 'N/A' : '',
           disabled: !address['number'].disabled,
@@ -39,6 +38,7 @@ class AddressForm extends Component {
       omitAutoCompletedFields,
       geolocation,
       isNumberInputEnabled,
+      onNumberInputChange,
       onNumberInputFocus,
     } = this.props
 
@@ -49,6 +49,10 @@ class AddressForm extends Component {
     fields = omitAutoCompletedFields
       ? filterAutoCompletedFields({ fields }, address)
       : fields
+
+    if (fields.length <= 3) {
+      onNumberInputChange()
+    }
 
     return (
       <div className="flex items-center">
@@ -76,7 +80,7 @@ class AddressForm extends Component {
                 isNumberInputEnabled={isNumberInputEnabled}
                 onNumberInputFocus={onNumberInputFocus}
 
-                />
+              />
             ) : (
               <div key={index}>
                 <InputFieldContainer
@@ -86,7 +90,7 @@ class AddressForm extends Component {
                   address={address}
                   rules={rules}
                   onChangeAddress={onChangeAddress}
-          />
+                />
               </div>
             ),
         )}

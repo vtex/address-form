@@ -41,6 +41,7 @@ class Input extends Component {
             inputRef={inputRef}
             type={shouldShowNumberKeyboard ? 'tel' : 'text'}
             value={value}
+            onFocus={onFocus}
           />
           {loading && <PostalCodeLoader />}
           {field.forgottenURL && (
@@ -57,7 +58,7 @@ class Input extends Component {
       )
     }
 
-    if (field.name === 'addressQuery') {
+    if (field.name === '') {
       return (
         <InputLabel field={field}>
           <InputText
@@ -76,6 +77,7 @@ class Input extends Component {
             disabled={loading}
             inputRef={inputRef}
             value={value}
+            onFocus={onFocus}
           />
           {loading && <PostalCodeLoader />}
           {valid === false ? (
@@ -84,7 +86,7 @@ class Input extends Component {
         </InputLabel>
       )
     }
-
+    console.log('Passei disso tudo')
     return (
       <InputLabel field={field}>
         {options ? (
@@ -97,6 +99,7 @@ class Input extends Component {
             disabled={disabledInput}
             inputRef={inputRef}
             value={value}
+            onFocus={onFocus}
           />
         ) : (
           <InputText
@@ -113,6 +116,7 @@ class Input extends Component {
             disabled={disabledInput}
             inputRef={inputRef}
             value={value}
+            onFocus={onFocus}
           />
         )}
         {valid === false ? (

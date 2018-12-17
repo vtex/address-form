@@ -110,6 +110,7 @@ class InputFieldContainer extends Component {
       shouldShowNumberKeyboard,
       disabled,
       value,
+      onNumberInputFocus,
     } = this.props
 
     const _options =
