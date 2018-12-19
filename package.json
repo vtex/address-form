@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
-    "build:symlinks": "npm run symlink:remove && npm run symlink && npm run build && npm run symlink:remove",
+    "build:symlinks": "npm run symlink:remove && npm run symlink:remove-locales && npm run symlink && npm run symlink:locales && npm run build &&  npm run symlink:remove-locales && npm run symlink:remove",
     "build:link": "npm link && watch 'npm run build' src",
     "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
     "addLocales": "cp -R -f react/locales/ lib/locales/",
@@ -16,6 +16,8 @@
     "start": "npm run symlink:remove && npm run symlink && nwb serve-react-demo",
     "symlink": "ln -s react src",
     "symlink:remove": "rm -rf src",
+    "symlink:locales": "cd react/ && ln -s ../messages locales && cd ..",
+    "symlink:remove-locales": "rm -rf react/locales",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
@@ -40,8 +42,9 @@
   "devDependencies": {
     "babel-eslint": "7",
     "babel-jest": "^20.0.3",
-    "babel-preset-react-app": "^3.0.1",
     "babel-plugin-add-react-displayname": "^0.0.5",
+    "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
+    "babel-preset-react-app": "^3.0.1",
     "enzyme": "^3.4.1",
     "enzyme-adapter-react-16": "^1.2.0",
     "enzyme-to-json": "^3.3.4",
