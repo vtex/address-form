@@ -15,6 +15,7 @@ export default {
     {
       name: 'postalCode',
       maxLength: 50,
+      label: 'postalCode',
       required: true,
       mask: '',
       regex: /^([A-Za-z][A-Ha-hJ-Yj-y]?[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$/,
@@ -87,7 +88,7 @@ export default {
     },
     street: {
       valueIn: 'long_name',
-      types: ["route", "street_address"],
+      types: ['route', 'street_address'],
       required: false,
       handler: (address, googleAddress) => {
         address.street = { value: googleAddress.name }
@@ -106,21 +107,21 @@ export default {
         'sublocality_level_2',
         'sublocality_level_3',
         'sublocality_level_4',
-        'sublocality_level_5'
+        'sublocality_level_5',
       ],
       required: false,
     },
     complement: {
-      valueIn: "complement",
+      valueIn: 'complement',
       types: [
-        "street_number",
-        "colloquial_area",
-        "floor",
-        "room",
-        "premise",
-        "subpremise"
+        'street_number',
+        'colloquial_area',
+        'floor',
+        'room',
+        'premise',
+        'subpremise',
       ],
-      required: false
+      required: false,
     },
     state: {
       valueIn: 'long_name',

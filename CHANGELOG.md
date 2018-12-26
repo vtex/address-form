@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix postal code label for GBR
+
 ## [3.0.5] - 2018-12-26
+
+### Added
+
+- Added countries to `countries.js`
 
 ## [3.0.4] - 2018-12-26
 
