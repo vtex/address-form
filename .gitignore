@@ -8,6 +8,7 @@ react/node_modules
 /coverage
 
 # production
+react/locales
 /demo/dist
 /es
 /lib

@@ -1,7 +1,7 @@
 {
   "name": "address-form",
   "vendor": "vtex",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "title": "address-form React component",
   "description": "address-form React component",
   "defaultLocale": "en",
@@ -16,7 +16,8 @@
     "vtex.country-codes": "1.x"
   },
   "builders": {
-    "react": "2.x"
+    "react": "2.x",
+    "messages": "0.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --public && npm publish"
