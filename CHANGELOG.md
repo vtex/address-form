@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.4] - 2018-12-26
+
+### Changed
+
+- Updated `locales` folder to `messages` folder
+
 ## [3.0.3] - 2018-12-17
 
 - Add `ROU` and `GBR` validations
