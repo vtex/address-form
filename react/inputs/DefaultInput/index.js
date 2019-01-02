@@ -86,7 +86,7 @@ class Input extends Component {
         </InputLabel>
       )
     }
-    console.log('Passei disso tudo')
+
     return (
       <InputLabel field={field}>
         {options ? (

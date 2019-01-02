@@ -13,6 +13,7 @@ import { injectRules } from './addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
 import GeolocationNumberForm from './GeolocationNumberForm'
+import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
 
 class AddressForm extends Component {
   bindOnChange = () => {
@@ -31,14 +32,15 @@ class AddressForm extends Component {
   render() {
     const {
       address,
+      disableNumberInput,
       rules,
       onChangeAddress,
       Input,
       omitPostalCodeFields,
       omitAutoCompletedFields,
       geolocation,
+      googleMapsKey,
       isNumberInputEnabled,
-      onNumberInputChange,
       onNumberInputFocus,
     } = this.props
 
@@ -51,7 +53,7 @@ class AddressForm extends Component {
       : fields
 
     if (fields.length <= 3) {
-      onNumberInputChange()
+      disableNumberInput()
     }
 
     return (
@@ -66,21 +68,27 @@ class AddressForm extends Component {
                 onChangeAddress={onChangeAddress}
               />
             ) : index === 0 && geolocation && fields.length > 3 ? (
-              <GeolocationNumberForm
-                key={index}
-                testeIndex={this.bindOnChange()}
-                address={address}
-                rules={rules}
-                field={field}
-                onChangeAddress={onChangeAddress}
-                Input={Input}
-                omitPostalCodeFields={omitPostalCodeFields}
-                omitAutoCompletedFields={omitAutoCompletedFields}
-                geolocation={geolocation}
-                isNumberInputEnabled={isNumberInputEnabled}
-                onNumberInputFocus={onNumberInputFocus}
+              <GoogleMapsContainer apiKey={googleMapsKey}>
+                {({ googleMaps }) => {
+                  return (<GeolocationNumberForm
+                    key={index}
+                    testeIndex={this.bindOnChange()}
+                    address={address}
+                    rules={rules}
+                    field={field}
+                    onChangeAddress={onChangeAddress}
+                    Input={Input}
+                    omitPostalCodeFields={omitPostalCodeFields}
+                    omitAutoCompletedFields={omitAutoCompletedFields}
+                    geolocation={geolocation}
+                    googleMaps={googleMaps}
+                    isNumberInputEnabled={isNumberInputEnabled}
+                    onNumberInputFocus={onNumberInputFocus}
+                    disableNumberInput={disableNumberInput}
 
-              />
+                  />)
+                }}
+              </GoogleMapsContainer>
             ) : (
               <div key={index}>
                 <InputFieldContainer
@@ -109,12 +117,13 @@ AddressForm.defaultProps = {
 AddressForm.propTypes = {
   Input: PropTypes.func,
   address: AddressShapeWithValidation,
-  onNumberInputChange: PropTypes.func,
+  disableNumberInput: PropTypes.func,
   omitPostalCodeFields: PropTypes.bool,
   omitAutoCompletedFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   geolocation: PropTypes.bool,
+  googleMapsKey: PropTypes.string,
   isNumberInputEnabled: PropTypes.bool,
   onNumberInputFocus: PropTypes.func,
 }

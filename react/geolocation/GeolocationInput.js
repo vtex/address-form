@@ -39,11 +39,11 @@ class GeolocationInput extends Component {
 
     const options = rules.abbr
       ? {
-          types: ['address'],
-          componentRestrictions: {
-            country: rules.abbr,
-          },
-        }
+        types: ['address'],
+        componentRestrictions: {
+          country: rules.abbr,
+        },
+      }
       : { types: ['address'] }
 
     if (useSearchBox) {
@@ -142,7 +142,7 @@ class GeolocationInput extends Component {
       autoFocus,
     } = this.props
     const { address, isValidGoogleAddress } = this.state
-    console.log('OIEEEEEN ENTREI AQUI')
+
     const newAddress = {
       ...address,
       addressQuery: {
