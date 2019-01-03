@@ -4,7 +4,7 @@ export default function getAddressByGeolocation(address, onChangeAddress, rules,
   if (!googleMaps || !address || !rules || !address['number'].value) {
     return
   }
-
+  console.log('googleMaps', googleMaps)
   const geocoder = new googleMaps.Geocoder()
 
   geocoder.geocode({ address: `${address['number'].value} ${address['street'].value}` }, (results, status) => {

@@ -8,13 +8,9 @@ import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
 
 class GeolocationNumberForm extends Component {
-  handleChange = () => {
-    return this.props.onChangeAddress
-  }
-
   render() {
     const {
-      testeIndex,
+      onCheckedBox,
       address,
       onChangeAddress,
       rules,
@@ -27,21 +23,21 @@ class GeolocationNumberForm extends Component {
     return (
       <div className="flex items-center">
         { !address['number'].disabled ? (
-          <div className="flex" key={'1212'} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
+          <div className="flex" key={field.name} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
             <InputFieldContainer
               key={field.name}
               Input={Input}
               field={field}
               address={address}
               rules={rules}
-              onChangeAddress={this.handleChange}
+              onChangeAddress={onChangeAddress}
               onNumberInputFocus={onNumberInputFocus}
             />
             <div className="flex" style={{display: 'flex', margin: '10px'}}>
               <input
                 name="isGoing"
                 type="checkbox"
-                onChange={testeIndex}
+                onChange={onCheckedBox}
                 checked={checked}
               />
             </div>
@@ -51,7 +47,7 @@ class GeolocationNumberForm extends Component {
           </div>
 
         ) : (
-          <div className="flex" key={'12' + testeIndex} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
+          <div className="flex" key={field.name} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
             <InputFieldContainer
               disabled
               key={field.name}
@@ -65,7 +61,7 @@ class GeolocationNumberForm extends Component {
               <input
                 name="isGoing"
                 type="checkbox"
-                onChange={testeIndex}
+                onChange={onCheckedBox}
                 checked={checked}
               />
             </div>
@@ -88,7 +84,7 @@ GeolocationNumberForm.defaultProps = {
 }
 
 GeolocationNumberForm.propTypes = {
-  testeIndex: PropTypes.func,
+  onCheckedBox: PropTypes.func,
   Input: PropTypes.func,
   address: AddressShapeWithValidation,
   onNumberInputChange: PropTypes.func,

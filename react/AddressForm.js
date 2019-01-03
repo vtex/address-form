@@ -14,15 +14,19 @@ import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
 import GeolocationNumberForm from './GeolocationNumberForm'
 import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
+import { injectIntl, intlShape } from 'react-intl'
 
 class AddressForm extends Component {
   bindOnChange = () => {
-    const { address, onChangeAddress } = this.props
+    const { address, onChangeAddress, intl } = this.props
     return () => {
       onChangeAddress({
         'number': {
           ...address['number'],
-          value: !address['number'].disabled ? 'N/A' : '',
+          value: !address['number'].disabled
+            ? intl.formatMessage({
+              id: 'address-form.field.notApplicable',
+            }) : '',
           disabled: !address['number'].disabled,
         },
       })
@@ -43,7 +47,6 @@ class AddressForm extends Component {
       isNumberInputEnabled,
       onNumberInputFocus,
     } = this.props
-
     let fields = omitPostalCodeFields
       ? filterPostalCodeFields(rules)
       : rules.fields
@@ -52,7 +55,10 @@ class AddressForm extends Component {
       ? filterAutoCompletedFields({ fields }, address)
       : fields
 
-    if (fields.length <= 3) {
+    const fieldCondition = fields.length > 3
+    const geolocationCondition = geolocation && fieldCondition
+
+    if (!fieldCondition) {
       disableNumberInput()
     }
 
@@ -67,12 +73,12 @@ class AddressForm extends Component {
                 address={address}
                 onChangeAddress={onChangeAddress}
               />
-            ) : index === 0 && geolocation && fields.length > 3 ? (
+            ) : index === 0 && geolocationCondition ? (
               <GoogleMapsContainer apiKey={googleMapsKey}>
                 {({ googleMaps }) => {
                   return (<GeolocationNumberForm
                     key={index}
-                    testeIndex={this.bindOnChange()}
+                    onCheckedBox={this.bindOnChange()}
                     address={address}
                     rules={rules}
                     field={field}
@@ -125,11 +131,13 @@ AddressForm.propTypes = {
   geolocation: PropTypes.bool,
   googleMapsKey: PropTypes.string,
   isNumberInputEnabled: PropTypes.bool,
+  intl: intlShape,
   onNumberInputFocus: PropTypes.func,
 }
 
 const enhance = compose(
   injectAddressContext,
   injectRules,
+  injectIntl,
 )
 export default enhance(AddressForm)
