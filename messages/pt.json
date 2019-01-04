@@ -24,6 +24,7 @@
   "address-form.geolocation.example.VEN": "Ex: Avenida Mohedano, Caracas",
 
   "address-form.field.notApplicable": "S/N",
+  "address-form.field.noNumber": "Sem número",
 
   "address-form.error.ERROR_EMPTY_FIELD": "Campo obrigatório.",
   "address-form.error.ERROR_POSTAL_CODE": "Código postal inválido.",

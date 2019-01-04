@@ -58,7 +58,7 @@ class Input extends Component {
       )
     }
 
-    if (field.name === '') {
+    if (field.name === 'addressQuery') {
       return (
         <InputLabel field={field}>
           <InputText

@@ -6,6 +6,7 @@ import DefaultInput from './inputs/DefaultInput'
 import { injectRules } from './addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
+import { injectIntl, intlShape } from 'react-intl'
 
 class GeolocationNumberForm extends Component {
   render() {
@@ -17,60 +18,36 @@ class GeolocationNumberForm extends Component {
       field,
       onNumberInputFocus,
       Input,
+      intl,
     } = this.props
 
     const checked = !!address['number'].disabled
     return (
       <div className="flex items-center">
-        { !address['number'].disabled ? (
-          <div className="flex" key={field.name} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
-            <InputFieldContainer
-              key={field.name}
-              Input={Input}
-              field={field}
-              address={address}
-              rules={rules}
-              onChangeAddress={onChangeAddress}
-              onNumberInputFocus={onNumberInputFocus}
+        <div className="flex" key={field.name} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
+          <InputFieldContainer
+            key={field.name}
+            Input={Input}
+            field={field}
+            address={address}
+            rules={rules}
+            onChangeAddress={onChangeAddress}
+            onNumberInputFocus={onNumberInputFocus}
+          />
+          <div className="flex" style={{display: 'flex', margin: '10px'}}>
+            <input
+              name="isGoing"
+              type="checkbox"
+              onChange={onCheckedBox}
+              checked={checked}
             />
-            <div className="flex" style={{display: 'flex', margin: '10px'}}>
-              <input
-                name="isGoing"
-                type="checkbox"
-                onChange={onCheckedBox}
-                checked={checked}
-              />
-            </div>
-            <div className="flex" style={{display: 'flex', alignItems: 'center', alignContent: 'center', marginTop: '5px'}}>
-                  Sem número
-            </div>
           </div>
-
-        ) : (
-          <div className="flex" key={field.name} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
-            <InputFieldContainer
-              disabled
-              key={field.name}
-              Input={Input}
-              field={field}
-              address={address}
-              rules={rules}
-              onChangeAddress={onChangeAddress}
-            />
-            <div className="flex" style={{display: 'flex', margin: '10px'}}>
-              <input
-                name="isGoing"
-                type="checkbox"
-                onChange={onCheckedBox}
-                checked={checked}
-              />
-            </div>
-            <div className="flex" style={{display: 'flex', alignItems: 'center', alignContent: 'center', marginTop: '5px'}}>
-                  Sem número
-            </div>
+          <div className="flex" style={{display: 'flex', alignItems: 'center', alignContent: 'center', marginTop: '5px'}}>
+            {intl.formatMessage({
+              id: 'address-form.field.noNumber',
+            })}
           </div>
-
-        )}
+        </div>
       </div>
     )
   }
@@ -97,10 +74,13 @@ GeolocationNumberForm.propTypes = {
   googleMaps: PropTypes.object,
   isNumberInputEnabled: PropTypes.bool,
   onNumberInputFocus: PropTypes.func,
+  intl: intlShape,
 }
 
 const enhance = compose(
   injectAddressContext,
   injectRules,
+  injectIntl,
 )
+
 export default enhance(GeolocationNumberForm)

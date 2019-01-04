@@ -140,4 +140,5 @@ const enhance = compose(
   injectRules,
   injectIntl,
 )
+
 export default enhance(AddressForm)
