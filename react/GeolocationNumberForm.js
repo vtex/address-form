@@ -21,12 +21,12 @@ class GeolocationNumberForm extends Component {
       intl,
     } = this.props
 
-    const checked = !!address['number'].disabled
+    const noNumberChecked = !!address['number'].disabled
     return (
       <div className="flex items-center">
-        <div className="flex" key={field.name} style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
+        <div className="flex" style={{display: 'flex', alignItems: 'center', alignContent: 'center'}}>
           <InputFieldContainer
-            key={field.name}
+            disabled={noNumberChecked}
             Input={Input}
             field={field}
             address={address}
@@ -36,10 +36,10 @@ class GeolocationNumberForm extends Component {
           />
           <div className="flex" style={{display: 'flex', margin: '10px'}}>
             <input
-              name="isGoing"
+              name="noNumberCheckbox"
               type="checkbox"
               onChange={onCheckedBox}
-              checked={checked}
+              checked={noNumberChecked}
             />
           </div>
           <div className="flex" style={{display: 'flex', alignItems: 'center', alignContent: 'center', marginTop: '5px'}}>
@@ -54,27 +54,18 @@ class GeolocationNumberForm extends Component {
 }
 
 GeolocationNumberForm.defaultProps = {
-  omitPostalCodeFields: true,
-  omitAutoCompletedFields: true,
   Input: DefaultInput,
-  isNumberInputEnabled: false,
 }
 
 GeolocationNumberForm.propTypes = {
-  onCheckedBox: PropTypes.func,
-  Input: PropTypes.func,
   address: AddressShapeWithValidation,
-  onNumberInputChange: PropTypes.func,
-  omitPostalCodeFields: PropTypes.bool,
-  omitAutoCompletedFields: PropTypes.bool,
-  rules: PropTypes.object.isRequired,
   field: PropTypes.object,
-  onChangeAddress: PropTypes.func.isRequired,
-  geolocation: PropTypes.bool,
-  googleMaps: PropTypes.object,
-  isNumberInputEnabled: PropTypes.bool,
-  onNumberInputFocus: PropTypes.func,
+  Input: PropTypes.func,
   intl: intlShape,
+  onChangeAddress: PropTypes.func.isRequired,
+  onCheckedBox: PropTypes.func,
+  onNumberInputFocus: PropTypes.func,
+  rules: PropTypes.object.isRequired,
 }
 
 const enhance = compose(

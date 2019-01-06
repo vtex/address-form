@@ -108,8 +108,6 @@ class InputFieldContainer extends Component {
       options,
       rules,
       shouldShowNumberKeyboard,
-      disabled,
-      value,
       onNumberInputFocus,
     } = this.props
 
@@ -118,6 +116,8 @@ class InputFieldContainer extends Component {
       (hasOptions(field, address)
         ? getListOfOptions(field, address, rules)
         : undefined)
+    const fieldValue = address[field.name].value
+    const fieldDisable = address[field.name].disabled
 
     return (
       <Input
@@ -129,8 +129,8 @@ class InputFieldContainer extends Component {
         onBlur={this.bindOnBlur()}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
-        disabled={disabled}
-        value={value}
+        disabled={fieldDisable}
+        value={fieldValue}
         onFocus={onNumberInputFocus}
       />
     )
@@ -152,8 +152,6 @@ InputFieldContainer.propTypes = {
   onChangeAddress: PropTypes.func.isRequired,
   onNumberInputFocus: PropTypes.func,
   shouldShowNumberKeyboard: PropTypes.bool,
-  disabled: PropTypes.bool,
-  value: PropTypes.string,
 }
 
 export default pureInputField(InputFieldContainer)

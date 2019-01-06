@@ -5,6 +5,7 @@ import PostalCodeGetter from './PostalCodeGetter'
 import AddressContainer from './AddressContainer'
 import AutoCompletedFields from './AutoCompletedFields'
 import AddressRules from './AddressRules'
+import AddressGeolocationForm from './AddressGeolocationForm'
 import AddressSubmitter from './AddressSubmitter'
 import PostalCodeLoader from './postalCodeFrom/PostalCodeLoader'
 import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
@@ -13,6 +14,7 @@ import Map from './geolocation/Map'
 export default {
   AddressContainer,
   AddressForm,
+  AddressGeolocationForm,
   AddressRules,
   AddressSubmitter,
   AddressSummary,

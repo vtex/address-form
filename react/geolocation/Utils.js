@@ -1,6 +1,13 @@
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 
-export default function getAddressByGeolocation(address, onChangeAddress, rules, googleMaps) {
+export default function getAddressByGeolocation(geolocationProps) {
+  const {
+    address,
+    onChangeAddress,
+    rules,
+    googleMaps,
+  } = geolocationProps
+
   if (!googleMaps || !address || !rules || !address['number'].value) {
     return
   }

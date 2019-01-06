@@ -24,7 +24,6 @@ class Input extends Component {
     } = this.props
 
     const loading = disabled || !!address[field.name].loading
-    const disabledInput = disabled || !!address[field.name].disabled
     const valid = address[field.name].valid
 
     if (field.name === 'postalCode') {
@@ -96,7 +95,7 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
-            disabled={disabledInput}
+            disabled={loading}
             inputRef={inputRef}
             value={value}
             onFocus={onFocus}
@@ -113,7 +112,7 @@ class Input extends Component {
                 : null
             }
             onBlur={this.props.onBlur}
-            disabled={disabledInput}
+            disabled={loading}
             inputRef={inputRef}
             value={value}
             onFocus={onFocus}

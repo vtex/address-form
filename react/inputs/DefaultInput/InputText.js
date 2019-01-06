@@ -17,13 +17,11 @@ class InputText extends Component {
       placeholder,
       type,
       autoFocus,
-      value,
       onFocus,
     } = this.props
 
     const id = this.props.id.replace('{{fieldName}}', field.name)
     const fieldValue = address[field.name]
-    const fieldDisabled = address[field.name].disabled
     const loading = !!address[field.name].loading
 
     const className = cx(this.props.className, {
@@ -40,13 +38,13 @@ class InputText extends Component {
         type={type}
         name={field.elementName || field.name}
         maxLength={field.maxLength}
-        value={fieldValue.value || value || ''}
+        value={fieldValue.value || ''}
         placeholder={placeholder}
         onBlur={this.props.onBlur}
         onFocus={onFocus}
         onChange={this.handleChange}
         className={className}
-        disabled={fieldDisabled || disabled}
+        disabled={disabled}
         ref={inputRef}
         data-hj-whitelist
       />
@@ -74,7 +72,6 @@ InputText.propTypes = {
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   inputRef: PropTypes.func,
-  value: PropTypes.string,
   onFocus: PropTypes.func,
 }
 
