@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.8] - 2019-01-08
+
 ### Fixed
 
 - Fix normalizing fields for third level validation
