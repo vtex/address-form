@@ -29,6 +29,7 @@ export default {
       label: 'number',
       required: true,
       size: 'mini',
+      canBeOmitted: true,
     },
     {
       name: 'complement',
@@ -82,6 +83,19 @@ export default {
       valueIn: 'long_name',
       types: ['street_number'],
       required: false,
+      canBeOmmited: true,
+      handler: (address) => {
+        if (true) {
+          address.number = {
+            ...address.number,
+            value: address.number ? address.number.value :  null,
+            canBeOmitted: true,
+          }
+          return address
+        }
+
+        return address
+      },
     },
     street: {
       valueIn: 'long_name',

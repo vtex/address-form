@@ -107,6 +107,7 @@ class App extends Component {
           <AddressContainer
             accountName={accountName}
             address={address}
+            notApplicableValue={"N/A"}
             Input={StyleguideInput}
             onChangeAddress={this.handleAddressChange}
             autoCompletePostalCode={!validGeoCoords}

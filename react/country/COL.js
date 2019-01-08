@@ -1305,7 +1305,22 @@ export default {
         return address
       },
     },
-    number: { valueIn: 'long_name', types: ['street_number'], required: false },
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+      handler: (address) => {
+        if (!address.number || !address.number.value) {
+          address.number = {
+            value: null,
+            canBeOmmited: true,
+          }
+          return address
+        }
+
+        return address
+      },
+    },
     street: {
       valueIn: 'long_name',
       types: ['route'],

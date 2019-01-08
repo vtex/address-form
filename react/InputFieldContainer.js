@@ -51,6 +51,26 @@ class InputFieldContainer extends Component {
     }
   }
 
+  bindNotApplicable = () => {
+    const { field, address, rules } = this.props
+    const dependentFields = getDependentFields(field.name, rules)
+
+    return value => {
+      const clearedFields = this.clearDependentFields(address, dependentFields)
+
+      this.props.onChangeAddress({
+        ...clearedFields,
+        [field.name]: {
+          ...address[field.name],
+          postalCodeAutoCompleted: undefined,
+          geolocationAutoCompleted: undefined,
+          value: this.props.notApplicableValue,
+          notApplicable: value,
+        },
+      })
+    }
+  }
+
   bindOnBlur = () => {
     const { field, address, onChangeAddress } = this.props
     const value = address[field.name] ? address[field.name].value : ''
@@ -86,7 +106,6 @@ class InputFieldContainer extends Component {
 
   addFocusIfNeeded() {
     const { address, field, onChangeAddress } = this.props
-
     const fieldValue = address[field.name]
     if (this.el && typeof this.el.focus === 'function' && fieldValue.focus) {
       this.el.focus()
@@ -127,6 +146,10 @@ class InputFieldContainer extends Component {
         options={_options}
         onChange={this.bindOnChange()}
         onBlur={this.bindOnBlur()}
+        {...(address[field.name].canBeNotApplicable
+          ? { toggleNotApplicable: this.bindNotApplicable() }
+          : {}
+        )}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
         disabled={fieldDisable}

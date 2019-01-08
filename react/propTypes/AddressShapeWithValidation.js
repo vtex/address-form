@@ -18,6 +18,7 @@ export const AddressWithValidation = reduce(
       loading: PropTypes.bool,
       value: valueType,
       valueOptions: PropTypes.arrayOf(PropTypes.string),
+      canBeOmitted: PropTypes.bool,
     }).isRequired
     return acc
   },

@@ -39,6 +39,18 @@ export default {
       required: true,
       size: 'mini',
       autoComplete: 'nope',
+      canBeOmitted: true,
+      handler: (address) => {
+        if (true) {
+          address.number = {
+            value: null,
+            canBeOmitted: true,
+          }
+          return address
+        }
+
+        return address
+      },
     },
     {
       name: 'complement',
@@ -120,9 +132,21 @@ export default {
       required: false,
     },
     number: {
-      valueIn: 'long_name',
+      valueIn: 'lme',
       types: ['street_number'],
       required: false,
+      canBeOmitted: true,
+      handler: (address) => {
+        if (true) {
+          address.number = {
+            ...address.number,
+            canBeOmitted: true,
+          }
+          return address
+        }
+
+        return address
+      },
     },
     street: {
       valueIn: 'long_name',

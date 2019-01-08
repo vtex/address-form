@@ -35,7 +35,6 @@ class AutoCompletedFields extends Component {
 
       const isRelevantField = IRRELEVANT_FIELDS.indexOf(name) === -1
       const hasValue = address[name].value && address[name].value.length > 0
-
       return autoCompleted &&
         hasValue &&
         postalCodeGeolocationAutoCompleted &&

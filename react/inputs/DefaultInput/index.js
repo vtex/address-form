@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import InputSelect from './InputSelect'
@@ -21,10 +21,27 @@ class Input extends Component {
       disabled,
       value,
       onFocus,
+      toggleNotApplicable,
     } = this.props
-
+    const handleToggle = toggleNotApplicable
     const loading = disabled || !!address[field.name].loading
     const valid = address[field.name].valid
+    const canBeOmitted = !!address[field.name].canBeOmitted
+    console.log('ADDRESS FINAL', address)
+    if (canBeOmitted) {
+      return (
+        <Fragment>
+          {field.name}
+          <input type="text" value={address[field.name].value} />
+
+          Not applicable
+          <input
+            type="checkbox"
+            onChange={handleToggle}
+            value={address[field.name].notApplicable} />
+        </Fragment>
+      )
+    }
 
     if (field.name === 'postalCode') {
       return (
@@ -145,6 +162,7 @@ Input.propTypes = {
   shouldShowNumberKeyboard: PropTypes.bool,
   disabled: PropTypes.bool,
   value: PropTypes.string,
+  toggleNotApplicable: PropTypes.func,
 }
 
 export default injectIntl(Input)

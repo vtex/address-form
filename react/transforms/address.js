@@ -141,11 +141,11 @@ export function maskFields(addressFields, rules) {
 }
 
 export function addFocusToNextInvalidField(fields, rules) {
+
   const invalidFilledField = getFirstInvalidFilledField(fields, rules)
 
   if (invalidFilledField) {
     const { fieldName, field } = invalidFilledField
-
     return {
       ...fields,
       [fieldName]: field,
@@ -176,6 +176,7 @@ function getFirstInvalidFilledField(fields, rules) {
       validatedFields[field.name] &&
       validatedFields[field.name].valid === false,
   )
+  console.log('rules.fields', rules.fields)
 
   if (firstInvalidField) {
     return {
@@ -183,6 +184,7 @@ function getFirstInvalidFilledField(fields, rules) {
       field: {
         ...validatedFields[firstInvalidField.name],
         focus: true,
+        canBeOmitted: firstInvalidField.canBeOmitted, 
       },
     }
   }
