@@ -121,13 +121,16 @@ function getThirdLevelOptions(field, address, rules) {
   const secondLevelValue = getFieldValue(address[secondLevelField.name])
   const firstLevelValue = getFieldValue(address[firstLevelField.name])
 
+  const normalizedOptionsMap = normalizeOptions(field.optionsMap)
+  const cleanFirstLevelValue = cleanStr(firstLevelValue)
+
   if (
-    firstLevelValue &&
+    cleanFirstLevelValue &&
     secondLevelValue &&
-    field.optionsMap[firstLevelValue] &&
-    field.optionsMap[firstLevelValue][secondLevelValue]
+    normalizedOptionsMap[cleanFirstLevelValue] &&
+    normalizedOptionsMap[cleanFirstLevelValue][secondLevelValue]
   ) {
-    return field.optionsMap[firstLevelValue][secondLevelValue]
+    return normalizedOptionsMap[cleanFirstLevelValue][secondLevelValue]
   }
 
   return []

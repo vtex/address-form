@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix normalizing fields for third level validation
+
 ## [3.0.7] - 2019-01-04
 
-## Added
+### Added
 
 - Add new locations for Chile
 
