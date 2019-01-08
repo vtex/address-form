@@ -73,7 +73,7 @@ class AddressGeolocationForm extends Component {
               <GoogleMapsContainer apiKey={googleMapsKey}>
                 {({ googleMaps }) => {
                   return (<GeolocationNumberForm
-                    key={index}
+                    key={field.name}
                     onCheckedBox={this.bindOnChange()}
                     address={address}
                     rules={rules}
@@ -92,7 +92,7 @@ class AddressGeolocationForm extends Component {
                 }}
               </GoogleMapsContainer>
             ) : (
-              <div key={index}>
+              <div key={field.name}>
                 <InputFieldContainer
                   key={field.name}
                   Input={Input}
