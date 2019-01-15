@@ -176,7 +176,6 @@ function getFirstInvalidFilledField(fields, rules) {
       validatedFields[field.name] &&
       validatedFields[field.name].valid === false,
   )
-  console.log('rules.fields', rules.fields)
 
   if (firstInvalidField) {
     return {

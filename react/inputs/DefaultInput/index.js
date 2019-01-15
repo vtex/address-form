@@ -7,6 +7,8 @@ import InputLabel from './InputLabel'
 import InputError from './InputError'
 import PostalCodeLoader from '../../postalCodeFrom/PostalCodeLoader'
 import { injectIntl, intlShape } from 'react-intl'
+import cx from 'classnames'
+import GeolocationNumberInput from '../../GeolocationNumberInput'
 
 class Input extends Component {
   render() {
@@ -22,24 +24,38 @@ class Input extends Component {
       value,
       onFocus,
       toggleNotApplicable,
+      onChange,
+      onBlur,
     } = this.props
     const handleToggle = toggleNotApplicable
-    const loading = disabled || !!address[field.name].loading
+    const loading = disabled || !!address[field.name].loading || !!address[field.name].disabled
     const valid = address[field.name].valid
     const canBeOmitted = !!address[field.name].canBeOmitted
+    const numberValue = !address['number'].value && field.name === 'number'
+    const testCondition = address['city'].postalCodeAutoCompleted && numberValue || canBeOmitted
     console.log('ADDRESS FINAL', address)
-    if (canBeOmitted) {
-      return (
-        <Fragment>
-          {field.name}
-          <input type="text" value={address[field.name].value} />
 
-          Not applicable
-          <input
-            type="checkbox"
-            onChange={handleToggle}
-            value={address[field.name].notApplicable} />
-        </Fragment>
+
+    if (testCondition) {
+      const className = cx('input', 'ship-notApplicable', {
+        required: field.required,
+        hide: field.hidden,
+        text: true, // That's a bug in the Checkout's CSS
+      })
+      return (
+        <GeolocationNumberInput
+          field={field}
+          address={address}
+          autoFocus={autoFocus}
+          inputRef={inputRef}
+          intl={intl}
+          disabled={loading}
+          value={value}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          handleToggle={handleToggle}
+          onChangeAddress={onChange}
+        />
       )
     }
 

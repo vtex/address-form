@@ -52,20 +52,14 @@ class InputFieldContainer extends Component {
   }
 
   bindNotApplicable = () => {
-    const { field, address, rules } = this.props
-    const dependentFields = getDependentFields(field.name, rules)
-
-    return value => {
-      const clearedFields = this.clearDependentFields(address, dependentFields)
-
-      this.props.onChangeAddress({
-        ...clearedFields,
-        [field.name]: {
-          ...address[field.name],
-          postalCodeAutoCompleted: undefined,
-          geolocationAutoCompleted: undefined,
-          value: this.props.notApplicableValue,
-          notApplicable: value,
+    const { address, onChangeAddress, intl } = this.props
+    return () => {
+      onChangeAddress({
+        'number': {
+          ...address['number'],
+          value: !address['number'].disabled
+            ? 'N/A' : '',
+          disabled: !address['number'].disabled,
         },
       })
     }
@@ -146,7 +140,7 @@ class InputFieldContainer extends Component {
         options={_options}
         onChange={this.bindOnChange()}
         onBlur={this.bindOnBlur()}
-        {...(address[field.name].canBeNotApplicable
+        {...(address[field.name].canBeOmitted
           ? { toggleNotApplicable: this.bindNotApplicable() }
           : {}
         )}

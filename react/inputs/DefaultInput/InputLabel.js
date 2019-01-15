@@ -5,7 +5,7 @@ import { injectIntl, intlShape } from 'react-intl'
 
 class InputLabel extends Component {
   render() {
-    const { field, children, intl } = this.props
+    const { field, children, intl, isSideLabel } = this.props
 
     const className = cx('input', `ship-${field.name}`, {
       required: field.required,

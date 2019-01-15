@@ -121,6 +121,7 @@ class GeolocationInput extends Component {
   }
 
   handleChangeInput = value => {
+    console.log('ENTREEEEEEEEEI AQUIIIIII')
     this.setState(prevState => ({
       address: {
         ...prevState.address,
