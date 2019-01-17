@@ -32,17 +32,6 @@ export default {
       label: 'number',
       size: 'small',
       autoComplete: 'nope',
-      handler: (address) => {
-        if (!address.number || !address.number.value) {
-          address.number = {
-            value: null,
-            canBeOmmited: true,
-          }
-          return address
-        }
-
-        return address
-      },
     },
     {
       name: 'complement',

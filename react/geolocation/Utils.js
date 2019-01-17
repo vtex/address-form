@@ -23,7 +23,7 @@ export default function getAddressByGeolocation(geolocationProps) {
           googleAddress,
           rules
         )
-        return onChangeAddress({
+        onChangeAddress({
           ...autoCompletedAddress,
           complement: {
             value: null,

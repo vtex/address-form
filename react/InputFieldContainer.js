@@ -52,13 +52,15 @@ class InputFieldContainer extends Component {
   }
 
   bindNotApplicable = () => {
-    const { address, onChangeAddress, intl } = this.props
+    const { address, onChangeAddress, notApplicable } = this.props
+    const notApplicableLabel = notApplicable || 'N/A'
+
     return () => {
       onChangeAddress({
         'number': {
           ...address['number'],
-          value: !address['number'].disabled
-            ? 'N/A' : '',
+          value: !!address['number'].disabled
+            ? null : notApplicableLabel,
           disabled: !address['number'].disabled,
         },
       })
@@ -121,7 +123,6 @@ class InputFieldContainer extends Component {
       options,
       rules,
       shouldShowNumberKeyboard,
-      onNumberInputFocus,
     } = this.props
 
     const _options =
@@ -129,8 +130,6 @@ class InputFieldContainer extends Component {
       (hasOptions(field, address)
         ? getListOfOptions(field, address, rules)
         : undefined)
-    const fieldValue = address[field.name].value
-    const fieldDisable = address[field.name].disabled
 
     return (
       <Input
@@ -140,15 +139,12 @@ class InputFieldContainer extends Component {
         options={_options}
         onChange={this.bindOnChange()}
         onBlur={this.bindOnBlur()}
-        {...(address[field.name].canBeOmitted
+        {...(address[field.name].notApplicableField
           ? { toggleNotApplicable: this.bindNotApplicable() }
           : {}
         )}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
-        disabled={fieldDisable}
-        value={fieldValue}
-        onFocus={onNumberInputFocus}
       />
     )
   }
@@ -167,8 +163,8 @@ InputFieldContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,
-  onNumberInputFocus: PropTypes.func,
   shouldShowNumberKeyboard: PropTypes.bool,
+  notApplicable: PropTypes.string,
 }
 
 export default pureInputField(InputFieldContainer)

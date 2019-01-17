@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
-import DefaultInput from './inputs/DefaultInput'
-import { injectRules } from './addressRulesContext'
+import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
+import { injectRules } from '../../addressRulesContext'
 import { compose } from 'recompose'
-import { injectAddressContext } from './addressContainerContext'
+import { injectAddressContext } from '../../addressContainerContext'
 import { injectIntl, intlShape } from 'react-intl'
-import InputText from './inputs/DefaultInput/InputText'
-import InputLabel from './inputs/DefaultInput/InputLabel'
-import InputCheckbox from './inputs/DefaultInput/InputCheckbox'
+import InputText from './InputText'
+import InputLabel from './InputLabel'
+import InputCheckbox from './InputCheckbox'
 import cx from 'classnames'
 
 class GeolocationNumberInput extends Component {
@@ -20,7 +19,6 @@ class GeolocationNumberInput extends Component {
       inputRef,
       intl,
       disabled,
-      value,
       onBlur,
       onFocus,
       handleToggle,
@@ -32,6 +30,8 @@ class GeolocationNumberInput extends Component {
       hide: field.hidden,
       text: true, // That's a bug in the Checkout's CSS
     })
+
+    const value = address[field.name].value
 
     return (
       <div className={className} htmlFor={`ship-${field.name}`}>
@@ -53,7 +53,7 @@ class GeolocationNumberInput extends Component {
             onFocus={onFocus}
           />
         </InputLabel>
-        <InputLabel field={{name: 'checkboxNumberLabel2', label: 'noNumber'}}>
+        <InputLabel field={{name: 'checkboxNumberLabel', label: 'noNumber'}}>
           <InputCheckbox
             address={address}
             field={field}
@@ -70,10 +70,6 @@ class GeolocationNumberInput extends Component {
   }
 }
 
-GeolocationNumberInput.defaultProps = {
-  Input: DefaultInput,
-}
-
 GeolocationNumberInput.propTypes = {
   address: AddressShapeWithValidation,
   field: PropTypes.object,
@@ -86,9 +82,7 @@ GeolocationNumberInput.propTypes = {
   inputRef: PropTypes.func,
   shouldShowNumberKeyboard: PropTypes.bool,
   disabled: PropTypes.bool,
-  value: PropTypes.string,
   handleToggle: PropTypes.func,
-
 }
 
 const enhance = compose(

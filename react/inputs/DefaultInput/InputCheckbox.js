@@ -15,30 +15,27 @@ class InputCheckbox extends Component {
       placeholder,
       onFocus,
       onBlur,
-      onChange,
     } = this.props
 
-    const id = this.props.id.replace('{{fieldName}}', field.name)
-    const fieldValue = address[field.name]
     const checked = address[field.name].disabled
-    const loading = !!address[field.name].loading
+    const id = this.props.id.replace('{{fieldName}}', field.name)
+    const className = cx('input', 'ship-checkboxNumberLabel', {
+      required: field.required,
+      hide: field.hidden,
+      text: false,
+      type: 'checkbox',
+    })
 
-    const className = cx('input', 'ship-checkboxNumberLabel2', {
-        required: field.required,
-        hide: field.hidden,
-        text: false,
-        type: 'checkbox' // That's a bug in the Checkout's CSS
-      })
     return (
       <input
-        id={'ship-checkboxNumberLabel2'}
+        id={id}
         type="checkbox"
         name={field.elementName || field.name}
-        checked={checked}
+        defaultChecked={checked}
         placeholder={placeholder}
         onBlur={onBlur}
         onFocus={onFocus}
-        onChange={onChange}
+        onChange={this.handleChange}
         className={className}
       />
     )
@@ -56,10 +53,11 @@ InputCheckbox.defaultProps = {
 InputCheckbox.propTypes = {
   field: PropTypes.object.isRequired,
   address: AddressShapeWithValidation,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   onBlur: PropTypes.func.isRequired,
   id: PropTypes.string,
   className: PropTypes.string,
+  placeholder: PropTypes.string,
   onFocus: PropTypes.func,
 }
 

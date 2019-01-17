@@ -4,6 +4,7 @@ import Dropdown from '@vtex/styleguide/lib/Dropdown'
 import Input from '@vtex/styleguide/lib/Input'
 import Button from '@vtex/styleguide/lib/Button'
 import Spinner from '@vtex/styleguide/lib/Spinner'
+import Checkbox from '@vtex/styleguide/lib/Checkbox'
 import { injectIntl, intlShape } from 'react-intl'
 
 class StyleguideInput extends Component {
@@ -36,9 +37,12 @@ class StyleguideInput extends Component {
   }
 
   render() {
-    const { field, options, address, inputRef, intl } = this.props
+    const { field, options, address, inputRef, intl, toggleNotApplicable } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
+    const notApplicableField = !!address[field.name].notApplicableField
+    const numberValue = !address['number'].value && field.name === 'number'
+    const geolocationCondition = address['addressQuery'].geolocationAutoCompleted && numberValue || notApplicableField
 
     if (field.name === 'postalCode') {
       return (
@@ -114,6 +118,48 @@ class StyleguideInput extends Component {
         </div>
       )
     }
+    if (geolocationCondition) {
+      return (
+        <div className="vtex-address-form__number-div flex flex-row pb7">
+          <div className="vtex-address-form__number-input flex w-50">
+            <Input
+              label={
+                field.fixedLabel ||
+                intl.formatMessage({ id: `address-form.field.${field.label}` })
+              }
+              errorMessage={
+                address[field.name].reason &&
+                this.props.intl.formatMessage({
+                  id: `address-form.error.${address[field.name].reason}`,
+                })
+              }
+              placeholder={intl.formatMessage({
+                id: `address-form.geolocation.example.${address.country.value}`,
+                defaultMessage: intl.formatMessage({
+                  id: 'address-form.geolocation.example.UNI',
+                }),
+              })}
+              onChange={this.props.onChange}
+              onBlur={this.props.onBlur}
+              disabled={loading || disabled}
+              error={!this.state.isInputValid}
+              ref={inputRef}
+              value={field.value}
+            />
+          </div>
+          <div className="vtex-address-form__number-checkbox flex flex-row ml7 mt6 w-50">
+            <Checkbox
+              id="option-0"
+              label="Option 0"
+              name="default-checkbox-group"
+              onChange={toggleNotApplicable}
+              value="op"
+              checked={!!address[field.name].disabled}
+            />
+          </div>
+        </div>
+      )
+    }
 
     if (options) {
       return (
@@ -179,6 +225,7 @@ StyleguideInput.propTypes = {
   onBlur: PropTypes.func,
   inputRef: PropTypes.func,
   intl: intlShape,
+  toggleNotApplicable: PropTypes.func,
 }
 
 export default injectIntl(StyleguideInput)

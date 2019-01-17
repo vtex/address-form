@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import InputSelect from './InputSelect'
@@ -7,8 +7,7 @@ import InputLabel from './InputLabel'
 import InputError from './InputError'
 import PostalCodeLoader from '../../postalCodeFrom/PostalCodeLoader'
 import { injectIntl, intlShape } from 'react-intl'
-import cx from 'classnames'
-import GeolocationNumberInput from '../../GeolocationNumberInput'
+import GeolocationNumberInput from './GeolocationNumberInput'
 
 class Input extends Component {
   render() {
@@ -20,28 +19,22 @@ class Input extends Component {
       inputRef,
       intl,
       shouldShowNumberKeyboard,
-      disabled,
-      value,
       onFocus,
       toggleNotApplicable,
       onChange,
       onBlur,
     } = this.props
-    const handleToggle = toggleNotApplicable
-    const loading = disabled || !!address[field.name].loading || !!address[field.name].disabled
+
+    const loading = !!address[field.name].loading
+    const disabled = !!address[field.name].disabled
     const valid = address[field.name].valid
-    const canBeOmitted = !!address[field.name].canBeOmitted
+    const notApplicableField = !!address[field.name].notApplicableField
     const numberValue = !address['number'].value && field.name === 'number'
-    const testCondition = address['city'].postalCodeAutoCompleted && numberValue || canBeOmitted
-    console.log('ADDRESS FINAL', address)
+    const geolocationCondition = address['addressQuery'].geolocationAutoCompleted && numberValue || notApplicableField
 
+    if (geolocationCondition) {
+      const handleToggle = toggleNotApplicable
 
-    if (testCondition) {
-      const className = cx('input', 'ship-notApplicable', {
-        required: field.required,
-        hide: field.hidden,
-        text: true, // That's a bug in the Checkout's CSS
-      })
       return (
         <GeolocationNumberInput
           field={field}
@@ -49,8 +42,7 @@ class Input extends Component {
           autoFocus={autoFocus}
           inputRef={inputRef}
           intl={intl}
-          disabled={loading}
-          value={value}
+          disabled={disabled}
           onBlur={onBlur}
           onFocus={onFocus}
           handleToggle={handleToggle}
@@ -72,7 +64,6 @@ class Input extends Component {
             disabled={loading}
             inputRef={inputRef}
             type={shouldShowNumberKeyboard ? 'tel' : 'text'}
-            value={value}
             onFocus={onFocus}
           />
           {loading && <PostalCodeLoader />}
@@ -108,7 +99,6 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={loading}
             inputRef={inputRef}
-            value={value}
             onFocus={onFocus}
           />
           {loading && <PostalCodeLoader />}
@@ -130,7 +120,6 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={loading}
             inputRef={inputRef}
-            value={value}
             onFocus={onFocus}
           />
         ) : (
@@ -147,7 +136,6 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={loading}
             inputRef={inputRef}
-            value={value}
             onFocus={onFocus}
           />
         )}
@@ -176,8 +164,6 @@ Input.propTypes = {
   inputRef: PropTypes.func,
   intl: intlShape,
   shouldShowNumberKeyboard: PropTypes.bool,
-  disabled: PropTypes.bool,
-  value: PropTypes.string,
   toggleNotApplicable: PropTypes.func,
 }
 

@@ -183,7 +183,6 @@ function getFirstInvalidFilledField(fields, rules) {
       field: {
         ...validatedFields[firstInvalidField.name],
         focus: true,
-        canBeOmitted: firstInvalidField.canBeOmitted, 
       },
     }
   }

@@ -97,7 +97,7 @@ export default {
         return address
       },
     },
-    number: { valueIn: 'long_name', types: ['street_number'], required: false },
+    number: { valueIn: 'long_name', types: ['street_number'], required: false, notApplicableField: true },
     street: { valueIn: 'long_name', types: ['route'], required: false },
     state: {
       valueIn: 'long_name',

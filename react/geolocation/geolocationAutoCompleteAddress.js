@@ -100,10 +100,9 @@ export default function geolocationAutoCompleteAddress(
 
     return address
   }
-
   return {...address,
     number: {...address.number,
-      canBeOmitted: true} }
+      notApplicableField: true} }
 }
 
 /** This function creates a map like this:
@@ -150,7 +149,7 @@ function setAddressFieldValue(
   addressComponent,
 ) {
   const geolocationField = geolocationRules[fieldName]
-  address[fieldName] = { value: addressComponent[geolocationField.valueIn], canBeOmitted: !!addressComponent[geolocationField.canBeOmitted]}
+  address[fieldName] = { value: addressComponent[geolocationField.valueIn] }
   return address
 }
 

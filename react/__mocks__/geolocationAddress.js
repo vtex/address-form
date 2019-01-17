@@ -1,0 +1,16 @@
+export default {
+  addressId: {value: '3095115299110'},
+  addressQuery: {value: 'Praia de Botafogo - Botafogo, Rio de Janeiro - RJ, 22250-040, Brasil', geolocationAutoCompleted: true, valid: true, reason: undefined},
+  addressType: {value: 'residential', valid: true, reason: undefined},
+  city: {value: 'Rio de Janeiro', notApplicableField: false, geolocationAutoCompleted: true, valid: true, reason: undefined},
+  complement: {value: null},
+  country: {value: 'BRA', geolocationAutoCompleted: true, valid: true, reason: undefined},
+  geoCoordinates: {visited: true, value: [], geolocationAutoCompleted: true, valid: true, reason: undefined},
+  neighborhood: {value: 'Botafogo', notApplicableField: false, geolocationAutoCompleted: true, valid: true, reason: undefined},
+  number: {focus: true, notApplicableField: true},
+  postalCode: {value: '22250-040', postalCodeAutoCompleted: true, valid: true, reason: undefined, loading: false},
+  receiverName: {value: 'auto auto', valid: true, reason: undefined},
+  reference: {value: null},
+  state: {value: 'RJ', notApplicableField: false, geolocationAutoCompleted: true, valid: true, reason: undefined},
+  street: {value: 'Praia de Botafogo', notApplicableField: false, geolocationAutoCompleted: true, valid: true, reason: undefined},
+}
