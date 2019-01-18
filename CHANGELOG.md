@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Update React builder to 3.x.
 
 ## [3.5.5] - 2019-03-29
 
@@ -101,9 +103,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Geolocation Rules
 
 ## [3.0.12] - 2019-01-14
-
 ### Changed
-
 - Implement GB postcode in GBR rules
 
 ## [3.0.11] - 2019-01-14
