@@ -104,6 +104,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Keep valid fields valid if they are valid
 
+## [4.1.1] - 2019-06-27
+
+### Fixed
+
+- Build assets with new builder hub.
+
+## [4.1.0] - 2019-02-18
+
+- Update Messages builder to 1.x
+- Add Messages context.json
+
+## [4.0.0] - 2019-01-18
+
+### Changed
+- Update React builder to 3.x.
+
 ## [3.5.18] - 2019-07-24
 
 ## [3.5.17] - 2019-07-15
@@ -273,9 +289,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Geolocation Rules
 
 ## [3.0.12] - 2019-01-14
-
 ### Changed
-
 - Implement GB postcode in GBR rules
 
 ## [3.0.11] - 2019-01-14
