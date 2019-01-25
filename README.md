@@ -142,7 +142,8 @@ The component will then instantiate a Context and provide such rules to any comp
 
 - **`children`**: The components which will be rendered inside this component and, therefore, receive the provided rules
 - **`country`**: The `Alpha3` string identifier for the country which rules are to be provided
-- **`fetch`**:Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/address-form/lib/country/' + country)}` as its value
+- **`shouldUseIOFetching`**: Use this as `true` if you're using as a VTEX IO app.
+- **`fetch`**: (Ignore this if you're using as a VTEX IO App). Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/address-form/lib/country/' + country)}` as its value
 
 ```js
 AddressRules.propTypes = {
