@@ -7,7 +7,7 @@ export default {
   country: {value: 'BRA', geolocationAutoCompleted: true},
   geoCoordinates: {visited: true, value: [], geolocationAutoCompleted: true},
   neighborhood: {value: 'Botafogo',  notApplicable: false, geolocationAutoCompleted: true},
-  number: {focus: true,  notApplicable: true},
+  number: {value: '321',  notApplicable: true, valid: true, loading: false, reason: null},
   postalCode: {value: '22250-040', postalCodeAutoCompleted: true, loading: false},
   receiverName: {value: 'auto auto'},
   reference: {value: null},

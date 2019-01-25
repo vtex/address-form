@@ -100,9 +100,8 @@ export default function geolocationAutoCompleteAddress(
 
     return address
   }
-  return {...address,
-    number: {...address.number,
-      notApplicableField: true} }
+
+  return address
 }
 
 /** This function creates a map like this:

@@ -40,9 +40,9 @@ class StyleguideInput extends Component {
     const { field, options, address, inputRef, intl, toggleNotApplicable } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
-    const notApplicableField = !!address[field.name].notApplicableField
+    const notApplicable = !!address[field.name].notApplicable
     const numberValue = !address['number'].value && field.name === 'number'
-    const geolocationCondition = address['addressQuery'].geolocationAutoCompleted && numberValue || notApplicableField
+    const geolocationCondition = address['addressQuery'].geolocationAutoCompleted && numberValue || notApplicable
 
     if (field.name === 'postalCode') {
       return (

@@ -13,7 +13,6 @@ export default function getAddressByGeolocation(geolocationProps) {
   }
 
   const geocoder = new googleMaps.Geocoder()
-
   geocoder.geocode({ address: `${address['number'].value} ${address['street'].value}` }, (results, status) => {
     if (status === googleMaps.GeocoderStatus.OK) {
       if (results[0]) {
@@ -23,6 +22,7 @@ export default function getAddressByGeolocation(geolocationProps) {
           googleAddress,
           rules
         )
+
         onChangeAddress({
           ...autoCompletedAddress,
           complement: {
@@ -32,6 +32,7 @@ export default function getAddressByGeolocation(geolocationProps) {
             value: null,
           },
         })
+        return autoCompletedAddress
       }
     } else {
       console.warn(`Google Maps Error: ${status}`)

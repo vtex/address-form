@@ -146,6 +146,19 @@ export function addFocusToNextInvalidField(fields, rules) {
 
   if (invalidFilledField) {
     const { fieldName, field } = invalidFilledField
+    const notApplicableCondition =
+      rules.geolocation &&
+      rules.geolocation.fieldName &&
+      rules.geolocation.fieldName.notApplicable
+    const fieldWithNotApplicable = {
+      ...fields,
+      [fieldName]: {
+        ...field,
+        notApplicable: true},
+    }
+    if (notApplicableCondition) {
+      return fieldWithNotApplicable
+    }
     return {
       ...fields,
       [fieldName]: field,
@@ -156,7 +169,19 @@ export function addFocusToNextInvalidField(fields, rules) {
 
   if (requiredField) {
     const { fieldName, field } = requiredField
-
+    const notApplicableCondition =
+      rules.geolocation &&
+      rules.geolocation.fieldName &&
+      rules.geolocation.fieldName.notApplicable
+    const fieldWithNotApplicable = {
+      ...fields,
+      [fieldName]: {
+        ...field,
+        notApplicable: true},
+    }
+    if (notApplicableCondition) {
+      return fieldWithNotApplicable
+    }
     return {
       ...fields,
       [fieldName]: field,

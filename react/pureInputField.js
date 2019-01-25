@@ -23,7 +23,7 @@ const SHALLOW_FIELDS = [
   'loading',
   'value',
   'valueOptions',
-  'notApplicableField',
+  'notApplicable',
   'disabled',
 ]
 

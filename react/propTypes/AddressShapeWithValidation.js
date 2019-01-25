@@ -19,7 +19,7 @@ export const AddressWithValidation = reduce(
       disabled: PropTypes.bool,
       value: valueType,
       valueOptions: PropTypes.arrayOf(PropTypes.string),
-      notApplicableField: PropTypes.bool,
+      notApplicable: PropTypes.bool,
     }).isRequired
     return acc
   },

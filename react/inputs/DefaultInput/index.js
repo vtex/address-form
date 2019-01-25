@@ -28,9 +28,9 @@ class Input extends Component {
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
     const valid = address[field.name].valid
-    const notApplicableField = !!address[field.name].notApplicableField
-    const numberValue = !address['number'].value && field.name === 'number'
-    const geolocationCondition = address['addressQuery'].geolocationAutoCompleted && numberValue || notApplicableField
+    const notApplicable = !!address[field.name].notApplicable
+    const noNumberValue = !address['number'].value && field.name === 'number'
+    const geolocationCondition = address['addressQuery'] && address['addressQuery'].geolocationAutoCompleted && noNumberValue || notApplicable
 
     if (geolocationCondition) {
       const handleToggle = toggleNotApplicable
