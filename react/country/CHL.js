@@ -408,7 +408,7 @@ const countryData = {
     'San Fabián': '3860000',
     'San Ignacio': '3890000',
     'San Nicolás': '4020000',
-    Trehuaco: '5248145',
+    Treguaco: '5248145',
     Yungay: '3920000',
   }
 }
