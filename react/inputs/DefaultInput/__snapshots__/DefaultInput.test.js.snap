@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render custom class 1`] = `
+<p
+  className="input ship-number text"
+>
+  <label
+    htmlFor="ship-number"
+  />
+  <input
+    autoComplete="on"
+    autoFocus={false}
+    className="input-small success"
+    data-hj-whitelist={true}
+    disabled={false}
+    id="ship-number"
+    maxLength="9"
+    name="number"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={undefined}
+    placeholder={undefined}
+    type="text"
+    value=""
+  />
+</p>
+`;
+
+exports[`Input should render default case 1`] = `
+<p
+  className="input ship-number text"
+>
+  <label
+    htmlFor="ship-number"
+  />
+  <input
+    autoComplete="on"
+    autoFocus={false}
+    className="input-small success"
+    data-hj-whitelist={true}
+    disabled={false}
+    id="ship-number"
+    maxLength="9"
+    name="number"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={undefined}
+    placeholder={undefined}
+    type="text"
+    value=""
+  />
+</p>
+`;
+
+exports[`Input should render different id 1`] = `
+<p
+  className="input ship-number text"
+>
+  <label
+    htmlFor="ship-number"
+  />
+  <input
+    autoComplete="on"
+    autoFocus={false}
+    className="input-small success"
+    data-hj-whitelist={true}
+    disabled={false}
+    id="ship-number"
+    maxLength="9"
+    name="number"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={undefined}
+    placeholder={undefined}
+    type="text"
+    value=""
+  />
+</p>
+`;
+
+exports[`Input should render different id based on fieldName 1`] = `
+<p
+  className="input ship-number text"
+>
+  <label
+    htmlFor="ship-number"
+  />
+  <input
+    autoComplete="on"
+    autoFocus={false}
+    className="input-small success"
+    data-hj-whitelist={true}
+    disabled={false}
+    id="ship-number"
+    maxLength="9"
+    name="number"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={undefined}
+    placeholder={undefined}
+    type="text"
+    value=""
+  />
+</p>
+`;
+
+exports[`Input should render different input type 1`] = `
+<p
+  className="input ship-number text"
+>
+  <label
+    htmlFor="ship-number"
+  />
+  <input
+    autoComplete="on"
+    autoFocus={false}
+    className="input-small success"
+    data-hj-whitelist={true}
+    disabled={false}
+    id="ship-number"
+    maxLength="9"
+    name="number"
+    onBlur={[MockFunction]}
+    onChange={[Function]}
+    onFocus={undefined}
+    placeholder={undefined}
+    type="text"
+    value=""
+  />
+</p>
+`;
+
+exports[`Input should render disabled input 1`] = `
+<div
+  className="input ship-notApplicable text"
+  htmlFor="ship-number"
+>
+  <p
+    className="input ship-number text"
+  >
+    <label
+      htmlFor="ship-number"
+    />
+    <input
+      autoComplete="on"
+      autoFocus={false}
+      className="input-small success"
+      data-hj-whitelist={true}
+      disabled={false}
+      id="ship-number"
+      maxLength="9"
+      name="number"
+      onBlur={[MockFunction]}
+      onChange={[Function]}
+      onFocus={undefined}
+      placeholder={undefined}
+      type="text"
+      value=""
+    />
+  </p>
+  <p
+    className="input ship-checkboxNumberLabel text"
+  >
+    <label
+      htmlFor="ship-checkboxNumberLabel"
+    />
+    <input
+      className="input ship-checkboxNumberLabel type"
+      defaultChecked={undefined}
+      id="ship-number"
+      name="number"
+      onBlur={[MockFunction]}
+      onChange={[Function]}
+      onFocus={undefined}
+      placeholder={undefined}
+      type="checkbox"
+    />
+  </p>
+</div>
+`;

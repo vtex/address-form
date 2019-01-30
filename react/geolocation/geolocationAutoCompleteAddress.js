@@ -28,6 +28,7 @@ export default function geolocationAutoCompleteAddress(
       receiverName: baseAddress.receiverName,
     }),
     address => addFocusToNextInvalidField(address, rules),
+    setNumberNotApplicable,
   ])()
 
   // The functions below use googleAddress and geolocationRules
@@ -52,7 +53,6 @@ export default function geolocationAutoCompleteAddress(
             component,
           )
         }
-
         return address
       },
       {},
@@ -99,6 +99,22 @@ export default function geolocationAutoCompleteAddress(
   function setAddressQuery(address) {
     address.addressQuery = { value: googleAddress.formatted_address }
 
+    return address
+  }
+
+  function setNumberNotApplicable(address) {
+    const geolocationNumberCondition =
+      geolocationRules &&
+      geolocationRules.number &&
+      geolocationRules.number.notApplicable
+    if (geolocationNumberCondition) {
+      return {
+        ...address,
+        number: {
+          ...address.number,
+          notApplicable: true,
+        }}
+    }
     return address
   }
 

@@ -51,6 +51,22 @@ class InputFieldContainer extends Component {
     }
   }
 
+  bindNotApplicable = () => {
+    const { address, onChangeAddress, notApplicableLabel } = this.props
+    const labelNotApplicable = notApplicableLabel || 'N/A'
+
+    return () => {
+      onChangeAddress({
+        'number': {
+          ...address['number'],
+          value: address['number'].disabled
+            ? null : labelNotApplicable,
+          disabled: !address['number'].disabled,
+        },
+      })
+    }
+  }
+
   bindOnBlur = () => {
     const { field, address, onChangeAddress } = this.props
     const value = address[field.name] ? address[field.name].value : ''
@@ -86,7 +102,6 @@ class InputFieldContainer extends Component {
 
   addFocusIfNeeded() {
     const { address, field, onChangeAddress } = this.props
-
     const fieldValue = address[field.name]
     if (this.el && typeof this.el.focus === 'function' && fieldValue.focus) {
       this.el.focus()
@@ -124,6 +139,10 @@ class InputFieldContainer extends Component {
         options={_options}
         onChange={this.bindOnChange()}
         onBlur={this.bindOnBlur()}
+        {...(address[field.name].notApplicable
+          ? { toggleNotApplicable: this.bindNotApplicable() }
+          : {}
+        )}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
       />
@@ -145,6 +164,7 @@ InputFieldContainer.propTypes = {
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,
   shouldShowNumberKeyboard: PropTypes.bool,
+  notApplicableLabel: PropTypes.string,
 }
 
 export default pureInputField(InputFieldContainer)

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 
-const SHALLOW_FIELDS = [
+const SHALLOW_PROPS = [
   'Input',
   'autoFocus',
   'field',
@@ -12,7 +12,22 @@ const SHALLOW_FIELDS = [
   'shouldShowNumberKeyboard',
 ]
 
-function shallowCompare(prevProps, thisProps) {
+function shallowCompareProps(prevProps, thisProps) {
+  return SHALLOW_PROPS.find(field => {
+    return prevProps[field] !== thisProps[field]
+  })
+}
+
+const SHALLOW_FIELDS = [
+  'autoCompleted',
+  'loading',
+  'value',
+  'valueOptions',
+  'notApplicable',
+  'disabled',
+]
+
+function shallowCompareField(prevProps, thisProps) {
   return SHALLOW_FIELDS.find(field => {
     return prevProps[field] !== thisProps[field]
   })
@@ -21,7 +36,7 @@ function shallowCompare(prevProps, thisProps) {
 function pureInputField(WrappedComponent) {
   class PureInput extends Component {
     shouldComponentUpdate(prevProps) {
-      if (shallowCompare(prevProps, this.props)) {
+      if (shallowCompareProps(prevProps, this.props)) {
         return true
       }
 
@@ -30,8 +45,10 @@ function pureInputField(WrappedComponent) {
         return true
       }
 
-      if (prevProps.address[prevProps.field.name].value !==
-          this.props.address[this.props.field.name].value) {
+      if (shallowCompareField(
+          prevProps.address[prevProps.field.name],
+          this.props.address[this.props.field.name]
+        )) {
         return true
       }
 

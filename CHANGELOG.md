@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.0] - 2019-01-29
+
+### Added
+
+- Geolocation logic input
+- `getAddressByGeolocation` function
+- `InputCheckbox` component
+- `notApplicable` flag to number field
+- Tests using geolocation addresses
+- Tests cases with the new functions
+
+### Changed
+
+- Geolocation Rules
+
+
 ## [3.0.12] - 2019-01-14
 
 ### Changed

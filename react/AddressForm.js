@@ -20,6 +20,7 @@ class AddressForm extends Component {
       rules,
       onChangeAddress,
       Input,
+      notApplicableLabel,
       omitPostalCodeFields,
       omitAutoCompletedFields,
     } = this.props
@@ -51,6 +52,7 @@ class AddressForm extends Component {
                 address={address}
                 rules={rules}
                 onChangeAddress={onChangeAddress}
+                notApplicableLabel={notApplicableLabel}
               />
             ),
         )}
@@ -72,6 +74,7 @@ AddressForm.propTypes = {
   omitAutoCompletedFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
+  notApplicableLabel: PropTypes.string,
 }
 
 const enhance = compose(

@@ -34,6 +34,7 @@ Object {
   },
   "number": Object {
     "geolocationAutoCompleted": true,
+    "notApplicable": true,
     "value": "55",
   },
   "postalCode": Object {

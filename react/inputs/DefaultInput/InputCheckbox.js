@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import cx from 'classnames'
 
-class InputText extends Component {
+class InputCheckbox extends Component {
   handleChange = e => {
     this.props.onChange(e.target.value)
   }
@@ -12,47 +12,37 @@ class InputText extends Component {
     const {
       address,
       field,
-      disabled,
-      inputRef,
       placeholder,
-      type,
-      autoFocus,
       onFocus,
+      onBlur,
     } = this.props
 
+    const checked = address[field.name].disabled
     const id = this.props.id.replace('{{fieldName}}', field.name)
-    const fieldValue = address[field.name]
-    const loading = !!address[field.name].loading
-
-    const className = cx(this.props.className, {
-      [`input-${field.size}`]: field.size,
-      success: !loading && fieldValue.valid === true,
-      error: fieldValue.valid === false,
+    const className = cx('input', 'ship-checkboxNumberLabel', {
+      required: field.required,
+      hide: field.hidden,
+      text: false,
+      type: 'checkbox',
     })
 
     return (
       <input
-        autoFocus={autoFocus}
-        autoComplete={field.autoComplete || 'on'}
         id={id}
-        type={type}
+        type="checkbox"
         name={field.elementName || field.name}
-        maxLength={field.maxLength}
-        value={fieldValue.value || ''}
+        defaultChecked={checked}
         placeholder={placeholder}
-        onBlur={this.props.onBlur}
+        onBlur={onBlur}
         onFocus={onFocus}
         onChange={this.handleChange}
         className={className}
-        disabled={disabled}
-        ref={inputRef}
-        data-hj-whitelist
       />
     )
   }
 }
 
-InputText.defaultProps = {
+InputCheckbox.defaultProps = {
   id: 'ship-{{fieldName}}',
   type: 'text',
   className: '',
@@ -60,19 +50,15 @@ InputText.defaultProps = {
   autoFocus: false,
 }
 
-InputText.propTypes = {
-  autoFocus: PropTypes.bool.isRequired,
+InputCheckbox.propTypes = {
   field: PropTypes.object.isRequired,
   address: AddressShapeWithValidation,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   onBlur: PropTypes.func.isRequired,
   id: PropTypes.string,
-  type: PropTypes.string,
   className: PropTypes.string,
-  disabled: PropTypes.bool,
   placeholder: PropTypes.string,
-  inputRef: PropTypes.func,
   onFocus: PropTypes.func,
 }
 
-export default InputText
+export default InputCheckbox

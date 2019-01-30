@@ -1,5 +1,6 @@
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import postalCodeGoogleAddress from './__mocks__/postalCodeGoogleAddress'
+import postalCodeGoogleAddressNoNumber from './__mocks__/postalCodeGoogleAddressNoNumber'
 import oneLevelGoogleAddress from './__mocks__/oneLevelGoogleAddress'
 import invalidFieldGoogleAddress from './__mocks__/invalidFieldGoogleAddress'
 import usePostalCode from '../country/__mocks__/usePostalCode'
@@ -72,5 +73,18 @@ describe('Geolocation Auto Complete Address', () => {
     )
 
     expect(address.complement).toBeUndefined()
+  })
+
+  it.only('should keep number as notApplicable', () => {
+    const address = geolocationAutoCompleteAddress(
+      {
+        ...newAddress,
+      },
+      postalCodeGoogleAddressNoNumber,
+      usePostalCode
+    )
+
+    expect(address.number).toBeDefined()
+    expect(address.number.notApplicable).toBeTruthy()
   })
 })

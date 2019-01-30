@@ -123,6 +123,7 @@ export default {
       valueIn: 'long_name',
       types: ['street_number'],
       required: false,
+      notApplicable: true,
     },
     street: {
       valueIn: 'long_name',

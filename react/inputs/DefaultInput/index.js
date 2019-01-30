@@ -7,6 +7,7 @@ import InputLabel from './InputLabel'
 import InputError from './InputError'
 import PostalCodeLoader from '../../postalCodeFrom/PostalCodeLoader'
 import { injectIntl, intlShape } from 'react-intl'
+import GeolocationNumberInput from './GeolocationNumberInput'
 
 class Input extends Component {
   render() {
@@ -18,10 +19,37 @@ class Input extends Component {
       inputRef,
       intl,
       shouldShowNumberKeyboard,
+      onFocus,
+      toggleNotApplicable,
+      onChange,
+      onBlur,
     } = this.props
+
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
     const valid = address[field.name].valid
+    const notApplicable = !!address[field.name].notApplicable
+    const noNumberValue = !address['number'].value && field.name === 'number'
+    const geolocationCondition = address['addressQuery'] && address['addressQuery'].geolocationAutoCompleted && noNumberValue || notApplicable
+
+    if (geolocationCondition) {
+      const handleToggle = toggleNotApplicable
+
+      return (
+        <GeolocationNumberInput
+          field={field}
+          address={address}
+          autoFocus={autoFocus}
+          inputRef={inputRef}
+          intl={intl}
+          disabled={disabled}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          handleToggle={handleToggle}
+          onChangeAddress={onChange}
+        />
+      )
+    }
 
     if (field.name === 'postalCode') {
       return (
@@ -36,6 +64,7 @@ class Input extends Component {
             disabled={loading}
             inputRef={inputRef}
             type={shouldShowNumberKeyboard ? 'tel' : 'text'}
+            onFocus={onFocus}
           />
           {loading && <PostalCodeLoader />}
           {field.forgottenURL && (
@@ -70,6 +99,7 @@ class Input extends Component {
             onBlur={this.props.onBlur}
             disabled={loading}
             inputRef={inputRef}
+            onFocus={onFocus}
           />
           {loading && <PostalCodeLoader />}
           {valid === false ? (
@@ -88,8 +118,9 @@ class Input extends Component {
             address={address}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
-            disabled={disabled}
+            disabled={loading}
             inputRef={inputRef}
+            onFocus={onFocus}
           />
         ) : (
           <InputText
@@ -103,8 +134,9 @@ class Input extends Component {
                 : null
             }
             onBlur={this.props.onBlur}
-            disabled={disabled}
+            disabled={loading}
             inputRef={inputRef}
+            onFocus={onFocus}
           />
         )}
         {valid === false ? (
@@ -128,9 +160,11 @@ Input.propTypes = {
   address: AddressShapeWithValidation,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
   inputRef: PropTypes.func,
   intl: intlShape,
   shouldShowNumberKeyboard: PropTypes.bool,
+  toggleNotApplicable: PropTypes.func,
 }
 
 export default injectIntl(Input)

@@ -39,11 +39,11 @@ class GeolocationInput extends Component {
 
     const options = rules.abbr
       ? {
-          types: ['address'],
-          componentRestrictions: {
-            country: rules.abbr,
-          },
-        }
+        types: ['address'],
+        componentRestrictions: {
+          country: rules.abbr,
+        },
+      }
       : { types: ['address'] }
 
     if (useSearchBox) {
