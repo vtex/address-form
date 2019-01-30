@@ -1,6 +1,6 @@
 import React from 'react'
 import AddressRules from './AddressRules'
-import { shallow } from 'enzyme'
+import { shallow, render, waitForElement } from 'test-utils'
 import defaultRules from './country/default'
 import braRules from './country/BRA'
 
@@ -20,21 +20,23 @@ describe('AddressRules', () => {
   })
 
   it('should render its children', async () => {
-    const wrapper = shallow(
+    const testId = 'foo'
+
+    const { container, getByTestId } = render(
       <AddressRules
         country={'BRA'}
         fetch={country => import('./country/' + country)}
       >
-        <h1>It works!</h1>
+        <span data-testid={testId} />
       </AddressRules>,
     )
 
-    const instance = wrapper.instance()
+    const result = await waitForElement(
+      () => getByTestId(testId),
+      { container }
+    )
 
-    await instance.componentDidMount()
-    wrapper.update()
-
-    expect(wrapper.find('h1')).toHaveLength(1)
+    expect(result).toBeDefined()
   })
 
   it('should provide default rules when country is unrecognized', async () => {

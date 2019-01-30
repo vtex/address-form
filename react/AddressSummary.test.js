@@ -1,6 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
-import renderer from 'react-test-renderer'
+import { mount, rendererCreate } from 'test-utils'
 import AddressSummary from './AddressSummary'
 import address from './__mocks__/addressWithoutValidation'
 import fbAddress from './__mocks__/facebookAddress'
@@ -87,7 +86,7 @@ describe('AddressSummary', () => {
   })
 
   it('should render gift list address', () => {
-    const tree = renderer.create(
+    const tree = rendererCreate(
       <AddressSummary
         giftRegistryDescription={'João da Silva'}
         address={address}
@@ -99,7 +98,7 @@ describe('AddressSummary', () => {
   })
 
   it('should format address according to rules', () => {
-    const brazilianAddress = renderer.create(
+    const brazilianAddress = rendererCreate(
       <AddressSummary
         address={{
           ...address,
@@ -115,7 +114,7 @@ describe('AddressSummary', () => {
       />,
     )
 
-    const americanAddress = renderer.create(
+    const americanAddress = rendererCreate(
       <AddressSummary
         address={{
           ...address,
@@ -138,7 +137,7 @@ describe('AddressSummary', () => {
   it('should render using default if rules do not contain summary', () => {
     global.console = { warn: jest.fn() }
 
-    const wrapper = renderer.create(
+    const wrapper = rendererCreate(
       <AddressSummary address={fbAddress} rules={displayNoSummary} />,
     )
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { rendererCreate } from 'test-utils'
 
 import address from '../../__mocks__/newAddress'
 
@@ -25,7 +25,9 @@ const DEFAULT_PROPS = {
 
 describe('InputText', () => {
   it('should render default case', () => {
-    const tree = renderer.create(<InputText {...DEFAULT_PROPS} />).toJSON()
+    const tree = rendererCreate(
+      <InputText {...DEFAULT_PROPS} />
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -35,7 +37,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       disabled: true,
     }
-    const tree = renderer.create(<InputText {...props} />).toJSON()
+    const tree = rendererCreate(<InputText {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -45,7 +47,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       className: 'my-class',
     }
-    const tree = renderer.create(<InputText {...props} />).toJSON()
+    const tree = rendererCreate(<InputText {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -55,7 +57,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       type: 'tel',
     }
-    const tree = renderer.create(<InputText {...props} />).toJSON()
+    const tree = rendererCreate(<InputText {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -65,7 +67,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       id: 'summary-postal-code',
     }
-    const tree = renderer.create(<InputText {...props} />).toJSON()
+    const tree = rendererCreate(<InputText {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -75,7 +77,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       id: 'my-context-{{fieldName}}',
     }
-    const tree = renderer.create(<InputText {...props} />).toJSON()
+    const tree = rendererCreate(<InputText {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })

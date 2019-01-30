@@ -1,5 +1,5 @@
 import React from 'react'
-import renderer from 'react-test-renderer'
+import { rendererCreate } from 'test-utils'
 
 import address from '../../__mocks__/geolocationAddressValid'
 import newAddress from '../../__mocks__/newAddress'
@@ -11,6 +11,7 @@ const GEOLOCATION_PROPS = {
     name: 'number',
     size: 'small',
     maxLength: '9',
+    label: 'number'
   },
   address: {
     ...address,
@@ -34,6 +35,7 @@ const DEFAULT_PROPS = {
     name: 'number',
     size: 'small',
     maxLength: '9',
+    label: 'number'
   },
   addressId: {value: '1'},
   address: {
@@ -51,13 +53,13 @@ const DEFAULT_PROPS = {
 
 describe('Input', () => {
   it('should render default case', () => {
-    const tree = renderer.create(<Input {...DEFAULT_PROPS} />).toJSON()
+    const tree = rendererCreate(<Input {...DEFAULT_PROPS} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
   it('should render disabled input', () => {
-    const tree = renderer.create(<Input {...GEOLOCATION_PROPS} />).toJSON()
+    const tree = rendererCreate(<Input {...GEOLOCATION_PROPS} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -67,7 +69,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       className: 'my-class',
     }
-    const tree = renderer.create(<Input {...props} />).toJSON()
+    const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -77,7 +79,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       type: 'tel',
     }
-    const tree = renderer.create(<Input {...props} />).toJSON()
+    const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -87,7 +89,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       id: 'summary-postal-code',
     }
-    const tree = renderer.create(<Input {...props} />).toJSON()
+    const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -97,7 +99,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       id: 'my-context-{{fieldName}}',
     }
-    const tree = renderer.create(<Input {...props} />).toJSON()
+    const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })

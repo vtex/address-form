@@ -1,6 +1,6 @@
 import React from 'react'
 import SelectLevel from './SelectLevel'
-import { shallow, mount } from 'enzyme'
+import { shallow, mount } from 'test-utils'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
 import MockInput from '../inputs/DefaultInput/__mocks__/Input'

@@ -75,7 +75,7 @@ exports[`AddressSummary should format address according to rules 1`] = `
   <span
     className="country"
   >
-    BRA
+    Brazil
   </span>
 </div>
 `;
@@ -131,7 +131,7 @@ exports[`AddressSummary should format address according to rules 2`] = `
   <span
     className="country"
   >
-    USA
+    United States of America
   </span>
 </div>
 `;
