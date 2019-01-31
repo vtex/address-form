@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.2.0] - 2019-01-31
+
+### Added
+
+- `intl-equalizer` devDependency
+- Hook pre-push
+
+### Changed
+
+- Locales with `not applicable` keys
+
 ## [3.1.0] - 2019-01-29
 
 ### Added
