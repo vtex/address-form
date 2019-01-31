@@ -23,6 +23,9 @@
   "address-form.geolocation.example.USA": "Eg: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Eg: Avenida Mohedano, Caracas",
 
+  "address-form.field.notApplicable": "N/A",
+  "address-form.field.noNumber": "Not applicable",
+
   "address-form.error.ERROR_EMPTY_FIELD": "This field is required.",
   "address-form.error.ERROR_POSTAL_CODE": "Invalid postal code.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Invalid address.",
