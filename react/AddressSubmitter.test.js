@@ -1,6 +1,6 @@
 import React from 'react'
 import AddressSubmitter from './AddressSubmitter'
-import { shallow, mount } from 'enzyme'
+import { shallow, mount } from 'test-utils'
 import fbAddress from './__mocks__/facebookAddress'
 import { addValidation } from './transforms/address'
 import usaRules from './country/USA'

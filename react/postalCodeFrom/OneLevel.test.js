@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow } from 'test-utils'
 import OneLevel from './OneLevel'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'

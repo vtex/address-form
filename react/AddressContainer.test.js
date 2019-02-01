@@ -1,10 +1,10 @@
 import React from 'react'
-import { mount } from 'enzyme'
 import AddressContainer from './AddressContainer'
 import address from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import PostalCodeGetter from './PostalCodeGetter'
+import { mount, render } from 'test-utils'
 
 jest.mock('./postalCodeAutoCompleteAddress')
 
@@ -25,7 +25,9 @@ describe('AddressContainer', () => {
 
   it('should render its children', () => {
     // Arrange
-    const wrapper = mount(
+    const testId = 'foo'
+
+    const { getByTestId } = render(
       <AddressContainer
         cors
         accountName={accountName}
@@ -33,15 +35,15 @@ describe('AddressContainer', () => {
         onChangeAddress={jest.fn()}
         rules={usePostalCode}
       >
-        <span className="unique" />
+        <span data-testid={testId} />
       </AddressContainer>,
     )
 
     // Act
-    const result = wrapper.find('.unique')
+    const result = getByTestId(testId)
 
     // Assert
-    expect(result).toHaveLength(1)
+    expect(result).toBeDefined()
   })
 
   it('should handle the validation before calling onChangeAddress', () => {

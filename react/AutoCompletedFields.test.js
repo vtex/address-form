@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { mount } from 'test-utils'
 import AutoCompletedFields from './AutoCompletedFields'
 import newAddress from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'

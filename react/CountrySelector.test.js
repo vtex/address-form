@@ -1,8 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { mount } from 'enzyme'
+import { render, mount, rendererCreate } from 'test-utils'
 import CountrySelector from './CountrySelector'
-import renderer from 'react-test-renderer'
 import newAddress from './__mocks__/newAddress'
 
 describe('CountrySelector', () => {
@@ -12,61 +10,56 @@ describe('CountrySelector', () => {
   ]
 
   it('renders without crashing', () => {
-    const div = document.createElement('div')
-    ReactDOM.render(
+    render(
       <CountrySelector
         address={newAddress}
         shipsTo={shipsTo}
         onChangeAddress={jest.fn()}
       />,
-      div
     )
   })
 
   it('show options', () => {
-    const tree = renderer
-      .create(
-        <CountrySelector
-          address={newAddress}
-          shipsTo={shipsTo}
-          onChangeAddress={jest.fn()}
-        />
-      )
-      .toJSON()
+    const tree = rendererCreate(
+      <CountrySelector
+        address={newAddress}
+        shipsTo={shipsTo}
+        onChangeAddress={jest.fn()}
+      />
+    )
+    .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
   it('default value', () => {
-    const tree = renderer
-      .create(
-        <CountrySelector
-          address={{
-            ...newAddress,
-            country: { value: 'BRA' },
-          }}
-          shipsTo={shipsTo}
-          onChangeAddress={jest.fn()}
-        />
-      )
-      .toJSON()
+    const tree = rendererCreate(
+      <CountrySelector
+        address={{
+          ...newAddress,
+          country: { value: 'BRA' },
+        }}
+        shipsTo={shipsTo}
+        onChangeAddress={jest.fn()}
+      />
+    )
+    .toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
   it('should sort the select', () => {
-    const tree = renderer
-      .create(
-        <CountrySelector
-          address={{
-            ...newAddress,
-            country: { value: 'BRA' },
-          }}
-          shipsTo={shipsTo}
-          onChangeAddress={jest.fn()}
-        />
-      )
-      .toJSON()
+    const tree = rendererCreate(
+      <CountrySelector
+        address={{
+          ...newAddress,
+          country: { value: 'BRA' },
+        }}
+        shipsTo={shipsTo}
+        onChangeAddress={jest.fn()}
+      />
+    )
+    .toJSON()
 
     expect(tree).toMatchSnapshot()
   })

@@ -6,7 +6,9 @@ exports[`CountrySelector default value 1`] = `
 >
   <label
     htmlFor="ship-country"
-  />
+  >
+    Country
+  </label>
   <select
     className=""
     disabled={false}
@@ -36,7 +38,9 @@ exports[`CountrySelector should sort the select 1`] = `
 >
   <label
     htmlFor="ship-country"
-  />
+  >
+    Country
+  </label>
   <select
     className=""
     disabled={false}
@@ -66,7 +70,9 @@ exports[`CountrySelector show options 1`] = `
 >
   <label
     htmlFor="ship-country"
-  />
+  >
+    Country
+  </label>
   <select
     className=""
     disabled={false}

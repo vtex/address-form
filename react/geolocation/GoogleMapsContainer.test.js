@@ -1,6 +1,6 @@
 import React from 'react'
 import GoogleMapsContainer from './GoogleMapsContainer'
-import { shallow, mount } from 'enzyme'
+import { shallow, mount } from 'test-utils'
 
 jest.mock('./googleMaps')
 

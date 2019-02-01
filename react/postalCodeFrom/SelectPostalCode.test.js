@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow, mount } from 'test-utils'
 import SelectPostalCode from './SelectPostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'

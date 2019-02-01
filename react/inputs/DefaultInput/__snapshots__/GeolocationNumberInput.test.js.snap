@@ -10,7 +10,9 @@ exports[`InputText should render custom class 1`] = `
   >
     <label
       htmlFor="ship-number"
-    />
+    >
+      Number
+    </label>
     <input
       autoComplete="on"
       autoFocus={false}
@@ -23,7 +25,7 @@ exports[`InputText should render custom class 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="text"
       value=""
     />
@@ -33,7 +35,9 @@ exports[`InputText should render custom class 1`] = `
   >
     <label
       htmlFor="ship-checkboxNumberLabel"
-    />
+    >
+      No number
+    </label>
     <input
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
@@ -42,7 +46,7 @@ exports[`InputText should render custom class 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="checkbox"
     />
   </p>
@@ -59,7 +63,9 @@ exports[`InputText should render default case 1`] = `
   >
     <label
       htmlFor="ship-number"
-    />
+    >
+      Number
+    </label>
     <input
       autoComplete="on"
       autoFocus={false}
@@ -72,7 +78,7 @@ exports[`InputText should render default case 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="text"
       value=""
     />
@@ -82,7 +88,9 @@ exports[`InputText should render default case 1`] = `
   >
     <label
       htmlFor="ship-checkboxNumberLabel"
-    />
+    >
+      No number
+    </label>
     <input
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
@@ -91,7 +99,7 @@ exports[`InputText should render default case 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="checkbox"
     />
   </p>
@@ -108,7 +116,9 @@ exports[`InputText should render different id 1`] = `
   >
     <label
       htmlFor="ship-number"
-    />
+    >
+      Number
+    </label>
     <input
       autoComplete="on"
       autoFocus={false}
@@ -121,7 +131,7 @@ exports[`InputText should render different id 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="text"
       value=""
     />
@@ -131,7 +141,9 @@ exports[`InputText should render different id 1`] = `
   >
     <label
       htmlFor="ship-checkboxNumberLabel"
-    />
+    >
+      No number
+    </label>
     <input
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
@@ -140,7 +152,7 @@ exports[`InputText should render different id 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="checkbox"
     />
   </p>
@@ -157,7 +169,9 @@ exports[`InputText should render different id based on fieldName 1`] = `
   >
     <label
       htmlFor="ship-number"
-    />
+    >
+      Number
+    </label>
     <input
       autoComplete="on"
       autoFocus={false}
@@ -170,7 +184,7 @@ exports[`InputText should render different id based on fieldName 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="text"
       value=""
     />
@@ -180,7 +194,9 @@ exports[`InputText should render different id based on fieldName 1`] = `
   >
     <label
       htmlFor="ship-checkboxNumberLabel"
-    />
+    >
+      No number
+    </label>
     <input
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
@@ -189,7 +205,7 @@ exports[`InputText should render different id based on fieldName 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="checkbox"
     />
   </p>
@@ -206,7 +222,9 @@ exports[`InputText should render different input type 1`] = `
   >
     <label
       htmlFor="ship-number"
-    />
+    >
+      Number
+    </label>
     <input
       autoComplete="on"
       autoFocus={false}
@@ -219,7 +237,7 @@ exports[`InputText should render different input type 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="text"
       value=""
     />
@@ -229,7 +247,9 @@ exports[`InputText should render different input type 1`] = `
   >
     <label
       htmlFor="ship-checkboxNumberLabel"
-    />
+    >
+      No number
+    </label>
     <input
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
@@ -238,7 +258,7 @@ exports[`InputText should render different input type 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="checkbox"
     />
   </p>
@@ -255,7 +275,9 @@ exports[`InputText should render disabled input 1`] = `
   >
     <label
       htmlFor="ship-number"
-    />
+    >
+      Number
+    </label>
     <input
       autoComplete="on"
       autoFocus={false}
@@ -268,7 +290,7 @@ exports[`InputText should render disabled input 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="text"
       value=""
     />
@@ -278,7 +300,9 @@ exports[`InputText should render disabled input 1`] = `
   >
     <label
       htmlFor="ship-checkboxNumberLabel"
-    />
+    >
+      No number
+    </label>
     <input
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
@@ -287,7 +311,7 @@ exports[`InputText should render disabled input 1`] = `
       onBlur={[MockFunction]}
       onChange={[Function]}
       onFocus={undefined}
-      placeholder={undefined}
+      placeholder="Optional"
       type="checkbox"
     />
   </p>
