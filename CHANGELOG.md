@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.3.0] - 2019-02-04
+
+### Changed
+
+- Updated Chile regions
+
 ## [3.2.0] - 2019-01-31
 
 ### Added
