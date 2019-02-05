@@ -191,6 +191,7 @@ const countryData = {
     Huamboya: '0014',
     'Limon - Indanza': '0014',
     Logroño: '0014',
+    Macas: '0014',
     Morona: '0014',
     'Pablo Sexto': '0014',
     Palora: '0014',
@@ -216,7 +217,7 @@ const countryData = {
   Pastaza: {
     Arajuno: '0017',
     Mera: '0017',
-    Pastaza: '0017',
+    Puyo: '0017',
     'Santa Clara': '0017',
   },
   Pichincha: {
