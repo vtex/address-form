@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.1] - 2019-02-13
+
 ### Fixed
 
 - Added `focus` and `reason` to shallow fields for components to update theses props
