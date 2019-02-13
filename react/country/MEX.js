@@ -22,7 +22,7 @@ export default {
       regex: '^\\d{5}$',
       postalCodeAPI: true,
       forgottenURL:
-        'http://www.sepomex.gob.mx/servicioslinea/paginas/ccpostales.aspx',
+        'https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/Descarga.aspx',
       size: 'small',
       autoComplete: 'nope',
     },
