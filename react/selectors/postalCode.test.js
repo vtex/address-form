@@ -22,7 +22,7 @@ describe('Field Selectors', () => {
 
     it('with two levels', () => {
       const address = {
-        state: { value: 'I Región' },
+        state: { value: 'I REGIÓN' },
       }
 
       const postalCodes = getPostalCodeOptions(address, useTwoLevels)
@@ -38,7 +38,7 @@ describe('Field Selectors', () => {
 
     it('with three levels', () => {
       const address = {
-        state: { value: 'Beni' },
+        state: { value: 'BENI' },
         city: { value: 'Mamore' },
       }
 
