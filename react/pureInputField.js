@@ -22,6 +22,8 @@ const SHALLOW_FIELDS = [
   'autoCompleted',
   'loading',
   'value',
+  'focus',
+  'reason',
   'valueOptions',
   'notApplicable',
   'disabled',
