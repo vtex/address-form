@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed 
+
+- Field number validation updated for rules that hide it in geolocation
+
 ## [3.4.3] - 2019-02-14
 
 ### Fixed
