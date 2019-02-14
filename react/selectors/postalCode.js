@@ -1,6 +1,7 @@
 import { ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
-import { getField } from './fields'
+import { getField, normalizeOptions } from './fields'
 import last from 'lodash/last'
+import cleanStr from './cleanStr'
 
 export function getPostalCodeOptions(address, rules) {
   switch (rules.postalCodeFrom) {
@@ -20,11 +21,13 @@ function getOneLevelPostalCodes(address, rules) {
 
 function getTwoLevelsPostalCodes(address, rules) {
   const firstLevel = getField(rules.postalCodeLevels[0], rules)
+  const firstLevelValue = cleanStr(address[firstLevel.name].value)
+  const normalizedSecondLevelPostalCodes = normalizeOptions(rules.secondLevelPostalCodes)
 
   return address[firstLevel.name] &&
   address[firstLevel.name].value &&
-  rules.secondLevelPostalCodes[address[firstLevel.name].value]
-    ? rules.secondLevelPostalCodes[address[firstLevel.name].value]
+  normalizedSecondLevelPostalCodes[firstLevelValue]
+    ? normalizedSecondLevelPostalCodes[firstLevelValue]
     : []
 }
 
@@ -32,15 +35,18 @@ function getThreeLevelsPostalCodes(address, rules) {
   const firstLevel = getField(rules.postalCodeLevels[0], rules)
   const secondLevel = getField(rules.postalCodeLevels[1], rules)
 
+  const firstLevelValue = cleanStr(address[firstLevel.name].value)
+  const normalizedThirdLevelPostalCodes = normalizeOptions(rules.thirdLevelPostalCodes)
+
   return address[firstLevel.name] &&
-  address[firstLevel.name].value &&
+  firstLevelValue &&
   address[secondLevel.name] &&
   address[secondLevel.name].value &&
-  rules.thirdLevelPostalCodes[address[firstLevel.name].value] &&
-  rules.thirdLevelPostalCodes[address[firstLevel.name].value][
+  normalizedThirdLevelPostalCodes[firstLevelValue] &&
+  normalizedThirdLevelPostalCodes[firstLevelValue][
     address[secondLevel.name].value
   ]
-    ? rules.thirdLevelPostalCodes[address[firstLevel.name].value][
+    ? normalizedThirdLevelPostalCodes[firstLevelValue][
         address[secondLevel.name].value
       ]
     : []

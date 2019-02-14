@@ -27,7 +27,7 @@ function getFieldValue(field) {
   return typeof field === 'object' ? field.value : field
 }
 
-function normalizeOptions(options) {
+export function normalizeOptions(options) {
   return reduce(
     options,
     (acc, option, key) => {
