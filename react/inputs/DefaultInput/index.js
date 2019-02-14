@@ -30,7 +30,12 @@ class Input extends Component {
     const valid = address[field.name].valid
     const notApplicable = !!address[field.name].notApplicable
     const noNumberValue = !address['number'].value && field.name === 'number'
-    const geolocationCondition = address['addressQuery'] && address['addressQuery'].geolocationAutoCompleted && noNumberValue || notApplicable
+    const hiddenNumber = field.hidden
+    const queryAndNotApplicableCondition =
+      address['addressQuery'] &&
+      address['addressQuery'].geolocationAutoCompleted &&
+      noNumberValue || notApplicable
+    const geolocationCondition = queryAndNotApplicableCondition && !hiddenNumber
 
     if (geolocationCondition) {
       const handleToggle = toggleNotApplicable
