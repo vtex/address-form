@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Update Messages builder to 1.x
+- Add Messages context.json
 
 ## [4.0.0] - 2019-01-18
 ### Changed
