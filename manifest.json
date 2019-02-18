@@ -11,7 +11,7 @@
   },
   "builders": {
     "react": "3.x",
-    "messages": "0.x"
+    "messages": "1.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --public && npm publish"
