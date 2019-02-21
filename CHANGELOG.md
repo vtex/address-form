@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.1] - 2019-02-21
+
 ### Fixed
 
 - Remove neighborhood wrongful requirement
