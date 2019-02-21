@@ -13969,7 +13969,7 @@ export default {
       name: 'neighborhood',
       maxLength: 100,
       label: 'neighborhood',
-      required: true,
+      required: false,
       size: 'large',
     },
     {

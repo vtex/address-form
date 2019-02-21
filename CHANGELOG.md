@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove neighborhood wrongful requirement
+
 ## [3.5.0] - 2019-02-14
 
-### Fixed 
+### Fixed
 
 - Field number validation updated for rules that hide it in geolocation
 
@@ -69,7 +73,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Geolocation Rules
-
 
 ## [3.0.12] - 2019-01-14
 
