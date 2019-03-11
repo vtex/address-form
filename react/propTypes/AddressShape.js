@@ -23,6 +23,7 @@ export const Address = {
   state: PropTypes.string,
   street: PropTypes.string,
   addressQuery: PropTypes.string,
+  isDisposable: PropTypes.bool,
 }
 
 export default PropTypes.shape(Address)
