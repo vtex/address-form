@@ -102,6 +102,7 @@ export function validateField(value, name, address, rules) {
     case 'state':
     case 'street':
     case 'addressQuery':
+    case 'isDisposable':
       return defaultValidation(value, name, address, rules)
     default:
       console.warn(`Unexpected field ${name}`)
