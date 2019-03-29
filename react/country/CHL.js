@@ -410,7 +410,7 @@ const countryData = {
     'San Nicolás': '4020000',
     Treguaco: '5248145',
     Yungay: '3920000',
-  }
+  },
 }
 
 export default {
@@ -433,6 +433,7 @@ export default {
       label: 'postalCode',
       maxLength: 50,
       name: 'postalCode',
+      postalCodeAPI: false,
       regex: /^([\d]{7})$/,
       size: 'large',
     },
@@ -504,7 +505,12 @@ export default {
       types: ['postal_code'],
       required: false,
     },
-    number: { valueIn: 'long_name', types: ['street_number'], required: false, notApplicable: true },
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+      notApplicable: true,
+    },
     street: { valueIn: 'long_name', types: ['route'], required: false },
     neighborhood: {
       valueIn: 'long_name',

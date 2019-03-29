@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.5] - 2019-03-29
+
+### Fixed
+
+- PostalCodeAPI rules for multiple countries
+
 ## [3.5.4] - 2019-03-19
 
 ### Fix

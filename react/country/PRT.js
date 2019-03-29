@@ -19,6 +19,7 @@ export default {
       required: true,
       mask: '9999-999',
       regex: '^(?:[\\d]{4})(?:\\-|)(?:[\\d]{3})$',
+      postalCodeAPI: false,
       forgottenURL:
         'https://www.ctt.pt/feapl_2/app/open/objectSearch/objectSearch.jspx',
       size: 'small',
@@ -87,7 +88,12 @@ export default {
       types: ['postal_code'],
       required: true,
     },
-    number: { valueIn: 'long_name', types: ['street_number'], required: false, notApplicable: true },
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+      notApplicable: true,
+    },
     street: { valueIn: 'long_name', types: ['route'], required: false },
     neighborhood: {
       valueIn: 'long_name',
