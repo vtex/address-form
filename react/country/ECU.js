@@ -289,6 +289,7 @@ export default {
       label: 'postalCode',
       maxLength: 50,
       name: 'postalCode',
+      postalCodeAPI: false,
       regex: /^([\d]{4})$/,
       size: 'small',
     },
@@ -360,7 +361,12 @@ export default {
       types: ['postal_code'],
       required: false,
     },
-    number: { valueIn: 'long_name', types: ['street_number'], required: false, notApplicable: true },
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+      notApplicable: true,
+    },
     street: { valueIn: 'long_name', types: ['route'], required: false },
     neighborhood: {
       valueIn: 'long_name',

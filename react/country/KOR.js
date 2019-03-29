@@ -19,7 +19,7 @@ export default {
       required: true,
       mask: '99999',
       regex: '^([\\d]{5})$',
-      postalCodeAPI: true,
+      postalCodeAPI: false,
       forgottenURL: 'https://tools.usps.com/go/ZipLookupAction!input.action',
       size: 'small',
       autoComplete: 'nope',

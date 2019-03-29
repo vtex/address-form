@@ -1213,6 +1213,7 @@ export default {
       label: 'postalCode',
       maxLength: 50,
       name: 'postalCode',
+      postalCodeAPI: false,
       required: true,
       regex: /^([\d]{5})$/,
       size: 'small',

@@ -353,6 +353,7 @@ export default {
       label: 'postalCode',
       maxLength: 50,
       name: 'postalCode',
+      postalCodeAPI: false,
       size: 'small',
       regex: /^([\d]{4})$/,
     },

@@ -219,6 +219,7 @@ export default {
       label: 'postalCode',
       maxLength: 50,
       name: 'postalCode',
+      postalCodeAPI: false,
       regex: /^\d{4}$/,
       size: 'small',
     },

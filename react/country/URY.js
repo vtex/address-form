@@ -353,6 +353,7 @@ export default {
       required: true,
       mask: '99999',
       regex: '^([\\d]{5})$',
+      postalCodeAPI: false,
       forgottenURL:
         'http://geo.correo.com.uy/IsisBusquedaDireccionPlugin/cp.jsp',
       size: 'small',
