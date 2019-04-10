@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.6] - 2019-04-10
+
+### Fixed
+
+- Romanian and Catalan locale messages
+
 ## [3.5.5] - 2019-03-29
 
 ### Fixed
