@@ -1,9 +1,8 @@
 {
-  "address-form.loading": "Te rugăm așteaptă...",
+  "address-form.loading": "Te rugăm să aștepți...",
   "address-form.dontKnowPostalCode": "nu îmi cunosc codul poștal",
-  "address-form.optional": "Optional",
+  "address-form.optional": "Opțional",
   "address-form.edit": "Editează",
-
   "address-form.field.addressQuery": "Adresă",
   "address-form.geolocation.example.ARG": "Eg: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Eg: Av Arce, 2556, La Paz",
@@ -22,15 +21,12 @@
   "address-form.geolocation.example.URY": "Eg: Bulevar Artigas, 1394, Montevidéu",
   "address-form.geolocation.example.USA": "Eg: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Eg: Avenida Mohedano, Caracas",
-
-  "address-form.field.notApplicable": "F/N",
+  "address-form.field.notApplicable": "N/A",
   "address-form.field.noNumber": "Fără număr",
-
   "address-form.error.ERROR_EMPTY_FIELD": "Acest câmp este obligatoriu.",
   "address-form.error.ERROR_POSTAL_CODE": "Cod poștal invalid.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adresă invalidă.",
   "address-form.error.generic": "Câmp invalid",
-
   "address-form.field.country": "Țară",
   "address-form.field.postalCode": "Cod Poștal",
   "address-form.field.street": "Stradă",
@@ -40,11 +36,11 @@
   "address-form.field.exteriorNumber": "Număr Exterior",
   "address-form.field.interiorNumber": "Număr Interior",
   "address-form.field.complement": "Informații suplimentare (ex: scara, etaj, apartament)",
-  "address-form.field.floorAndLetter": "Etaj si Literă",
+  "address-form.field.floorAndLetter": "Etaj și Literă",
   "address-form.field.reference": "Aproape de",
   "address-form.field.district": "Sector",
   "address-form.field.neighborhood": "Cartier",
-  "address-form.field.commercial": "Adresă comerciala",
+  "address-form.field.commercial": "Adresă comercială",
   "address-form.field.city": "Oraș",
   "address-form.field.town": "Oraș",
   "address-form.field.locality": "Localitate",
