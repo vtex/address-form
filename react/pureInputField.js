@@ -10,6 +10,7 @@ const SHALLOW_PROPS = [
   'options',
   'onChangeAddress',
   'shouldShowNumberKeyboard',
+  'intl',
 ]
 
 function shallowCompareProps(prevProps, thisProps) {
@@ -43,14 +44,19 @@ function pureInputField(WrappedComponent) {
       }
 
       const basedOn = this.props.field.basedOn
-      if (basedOn && prevProps.address[basedOn].value !== this.props.address[basedOn].value) {
+      if (
+        basedOn &&
+        prevProps.address[basedOn].value !== this.props.address[basedOn].value
+      ) {
         return true
       }
 
-      if (shallowCompareField(
+      if (
+        shallowCompareField(
           prevProps.address[prevProps.field.name],
-          this.props.address[this.props.field.name]
-        )) {
+          this.props.address[this.props.field.name],
+        )
+      ) {
         return true
       }
 

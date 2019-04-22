@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.7] - 2019-04-22
+
+### Fixed
+
+- Locale change for inputs
+
 ## [3.5.6] - 2019-04-10
 
 ### Fixed
