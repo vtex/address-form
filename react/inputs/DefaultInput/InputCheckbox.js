@@ -7,7 +7,6 @@ class InputCheckbox extends Component {
   handleChange = e => {
     this.props.onChange(e.target.value)
   }
-
   render() {
     const {
       address,
@@ -17,7 +16,10 @@ class InputCheckbox extends Component {
       onBlur,
     } = this.props
 
-    const checked = address[field.name].disabled
+    const checked =
+      address[field.name].disabled &&
+      !!address[field.name].value &&
+      address[field.name].valid
     const id = this.props.id.replace('{{fieldName}}', field.name)
     const className = cx('input', 'ship-checkboxNumberLabel', {
       required: field.required,
@@ -32,6 +34,7 @@ class InputCheckbox extends Component {
         type="checkbox"
         name={field.elementName || field.name}
         defaultChecked={checked}
+        checked={checked}
         placeholder={placeholder}
         onBlur={onBlur}
         onFocus={onFocus}
