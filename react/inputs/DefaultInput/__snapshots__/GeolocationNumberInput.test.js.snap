@@ -39,6 +39,7 @@ exports[`InputText should render custom class 1`] = `
       No number
     </label>
     <input
+      checked={undefined}
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
       id="ship-number"
@@ -92,6 +93,7 @@ exports[`InputText should render default case 1`] = `
       No number
     </label>
     <input
+      checked={undefined}
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
       id="ship-number"
@@ -145,6 +147,7 @@ exports[`InputText should render different id 1`] = `
       No number
     </label>
     <input
+      checked={undefined}
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
       id="ship-number"
@@ -198,6 +201,7 @@ exports[`InputText should render different id based on fieldName 1`] = `
       No number
     </label>
     <input
+      checked={undefined}
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
       id="ship-number"
@@ -251,6 +255,7 @@ exports[`InputText should render different input type 1`] = `
       No number
     </label>
     <input
+      checked={undefined}
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
       id="ship-number"
@@ -304,6 +309,7 @@ exports[`InputText should render disabled input 1`] = `
       No number
     </label>
     <input
+      checked={undefined}
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
       id="ship-number"

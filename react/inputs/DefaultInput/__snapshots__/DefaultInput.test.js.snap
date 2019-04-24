@@ -179,6 +179,7 @@ exports[`Input should render disabled input 1`] = `
       No number
     </label>
     <input
+      checked={undefined}
       className="input ship-checkboxNumberLabel type"
       defaultChecked={undefined}
       id="ship-number"
