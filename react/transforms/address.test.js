@@ -9,12 +9,30 @@ import {
 } from './address'
 import address from '../__mocks__/newAddress'
 import addressWithoutValidation from '../__mocks__/addressWithoutValidation'
+import addressWithObjectValues from '../__mocks__/addressWithObjectValues'
+import addressWithObjectValuesWithoutValidation from '../__mocks__/addressWithObjectValuesWithoutValidation'
 
 describe('Address Transform', () => {
   it('should add validation object to fields', () => {
     const result = addValidation(addressWithoutValidation)
 
     expect(result).toMatchObject(address)
+  })
+
+  it('should add validation ignoring object wrong values', () => {
+    const result = addValidation({
+      ...addressWithObjectValuesWithoutValidation,
+      street: {
+        focus: true,
+      },
+    })
+
+    const nullValue = {
+      value: null,
+    }
+
+    expect(result).toMatchObject(addressWithObjectValues)
+    expect(result.street).toMatchObject(nullValue)
   })
 
   it('should add validation only once, even with multiple calls', () => {
