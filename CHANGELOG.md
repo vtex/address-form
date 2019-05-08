@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.9] - 2019-05-08
+
+### Fixed
+
+- Adding validation with properties with wrong object values
+
 ## [3.5.8] - 2019-04-24
 
 ### Changed

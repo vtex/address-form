@@ -13,11 +13,15 @@ export function addValidation(address) {
   return reduce(
     address,
     (newAddress, propValue, propName) => {
+      const isStringOrArray =
+        typeof propValue === 'string' || Array.isArray(propValue)
       newAddress[propName] = {
         value:
           propValue && !isUndefined(propValue.value)
             ? propValue.value
-            : propValue,
+            : isStringOrArray
+            ? propValue
+            : null,
       }
       return newAddress
     },
@@ -101,7 +105,9 @@ export function handleMultipleValues(fields) {
   return reduce(
     fields,
     (newFields, prop, propName) => {
-      const hasMultipleValues = MULTIPLE_OPTIONS_SEPARATOR_REGEX.test(prop.value)
+      const hasMultipleValues = MULTIPLE_OPTIONS_SEPARATOR_REGEX.test(
+        prop.value,
+      )
 
       newFields[propName] = prop
 
@@ -141,7 +147,6 @@ export function maskFields(addressFields, rules) {
 }
 
 export function addFocusToNextInvalidField(fields, rules) {
-
   const invalidFilledField = getFirstInvalidFilledField(fields, rules)
 
   if (invalidFilledField) {
