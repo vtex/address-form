@@ -10,10 +10,16 @@ describe('Get Address by Geolocation', () => {
       address: newAddress,
       onChangeAddress: jest.fn(),
       rules: useOneLevel,
-      googleMaps: {Geocoder: googleMaps(mockFn)},
+      googleMaps: { Geocoder: googleMaps(mockFn) },
     }
     const geolocationAddress = getAddressByGeolocation(geolocationProps)
 
-    expect(mockFn).toHaveBeenCalledWith({address: '321 Praia de Botafogo'}, expect.any(Function))
+    expect(mockFn).toHaveBeenCalledWith(
+      {
+        address: '321 Praia de Botafogo',
+        componentRestrictions: { country: 'EC' },
+      },
+      expect.any(Function),
+    )
   })
 })
