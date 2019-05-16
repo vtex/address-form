@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Country restrictions when geolocation autocomplete address
+
 ## [3.5.9] - 2019-05-08
 
 ### Fixed
