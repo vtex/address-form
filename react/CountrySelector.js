@@ -4,6 +4,7 @@ import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
 import DefaultInput from './inputs/DefaultInput'
 import { injectAddressContext } from './addressContainerContext'
+import { intlShape, injectIntl } from 'react-intl'
 
 class CountrySelector extends Component {
   handleChangeCountry = changedFields => {
@@ -46,7 +47,7 @@ class CountrySelector extends Component {
   }
 
   render() {
-    const { address, shipsTo, Input } = this.props
+    const { address, shipsTo, Input, intl } = this.props
     const field = {
       name: 'country',
       label: 'country',
@@ -56,6 +57,7 @@ class CountrySelector extends Component {
 
     return (
       <InputFieldContainer
+        intl={intl}
         Input={Input}
         field={field}
         rules={{}}
@@ -73,9 +75,10 @@ CountrySelector.defaultProps = {
 
 CountrySelector.propTypes = {
   Input: PropTypes.func,
+  intl: intlShape,
   address: AddressShapeWithValidation,
   shipsTo: PropTypes.array.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default injectAddressContext(CountrySelector)
+export default injectAddressContext(injectIntl(CountrySelector))

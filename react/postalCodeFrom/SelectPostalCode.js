@@ -6,6 +6,7 @@ import {
   getLastLevelField,
 } from '../selectors/postalCode'
 import InputFieldContainer from '../InputFieldContainer'
+import { injectIntl, intlShape } from 'react-intl'
 
 class SelectPostalCode extends Component {
   handleChange = changedFields => {
@@ -35,20 +36,19 @@ class SelectPostalCode extends Component {
   }
 
   getOptions(fieldName, address, rules) {
-    return getPostalCodeOptions(
-      address,
-      rules
-    ).map(({ postalCode, label }) => ({
-      label,
-      value: this.composeValue(fieldName, {
-        [fieldName]: { value: label },
-        postalCode: { value: postalCode },
+    return getPostalCodeOptions(address, rules).map(
+      ({ postalCode, label }) => ({
+        label,
+        value: this.composeValue(fieldName, {
+          [fieldName]: { value: label },
+          postalCode: { value: postalCode },
+        }),
       }),
-    }))
+    )
   }
 
   render() {
-    const { address, rules, Input } = this.props
+    const { address, rules, Input, intl } = this.props
     const currentLevelField = getLastLevelField(rules)
     const fieldName = currentLevelField.name
 
@@ -62,6 +62,7 @@ class SelectPostalCode extends Component {
 
     return (
       <InputFieldContainer
+        intl={intl}
         Input={Input}
         field={currentLevelField}
         address={newAddress}
@@ -75,9 +76,10 @@ class SelectPostalCode extends Component {
 
 SelectPostalCode.propTypes = {
   Input: PropTypes.func.isRequired,
+  intl: intlShape,
   address: AddressShapeWithValidation.isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default SelectPostalCode
+export default injectIntl(SelectPostalCode)

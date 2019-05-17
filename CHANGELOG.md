@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixes components not changing locale keys after locale change
+
 ## [3.5.10] - 2019-05-16
 
 ### Added

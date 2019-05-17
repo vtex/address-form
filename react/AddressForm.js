@@ -12,6 +12,7 @@ import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 import { injectRules } from './addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
+import { injectIntl, intlShape } from 'react-intl'
 
 class AddressForm extends Component {
   render() {
@@ -20,6 +21,7 @@ class AddressForm extends Component {
       rules,
       onChangeAddress,
       Input,
+      intl,
       notApplicableLabel,
       omitPostalCodeFields,
       omitAutoCompletedFields,
@@ -35,26 +37,26 @@ class AddressForm extends Component {
 
     return (
       <div>
-        {fields.map(
-          field =>
-            isDefiningPostalCodeField(field.name, rules) ? (
-              <SelectPostalCode
-                Input={Input}
-                rules={rules}
-                address={address}
-                onChangeAddress={onChangeAddress}
-              />
-            ) : (
-              <InputFieldContainer
-                key={field.name}
-                Input={Input}
-                field={field}
-                address={address}
-                rules={rules}
-                onChangeAddress={onChangeAddress}
-                notApplicableLabel={notApplicableLabel}
-              />
-            ),
+        {fields.map(field =>
+          isDefiningPostalCodeField(field.name, rules) ? (
+            <SelectPostalCode
+              Input={Input}
+              rules={rules}
+              address={address}
+              onChangeAddress={onChangeAddress}
+            />
+          ) : (
+            <InputFieldContainer
+              intl={intl}
+              key={field.name}
+              Input={Input}
+              field={field}
+              address={address}
+              rules={rules}
+              onChangeAddress={onChangeAddress}
+              notApplicableLabel={notApplicableLabel}
+            />
+          ),
         )}
       </div>
     )
@@ -69,6 +71,7 @@ AddressForm.defaultProps = {
 
 AddressForm.propTypes = {
   Input: PropTypes.func,
+  intl: intlShape,
   address: AddressShapeWithValidation,
   omitPostalCodeFields: PropTypes.bool,
   omitAutoCompletedFields: PropTypes.bool,
@@ -80,5 +83,6 @@ AddressForm.propTypes = {
 const enhance = compose(
   injectAddressContext,
   injectRules,
+  injectIntl,
 )
 export default enhance(AddressForm)
