@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-import { shallow, mount } from 'test-utils'
+import { mount } from 'test-utils'
 import SelectPostalCode from './SelectPostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
 import find from 'lodash/find'
+import { IntlProvider } from 'react-intl'
+import pt from '../../messages/pt.json'
 
 describe('SelectPostalCode', () => {
   const firstLevelName = useOneLevel.postalCodeLevels[0]
   const firstLevelField = find(
     useOneLevel.fields,
-    field => field.name === firstLevelName
+    field => field.name === firstLevelName,
   )
 
   class MockInput extends Component {
@@ -19,13 +21,15 @@ describe('SelectPostalCode', () => {
   }
 
   it('should render PureInput with the right props', () => {
-    const wrapper = shallow(
-      <SelectPostalCode
-        Input={MockInput}
-        address={address}
-        rules={useOneLevel}
-        onChangeAddress={jest.fn()}
-      />
+    const wrapper = mount(
+      <IntlProvider locale="pt" messages={pt}>
+        <SelectPostalCode
+          Input={MockInput}
+          address={address}
+          rules={useOneLevel}
+          onChangeAddress={jest.fn()}
+        />
+      </IntlProvider>,
     )
 
     const props = wrapper.find('PureInput').props()
@@ -43,16 +47,18 @@ describe('SelectPostalCode', () => {
       ({ label, postalCode }) => ({
         value: `${label}___${postalCode}`,
         label: label,
-      })
+      }),
     )
 
-    const wrapper = shallow(
-      <SelectPostalCode
-        Input={MockInput}
-        address={address}
-        rules={useOneLevel}
-        onChangeAddress={jest.fn()}
-      />
+    const wrapper = mount(
+      <IntlProvider locale="pt" messages={pt}>
+        <SelectPostalCode
+          Input={MockInput}
+          address={address}
+          rules={useOneLevel}
+          onChangeAddress={jest.fn()}
+        />
+      </IntlProvider>,
     )
 
     const props = wrapper.find('PureInput').props()
@@ -66,17 +72,19 @@ describe('SelectPostalCode', () => {
   })
 
   it('should render PureInput with address with postal-code-defining-field with postal code appended to its value', () => {
-    const wrapper = shallow(
-      <SelectPostalCode
-        Input={MockInput}
-        address={{
-          ...address,
-          postalCode: { value: '0001' },
-          state: { value: 'Bolivar' },
-        }}
-        rules={useOneLevel}
-        onChangeAddress={jest.fn()}
-      />
+    const wrapper = mount(
+      <IntlProvider locale="pt" messages={pt}>
+        <SelectPostalCode
+          Input={MockInput}
+          address={{
+            ...address,
+            postalCode: { value: '0001' },
+            state: { value: 'Bolivar' },
+          }}
+          rules={useOneLevel}
+          onChangeAddress={jest.fn()}
+        />
+      </IntlProvider>,
     )
 
     const props = wrapper.find('PureInput').props()
@@ -103,7 +111,7 @@ describe('SelectPostalCode', () => {
         }}
         rules={useOneLevel}
         onChangeAddress={handleChange}
-      />
+      />,
     )
 
     expect(handleChange).toHaveBeenCalledWith({

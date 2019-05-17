@@ -1,20 +1,24 @@
 import React from 'react'
 import SelectLevel from './SelectLevel'
-import { shallow, mount } from 'test-utils'
+import { mount } from 'test-utils'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
 import MockInput from '../inputs/DefaultInput/__mocks__/Input'
+import { IntlProvider } from 'react-intl'
+import pt from '../../messages/pt.json'
 
 describe('SelectLevel', () => {
   it('render it right', () => {
-    const wrapper = shallow(
-      <SelectLevel
-        level={0}
-        Input={MockInput}
-        address={address}
-        rules={useThreeLevels}
-        onChangeAddress={jest.fn()}
-      />,
+    const wrapper = mount(
+      <IntlProvider locale="pt" messages={pt}>
+        <SelectLevel
+          level={0}
+          Input={MockInput}
+          address={address}
+          rules={useThreeLevels}
+          onChangeAddress={jest.fn()}
+        />
+      </IntlProvider>,
     )
 
     expect(wrapper.find('PureInput')).toHaveLength(1)
