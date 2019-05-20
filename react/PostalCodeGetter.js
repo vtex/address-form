@@ -11,6 +11,7 @@ import { getField } from './selectors/fields'
 import { injectRules } from './addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
+import { injectIntl } from 'react-intl'
 
 class PostalCodeGetter extends Component {
   render() {
@@ -20,6 +21,7 @@ class PostalCodeGetter extends Component {
       rules,
       onChangeAddress,
       Input,
+      intl,
       shouldShowNumberKeyboard,
     } = this.props
 
@@ -27,6 +29,7 @@ class PostalCodeGetter extends Component {
       case THREE_LEVELS:
         return (
           <ThreeLevels
+            intl={intl}
             Input={Input}
             address={address}
             rules={rules}
@@ -36,6 +39,7 @@ class PostalCodeGetter extends Component {
       case TWO_LEVELS:
         return (
           <TwoLevels
+            intl={intl}
             Input={Input}
             address={address}
             rules={rules}
@@ -45,6 +49,7 @@ class PostalCodeGetter extends Component {
       case ONE_LEVEL:
         return (
           <OneLevel
+            intl={intl}
             Input={Input}
             address={address}
             rules={rules}
@@ -56,6 +61,7 @@ class PostalCodeGetter extends Component {
         const field = getField('postalCode', rules)
         return (
           <InputFieldContainer
+            intl={intl}
             Input={Input}
             field={field}
             address={address}
@@ -88,5 +94,6 @@ PostalCodeGetter.propTypes = {
 const enhance = compose(
   injectAddressContext,
   injectRules,
+  injectIntl,
 )
 export default enhance(PostalCodeGetter)

@@ -7,6 +7,7 @@ import { EGOOGLEADDRESS } from '../constants'
 import { injectRules } from '../addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from '../addressContainerContext'
+import { injectIntl } from 'react-intl'
 
 class GeolocationInput extends Component {
   constructor(props) {
@@ -196,5 +197,6 @@ GeolocationInput.propTypes = {
 const enhance = compose(
   injectAddressContext,
   injectRules,
+  injectIntl,
 )
 export default enhance(GeolocationInput)
