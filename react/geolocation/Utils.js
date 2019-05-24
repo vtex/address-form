@@ -22,7 +22,7 @@ export default function getAddressByGeolocation(geolocationProps) {
           const autoCompletedAddress = geolocationAutoCompleteAddress(
             address,
             googleAddress,
-            rules.geolocation,
+            rules,
           )
 
           onChangeAddress({
