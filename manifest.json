@@ -1,7 +1,7 @@
 {
   "name": "address-form",
   "vendor": "vtex",
-  "version": "3.5.11",
+  "version": "3.5.12",
   "title": "address-form React component",
   "description": "address-form React component",
   "defaultLocale": "en",
@@ -21,5 +21,6 @@
   },
   "scripts": {
     "postreleasy": "vtex publish --public && npm publish"
-  }
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
