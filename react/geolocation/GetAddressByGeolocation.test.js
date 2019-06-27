@@ -16,7 +16,7 @@ describe('Get Address by Geolocation', () => {
 
     expect(mockFn).toHaveBeenCalledWith(
       {
-        address: '321 Praia de Botafogo',
+        address: '321 Praia de Botafogo Rio de Janeiro RJ',
         componentRestrictions: { country: 'EC' },
       },
       expect.any(Function),
