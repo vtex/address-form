@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Aditional address fields to `getAddressByGeolocation`
+
 ## [3.5.13] - 2019-06-28
 
 ### Added
