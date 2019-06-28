@@ -7,7 +7,7 @@
     "lib"
   ],
   "dependencies": {
-    "@vtex/styleguide": "^8.1.0",
+    "@vtex/styleguide": "^9.57.0",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "eslint-utils": "^1.3.1",

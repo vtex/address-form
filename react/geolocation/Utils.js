@@ -13,7 +13,7 @@ export default function getAddressByGeolocation(geolocationProps) {
       componentRestrictions: {
         country: rules.abbr,
       },
-      address: `${address['number'].value} ${address['street'].value}`,
+      address: `${address['number'].value || ''} ${address['street'].value || ''} ${address['city'].value || ''} ${address['state'].value || ''}`,
     },
     (results, status) => {
       if (status === googleMaps.GeocoderStatus.OK) {
