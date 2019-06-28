@@ -3489,8 +3489,13 @@ const countryData = {
     Zarnesti: '500000',
     Zizin: '500000',
   },
-  Bucuresti: {
-    Bucuresti: '010000',
+  Bucureşti: {
+    'Bucureşti (Sectorul 1)': '010000',
+    'Bucureşti (Sectorul 2)': '010000',
+    'Bucureşti (Sectorul 3)': '010000',
+    'Bucureşti (Sectorul 4)': '010000',
+    'Bucureşti (Sectorul 5)': '010000',
+    'Bucureşti (Sectorul 6)': '010000',
   },
   Buzau: {
     Albesti: '120000',
