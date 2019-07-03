@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.15] - 2019-07-03
+
 ### Changed
 
 - postalCode API route host URL to consider if baseURI exists
