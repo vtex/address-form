@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.16] - 2019-07-04
+
 ### Changed
 
 - USA postal code regular expression to cover optional diplomatic pouch numbers
