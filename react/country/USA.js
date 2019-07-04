@@ -18,7 +18,7 @@ export default {
       fixedLabel: 'ZIP',
       required: true,
       mask: '99999',
-      regex: '^([\\d]{5})$',
+      regex: '^([\\d]{5}((-)?[\\d]{4})?)$',
       postalCodeAPI: true,
       forgottenURL: 'https://tools.usps.com/go/ZipLookupAction!input.action',
       size: 'small',
