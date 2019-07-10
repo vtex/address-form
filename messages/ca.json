@@ -21,6 +21,7 @@
   "address-form.geolocation.example.URY": "Ex: Bulevar Artigas, 1394, Montevidéu",
   "address-form.geolocation.example.USA": "Ex: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Ex: Avenida Mohedano, Caracas",
+  "address-form.geolocation.example.ROU": "Ex: Bulevardul Ion Mihalache, București 011192, Romania",
   "address-form.field.notApplicable": "S/N",
   "address-form.field.noNumber": "Sense nombre",
   "address-form.error.ERROR_EMPTY_FIELD": "Aquest és un camp obligatori.",
