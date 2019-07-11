@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- ROU geolocation placeholder translation
+- ROU geolocation placeholder translation.
 
 ## [3.5.16] - 2019-07-04
 
