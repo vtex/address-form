@@ -345,7 +345,7 @@ const countryData = {
     'San Pablo': '5350000',
   },
   'XI Región': {
-    Aysén: '6008102',
+    Aysén: '6000000',
     'Chile Chico': '6050000',
     Cisnes: '6010000',
     Cochrane: '6100000',
