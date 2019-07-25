@@ -392,6 +392,22 @@ describe('Address Validation:', () => {
     expect(result.postalCode.valid).toBeUndefined()
   })
 
+  it('should keep valid fields', () => {
+    const changedFieldsValid = {
+      postalCode: { value: '22231000' },
+    }
+
+    const validatedAddress = validateChangedFields(changedFieldsValid, address, usePostalCode)
+
+    const changedFieldsValid2 = {
+      postalCode: { value: '22231001' },
+    }
+
+    const result = validateChangedFields(changedFieldsValid2, validatedAddress, usePostalCode)
+
+    expect(result.postalCode.valid).toBe(true)
+  })
+
   it('should invalidate field when it was validated before being visited', () => {
     const changedFieldsValid = {
       postalCode: { value: '22231000' },

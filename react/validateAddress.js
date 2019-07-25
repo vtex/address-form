@@ -60,16 +60,23 @@ export function validateChangedFields(changedFields, address, rules) {
       )
 
       const isVisited = visitedFields.indexOf(fieldName) !== -1
+
       const becameValid =
         (!address[fieldName] || address[fieldName].valid !== true) &&
         validationResult.valid === true
+
+      const keptValid =
+        address[fieldName] &&
+        address[fieldName].valid === true &&
+        validationResult.valid === true
+
       const becameInvalid =
         address[fieldName] &&
         address[fieldName].valid === true &&
         validationResult.valid === false
 
       const showValidationResult =
-        isVisited || (!isVisited && (becameValid || becameInvalid))
+        isVisited || (!isVisited && (becameValid || becameInvalid || keptValid))
 
       resultAddress[fieldName] = {
         ...resultAddress[fieldName],
