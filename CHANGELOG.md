@@ -7,79 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.6.12] - 2019-11-05
-
 ### Fixed
 
 - Peru neighborhood geolocation validation.
-
-## [3.6.11] - 2019-10-31
-
-### Fixed
-
 - Postal code autocompletion on paste.
-
-## [3.6.10] - 2019-10-29
+- Update Chile postal code for some regions.
+- Missing validation message to `GeolocationNumberInput`
+- Update Chile postal-code for Puerto Montt (Region X).
+- Removed unused depdendency (`regexpp`).
 
 ### Changed
 
 - Update Ecuador rules, including some parishes for Pichincha province.
-
-## [3.6.9] - 2019-10-28
+- Add address examples in geolocation mode for some countries
+- Spanish locale messages
+- Removed eslint-utils from dependencies--moved to devDependencies.
+- `PER` rules to map `administrative_area_level_3` and `locality` to geolocation rules
 
 ### Added
 
 - Add German translations.
-
-## [3.6.8] - 2019-10-21
-
-### Changed
-
-- Add address examples in geolocation mode for some countries
-
-## [3.6.7] - 2019-10-17
-
-### Fixed
-
-- Update Chile postal code for some regions.
-
-## [3.6.6] - 2019-10-14
-
-### Fixed
-
-- Missing validation message to `GeolocationNumberInput`
-
-## [3.6.5] - 2019-10-03
-
-### Fixed
-
-- Update Chile postal-code for Puerto Montt (Region X).
-
-## [3.6.4] - 2019-09-24
-
-### Changed
-
-- Spanish locale messages
-
-## [3.6.3] - 2019-09-23
-
-### Fixed
-
-- Removed unused depdendency (`regexpp`).
-
-## [3.6.2] - 2019-09-23
-
-### Changed
-
-- Removed eslint-utils from dependencies--moved to devDependencies.
-
-## [3.6.1] - 2019-08-28
-
-### Changed
-
-- `PER` rules to map `administrative_area_level_3` and `locality` to geolocation rules
-
-## [3.6.0] - 2019-08-22
 
 ### Added
 
@@ -91,14 +38,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Styleguide input to have `onSubmit` function;
 - `README.md` to cover new behavior for `PostalCodeGetter`.
-
-## [3.5.20] - 2019-08-02
-
-### Changed
-
 - `locality` in CHL to be in `neighborhood`
 
-## [3.5.19] - 2019-07-26
+## [4.1.2] - 2019-07-26
 
 ### Fixed
 
@@ -118,6 +60,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.0.0] - 2019-01-18
 
 ### Changed
+
 - Update React builder to 3.x.
 
 ## [3.5.18] - 2019-07-24
@@ -289,7 +232,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Geolocation Rules
 
 ## [3.0.12] - 2019-01-14
+
 ### Changed
+
 - Implement GB postcode in GBR rules
 
 ## [3.0.11] - 2019-01-14
