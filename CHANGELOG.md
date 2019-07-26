@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.6.0] - 2019-08-22
-
 ### Added
 
 - Styleguide button to have submit behavior to `StyleguideInput`;
@@ -19,14 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Styleguide input to have `onSubmit` function;
 - `README.md` to cover new behavior for `PostalCodeGetter`.
-
-## [3.5.20] - 2019-08-02
-
-### Changed
-
 - `locality` in CHL to be in `neighborhood`
 
-## [3.5.19] - 2019-07-26
+## [4.1.2] - 2019-07-26
 
 ### Fixed
 
@@ -46,6 +39,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.0.0] - 2019-01-18
 
 ### Changed
+
 - Update React builder to 3.x.
 
 ## [3.5.18] - 2019-07-24
@@ -217,7 +211,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Geolocation Rules
 
 ## [3.0.12] - 2019-01-14
+
 ### Changed
+
 - Implement GB postcode in GBR rules
 
 ## [3.0.11] - 2019-01-14
