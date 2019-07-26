@@ -29,7 +29,7 @@ describe('AutoCompletedFields', () => {
         {children}
       </AutoCompletedFields>
     )
-    expect(wrapper.html()).toBe(null)
+    expect(wrapper.html()).toBe('')
   })
 
   it('should display nothing if there are autocompleted fields with no value', () => {
@@ -49,7 +49,7 @@ describe('AutoCompletedFields', () => {
         {children}
       </AutoCompletedFields>
     )
-    expect(wrapper.html()).toBe(null)
+    expect(wrapper.html()).toBe('')
   })
 
   describe('', () => {
