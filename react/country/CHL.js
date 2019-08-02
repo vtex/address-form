@@ -515,6 +515,8 @@ export default {
     neighborhood: {
       valueIn: 'long_name',
       types: [
+        'administrative_area_level_3',
+        'locality',
         'neighborhood',
         'sublocality_level_1',
         'sublocality_level_2',
@@ -531,7 +533,7 @@ export default {
     },
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['administrative_area_level_2'],
       required: false,
     },
   },

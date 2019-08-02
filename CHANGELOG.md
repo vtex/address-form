@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `locality` in CHL to be in `neighborhood`
+
 ## [3.5.19] - 2019-07-26
 
 ### Fixed
