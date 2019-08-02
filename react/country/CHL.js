@@ -515,6 +515,7 @@ export default {
     neighborhood: {
       valueIn: 'long_name',
       types: [
+        'administrative_area_level_3',
         'locality',
         'neighborhood',
         'sublocality_level_1',
