@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Styleguide button to have submit behavior to `StyleguideInput`
+
+### Changed
+
+- Styleguide input to have `onSubmit` function
+
 ## [3.5.20] - 2019-08-02
 
 ### Changed

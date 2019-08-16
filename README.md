@@ -288,6 +288,8 @@ Renders the requried components to get the postal code of an address. Some count
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
 - **`rules`**: The rules of the selected country
 - **`onChangeAddress`**: Callback function to be called when a field has changed
+- **`onSubmit`**: Callback function to be called when `StyleguideInput` with button is clicked
+- **`submitLabel`**: Label to show button used in `StyleguideInput` if passed as prop in `Input`
 
 ```js
 PostalCodeGetter.propTypes = {
@@ -295,6 +297,8 @@ PostalCodeGetter.propTypes = {
   address: AddressShapeWithValidation,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+  submitLabel: PropTypes.string,
 }
 ```
 
