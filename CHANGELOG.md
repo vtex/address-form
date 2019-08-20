@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Dependency from `vtex.checkout` since it's not needed.
+
 ## [3.5.20] - 2019-08-02
 
 ### Changed
