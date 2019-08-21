@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Styleguide button to have submit behavior to `StyleguideInput`;
-- Ability to have a submit function for 'PostalCodeGetter';
+- Ability to have a submit function for `PostalCodeGetter`;
 - Optional button to `PostalCodeGetter`.
 
 ### Changed
