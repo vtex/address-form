@@ -6,6 +6,7 @@ import OneLevel from './postalCodeFrom/OneLevel'
 import TwoLevels from './postalCodeFrom/TwoLevels'
 import ThreeLevels from './postalCodeFrom/ThreeLevels'
 import DefaultInput from './inputs/DefaultInput'
+import DefaultButton from './inputs/DefaultInput/DefaultButton'
 import InputFieldContainer from './InputFieldContainer'
 import { getField } from './selectors/fields'
 import { injectRules } from './addressRulesContext'
@@ -21,6 +22,7 @@ class PostalCodeGetter extends Component {
       rules,
       onChangeAddress,
       Input,
+      Button,
       intl,
       onSubmit,
       submitLabel,
@@ -33,6 +35,7 @@ class PostalCodeGetter extends Component {
           <ThreeLevels
             intl={intl}
             Input={Input}
+            Button={Button}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
@@ -45,6 +48,7 @@ class PostalCodeGetter extends Component {
           <TwoLevels
             intl={intl}
             Input={Input}
+            Button={Button}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
@@ -57,6 +61,7 @@ class PostalCodeGetter extends Component {
           <OneLevel
             intl={intl}
             Input={Input}
+            Button={Button}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
@@ -71,6 +76,7 @@ class PostalCodeGetter extends Component {
           <InputFieldContainer
             intl={intl}
             Input={Input}
+            Button={Button}
             field={field}
             address={address}
             autoFocus={autoFocus}
@@ -89,6 +95,7 @@ class PostalCodeGetter extends Component {
 PostalCodeGetter.defaultProps = {
   autoFocus: false,
   Input: DefaultInput,
+  Button: DefaultButton,
   shouldShowNumberKeyboard: false,
 }
 
@@ -96,6 +103,7 @@ PostalCodeGetter.propTypes = {
   address: AddressShapeWithValidation,
   autoFocus: PropTypes.bool,
   Input: PropTypes.func,
+  Button: PropTypes.func,
   intl: intlShape.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,

@@ -10,9 +10,9 @@ class OneLevel extends Component {
     return (
       <div>
         <SelectPostalCode
+          address={address}
           Input={Input}
           rules={rules}
-          address={address}
           onChangeAddress={onChangeAddress}
         />
       </div>

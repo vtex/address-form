@@ -56,7 +56,10 @@ class StyleguideInput extends Component {
 
     if (field.name === 'postalCode') {
       return (
-        <form className="vtex-address-form__postalCode flex-m flex-column items-start pb2">
+        <form
+          className="vtex-address-form__postalCode flex-m flex-column items-start pb2"
+          onSubmit={onSubmit}
+        >
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -81,12 +84,7 @@ class StyleguideInput extends Component {
                   </div>
                 )}
                 {onSubmit && submitLabel && (
-                  <Button
-                    type="submit"
-                    size="small"
-                    variation="secondary"
-                    onClick={onSubmit}
-                  >
+                  <Button type="submit" size="small" variation="secondary">
                     {submitLabel}
                   </Button>
                 )}
@@ -129,12 +127,16 @@ class StyleguideInput extends Component {
             disabled={loading || disabled}
             error={!this.state.isInputValid}
             ref={inputRef}
+            suffix={
+              <Fragment>
+                {loading && (
+                  <div className="pl1 pt7">
+                    <Spinner size={15} />
+                  </div>
+                )}
+              </Fragment>
+            }
           />
-          {loading && (
-            <div className="pl1 pt7">
-              <Spinner size={15} />
-            </div>
-          )}
         </div>
       )
     }
@@ -183,7 +185,7 @@ class StyleguideInput extends Component {
 
     if (options) {
       return (
-        <div className={`vtex-address-form__${field.name} pb7`}>
+        <div className={`vtex-address-form__${field.name} pb6`}>
           <Dropdown
             options={options}
             value={address[field.name].value || ''}
