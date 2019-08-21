@@ -284,20 +284,22 @@ Renders the requried components to get the postal code of an address. Some count
 
 #### Props
 
-- **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
 - **`address`**: The current address in the shape of [`AddressShapeWithValidation`](#addressshapewithvalidation)
-- **`rules`**: The rules of the selected country
+- **`Button`**: (default: `@vtex/address-form/lib/DefaultButton`) A custom React component to render the buttons
+- **`Input`**: (default: `@vtex/address-form/lib/DefaultInput`) A custom React component to render the inputs
 - **`onChangeAddress`**: Callback function to be called when a field has changed
 - **`onSubmit`**: Callback function to be called when `StyleguideInput` with button is clicked
-- **`submitLabel`**: Label to show button used in `StyleguideInput` if passed as prop in `Input`
+- **`rules`**: The rules of the selected country
+- **`submitLabel`**: (default: `Search`) Label to show button used in `DefaultButton` or `StyleguideButton` if passed as prop in `Button`
 
 ```js
 PostalCodeGetter.propTypes = {
-  Input: PropTypes.func,
   address: AddressShapeWithValidation,
-  rules: PropTypes.object.isRequired,
+  Button: PropTypes.func,
+  Input: PropTypes.func,
   onChangeAddress: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,
+  rules: PropTypes.object.isRequired,
   submitLabel: PropTypes.string,
 }
 ```
@@ -313,10 +315,13 @@ PostalCodeGetter.propTypes = {
   {onChangeAddress => (
     <div>
       <PostalCodeGetter
-        Input={DefaultInput}
         address={address}
+        Input={DefaultInput}
+        Button={DefaultButton}
         rules={selectedRules}
         onChangeAddress={onChangeAddress}
+        onSubmit={this.handleSubmit}
+        submitLabel={'Estimate'}
       />
     </div>
   )}
