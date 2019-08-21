@@ -74,7 +74,7 @@ class ThreeLevels extends Component {
 
 ThreeLevels.propTypes = {
   address: AddressShapeWithValidation,
-  Button: PropTypes.func.isRequired,
+  Button: PropTypes.func,
   Input: PropTypes.func.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,
