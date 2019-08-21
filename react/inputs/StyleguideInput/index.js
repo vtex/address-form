@@ -105,7 +105,7 @@ class StyleguideInput extends Component {
           />
           {field.forgottenURL && (
             <div className="pt4 flex-none">
-              <Link href={field.forgottenURL}>
+              <Link href={field.forgottenURL} target="_blank">
                 {intl.formatMessage({
                   id: 'address-form.dontKnowPostalCode',
                 })}
