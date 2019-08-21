@@ -10,6 +10,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { injectRules } from '../../addressRulesContext'
 import { injectAddressContext } from '../../addressContainerContext'
 import { compose } from 'recompose'
+import SpinnerLoading from '../../Spinner'
 
 class StyleguideInput extends Component {
   constructor(props) {
@@ -79,11 +80,11 @@ class StyleguideInput extends Component {
             onChange={this.handleChange}
             suffix={
               <Fragment>
-                {!onSubmit && !submitLabel && loading && (
-                  <div className="pl1 pt7">
-                    <Spinner size={15} />
-                  </div>
-                )}
+                {
+                  <SpinnerLoading
+                    isLoading={!onSubmit && !submitLabel && loading}
+                  />
+                }
                 {onSubmit && Button && (
                   <StyleguideButton
                     type="submit"
@@ -133,15 +134,7 @@ class StyleguideInput extends Component {
             disabled={loading || disabled}
             error={!this.state.isInputValid}
             ref={inputRef}
-            suffix={
-              <Fragment>
-                {loading && (
-                  <div className="pl1 pt7">
-                    <Spinner size={15} />
-                  </div>
-                )}
-              </Fragment>
-            }
+            suffix={<SpinnerLoading isLoading={loading} />}
           />
         </div>
       )
