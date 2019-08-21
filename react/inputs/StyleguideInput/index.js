@@ -36,6 +36,11 @@ class StyleguideInput extends Component {
     }
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.onSubmit && this.props.onSubmit()
+  }
+
   render() {
     const {
       address,
@@ -60,7 +65,7 @@ class StyleguideInput extends Component {
       return (
         <form
           className="vtex-address-form__postalCode flex-m flex-column items-start pb2"
-          onSubmit={onSubmit}
+          onSubmit={this.handleSubmit}
         >
           <Input
             label={this.props.intl.formatMessage({

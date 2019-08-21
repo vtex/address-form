@@ -5,6 +5,11 @@ import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
 
 class OneLevel extends Component {
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.onSubmit && this.props.onSubmit()
+  }
+
   render() {
     const {
       address,
@@ -18,7 +23,10 @@ class OneLevel extends Component {
 
     if (Button && onSubmit) {
       return (
-        <form className="vtex-address-form__oneLevel" onSubmit={onSubmit}>
+        <form
+          className="vtex-address-form__oneLevel"
+          onSubmit={this.handleSubmit}
+        >
           <SelectPostalCode
             address={address}
             Input={Input}
