@@ -3,8 +3,8 @@
   "address-form.dontKnowPostalCode": "Non conosco il mio Codice Postale (CAP) ",
   "address-form.optional": "Opzionale",
   "address-form.edit": "Modifica",
+  "address-form.search": "Ricerca",
 
-  "address-form.field.addressQuery": "Indirizzo",
   "address-form.geolocation.example.ARG": "Es: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Es: Av Arce, 2556, La Paz",
   "address-form.geolocation.example.BRA": "Es: Av Paulista, 1578, São Paulo",
@@ -24,14 +24,14 @@
   "address-form.geolocation.example.VEN": "Es: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ROU": "Es: Bulevardul Ion Mihalache, București 011192, Romania",
 
-  "address-form.field.notApplicable": "N/N",
-  "address-form.field.noNumber": "Nessun numero",
-
   "address-form.error.ERROR_EMPTY_FIELD": "Questo campo è obbligatorio.",
   "address-form.error.ERROR_POSTAL_CODE": "Codice Postale (CAP) non valido.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Indirizzo non valido.",
   "address-form.error.generic": "Campo non valido",
 
+  "address-form.field.addressQuery": "Indirizzo",
+  "address-form.field.notApplicable": "N/N",
+  "address-form.field.noNumber": "Nessun numero",
   "address-form.field.country": "Nazione",
   "address-form.field.postalCode": "Codice di Avviamento Postale (CAP)",
   "address-form.field.street": "Strada",

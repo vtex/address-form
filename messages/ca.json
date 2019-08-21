@@ -3,7 +3,8 @@
   "address-form.dontKnowPostalCode": "No conec el meu codi postal",
   "address-form.optional": "Opcional",
   "address-form.edit": "Canviar",
-  "address-form.field.addressQuery": "Adreça",
+  "address-form.search": "Cerca",
+
   "address-form.geolocation.example.ARG": "Ex: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Ex: Av Arce, 2556, La Paz",
   "address-form.geolocation.example.BRA": "Ex: Av Paulista, 1578, São Paulo",
@@ -22,11 +23,14 @@
   "address-form.geolocation.example.USA": "Ex: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Ex: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ROU": "Ex: Bulevardul Ion Mihalache, București 011192, Romania",
-  "address-form.field.notApplicable": "S/N",
-  "address-form.field.noNumber": "Sense nombre",
+
   "address-form.error.ERROR_EMPTY_FIELD": "Aquest és un camp obligatori.",
   "address-form.error.ERROR_POSTAL_CODE": "Código postal no válid.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adreça no válida.",
+
+  "address-form.field.addressQuery": "Adreça",
+  "address-form.field.notApplicable": "S/N",
+  "address-form.field.noNumber": "Sense nombre",
   "address-form.error.generic": "Camp no válid.",
   "address-form.field.country": "País",
   "address-form.field.postalCode": "Codi postal",
