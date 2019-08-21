@@ -116,6 +116,7 @@ class InputFieldContainer extends Component {
   render() {
     const {
       Input,
+      Button,
       field,
       autoFocus,
       address,
@@ -134,6 +135,7 @@ class InputFieldContainer extends Component {
 
     return (
       <Input
+        Button={Button}
         address={address}
         field={field}
         autoFocus={autoFocus}
@@ -159,6 +161,7 @@ InputFieldContainer.propTypes = {
 }
 
 InputFieldContainer.propTypes = {
+  Button: PropTypes.func,
   Input: PropTypes.func.isRequired,
   autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,

@@ -8,7 +8,7 @@ class StyleguideButton extends Component {
     const { buttonLabel, intl } = this.props
     return (
       <Button type="submit" size="small" variation="secondary">
-        {buttonLabel || intl.formatMessage('')}
+        {buttonLabel || intl.formatMessage({ id: 'address-form.search' })}
       </Button>
     )
   }

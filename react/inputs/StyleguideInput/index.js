@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Dropdown from '@vtex/styleguide/lib/Dropdown'
 import Input from '@vtex/styleguide/lib/Input'
 import Link from '@vtex/styleguide/lib/Link'
-import Button from '@vtex/styleguide/lib/Button'
+import StyleguideButton from '@vtex/styleguide/lib/Button'
 import Spinner from '@vtex/styleguide/lib/Spinner'
 import Checkbox from '@vtex/styleguide/lib/Checkbox'
 import { injectIntl, intlShape } from 'react-intl'
@@ -37,10 +37,11 @@ class StyleguideInput extends Component {
 
   render() {
     const {
+      address,
+      Button,
       field,
       options,
       onSubmit,
-      address,
       inputRef,
       intl,
       toggleNotApplicable,
@@ -83,10 +84,15 @@ class StyleguideInput extends Component {
                     <Spinner size={15} />
                   </div>
                 )}
-                {onSubmit && submitLabel && (
-                  <Button type="submit" size="small" variation="secondary">
-                    {submitLabel}
-                  </Button>
+                {onSubmit && Button && (
+                  <StyleguideButton
+                    type="submit"
+                    size="small"
+                    variation="secondary"
+                  >
+                    {submitLabel ||
+                      intl.formatMessage({ id: 'address-form.search' })}
+                  </StyleguideButton>
                 )}
               </Fragment>
             }
@@ -242,6 +248,7 @@ StyleguideInput.defaultProps = {
 
 StyleguideInput.propTypes = {
   address: PropTypes.object,
+  Button: PropTypes.func,
   field: PropTypes.object.isRequired,
   inputRef: PropTypes.func,
   intl: intlShape,
