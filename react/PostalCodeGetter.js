@@ -6,7 +6,6 @@ import OneLevel from './postalCodeFrom/OneLevel'
 import TwoLevels from './postalCodeFrom/TwoLevels'
 import ThreeLevels from './postalCodeFrom/ThreeLevels'
 import DefaultInput from './inputs/DefaultInput'
-import DefaultButton from './inputs/DefaultInput/DefaultButton'
 import InputFieldContainer from './InputFieldContainer'
 import { getField } from './selectors/fields'
 import { injectRules } from './addressRulesContext'
@@ -95,7 +94,6 @@ class PostalCodeGetter extends Component {
 PostalCodeGetter.defaultProps = {
   autoFocus: false,
   Input: DefaultInput,
-  Button: DefaultButton,
   shouldShowNumberKeyboard: false,
 }
 
