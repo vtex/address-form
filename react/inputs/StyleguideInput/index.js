@@ -97,7 +97,7 @@ class StyleguideInput extends Component {
               </Fragment>
             }
           />
-          <div className="pt4-m flex-none-m">
+          <div className="pt4 flex-none">
             <Link href={this.props.field.forgottenURL}>
               {intl.formatMessage({
                 id: 'address-form.dontKnowPostalCode',
