@@ -3,8 +3,8 @@
   "address-form.dontKnowPostalCode": "I don't know my postal code",
   "address-form.optional": "Optional",
   "address-form.edit": "Edit",
+  "address-form.search": "Search",
 
-  "address-form.field.addressQuery": "Address",
   "address-form.geolocation.example.ARG": "Eg: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Eg: Av Arce, 2556, La Paz",
   "address-form.geolocation.example.BRA": "Eg: Av Paulista, 1578, São Paulo",
@@ -24,14 +24,14 @@
   "address-form.geolocation.example.VEN": "Eg: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ROU": "Eg: Bulevardul Ion Mihalache, București 011192, Romania",
 
-  "address-form.field.notApplicable": "N/A",
-  "address-form.field.noNumber": "Not applicable",
-
   "address-form.error.ERROR_EMPTY_FIELD": "This field is required.",
   "address-form.error.ERROR_POSTAL_CODE": "Invalid postal code.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Invalid address.",
   "address-form.error.generic": "Invalid field.",
 
+  "address-form.field.addressQuery": "Address",
+  "address-form.field.notApplicable": "N/A",
+  "address-form.field.noNumber": "Not applicable",
   "address-form.field.country": "Country",
   "address-form.field.postalCode": "Postal Code",
   "address-form.field.street": "Street",

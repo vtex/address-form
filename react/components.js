@@ -9,6 +9,8 @@ import AddressSubmitter from './AddressSubmitter'
 import PostalCodeLoader from './postalCodeFrom/PostalCodeLoader'
 import GoogleMapsContainer from './geolocation/GoogleMapsContainer'
 import Map from './geolocation/Map'
+import StyleguideInput from './inputs/StyleguideInput'
+import StyleguideButton from './inputs/StyleguideButton'
 
 export default {
   AddressContainer,
@@ -22,4 +24,6 @@ export default {
   Map,
   PostalCodeGetter,
   PostalCodeLoader,
+  StyleguideInput,
+  StyleguideButton,
 }

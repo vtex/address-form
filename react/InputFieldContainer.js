@@ -28,7 +28,7 @@ class InputFieldContainer extends Component {
           }
           : cleanAddress
       },
-      {}
+      {},
     )
   }
 
@@ -57,10 +57,9 @@ class InputFieldContainer extends Component {
 
     return () => {
       onChangeAddress({
-        'number': {
+        number: {
           ...address['number'],
-          value: address['number'].disabled
-            ? null : labelNotApplicable,
+          value: address['number'].disabled ? null : labelNotApplicable,
           disabled: !address['number'].disabled,
         },
       })
@@ -117,10 +116,13 @@ class InputFieldContainer extends Component {
   render() {
     const {
       Input,
+      Button,
       field,
       autoFocus,
       address,
       options,
+      onSubmit,
+      submitLabel,
       rules,
       shouldShowNumberKeyboard,
     } = this.props
@@ -133,16 +135,19 @@ class InputFieldContainer extends Component {
 
     return (
       <Input
+        Button={Button}
         address={address}
         field={field}
         autoFocus={autoFocus}
         options={_options}
+        onSubmit={onSubmit}
+        submitLabel={submitLabel}
         onChange={this.bindOnChange()}
         onBlur={this.bindOnBlur()}
-        {...(address[field.name].notApplicable
+        {...(address[field.name].notApplicable &&
+        address[field.name].notApplicable
           ? { toggleNotApplicable: this.bindNotApplicable() }
-          : {}
-        )}
+          : {})}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
       />
@@ -156,6 +161,7 @@ InputFieldContainer.propTypes = {
 }
 
 InputFieldContainer.propTypes = {
+  Button: PropTypes.func,
   Input: PropTypes.func.isRequired,
   autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,
@@ -163,8 +169,10 @@ InputFieldContainer.propTypes = {
   rules: PropTypes.object.isRequired,
   options: PropTypes.array,
   onChangeAddress: PropTypes.func.isRequired,
-  shouldShowNumberKeyboard: PropTypes.bool,
+  onSubmit: PropTypes.func,
   notApplicableLabel: PropTypes.string,
+  shouldShowNumberKeyboard: PropTypes.bool,
+  submitLabel: PropTypes.string,
 }
 
 export default pureInputField(InputFieldContainer)

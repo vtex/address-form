@@ -23,6 +23,7 @@ import {
 
 import Button from '@vtex/styleguide/lib/Button'
 import StyleguideInput from '../../react/inputs/StyleguideInput'
+import StyleguideButton from '../../react/inputs/StyleguideButton'
 
 import 'vtex-tachyons'
 
@@ -107,7 +108,7 @@ class App extends Component {
           <AddressContainer
             accountName={accountName}
             address={address}
-            notApplicableValue={"N/A"}
+            notApplicableValue={'N/A'}
             Input={StyleguideInput}
             onChangeAddress={this.handleAddressChange}
             autoCompletePostalCode={!validGeoCoords}
@@ -140,7 +141,12 @@ class App extends Component {
                 )}
               </GoogleMapsContainer>
 
-              {!validGeoCoords && <PostalCodeGetter />}
+              {!validGeoCoords && (
+                <PostalCodeGetter
+                  Button={StyleguideButton}
+                  onSubmit={this.handleSubmit}
+                />
+              )}
 
               <AutoCompletedFields>
                 <a

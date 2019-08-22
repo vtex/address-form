@@ -11,7 +11,7 @@ import { getField } from './selectors/fields'
 import { injectRules } from './addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
-import { injectIntl } from 'react-intl'
+import { injectIntl, intlShape } from 'react-intl'
 
 class PostalCodeGetter extends Component {
   render() {
@@ -21,7 +21,10 @@ class PostalCodeGetter extends Component {
       rules,
       onChangeAddress,
       Input,
+      Button,
       intl,
+      onSubmit,
+      submitLabel,
       shouldShowNumberKeyboard,
     } = this.props
 
@@ -31,9 +34,12 @@ class PostalCodeGetter extends Component {
           <ThreeLevels
             intl={intl}
             Input={Input}
+            Button={Button}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            onSubmit={onSubmit}
+            submitLabel={submitLabel}
           />
         )
       case TWO_LEVELS:
@@ -41,9 +47,12 @@ class PostalCodeGetter extends Component {
           <TwoLevels
             intl={intl}
             Input={Input}
+            Button={Button}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            onSubmit={onSubmit}
+            submitLabel={submitLabel}
           />
         )
       case ONE_LEVEL:
@@ -51,9 +60,12 @@ class PostalCodeGetter extends Component {
           <OneLevel
             intl={intl}
             Input={Input}
+            Button={Button}
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            onSubmit={onSubmit}
+            submitLabel={submitLabel}
           />
         )
       default:
@@ -63,11 +75,14 @@ class PostalCodeGetter extends Component {
           <InputFieldContainer
             intl={intl}
             Input={Input}
+            Button={Button}
             field={field}
             address={address}
             autoFocus={autoFocus}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            onSubmit={onSubmit}
+            submitLabel={submitLabel}
             shouldShowNumberKeyboard={shouldShowNumberKeyboard}
           />
         )
@@ -83,12 +98,16 @@ PostalCodeGetter.defaultProps = {
 }
 
 PostalCodeGetter.propTypes = {
-  Input: PropTypes.func,
-  autoFocus: PropTypes.bool,
   address: AddressShapeWithValidation,
-  rules: PropTypes.object.isRequired,
+  autoFocus: PropTypes.bool,
+  Input: PropTypes.func,
+  Button: PropTypes.func,
+  intl: intlShape.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+  rules: PropTypes.object.isRequired,
   shouldShowNumberKeyboard: PropTypes.bool,
+  submitLabel: PropTypes.string,
 }
 
 const enhance = compose(

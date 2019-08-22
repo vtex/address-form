@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Dropdown from '@vtex/styleguide/lib/Dropdown'
 import Input from '@vtex/styleguide/lib/Input'
-import Button from '@vtex/styleguide/lib/Button'
+import Link from '@vtex/styleguide/lib/Link'
+import StyleguideButton from '@vtex/styleguide/lib/Button'
 import Spinner from '@vtex/styleguide/lib/Spinner'
 import Checkbox from '@vtex/styleguide/lib/Checkbox'
 import { injectIntl, intlShape } from 'react-intl'
+import { injectRules } from '../../addressRulesContext'
+import { injectAddressContext } from '../../addressContainerContext'
+import { compose } from 'recompose'
+import SpinnerLoading from '../../Spinner'
 
 class StyleguideInput extends Component {
   constructor(props) {
@@ -20,11 +25,6 @@ class StyleguideInput extends Component {
     this.props.onChange(e.target.value)
   }
 
-  handleClick = () => {
-    this.props.field.forgottenURL &&
-      window.open(this.props.field.forgottenURL, '_blank')
-  }
-
   componentDidUpdate(prevProps) {
     if (
       prevProps.address[prevProps.field.name] !==
@@ -36,17 +36,37 @@ class StyleguideInput extends Component {
     }
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.onSubmit && this.props.onSubmit()
+  }
+
   render() {
-    const { field, options, address, inputRef, intl, toggleNotApplicable } = this.props
+    const {
+      address,
+      Button,
+      field,
+      options,
+      onSubmit,
+      inputRef,
+      intl,
+      toggleNotApplicable,
+      submitLabel,
+    } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
     const notApplicable = !!address[field.name].notApplicable
     const numberValue = !address['number'].value && field.name === 'number'
-    const geolocationCondition = address['addressQuery'].geolocationAutoCompleted && numberValue || notApplicable
+    const geolocationCondition =
+      (address['addressQuery'].geolocationAutoCompleted && numberValue) ||
+      notApplicable
 
     if (field.name === 'postalCode') {
       return (
-        <div className="vtex-address-form__postalCode flex-m flex-row pb7">
+        <form
+          className="vtex-address-form__postalCode flex-m flex-column items-start pb2"
+          onSubmit={this.handleSubmit}
+        >
           <Input
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
@@ -63,24 +83,36 @@ class StyleguideInput extends Component {
             }
             onBlur={this.props.onBlur}
             onChange={this.handleChange}
+            suffix={
+              <Fragment>
+                {
+                  <SpinnerLoading
+                    isLoading={!onSubmit && !submitLabel && loading}
+                  />
+                }
+                {onSubmit && Button && (
+                  <StyleguideButton
+                    type="submit"
+                    size="small"
+                    variation="secondary"
+                  >
+                    {submitLabel ||
+                      intl.formatMessage({ id: 'address-form.search' })}
+                  </StyleguideButton>
+                )}
+              </Fragment>
+            }
           />
-          {loading && (
-            <div className="pl1 pt7">
-              <Spinner size={15} />
+          {field.forgottenURL && (
+            <div className="pt4 flex-none">
+              <Link href={field.forgottenURL} target="_blank">
+                {intl.formatMessage({
+                  id: 'address-form.dontKnowPostalCode',
+                })}
+              </Link>
             </div>
           )}
-          <div className="pt6-m tc flex-none-m">
-            <Button
-              variation="tertiary"
-              size="small"
-              onClick={this.handleClick}
-            >
-              {intl.formatMessage({
-                id: 'address-form.dontKnowPostalCode',
-              })}
-            </Button>
-          </div>
-        </div>
+        </form>
       )
     }
 
@@ -109,12 +141,8 @@ class StyleguideInput extends Component {
             disabled={loading || disabled}
             error={!this.state.isInputValid}
             ref={inputRef}
+            suffix={<SpinnerLoading isLoading={loading} />}
           />
-          {loading && (
-            <div className="pl1 pt7">
-              <Spinner size={15} />
-            </div>
-          )}
         </div>
       )
     }
@@ -163,7 +191,7 @@ class StyleguideInput extends Component {
 
     if (options) {
       return (
-        <div className={`vtex-address-form__${field.name} pb7`}>
+        <div className={`vtex-address-form__${field.name} pb6`}>
           <Dropdown
             options={options}
             value={address[field.name].value || ''}
@@ -215,17 +243,28 @@ class StyleguideInput extends Component {
 
 StyleguideInput.defaultProps = {
   onBlur: () => {},
+  onSubmit: () => {},
 }
 
 StyleguideInput.propTypes = {
   address: PropTypes.object,
+  Button: PropTypes.func,
   field: PropTypes.object.isRequired,
-  options: PropTypes.array,
-  onChange: PropTypes.func.isRequired,
-  onBlur: PropTypes.func,
   inputRef: PropTypes.func,
   intl: intlShape,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
+  onSubmit: PropTypes.func,
+  options: PropTypes.array,
   toggleNotApplicable: PropTypes.func,
+  rules: PropTypes.object,
+  submitLabel: PropTypes.string,
 }
 
-export default injectIntl(StyleguideInput)
+const enhance = compose(
+  injectAddressContext,
+  injectRules,
+  injectIntl,
+)
+
+export default enhance(StyleguideInput)
