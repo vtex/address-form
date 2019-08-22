@@ -32,6 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Add German translations.
 
+## [4.2.0] - 2019-08-22
+
 ### Added
 
 - Styleguide button to have submit behavior to `StyleguideInput`;
