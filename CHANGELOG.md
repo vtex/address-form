@@ -27,6 +27,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `useGeolocation` prop for `AddressRules` component.
+- Add German translations.
+
+## [4.2.0] - 2019-08-22
+
+### Added
+
+- Styleguide button to have submit behavior to `StyleguideInput`;
+- Ability to have a submit function for `PostalCodeGetter`;
+- Optional button to `PostalCodeGetter`.
+
+### Changed
+
+- Styleguide input to have `onSubmit` function;
+- `README.md` to cover new behavior for `PostalCodeGetter`.
+- `locality` in CHL to be in `neighborhood`
 
 ## [4.1.2] - 2019-07-26
 
