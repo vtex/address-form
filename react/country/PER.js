@@ -2430,7 +2430,7 @@ export default {
     street: { valueIn: 'long_name', types: ['route'], required: false },
     neighborhood: {
       valueIn: 'long_name',
-      types: ['neighborhood'],
+      types: ['administrative_area_level_3', 'locality'],
       required: false,
       handler: address => {
         if (
@@ -2447,7 +2447,7 @@ export default {
     },
     state: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_1', 'locality'],
+      types: ['administrative_area_level_1'],
       required: false,
       handler: address => {
         if (!address.city || !address.state) {
