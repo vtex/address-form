@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.6.1] - 2019-08-28
+
 ### Changed
 
 - `PER` rules to map `administrative_area_level_3` and `locality` to geolocation rules
