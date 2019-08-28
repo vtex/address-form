@@ -2,7 +2,8 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing Packages...
+      - echo Installing Package...
+      - node -v
       - npm install
       - echo Packages installed!
   pre_build:
