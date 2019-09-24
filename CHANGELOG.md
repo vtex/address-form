@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Spanish locale messages
+
 ## [3.6.3] - 2019-09-23
 ### Fixed
 - Removed unused depdendency (`regexpp`).
