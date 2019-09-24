@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.6.4] - 2019-09-24
+
 ### Changed
 
 - Spanish locale messages
