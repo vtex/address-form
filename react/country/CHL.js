@@ -330,7 +330,7 @@ const countryData = {
     Maullín: '5580000',
     Osorno: '5290000',
     Palena: '5880000',
-    'Puerto Montt': '5500000',
+    'Puerto Montt': '5480000',
     'Puerto Octay': '5370000',
     'Puerto Varas': '5550000',
     Puqueldón: '5760000',
