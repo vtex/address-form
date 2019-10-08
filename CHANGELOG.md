@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.6.5] - 2019-10-03
 ### Fixed
+
+- Missing validation message to `GeolocationNumberInput`
+
+## [3.6.5] - 2019-10-03
+
+### Fixed
+
 - Update Chile postal-code for Puerto Montt (Region X).
 
 ## [3.6.4] - 2019-09-24
@@ -18,11 +24,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Spanish locale messages
 
 ## [3.6.3] - 2019-09-23
+
 ### Fixed
+
 - Removed unused depdendency (`regexpp`).
 
 ## [3.6.2] - 2019-09-23
+
 ### Changed
+
 - Removed eslint-utils from dependencies--moved to devDependencies.
 
 ## [3.6.1] - 2019-08-28
