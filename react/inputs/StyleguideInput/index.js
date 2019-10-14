@@ -128,6 +128,7 @@ class StyleguideInput extends Component {
               }),
             })}
             onChange={this.handleChange}
+            autoFocus={autoFocus}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
             error={!this.state.isInputValid}
@@ -156,6 +157,13 @@ class StyleguideInput extends Component {
                   id: `address-form.error.${address[field.name].reason}`,
                 })
               }
+              placeholder={intl.formatMessage({
+                id: `address-form.geolocation.example.${address.country.value}`,
+                defaultMessage: intl.formatMessage({
+                  id: 'address-form.geolocation.example.UNI',
+                }),
+              })}
+              autoFocus={autoFocus}
               onChange={this.handleChange}
               onBlur={this.props.onBlur}
               disabled={loading || disabled}
@@ -222,6 +230,7 @@ class StyleguideInput extends Component {
               ? this.props.intl.formatMessage({ id: 'address-form.optional' })
               : null
           }
+          autoFocus={autoFocus}
           onBlur={this.props.onBlur}
           onChange={this.handleChange}
         />
