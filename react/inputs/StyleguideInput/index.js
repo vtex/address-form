@@ -133,6 +133,7 @@ class StyleguideInput extends Component {
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
+            autoFocus={autoFocus}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
@@ -164,6 +165,7 @@ class StyleguideInput extends Component {
                   id: 'address-form.geolocation.example.UNI',
                 }),
               })}
+              autoFocus={autoFocus}
               onChange={this.props.onChange}
               onBlur={this.props.onBlur}
               disabled={loading || disabled}
@@ -230,6 +232,7 @@ class StyleguideInput extends Component {
               ? this.props.intl.formatMessage({ id: 'address-form.optional' })
               : null
           }
+          autoFocus={autoFocus}
           onBlur={this.props.onBlur}
           onChange={this.handleChange}
         />

@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Add German translations.
+- `autoFocus` to `StyleguideInput`.
 
 ## [4.2.2] - 2019-09-20
 
