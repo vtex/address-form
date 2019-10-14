@@ -8,6 +8,8 @@ import { injectIntl, intlShape } from 'react-intl'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
 import InputCheckbox from './InputCheckbox'
+import InputError from './InputError'
+
 import cx from 'classnames'
 
 class GeolocationNumberInput extends Component {
@@ -32,6 +34,7 @@ class GeolocationNumberInput extends Component {
     })
 
     const value = address[field.name].value
+    const valid = address[field.name].valid
 
     return (
       <div className={className} htmlFor={`ship-${field.name}`}>
@@ -52,14 +55,19 @@ class GeolocationNumberInput extends Component {
             value={value}
             onFocus={onFocus}
           />
+          {valid === false ? (
+            <InputError reason={address[field.name].reason} />
+          ) : null}
         </InputLabel>
-        <InputLabel field={{name: 'checkboxNumberLabel', label: 'noNumber'}}>
+        <InputLabel field={{ name: 'checkboxNumberLabel', label: 'noNumber' }}>
           <InputCheckbox
             address={address}
             field={field}
-            placeholder={!field.hidden && !field.required
-              ? intl.formatMessage({ id: 'address-form.optional' })
-              : null}
+            placeholder={
+              !field.hidden && !field.required
+                ? intl.formatMessage({ id: 'address-form.optional' })
+                : null
+            }
             onFocus={onFocus}
             onBlur={onBlur}
             onChange={handleToggle}
