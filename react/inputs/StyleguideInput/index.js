@@ -44,6 +44,7 @@ class StyleguideInput extends Component {
   render() {
     const {
       address,
+      autoFocus,
       Button,
       field,
       options,
@@ -71,6 +72,7 @@ class StyleguideInput extends Component {
             label={this.props.intl.formatMessage({
               id: `address-form.field.${field.name}`,
             })}
+            autoFocus={autoFocus}
             value={address[field.name].value || ''}
             disabled={disabled}
             error={!this.state.isInputValid}
@@ -136,6 +138,7 @@ class StyleguideInput extends Component {
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
+            autoFocus={autoFocus}
             onChange={this.props.onChange}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
@@ -167,6 +170,7 @@ class StyleguideInput extends Component {
                   id: 'address-form.geolocation.example.UNI',
                 }),
               })}
+              autoFocus={autoFocus}
               onChange={this.props.onChange}
               onBlur={this.props.onBlur}
               disabled={loading || disabled}
@@ -233,6 +237,7 @@ class StyleguideInput extends Component {
               ? this.props.intl.formatMessage({ id: 'address-form.optional' })
               : null
           }
+          autoFocus={autoFocus}
           onBlur={this.props.onBlur}
           onChange={this.handleChange}
         />
