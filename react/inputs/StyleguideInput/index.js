@@ -253,6 +253,7 @@ StyleguideInput.defaultProps = {
 
 StyleguideInput.propTypes = {
   address: PropTypes.object,
+  autoFocus: PropTypes.bool,
   Button: PropTypes.func,
   field: PropTypes.object.isRequired,
   inputRef: PropTypes.func,
