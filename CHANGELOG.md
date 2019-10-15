@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `StyleguideInput` to have an external loading property to show it in the right moment instead of
   when autocomplete is performed
 
+## [4.2.3] - 2019-10-15
+
 ### Added
 
 - `useGeolocation` prop for `AddressRules` component.
