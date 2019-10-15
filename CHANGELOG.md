@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed eslint-utils from dependencies--moved to devDependencies.
 - `PER` rules to map `administrative_area_level_3` and `locality` to geolocation rules
 
+## [4.2.3] - 2019-10-15
+
 ### Added
 
 - Add German translations.
