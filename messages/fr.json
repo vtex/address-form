@@ -23,6 +23,13 @@
   "address-form.geolocation.example.USA": "Ex: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Ex: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ROU": "Ex: Bulevardul Ion Mihalache, București 011192, Romania",
+  "address-form.geolocation.example.BUL": "Ex: улица Елин Пелин 13, София", 
+  "address-form.geolocation.example.FRA": "Ex: 7 Rue Hautefeuille, Paris",
+  "address-form.geolocation.example.GBR": "Ex: 29 High Street Poole BH15 1AB",
+  "address-form.geolocation.example.GER": "Ex: Rheinalleee 95, Düsseldorf",
+  "address-form.geolocation.example.ITA": "Ex: Corso Vittorio Emanuele 69, Milano",
+  "address-form.geolocation.example.NED": "Ex: Surinamestraat 27, Amsterdam",
+  "address-form.geolocation.example.POL": "Ex: Ulica Twarda 3, Szczecin",
 
   "address-form.error.ERROR_EMPTY_FIELD": "Ce champ est obligatoire.",
   "address-form.error.ERROR_POSTAL_CODE": "Code postal invalide.",

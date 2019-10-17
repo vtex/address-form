@@ -23,6 +23,13 @@
   "address-form.geolocation.example.USA": "Es: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Es: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ROU": "Es: Bulevardul Ion Mihalache, București 011192, Romania",
+  "address-form.geolocation.example.BUL": "Es: улица Елин Пелин 13, София", 
+  "address-form.geolocation.example.FRA": "Es: 7 Rue Hautefeuille, Paris",
+  "address-form.geolocation.example.GBR": "Es: 29 High Street Poole BH15 1AB",
+  "address-form.geolocation.example.GER": "Es: Rheinalleee 95, Düsseldorf",
+  "address-form.geolocation.example.ITA": "Es: Corso Vittorio Emanuele 69, Milano",
+  "address-form.geolocation.example.NED": "Es: Surinamestraat 27, Amsterdam",
+  "address-form.geolocation.example.POL": "Es: Ulica Twarda 3, Szczecin",
 
   "address-form.error.ERROR_EMPTY_FIELD": "Questo campo è obbligatorio.",
   "address-form.error.ERROR_POSTAL_CODE": "Codice Postale (CAP) non valido.",
