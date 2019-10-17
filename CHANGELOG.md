@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Update Chile postal code for some regions.
+
 ## [3.6.6] - 2019-10-14
 
 ### Fixed
