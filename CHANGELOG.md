@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Add address examples in geolocation mode for some countries
+
 ## [3.6.7] - 2019-10-17
 
 ### Fixed
