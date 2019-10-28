@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Update Ecuador rules, including some parishes for Pichincha province.
+
 ## [3.6.9] - 2019-10-28
 
 ### Added
