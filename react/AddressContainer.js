@@ -53,11 +53,15 @@ class AddressContainer extends Component {
       changedAddressFields.postalCode &&
       !changedAddressFields.postalCode.geolocationAutoCompleted
     ) {
-      const postalCodeIsNowValid =
-        address.postalCode.valid !== true &&
-        validatedAddress.postalCode.valid === true
+      const diffFromPrev =
+        address.postalCode.value !== validatedAddress.postalCode.value
+      const isValidPostalCode = validatedAddress.postalCode.valid === true
+      const shouldAutoComplete =
+        rules.postalCodeFrom === POSTAL_CODE &&
+        diffFromPrev &&
+        isValidPostalCode
 
-      if (rules.postalCodeFrom === POSTAL_CODE && postalCodeIsNowValid) {
+      if (shouldAutoComplete) {
         return onChangeAddress(
           postalCodeAutoCompleteAddress({
             cors,

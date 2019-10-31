@@ -7,24 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Postal code autocompletion on paste.
+
 ## [3.6.10] - 2019-10-29
 
 ### Changed
+
 - Update Ecuador rules, including some parishes for Pichincha province.
 
 ## [3.6.9] - 2019-10-28
 
 ### Added
+
 - Add German translations.
 
 ## [3.6.8] - 2019-10-21
 
 ### Changed
+
 - Add address examples in geolocation mode for some countries
 
 ## [3.6.7] - 2019-10-17
 
 ### Fixed
+
 - Update Chile postal code for some regions.
 
 ## [3.6.6] - 2019-10-14
