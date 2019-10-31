@@ -15,7 +15,7 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
   })
 
@@ -27,9 +27,9 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
-    expect(wrapper.html()).toBe('')
+    expect(wrapper.html()).toBe(null)
   })
 
   it('should display nothing if there are autocompleted fields with no value', () => {
@@ -47,9 +47,9 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
-    expect(wrapper.html()).toBe('')
+    expect(wrapper.html()).toBe(null)
   })
 
   describe('', () => {
@@ -73,7 +73,7 @@ describe('AutoCompletedFields', () => {
           onChangeAddress={onChangeAddress}
         >
           {children}
-        </AutoCompletedFields>
+        </AutoCompletedFields>,
       )
     })
 
@@ -104,12 +104,12 @@ describe('AutoCompletedFields', () => {
       expect(onChangeAddressArgument.state).toHaveProperty('value', state)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'geolocationAutoCompleted',
-        undefined
+        undefined,
       )
       expect(onChangeAddressArgument.city).toHaveProperty('value', city)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'postalCodeAutoCompleted',
-        undefined
+        undefined,
       )
     })
 
@@ -137,7 +137,7 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
 
     const AddressSummary = wrapper.find('AddressSummary')
@@ -165,7 +165,7 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>
+      </AutoCompletedFields>,
     )
 
     const AddressSummary = wrapper.find('AddressSummary')
