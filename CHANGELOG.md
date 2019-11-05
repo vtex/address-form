@@ -24,6 +24,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `StyleguideInput` to have an external loading property to show it in the right moment instead of
   when autocomplete is performed
 
+## [4.3.0] - 2019-11-21
+
+### Changed
+
+- `StyleguideInput` to have an external loading property to show it in the right moment instead of
+  when autocomplete is performed
+
+## [4.2.5] - 2019-11-06
+
+### Changed
+
+- Styleguide input to show `InputButton` instead of `Input` with a `Button` suffix.
+
+## [4.2.4] - 2019-11-05
+
+### Fixed
+
+- Peru neighborhood geolocation validation.
+- Postal code autocompletion on paste.
+- Update Chile postal code for some regions.
+- Missing validation message to `GeolocationNumberInput`
+- Update Chile postal-code for Puerto Montt (Region X).
+- Removed unused depdendency (`regexpp`).
+
+### Changed
+
+- Update Ecuador rules, including some parishes for Pichincha province.
+- Add address examples in geolocation mode for some countries
+- Spanish locale messages
+- Removed eslint-utils from dependencies--moved to devDependencies.
+- `PER` rules to map `administrative_area_level_3` and `locality` to geolocation rules
+
 ## [4.2.3] - 2019-10-15
 
 ### Added
