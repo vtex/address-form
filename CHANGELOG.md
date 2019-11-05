@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.6.12] - 2019-11-05
+
 ### Fixed
 
 - Peru neighborhood geolocation validation.
