@@ -51,7 +51,7 @@
     "enzyme": "^3.4.1",
     "enzyme-adapter-react-16": "^1.8.0",
     "enzyme-to-json": "^3.3.4",
-    "eslint": "3",
+    "eslint": "4",
     "eslint-config-vtex": "5.1.0",
     "eslint-config-vtex-react": "3.0.2",
     "eslint-config-vtex-react-app": "^1.0.4",
