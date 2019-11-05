@@ -2434,9 +2434,9 @@ export default {
       required: false,
       handler: address => {
         if (
-          address.city &&
-          (address.city.value === 'Provincia de Lima' ||
-            address.city.value === 'Lima')
+          address.neighborhood &&
+          (address.neighborhood.value === 'Distrito de Lima' ||
+            address.neighborhood.value === 'Lima')
         ) {
           address.neighborhood = { value: 'Lima' }
           return address
@@ -2454,7 +2454,7 @@ export default {
           return address
         }
 
-        if (address.state && address.state.value === 'Distrito de Lima') {
+        if (address.state && address.state.value === 'Provincia de Lima') {
           address.state.value = 'Lima'
           return address
         }
