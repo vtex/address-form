@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Styleguide input to show `InputButton` instead of `Input` with a `Button` suffix.
 
+## [4.2.4] - 2019-11-05
+
 ### Fixed
 
 - Peru neighborhood geolocation validation.
