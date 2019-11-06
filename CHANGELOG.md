@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.2.5] - 2019-11-06
+
 ### Changed
 
 - Styleguide input to show `InputButton` instead of `Input` with a `Button` suffix.
