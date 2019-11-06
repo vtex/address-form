@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Dropdown from '@vtex/styleguide/lib/Dropdown'
 import Input from '@vtex/styleguide/lib/Input'
 import Link from '@vtex/styleguide/lib/Link'
-import StyleguideButton from '@vtex/styleguide/lib/Button'
-import Spinner from '@vtex/styleguide/lib/Spinner'
+import InputButton from '@vtex/styleguide/lib/InputButton'
 import Checkbox from '@vtex/styleguide/lib/Checkbox'
 import { injectIntl, intlShape } from 'react-intl'
 import { injectRules } from '../../addressRulesContext'
@@ -44,6 +43,7 @@ class StyleguideInput extends Component {
   render() {
     const {
       address,
+      autoFocus,
       Button,
       field,
       options,
@@ -61,48 +61,45 @@ class StyleguideInput extends Component {
       (address['addressQuery'].geolocationAutoCompleted && numberValue) ||
       notApplicable
 
+    const inputCommonProps = {
+      label: this.props.intl.formatMessage({
+        id: `address-form.field.${field.name}`,
+      }),
+      autoFocus,
+      value: address[field.name].value || '',
+      disabled,
+      error: !this.state.isInputValid,
+      ref: inputRef,
+      errorMessage:
+        address[field.name].reason &&
+        this.props.intl.formatMessage({
+          id: `address-form.error.${address[field.name].reason}`,
+        }),
+      onBlur: this.props.onBlur,
+      onChange: this.handleChange,
+      isLoading: loading,
+    }
+
     if (field.name === 'postalCode') {
       return (
         <form
-          className="vtex-address-form__postalCode flex-m flex-column items-start pb2"
+          className="vtex-address-form__postalCode"
           onSubmit={this.handleSubmit}
         >
-          <Input
-            label={this.props.intl.formatMessage({
-              id: `address-form.field.${field.name}`,
-            })}
-            value={address[field.name].value || ''}
-            disabled={disabled}
-            error={!this.state.isInputValid}
-            ref={inputRef}
-            errorMessage={
-              address[field.name].reason &&
-              this.props.intl.formatMessage({
-                id: `address-form.error.${address[field.name].reason}`,
-              })
-            }
-            onBlur={this.props.onBlur}
-            onChange={this.handleChange}
-            suffix={
-              <Fragment>
-                {
-                  <SpinnerLoading
-                    isLoading={!onSubmit && !submitLabel && loading}
-                  />
-                }
-                {onSubmit && Button && (
-                  <StyleguideButton
-                    type="submit"
-                    size="small"
-                    variation="secondary"
-                  >
-                    {submitLabel ||
-                      intl.formatMessage({ id: 'address-form.search' })}
-                  </StyleguideButton>
-                )}
-              </Fragment>
-            }
-          />
+          {Button ? (
+            <InputButton
+              {...inputCommonProps}
+              button={
+                submitLabel || intl.formatMessage({ id: 'address-form.search' })
+              }
+            />
+          ) : (
+            <Input
+              {...inputCommonProps}
+              suffix={<SpinnerLoading isLoading={loading} />}
+            />
+          )}
+
           {field.forgottenURL && (
             <div className="pt4 flex-none">
               <Link href={field.forgottenURL} target="_blank">
@@ -248,6 +245,7 @@ StyleguideInput.defaultProps = {
 
 StyleguideInput.propTypes = {
   address: PropTypes.object,
+  autoFocus: PropTypes.bool,
   Button: PropTypes.func,
   field: PropTypes.object.isRequired,
   inputRef: PropTypes.func,
