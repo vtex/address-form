@@ -241,7 +241,7 @@ const countryData = {
     'Sangolqui y Mitad del Mundo': '0018',
     Tababela: '0018',
     Tumbaco: '0018',
-    Yaruquí: '0018'
+    Yaruquí: '0018',
   },
   'Santa Elena': {
     'Santa Elena': '0019',
@@ -377,7 +377,7 @@ export default {
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: false,
+      required: true,
       notApplicable: true,
     },
     street: { valueIn: 'long_name', types: ['route'], required: false },

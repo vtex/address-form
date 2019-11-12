@@ -2424,7 +2424,7 @@ export default {
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: false,
+      required: true,
       notApplicable: true,
     },
     street: { valueIn: 'long_name', types: ['route'], required: false },
