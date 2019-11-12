@@ -32,7 +32,7 @@ export function validateAddress(address, rules) {
       }
       return memo
     },
-    {}
+    {},
   )
 }
 
@@ -219,14 +219,17 @@ function validateGeoCoordinates(value, name, address, rules) {
 function validatePostalCode(value, name, address, rules) {
   const field = getField(name, rules)
 
-  if (field && field.required && !value) {
-    return emptyField
-  }
+  if (!field) return validResult
 
-  if (field && field.regex) {
-    const regex = new RegExp(field.regex)
+  if (field.required && !value) return emptyField
 
-    return regex.test(value) ? validResult : invalidPostalCode
+  // we check if the value is truthy because
+  // a not-required empty postal code should be valid
+  if (field.regex && value) {
+    const regExp = new RegExp(field.regex)
+    if (regExp.test(value) === false) {
+      return invalidPostalCode
+    }
   }
 
   return validResult
