@@ -4,7 +4,7 @@ import newAddress from '../__mocks__/geolocationAddressWithNumber'
 import googleMaps from './__mocks__/googleMapsGeocoder'
 
 describe('Get Address by Geolocation', () => {
-  it.only('should transform a Google address to a Checkout address', () => {
+  it('should transform a Google address to a Checkout address', () => {
     const mockFn = jest.fn()
     const geolocationProps = {
       address: newAddress,
