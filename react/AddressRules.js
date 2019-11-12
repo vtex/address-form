@@ -63,12 +63,29 @@ class AddressRules extends Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, useGeolocation } = this.props
     const { rules } = this.state
 
-    return rules ? (
+    if (!rules) return null
+
+    // if using geolocation, overwrite field configs defined on `rules.geolocation`
+    if (useGeolocation && rules.geolocation) {
+      rules.fields = rules.fields.map(field => {
+        if (rules.geolocation[field.name]) {
+          // ignore unrelated props for the field
+          // eslint-disable-next-line no-unused-vars
+          const { valueIn, types, handler, ...props } = rules.geolocation[
+            field.name
+          ]
+          return { ...field, ...props }
+        }
+        return field
+      })
+    }
+
+    return (
       <RulesContext.Provider value={rules}>{children}</RulesContext.Provider>
-    ) : null
+    )
   }
 }
 
@@ -78,6 +95,8 @@ AddressRules.propTypes = {
   fetch: PropTypes.func,
   /** Whether to use IO built-in file fetching */
   shouldUseIOFetching: PropTypes.bool,
+  /** Whether the rules should contemplate the geolocation field rules */
+  useGeolocation: PropTypes.bool,
 }
 
 export default AddressRules
