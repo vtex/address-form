@@ -144,9 +144,11 @@ class InputFieldContainer extends Component {
         submitLabel={submitLabel}
         onChange={this.bindOnChange()}
         onBlur={this.bindOnBlur()}
-        {...(address[field.name].notApplicable &&
-        address[field.name].notApplicable
-          ? { toggleNotApplicable: this.bindNotApplicable() }
+        {...(address[field.name].notApplicable
+          ? {
+            toggleNotApplicable: this.bindNotApplicable(),
+            notApplicableLabel: this.props.notApplicableLabel,
+          }
           : {})}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}

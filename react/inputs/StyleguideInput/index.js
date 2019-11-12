@@ -133,7 +133,7 @@ class StyleguideInput extends Component {
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
-            onChange={this.props.onChange}
+            onChange={this.handleChange}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
             error={!this.state.isInputValid}
@@ -164,18 +164,18 @@ class StyleguideInput extends Component {
                   id: 'address-form.geolocation.example.UNI',
                 }),
               })}
-              onChange={this.props.onChange}
+              onChange={this.handleChange}
               onBlur={this.props.onBlur}
               disabled={loading || disabled}
               error={!this.state.isInputValid}
               ref={inputRef}
-              value={field.value}
+              value={address[field.name].value || ''}
             />
           </div>
           <div className="vtex-address-form__number-checkbox flex flex-row ml7 mt6 w-50">
             <Checkbox
               id="option-0"
-              label="Option 0"
+              label={this.props.notApplicableLabel || 'N/A'}
               name="default-checkbox-group"
               onChange={toggleNotApplicable}
               value="op"
@@ -257,6 +257,7 @@ StyleguideInput.propTypes = {
   toggleNotApplicable: PropTypes.func,
   rules: PropTypes.object,
   submitLabel: PropTypes.string,
+  notApplicableLabel: PropTypes.string,
 }
 
 const enhance = compose(
