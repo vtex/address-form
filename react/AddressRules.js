@@ -64,23 +64,28 @@ class AddressRules extends Component {
 
   render() {
     const { children, useGeolocation } = this.props
-    const { rules } = this.state
+    let { rules } = this.state
 
     if (!rules) return null
 
-    // if using geolocation, overwrite field configs defined on `rules.geolocation`
     if (useGeolocation && rules.geolocation) {
-      rules.fields = rules.fields.map(field => {
-        if (rules.geolocation[field.name]) {
-          // ignore unrelated props for the field
-          // eslint-disable-next-line no-unused-vars
-          const { valueIn, types, handler, ...props } = rules.geolocation[
-            field.name
-          ]
-          return { ...field, ...props }
-        }
-        return field
-      })
+      rules = {
+        ...rules,
+        // set a hidden flag for internal usage
+        _usingGeolocationRules: true,
+        // overwrite field with configs defined on `rules.geolocation`
+        fields: rules.fields.map(field => {
+          if (rules.geolocation[field.name]) {
+            // ignore unrelated props for the field
+            // eslint-disable-next-line no-unused-vars
+            const { valueIn, types, handler, ...props } = rules.geolocation[
+              field.name
+            ]
+            return { ...field, ...props }
+          }
+          return field
+        }),
+      }
     }
 
     return (
