@@ -55,11 +55,6 @@ class StyleguideInput extends Component {
     } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
-    const notApplicable = !!address[field.name].notApplicable
-    const numberValue = !address['number'].value && field.name === 'number'
-    const geolocationCondition =
-      (address['addressQuery'].geolocationAutoCompleted && numberValue) ||
-      notApplicable
 
     const inputCommonProps = {
       label: this.props.intl.formatMessage({
@@ -143,7 +138,7 @@ class StyleguideInput extends Component {
         </div>
       )
     }
-    if (geolocationCondition) {
+    if (field.name === 'number') {
       return (
         <div className="vtex-address-form__number-div flex flex-row pb7">
           <div className="vtex-address-form__number-input flex w-50">
@@ -260,10 +255,6 @@ StyleguideInput.propTypes = {
   notApplicableLabel: PropTypes.string,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-  injectIntl,
-)
+const enhance = compose(injectAddressContext, injectRules, injectIntl)
 
 export default enhance(StyleguideInput)
