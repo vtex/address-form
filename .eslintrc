@@ -3,6 +3,7 @@
   "extends": [
     "vtex",
     "vtex-react",
+    "plugin:prettier/recommended"
     "plugin:import/recommended"
   ],
   "plugins": ["import"],
