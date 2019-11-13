@@ -4,6 +4,8 @@ import { RulesContext } from './addressRulesContext'
 
 import defaultRules from './country/default'
 
+const MODULE_NOT_FOUND_PATTERN = /Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/
+
 class AddressRules extends Component {
   constructor(props) {
     super(props)
@@ -18,71 +20,71 @@ class AddressRules extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.country !== this.props.country) {
+    if (
+      prevProps.country !== this.props.country ||
+      prevProps.useGeolocation !== this.props.useGeolocation
+    ) {
       return this.updateRules()
     }
   }
 
-  updateRules() {
+  parseError(e) {
+    const result = MODULE_NOT_FOUND_PATTERN.exec(e.message)
+    if (!result) return false
+    return result[1]
+  }
+
+  fetchRules(rulePromise) {
+    return rulePromise
+      .then(ruleData => ruleData.default || ruleData)
+      .catch(error => {
+        const errorType = this.parseError(error)
+        if (errorType) {
+          if (process.env.NODE_ENV !== 'production') {
+            console.warn(
+              `Couldn't load rules for country ${errorType}, using default rules instead.`,
+            )
+          }
+          return defaultRules
+        }
+
+        if (process.env.NODE_ENV !== 'production') {
+          console.error('An unknown error occurred.', error)
+        }
+      })
+  }
+
+  async updateRules() {
     const { shouldUseIOFetching, fetch, country, useGeolocation } = this.props
 
     const rulePromise = shouldUseIOFetching
       ? import(`./country/${country}`)
       : fetch(country)
 
-    return this.fetchRules(rulePromise).then(rules => {
-      if (useGeolocation && rules.geolocation) {
-        rules = {
-          ...rules,
-          // set a hidden flag for internal usage
-          _usingGeolocationRules: true,
-          // overwrite field with configs defined on `rules.geolocation`
-          fields: rules.fields.map(field => {
-            if (rules.geolocation[field.name]) {
-              // ignore unrelated props for the field
-              // eslint-disable-next-line no-unused-vars
-              const { valueIn, types, handler, ...props } = rules.geolocation[
-                field.name
-              ]
-              return { ...field, ...props }
-            }
-            return field
-          }),
-        }
-      }
+    let rules = await this.fetchRules(rulePromise)
 
-      return rules
-    })
-  }
-
-  async fetchRules(rulePromise) {
-    try {
-      const ruleData = await rulePromise
-      const rules = ruleData.default || ruleData
-      this.setState({ rules })
-      return rules
-    } catch (error) {
-      const errorType = this.parseError(error)
-      if (errorType) {
-        if (process.env.NODE_ENV !== 'production') {
-          console.warn(
-            `Couldn't load rules for country ${errorType}, using default rules instead.`,
-          )
-        }
-        this.setState({ rules: defaultRules })
-        return defaultRules
-      }
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn('An unknown error occurred.')
+    if (useGeolocation && rules.geolocation) {
+      rules = {
+        ...rules,
+        // set a hidden flag for internal usage
+        _usingGeolocationRules: true,
+        // overwrite field with configs defined on `rules.geolocation`
+        fields: rules.fields.map(field => {
+          if (rules.geolocation[field.name]) {
+            // ignore unrelated props for the field
+            // eslint-disable-next-line no-unused-vars
+            const { valueIn, types, handler, ...props } = rules.geolocation[
+              field.name
+            ]
+            return { ...field, ...props }
+          }
+          return field
+        }),
       }
     }
-  }
 
-  parseError(e) {
-    const regex = new RegExp(/Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/)
-    const result = regex.exec(e.message)
-    if (!result) return false
-    return result[1]
+    this.setState({ rules })
+    return rules
   }
 
   render() {

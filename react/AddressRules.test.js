@@ -40,7 +40,8 @@ describe('AddressRules', () => {
   })
 
   it('should provide default rules when country is unrecognized', async () => {
-    global.console = { warn: jest.fn() }
+    const prevWarn = global.console.warn
+    global.console.warn = jest.fn()
 
     const instance = shallow(
       <AddressRules
@@ -52,7 +53,10 @@ describe('AddressRules', () => {
     ).instance()
 
     const rules = await instance.componentDidMount()
+
     expect(rules).toEqual(defaultRules)
+
+    global.console.warn = prevWarn
   })
 
   it('should merge geolocation field rules with default field rules', async () => {
