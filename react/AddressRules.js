@@ -24,12 +24,35 @@ class AddressRules extends Component {
   }
 
   updateRules() {
-    const { shouldUseIOFetching, fetch, country } = this.props
+    const { shouldUseIOFetching, fetch, country, useGeolocation } = this.props
 
     const rulePromise = shouldUseIOFetching
       ? import(`./country/${country}`)
       : fetch(country)
-    return this.fetchRules(rulePromise)
+
+    return this.fetchRules(rulePromise).then(rules => {
+      if (useGeolocation && rules.geolocation) {
+        rules = {
+          ...rules,
+          // set a hidden flag for internal usage
+          _usingGeolocationRules: true,
+          // overwrite field with configs defined on `rules.geolocation`
+          fields: rules.fields.map(field => {
+            if (rules.geolocation[field.name]) {
+              // ignore unrelated props for the field
+              // eslint-disable-next-line no-unused-vars
+              const { valueIn, types, handler, ...props } = rules.geolocation[
+                field.name
+              ]
+              return { ...field, ...props }
+            }
+            return field
+          }),
+        }
+      }
+
+      return rules
+    })
   }
 
   async fetchRules(rulePromise) {
@@ -63,30 +86,10 @@ class AddressRules extends Component {
   }
 
   render() {
-    const { children, useGeolocation } = this.props
+    const { children } = this.props
     let { rules } = this.state
 
     if (!rules) return null
-
-    if (useGeolocation && rules.geolocation) {
-      rules = {
-        ...rules,
-        // set a hidden flag for internal usage
-        _usingGeolocationRules: true,
-        // overwrite field with configs defined on `rules.geolocation`
-        fields: rules.fields.map(field => {
-          if (rules.geolocation[field.name]) {
-            // ignore unrelated props for the field
-            // eslint-disable-next-line no-unused-vars
-            const { valueIn, types, handler, ...props } = rules.geolocation[
-              field.name
-            ]
-            return { ...field, ...props }
-          }
-          return field
-        }),
-      }
-    }
 
     return (
       <RulesContext.Provider value={rules}>{children}</RulesContext.Provider>
