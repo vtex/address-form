@@ -74,7 +74,6 @@ export default {
     street: {
       valueIn: 'long_name',
       types: ['route'],
-      required: false,
       handler: (address, googleAddress) => {
         address.street = { value: googleAddress.name }
         return address
@@ -83,33 +82,15 @@ export default {
     city: {
       valueIn: 'long_name',
       types: ['locality'],
-      required: false,
     },
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
-      required: false,
     },
   },
   summary: [
-    [
-      {
-        name: 'complement',
-      },
-    ],
-    [
-      {
-        name: 'street',
-      },
-    ],
-    [
-      {
-        name: 'postalCode',
-      },
-      {
-        delimiter: ' ',
-        name: 'city',
-      },
-    ],
+    [{ name: 'complement' }],
+    [{ name: 'street' }],
+    [{ name: 'postalCode' }, { delimiter: ' ', name: 'city' }],
   ],
 }

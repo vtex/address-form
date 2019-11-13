@@ -2427,11 +2427,10 @@ export default {
       required: true,
       notApplicable: true,
     },
-    street: { valueIn: 'long_name', types: ['route'], required: false },
+    street: { valueIn: 'long_name', types: ['route'] },
     neighborhood: {
       valueIn: 'long_name',
       types: ['administrative_area_level_3', 'locality'],
-      required: false,
       handler: address => {
         if (
           address.neighborhood &&
@@ -2448,7 +2447,6 @@ export default {
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
-      required: false,
       handler: address => {
         if (!address.city || !address.state) {
           return address
@@ -2480,7 +2478,6 @@ export default {
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2'],
-      required: false,
       handler: address => {
         if (address.city && address.city.value === 'Provincia de Lima') {
           address.city.value = 'Lima'
@@ -2491,31 +2488,11 @@ export default {
   },
   summary: [
     [
-      {
-        name: 'street',
-      },
-      {
-        delimiter: ' ',
-        name: 'number',
-      },
-      {
-        delimiter: ' ',
-        name: 'complement',
-      },
+      { name: 'street' },
+      { delimiter: ' ', name: 'number' },
+      { delimiter: ' ', name: 'complement' },
     ],
-    [
-      {
-        name: 'neighborhood',
-      },
-    ],
-    [
-      {
-        name: 'city',
-      },
-      {
-        delimiter: ', ',
-        name: 'state',
-      },
-    ],
+    [{ name: 'neighborhood' }],
+    [{ name: 'city' }, { delimiter: ', ', name: 'state' }],
   ],
 }
