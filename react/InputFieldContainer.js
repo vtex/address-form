@@ -135,7 +135,7 @@ class InputFieldContainer extends Component {
 
     const notApplicableProps =
       // the right side of the || is for lib consumers without the 'useGeolocation' flag
-      // unnecessary for 3.5.16+, but necessary for backward compatibility
+      // unnecessary for 3.6.0+, but necessary for backward compatibility
       field.notApplicable || address[field.name].notApplicable
         ? {
             toggleNotApplicable: this.bindNotApplicable(),

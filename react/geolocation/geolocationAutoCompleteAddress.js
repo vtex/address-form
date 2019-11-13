@@ -30,7 +30,7 @@ export default function geolocationAutoCompleteAddress(
     address => addFocusToNextInvalidField(address, rules),
   ])()
 
-  // unnecessary for 3.5.16+, but necessary for backward compatibility
+  // unnecessary for 3.6.0+, but necessary for backward compatibility
   // for lib consumers that don't pass `useGeolocation` to the `<AddressRules/>`
   if (!rules._usingGeolocationRules) {
     address = setNumberNotApplicable(address)

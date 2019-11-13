@@ -138,7 +138,11 @@ class StyleguideInput extends Component {
         </div>
       )
     }
-    if (field.name === 'number') {
+
+    if (
+      field.name === 'number' &&
+      (field.notApplicable || address['addressQuery'].geolocationAutoCompleted)
+    ) {
       return (
         <div className="vtex-address-form__number-div flex flex-row pb7">
           <div className="vtex-address-form__number-input flex w-50">
@@ -153,12 +157,6 @@ class StyleguideInput extends Component {
                   id: `address-form.error.${address[field.name].reason}`,
                 })
               }
-              placeholder={intl.formatMessage({
-                id: `address-form.geolocation.example.${address.country.value}`,
-                defaultMessage: intl.formatMessage({
-                  id: 'address-form.geolocation.example.UNI',
-                }),
-              })}
               onChange={this.handleChange}
               onBlur={this.props.onBlur}
               disabled={loading || disabled}
