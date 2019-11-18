@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.7.0] - 2019-11-18
+
 ### Fixed
 
 - Number input throwing an error when geolocation address doesn't contain a number.
