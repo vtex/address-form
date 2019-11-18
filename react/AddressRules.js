@@ -89,7 +89,7 @@ class AddressRules extends Component {
 
   render() {
     const { children } = this.props
-    let { rules } = this.state
+    const { rules } = this.state
 
     if (!rules) return null
 
