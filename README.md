@@ -142,7 +142,8 @@ The component will then instantiate a Context and provide such rules to any comp
 
 - **`children`**: The components which will be rendered inside this component and, therefore, receive the provided rules
 - **`country`**: The `Alpha3` string identifier for the country which rules are to be provided
-- **`fetch`**:Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/address-form/lib/country/' + country)}` as its value
+- **`fetch`**: Functionality for fetching the rule files. It **must** receive the function `{country => import('@vtex/address-form/lib/country/' + country)}` as its value
+- **`useGeolocation`**: Overwrite the default field rules with geolocation specific rules. This must be `true` if the subsequent form should use geolocation validation.
 
 ```js
 AddressRules.propTypes = {
@@ -408,7 +409,10 @@ AddressSubmitter.propTypes = {
 
 ## Geolocation Components
 
-**Important!**: The Geolocation Components are recommended to be loaded async using dynamic import.
+**Important**:
+
+- The Geolocation Components are recommended to be loaded async using dynamic import.
+- When using geolocation to input an address, the fields validation rules can change a bit (i.e postal code not being required). Remember to set `useGeolocation` to `true` on the [AddressRules](#addressrules) component.
 
 ### GoogleMapsContainer
 

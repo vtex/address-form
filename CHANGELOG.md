@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Number input throwing an error when geolocation address doesn't contain a number.
+- Geolocation field rules not being considered on form validation.
+- Geolocation number input not being required (should have a value or the not applicable value).
+
+### Added
+
+- `useGeolocation` prop for `AddressRules` component.
+
 ## [3.6.13] - 2019-11-06
 
 ### Changed

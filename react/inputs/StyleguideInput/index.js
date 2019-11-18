@@ -55,11 +55,6 @@ class StyleguideInput extends Component {
     } = this.props
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
-    const notApplicable = !!address[field.name].notApplicable
-    const numberValue = !address['number'].value && field.name === 'number'
-    const geolocationCondition =
-      (address['addressQuery'].geolocationAutoCompleted && numberValue) ||
-      notApplicable
 
     const inputCommonProps = {
       label: this.props.intl.formatMessage({
@@ -133,7 +128,7 @@ class StyleguideInput extends Component {
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
-            onChange={this.props.onChange}
+            onChange={this.handleChange}
             onBlur={this.props.onBlur}
             disabled={loading || disabled}
             error={!this.state.isInputValid}
@@ -143,7 +138,11 @@ class StyleguideInput extends Component {
         </div>
       )
     }
-    if (geolocationCondition) {
+
+    if (
+      field.name === 'number' &&
+      (field.notApplicable || address['addressQuery'].geolocationAutoCompleted)
+    ) {
       return (
         <div className="vtex-address-form__number-div flex flex-row pb7">
           <div className="vtex-address-form__number-input flex w-50">
@@ -158,24 +157,18 @@ class StyleguideInput extends Component {
                   id: `address-form.error.${address[field.name].reason}`,
                 })
               }
-              placeholder={intl.formatMessage({
-                id: `address-form.geolocation.example.${address.country.value}`,
-                defaultMessage: intl.formatMessage({
-                  id: 'address-form.geolocation.example.UNI',
-                }),
-              })}
-              onChange={this.props.onChange}
+              onChange={this.handleChange}
               onBlur={this.props.onBlur}
               disabled={loading || disabled}
               error={!this.state.isInputValid}
               ref={inputRef}
-              value={field.value}
+              value={address[field.name].value || ''}
             />
           </div>
           <div className="vtex-address-form__number-checkbox flex flex-row ml7 mt6 w-50">
             <Checkbox
               id="option-0"
-              label="Option 0"
+              label={this.props.notApplicableLabel || 'N/A'}
               name="default-checkbox-group"
               onChange={toggleNotApplicable}
               value="op"
@@ -257,12 +250,9 @@ StyleguideInput.propTypes = {
   toggleNotApplicable: PropTypes.func,
   rules: PropTypes.object,
   submitLabel: PropTypes.string,
+  notApplicableLabel: PropTypes.string,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-  injectIntl,
-)
+const enhance = compose(injectAddressContext, injectRules, injectIntl)
 
 export default enhance(StyleguideInput)

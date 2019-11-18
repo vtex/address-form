@@ -85,10 +85,10 @@ export default {
     complement: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: false,
+      required: true,
       notApplicable: true,
     },
-    street: { valueIn: 'long_name', types: ['route'], required: false },
+    street: { valueIn: 'long_name', types: ['route'] },
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -99,17 +99,14 @@ export default {
         'sublocality_level_4',
         'sublocality_level_5',
       ],
-      required: false,
     },
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
-      required: false,
     },
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
-      required: false,
     },
   },
   summary: [

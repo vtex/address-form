@@ -89,7 +89,6 @@ export default {
     street: {
       valueIn: 'long_name',
       types: ['route', 'street_address'],
-      required: false,
       handler: (address, googleAddress) => {
         address.street = { value: googleAddress.name }
         return address
@@ -109,7 +108,6 @@ export default {
         'sublocality_level_4',
         'sublocality_level_5',
       ],
-      required: false,
     },
     complement: {
       valueIn: 'complement',
@@ -121,41 +119,22 @@ export default {
         'premise',
         'subpremise',
       ],
-      required: false,
     },
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
-      required: false,
     },
     city: {
       valueIn: 'long_name',
       types: ['locality', 'administrative_area_level_2'],
-      required: false,
     },
   },
   summary: [
+    [{ name: 'street' }, { delimiter: ', ', name: 'complement' }],
     [
-      {
-        name: 'street',
-      },
-      {
-        delimiter: ', ',
-        name: 'complement',
-      },
-    ],
-    [
-      {
-        name: 'city',
-      },
-      {
-        delimiter: ', ',
-        name: 'state',
-      },
-      {
-        delimiter: ' ',
-        name: 'postalCode',
-      },
+      { name: 'city' },
+      { delimiter: ', ', name: 'state' },
+      { delimiter: ' ', name: 'postalCode' },
     ],
   ],
 }

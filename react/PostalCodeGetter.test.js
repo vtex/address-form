@@ -7,14 +7,14 @@ import useOneLevel from './country/__mocks__/useOneLevel'
 import useTwoLevels from './country/__mocks__/useTwoLevels'
 import useThreeLevels from './country/__mocks__/useThreeLevels'
 
-describe.only('PostalCodeGetter', () => {
+describe('PostalCodeGetter', () => {
   it('renders without crashing', () => {
     render(
       <PostalCodeGetter
         address={address}
         rules={usePostalCode}
         onChangeAddress={jest.fn()}
-      />
+      />,
     )
   })
 

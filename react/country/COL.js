@@ -1309,13 +1309,12 @@ export default {
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: false,
+      required: true,
       notApplicable: true,
     },
     street: {
       valueIn: 'long_name',
       types: ['route'],
-      required: false,
       handler: (address, googleAddress) => {
         address.street = { value: googleAddress.name }
         return address
@@ -1336,7 +1335,6 @@ export default {
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
-      required: false,
       handler: address => {
         if (address.state && address.state.value === 'Bogotá') {
           address.state.value = 'Bogotá, D.C.'
@@ -1347,7 +1345,6 @@ export default {
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
-      required: false,
       handler: address => {
         if (address.city && address.city.value === 'Bogotá') {
           address.city.value = 'Bogotá, D.c.'
@@ -1358,30 +1355,14 @@ export default {
   },
   summary: [
     [
-      {
-        name: 'street',
-      },
-      {
-        delimiter: ', ',
-        name: 'number',
-      },
-      {
-        delimiter: ' ',
-        name: 'complement',
-      },
+      { name: 'street' },
+      { delimiter: ', ', name: 'number' },
+      { delimiter: ' ', name: 'complement' },
     ],
     [
-      {
-        name: 'postalCode',
-      },
-      {
-        delimiter: ' ',
-        name: 'city',
-      },
-      {
-        delimiter: ' ',
-        name: 'state',
-      },
+      { name: 'postalCode' },
+      { delimiter: ' ', name: 'city' },
+      { delimiter: ' ', name: 'state' },
     ],
   ],
 }

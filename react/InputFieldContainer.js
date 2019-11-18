@@ -20,12 +20,12 @@ class InputFieldContainer extends Component {
         const isDependentField = dependentFields.indexOf(prop) !== -1
         return isDependentField
           ? {
-            ...cleanAddress,
-            [prop]: {
-              valueOptions: addressField.valueOptions,
-              value: null,
-            },
-          }
+              ...cleanAddress,
+              [prop]: {
+                valueOptions: addressField.valueOptions,
+                value: null,
+              },
+            }
           : cleanAddress
       },
       {},
@@ -133,6 +133,16 @@ class InputFieldContainer extends Component {
         ? getListOfOptions(field, address, rules)
         : undefined)
 
+    const notApplicableProps =
+      // the right side of the || is for lib consumers without the 'useGeolocation' flag
+      // unnecessary for 3.6.0+, but necessary for backward compatibility
+      field.notApplicable || address[field.name].notApplicable
+        ? {
+            toggleNotApplicable: this.bindNotApplicable(),
+            notApplicableLabel: this.props.notApplicableLabel,
+          }
+        : null
+
     return (
       <Input
         Button={Button}
@@ -144,10 +154,7 @@ class InputFieldContainer extends Component {
         submitLabel={submitLabel}
         onChange={this.bindOnChange()}
         onBlur={this.bindOnBlur()}
-        {...(address[field.name].notApplicable &&
-        address[field.name].notApplicable
-          ? { toggleNotApplicable: this.bindNotApplicable() }
-          : {})}
+        {...notApplicableProps}
         inputRef={this.inputRef}
         shouldShowNumberKeyboard={shouldShowNumberKeyboard}
       />

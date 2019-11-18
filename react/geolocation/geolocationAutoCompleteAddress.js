@@ -14,7 +14,7 @@ export default function geolocationAutoCompleteAddress(
   const geolocationRules = rules.geolocation
   const fallbackCountry = rules.country
 
-  const address = flow([
+  let address = flow([
     setAddressFields,
     runGeolocationFieldHandlers,
     setGeoCoordinates,
@@ -28,8 +28,13 @@ export default function geolocationAutoCompleteAddress(
       receiverName: baseAddress.receiverName,
     }),
     address => addFocusToNextInvalidField(address, rules),
-    setNumberNotApplicable,
   ])()
+
+  // unnecessary for 3.6.0+, but necessary for backward compatibility
+  // for lib consumers that don't pass `useGeolocation` to the `<AddressRules/>`
+  if (!rules._usingGeolocationRules) {
+    address = setNumberNotApplicable(address)
+  }
 
   // The functions below use googleAddress and geolocationRules
   // from the closure created.
@@ -113,7 +118,8 @@ export default function geolocationAutoCompleteAddress(
         number: {
           ...address.number,
           notApplicable: true,
-        }}
+        },
+      }
     }
     return address
   }

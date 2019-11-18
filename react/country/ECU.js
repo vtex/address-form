@@ -241,7 +241,7 @@ const countryData = {
     'Sangolqui y Mitad del Mundo': '0018',
     Tababela: '0018',
     Tumbaco: '0018',
-    Yaruquí: '0018'
+    Yaruquí: '0018',
   },
   'Santa Elena': {
     'Santa Elena': '0019',
@@ -377,10 +377,10 @@ export default {
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: false,
+      required: true,
       notApplicable: true,
     },
-    street: { valueIn: 'long_name', types: ['route'], required: false },
+    street: { valueIn: 'long_name', types: ['route'] },
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -391,50 +391,27 @@ export default {
         'sublocality_level_4',
         'sublocality_level_5',
       ],
-      required: false,
     },
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
-      required: false,
     },
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
-      required: false,
     },
   },
   summary: [
     [
-      {
-        name: 'street',
-      },
-      {
-        delimiter: ' ',
-        name: 'number',
-      },
-      {
-        delimiter: ' ',
-        name: 'complement',
-      },
+      { name: 'street' },
+      { delimiter: ' ', name: 'number' },
+      { delimiter: ' ', name: 'complement' },
     ],
+    [{ name: 'neighborhood' }],
     [
-      {
-        name: 'neighborhood',
-      },
-    ],
-    [
-      {
-        name: 'postalCode',
-      },
-      {
-        delimiter: ' ',
-        name: 'city',
-      },
-      {
-        delimiter: ', ',
-        name: 'state',
-      },
+      { name: 'postalCode' },
+      { delimiter: ' ', name: 'city' },
+      { delimiter: ', ', name: 'state' },
     ],
   ],
 }

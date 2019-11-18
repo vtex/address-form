@@ -86,63 +86,35 @@ export default {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
-      required: true,
     },
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: false,
+      required: true,
       notApplicable: true,
     },
-    street: { valueIn: 'long_name', types: ['route'], required: false },
+    street: { valueIn: 'long_name', types: ['route'] },
     neighborhood: {
       valueIn: 'long_name',
       types: ['neighborhood'],
-      required: false,
     },
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
-      required: false,
     },
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
-      required: false,
     },
   },
   summary: [
     [
-      {
-        name: 'street',
-      },
-      {
-        delimiter: ' ',
-        name: 'number',
-      },
-      {
-        delimiter: ' ',
-        name: 'complement',
-      },
+      { name: 'street' },
+      { delimiter: ' ', name: 'number' },
+      { delimiter: ' ', name: 'complement' },
     ],
-    [
-      {
-        name: 'neighborhood',
-      },
-    ],
-    [
-      {
-        name: 'city',
-      },
-    ],
-    [
-      {
-        name: 'postalCode',
-      },
-      {
-        delimiter: ' ',
-        name: 'state',
-      },
-    ],
+    [{ name: 'neighborhood' }],
+    [{ name: 'city' }],
+    [{ name: 'postalCode' }, { delimiter: ' ', name: 'state' }],
   ],
 }
