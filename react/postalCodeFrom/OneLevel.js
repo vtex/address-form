@@ -15,6 +15,7 @@ class OneLevel extends Component {
       address,
       Button,
       Input,
+      loading,
       onSubmit,
       onChangeAddress,
       rules,
@@ -30,6 +31,7 @@ class OneLevel extends Component {
           <SelectPostalCode
             address={address}
             Input={Input}
+            loading={loading}
             rules={rules}
             onChangeAddress={onChangeAddress}
           />
@@ -42,6 +44,7 @@ class OneLevel extends Component {
         <SelectPostalCode
           address={address}
           Input={Input}
+          loading={loading}
           rules={rules}
           onChangeAddress={onChangeAddress}
         />
@@ -53,6 +56,7 @@ class OneLevel extends Component {
 OneLevel.propTypes = {
   address: AddressShapeWithValidation,
   Button: PropTypes.func,
+  loading: PropTypes.bool,
   Input: PropTypes.func.isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

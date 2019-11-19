@@ -117,6 +117,7 @@ class InputFieldContainer extends Component {
     const {
       Input,
       Button,
+      loading,
       field,
       autoFocus,
       address,
@@ -147,6 +148,7 @@ class InputFieldContainer extends Component {
       <Input
         Button={Button}
         address={address}
+        loading={loading}
         field={field}
         autoFocus={autoFocus}
         options={_options}
@@ -165,11 +167,13 @@ class InputFieldContainer extends Component {
 InputFieldContainer.propTypes = {
   autoFocus: false,
   shouldShowNumberKeyboard: false,
+  loading: false,
 }
 
 InputFieldContainer.propTypes = {
   Button: PropTypes.func,
   Input: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
   autoFocus: PropTypes.bool,
   field: PropTypes.object.isRequired,
   address: AddressShapeWithValidation,

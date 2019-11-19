@@ -48,7 +48,7 @@ class SelectPostalCode extends Component {
   }
 
   render() {
-    const { address, rules, Input, intl } = this.props
+    const { address, rules, Input, loading, intl } = this.props
     const currentLevelField = getLastLevelField(rules)
     const fieldName = currentLevelField.name
 
@@ -64,6 +64,7 @@ class SelectPostalCode extends Component {
       <InputFieldContainer
         intl={intl}
         Input={Input}
+        loading={loading}
         field={currentLevelField}
         address={newAddress}
         options={this.getOptions(fieldName, address, rules)}
@@ -77,6 +78,7 @@ class SelectPostalCode extends Component {
 SelectPostalCode.propTypes = {
   Input: PropTypes.func.isRequired,
   intl: intlShape,
+  loading: PropTypes.bool,
   address: AddressShapeWithValidation.isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,

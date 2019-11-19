@@ -5,6 +5,7 @@ import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 const SHALLOW_PROPS = [
   'Input',
   'autoFocus',
+  'loading',
   'field',
   'rules',
   'options',
@@ -70,12 +71,14 @@ function pureInputField(WrappedComponent) {
 
   PureInput.propTypes = {
     autoFocus: false,
+    loading: false,
     shouldShowNumberKeyboard: false,
   }
 
   PureInput.propTypes = {
     Input: PropTypes.func.isRequired,
     autoFocus: PropTypes.bool,
+    loading: PropTypes.bool,
     field: PropTypes.object.isRequired,
     address: AddressShapeWithValidation,
     rules: PropTypes.object.isRequired,
