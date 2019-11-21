@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.3.0] - 2019-11-21
+
 ### Changed
 
 - `StyleguideInput` to have an external loading property to show it in the right moment instead of
