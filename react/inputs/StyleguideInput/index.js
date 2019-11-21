@@ -47,13 +47,12 @@ class StyleguideInput extends Component {
       Button,
       field,
       options,
-      onSubmit,
+      loading,
       inputRef,
       intl,
       toggleNotApplicable,
       submitLabel,
     } = this.props
-    const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
 
     const inputCommonProps = {
@@ -239,6 +238,7 @@ StyleguideInput.defaultProps = {
 StyleguideInput.propTypes = {
   address: PropTypes.object,
   autoFocus: PropTypes.bool,
+  loading: PropTypes.bool,
   Button: PropTypes.func,
   field: PropTypes.object.isRequired,
   inputRef: PropTypes.func,

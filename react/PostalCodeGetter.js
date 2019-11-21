@@ -18,6 +18,7 @@ class PostalCodeGetter extends Component {
     const {
       address,
       autoFocus,
+      loading,
       rules,
       onChangeAddress,
       Input,
@@ -33,6 +34,7 @@ class PostalCodeGetter extends Component {
         return (
           <ThreeLevels
             intl={intl}
+            loading={loading}
             Input={Input}
             Button={Button}
             address={address}
@@ -46,6 +48,7 @@ class PostalCodeGetter extends Component {
         return (
           <TwoLevels
             intl={intl}
+            loading={loading}
             Input={Input}
             Button={Button}
             address={address}
@@ -59,6 +62,7 @@ class PostalCodeGetter extends Component {
         return (
           <OneLevel
             intl={intl}
+            loading={loading}
             Input={Input}
             Button={Button}
             address={address}
@@ -74,6 +78,7 @@ class PostalCodeGetter extends Component {
         return (
           <InputFieldContainer
             intl={intl}
+            loading={loading}
             Input={Input}
             Button={Button}
             field={field}
@@ -93,6 +98,7 @@ class PostalCodeGetter extends Component {
 
 PostalCodeGetter.defaultProps = {
   autoFocus: false,
+  loading: false,
   Input: DefaultInput,
   shouldShowNumberKeyboard: false,
 }
@@ -100,6 +106,7 @@ PostalCodeGetter.defaultProps = {
 PostalCodeGetter.propTypes = {
   address: AddressShapeWithValidation,
   autoFocus: PropTypes.bool,
+  loading: PropTypes.bool,
   Input: PropTypes.func,
   Button: PropTypes.func,
   intl: intlShape.isRequired,
@@ -110,9 +117,5 @@ PostalCodeGetter.propTypes = {
   submitLabel: PropTypes.string,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-  injectIntl,
-)
+const enhance = compose(injectAddressContext, injectRules, injectIntl)
 export default enhance(PostalCodeGetter)

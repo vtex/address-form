@@ -17,6 +17,7 @@ class ThreeLevels extends Component {
       Button,
       rules,
       Input,
+      loading,
       onChangeAddress,
       onSubmit,
       submitLabel,
@@ -31,6 +32,7 @@ class ThreeLevels extends Component {
           <SelectLevel
             level={0}
             Input={Input}
+            loading={loading}
             rules={rules}
             address={address}
             onChangeAddress={onChangeAddress}
@@ -38,12 +40,14 @@ class ThreeLevels extends Component {
           <SelectLevel
             level={1}
             Input={Input}
+            loading={loading}
             rules={rules}
             address={address}
             onChangeAddress={onChangeAddress}
           />
           <SelectPostalCode
             Input={Input}
+            loading={loading}
             rules={rules}
             address={address}
             onChangeAddress={onChangeAddress}
@@ -58,6 +62,7 @@ class ThreeLevels extends Component {
         <SelectLevel
           level={0}
           Input={Input}
+          loading={loading}
           rules={rules}
           address={address}
           onChangeAddress={onChangeAddress}
@@ -65,12 +70,14 @@ class ThreeLevels extends Component {
         <SelectLevel
           level={1}
           Input={Input}
+          loading={loading}
           rules={rules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
         <SelectPostalCode
           Input={Input}
+          loading={loading}
           rules={rules}
           address={address}
           onChangeAddress={onChangeAddress}
@@ -83,6 +90,7 @@ class ThreeLevels extends Component {
 ThreeLevels.propTypes = {
   address: AddressShapeWithValidation,
   Button: PropTypes.func,
+  loading: PropTypes.func,
   Input: PropTypes.func.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,

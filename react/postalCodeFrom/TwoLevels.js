@@ -16,6 +16,7 @@ class TwoLevels extends Component {
       address,
       rules,
       Input,
+      loading,
       onChangeAddress,
       onSubmit,
       submitLabel,
@@ -31,12 +32,14 @@ class TwoLevels extends Component {
           <SelectLevel
             level={0}
             Input={Input}
+            loading={loading}
             rules={rules}
             address={address}
             onChangeAddress={onChangeAddress}
           />
           <SelectPostalCode
             Input={Input}
+            loading={loading}
             rules={rules}
             address={address}
             onChangeAddress={onChangeAddress}
@@ -51,12 +54,14 @@ class TwoLevels extends Component {
         <SelectLevel
           level={0}
           Input={Input}
+          loading={loading}
           rules={rules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
         <SelectPostalCode
           Input={Input}
+          loading={loading}
           rules={rules}
           address={address}
           onChangeAddress={onChangeAddress}
@@ -69,6 +74,7 @@ class TwoLevels extends Component {
 TwoLevels.propTypes = {
   address: AddressShapeWithValidation,
   Button: PropTypes.func,
+  loading: PropTypes.bool,
   Input: PropTypes.func.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,
