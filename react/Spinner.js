@@ -7,7 +7,7 @@ class SpinnerLoading extends Component {
     const { isLoading } = this.props
 
     return (
-      isLoading && (
+      isLoading === true && (
         <div className="pl1 pt7">
           <Spinner size={15} />
         </div>
