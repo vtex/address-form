@@ -76,21 +76,4 @@ describe('postalCodeAutoCompleteAddress()', () => {
       callback,
     })
   })
-
-  it('should remove empty fields', done => {
-    function callback(data) {
-      expect(data.number).toBeUndefined()
-      expect(data.complement).toBeUndefined()
-      expect(data.reference).toBeUndefined()
-      done()
-    }
-
-    postalCodeAutoCompleteAddress({
-      cors,
-      accountName,
-      address,
-      rules: usePostalCode,
-      callback,
-    })
-  })
 })

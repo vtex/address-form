@@ -4,7 +4,6 @@
   "address-form.optional": "Wahlweise",
   "address-form.edit": "Edit",
   "address-form.search": "Suche",
-  
   "address-form.geolocation.example.ARG": "Zum Beispiel: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Zum Beispiel: Av Arce, 2556, La Paz",
   "address-form.geolocation.example.BRA": "Zum Beispiel: Av Paulista, 1578, São Paulo",
@@ -23,19 +22,17 @@
   "address-form.geolocation.example.USA": "Zum Beispiel: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Zum Beispiel: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ROU": "Zum Beispiel: Bulevardul Ion Mihalache, București 011192, Romania",
-  "address-form.geolocation.example.BGR": "Zum Beispiel: улица Елин Пелин 13, София", 
+  "address-form.geolocation.example.BGR": "Zum Beispiel: улица Елин Пелин 13, София",
   "address-form.geolocation.example.DEU": "Zum Beispiel: Rheinalleee 95, Düsseldorf",
   "address-form.geolocation.example.FRA": "Zum Beispiel: 7 Rue Hautefeuille, Paris",
   "address-form.geolocation.example.GBR": "Zum Beispiel: 29 High Street Poole BH15 1AB",
   "address-form.geolocation.example.ITA": "Zum Beispiel: Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "Zum Beispiel: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Zum Beispiel: Ulica Twarda 3, Szczecin",
-  
   "address-form.error.ERROR_EMPTY_FIELD": "Dieses Feld wird benötigt.",
   "address-form.error.ERROR_POSTAL_CODE": "Ungültige Postleitzahl.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Ungültige Adresse.",
   "address-form.error.generic": "Ungültiges Feld.",
-  
   "address-form.field.addressQuery": "Adresse",
   "address-form.field.notApplicable": "N/A",
   "address-form.field.noNumber": "Keine Nummer",
