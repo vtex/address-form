@@ -4,7 +4,6 @@
   "address-form.optional": "Opzionale",
   "address-form.edit": "Modifica",
   "address-form.search": "Ricerca",
-
   "address-form.geolocation.example.ARG": "Es: Av. del Libertador 1473, Buenos Aires",
   "address-form.geolocation.example.BOL": "Es: Av Arce, 2556, La Paz",
   "address-form.geolocation.example.BRA": "Es: Av Paulista, 1578, São Paulo",
@@ -23,19 +22,17 @@
   "address-form.geolocation.example.USA": "Es: 225 East 41st Street, New York",
   "address-form.geolocation.example.VEN": "Es: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ROU": "Es: Bulevardul Ion Mihalache, București 011192, Romania",
-  "address-form.geolocation.example.BGR": "Es: улица Елин Пелин 13, София", 
+  "address-form.geolocation.example.BGR": "Es: улица Елин Пелин 13, София",
   "address-form.geolocation.example.DEU": "Es: Rheinalleee 95, Düsseldorf",
   "address-form.geolocation.example.FRA": "Es: 7 Rue Hautefeuille, Paris",
   "address-form.geolocation.example.GBR": "Es: 29 High Street Poole BH15 1AB",
   "address-form.geolocation.example.ITA": "Es: Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "Es: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Es: Ulica Twarda 3, Szczecin",
-
   "address-form.error.ERROR_EMPTY_FIELD": "Questo campo è obbligatorio.",
   "address-form.error.ERROR_POSTAL_CODE": "Codice Postale (CAP) non valido.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Indirizzo non valido.",
   "address-form.error.generic": "Campo non valido",
-
   "address-form.field.addressQuery": "Indirizzo",
   "address-form.field.notApplicable": "N/N",
   "address-form.field.noNumber": "Nessun numero",
