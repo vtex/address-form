@@ -209,3 +209,45 @@ function getFirstRequiredFieldNotFilled(fields, rules) {
 
   return null
 }
+
+let gguid = 1
+
+export default function getGGUID() {
+  return (gguid++ * new Date().getTime() * -1).toString().replace('-', '')
+}
+
+export function newAddress(address = {}) {
+  const {
+    addressType,
+    city,
+    complement,
+    country,
+    geoCoordinates,
+    neighborhood,
+    number,
+    postalCode,
+    receiverName,
+    reference,
+    state,
+    street,
+    addressQuery,
+    addressId,
+  } = address
+
+  return {
+    addressId: addressId || { value: getGGUID() },
+    addressType: addressType || { value: 'residential' },
+    city: city || { value: null },
+    complement: complement || { value: null },
+    country: country || { value: null },
+    geoCoordinates: geoCoordinates || { value: [] },
+    neighborhood: neighborhood || { value: null },
+    number: number || { value: null },
+    postalCode: postalCode || { value: null },
+    receiverName: receiverName || { value: null },
+    reference: reference || { value: null },
+    state: state || { value: null },
+    street: street || { value: null },
+    addressQuery: addressQuery || { value: '' },
+  }
+}

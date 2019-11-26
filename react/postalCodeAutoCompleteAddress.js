@@ -6,6 +6,7 @@ import {
   handleMultipleValues,
   maskFields,
   addFocusToNextInvalidField,
+  newAddress,
 } from './transforms/address'
 import flow from 'lodash/flow'
 import pickBy from 'lodash/pickBy'
@@ -41,7 +42,9 @@ export default function postalCodeAutoCompleteAddress({
 
       const autoCompletedFields = flow(functionsFlow)(responseAddress)
 
-      callback(autoCompletedFields)
+      const newAddressWithAutocompletedFields = newAddress(autoCompletedFields)
+
+      callback(newAddressWithAutocompletedFields)
     })
     .catch(() => {
       let newFields = removePostalCodeLoading(address)

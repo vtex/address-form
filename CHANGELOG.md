@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Autocompleting address with a new address instead of just autocompleted fields which caused confusion
+  merging different addresses
+
 ## [3.8.2] - 2019-11-26
 
 ### Fixed
