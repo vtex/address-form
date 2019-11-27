@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.8.4] - 2019-11-27
+
 ### Fixed
 
 - Postal Code autocomplete which should only call API if country is supported
