@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Loading for scenarios when loading is passed as a prop to `StyleguideInput`.
+
 ## [4.3.2] - 2019-12-10
 
 ### Fixed
