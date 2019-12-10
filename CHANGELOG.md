@@ -7,18 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Loading for scenarios when loading is passed as a prop to `StyleguideInput`.
+
 ## [3.8.4] - 2019-11-27
 
 ### Fixed
 
-- Postal Code autocomplete which should only call API if country is supported
+- Postal Code autocomplete which should only call API if country is supported.
 
 ## [3.8.3] - 2019-11-27
 
 ### Fixed
 
 - Autocompleting address with a new address instead of just autocompleted fields which caused confusion
-  merging different addresses
+  merging different addresses.
 
 ## [3.8.2] - 2019-11-26
 
