@@ -436,6 +436,7 @@ export default {
       postalCodeAPI: false,
       regex: /^([\d]{7})$/,
       size: 'large',
+      required: true,
     },
     {
       name: 'street',
