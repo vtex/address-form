@@ -54,7 +54,9 @@ class StyleguideInput extends Component {
       submitLabel,
     } = this.props
     const disabled = !!address[field.name].disabled
-    const loading = loadingProp || !!address[field.name].loading
+
+    const loading =
+      loadingProp != null ? loadingProp : address[field.name].loading
 
     const inputCommonProps = {
       label: this.props.intl.formatMessage({
