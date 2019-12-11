@@ -10,6 +10,29 @@ import { injectIntl, intlShape } from 'react-intl'
 import GeolocationNumberInput from './GeolocationNumberInput'
 
 class Input extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showErrorMessage: false,
+    }
+  }
+
+  handleChange = e => {
+    this.setState({ showErrorMessage: false })
+    this.props.onChange && this.props.onChange(e)
+  }
+
+  handleFocus = e => {
+    this.setState({ showErrorMessage: false })
+    this.props.onFocus && this.props.onFocus(e)
+  }
+
+  handleBlur = e => {
+    this.setState({ showErrorMessage: true })
+    this.props.onBlur && this.props.onBlur(e)
+  }
+
   render() {
     const {
       field,
@@ -65,12 +88,12 @@ class Input extends Component {
             className={loading ? 'loading-postal-code' : null}
             address={address}
             autoFocus={autoFocus}
-            onChange={this.props.onChange}
-            onBlur={this.props.onBlur}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             disabled={loading}
             inputRef={inputRef}
             type={shouldShowNumberKeyboard ? 'tel' : 'text'}
-            onFocus={onFocus}
+            onFocus={this.handleFocus}
           />
           {loading && <PostalCodeLoader />}
           {field.forgottenURL && (
@@ -80,7 +103,7 @@ class Input extends Component {
               </a>
             </small>
           )}
-          {valid === false ? (
+          {valid === false && this.state.showErrorMessage ? (
             <InputError reason={address[field.name].reason} />
           ) : null}
         </InputLabel>
@@ -101,14 +124,14 @@ class Input extends Component {
                 id: 'address-form.geolocation.example.UNI',
               }),
             })}
-            onChange={this.props.onChange}
-            onBlur={this.props.onBlur}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             disabled={loading}
             inputRef={inputRef}
-            onFocus={onFocus}
+            onFocus={this.handleFocus}
           />
           {loading && <PostalCodeLoader />}
-          {valid === false ? (
+          {valid === false && this.state.showErrorMessage ? (
             <InputError reason={address[field.name].reason} />
           ) : null}
         </InputLabel>
@@ -122,30 +145,30 @@ class Input extends Component {
             field={field}
             options={options}
             address={address}
-            onChange={this.props.onChange}
-            onBlur={this.props.onBlur}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
             disabled={loading}
             inputRef={inputRef}
-            onFocus={onFocus}
+            onFocus={this.handleFocus}
           />
         ) : (
           <InputText
             field={field}
             address={address}
             autoFocus={autoFocus}
-            onChange={this.props.onChange}
+            onChange={this.handleChange}
             placeholder={
               !field.hidden && !field.required
                 ? intl.formatMessage({ id: 'address-form.optional' })
                 : null
             }
-            onBlur={this.props.onBlur}
+            onBlur={this.handleBlur}
             disabled={loading}
             inputRef={inputRef}
-            onFocus={onFocus}
+            onFocus={this.handleFocus}
           />
         )}
-        {valid === false ? (
+        {valid === false && this.state.showErrorMessage ? (
           <InputError reason={address[field.name].reason} />
         ) : null}
       </InputLabel>
