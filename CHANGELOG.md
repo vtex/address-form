@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- State/city selection on Chile because postalCode was not required when it should
+- Flaky tests that would return empty string or null depending of computer/Node version
+
 ## [4.3.3] - 2019-12-10
 
 ### Fixed
