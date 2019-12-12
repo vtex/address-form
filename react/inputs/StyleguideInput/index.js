@@ -17,11 +17,13 @@ class StyleguideInput extends Component {
 
     this.state = {
       isInputValid: props.address[props.field.name].valid || true,
+      showErrorMessage: false,
     }
   }
 
   handleChange = e => {
-    this.props.onChange(e.target.value)
+    this.setState({ showErrorMessage: false })
+    this.props.onChange && this.props.onChange(e.target.value)
   }
 
   componentDidUpdate(prevProps) {
@@ -35,9 +37,19 @@ class StyleguideInput extends Component {
     }
   }
 
+  handleFocus = event => {
+    this.setState({ showErrorMessage: false })
+  }
+
   handleSubmit = event => {
     event.preventDefault()
+    this.setState({ showErrorMessage: true })
     this.props.onSubmit && this.props.onSubmit()
+  }
+
+  handleBlur = event => {
+    this.setState({ showErrorMessage: true })
+    this.props.onBlur && this.props.onBlur(event)
   }
 
   render() {
@@ -68,12 +80,14 @@ class StyleguideInput extends Component {
       error: !this.state.isInputValid,
       ref: inputRef,
       errorMessage:
+        this.state.showErrorMessage &&
         address[field.name].reason &&
         this.props.intl.formatMessage({
           id: `address-form.error.${address[field.name].reason}`,
         }),
-      onBlur: this.props.onBlur,
+      onBlur: this.handleBlur,
       onChange: this.handleChange,
+      onFocus: this.handleFocus,
       isLoading: loading,
     }
 
@@ -119,7 +133,7 @@ class StyleguideInput extends Component {
               intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
             errorMessage={
-              address[field.name].reason &&
+              address[field.name].reason && this.state.showErrorMessage &&
               this.props.intl.formatMessage({
                 id: `address-form.error.${address[field.name].reason}`,
               })
@@ -131,7 +145,8 @@ class StyleguideInput extends Component {
               }),
             })}
             onChange={this.handleChange}
-            onBlur={this.props.onBlur}
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
             disabled={loading || disabled}
             error={!this.state.isInputValid}
             ref={inputRef}
@@ -154,13 +169,14 @@ class StyleguideInput extends Component {
                 intl.formatMessage({ id: `address-form.field.${field.label}` })
               }
               errorMessage={
-                address[field.name].reason &&
+                address[field.name].reason && this.showErrorMessage &&
                 this.props.intl.formatMessage({
                   id: `address-form.error.${address[field.name].reason}`,
                 })
               }
               onChange={this.handleChange}
-              onBlur={this.props.onBlur}
+              onBlur={this.handleBlur}
+              onFocus={this.handleFocus}
               disabled={loading || disabled}
               error={!this.state.isInputValid}
               ref={inputRef}
@@ -193,7 +209,7 @@ class StyleguideInput extends Component {
               id: `address-form.field.${field.label}`,
             })}
             onChange={this.handleChange}
-            onBlur={this.props.onBlur}
+            onBlur={this.handleBlur}
           />
         </div>
       )
@@ -225,8 +241,9 @@ class StyleguideInput extends Component {
               ? this.props.intl.formatMessage({ id: 'address-form.optional' })
               : null
           }
-          onBlur={this.props.onBlur}
+          onBlur={this.handleBlur}
           onChange={this.handleChange}
+          onFocus={this.handleFocus}
         />
       </div>
     )
