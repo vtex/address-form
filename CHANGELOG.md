@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.3.5] - 2019-12-16
+
 ### Changed
 
 - Input field do now show validation error message when focused.
