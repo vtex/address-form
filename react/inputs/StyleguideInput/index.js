@@ -63,12 +63,14 @@ class StyleguideInput extends Component {
       inputRef,
       intl,
       toggleNotApplicable,
+      shouldShowNumberKeyboard,
       submitLabel,
     } = this.props
     const disabled = !!address[field.name].disabled
 
     const loading =
       loadingProp != null ? loadingProp : address[field.name].loading
+    const type = shouldShowNumberKeyboard ? 'tel' : 'text'
 
     const inputCommonProps = {
       label: this.props.intl.formatMessage({
@@ -89,6 +91,7 @@ class StyleguideInput extends Component {
       onChange: this.handleChange,
       onFocus: this.handleFocus,
       isLoading: loading,
+      type,
     }
 
     if (field.name === 'postalCode') {
@@ -133,7 +136,8 @@ class StyleguideInput extends Component {
               intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
             errorMessage={
-              address[field.name].reason && this.state.showErrorMessage &&
+              address[field.name].reason &&
+              this.state.showErrorMessage &&
               this.props.intl.formatMessage({
                 id: `address-form.error.${address[field.name].reason}`,
               })
@@ -170,7 +174,8 @@ class StyleguideInput extends Component {
                 intl.formatMessage({ id: `address-form.field.${field.label}` })
               }
               errorMessage={
-                address[field.name].reason && this.showErrorMessage &&
+                address[field.name].reason &&
+                this.showErrorMessage &&
                 this.props.intl.formatMessage({
                   id: `address-form.error.${address[field.name].reason}`,
                 })
