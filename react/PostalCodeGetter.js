@@ -12,6 +12,7 @@ import { injectRules } from './addressRulesContext'
 import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
 import { injectIntl, intlShape } from 'react-intl'
+import { removeNonWords } from './transforms/utils'
 
 class PostalCodeGetter extends Component {
   render() {
@@ -26,7 +27,6 @@ class PostalCodeGetter extends Component {
       intl,
       onSubmit,
       submitLabel,
-      shouldShowNumberKeyboard,
     } = this.props
 
     switch (rules.postalCodeFrom) {
@@ -75,6 +75,7 @@ class PostalCodeGetter extends Component {
       default:
       case POSTAL_CODE: {
         const field = getField('postalCode', rules)
+        const shouldShowNumberKeyboard = !isNaN(removeNonWords(field.mask))
         return (
           <InputFieldContainer
             intl={intl}
