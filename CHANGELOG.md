@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Input field now uses `shouldShowNumberKeyboard` prop.
+
 ## [4.3.5] - 2019-12-16
 
 ### Changed
