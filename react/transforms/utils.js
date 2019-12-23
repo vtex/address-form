@@ -1,3 +1,3 @@
 export function removeNonWords(string) {
-  return string.replace(/\W/, '')
+  return string.replace(/\W/g, '')
 }

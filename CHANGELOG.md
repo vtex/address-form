@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Input field now uses `shouldShowNumberKeyboard` prop.
+- Input field now uses `shouldShowNumberKeyboard` prop which, in turn, uses a country's postal code mask to decide its value.
 
 ## [4.3.5] - 2019-12-16
 
