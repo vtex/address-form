@@ -7,7 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Others USA territories as state options.
+
+### Changed
+
+- Input field do now show validation error message when focused.
+
+### Fixed
+
+- State/city selection on Chile because postalCode was not required when it should.
+
 ## [4.4.1] - 2020-01-09
+
 ### Fixed
 
 - `undefined` postal code mask causing `address-form` to break.
