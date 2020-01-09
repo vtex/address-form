@@ -26,6 +26,7 @@ const shipsTo = [
   'URY',
   'USA',
   'VEN',
+  'ITA',
 ]
 
 class Container extends Component {
