@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Styleguide npm package verison.
+
 ## [3.8.8] - 2020-01-09
 
 ### Added
 
-- Others USA territories as state options
+- Others USA territories as state options.
 
 ## [3.8.7] - 2019-12-12
 
