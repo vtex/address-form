@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.4.3] - 2020-01-09
+
 ### Changed
 
 - Styleguide npm package verison.
