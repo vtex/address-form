@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Styleguide version to 9.104.2.
+
 ## [4.4.1] - 2020-01-09
+
 ### Fixed
 
 - `undefined` postal code mask causing `address-form` to break.
