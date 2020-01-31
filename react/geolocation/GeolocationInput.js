@@ -162,6 +162,7 @@ class GeolocationInput extends Component {
         field={{
           label: 'addressQuery',
           name: 'addressQuery',
+          ...inputProps.field,
         }}
         options={null}
         address={newAddress}
