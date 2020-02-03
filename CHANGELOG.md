@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `inputProps.field` prop for `GeolocationInput` component
+
 ## [3.8.9] - 2020-01-09
 
 ### Changed
