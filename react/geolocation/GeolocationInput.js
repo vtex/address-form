@@ -20,7 +20,7 @@ class GeolocationInput extends Component {
     this.handleMountInput = this.handleMountInput.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       address: nextProps.address,
     })

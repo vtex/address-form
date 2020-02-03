@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GeolocationInput should render with changed label 1`] = `
+<p
+  className="input ship-addressQuery text"
+>
+  <label
+    htmlFor="ship-addressQuery"
+  >
+    Teste
+  </label>
+  <input
+    autoComplete="on"
+    autoFocus={false}
+    className="loading-postal-code"
+    data-hj-whitelist={true}
+    disabled={true}
+    id="ship-addressQuery"
+    maxLength={undefined}
+    name="addressQuery"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Eg: 225 East 41st Street, New York"
+    type="text"
+    value=""
+  />
+  <i
+    className="loading-inline icon-spinner icon-spin"
+  >
+    <span>
+      Loading
+    </span>
+  </i>
+</p>
+`;
+
+exports[`GeolocationInput should render with default label 1`] = `
+<p
+  className="input ship-addressQuery text"
+>
+  <label
+    htmlFor="ship-addressQuery"
+  >
+    Address
+  </label>
+  <input
+    autoComplete="on"
+    autoFocus={false}
+    className="loading-postal-code"
+    data-hj-whitelist={true}
+    disabled={true}
+    id="ship-addressQuery"
+    maxLength={undefined}
+    name="addressQuery"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Eg: 225 East 41st Street, New York"
+    type="text"
+    value=""
+  />
+  <i
+    className="loading-inline icon-spinner icon-spin"
+  >
+    <span>
+      Loading
+    </span>
+  </i>
+</p>
+`;
