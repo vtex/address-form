@@ -15,7 +15,7 @@ const DEFAULT_PROPS = {
 }
 
 describe('GeolocationInput', () => {
-  it('should render with default label', () => {
+  it('should render default case', () => {
     const tree = rendererCreate(<GeolocationInput {...DEFAULT_PROPS} />).toJSON()
 
     expect(tree).toMatchSnapshot()

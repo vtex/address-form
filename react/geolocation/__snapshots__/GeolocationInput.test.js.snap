@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GeolocationInput should render with changed label 1`] = `
+exports[`GeolocationInput should render default case 1`] = `
 <p
   className="input ship-addressQuery text"
 >
   <label
     htmlFor="ship-addressQuery"
   >
-    Teste
+    Address
   </label>
   <input
     autoComplete="on"
@@ -35,14 +35,14 @@ exports[`GeolocationInput should render with changed label 1`] = `
 </p>
 `;
 
-exports[`GeolocationInput should render with default label 1`] = `
+exports[`GeolocationInput should render with changed label 1`] = `
 <p
   className="input ship-addressQuery text"
 >
   <label
     htmlFor="ship-addressQuery"
   >
-    Address
+    Teste
   </label>
   <input
     autoComplete="on"
