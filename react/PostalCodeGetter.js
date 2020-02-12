@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import { injectIntl, intlShape } from 'react-intl'
+
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import OneLevel from './postalCodeFrom/OneLevel'
@@ -9,9 +12,7 @@ import DefaultInput from './inputs/DefaultInput'
 import InputFieldContainer from './InputFieldContainer'
 import { getField } from './selectors/fields'
 import { injectRules } from './addressRulesContext'
-import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
-import { injectIntl, intlShape } from 'react-intl'
 import { removeNonWords } from './transforms/utils'
 
 class PostalCodeGetter extends Component {

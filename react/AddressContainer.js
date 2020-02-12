@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
+
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
@@ -11,11 +12,23 @@ import { injectRules } from './addressRulesContext'
 class AddressContainer extends Component {
   componentDidMount() {
     if (
-      this.props &&
       this.props.shouldHandleAddressChangeOnMount &&
       get(this.props, 'address.postalCode.value')
     ) {
       this.handleAddressChange(this.props.address)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.shouldHandleAddressChangeOnMount !==
+        prevProps.shouldHandleAddressChangeOnMount ||
+      get(this.props, 'address.postalCode.value') !==
+        get(prevProps, 'address.postalCode.value')
+    ) {
+      if (this.props.shouldHandleAddressChangeOnMount) {
+        this.handleAddressChange(this.props.address)
+      }
     }
   }
 
@@ -84,7 +97,7 @@ class AddressContainer extends Component {
 
   render() {
     const { children, Input, address } = this.props
-    const handleAddressChange = this.handleAddressChange
+    const { handleAddressChange } = this
 
     return (
       <AddressContext.Provider value={{ address, handleAddressChange, Input }}>
