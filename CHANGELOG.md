@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.8.10] - 2020-02-12
+
 ### Changed
 
 - Update Ecuador rules, including some parishes for Santa Elena province.
