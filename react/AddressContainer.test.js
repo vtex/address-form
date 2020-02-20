@@ -98,6 +98,28 @@ describe('AddressContainer', () => {
     })
   })
 
+  it('should call onChangeAddress when postal code changes if shouldHandleAddressChangeOnMount is true', () => {
+    const handleAddressChange = jest.fn()
+    const addressWithPostalCode = { ...address, postalCode: { value: '22250-040' } }
+
+    const wrapper = mount(
+      <AddressContainer
+        rules={usePostalCode}
+        address={addressWithPostalCode}
+        onChangeAddress={handleAddressChange}
+        shouldHandleAddressChangeOnMount
+      >
+        <PostalCodeGetter rules={usePostalCode} />
+      </AddressContainer>,
+    )
+
+    wrapper.setProps({
+      address: { ...address, postalCode: { value: '22250-041' } },
+    })
+
+    expect(handleAddressChange).toHaveBeenCalledTimes(2)
+  })
+
   describe('Postal code auto complete', () => {
     beforeEach(() => {
       postalCodeAutoCompleteAddress.mockClear()
