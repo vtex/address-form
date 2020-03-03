@@ -427,9 +427,10 @@ export default {
       types: ['postal_code'],
       required: false,
     },
-    complement: {
+    number: {
       valueIn: 'long_name',
       types: ['street_number'],
+      notApplicable: true,
     },
     street: { valueIn: 'long_name', types: ['route'] },
     neighborhood: {
