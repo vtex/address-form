@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.5.2] - 2020-03-06
+
+### Fixed
+
+- Number geolocation autofill in URY addresses.
+
 ## [4.5.1] - 2020-02-20
 
 ### Fixed
