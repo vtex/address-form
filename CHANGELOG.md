@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Default geolocation setup.
+- Default number geolocation setup.
 
 ## [3.9.0] - 2020-03-10
 
