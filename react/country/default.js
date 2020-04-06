@@ -83,10 +83,10 @@ export default {
       types: ['postal_code'],
       required: false,
     },
-    complement: {
+    number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
     street: { valueIn: 'long_name', types: ['route'] },
