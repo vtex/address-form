@@ -7,7 +7,7 @@
     "lib"
   ],
   "dependencies": {
-    "@vtex/styleguide": "^9.104.5",
+    "@vtex/styleguide": "^9.113.0",
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "load-google-maps-api": "^1.0.0",
