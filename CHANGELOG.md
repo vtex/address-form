@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Update Ecuador address rules to including missing localities.
+- Ecuador missing localities.
 
 ## [3.9.2] - 2020-04-08
 
