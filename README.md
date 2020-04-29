@@ -11,7 +11,7 @@ $ npm install @vtex/address-form
 ```
 
 ```js
-import AddressContainer from '@vtex/address-form/AddressContainer'
+import AddressContainer from '@vtex/address-form/lib/AddressContainer'
 ```
 
 Through **vtex.io**:
