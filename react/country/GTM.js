@@ -598,6 +598,7 @@ export default {
       maxLength: 50,
       name: 'postalCode',
       postalCodeAPI: false,
+      required: true,
       regex: /^[\d]{4,5}$/,
       size: 'small',
     },
