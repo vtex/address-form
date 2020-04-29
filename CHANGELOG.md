@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Address rules for El Salvador and Nicaragua.
 
+### Fixed
+
+- State/city selection on Guatemala because postalCode was not required when it should
+
 ## [3.9.3] - 2020-04-28
 
 ### Fixed
