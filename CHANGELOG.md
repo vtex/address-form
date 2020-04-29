@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- State/city selection on Guatemala because postalCode was not required when it should
+- State/city selection on Guatemala because postalCode was not required when it should.
 
 ## [3.9.4] - 2020-05-04
 
