@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Ecuador missing localities.
+
 ## [3.9.3] - 2020-04-28
 
 ### Fixed
