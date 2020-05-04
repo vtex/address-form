@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.10.0] - 2020-05-04
+
 ### Added
 
 - Address rules for El Salvador and Nicaragua.
