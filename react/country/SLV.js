@@ -296,7 +296,7 @@ const countryData = {
 }
 
 export default {
-  country: 'SLC',
+  country: 'SLV',
   abbr: 'SV',
   postalCodeFrom: TWO_LEVELS,
   postalCodeLevels: ['state', 'city'],
