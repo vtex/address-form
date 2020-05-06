@@ -8,12 +8,8 @@ import { mount, render } from 'test-utils'
 
 jest.mock('./postalCodeAutoCompleteAddress')
 
-const descendToChild = wrapper =>
-  wrapper
-    .children()
-    .children()
-    .children()
-    .children()
+const descendToChild = (wrapper) =>
+  wrapper.children().children().children().children()
 
 describe('AddressContainer', () => {
   const accountName = 'qamarketplace'
@@ -100,7 +96,10 @@ describe('AddressContainer', () => {
 
   it('should call onChangeAddress when postal code changes if shouldHandleAddressChangeOnMount is true', () => {
     const handleAddressChange = jest.fn()
-    const addressWithPostalCode = { ...address, postalCode: { value: '22250-040' } }
+    const addressWithPostalCode = {
+      ...address,
+      postalCode: { value: '22250-040' },
+    }
 
     const wrapper = mount(
       <AddressContainer
@@ -142,7 +141,12 @@ describe('AddressContainer', () => {
 
       // Act
       const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
-      onChangeAddress({ postalCode: { value: '22231000' } })
+      onChangeAddress({
+        postalCode: {
+          value: '22231000',
+          geolocationAutoCompleted: false,
+        },
+      })
 
       // Assert
       expect(postalCodeAutoCompleteAddress).toHaveBeenCalled()
