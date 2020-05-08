@@ -19,7 +19,8 @@ export default {
       size: 'small',
       autoComplete: 'nope',
       postalCodeAPI: false,
-      regex: /^([\w]{10})$/,
+      regex: /^([\d]{4})(\s?)([A-z]{2})$/,
+      mask: '9999 AA',
       required: true,
     },
     {
