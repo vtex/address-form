@@ -141,12 +141,7 @@ describe('AddressContainer', () => {
 
       // Act
       const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
-      onChangeAddress({
-        postalCode: {
-          value: '22231000',
-          geolocationAutoCompleted: false,
-        },
-      })
+      onChangeAddress({ postalCode: { value: '22231000' } })
 
       // Assert
       expect(postalCodeAutoCompleteAddress).toHaveBeenCalled()
