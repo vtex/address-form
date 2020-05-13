@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.10.2] - 2020-05-13
+
 ### Fixed
 
 - `geolocationAutoCompleted` verification in `handleAddressChange()` to display number input when not written down in geolocation field.
