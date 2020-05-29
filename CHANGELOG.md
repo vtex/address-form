@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - PRY missing localities.
+- Address rules for Costa Rica.
+
+### Changed
+
+- Sorting NIC and SLV alphabetically.
 
 ## [3.10.2] - 2020-05-13
 
