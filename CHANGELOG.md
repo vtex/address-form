@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - PRY missing localities.
+- Address rules for Costa Rica, Nicaragua and El Salvador.
 
 ## [4.5.4] - 2020-05-12
 
