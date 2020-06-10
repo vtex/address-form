@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `postalCodeAutoCompleteAddress` reusing previous address info.
+
 ## [3.12.1] - 2020-06-09
 
 ### Added
