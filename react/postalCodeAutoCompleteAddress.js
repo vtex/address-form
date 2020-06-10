@@ -26,24 +26,24 @@ export default function postalCodeAutoCompleteAddress({
     country: address.country.value,
     postalCode: address.postalCode.value,
   })
-    .then((responseAddress) => {
+    .then(responseAddress => {
       const functionsFlow = [
-        (fields) => pickBy(fields, (field) => !isNil(field) && field !== ''),
-        (fields) => addValidation(fields, address),
-        (fields) => handleMultipleValues(fields),
-        (fields) => maskFields(fields, rules),
-        (fields) => addNewField(fields, 'postalCodeAutoCompleted', true),
-        (fields) => addDisabledToProtectedFields(fields, rules),
+        fields => pickBy(fields, field => !isNil(field) && field !== ''),
+        fields => addValidation(fields, address),
+        fields => handleMultipleValues(fields),
+        fields => maskFields(fields, rules),
+        fields => addNewField(fields, 'postalCodeAutoCompleted', true),
+        fields => addDisabledToProtectedFields(fields, rules),
         removePostalCodeLoading,
         ...(shouldAddFocusToNextInvalidField
-          ? [(fields) => addFocusToNextInvalidField(fields, rules)]
+          ? [fields => addFocusToNextInvalidField(fields, rules)]
           : []),
       ]
 
       const autoCompletedFields = flow(functionsFlow)(responseAddress)
 
       const newAddressWithAutocompletedFields = newAddress({
-        ...address,
+        receiverName: address.receiverName,
         ...autoCompletedFields,
       })
 
@@ -55,7 +55,7 @@ export default function postalCodeAutoCompleteAddress({
       callback(newFields)
     })
     .catch(
-      /* istanbul ignore next */ (error) => {
+      /* istanbul ignore next */ error => {
         // If the Jest test case that tests the catch() above fails,
         // the promise will catch the error and go to this branch
         // of the code. This console error makes the Jest error visible.
