@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Italian i18n.
+
 ## [3.12.2] - 2020-06-10
 
 ### Fixed
