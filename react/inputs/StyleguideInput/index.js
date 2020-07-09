@@ -21,7 +21,7 @@ class StyleguideInput extends Component {
     }
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ showErrorMessage: false })
     this.props.onChange && this.props.onChange(e.target.value)
   }
@@ -37,17 +37,17 @@ class StyleguideInput extends Component {
     }
   }
 
-  handleFocus = event => {
+  handleFocus = (event) => {
     this.setState({ showErrorMessage: false })
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.setState({ showErrorMessage: true })
     this.props.onSubmit && this.props.onSubmit()
   }
 
-  handleBlur = event => {
+  handleBlur = (event) => {
     this.setState({ showErrorMessage: true })
     this.props.onBlur && this.props.onBlur(event)
   }
@@ -80,11 +80,11 @@ class StyleguideInput extends Component {
       error: !this.state.isInputValid,
       ref: inputRef,
       errorMessage:
-        this.state.showErrorMessage &&
-        address[field.name].reason &&
-        this.props.intl.formatMessage({
-          id: `address-form.error.${address[field.name].reason}`,
-        }),
+        this.state.showErrorMessage && address[field.name].reason
+          ? this.props.intl.formatMessage({
+              id: `address-form.error.${address[field.name].reason}`,
+            })
+          : undefined,
       onBlur: this.handleBlur,
       onChange: this.handleChange,
       onFocus: this.handleFocus,
@@ -133,10 +133,11 @@ class StyleguideInput extends Component {
               intl.formatMessage({ id: `address-form.field.${field.label}` })
             }
             errorMessage={
-              address[field.name].reason && this.state.showErrorMessage &&
-              this.props.intl.formatMessage({
-                id: `address-form.error.${address[field.name].reason}`,
-              })
+              address[field.name].reason && this.state.showErrorMessage
+                ? this.props.intl.formatMessage({
+                    id: `address-form.error.${address[field.name].reason}`,
+                  })
+                : undefined
             }
             placeholder={intl.formatMessage({
               id: `address-form.geolocation.example.${address.country.value}`,
@@ -169,10 +170,11 @@ class StyleguideInput extends Component {
                 intl.formatMessage({ id: `address-form.field.${field.label}` })
               }
               errorMessage={
-                address[field.name].reason && this.showErrorMessage &&
-                this.props.intl.formatMessage({
-                  id: `address-form.error.${address[field.name].reason}`,
-                })
+                address[field.name].reason && this.showErrorMessage
+                  ? this.props.intl.formatMessage({
+                      id: `address-form.error.${address[field.name].reason}`,
+                    })
+                  : undefined
               }
               onChange={this.handleChange}
               onBlur={this.handleBlur}
@@ -226,10 +228,11 @@ class StyleguideInput extends Component {
             id: `address-form.field.${field.label}`,
           })}
           errorMessage={
-            address[field.name].reason &&
-            intl.formatMessage({
-              id: `address-form.error.${address[field.name].reason}`,
-            })
+            address[field.name].reason
+              ? intl.formatMessage({
+                  id: `address-form.error.${address[field.name].reason}`,
+                })
+              : undefined
           }
           value={address[field.name].value || ''}
           disabled={disabled}
