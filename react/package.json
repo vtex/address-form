@@ -1,6 +1,6 @@
 {
   "name": "@vtex/address-form",
-  "version": "3.12.3",
+  "version": "3.12.4",
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
