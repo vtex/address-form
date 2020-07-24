@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.5] - 2020-07-24
+
 ### Added
 
 - Argentina missing locality.
