@@ -1006,6 +1006,7 @@ const countryData = {
     'Juan G Pujol',
     'Juan José Almeyra',
     'Juan José Paso',
+    'Jose Leon Suarez',
     'Juan Maria Gutierrez',
     'Juan N Fernández',
     'Juan Tronconi',
