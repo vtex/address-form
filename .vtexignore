@@ -3,7 +3,6 @@
 .gitignore
 package.json
 README.md
-CHANGELOG.md
 node_modules/
 react/node_modules
 react/coverage
