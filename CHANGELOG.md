@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.6] - 2020-08-03
+
 ### Added
 
 - Address rules for Italia.
