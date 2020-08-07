@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.7] - 2020-08-07
+
 ### Fixed
 
 - `handleAddressChange` calling `postalCodeAutoCompleteAddress` even with a `null` country code.
