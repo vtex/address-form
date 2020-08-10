@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Revert validation of country code in address change handler.
+
 ## [3.12.8] - 2020-08-10
 
 ### Fixed
@@ -14,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - State/city selection on Romania because postalCode was not required when it should.
 - Remove USA states as options for South Korea.
 
-## [3.12.7] - 2020-08-07
+## [3.12.7] - 2020-08-07 [YANKED]
 
 ### Fixed
 

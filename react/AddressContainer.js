@@ -71,12 +71,10 @@ class AddressContainer extends Component {
       const diffFromPrev =
         address.postalCode.value !== validatedAddress.postalCode.value
       const isValidPostalCode = validatedAddress.postalCode.valid === true
-      const isValidCountryCode = validatedAddress.country.valid === true
       const shouldAutoComplete =
         rules.postalCodeFrom === POSTAL_CODE &&
         diffFromPrev &&
         isValidPostalCode &&
-        isValidCountryCode &&
         postalCodeField &&
         postalCodeField.postalCodeAPI
 
