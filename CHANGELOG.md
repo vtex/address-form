@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.8] - 2020-08-10
+
 ### Fixed
 
 - State/city selection on Romania because postalCode was not required when it should.
