@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.9] - 2020-08-10
+
 ### Fixed
 
 - Revert validation of country code in address change handler.
