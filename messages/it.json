@@ -40,7 +40,7 @@
   "address-form.field.postalCode": "Codice postale",
   "address-form.field.street": "Via",
   "address-form.field.addressLine1": "Indirizzo 1",
-  "address-form.field.addressLine2": "Indirizzo 2",
+  "address-form.field.addressLine2": "Informazioni aggiuntive",
   "address-form.field.number": "Numero",
   "address-form.field.exteriorNumber": "Numero civico",
   "address-form.field.interiorNumber": "Numero dell'appartamento",
@@ -63,6 +63,6 @@
   "address-form.field.delegation": "Delegazione",
   "address-form.field.municipalityDelegation": "Municipalità/Delegazione",
   "address-form.field.province": "Provincia",
-  "address-form.field.receiverName": "Chi ritira",
+  "address-form.field.receiverName": "Consegnare a: nome, cognome e/o azienda",
   "address-form.field.county": "Contea"
 }
