@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.11] - 2020-08-27
+
 ### Fixed
 
 - Endless postal code input loading icon.
