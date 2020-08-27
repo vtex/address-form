@@ -5,7 +5,9 @@ import get from 'lodash/get'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
-import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
+import postalCodeAutoCompleteAddress, {
+  removePostalCodeLoading,
+} from './postalCodeAutoCompleteAddress'
 import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
 
@@ -79,16 +81,16 @@ class AddressContainer extends Component {
         postalCodeField.postalCodeAPI
 
       if (shouldAutoComplete) {
-        return onChangeAddress(
-          postalCodeAutoCompleteAddress({
-            cors,
-            accountName,
-            address: validatedAddress,
-            rules,
-            callback: this.handleAddressChange,
-            shouldAddFocusToNextInvalidField,
-          }),
-        )
+        const autoCompletedAddress = postalCodeAutoCompleteAddress({
+          cors,
+          accountName,
+          address: validatedAddress,
+          rules,
+          callback: this.handleAddressChange,
+          shouldAddFocusToNextInvalidField,
+        })
+
+        return onChangeAddress(removePostalCodeLoading(autoCompletedAddress))
       }
     }
 

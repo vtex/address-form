@@ -76,7 +76,7 @@ function addPostalCodeLoading(address) {
   }
 }
 
-function removePostalCodeLoading(address) {
+export function removePostalCodeLoading(address) {
   return {
     ...address,
     postalCode: {
