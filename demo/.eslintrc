@@ -1,0 +1,8 @@
+{
+  "extends": "vtex-react",
+  "env": {
+    "browser": true
+  },
+  "root": true,
+  "parser": "@typescript-eslint/parser"
+}

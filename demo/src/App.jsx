@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
-
 import {
   AddressContainer,
   AddressRules,
@@ -13,17 +11,16 @@ import {
   AddressSubmitter,
   addValidation,
   removeValidation,
-} from '../../react/index'
-
+} from '@vtex/address-form/lib'
 import {
   GeolocationInput,
   GoogleMapsContainer,
   Map,
-} from '../../react/geolocation/index'
-
+} from '@vtex/address-form/lib/geolocation'
 import Button from '@vtex/styleguide/lib/Button'
-import StyleguideInput from '../../react/inputs/StyleguideInput'
-import StyleguideButton from '../../react/inputs/StyleguideButton'
+import StyleguideInput from '@vtex/address-form/lib/inputs/StyleguideInput'
+import StyleguideButton from '@vtex/address-form/lib/inputs/StyleguideButton'
+import { injectIntl } from 'react-intl'
 
 import 'vtex-tachyons'
 
@@ -53,19 +50,19 @@ class App extends Component {
   }
 
   addCountryLabel(intl, countries) {
-    return countries.map(countryCode => ({
-      label: intl.formatMessage({ id: 'country.' + countryCode }),
+    return countries.map((countryCode) => ({
+      label: intl.formatMessage({ id: `country.${countryCode}` }),
       value: countryCode,
     }))
   }
 
-  handleAddressChange = address => {
+  handleAddressChange = (address) => {
     const validGeoCoords =
       address.geoCoordinates &&
       address.geoCoordinates.valid &&
       address.geoCoordinates.value.length === 2
 
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       address: {
         ...prevState.address,
         ...address,
@@ -91,7 +88,9 @@ class App extends Component {
         <div className="step" style={{ padding: '20px' }}>
           <AddressRules
             country={cleanAddress.country}
-            fetch={country => import('../../react/country/' + country)}
+            fetch={(country) =>
+              import(`@vtex/address-form/lib/country/${country}`)
+            }
           >
             <AddressSummary address={cleanAddress} />
           </AddressRules>
@@ -103,12 +102,14 @@ class App extends Component {
       <div className="step" style={{ padding: '20px' }}>
         <AddressRules
           country={cleanAddress.country}
-          fetch={country => import('../../react/country/' + country)}
+          fetch={(country) =>
+            import(`@vtex/address-form/lib/country/${country}`)
+          }
         >
           <AddressContainer
             accountName={accountName}
             address={address}
-            notApplicableValue={'N/A'}
+            notApplicableValue="N/A"
             Input={StyleguideInput}
             onChangeAddress={this.handleAddressChange}
             autoCompletePostalCode={!validGeoCoords}
@@ -149,19 +150,23 @@ class App extends Component {
               )}
 
               <AutoCompletedFields>
-                <a
-                  className="link-edit"
-                  id="force-shipping-fields"
-                  style={{ cursor: 'pointer' }}
-                >
-                  {intl.formatMessage({ id: 'address-form.edit' })}
-                </a>
+                {
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                  <a
+                    className="link-edit"
+                    id="force-shipping-fields"
+                    style={{ cursor: 'pointer' }}
+                    href="#"
+                  >
+                    {intl.formatMessage({ id: 'address-form.edit' })}
+                  </a>
+                }
               </AutoCompletedFields>
 
               <AddressForm omitPostalCodeFields={!validGeoCoords} />
 
               <AddressSubmitter onSubmit={this.handleSubmit}>
-                {handleSubmit => (
+                {(handleSubmit) => (
                   <Button size="small" block onClick={handleSubmit}>
                     Submit
                   </Button>
@@ -176,7 +181,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  intl: intlShape,
+  intl: PropTypes.any,
   accountName: PropTypes.string.isRequired,
   googleMapsAPIKey: PropTypes.string.isRequired,
   locale: PropTypes.string.isRequired,

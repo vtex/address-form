@@ -6,6 +6,25 @@
   "files": [
     "lib"
   ],
+  "scripts": {
+    "build": "babel --config-file ./.babelrc . -d lib && npm run removeMocks && npm run addLocales",
+    "build:symlinks": "npm run symlink:remove-locales && npm run symlink:locales && npm run build && npm run symlink:remove-locales",
+    "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
+    "addLocales": "cp -R -f locales/ lib/locales/",
+    "symlink:locales": "ln -s ../messages locales",
+    "symlink:remove-locales": "rm -rf locales",
+    "test": "jest --env=jsdom",
+    "test:coverage": "jest --env=jsdom --coverage",
+    "test:watch": "jest --env=jsdom --watch",
+    "prepublishOnly": "npm run build:symlinks",
+    "postreleasy": "npm publish --access public"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.10",
+    "react": "15.x || 16.x",
+    "react-intl": ">=3 || >=4 || >=5",
+    "vtex-tachyons": "^2.5.0"
+  },
   "dependencies": {
     "@vtex/styleguide": "^9.112.28",
     "axios": "^0.16.2",
@@ -13,13 +32,33 @@
     "load-google-maps-api": "^1.0.0",
     "lodash": "^4.17.4",
     "msk": "1.0.3",
-    "react-intl": "^2.7.2",
     "recompose": "^0.27.1"
   },
-  "peerDependencies": {
-    "prop-types": "^15.5.10",
-    "react": "15.x || 16.x",
-    "vtex-tachyons": "^2.5.0"
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^10.4.9",
+    "babel-jest": "^26.3.0",
+    "enzyme": "^3.4.1",
+    "enzyme-adapter-react-16": "^1.8.0",
+    "enzyme-to-json": "^3.3.4",
+    "i18n-iso-countries": "^1.13.0",
+    "jest": "^26.4.2",
+    "jest-cli": "^26.4.2",
+    "jest-enzyme": "^7.1.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-intl": "^2.8.0",
+    "react-test-renderer": "^16.7.0"
+  },
+  "resolutions": {
+    "jest-environment-jsdom": "^26.3.0"
   },
   "author": "Breno Calazans (@klzns)",
   "homepage": "https://github.com/vtex/address-form",
@@ -33,12 +72,18 @@
   ],
   "jest": {
     "testURL": "http://localhost/",
-    "setupTestFrameworkScriptFile": "<rootDir>/react/setupTests.js",
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/es/",
       "<rootDir>/lib/",
       "<rootDir>/umd/"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>/test-modules"
     ],
     "modulePathIgnorePatterns": [
       "<rootDir>/es/",
@@ -55,10 +100,7 @@
       "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
     },
     "transform": {
-      "^.+\\.js$": "<rootDir>/jest.transform.js"
+      "^.+\\.jsx?$": "<rootDir>/jest.transform.js"
     }
-  },
-  "devDependencies": {
-    "eslint-utils": "^1.4.2"
   }
 }

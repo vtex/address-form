@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AddressSummary from '../../react/AddressSummary'
-import AddressRules from '../../react/AddressRules'
+import AddressSummary from '@vtex/address-form/lib/AddressSummary'
+import AddressRules from '@vtex/address-form/lib/AddressRules'
 
 class RulesApp extends Component {
   constructor(props) {
@@ -46,6 +46,7 @@ class RulesApp extends Component {
 
   render() {
     const { address, country } = this.state
+
     return (
       <div className="pa6">
         <h3>AddressRules demo:</h3>
@@ -57,7 +58,7 @@ class RulesApp extends Component {
         <div className="mt8">
           <AddressRules
             country={country}
-            fetch={country => import('../../react/country/' + country)}
+            fetch={(c) => import(`@vtex/address-form/lib/country/${c}`)}
           >
             <AddressSummary address={address} />
           </AddressRules>
