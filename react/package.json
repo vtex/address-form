@@ -4,7 +4,8 @@
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "locales"
   ],
   "scripts": {
     "build": "babel --config-file ./.babelrc . -d lib && npm run removeMocks && npm run addLocales",
@@ -22,7 +23,7 @@
   "peerDependencies": {
     "prop-types": "^15.5.10",
     "react": "15.x || 16.x",
-    "react-intl": ">=3 || >=4 || >=5",
+    "react-intl": "^2.7.2 || >=3 || >=4 || >=5",
     "vtex-tachyons": "^2.5.0"
   },
   "dependencies": {
