@@ -5,10 +5,17 @@ import renderer from 'react-test-renderer'
 import { IntlProvider } from 'react-intl'
 import enCountryCodeTranslations from 'i18n-iso-countries/langs/en.json'
 import reduce from 'lodash/reduce'
+import countryCodes from 'i18n-iso-countries/codes.json'
+import find from 'lodash/find'
 
 import { intlShape } from '../intl/utils'
 import defaultStrings from '../../messages/en.json'
-import { getISOAlpha3 } from '../../demo/src/countryISO'
+
+function getISOAlpha3(countryCodeAlpha2) {
+  const country = find(countryCodes, (c) => c[0] === countryCodeAlpha2)
+
+  return country ? country[1] : null
+}
 
 function addCountryCodeNameSpace(obj) {
   return reduce(
