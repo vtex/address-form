@@ -8,4 +8,6 @@ module.exports = require('babel-jest').createTransformer({
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-transform-runtime',
   ],
+  babelrc: false,
+  configFile: false,
 })

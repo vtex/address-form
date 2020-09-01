@@ -5,5 +5,5 @@
     "@babel/preset-typescript"
   ],
   "plugins": ["@babel/plugin-proposal-class-properties"],
-  "ignore": ["**/node_modules/*"]
+  "ignore": ["**/node_modules/*", "**/__mocks__/*"]
 }

@@ -4,21 +4,15 @@
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
-    "lib",
-    "locales"
+    "lib"
   ],
   "scripts": {
-    "build": "babel --config-file ./.babelrc . -d lib && npm run removeMocks && npm run addLocales",
-    "build:symlinks": "npm run symlink:remove-locales && npm run symlink:locales && npm run build && npm run symlink:remove-locales",
-    "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
-    "addLocales": "cp -R -f locales/ lib/locales/",
-    "symlink:locales": "ln -s ../messages locales",
-    "symlink:remove-locales": "rm -rf locales",
+    "build": "babel --delete-dir-on-start --config-file ./.babelrc . -d lib && yarn add-locales",
+    "add-locales": "cp -R -f ../messages/ lib/locales/",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
-    "prepublishOnly": "npm run build:symlinks",
-    "postreleasy": "npm publish --access public"
+    "prepublishOnly": "yarn remove react-intl && yarn build"
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
@@ -33,7 +27,8 @@
     "load-google-maps-api": "^1.0.0",
     "lodash": "^4.17.4",
     "msk": "1.0.3",
-    "recompose": "^0.27.1"
+    "recompose": "^0.27.1",
+    "react-intl": "^2.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -55,7 +50,6 @@
     "jest-enzyme": "^7.1.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-intl": "^2.8.0",
     "react-test-renderer": "^16.7.0"
   },
   "resolutions": {
