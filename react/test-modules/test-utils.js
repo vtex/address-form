@@ -2,10 +2,11 @@ import React from 'react'
 import * as reactTestingLibrary from '@testing-library/react'
 import { shallow, mount } from 'enzyme'
 import renderer from 'react-test-renderer'
-import { IntlProvider, intlShape } from 'react-intl'
+import { IntlProvider } from 'react-intl'
 import enCountryCodeTranslations from 'i18n-iso-countries/langs/en.json'
 import reduce from 'lodash/reduce'
 
+import { intlShape } from '../intl/utils'
 import defaultStrings from '../../messages/en.json'
 import { getISOAlpha3 } from '../../demo/src/countryISO'
 

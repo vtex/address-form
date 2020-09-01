@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
 import DefaultInput from './inputs/DefaultInput'
@@ -10,9 +12,8 @@ import {
 } from './selectors/fields'
 import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 import { injectRules } from './addressRulesContext'
-import { compose } from 'recompose'
 import { injectAddressContext } from './addressContainerContext'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape } from './intl/utils'
 
 class AddressForm extends Component {
   render() {
@@ -37,7 +38,7 @@ class AddressForm extends Component {
 
     return (
       <div>
-        {fields.map(field =>
+        {fields.map((field) =>
           isDefiningPostalCodeField(field.name, rules) ? (
             <SelectPostalCode
               Input={Input}
@@ -56,7 +57,7 @@ class AddressForm extends Component {
               onChangeAddress={onChangeAddress}
               notApplicableLabel={notApplicableLabel}
             />
-          ),
+          )
         )}
       </div>
     )
@@ -80,9 +81,6 @@ AddressForm.propTypes = {
   notApplicableLabel: PropTypes.string,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-  injectIntl,
-)
+const enhance = compose(injectAddressContext, injectRules, injectIntl)
+
 export default enhance(AddressForm)

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import InputSelect from './InputSelect'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
 import InputError from './InputError'
 import PostalCodeLoader from '../../postalCodeFrom/PostalCodeLoader'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape } from '../../intl/utils'
 import GeolocationNumberInput from './GeolocationNumberInput'
 
 class Input extends Component {
@@ -18,17 +19,17 @@ class Input extends Component {
     }
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ showErrorMessage: false })
     this.props.onChange && this.props.onChange(e)
   }
 
-  handleFocus = e => {
+  handleFocus = (e) => {
     this.setState({ showErrorMessage: false })
     this.props.onFocus && this.props.onFocus(e)
   }
 
-  handleBlur = e => {
+  handleBlur = (e) => {
     this.setState({ showErrorMessage: true })
     this.props.onBlur && this.props.onBlur(e)
   }
@@ -50,15 +51,16 @@ class Input extends Component {
 
     const loading = !!address[field.name].loading
     const disabled = !!address[field.name].disabled
-    const valid = address[field.name].valid
+    const { valid } = address[field.name]
     const notApplicable = !!address[field.name].notApplicable
-    const noNumberValue = !address['number'].value && field.name === 'number'
+    const noNumberValue = !address.number.value && field.name === 'number'
     const hiddenNumber = field.hidden
     const queryAndNotApplicableCondition =
-      (address['addressQuery'] &&
-        address['addressQuery'].geolocationAutoCompleted &&
+      (address.addressQuery &&
+        address.addressQuery.geolocationAutoCompleted &&
         noNumberValue) ||
       notApplicable
+
     const geolocationCondition = queryAndNotApplicableCondition && !hiddenNumber
 
     if (geolocationCondition) {
@@ -98,7 +100,7 @@ class Input extends Component {
           {loading && <PostalCodeLoader />}
           {field.forgottenURL && (
             <small>
-              <a href={field.forgottenURL} target="_blank">
+              <a href={field.forgottenURL} target="_blank" rel="noreferrer">
                 {intl.formatMessage({ id: 'address-form.dontKnowPostalCode' })}
               </a>
             </small>

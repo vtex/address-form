@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import cx from 'classnames'
+
 import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import { injectRules } from '../../addressRulesContext'
-import { compose } from 'recompose'
 import { injectAddressContext } from '../../addressContainerContext'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape } from '../../intl/utils'
 import InputText from './InputText'
 import InputLabel from './InputLabel'
 import InputCheckbox from './InputCheckbox'
 import InputError from './InputError'
-
-import cx from 'classnames'
 
 class GeolocationNumberInput extends Component {
   render() {
@@ -33,8 +33,8 @@ class GeolocationNumberInput extends Component {
       text: true, // That's a bug in the Checkout's CSS
     })
 
-    const value = address[field.name].value
-    const valid = address[field.name].valid
+    const { value } = address[field.name]
+    const { valid } = address[field.name]
 
     return (
       <div className={className} htmlFor={`ship-${field.name}`}>
@@ -93,10 +93,6 @@ GeolocationNumberInput.propTypes = {
   handleToggle: PropTypes.func,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-  injectIntl,
-)
+const enhance = compose(injectAddressContext, injectRules, injectIntl)
 
 export default enhance(GeolocationNumberInput)

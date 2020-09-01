@@ -12,8 +12,6 @@ exports[`InputText should render custom class 1`] = `
   name="postalCode"
   onBlur={[MockFunction]}
   onChange={[Function]}
-  onFocus={undefined}
-  placeholder={undefined}
   type="text"
   value=""
 />
@@ -31,8 +29,6 @@ exports[`InputText should render default case 1`] = `
   name="postalCode"
   onBlur={[MockFunction]}
   onChange={[Function]}
-  onFocus={undefined}
-  placeholder={undefined}
   type="text"
   value=""
 />
@@ -50,8 +46,6 @@ exports[`InputText should render different id 1`] = `
   name="postalCode"
   onBlur={[MockFunction]}
   onChange={[Function]}
-  onFocus={undefined}
-  placeholder={undefined}
   type="text"
   value=""
 />
@@ -69,8 +63,6 @@ exports[`InputText should render different id based on fieldName 1`] = `
   name="postalCode"
   onBlur={[MockFunction]}
   onChange={[Function]}
-  onFocus={undefined}
-  placeholder={undefined}
   type="text"
   value=""
 />
@@ -88,8 +80,6 @@ exports[`InputText should render different input type 1`] = `
   name="postalCode"
   onBlur={[MockFunction]}
   onChange={[Function]}
-  onFocus={undefined}
-  placeholder={undefined}
   type="tel"
   value=""
 />
@@ -107,8 +97,6 @@ exports[`InputText should render disabled input 1`] = `
   name="postalCode"
   onBlur={[MockFunction]}
   onChange={[Function]}
-  onFocus={undefined}
-  placeholder={undefined}
   type="text"
   value=""
 />

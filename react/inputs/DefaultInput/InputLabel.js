@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { injectIntl, intlShape } from 'react-intl'
+
+import { injectIntl, intlShape } from '../../intl/utils'
 
 class InputLabel extends Component {
   render() {
