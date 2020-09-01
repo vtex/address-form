@@ -11,7 +11,8 @@ react/__tests__
 react/.babelrc
 react/.eslintrc
 react/setupTests.js
+react/jest.transform.js
 **/__tests__/**
-lib/
+react/lib/
 **/**.test.js
 demo/
