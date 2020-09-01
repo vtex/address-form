@@ -20,7 +20,9 @@ echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 # exist there for builder-hub to be able to build this
 # app, and update the version in case the releasy
 # script didn't.
-jq "del(.dependencies.\"react-intl\") | .version = \"$version\"" react/package.json > react/package.json
+jq -M "del(.dependencies.\"react-intl\") | .version = \"$version\"" react/package.json > react/package.json.tmp
+
+mv react/package.json.tmp react/package.json
 
 if [[ $version =~ -beta ]]; then
   echo "Publishing beta @vtex/address-form@$version"
