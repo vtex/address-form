@@ -12,7 +12,7 @@
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
     "test:watch": "jest --env=jsdom --watch",
-    "prepublishOnly": "yarn remove react-intl && yarn build"
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
