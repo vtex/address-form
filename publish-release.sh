@@ -18,8 +18,9 @@ echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 
 # Remove react-intl from dependencies because it only
 # exist there for builder-hub to be able to build this
-# app
-jq 'del(.dependencies."react-intl")' react/package.json > react/package.json
+# app, and update the version in case the releasy
+# script didn't.
+jq "del(.dependencies.\"react-intl\") | .version = \"$version\"" react/package.json > react/package.json
 
 if [[ $version =~ -beta ]]; then
   echo "Publishing beta @vtex/address-form@$version"
