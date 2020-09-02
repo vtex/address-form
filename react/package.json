@@ -17,7 +17,7 @@
   "peerDependencies": {
     "prop-types": "^15.5.10",
     "react": "15.x || 16.x",
-    "react-intl": "^2.7.2 || >=3 || >=4 || >=5",
+    "react-intl": "^2.7.2 || 3.x || 4.x || 5.x",
     "vtex-tachyons": "^2.5.0"
   },
   "dependencies": {
