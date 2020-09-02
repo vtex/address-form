@@ -28,9 +28,7 @@ if [[ $version =~ -beta ]]; then
   echo "Publishing beta @vtex/address-form@$version"
 
   yarn --cwd react publish --new-version $version --tag next
-fi
-
-if [[ ! $version =~ -beta ]]; then
+else
   echo "Publishing stable @vtex/address-form@$version"
 
   yarn --cwd react publish --new-version $version --tag latest
