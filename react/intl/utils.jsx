@@ -23,7 +23,6 @@ export const intlShape =
     : PropTypes.shape({
         formatDate: PropTypes.func.isRequired,
         formatTime: PropTypes.func.isRequired,
-        formatRelative: PropTypes.func.isRequired,
         formatNumber: PropTypes.func.isRequired,
         formatPlural: PropTypes.func.isRequired,
         formatMessage: PropTypes.func.isRequired,
