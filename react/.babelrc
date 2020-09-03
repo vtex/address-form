@@ -11,5 +11,5 @@
       { "helpers": false }
     ]
   ],
-  "ignore": ["**/node_modules/*", "**/__mocks__/*"]
+  "ignore": ["**/node_modules/*", "**/__mocks__/*", "**/*.test.js"]
 }
