@@ -1,6 +1,7 @@
 import React from 'react'
+import { shallow, render, waitFor } from 'test-utils'
+
 import AddressRules from './AddressRules'
-import { shallow, render, waitForElement } from 'test-utils'
 import defaultRules from './country/default'
 import braRules from './country/BRA'
 import { getField } from './selectors/fields'
@@ -9,14 +10,15 @@ describe('AddressRules', () => {
   it('should load the defined rules', async () => {
     const instance = shallow(
       <AddressRules
-        country={'BRA'}
-        fetch={country => import('./country/' + country)}
+        country="BRA"
+        fetch={(country) => import(`./country/${country}`)}
       >
         <h1>It works!</h1>
-      </AddressRules>,
+      </AddressRules>
     ).instance()
 
     const rules = await instance.componentDidMount()
+
     expect(rules).toEqual(braRules)
   })
 
@@ -25,14 +27,14 @@ describe('AddressRules', () => {
 
     const { container, getByTestId } = render(
       <AddressRules
-        country={'BRA'}
-        fetch={country => import('./country/' + country)}
+        country="BRA"
+        fetch={(country) => import(`./country/${country}`)}
       >
         <span data-testid={testId} />
-      </AddressRules>,
+      </AddressRules>
     )
 
-    const result = await waitForElement(() => getByTestId(testId), {
+    const result = await waitFor(() => getByTestId(testId), {
       container,
     })
 
@@ -41,15 +43,16 @@ describe('AddressRules', () => {
 
   it('should provide default rules when country is unrecognized', async () => {
     const prevWarn = global.console.warn
-    global.console.warn = jest.fn()
+
+    jest.spyOn(global.console, 'warn').mockImplementation()
 
     const instance = shallow(
       <AddressRules
-        country={'XXX'}
-        fetch={country => import('./country/' + country)}
+        country="XXX"
+        fetch={(country) => import(`./country/${country}`)}
       >
         <h1>It works!</h1>
-      </AddressRules>,
+      </AddressRules>
     ).instance()
 
     const rules = await instance.componentDidMount()
@@ -62,12 +65,12 @@ describe('AddressRules', () => {
   it('should merge geolocation field rules with default field rules', async () => {
     const instance = shallow(
       <AddressRules
-        country={'BRA'}
-        fetch={country => import('./country/' + country)}
+        country="BRA"
+        fetch={(country) => import(`./country/${country}`)}
         useGeolocation
       >
         <h1>It works!</h1>
-      </AddressRules>,
+      </AddressRules>
     ).instance()
 
     const { default: initialRules } = await import('./country/BRA')

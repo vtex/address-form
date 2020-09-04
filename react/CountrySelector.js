@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
 import DefaultInput from './inputs/DefaultInput'
 import { injectAddressContext } from './addressContainerContext'
-import { intlShape, injectIntl } from 'react-intl'
+import { intlShape, injectIntl } from './intl/utils'
 
 class CountrySelector extends Component {
-  handleChangeCountry = changedFields => {
+  handleChangeCountry = (changedFields) => {
     const { address } = this.props
 
     if (changedFields.country.value === address.country.value) return

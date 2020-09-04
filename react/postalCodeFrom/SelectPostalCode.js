@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import {
   getPostalCodeOptions,
   getLastLevelField,
 } from '../selectors/postalCode'
 import InputFieldContainer from '../InputFieldContainer'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape } from '../intl/utils'
 
 class SelectPostalCode extends Component {
-  handleChange = changedFields => {
-    const rules = this.props.rules
+  handleChange = (changedFields) => {
+    const { rules } = this.props
     const currentLevelName = getLastLevelField(rules).name
-    const value = changedFields[currentLevelName].value
+    const { value } = changedFields[currentLevelName]
 
     this.props.onChangeAddress({
       ...this.deComposeValue(currentLevelName, value || ''),
@@ -29,6 +30,7 @@ class SelectPostalCode extends Component {
 
   deComposeValue = (currentLevelName, value) => {
     const [field, postalCode] = value.split('___')
+
     return {
       [currentLevelName]: { value: field },
       postalCode: { value: postalCode },
@@ -43,7 +45,7 @@ class SelectPostalCode extends Component {
           [fieldName]: { value: label },
           postalCode: { value: postalCode },
         }),
-      }),
+      })
     )
   }
 

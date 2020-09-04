@@ -5,10 +5,11 @@ import Input from '@vtex/styleguide/lib/Input'
 import Link from '@vtex/styleguide/lib/Link'
 import InputButton from '@vtex/styleguide/lib/InputButton'
 import Checkbox from '@vtex/styleguide/lib/Checkbox'
-import { injectIntl, intlShape } from 'react-intl'
+import { compose } from 'recompose'
+
+import { injectIntl, intlShape } from '../../intl/utils'
 import { injectRules } from '../../addressRulesContext'
 import { injectAddressContext } from '../../addressContainerContext'
-import { compose } from 'recompose'
 import SpinnerLoading from '../../Spinner'
 
 class StyleguideInput extends Component {
@@ -37,7 +38,7 @@ class StyleguideInput extends Component {
     }
   }
 
-  handleFocus = (event) => {
+  handleFocus = () => {
     this.setState({ showErrorMessage: false })
   }
 
@@ -65,6 +66,7 @@ class StyleguideInput extends Component {
       toggleNotApplicable,
       submitLabel,
     } = this.props
+
     const disabled = !!address[field.name].disabled
 
     const loading =
@@ -159,7 +161,7 @@ class StyleguideInput extends Component {
 
     if (
       field.name === 'number' &&
-      (field.notApplicable || address['addressQuery'].geolocationAutoCompleted)
+      (field.notApplicable || address.addressQuery.geolocationAutoCompleted)
     ) {
       return (
         <div className="vtex-address-form__number-div flex flex-row pb7">

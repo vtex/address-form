@@ -164,7 +164,6 @@ exports[`Input should render disabled input 1`] = `
       name="number"
       onBlur={[MockFunction]}
       onChange={[Function]}
-      onFocus={undefined}
       placeholder="Optional"
       type="text"
       value=""
@@ -179,14 +178,11 @@ exports[`Input should render disabled input 1`] = `
       No number
     </label>
     <input
-      checked={undefined}
       className="input ship-checkboxNumberLabel type"
-      defaultChecked={undefined}
       id="ship-number"
       name="number"
       onBlur={[MockFunction]}
       onChange={[Function]}
-      onFocus={undefined}
       placeholder="Optional"
       type="checkbox"
     />

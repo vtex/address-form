@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
-import { injectIntl, intlShape } from 'react-intl'
 
+import { injectIntl, intlShape } from './intl/utils'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import OneLevel from './postalCodeFrom/OneLevel'
@@ -45,6 +45,7 @@ class PostalCodeGetter extends Component {
             submitLabel={submitLabel}
           />
         )
+
       case TWO_LEVELS:
         return (
           <TwoLevels
@@ -59,6 +60,7 @@ class PostalCodeGetter extends Component {
             submitLabel={submitLabel}
           />
         )
+
       case ONE_LEVEL:
         return (
           <OneLevel
@@ -73,9 +75,11 @@ class PostalCodeGetter extends Component {
             submitLabel={submitLabel}
           />
         )
+
       default:
       case POSTAL_CODE: {
         const field = getField('postalCode', rules)
+
         return (
           <InputFieldContainer
             intl={intl}
@@ -119,4 +123,5 @@ PostalCodeGetter.propTypes = {
 }
 
 const enhance = compose(injectAddressContext, injectRules, injectIntl)
+
 export default enhance(PostalCodeGetter)
