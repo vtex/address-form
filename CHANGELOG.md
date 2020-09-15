@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- New Guatemala localities, splitting Mixco and Villa Nueva.
+
 ## [3.12.12] - 2020-09-04
 
 ### Changed
