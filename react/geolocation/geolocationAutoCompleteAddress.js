@@ -1,15 +1,12 @@
-import isFunction from 'lodash/isFunction'
-import find from 'lodash/find'
-import reduce from 'lodash/reduce'
-import map from 'lodash/map'
-import getCountryISO2 from '../countryISOMap'
 import flow from 'lodash/flow'
+
+import getCountryISO2 from '../countryISOMap'
 import { addNewField, addFocusToNextInvalidField } from '../transforms/address'
 
 export default function geolocationAutoCompleteAddress(
   baseAddress,
   googleAddress,
-  rules,
+  rules
 ) {
   const geolocationRules = rules.geolocation
   const fallbackCountry = rules.country
@@ -20,14 +17,15 @@ export default function geolocationAutoCompleteAddress(
     setGeoCoordinates,
     setCountry,
     setAddressQuery,
-    address => addNewField(address, 'geolocationAutoCompleted', true),
-    address => ({
-      ...address,
+    (updatedAddress) =>
+      addNewField(updatedAddress, 'geolocationAutoCompleted', true),
+    (updatedAddress) => ({
+      ...updatedAddress,
       addressId: baseAddress.addressId,
       addressType: baseAddress.addressType,
       receiverName: baseAddress.receiverName,
     }),
-    address => addFocusToNextInvalidField(address, rules),
+    (updatedAddress) => addFocusToNextInvalidField(updatedAddress, rules),
   ])()
 
   // unnecessary for 3.6.0+, but necessary for backward compatibility
@@ -42,86 +40,92 @@ export default function geolocationAutoCompleteAddress(
   function setAddressFields() {
     const indexedRules = revertRuleIndex(geolocationRules)
 
-    return reduce(
-      googleAddress.address_components,
-      (address, component) => {
+    return googleAddress.address_components.reduce(
+      (updatedAddress, component) => {
         const checkoutFieldName = getCheckoutFieldName(
           component.types,
-          indexedRules,
+          indexedRules
         )
 
         if (checkoutFieldName) {
-          address = setAddressFieldValue(
-            address,
+          updatedAddress = setAddressFieldValue(
+            updatedAddress,
             checkoutFieldName,
             geolocationRules,
-            component,
+            component
           )
         }
-        return address
+
+        return updatedAddress
       },
-      {},
+      {}
     )
   }
 
-  function setGeoCoordinates(address) {
-    const location = googleAddress.geometry.location
+  function setGeoCoordinates(updatedAddress) {
+    const { location } = googleAddress.geometry
 
-    address.geoCoordinates = {
+    updatedAddress.geoCoordinates = {
       visited: true,
       value: [
-        isFunction(location.lng) ? location.lng() : location.lng,
-        isFunction(location.lat) ? location.lat() : location.lat,
+        typeof location.lng === 'function' ? location.lng() : location.lng,
+        typeof location.lat === 'function' ? location.lat() : location.lat,
       ],
     }
 
-    return address
+    return updatedAddress
   }
 
   // Run custom function handlers to fill some fields
-  function runGeolocationFieldHandlers(address) {
-    map(geolocationRules, (rule, propName) => {
+  function runGeolocationFieldHandlers(updatedAddress) {
+    const ruleEntries = Object.entries(geolocationRules)
+
+    ruleEntries.forEach(([, rule]) => {
       if (rule.handler) {
-        address = rule.handler(address, googleAddress)
+        updatedAddress = rule.handler(updatedAddress, googleAddress)
       }
     })
 
-    map(geolocationRules, (rule, propName) => {
+    ruleEntries.forEach(([, rule]) => {
       if (rule.handler) {
-        address = rule.handler(address, googleAddress)
+        updatedAddress = rule.handler(updatedAddress, googleAddress)
       }
     })
 
-    return address
+    return updatedAddress
   }
 
-  function setCountry(address) {
+  function setCountry(updatedAddress) {
     const country = getCountry(googleAddress)
-    address.country = { value: country || fallbackCountry }
-    return address
+
+    updatedAddress.country = { value: country || fallbackCountry }
+
+    return updatedAddress
   }
 
-  function setAddressQuery(address) {
-    address.addressQuery = { value: googleAddress.formatted_address }
+  function setAddressQuery(updatedAddress) {
+    updatedAddress.addressQuery = { value: googleAddress.formatted_address }
 
-    return address
+    return updatedAddress
   }
 
-  function setNumberNotApplicable(address) {
+  function setNumberNotApplicable(updatedAddress) {
     const geolocationNumberCondition =
       geolocationRules &&
       geolocationRules.number &&
       geolocationRules.number.notApplicable
+
     if (geolocationNumberCondition) {
       return {
-        ...address,
+        ...updatedAddress,
         number: {
-          ...address.number,
+          ...updatedAddress.number,
           notApplicable: true,
         },
       }
     }
-    return address
+
+    return updatedAddress
   }
 
   return address
@@ -143,24 +147,23 @@ export default function geolocationAutoCompleteAddress(
  *   "locality": "city"
  * }
  * So it's easy to find which Google address type matches ours
- **/
+ */
 function revertRuleIndex(geolocationRules) {
-  return reduce(
-    geolocationRules,
-    (acc, value, propName) => {
-      for (let i = 0; i < value.types.length; i++) {
-        const type = value.types[i]
-        acc[type] = propName
-      }
-      return acc
-    },
-    {},
-  )
+  return Object.entries(geolocationRules).reduce((acc, [propName, value]) => {
+    for (let i = 0; i < value.types.length; i++) {
+      const type = value.types[i]
+
+      acc[type] = propName
+    }
+
+    return acc
+  }, {})
 }
 
 // Return the matched checkout field name
 function getCheckoutFieldName(types, indexedRules) {
-  const mappedType = find(types, type => indexedRules[type])
+  const mappedType = types.find((type) => indexedRules[type])
+
   return mappedType ? indexedRules[mappedType] : null
 }
 
@@ -168,17 +171,18 @@ function setAddressFieldValue(
   address,
   fieldName,
   geolocationRules,
-  addressComponent,
+  addressComponent
 ) {
   const geolocationField = geolocationRules[fieldName]
+
   address[fieldName] = { value: addressComponent[geolocationField.valueIn] }
+
   return address
 }
 
 function getCountry(googleAddress) {
-  const countryComponent = find(
-    googleAddress.address_components,
-    component => component.types.indexOf('country') !== -1,
+  const countryComponent = googleAddress.address_components.find(
+    (component) => component.types.indexOf('country') !== -1
   )
 
   return countryComponent ? getCountryISO2(countryComponent.short_name) : null

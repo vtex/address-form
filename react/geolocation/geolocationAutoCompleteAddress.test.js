@@ -12,7 +12,7 @@ describe('Geolocation Auto Complete Address', () => {
     const address = geolocationAutoCompleteAddress(
       newAddress,
       postalCodeGoogleAddress,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(address).toMatchSnapshot()
@@ -22,7 +22,7 @@ describe('Geolocation Auto Complete Address', () => {
     const address = geolocationAutoCompleteAddress(
       newAddress,
       oneLevelGoogleAddress,
-      useOneLevel,
+      useOneLevel
     )
 
     expect(address.postalCode.value).toBe('0000')
@@ -32,7 +32,7 @@ describe('Geolocation Auto Complete Address', () => {
     const address = geolocationAutoCompleteAddress(
       newAddress,
       invalidFieldGoogleAddress,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(address.postalCode.valid).toBe(false)
@@ -52,7 +52,7 @@ describe('Geolocation Auto Complete Address', () => {
         receiverName: { value: receiverName },
       },
       postalCodeGoogleAddress,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(address.addressId.value).toBe(addressId)
@@ -69,7 +69,7 @@ describe('Geolocation Auto Complete Address', () => {
         complement: { value: complement },
       },
       postalCodeGoogleAddress,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(address.complement).toBeUndefined()
@@ -79,18 +79,7 @@ describe('Geolocation Auto Complete Address', () => {
     const address = geolocationAutoCompleteAddress(
       { ...newAddress },
       postalCodeGoogleAddressNoNumber,
-      usePostalCode,
-    )
-
-    expect(address.number).toBeTruthy()
-    expect(address.number.notApplicable).toBeTruthy()
-  })
-
-  it('should keep number as notApplicable', () => {
-    const address = geolocationAutoCompleteAddress(
-      { ...newAddress },
-      postalCodeGoogleAddressNoNumber,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(address.number).toBeTruthy()

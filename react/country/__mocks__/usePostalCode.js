@@ -83,9 +83,11 @@ export default {
       types: ['street_number'],
       required: true,
       notApplicable: true,
-      handler: address => {
-        return {...address,
-          number: {...address['number'], notApplicable: true}}
+      handler: (address) => {
+        return {
+          ...address,
+          number: { ...address.number, notApplicable: true },
+        }
       },
     },
     street: {

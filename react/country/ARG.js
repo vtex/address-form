@@ -21222,6 +21222,19 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
+      handler: (address) => {
+        return {
+          ...address,
+          postalCode: {
+            ...address.postalCode,
+            value:
+              address.postalCode?.value?.replace(
+                /(?:[a-zA-Z]*)(\d+)(?:[a-zA-Z]*)/,
+                '$1'
+              ) ?? '',
+          },
+        }
+      },
     },
     number: {
       valueIn: 'long_name',
