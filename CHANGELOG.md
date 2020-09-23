@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Google geolocation not working for ARG country.
+
 ## [3.12.13] - 2020-09-15
 
 ### Added
