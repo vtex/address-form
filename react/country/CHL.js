@@ -146,7 +146,7 @@ const countryData = {
     Puchuncaví: '2500000',
     Putaendo: '2190000',
     Quillota: '2260000',
-    Quilpué: '2420000',
+    Quilpué: '2430000',
     Quintero: '2490000',
     Rinconada: '2140000',
     'San Antonio': '2660000',
