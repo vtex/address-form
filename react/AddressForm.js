@@ -26,6 +26,7 @@ class AddressForm extends Component {
       notApplicableLabel,
       omitPostalCodeFields,
       omitAutoCompletedFields,
+      className,
     } = this.props
 
     let fields = omitPostalCodeFields
@@ -37,7 +38,7 @@ class AddressForm extends Component {
       : fields
 
     return (
-      <div>
+      <div className={className}>
         {fields.map((field) =>
           isDefiningPostalCodeField(field.name, rules) ? (
             <SelectPostalCode
@@ -71,6 +72,7 @@ AddressForm.defaultProps = {
 }
 
 AddressForm.propTypes = {
+  className: PropTypes.string,
   Input: PropTypes.func,
   intl: intlShape,
   address: AddressShapeWithValidation,
