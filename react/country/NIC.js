@@ -279,6 +279,9 @@ export default {
     },
   ],
   geolocation: {
+    receiverName: {
+      required: true,
+    },
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
