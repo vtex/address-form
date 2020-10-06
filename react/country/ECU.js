@@ -102,7 +102,7 @@ const countryData = {
     Riobamba: '0004',
     'San Andres': '0004',
     'San Luis': '0004',
-    Yaruquies: '0004'
+    Yaruquies: '0004',
   },
   Cotopaxi: {
     Anchilivi: '0005',
@@ -221,7 +221,6 @@ const countryData = {
     'El Empalme': '0009',
     'El Morro': '0009',
     'El Nato': '0009',
-    'El Triunfo': '0009',
     'El Triunfo': '0009',
     'Eloy Alfaro - Duran': '0009',
     Engabao: '0009',
@@ -691,6 +690,9 @@ export default {
     },
   ],
   geolocation: {
+    receiverName: {
+      required: true,
+    },
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],

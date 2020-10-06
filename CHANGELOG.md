@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.13.1] - 2020-10-06
+
+### Fixed
+
+- Make `receiverName` required while using geolocation input.
+
 ## [3.13.0] - 2020-10-01
 
 ### Added
