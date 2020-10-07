@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Google geolocation rules for Italia around the data that should be used as "state" and "city".
+
 ## [3.13.1] - 2020-10-06 [YANKED]
 
 ### Fixed
