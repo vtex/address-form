@@ -104,7 +104,7 @@ export default {
       ],
     },
     state: {
-      valueIn: 'long_name',
+      valueIn: 'short_name',
       types: ['administrative_area_level_2'],
     },
     city: {
