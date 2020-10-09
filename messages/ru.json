@@ -32,7 +32,7 @@
   "address-form.error.ERROR_EMPTY_FIELD": "Необходимо заполнить данное поле.",
   "address-form.error.ERROR_POSTAL_CODE": "Недействительный почтовый индекс.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Недействительный адрес.",
-  "address-form.error.generic": "Недействительное поле.\n",
+  "address-form.error.generic": "Недействительное поле.",
   "address-form.field.addressQuery": "Адрес",
   "address-form.field.notApplicable": "Нет",
   "address-form.field.noNumber": "Без номера",
