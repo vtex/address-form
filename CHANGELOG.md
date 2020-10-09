@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Add bg, ca, da, de, el, fi, fr, it, ko, nl, pl, ro, ru, sk, sl, sv and uk translations.
+
 ## [3.13.1] - 2020-10-06 [YANKED]
 
 ### Fixed
