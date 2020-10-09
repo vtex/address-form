@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+<<<<<<< HEAD
 ## [3.13.1] - 2020-10-06 [YANKED]
 
 ### Fixed
@@ -18,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Prop `className` to `AddressForm` component.
+=======
+### Added
+- Add bg, ca, da, de, el, fi, fr, it, ko, nl, pl, ro, ru, sk, sl, sv and uk translations.
+>>>>>>> Update CHANGELOG.md.
 
 ## [3.12.14] - 2020-09-23
 
