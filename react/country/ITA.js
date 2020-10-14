@@ -104,12 +104,12 @@ export default {
       ],
     },
     state: {
-      valueIn: 'long_name',
-      types: ['administrative_area_level_1'],
+      valueIn: 'short_name',
+      types: ['administrative_area_level_2'],
     },
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['administrative_area_level_3', 'locality'],
     },
   },
   summary: [
