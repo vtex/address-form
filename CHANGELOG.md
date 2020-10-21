@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Update
+
+- Update Guatemala localities.
+
 ## [3.13.3] - 2020-10-14
 
 ### Fixed
