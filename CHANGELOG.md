@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.13.6] - 2020-10-22
+
 ### Fixed
 
 - Messages localization in romanian.
