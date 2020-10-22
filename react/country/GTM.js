@@ -622,7 +622,7 @@ export default {
       name: 'postalCode',
       postalCodeAPI: false,
       required: true,
-      regex: /^[\d]{4,5}$/,
+      regex: /^[\d]{4,6}$/,
       size: 'small',
     },
     {
