@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix Guatemala postalCode's RegEx to allow 6-digit options.
+
 ## [3.13.4] - 2020-10-21
 
 ### Update
