@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.13.7] - 2020-11-04
+
 ### Fixed
 
 - Fix the abbreviation of 'Yukon' & 'Nunavut' provinces in Canada.
