@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Update
+
+- Update Chile localities.
+
 ## [3.13.7] - 2020-11-04
 
 ### Fixed
@@ -40,6 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.13.2] - 2020-10-09
 
 ### Added
+
 - Add bg, ca, da, de, el, fi, fr, it, ko, nl, pl, ro, ru, sk, sl, sv and uk translations.
 
 ## [3.13.1] - 2020-10-06 [YANKED]
