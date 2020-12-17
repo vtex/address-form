@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Invalid postal code locator URL
+
 ## [4.6.5] - 2021-01-26
 
 ### Added
 
 - Missing countries from 3.x: ARE, DNK, FIN, IND, ITA, SMR and SWE.
-
 ## [4.6.4] - 2020-10-06 [YANKED]
 
 ### Fixed
