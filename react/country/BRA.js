@@ -22,7 +22,7 @@ export default {
       regex: '^([\\d]{5})\\-?([\\d]{3})$',
       postalCodeAPI: true,
       forgottenURL:
-        'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
+        'https://buscacepinter.correios.com.br/app/endereco/index.php',
       size: 'small',
       autoComplete: 'nope',
     },
