@@ -1,3 +1,10 @@
-files:
-  - source: /messages/en.json
-    translation: /messages/%two_letters_code%.json
+"project_id" : "385019"
+"base_url" : "https://api.crowdin.com"
+"preserve_hierarchy": true
+files: [
+ {
+  "source" : "messages/en.json",
+  "translation" : "messages/%two_letters_code%.json",
+  "type" : "json",
+ }
+]

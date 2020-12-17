@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- I18n Cs.
+
+### Fixed
+
+- I18n It.
+
+### Changed
+
+- Crowdin configuration file.
+
 ## [3.13.8] - 2020-11-13
 
-### Update
+### Changed
 
 - Update Chile localities.
 
@@ -33,7 +45,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.13.4] - 2020-10-21
 
-### Update
+### Changed
 
 - Update Guatemala localities.
 

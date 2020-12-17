@@ -36,7 +36,7 @@
   "address-form.field.addressQuery": "Indirizzo",
   "address-form.field.notApplicable": "N/N",
   "address-form.field.noNumber": "Nessun numero",
-  "address-form.field.country": "Nazione",
+  "address-form.field.country": "Stato",
   "address-form.field.postalCode": "Codice postale",
   "address-form.field.street": "Via",
   "address-form.field.addressLine1": "Indirizzo",
