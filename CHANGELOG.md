@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Invalid postal code locator URL
+
 ## [4.6.4] - 2020-10-06 [YANKED]
 
 ### Fixed
