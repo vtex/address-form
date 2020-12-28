@@ -1,5 +1,6 @@
 // countries
 import defaultRules from './country/default'
+import ARE from './country/ARE'
 import ARG from './country/ARG'
 import BOL from './country/BOL'
 import BRA from './country/BRA'
@@ -23,6 +24,7 @@ import VEN from './country/VEN'
 
 export default {
   defaultRules,
+  ARE,
   ARG,
   BOL,
   BRA,
