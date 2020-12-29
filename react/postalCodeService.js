@@ -14,5 +14,5 @@ export function getAddress({ cors = false, accountName, country, postalCode }) {
     endpoint = `${HOST_URL}/api/checkout/pub/postal-code/${country}/${cleanPostalCode}`
   }
 
-  return axios.get(endpoint).then(response => response.data)
+  return axios.get(endpoint).then((response) => response.data)
 }

@@ -3,7 +3,7 @@ import map from 'lodash/map'
 import filter from 'lodash/filter'
 import reduce from 'lodash/reduce'
 import last from 'lodash/last'
-import forEach from 'lodash/forEach'
+
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 import hasOption from './hasOption'
 import cleanStr from './cleanStr'
@@ -13,14 +13,15 @@ export function getField(fieldName, rules) {
 }
 
 export function hasOptions(field, address) {
-  const hasValueOptions = address &&
-    address[field.name] &&
-    address[field.name].valueOptions
+  const hasValueOptions =
+    address && address[field.name] && address[field.name].valueOptions
 
-  return !!(field.options ||
+  return !!(
+    field.options ||
     field.optionsPairs ||
     field.optionsMap ||
-    hasValueOptions)
+    hasValueOptions
+  )
 }
 
 function getFieldValue(field) {
@@ -32,6 +33,7 @@ export function normalizeOptions(options) {
     options,
     (acc, option, key) => {
       acc[cleanStr(key)] = option
+
       return acc
     },
     {}
@@ -43,6 +45,7 @@ function fixOptions(options, fieldOptions) {
     options,
     (acc, option) => {
       const cleanOption = hasOption(option, fieldOptions)
+
       return cleanOption ? acc.concat(cleanOption) : acc
     },
     []
@@ -51,9 +54,8 @@ function fixOptions(options, fieldOptions) {
 
 export function getListOfOptions(field, address, rules) {
   // Has options provided by Postal Code
-  const postalCodeOptions = address &&
-    address[field.name] &&
-    address[field.name].valueOptions
+  const postalCodeOptions =
+    address && address[field.name] && address[field.name].valueOptions
 
   if (postalCodeOptions) {
     if (field.options && !field.basedOn) {
@@ -107,6 +109,7 @@ function getSecondLevelOptions(field, address) {
   const basedOn = getFieldValue(address[field.basedOn])
   const cleanBasedOn = cleanStr(basedOn)
   const normalizedOptionsMap = normalizeOptions(field.optionsMap)
+
   if (cleanBasedOn && normalizedOptionsMap[cleanBasedOn]) {
     return normalizedOptionsMap[cleanBasedOn]
   }
@@ -148,10 +151,12 @@ export function getDependentFields(fieldName, rules) {
   }
 
   const dependentField = getFieldBasedOn(fieldName, rules)
+
   if (dependentField) {
     dependentFields = [...dependentFields, dependentField]
 
     const secondLevelField = getFieldBasedOn(dependentField, rules)
+
     if (secondLevelField) {
       dependentFields = [...dependentFields, secondLevelField]
     }
@@ -162,6 +167,7 @@ export function getDependentFields(fieldName, rules) {
 
 function getFieldBasedOn(fieldName, rules) {
   const field = find(rules.fields, ({ basedOn }) => basedOn === fieldName)
+
   return field ? field.name : null
 }
 
@@ -170,18 +176,21 @@ export function filterPostalCodeFields(rules) {
     case THREE_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1,
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
       )
+
     case TWO_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1,
+        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
       )
+
     case ONE_LEVEL:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels[0] !== name,
+        ({ name }) => rules.postalCodeLevels[0] !== name
       )
+
     default:
     case POSTAL_CODE:
       return filter(rules.fields, ({ name }) => name !== 'postalCode')
@@ -217,6 +226,6 @@ export function filterAutoCompletedFields(rules, address) {
 
       return fields.concat(field)
     },
-    [],
+    []
   )
 }

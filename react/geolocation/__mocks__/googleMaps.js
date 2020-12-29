@@ -1,5 +1,5 @@
 export default function loadGoogleMaps({ locale, apiKey }) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve({ locale, apiKey })
   })
 }

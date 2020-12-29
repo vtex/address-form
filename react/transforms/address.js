@@ -5,9 +5,10 @@ import difference from 'lodash/difference'
 import find from 'lodash/find'
 import isPlainObject from 'lodash/isPlainObject'
 import isUndefined from 'lodash/isUndefined'
+import msk from 'msk'
+
 import { getField } from '../selectors/fields'
 import { validateAddress } from '../validateAddress'
-import msk from 'msk'
 
 export function addValidation(address) {
   return reduce(
@@ -15,6 +16,7 @@ export function addValidation(address) {
     (newAddress, propValue, propName) => {
       const isStringOrArray =
         typeof propValue === 'string' || Array.isArray(propValue)
+
       newAddress[propName] = {
         value:
           propValue && !isUndefined(propValue.value)
@@ -23,9 +25,10 @@ export function addValidation(address) {
             ? propValue
             : null,
       }
+
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -35,6 +38,7 @@ export function removeValidation(address) {
     (newAddress, propValue, propName) => {
       if (!propValue) {
         newAddress[propName] = propValue
+
         return newAddress
       }
 
@@ -43,9 +47,10 @@ export function removeValidation(address) {
           ? null
           : propValue
         : propValue.value
+
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -57,9 +62,10 @@ export function addNewField(address, fieldName, value) {
         ...prop,
         [fieldName]: value,
       }
+
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -69,9 +75,10 @@ export function removeField(address, fieldName) {
     (newAddress, prop, propName) => {
       newAddress[propName] = { ...prop }
       delete newAddress[propName][fieldName]
+
       return newAddress
     },
-    {},
+    {}
   )
 }
 
@@ -95,7 +102,7 @@ export function addDisabledToProtectedFields(fields, rules) {
 
       return newFields
     },
-    {},
+    {}
   )
 }
 
@@ -106,7 +113,7 @@ export function handleMultipleValues(fields) {
     fields,
     (newFields, prop, propName) => {
       const hasMultipleValues = MULTIPLE_OPTIONS_SEPARATOR_REGEX.test(
-        prop.value,
+        prop.value
       )
 
       newFields[propName] = prop
@@ -121,7 +128,7 @@ export function handleMultipleValues(fields) {
 
       return newFields
     },
-    {},
+    {}
   )
 }
 
@@ -142,7 +149,7 @@ export function maskFields(addressFields, rules) {
 
       return newAddressFields
     },
-    {},
+    {}
   )
 }
 
@@ -151,6 +158,7 @@ export function addFocusToNextInvalidField(fields, rules) {
 
   if (invalidFilledField) {
     const { fieldName, field } = invalidFilledField
+
     return {
       ...fields,
       [fieldName]: field,
@@ -161,6 +169,7 @@ export function addFocusToNextInvalidField(fields, rules) {
 
   if (requiredField) {
     const { fieldName, field } = requiredField
+
     return {
       ...fields,
       [fieldName]: field,
@@ -176,9 +185,8 @@ function getFirstInvalidFilledField(fields, rules) {
 
   const firstInvalidField = find(
     rules.fields,
-    field =>
-      validatedFields[field.name] &&
-      validatedFields[field.name].valid === false,
+    (field) =>
+      validatedFields[field.name] && validatedFields[field.name].valid === false
   )
 
   if (firstInvalidField) {
@@ -195,8 +203,8 @@ function getFirstInvalidFilledField(fields, rules) {
 }
 
 function getFirstRequiredFieldNotFilled(fields, rules) {
-  const requiredFields = filter(rules.fields, field => field.required)
-  const requiredFieldsNames = map(requiredFields, field => field.name)
+  const requiredFields = filter(rules.fields, (field) => field.required)
+  const requiredFieldsNames = map(requiredFields, (field) => field.name)
 
   const fieldsNames = Object.keys(fields)
   const requiredFieldNotFilled = difference(requiredFieldsNames, fieldsNames)
@@ -216,7 +224,7 @@ export default function getGGUID() {
   return (gguid++ * new Date().getTime() * -1).toString().replace('-', '')
 }
 
-export function newAddress(address = {}) {
+export function createNewAddress(address = {}) {
   const {
     addressType,
     city,

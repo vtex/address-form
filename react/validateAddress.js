@@ -1,5 +1,6 @@
 import reduce from 'lodash/reduce'
 import find from 'lodash/find'
+
 import { hasOptions, getField, getListOfOptions } from './selectors/fields'
 import { addFocusToNextInvalidField } from './transforms/address'
 import {
@@ -13,7 +14,10 @@ import {
 
 export function isValidAddress(address, rules) {
   const validatedAddress = addFocusToNextInvalidField(address, rules)
-  const hasInvalidField = find(validatedAddress, field => field.valid === false)
+  const hasInvalidField = find(
+    validatedAddress,
+    (field) => field.valid === false
+  )
 
   return {
     valid: !hasInvalidField,
@@ -30,9 +34,10 @@ export function validateAddress(address, rules) {
         valueOptions,
         ...validateField(value, name, address, rules),
       }
+
       return memo
     },
-    {},
+    {}
   )
 }
 
@@ -41,7 +46,7 @@ export function validateChangedFields(changedFields, address, rules) {
   const visitedFields = reduce(
     changedFields,
     (acc, field, name) => (field.visited ? acc.concat([name]) : acc),
-    [],
+    []
   )
 
   const newAddress = {
@@ -56,7 +61,7 @@ export function validateChangedFields(changedFields, address, rules) {
         resultAddress[fieldName].value,
         fieldName,
         resultAddress,
-        rules,
+        rules
       )
 
       const isVisited = visitedFields.indexOf(fieldName) !== -1
@@ -82,9 +87,10 @@ export function validateChangedFields(changedFields, address, rules) {
         ...resultAddress[fieldName],
         ...(showValidationResult ? validationResult : {}),
       }
+
       return resultAddress
     },
-    newAddress,
+    newAddress
   )
 }
 
@@ -92,25 +98,40 @@ export function validateField(value, name, address, rules) {
   switch (name) {
     case 'addressId':
       return validateAddressId(value, name, address, rules)
+
     case 'addressType':
       return validateAddressType(value, name, address, rules)
+
     case 'country':
       return validateCountry(value, name, address, rules)
+
     case 'geoCoordinates':
       return validateGeoCoordinates(value, name, address, rules)
+
     case 'postalCode':
       return validatePostalCode(value, name, address, rules)
+
     case 'city':
+
     case 'complement':
+
     case 'neighborhood':
+
     case 'number':
+
     case 'receiverName':
+
     case 'reference':
+
     case 'state':
+
     case 'street':
+
     case 'addressQuery':
+
     case 'isDisposable':
       return defaultValidation(value, name, address, rules)
+
     default:
       console.warn(`Unexpected field ${name}`)
   }
@@ -126,7 +147,8 @@ const invalidPostalCode = { valid: false, reason: EPOSTALCODE }
 
 function valueInOptions(value, options) {
   const normalizedValue = value.toLowerCase()
-  const normalizedOptions = options.map(option => option.toLowerCase())
+  const normalizedOptions = options.map((option) => option.toLowerCase())
+
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }
 
@@ -134,7 +156,7 @@ function valueInOptionsPairs(value, optionsPairs) {
   return (
     find(
       optionsPairs,
-      optionPair => optionPair.value.toLowerCase() === value.toLowerCase(),
+      (optionPair) => optionPair.value.toLowerCase() === value.toLowerCase()
     ) || false
   )
 }
@@ -181,7 +203,7 @@ function defaultValidation(value, name, address, rules) {
   return validResult
 }
 
-function validateAddressId(value, name, address, rules) {
+function validateAddressId(value) {
   return value ? validResult : emptyField
 }
 
@@ -192,13 +214,13 @@ const validAddressTypes = [
   'giftRegistry',
 ]
 
-function validateAddressType(value, name, address, rules) {
+function validateAddressType(value) {
   return validAddressTypes.indexOf(value) !== -1
     ? validResult
     : invalidAddressType
 }
 
-function validateCountry(value, name, address, rules) {
+function validateCountry(value) {
   if (!value) {
     return emptyField
   }
@@ -210,13 +232,13 @@ function validateCountry(value, name, address, rules) {
   return validResult
 }
 
-function validateGeoCoordinates(value, name, address, rules) {
+function validateGeoCoordinates(value) {
   return value && (value.length === 0 || value.length === 2)
     ? validResult
     : invalidGeoCoords
 }
 
-function validatePostalCode(value, name, address, rules) {
+function validatePostalCode(value, name, _, rules) {
   const field = getField(name, rules)
 
   if (!field) return validResult
@@ -227,6 +249,7 @@ function validatePostalCode(value, name, address, rules) {
   // a not-required empty postal code should be valid
   if (field.regex && value) {
     const regExp = new RegExp(field.regex)
+
     if (regExp.test(value) === false) {
       return invalidPostalCode
     }

@@ -2,7 +2,7 @@ import { getAddress } from './postalCodeService'
 
 jest.mock('axios', () => {
   return {
-    get: endpoint => Promise.resolve({ data: { foo: 'bar', endpoint } }),
+    get: (endpoint) => Promise.resolve({ data: { foo: 'bar', endpoint } }),
   }
 })
 
@@ -16,7 +16,7 @@ test('should response with data', () => {
     accountName,
     country,
     postalCode: '22231-000',
-  }).then(data => {
+  }).then((data) => {
     expect(data.foo).toBe('bar')
   })
 })
@@ -29,8 +29,9 @@ test('should compose the endpoint right', () => {
     accountName,
     country,
     postalCode: '22231 000',
-  }).then(data => {
+  }).then((data) => {
     const endpoint = `https://${accountName}.vtexcommercestable.com.br/api/checkout/pub/postal-code/${country}/22231000`
+
     expect(data.endpoint).toBe(endpoint)
   })
 })

@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
+import { compose } from 'recompose'
+
 import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 import { injectRules } from '../addressRulesContext'
-import { compose } from 'recompose'
 import { injectAddressContext } from '../addressContainerContext'
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 
 class Map extends Component {
   getCoordinatesFromProps(props) {
     const { geoCoordinates, address } = props
+
     return geoCoordinates || address.geoCoordinates.value
   }
 
@@ -17,9 +19,10 @@ class Map extends Component {
     const rulesChanged = prevProps.rules.country !== this.props.rules.country
     const loadingGoogleChanged =
       prevProps.loadingGoogle !== this.props.loadingGoogle
+
     const geoCoordsChanged = this.isDifferentGeoCoords(
       this.getCoordinatesFromProps(prevProps),
-      this.getCoordinatesFromProps(this.props),
+      this.getCoordinatesFromProps(this.props)
     )
 
     return geoCoordsChanged || rulesChanged || loadingGoogleChanged
@@ -27,19 +30,22 @@ class Map extends Component {
 
   componentDidUpdate() {
     const location = this.getLocation()
+
     this.changeMarkerPosition(location)
     this.recenterMap(location)
   }
 
-  mapMounted = mapElement => {
+  mapMounted = (mapElement) => {
     if (!mapElement) {
       this.map = null
       this.marker.setMap(null)
       this.marker = null
+
       return
     }
 
     const location = this.getLocation()
+
     this.createMap(mapElement, location)
     this.changeMarkerPosition(location)
   }
@@ -62,7 +68,7 @@ class Map extends Component {
     this.map = new this.props.googleMaps.Map(this._mapElement, mapOptions)
   }
 
-  changeMarkerPosition = location => {
+  changeMarkerPosition = (location) => {
     if (!this.map) return
     if (this.marker) {
       this.marker.setMap(null)
@@ -82,18 +88,20 @@ class Map extends Component {
       'position_changed',
       debounce(() => {
         const newPosition = this.marker.getPosition()
+
         this.handleMarkerPositionChange(newPosition)
-      }, 1500),
+      }, 1500)
     )
   }
 
   getLocation = () => {
     const [lng, lat] = this.getCoordinatesFromProps(this.props)
     const location = new this.props.googleMaps.LatLng(lat, lng)
+
     return location
   }
 
-  recenterMap = location => {
+  recenterMap = (location) => {
     if (!this.map) return
 
     this.map.panTo(location)
@@ -103,14 +111,14 @@ class Map extends Component {
     return a[0] !== b[0] || a[1] !== b[1]
   }
 
-  handleMarkerPositionChange = newPosition => {
+  handleMarkerPositionChange = (newPosition) => {
     if (!this.geocoder) {
       this.geocoder = new this.props.googleMaps.Geocoder()
     }
 
     this.geocoder.geocode(
       { location: newPosition },
-      this.handleNewMarkerPosition,
+      this.handleNewMarkerPosition
     )
   }
 
@@ -123,16 +131,18 @@ class Map extends Component {
         const address = geolocationAutoCompleteAddress(
           this.props.address,
           googleAddress,
-          rules,
+          rules
         )
+
         const possibleChangedFields = {
           geoCoordinates: address.geoCoordinates,
           postalCode: address.postalCode,
         }
+
         onChangeAddress(possibleChangedFields)
       }
     } else {
-      console.warn('Google Maps Error: ' + status)
+      console.warn(`Google Maps Error: ${status}`)
     }
   }
 
@@ -160,8 +170,6 @@ Map.propTypes = {
   googleMaps: PropTypes.object,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-)
+const enhance = compose(injectAddressContext, injectRules)
+
 export default enhance(Map)

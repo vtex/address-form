@@ -1284,7 +1284,7 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: address => {
+      handler: (address) => {
         if (
           !address.state ||
           !address.city ||
@@ -1317,6 +1317,7 @@ export default {
       types: ['route'],
       handler: (address, googleAddress) => {
         address.street = { value: googleAddress.name }
+
         return address
       },
     },
@@ -1335,20 +1336,22 @@ export default {
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
-      handler: address => {
+      handler: (address) => {
         if (address.state && address.state.value === 'Bogotá') {
           address.state.value = 'Bogotá, D.C.'
         }
+
         return address
       },
     },
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
-      handler: address => {
+      handler: (address) => {
         if (address.city && address.city.value === 'Bogotá') {
           address.city.value = 'Bogotá, D.c.'
         }
+
         return address
       },
     },

@@ -17,6 +17,7 @@ export function secondLevelPostalCodes(countryData) {
         postalCode,
         label,
       }))
+
       return memo
     },
     {}
@@ -34,10 +35,12 @@ export function thirdLevelPostalCodes(countryData) {
             postalCode,
             label,
           }))
+
           return memoSecond
         },
         {}
       )
+
       return memo
     },
     {}

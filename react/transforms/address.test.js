@@ -72,10 +72,11 @@ describe('Address Transform', () => {
 
   it('should maintain original object when removing and adding validation at sequence multiple times', () => {
     const result1 = removeValidation(
-      addValidation(removeValidation(addValidation(address))),
+      addValidation(removeValidation(addValidation(address)))
     )
+
     const result2 = removeValidation(
-      removeValidation(addValidation(addValidation(address))),
+      removeValidation(addValidation(addValidation(address)))
     )
 
     expect(result1).toMatchObject(addressWithoutValidation)
@@ -97,6 +98,7 @@ describe('Address Transform', () => {
       ...address,
       postalCode: { value: '123', valid: true },
     }
+
     const fieldName = 'foo'
     const value = 'bar'
 
@@ -115,6 +117,7 @@ describe('Address Transform', () => {
       city: { value: 'Rio de Janeiro' },
       state: { value: 'RJ' },
     }
+
     const rules = {
       postalCodeProtectedFields: ['state', 'city'],
     }
@@ -133,6 +136,7 @@ describe('Address Transform', () => {
       city: { value: 'Rio de Janeiro' },
       state: { value: '' },
     }
+
     const rules = {
       postalCodeProtectedFields: ['state', 'city'],
     }
@@ -156,7 +160,7 @@ describe('Address Transform', () => {
     const result = handleMultipleValues(fields)
 
     expect(result.neighborhood.valueOptions).toHaveLength(8)
-    expect(result.neighborhood.value).toBe(null)
+    expect(result.neighborhood.value).toBeNull()
   })
 
   describe('maskFields()', () => {
@@ -186,6 +190,7 @@ describe('Address Transform', () => {
       const fields = {
         neighborhood: { value: 'Botafogo' },
       }
+
       expect(() => maskFields(fields, rules)).not.toThrow()
     })
 
@@ -278,7 +283,7 @@ describe('Address Transform', () => {
     })
 
     it('should add focus to the first invalid field in the order defined by the rules', () => {
-      const address = {
+      const residentialAddress = {
         addressId: { value: '10' },
         addressType: { value: 'residential' },
         city: { value: null },
@@ -333,7 +338,7 @@ describe('Address Transform', () => {
         ],
       }
 
-      const newFields = addFocusToNextInvalidField(address, rules)
+      const newFields = addFocusToNextInvalidField(residentialAddress, rules)
 
       expect(newFields.street.focus).toBe(true)
     })

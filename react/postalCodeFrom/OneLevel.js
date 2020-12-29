@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
 
 class OneLevel extends Component {
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit && this.props.onSubmit()
   }
@@ -39,6 +40,7 @@ class OneLevel extends Component {
         </form>
       )
     }
+
     return (
       <div>
         <SelectPostalCode

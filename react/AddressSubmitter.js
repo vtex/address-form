@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
+
 import { injectAddressContext } from './addressContainerContext'
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { isValidAddress } from './validateAddress'
@@ -13,9 +14,10 @@ class AddressSubmitter extends Component {
     const { valid, address: validatedAddress } = isValidAddress(address, rules)
 
     const invalidFields = Object.keys(validatedAddress)
-      .filter(key => validatedAddress[key].valid === false)
+      .filter((key) => validatedAddress[key].valid === false)
       .reduce((filteredAddress, key) => {
         filteredAddress[key] = validatedAddress[key]
+
         return filteredAddress
       }, {})
 
@@ -25,6 +27,7 @@ class AddressSubmitter extends Component {
 
   render() {
     const { children } = this.props
+
     return children(this.handleSubmit)
   }
 }
@@ -37,8 +40,6 @@ AddressSubmitter.propTypes = {
   children: PropTypes.func.isRequired,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-)
+const enhance = compose(injectAddressContext, injectRules)
+
 export default enhance(AddressSubmitter)

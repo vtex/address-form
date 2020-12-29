@@ -1,12 +1,18 @@
 import React from 'react'
-import AddressSubmitter from './AddressSubmitter'
 import { shallow, mount } from 'test-utils'
+
+import AddressSubmitter from './AddressSubmitter'
 import fbAddress from './__mocks__/facebookAddress'
 import { addValidation } from './transforms/address'
 import usaRules from './country/USA'
 
 describe('AddressSubmitter', () => {
-  let onSub, onCA, address, wrapper, Component
+  let onSub
+  let onCA
+  let address
+  let wrapper
+  let Component
+
   beforeEach(() => {
     onSub = jest.fn()
     onCA = jest.fn()
@@ -18,16 +24,14 @@ describe('AddressSubmitter', () => {
         address={address}
         rules={usaRules}
       >
-        {onSubmit => <button className="unique" onClick={onSubmit} />}
+        {(onSubmit) => <button className="unique" onClick={onSubmit} />}
       </AddressSubmitter>
     )
-    wrapper = shallow(Component)
-      .dive()
-      .dive()
+    wrapper = shallow(Component).dive().dive()
   })
 
   it('should render without crashing', () => {
-    mount(Component)
+    expect(() => mount(Component)).not.toThrow()
   })
 
   it('should render its children', () => {

@@ -1,10 +1,11 @@
 import React from 'react'
 import { mount } from 'test-utils'
+import { IntlProvider } from 'react-intl'
+
 import TwoLevels from './TwoLevels'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import address from '../__mocks__/newAddress'
 import MockInput from '../inputs/DefaultInput/__mocks__/Input'
-import { IntlProvider } from 'react-intl'
 import pt from '../../messages/pt.json'
 
 describe('TwoLevels', () => {
@@ -17,7 +18,7 @@ describe('TwoLevels', () => {
           rules={useTwoLevels}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     expect(wrapper.find('SelectLevel')).toHaveLength(1)

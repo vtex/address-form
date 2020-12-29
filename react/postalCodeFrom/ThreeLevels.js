@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import SelectLevel from './SelectLevel'
 import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
 
 class ThreeLevels extends Component {
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit && this.props.onSubmit()
   }
@@ -90,7 +91,7 @@ class ThreeLevels extends Component {
 ThreeLevels.propTypes = {
   address: AddressShapeWithValidation,
   Button: PropTypes.func,
-  loading: PropTypes.func,
+  loading: PropTypes.bool,
   Input: PropTypes.func.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
   onSubmit: PropTypes.func,

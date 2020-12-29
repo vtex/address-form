@@ -92,6 +92,7 @@ export default {
       types: ['route'],
       handler: (address, googleAddress) => {
         address.street = { value: googleAddress.name }
+
         return address
       },
     },

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 
 const SHALLOW_PROPS = [
@@ -15,7 +16,7 @@ const SHALLOW_PROPS = [
 ]
 
 function shallowCompareProps(prevProps, thisProps) {
-  return SHALLOW_PROPS.find(field => {
+  return SHALLOW_PROPS.find((field) => {
     return prevProps[field] !== thisProps[field]
   })
 }
@@ -32,7 +33,7 @@ const SHALLOW_FIELDS = [
 ]
 
 function shallowCompareField(prevProps, thisProps) {
-  return SHALLOW_FIELDS.find(field => {
+  return SHALLOW_FIELDS.find((field) => {
     return prevProps[field] !== thisProps[field]
   })
 }
@@ -44,7 +45,8 @@ function pureInputField(WrappedComponent) {
         return true
       }
 
-      const basedOn = this.props.field.basedOn
+      const { basedOn } = this.props.field
+
       if (
         basedOn &&
         prevProps.address[basedOn].value !== this.props.address[basedOn].value
@@ -55,7 +57,7 @@ function pureInputField(WrappedComponent) {
       if (
         shallowCompareField(
           prevProps.address[prevProps.field.name],
-          this.props.address[this.props.field.name],
+          this.props.address[this.props.field.name]
         )
       ) {
         return true

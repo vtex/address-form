@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'test-utils'
+
 import AutoCompletedFields from './AutoCompletedFields'
 import newAddress from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
@@ -8,15 +9,17 @@ describe('AutoCompletedFields', () => {
   const children = <span className="link-edit">Edit</span>
 
   it('renders without crashing', () => {
-    mount(
-      <AutoCompletedFields
-        rules={usePostalCode}
-        address={newAddress}
-        onChangeAddress={jest.fn()}
-      >
-        {children}
-      </AutoCompletedFields>,
-    )
+    expect(() =>
+      mount(
+        <AutoCompletedFields
+          rules={usePostalCode}
+          address={newAddress}
+          onChangeAddress={jest.fn()}
+        >
+          {children}
+        </AutoCompletedFields>
+      )
+    ).not.toThrow()
   })
 
   it("should display nothing if there's no autocompleted fields", () => {
@@ -27,8 +30,9 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
     )
+
     expect(wrapper.html()).toBeFalsy()
   })
 
@@ -47,12 +51,13 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={jest.fn()}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
     )
+
     expect(wrapper.html()).toBeFalsy()
   })
 
-  describe('', () => {
+  describe('With valid address', () => {
     const state = 'RJ'
     const city = 'Rio de Janeiro'
     const neighborhood = 'Botafogo'
@@ -65,6 +70,7 @@ describe('AutoCompletedFields', () => {
     }
 
     let wrapper
+
     beforeEach(() => {
       wrapper = mount(
         <AutoCompletedFields
@@ -73,7 +79,7 @@ describe('AutoCompletedFields', () => {
           onChangeAddress={onChangeAddress}
         >
           {children}
-        </AutoCompletedFields>,
+        </AutoCompletedFields>
       )
     })
 
@@ -88,11 +94,12 @@ describe('AutoCompletedFields', () => {
 
       expect(AddressSummary.prop('address').city).toBe(city)
       expect(AddressSummary.prop('address').neighborhood).toBe(neighborhood)
-      expect(AddressSummary.prop('address').state).toBe(undefined)
+      expect(AddressSummary.prop('address').state).toBeUndefined()
     })
 
     it('should remove auto completed properties from fields when click change', () => {
       const linkChange = wrapper.find('.link-edit')
+
       onChangeAddress.mockClear()
 
       linkChange.simulate('click', { preventDefault() {} })
@@ -104,12 +111,12 @@ describe('AutoCompletedFields', () => {
       expect(onChangeAddressArgument.state).toHaveProperty('value', state)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'geolocationAutoCompleted',
-        undefined,
+        undefined
       )
       expect(onChangeAddressArgument.city).toHaveProperty('value', city)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'postalCodeAutoCompleted',
-        undefined,
+        undefined
       )
     })
 
@@ -137,12 +144,12 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
     )
 
     const AddressSummary = wrapper.find('AddressSummary')
 
-    expect(AddressSummary.prop('address').postalCode).toBe(undefined)
+    expect(AddressSummary.prop('address').postalCode).toBeUndefined()
   })
 
   it('should show postal code when address is completed with geolocation', () => {
@@ -165,7 +172,7 @@ describe('AutoCompletedFields', () => {
         onChangeAddress={onChangeAddress}
       >
         {children}
-      </AutoCompletedFields>,
+      </AutoCompletedFields>
     )
 
     const AddressSummary = wrapper.find('AddressSummary')

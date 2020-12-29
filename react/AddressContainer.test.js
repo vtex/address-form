@@ -1,19 +1,16 @@
 import React from 'react'
+import { mount, render } from 'test-utils'
+
 import AddressContainer from './AddressContainer'
 import address from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import PostalCodeGetter from './PostalCodeGetter'
-import { mount, render } from 'test-utils'
 
 jest.mock('./postalCodeAutoCompleteAddress')
 
-const descendToChild = wrapper =>
-  wrapper
-    .children()
-    .children()
-    .children()
-    .children()
+const descendToChild = (wrapper) =>
+  wrapper.children().children().children().children()
 
 describe('AddressContainer', () => {
   const accountName = 'qamarketplace'
@@ -36,7 +33,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <span data-testid={testId} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
@@ -58,11 +55,12 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
-    const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+    const { onChangeAddress } = descendToChild(wrapper).props()
+
     onChangeAddress({ city: { value: 'Rio de Janeiro' } })
 
     // Assert
@@ -84,11 +82,12 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
-    const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+    const { onChangeAddress } = descendToChild(wrapper).props()
+
     onChangeAddress({ country: { value: 'ECU' } })
 
     // Assert
@@ -113,7 +112,7 @@ describe('AddressContainer', () => {
         shouldHandleAddressChangeOnMount
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     wrapper.setProps({
@@ -140,11 +139,12 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({
         postalCode: { value: '22231000' },
         country: { value: 'BRA' },
@@ -166,11 +166,12 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({ postalCode: { value: '222' } })
 
       // Assert
@@ -189,11 +190,12 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({
         postalCode: { value: '22231000', geolocationAutoCompleted: true },
       })
@@ -215,11 +217,12 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({ postalCode: { value: '22231000' } })
 
       // Assert

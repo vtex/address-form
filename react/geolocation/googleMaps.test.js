@@ -13,6 +13,7 @@ describe('googleMaps', () => {
 
   jest.mock('load-google-maps-api', () => mockLoad)
 
+  // eslint-disable-next-line global-require
   const loadGoogleMaps = require('./googleMaps').default
 
   const locale = 'pt'
