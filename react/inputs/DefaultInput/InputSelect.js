@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import map from 'lodash/map'
 import cx from 'classnames'
 
+import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
+
 class InputSelect extends Component {
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.onChange(e.target.value)
   }
 

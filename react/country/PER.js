@@ -2398,7 +2398,7 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: true,
-      handler: address => {
+      handler: (address) => {
         if (!address.state || !address.city || !address.neighborhood) {
           return address
         }
@@ -2431,13 +2431,14 @@ export default {
     neighborhood: {
       valueIn: 'long_name',
       types: ['administrative_area_level_3', 'locality'],
-      handler: address => {
+      handler: (address) => {
         if (
           address.neighborhood &&
           (address.neighborhood.value === 'Distrito de Lima' ||
             address.neighborhood.value === 'Lima')
         ) {
           address.neighborhood = { value: 'Lima' }
+
           return address
         }
 
@@ -2447,13 +2448,14 @@ export default {
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
-      handler: address => {
+      handler: (address) => {
         if (!address.city || !address.state) {
           return address
         }
 
         if (address.state && address.state.value === 'Provincia de Lima') {
           address.state.value = 'Lima'
+
           return address
         }
 
@@ -2462,12 +2464,15 @@ export default {
         }
 
         const states = Object.keys(countryData)
+
         for (let i = 0; i < states.length; i++) {
           const state = states[i]
           const cities = Object.keys(countryData[state])
           const hasCity = cities.indexOf(address.city.value) !== -1
+
           if (hasCity) {
             address.state = { value: state }
+
             return address
           }
         }
@@ -2478,10 +2483,11 @@ export default {
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2'],
-      handler: address => {
+      handler: (address) => {
         if (address.city && address.city.value === 'Provincia de Lima') {
           address.city.value = 'Lima'
         }
+
         return address
       },
     },

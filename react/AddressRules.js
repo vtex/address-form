@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { RulesContext } from './addressRulesContext'
 
+import { RulesContext } from './addressRulesContext'
 import defaultRules from './country/default'
 
 const MODULE_NOT_FOUND_PATTERN = /Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/
@@ -30,21 +30,25 @@ class AddressRules extends Component {
 
   parseError(e) {
     const result = MODULE_NOT_FOUND_PATTERN.exec(e.message)
+
     if (!result) return false
+
     return result[1]
   }
 
   fetchRules(rulePromise) {
     return rulePromise
-      .then(ruleData => ruleData.default || ruleData)
-      .catch(error => {
+      .then((ruleData) => ruleData.default || ruleData)
+      .catch((error) => {
         const errorType = this.parseError(error)
+
         if (errorType) {
           if (process.env.NODE_ENV !== 'production') {
             console.warn(
-              `Couldn't load rules for country ${errorType}, using default rules instead.`,
+              `Couldn't load rules for country ${errorType}, using default rules instead.`
             )
           }
+
           return defaultRules
         }
 
@@ -69,21 +73,24 @@ class AddressRules extends Component {
         // set a hidden flag for internal usage
         _usingGeolocationRules: true,
         // overwrite field with configs defined on `rules.geolocation`
-        fields: rules.fields.map(field => {
+        fields: rules.fields.map((field) => {
           if (rules.geolocation[field.name]) {
             // ignore unrelated props for the field
             // eslint-disable-next-line no-unused-vars
             const { valueIn, types, handler, ...props } = rules.geolocation[
               field.name
             ]
+
             return { ...field, ...props }
           }
+
           return field
         }),
       }
     }
 
     this.setState({ rules })
+
     return rules
   }
 

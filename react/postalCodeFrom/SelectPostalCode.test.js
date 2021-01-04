@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { mount } from 'test-utils'
+import find from 'lodash/find'
+import { IntlProvider } from 'react-intl'
+
 import SelectPostalCode from './SelectPostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import address from '../__mocks__/newAddress'
-import find from 'lodash/find'
-import { IntlProvider } from 'react-intl'
 import pt from '../../messages/pt.json'
 
 describe('SelectPostalCode', () => {
   const firstLevelName = useOneLevel.postalCodeLevels[0]
   const firstLevelField = find(
     useOneLevel.fields,
-    field => field.name === firstLevelName,
+    (field) => field.name === firstLevelName
   )
 
   class MockInput extends Component {
@@ -29,7 +30,7 @@ describe('SelectPostalCode', () => {
           rules={useOneLevel}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     const props = wrapper.find('PureInput').props()
@@ -46,8 +47,8 @@ describe('SelectPostalCode', () => {
     const firstLevelOptions = useOneLevel.firstLevelPostalCodes.map(
       ({ label, postalCode }) => ({
         value: `${label}___${postalCode}`,
-        label: label,
-      }),
+        label,
+      })
     )
 
     const wrapper = mount(
@@ -58,7 +59,7 @@ describe('SelectPostalCode', () => {
           rules={useOneLevel}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     const props = wrapper.find('PureInput').props()
@@ -84,7 +85,7 @@ describe('SelectPostalCode', () => {
           rules={useOneLevel}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     const props = wrapper.find('PureInput').props()
@@ -95,15 +96,17 @@ describe('SelectPostalCode', () => {
   })
 
   it('should handle change leaving postal-code-defining-field clean', () => {
-    const Component = jest.fn(({ onChange }) => {
+    const InputComponent = ({ onChange }) => {
       onChange('Azuay___0000')
+
       return <div />
-    })
+    }
+
     const handleChange = jest.fn()
 
     mount(
       <SelectPostalCode
-        Input={Component}
+        Input={InputComponent}
         address={{
           ...address,
           postalCode: { value: '0001' },
@@ -111,7 +114,7 @@ describe('SelectPostalCode', () => {
         }}
         rules={useOneLevel}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
     expect(handleChange).toHaveBeenCalledWith({

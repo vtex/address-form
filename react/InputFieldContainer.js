@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import reduce from 'lodash/reduce'
+import msk from 'msk'
+
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import {
   getListOfOptions,
   hasOptions,
   getDependentFields,
 } from './selectors/fields'
-import reduce from 'lodash/reduce'
-import msk from 'msk'
 import pureInputField from './pureInputField'
 
 class InputFieldContainer extends Component {
@@ -18,6 +19,7 @@ class InputFieldContainer extends Component {
       address,
       (cleanAddress, addressField, prop) => {
         const isDependentField = dependentFields.indexOf(prop) !== -1
+
         return isDependentField
           ? {
               ...cleanAddress,
@@ -28,7 +30,7 @@ class InputFieldContainer extends Component {
             }
           : cleanAddress
       },
-      {},
+      {}
     )
   }
 
@@ -36,7 +38,7 @@ class InputFieldContainer extends Component {
     const { field, address, rules, onChangeAddress } = this.props
     const dependentFields = getDependentFields(field.name, rules)
 
-    return value => {
+    return (value) => {
       const clearedFields = this.clearDependentFields(address, dependentFields)
 
       onChangeAddress({
@@ -58,9 +60,9 @@ class InputFieldContainer extends Component {
     return () => {
       onChangeAddress({
         number: {
-          ...address['number'],
-          value: address['number'].disabled ? null : labelNotApplicable,
-          disabled: !address['number'].disabled,
+          ...address.number,
+          value: address.number.disabled ? null : labelNotApplicable,
+          disabled: !address.number.disabled,
         },
       })
     }
@@ -87,7 +89,7 @@ class InputFieldContainer extends Component {
     }
   }
 
-  inputRef = el => {
+  inputRef = (el) => {
     this.el = el
   }
 
@@ -102,6 +104,7 @@ class InputFieldContainer extends Component {
   addFocusIfNeeded() {
     const { address, field, onChangeAddress } = this.props
     const fieldValue = address[field.name]
+
     if (this.el && typeof this.el.focus === 'function' && fieldValue.focus) {
       this.el.focus()
       onChangeAddress({

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import cx from 'classnames'
 
+import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
+
 class InputText extends Component {
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.onChange(e.target.value)
   }
 

@@ -5,6 +5,13 @@ import usePostalCode from './country/__mocks__/usePostalCode'
 jest.mock('./transforms/address')
 jest.mock('./postalCodeService')
 
+const waitForResult = async () => {
+  jest.runAllTimers()
+
+  await new Promise(setImmediate)
+  await new Promise(setImmediate)
+}
+
 describe('postalCodeAutoCompleteAddress()', () => {
   const cors = false
   const accountName = null
@@ -28,10 +35,10 @@ describe('postalCodeAutoCompleteAddress()', () => {
     expect(resultAddress.postalCode.loading).toBe(true)
   })
 
-  it('should call callback function', done => {
-    function callback(data) {
-      done()
-    }
+  it('should call callback function', async () => {
+    jest.useFakeTimers()
+
+    const callback = jest.fn()
 
     postalCodeAutoCompleteAddress({
       cors,
@@ -40,13 +47,16 @@ describe('postalCodeAutoCompleteAddress()', () => {
       rules: usePostalCode,
       callback,
     })
+
+    await waitForResult()
+
+    expect(callback).toHaveBeenCalledTimes(1)
   })
 
-  it('should call callback function with the postal code loading false', done => {
-    function callback(data) {
-      expect(data.postalCode.loading).toBeFalsy()
-      done()
-    }
+  it('should call callback function with the postal code loading false', async () => {
+    jest.useFakeTimers()
+
+    const callback = jest.fn()
 
     postalCodeAutoCompleteAddress({
       cors,
@@ -55,17 +65,24 @@ describe('postalCodeAutoCompleteAddress()', () => {
       rules: usePostalCode,
       callback,
     })
+
+    await waitForResult()
+
+    expect(callback).toHaveBeenCalledWith(
+      expect.objectContaining({
+        postalCode: expect.objectContaining({ loading: undefined }),
+      })
+    )
   })
 
-  it('should handle promise rejection', done => {
+  it('should handle promise rejection', async () => {
+    jest.useFakeTimers()
+
+    const callback = jest.fn()
+
     const rejectionAddress = {
       ...address,
       postalCode: { value: '22251000' },
-    }
-
-    function callback(data) {
-      expect(data.postalCode.loading).toBeUndefined()
-      done()
     }
 
     postalCodeAutoCompleteAddress({
@@ -75,5 +92,13 @@ describe('postalCodeAutoCompleteAddress()', () => {
       rules: usePostalCode,
       callback,
     })
+
+    await waitForResult()
+
+    expect(callback).toHaveBeenCalledWith(
+      expect.objectContaining({
+        postalCode: expect.objectContaining({ loading: undefined }),
+      })
+    )
   })
 })

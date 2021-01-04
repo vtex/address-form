@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
 import cx from 'classnames'
 
+import AddressShapeWithValidation from '../../propTypes/AddressShapeWithValidation'
+
 class InputCheckbox extends Component {
-  handleChange = e => {
+  handleChange = (e) => {
     this.props.onChange(e.target.value)
   }
+
   render() {
-    const {
-      address,
-      field,
-      placeholder,
-      onFocus,
-      onBlur,
-    } = this.props
+    const { address, field, placeholder, onFocus, onBlur } = this.props
 
     const checked =
       address[field.name].disabled &&
       !!address[field.name].value &&
       address[field.name].valid
+
     const id = this.props.id.replace('{{fieldName}}', field.name)
     const className = cx('input', 'ship-checkboxNumberLabel', {
       required: field.required,

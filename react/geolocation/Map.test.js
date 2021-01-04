@@ -1,9 +1,11 @@
 import React from 'react'
-import { shallow, mount } from 'test-utils'
+import { shallow } from 'test-utils'
+
 import Map from './Map'
 
 describe('Map', () => {
-  let shallowWrapper, shallowInstance
+  let shallowWrapper
+  let shallowInstance
 
   function shallowRenderComponent() {
     shallowWrapper = shallow(
@@ -14,7 +16,7 @@ describe('Map', () => {
         onChangeAddress={jest.fn()}
         loadingGoogle={false}
         googleMaps={null}
-      />,
+      />
     )
       .dive()
       .dive()
@@ -27,16 +29,18 @@ describe('Map', () => {
   })
 
   it('should render without crashing', () => {
-    shallow(
-      <Map
-        loadingElement={<div />}
-        geoCoordinates={[]}
-        rules={{}}
-        onChangeAddress={jest.fn()}
-        loadingGoogle
-        googleMaps={null}
-      />,
-    )
+    expect(() =>
+      shallow(
+        <Map
+          loadingElement={<div />}
+          geoCoordinates={[]}
+          rules={{}}
+          onChangeAddress={jest.fn()}
+          loadingGoogle
+          googleMaps={null}
+        />
+      )
+    ).not.toThrow()
   })
 
   it("should not re-render if rules and geoCoords didn't change", () => {
@@ -45,7 +49,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       currentProps,
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(false)
@@ -57,7 +61,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       { ...currentProps, rules: { country: 'USA' } },
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(true)
@@ -69,19 +73,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       { ...currentProps, geoCoordinates: [2, 3] },
-      currentState,
-    )
-
-    expect(shouldUpdate).toBe(true)
-  })
-
-  it('should re-render if geoCoords changed', () => {
-    const currentProps = shallowInstance.props
-    const currentState = shallowInstance.state
-
-    const shouldUpdate = shallowInstance.shouldComponentUpdate(
-      { ...currentProps, geoCoordinates: [2, 3] },
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(true)
@@ -93,7 +85,7 @@ describe('Map', () => {
 
     const shouldUpdate = shallowInstance.shouldComponentUpdate(
       { ...currentProps, loadingGoogle: true },
-      currentState,
+      currentState
     )
 
     expect(shouldUpdate).toBe(true)

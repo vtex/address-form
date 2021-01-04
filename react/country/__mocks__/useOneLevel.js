@@ -75,7 +75,7 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: address => {
+      handler: (address) => {
         if (
           !address.state ||
           !address.city ||
@@ -97,10 +97,18 @@ export default {
         return address
       },
     },
-    number: { valueIn: 'long_name', types: ['street_number'], required: false, notApplicable: true, handler: address => {
-      return {...address,
-        number: {...address['number'], notApplicable: true}}
-    } },
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+      notApplicable: true,
+      handler: (address) => {
+        return {
+          ...address,
+          number: { ...address.number, notApplicable: true },
+        }
+      },
+    },
     street: { valueIn: 'long_name', types: ['route'], required: false },
     state: {
       valueIn: 'long_name',

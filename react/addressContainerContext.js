@@ -9,7 +9,7 @@ export function injectAddressContext(Component) {
 
     return (
       <AddressContext.Consumer>
-        {ctx => (
+        {(ctx) => (
           <Component
             {...props}
             address={ctx.address}

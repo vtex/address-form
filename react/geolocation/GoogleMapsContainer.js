@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import loadGoogleMaps from './googleMaps'
 
 class GoogleMapsContainer extends Component {
@@ -15,7 +16,7 @@ class GoogleMapsContainer extends Component {
   componentDidMount() {
     const { locale, apiKey } = this.props
 
-    loadGoogleMaps({ locale, apiKey }).then(googleMaps => {
+    loadGoogleMaps({ locale, apiKey }).then((googleMaps) => {
       this.setState({ googleMaps, loading: false })
     })
   }

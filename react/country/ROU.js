@@ -14003,7 +14003,7 @@ export default {
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
-      handler: address => {
+      handler: (address) => {
         if (!address.city || !address.state) {
           return address
         }
@@ -14017,12 +14017,15 @@ export default {
         }
 
         const states = Object.keys(countryData)
+
         for (let i = 0; i < states.length; i++) {
           const state = states[i]
           const cities = Object.keys(countryData[state])
           const hasCity = cities.indexOf(address.city.value) !== -1
+
           if (hasCity) {
             address.state = { value: state }
+
             return address
           }
         }
@@ -14050,6 +14053,7 @@ export default {
 
         if (!isValidCity && pass === 2) {
           address.city.value = ''
+
           return address
         }
 

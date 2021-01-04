@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 class DefaultSubmitButton extends Component {
   render() {
     const { buttonLabel } = this.props
+
     return <button type="submit">{buttonLabel}</button>
   }
 }

@@ -3,7 +3,6 @@ import { rendererCreate } from 'test-utils'
 
 import address from '../../__mocks__/geolocationAddressValid'
 import newAddress from '../../__mocks__/newAddress'
-
 import Input from './index'
 
 const GEOLOCATION_PROPS = {
@@ -11,7 +10,7 @@ const GEOLOCATION_PROPS = {
     name: 'number',
     size: 'small',
     maxLength: '9',
-    label: 'number'
+    label: 'number',
   },
   address: {
     ...address,
@@ -35,11 +34,11 @@ const DEFAULT_PROPS = {
     name: 'number',
     size: 'small',
     maxLength: '9',
-    label: 'number'
+    label: 'number',
   },
-  addressId: {value: '1'},
+  addressId: { value: '1' },
   address: {
-    addressId: {value: '1'},
+    addressId: { value: '1' },
     ...newAddress,
     number: {
       value: '',
@@ -69,6 +68,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       className: 'my-class',
     }
+
     const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -79,6 +79,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       type: 'tel',
     }
+
     const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -89,6 +90,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       id: 'summary-postal-code',
     }
+
     const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -99,6 +101,7 @@ describe('Input', () => {
       ...DEFAULT_PROPS,
       id: 'my-context-{{fieldName}}',
     }
+
     const tree = rendererCreate(<Input {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()

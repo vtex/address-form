@@ -34,7 +34,7 @@ class AddressContainer extends Component {
     }
   }
 
-  handleAddressChange = changedAddressFields => {
+  handleAddressChange = (changedAddressFields) => {
     const {
       cors,
       accountName,
@@ -60,7 +60,7 @@ class AddressContainer extends Component {
     const validatedAddress = validateChangedFields(
       changedAddressFields,
       address,
-      rules,
+      rules
     )
 
     if (
@@ -69,9 +69,12 @@ class AddressContainer extends Component {
       !changedAddressFields.postalCode.geolocationAutoCompleted
     ) {
       const postalCodeField =
-        rules.fields && rules.fields.find(field => field.name === 'postalCode')
+        rules.fields &&
+        rules.fields.find((field) => field.name === 'postalCode')
+
       const diffFromPrev =
         address.postalCode.value !== validatedAddress.postalCode.value
+
       const isValidPostalCode = validatedAddress.postalCode.valid === true
       const shouldAutoComplete =
         rules.postalCodeFrom === POSTAL_CODE &&

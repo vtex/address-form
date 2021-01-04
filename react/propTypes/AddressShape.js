@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+
 import CountryType from './CountryType'
 
 export const Address = {

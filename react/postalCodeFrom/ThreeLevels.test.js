@@ -1,10 +1,11 @@
 import React from 'react'
 import { mount } from 'test-utils'
+import { IntlProvider } from 'react-intl'
+
 import ThreeLevels from './ThreeLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
 import MockInput from '../inputs/DefaultInput/__mocks__/Input'
-import { IntlProvider } from 'react-intl'
 import pt from '../../messages/pt.json'
 
 describe('ThreeLevels', () => {
@@ -17,7 +18,7 @@ describe('ThreeLevels', () => {
           rules={useThreeLevels}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     expect(wrapper.find('SelectLevel')).toHaveLength(2)

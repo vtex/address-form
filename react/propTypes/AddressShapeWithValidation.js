@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
-import { ERROR_TYPES } from '../constants'
 import reduce from 'lodash/reduce'
+
+import { ERROR_TYPES } from '../constants'
 import { Address } from './AddressShape'
 
 export const ValidationType = {
@@ -21,6 +22,7 @@ export const AddressWithValidation = reduce(
       valueOptions: PropTypes.arrayOf(PropTypes.string),
       notApplicable: PropTypes.bool,
     }).isRequired
+
     return acc
   },
   {}

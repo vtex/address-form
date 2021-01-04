@@ -11,7 +11,7 @@ const fallbackAddress = {
 
 const addresses = {
   BRA: {
-    '22231000': {
+    22231000: {
       postalCode: '22231000',
       city: 'Rio de Janeiro',
       state: 'RJ',
@@ -23,7 +23,7 @@ const addresses = {
       reference: null,
       geoCoordinates: [],
     },
-    '22251000': { reject: true },
+    22251000: { reject: true },
   },
 }
 
@@ -33,17 +33,16 @@ export function getAddress({ country, postalCode }) {
 
     const shouldResolve = !address || !address.reject
 
-    process.nextTick(
-      () =>
-        shouldResolve
-          ? address
-            ? resolve({ ...address })
-            : resolve({
+    process.nextTick(() => {
+      shouldResolve
+        ? address
+          ? resolve({ ...address })
+          : resolve({
               ...fallbackAddress,
               country,
               postalCode,
             })
-          : reject('Error')
-    )
+        : reject('Error')
+    })
   })
 }

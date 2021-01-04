@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, mount, rendererCreate } from 'test-utils'
+
 import CountrySelector from './CountrySelector'
 import newAddress from './__mocks__/newAddress'
 
@@ -10,13 +11,15 @@ describe('CountrySelector', () => {
   ]
 
   it('renders without crashing', () => {
-    render(
-      <CountrySelector
-        address={newAddress}
-        shipsTo={shipsTo}
-        onChangeAddress={jest.fn()}
-      />,
-    )
+    expect(() =>
+      render(
+        <CountrySelector
+          address={newAddress}
+          shipsTo={shipsTo}
+          onChangeAddress={jest.fn()}
+        />
+      )
+    ).not.toThrow()
   })
 
   it('show options', () => {
@@ -26,8 +29,7 @@ describe('CountrySelector', () => {
         shipsTo={shipsTo}
         onChangeAddress={jest.fn()}
       />
-    )
-    .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -42,8 +44,7 @@ describe('CountrySelector', () => {
         shipsTo={shipsTo}
         onChangeAddress={jest.fn()}
       />
-    )
-    .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -58,8 +59,7 @@ describe('CountrySelector', () => {
         shipsTo={shipsTo}
         onChangeAddress={jest.fn()}
       />
-    )
-    .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -78,6 +78,7 @@ describe('CountrySelector', () => {
     )
 
     const event = { target: { value: 'USA' } }
+
     wrapper.find('select').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalled()
@@ -101,6 +102,7 @@ describe('CountrySelector', () => {
     )
 
     const event = { target: { value: 'USA' } }
+
     wrapper.find('select').simulate('change', event)
 
     expect(handleChange).toHaveBeenCalledWith({

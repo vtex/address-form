@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount, rendererCreate } from 'test-utils'
+
 import AddressSummary from './AddressSummary'
 import address from './__mocks__/addressWithoutValidation'
 import fbAddress from './__mocks__/facebookAddress'
@@ -11,14 +12,15 @@ import displayNoSummary from './country/__mocks__/displayNoSummary'
 describe('AddressSummary', () => {
   it('renders without crashing', () => {
     const wrapper = mount(
-      <AddressSummary address={address} rules={displayBrazil} />,
+      <AddressSummary address={address} rules={displayBrazil} />
     )
+
     expect(wrapper.find('div')).toHaveLength(1)
   })
 
   it('should render each field in its own span', () => {
     const wrapper = mount(
-      <AddressSummary address={fbAddress} rules={displayUSA} />,
+      <AddressSummary address={fbAddress} rules={displayUSA} />
     )
 
     expect(wrapper.find('.street')).toHaveText('1 Hacker Way')
@@ -35,7 +37,7 @@ describe('AddressSummary', () => {
           complement: null,
         }}
         rules={displayUSA}
-      />,
+      />
     )
 
     expect(wrapper.find('.complement')).toHaveLength(0)
@@ -47,7 +49,7 @@ describe('AddressSummary', () => {
         address={fbAddress}
         rules={displayUSA}
         showCountry={false}
-      />,
+      />
     )
 
     expect(wrapper.find('.country')).toHaveLength(0)
@@ -61,7 +63,7 @@ describe('AddressSummary', () => {
     const wrapper = mount(
       <AddressSummary address={address} rules={displayBrazil}>
         <MyChild />
-      </AddressSummary>,
+      </AddressSummary>
     )
 
     expect(wrapper.find('MyChild')).toHaveLength(1)
@@ -76,10 +78,11 @@ describe('AddressSummary', () => {
         rules={displayBrazil}
         canEditData={false}
         onClickMaskedInfoIcon={handleClick}
-      />,
+      />
     )
 
     const maskedInfoIcon = wrapper.find('.client-masked-info')
+
     maskedInfoIcon.simulate('click', { preventDefault() {} })
 
     expect(handleClick).toHaveBeenCalled()
@@ -88,10 +91,10 @@ describe('AddressSummary', () => {
   it('should render gift list address', () => {
     const tree = rendererCreate(
       <AddressSummary
-        giftRegistryDescription={'João da Silva'}
+        giftRegistryDescription="João da Silva"
         address={address}
         rules={usePostalCode}
-      />,
+      />
     )
 
     expect(tree).toMatchSnapshot()
@@ -111,7 +114,7 @@ describe('AddressSummary', () => {
           country: 'BRA',
         }}
         rules={displayBrazil}
-      />,
+      />
     )
 
     const americanAddress = rendererCreate(
@@ -127,7 +130,7 @@ describe('AddressSummary', () => {
           country: 'USA',
         }}
         rules={displayUSA}
-      />,
+      />
     )
 
     expect(brazilianAddress).toMatchSnapshot()
@@ -138,7 +141,7 @@ describe('AddressSummary', () => {
     global.console = { warn: jest.fn() }
 
     const wrapper = rendererCreate(
-      <AddressSummary address={fbAddress} rules={displayNoSummary} />,
+      <AddressSummary address={fbAddress} rules={displayNoSummary} />
     )
 
     expect(wrapper).toMatchSnapshot()

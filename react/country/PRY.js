@@ -330,7 +330,6 @@ const countryData = {
     'Villa Del Rosario': '8070',
     'Yataity Del Norte': '8190',
     Yrybucua: '0219',
-
   },
   Ñeembucu: {
     Alberdi: '2980',

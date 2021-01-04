@@ -4,5 +4,5 @@ import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 
 export default {
   AddressShape,
-  AddressShapeWithValidation
+  AddressShapeWithValidation,
 }

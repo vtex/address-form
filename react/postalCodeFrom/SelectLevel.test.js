@@ -1,10 +1,11 @@
 import React from 'react'
-import SelectLevel from './SelectLevel'
 import { mount } from 'test-utils'
+import { IntlProvider } from 'react-intl'
+
+import SelectLevel from './SelectLevel'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
 import address from '../__mocks__/newAddress'
 import MockInput from '../inputs/DefaultInput/__mocks__/Input'
-import { IntlProvider } from 'react-intl'
 import pt from '../../messages/pt.json'
 
 describe('SelectLevel', () => {
@@ -18,7 +19,7 @@ describe('SelectLevel', () => {
           rules={useThreeLevels}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     expect(wrapper.find('PureInput')).toHaveLength(1)
@@ -27,8 +28,10 @@ describe('SelectLevel', () => {
   it('should call handleChange', () => {
     const Component = jest.fn(({ onChange }) => {
       onChange('Beni')
+
       return <div />
     })
+
     const handleChange = jest.fn()
 
     mount(
@@ -38,7 +41,7 @@ describe('SelectLevel', () => {
         address={address}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
     expect(handleChange).toHaveBeenCalled()
@@ -47,8 +50,10 @@ describe('SelectLevel', () => {
   it('should call handleChange and clear dependent fields', () => {
     const Component = jest.fn(({ onChange }) => {
       onChange('II Región')
+
       return <div />
     })
+
     const handleChange = jest.fn()
 
     mount(
@@ -63,7 +68,7 @@ describe('SelectLevel', () => {
         }}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
     expect(handleChange).toHaveBeenCalledWith({

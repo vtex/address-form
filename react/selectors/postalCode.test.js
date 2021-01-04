@@ -2,7 +2,7 @@ import {
   getPostalCodeOptions,
   getLastLevelField,
   getLevelField,
-} from '../selectors/postalCode'
+} from './postalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'

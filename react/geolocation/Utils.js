@@ -3,17 +3,20 @@ import geolocationAutoCompleteAddress from './geolocationAutoCompleteAddress'
 export default function getAddressByGeolocation(geolocationProps) {
   const { address, onChangeAddress, rules, googleMaps } = geolocationProps
 
-  if (!googleMaps || !address || !rules || !address['number'].value) {
+  if (!googleMaps || !address || !rules || !address.number.value) {
     return
   }
 
   const geocoder = new googleMaps.Geocoder()
+
   geocoder.geocode(
     {
       componentRestrictions: {
         country: rules.abbr,
       },
-      address: `${address['number'].value || ''} ${address['street'].value || ''} ${address['city'].value || ''} ${address['state'].value || ''}`,
+      address: `${address.number.value || ''} ${address.street.value || ''} ${
+        address.city.value || ''
+      } ${address.state.value || ''}`,
     },
     (results, status) => {
       if (status === googleMaps.GeocoderStatus.OK) {
@@ -22,7 +25,7 @@ export default function getAddressByGeolocation(geolocationProps) {
           const autoCompletedAddress = geolocationAutoCompleteAddress(
             address,
             googleAddress,
-            rules,
+            rules
           )
 
           onChangeAddress({
@@ -34,11 +37,12 @@ export default function getAddressByGeolocation(geolocationProps) {
               value: null,
             },
           })
+
           return autoCompletedAddress
         }
       } else {
         console.warn(`Google Maps Error: ${status}`)
       }
-    },
+    }
   )
 }

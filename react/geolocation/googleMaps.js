@@ -13,11 +13,12 @@ export default function loadGoogleMaps({ locale, apiKey }) {
       language: locale,
       libraries: ['places'],
     })
-      .then(googleMaps => {
+      .then((googleMaps) => {
         cachedGoogleMapsAPI = googleMaps
+
         return resolve(googleMaps)
       })
-      .catch(error => {
+      .catch((error) => {
         return reject(error)
       })
   })

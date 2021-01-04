@@ -2,7 +2,6 @@ import React from 'react'
 import { rendererCreate } from 'test-utils'
 
 import address from '../../__mocks__/geolocationAddress'
-
 import GeolocationNumberInput from './GeolocationNumberInput'
 
 const DEFAULT_PROPS = {
@@ -26,7 +25,9 @@ const DEFAULT_PROPS = {
 
 describe('InputText', () => {
   it('should render default case', () => {
-    const tree = rendererCreate(<GeolocationNumberInput {...DEFAULT_PROPS} />).toJSON()
+    const tree = rendererCreate(
+      <GeolocationNumberInput {...DEFAULT_PROPS} />
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -36,6 +37,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       disabled: true,
     }
+
     const tree = rendererCreate(<GeolocationNumberInput {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -46,6 +48,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       className: 'my-class',
     }
+
     const tree = rendererCreate(<GeolocationNumberInput {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -56,6 +59,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       type: 'tel',
     }
+
     const tree = rendererCreate(<GeolocationNumberInput {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -66,6 +70,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       id: 'summary-postal-code',
     }
+
     const tree = rendererCreate(<GeolocationNumberInput {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -76,6 +81,7 @@ describe('InputText', () => {
       ...DEFAULT_PROPS,
       id: 'my-context-{{fieldName}}',
     }
+
     const tree = rendererCreate(<GeolocationNumberInput {...props} />).toJSON()
 
     expect(tree).toMatchSnapshot()

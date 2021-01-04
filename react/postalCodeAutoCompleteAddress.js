@@ -1,4 +1,7 @@
-import { getAddress } from './postalCodeService'
+import flow from 'lodash/flow'
+import pickBy from 'lodash/pickBy'
+import isNil from 'lodash/isNil'
+
 import {
   addValidation,
   addNewField,
@@ -6,11 +9,9 @@ import {
   handleMultipleValues,
   maskFields,
   addFocusToNextInvalidField,
-  newAddress,
+  createNewAddress,
 } from './transforms/address'
-import flow from 'lodash/flow'
-import pickBy from 'lodash/pickBy'
-import isNil from 'lodash/isNil'
+import { getAddress } from './postalCodeService'
 
 export default function postalCodeAutoCompleteAddress({
   cors,
@@ -26,23 +27,23 @@ export default function postalCodeAutoCompleteAddress({
     country: address.country.value,
     postalCode: address.postalCode.value,
   })
-    .then(responseAddress => {
+    .then((responseAddress) => {
       const functionsFlow = [
-        fields => pickBy(fields, field => !isNil(field) && field !== ''),
-        fields => addValidation(fields, address),
-        fields => handleMultipleValues(fields),
-        fields => maskFields(fields, rules),
-        fields => addNewField(fields, 'postalCodeAutoCompleted', true),
-        fields => addDisabledToProtectedFields(fields, rules),
+        (fields) => pickBy(fields, (field) => !isNil(field) && field !== ''),
+        (fields) => addValidation(fields, address),
+        (fields) => handleMultipleValues(fields),
+        (fields) => maskFields(fields, rules),
+        (fields) => addNewField(fields, 'postalCodeAutoCompleted', true),
+        (fields) => addDisabledToProtectedFields(fields, rules),
         removePostalCodeLoading,
         ...(shouldAddFocusToNextInvalidField
-          ? [fields => addFocusToNextInvalidField(fields, rules)]
+          ? [(fields) => addFocusToNextInvalidField(fields, rules)]
           : []),
       ]
 
       const autoCompletedFields = flow(functionsFlow)(responseAddress)
 
-      const newAddressWithAutocompletedFields = newAddress({
+      const newAddressWithAutocompletedFields = createNewAddress({
         receiverName: address.receiverName,
         ...autoCompletedFields,
       })
@@ -51,16 +52,18 @@ export default function postalCodeAutoCompleteAddress({
     })
     .catch(() => {
       let newFields = removePostalCodeLoading(address)
+
       newFields = addFocusToNextInvalidField(newFields, rules)
+
       callback(newFields)
     })
     .catch(
-      /* istanbul ignore next */ error => {
+      /* istanbul ignore next */ (error) => {
         // If the Jest test case that tests the catch() above fails,
         // the promise will catch the error and go to this branch
         // of the code. This console error makes the Jest error visible.
         console.error(error)
-      },
+      }
     )
 
   return addPostalCodeLoading(address)

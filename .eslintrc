@@ -4,10 +4,8 @@
   "env": {
     "node": true,
     "es6": true,
-    "jest": true
+    "jest": true,
+    "browser": true
   },
-  "parser": "@typescript-eslint/parser",
-  "rules": {
-    "prettier/prettier": "off"
-  }
+  "parser": "@typescript-eslint/parser"
 }
