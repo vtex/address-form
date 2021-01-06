@@ -87,7 +87,7 @@ export default {
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: false,
     },
     street: { valueIn: 'long_name', types: ['route'] },
