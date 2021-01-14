@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix "Rosario" (Santa Fé) city in Argentina to "Rosário".
 ## [3.13.10] - 2021-01-04
 
 ### Fixed
