@@ -17172,7 +17172,7 @@ const countryData = {
     'Rodolfo Alcorta',
     'Roldan',
     'Romang',
-    'Rosario',
+    'Rosário',
     'Rueda',
     'Rufino',
     'Ruinas Santa Fe La Vieja',
