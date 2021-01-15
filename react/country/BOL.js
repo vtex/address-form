@@ -420,6 +420,7 @@ export default {
       postalCodeAPI: false,
       regex: /^(\d{5})$/,
       size: 'small',
+      required: true,
     },
     {
       name: 'street',
