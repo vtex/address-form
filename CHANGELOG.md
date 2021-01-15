@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.13.12] - 2021-01-15
+
 ### Fixed
 
 - State/city selection on Bolivia because postalCode was not required when it should.
