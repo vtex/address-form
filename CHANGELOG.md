@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Rules for Finland, Denmark, and Sweden removing the 'state' field as mandatory.
+
 ## [3.13.12] - 2021-01-15
 
 ### Fixed
