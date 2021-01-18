@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: 'ITA',
-  abbr: 'IT',
+  country: 'ARE',
+  abbr: 'AE',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -13,14 +13,13 @@ export default {
       size: 'medium',
     },
     {
+      hidden: true,
       name: 'postalCode',
-      maxLength: 5,
+      maxLength: 50,
       label: 'postalCode',
       size: 'small',
       autoComplete: 'nope',
       postalCodeAPI: false,
-      regex: /^([\d]{5})$/,
-      required: true,
     },
     {
       name: 'street',
@@ -34,6 +33,7 @@ export default {
       label: 'number',
       size: 'small',
       autoComplete: 'nope',
+      notApplicable: false,
     },
     {
       name: 'complement',
@@ -65,7 +65,7 @@ export default {
     {
       name: 'state',
       maxLength: 100,
-      label: 'province',
+      label: 'state',
       required: true,
       size: 'large',
     },
@@ -88,7 +88,7 @@ export default {
       valueIn: 'long_name',
       types: ['street_number'],
       required: false,
-      notApplicable: true,
+      notApplicable: false,
     },
     street: { valueIn: 'long_name', types: ['route'] },
     neighborhood: {
@@ -103,12 +103,12 @@ export default {
       ],
     },
     state: {
-      valueIn: 'short_name',
-      types: ['administrative_area_level_2'],
+      valueIn: 'long_name',
+      types: ['administrative_area_level_1'],
     },
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_3', 'locality'],
+      types: ['political', 'locality'],
     },
   },
   summary: [

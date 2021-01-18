@@ -7,16 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Address rules for Unites Arabes Emirates.
+
+### Fixed
+
+- Italian address rules when using geolocation.
+
 ## [3.13.12] - 2021-01-15
 
 ### Fixed
 
 - State/city selection on Bolivia because postalCode was not required when it should.
+
 ## [3.13.11] - 2021-01-14
 
 ### Fixed
 
 - Fix "Rosario" (Santa Fé) city in Argentina to "Rosário".
+
 ## [3.13.10] - 2021-01-04
 
 ### Fixed
