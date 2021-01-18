@@ -11,16 +11,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Rules for Finland, Denmark, and Sweden removing the 'state' field as mandatory.
 
+## [3.14.0] - 2021-01-18
+
+### Added
+
+- Address rules for Unites Arabes Emirates.
+
+### Fixed
+
+- Italian address rules when using geolocation.
+
 ## [3.13.12] - 2021-01-15
 
 ### Fixed
 
 - State/city selection on Bolivia because postalCode was not required when it should.
+
 ## [3.13.11] - 2021-01-14
 
 ### Fixed
 
 - Fix "Rosario" (Santa Fé) city in Argentina to "Rosário".
+
 ## [3.13.10] - 2021-01-04
 
 ### Fixed
