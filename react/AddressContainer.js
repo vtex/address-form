@@ -34,7 +34,7 @@ class AddressContainer extends Component {
     }
   }
 
-  handleAddressChange = (changedAddressFields) => {
+  handleAddressChange = (changedAddressFields, ...args) => {
     const {
       cors,
       accountName,
@@ -51,10 +51,13 @@ class AddressContainer extends Component {
       changedAddressFields.country.value !== address.country.value
 
     if (countryChanged) {
-      return onChangeAddress({
-        ...address,
-        ...changedAddressFields,
-      })
+      return onChangeAddress(
+        {
+          ...address,
+          ...changedAddressFields,
+        },
+        ...args
+      )
     }
 
     const validatedAddress = validateChangedFields(
@@ -93,11 +96,14 @@ class AddressContainer extends Component {
           shouldAddFocusToNextInvalidField,
         })
 
-        return onChangeAddress(removePostalCodeLoading(autoCompletedAddress))
+        return onChangeAddress(
+          removePostalCodeLoading(autoCompletedAddress),
+          ...args
+        )
       }
     }
 
-    onChangeAddress(validatedAddress)
+    onChangeAddress(validatedAddress, ...args)
   }
 
   render() {

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Rules for San Marino.
+
+### Changed
+
+- Update `AddressContainer` to pass remaining arguments of `onChangeAddress` to prop.
+
 ## [3.14.3] - 2021-01-22
 
 ### Fixed

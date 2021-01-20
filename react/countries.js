@@ -19,6 +19,7 @@ import PER from './country/PER'
 import PRT from './country/PRT'
 import PRY from './country/PRY'
 import ROU from './country/ROU'
+import SMR from './country/SMR'
 import URY from './country/URY'
 import USA from './country/USA'
 import VEN from './country/VEN'
@@ -44,6 +45,7 @@ export default {
   PRT,
   PRY,
   ROU,
+  SMR,
   URY,
   USA,
   VEN,
