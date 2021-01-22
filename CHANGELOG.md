@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- State/city selection on Venezuela because postalCode was not required when it should.
+
 ## [3.14.2] - 2021-01-19
 
 ### Added

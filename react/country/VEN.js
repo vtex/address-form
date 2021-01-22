@@ -222,6 +222,7 @@ export default {
       postalCodeAPI: false,
       regex: /^\d{4}$/,
       size: 'small',
+      required: true,
     },
     {
       name: 'street',
