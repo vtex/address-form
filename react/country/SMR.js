@@ -65,7 +65,6 @@ export default {
       name: 'state',
       maxLength: 100,
       label: 'state',
-      required: true,
       size: 'large',
     },
     {
