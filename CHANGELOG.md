@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.6.5] - 2021-01-26
+
 ### Added
 
 - Missing countries from 3.x: ARE, DNK, FIN, IND, ITA, SMR and SWE.
