@@ -1,6 +1,11 @@
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 import { POSTAL_CODE } from '../constants'
 
+const isCABA = (googleAddress) =>
+  !!googleAddress?.address_components?.find(
+    (component) => component.short_name === 'CABA'
+  )
+
 const countryData = {
   'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma de Buenos Aires'],
   'Buenos Aires': [
@@ -21257,10 +21262,28 @@ export default {
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
+      handler: (address, googleAddress) => {
+        if (isCABA(googleAddress)) {
+          address.state = { value: 'Ciudad Autónoma de Buenos Aires' }
+
+          return address
+        }
+
+        return address
+      },
     },
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+      handler: (address, googleAddress) => {
+        if (isCABA(googleAddress)) {
+          address.city = { value: 'Ciudad Autónoma de Buenos Aires' }
+
+          return address
+        }
+
+        return address
+      },
     },
   },
   summary: [
