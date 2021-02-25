@@ -480,6 +480,7 @@ const countryData = {
     González: '20310',
     'La Gloria': '20383',
     'La Jagua De Ibirico': '20400',
+    'La Loma': '20250',
     'La Paz': '20621',
     'Manaure Balcón Del Cesar': '20443',
     Pailitas: '20517',
