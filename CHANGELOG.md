@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `La Loma` city to COL file.
+
 ## [3.15.2] - 2021-02-18
 
 ### Added
