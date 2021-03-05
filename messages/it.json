@@ -62,7 +62,7 @@
   "address-form.field.municipality": "NON APPLICABILE IN ITALIA",
   "address-form.field.delegation": "NON APPLICABILE IN ITALIA",
   "address-form.field.municipalityDelegation": "NON APPLICABILE IN ITALIA",
-  "address-form.field.province": "NON APPLICABILE IN ITALIA",
+  "address-form.field.province": "Provincia",
   "address-form.field.receiverName": "Consegna a: (nome e cognome)",
   "address-form.field.county": "NON APPLICABILE IN ITALIA"
 }
