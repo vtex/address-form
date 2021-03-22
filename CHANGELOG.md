@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Change regions in CHL file.
+
 ## [4.6.6] - 2021-02-08
 
 ### Fixed
