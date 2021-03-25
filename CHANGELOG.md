@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.15.6] - 2021-03-25
+
 ### Fixed
 
 - Change Escuintla Postal Codes in GTM file.
