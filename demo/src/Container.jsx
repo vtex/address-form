@@ -24,6 +24,7 @@ const shipsTo = [
   'PRT',
   'PRY',
   'ROU',
+  'RUS',
   'URY',
   'USA',
   'VEN',
