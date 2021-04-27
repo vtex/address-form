@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.7.0] - 2021-04-19
+
+### Added
+
+- Add RUS for RUSSIA.
+- Applies a behavior where the postal code isnt required, adding them as ROU example. 
+
 ## [4.6.7] - 2021-03-23
 
 ### Fixed
