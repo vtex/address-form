@@ -1,151 +1,148 @@
 import { ONE_LEVEL } from '../constants'
 import { firstLevelPostalCodes } from '../transforms/postalCodes'
-import {
-  getOneLevel,
-  getTwoLevels,
-} from '../transforms/addressFieldsOptions.js'
+import { getOneLevel } from '../transforms/addressFieldsOptions.js'
 
-const countryData = {
+const countryDataRaw = {
   'Республика Адыгея': {
-    'Maykop': '385000',
+    Maykop: '385000',
   },
   'Алтайский край': {
-    'Barnaul': '656000',
+    Barnaul: '656000',
   },
   'Республика Алтай': {
     'Gorno-Altaysk': '649000',
   },
   'Амурская область': {
-    'Blagoveshchensk': '675000',
+    Blagoveshchensk: '675000',
   },
   'Архангельская область': {
-    'Arkhangelsk': '163000',
+    Arkhangelsk: '163000',
   },
   'Астраханская область': {
-    'Astrakhan': '414000',
+    Astrakhan: '414000',
   },
   'Республика Башкортостан': {
-    'Ufa': '450000',
+    Ufa: '450000',
   },
   'Белгородская область': {
-    'Belgorod': '308000',
+    Belgorod: '308000',
   },
   'Брянская область': {
-    'Bryansk': '241000',
+    Bryansk: '241000',
   },
   'Республика Бурятия': {
     'Ulan-Ude': '670000',
   },
   'Чеченская Республика': {
-    'Grozny': '386000',
+    Grozny: '386000',
   },
   'Челябинская область': {
-    'Chelyabinsk': '454000',
+    Chelyabinsk: '454000',
   },
   'Чукотский автономный округ': {
-    'Anadyr': '689541',
+    Anadyr: '689541',
   },
   'Чувашская Республика': {
-    'Cheboksary': '428000',
+    Cheboksary: '428000',
   },
   'Республика Крым': {
-    'Simferopol': '95000',
+    Simferopol: '95000',
   },
   'Республика Дагестан': {
-    'Makhachkala': '367000',
+    Makhachkala: '367000',
   },
   'Республика Ингушетия': {
     'Magas (Largest city: Nazran)': '386200',
   },
   'Иркутская область': {
-    'Irkutsk': '664000',
+    Irkutsk: '664000',
   },
   'Ивановская область': {
-    'Ivanovo': '152990',
+    Ivanovo: '152990',
   },
   'Еврейская автономная область': {
-    'Birobidzhan': '679000',
+    Birobidzhan: '679000',
   },
   'Кабардино-Балкарская Республика': {
-    'Nalchik': '360000',
+    Nalchik: '360000',
   },
   'Калининградская область': {
-    'Kaliningrad': '236000',
+    Kaliningrad: '236000',
   },
   'Республика Калмыкия': {
-    'Elista': '358000',
+    Elista: '358000',
   },
   'Калужская область': {
-    'Kaluga': '248000',
+    Kaluga: '248000',
   },
   'Камчатский край': {
     'Petropavlovsk-Kamchatsky': '683010',
   },
   'Карачаево-Черкесская Республика': {
-    'Cherkessk': '369000',
+    Cherkessk: '369000',
   },
   'Республика Карелия': {
-    'Petrozavodsk': '185000',
+    Petrozavodsk: '185000',
   },
-  'Казахстан': {
+  Казахстан: {
     'Nur-Sultan ': '10015',
   },
   'Кемеровская область': {
     'Kemerovo (Largest city: Novokuznetsk)': '650000',
   },
   'Хабаровский край': {
-    'Khabarovsk': '680000',
+    Khabarovsk: '680000',
   },
   'Республика Хакасия': {
-    'Abakan': '655000',
+    Abakan: '655000',
   },
   'Ханты-Мансийский автономный округ - Югра': {
     'Khanty-Mansiysk (Largest city: Surgut)': '628000',
   },
   'Кировская область': {
-    'Kirov': '610000',
+    Kirov: '610000',
   },
   'Республика Коми': {
-    'Syktyvkar': '166747',
+    Syktyvkar: '166747',
   },
   'Костромская область': {
-    'Kostroma': '156000',
+    Kostroma: '156000',
   },
   'Краснодарский край': {
-    'Krasnodar': '350000',
+    Krasnodar: '350000',
   },
   'Красноярский край': {
-    'Krasnoyarsk': '660000',
+    Krasnoyarsk: '660000',
   },
   'Курганская область': {
-    'Kurgan': '640000',
+    Kurgan: '640000',
   },
   'Курская область': {
-    'Kursk': '303980',
+    Kursk: '303980',
   },
   'Ленинградская область': {
     'Largest city: Gatchina': '187000',
   },
   'Липецкая область': {
-    'Lipetsk': '398000',
+    Lipetsk: '398000',
   },
   'Магаданская область': {
-    'Magadan': '685000',
+    Magadan: '685000',
   },
   'Республика Марий Эл': {
     'Yoshkar-Ola': '424000',
   },
   'Республика Мордовия': {
-    'Saransk': '430000',
+    Saransk: '430000',
   },
-  'Москва': {
-    'Moscow': '100000',
+  Москва: {
+    Moscow: '100000',
   },
   'Московская область': {
     'Largest city: Balashikha': '101194',
   },
   'Мурманская область': {
-    'Murmansk': '183000',
+    Murmansk: '183000',
   },
   'Ненецкий автономный округ': {
     'Naryan-Mar': '166000',
@@ -154,114 +151,129 @@ const countryData = {
     'Nizhny Novgorod': '603000',
   },
   'Республика Северная Осетия — Алания': {
-    'Vladikavkaz': '362000',
+    Vladikavkaz: '362000',
   },
   'Новгородская область': {
     'Veliky Novgorod': '173000',
   },
   'Новосибирская область': {
-    'Novosibirsk': '630000',
+    Novosibirsk: '630000',
   },
   'Омская область': {
-    'Omsk': '644000',
+    Omsk: '644000',
   },
   'Оренбургская область': {
-    'Orenburg': '460000',
+    Orenburg: '460000',
   },
   'Орловская область': {
-    'Oryol': '302000',
+    Oryol: '302000',
   },
   'Пензенская область': {
-    'Penza': '440000',
+    Penza: '440000',
   },
   'Пермский край': {
-    'Perm': '614000',
+    Perm: '614000',
   },
   'Приморский край': {
-    'Vladivostok': '690000',
+    Vladivostok: '690000',
   },
   'Псковская область': {
-    'Pskov': '180000',
+    Pskov: '180000',
   },
   'Ростовская область': {
     'Rostov-on-Don': '344000',
   },
   'Рязанская область': {
-    'Ryazan': '390000',
+    Ryazan: '390000',
   },
   'Санкт-Петербург': {
     'Saint Petersburg': '190000',
   },
   'Республика Саха (Якутия)': {
-    'Yakutsk': '677001',
+    Yakutsk: '677001',
   },
   'Сахалинская область': {
     'Yuzhno-Sakhalinsk': '693000',
   },
   'Самарская область': {
-    'Samara': '443000',
+    Samara: '443000',
   },
   'Саратовская область': {
-    'Saratov': '410000',
+    Saratov: '410000',
   },
   'Смоленская область': {
-    'Smolensk': '214000',
+    Smolensk: '214000',
   },
   'Ставропольский край': {
-    'Stavropol': '355000',
+    Stavropol: '355000',
   },
   'Свердловская область': {
-    'Yekaterinburg': '620000',
+    Yekaterinburg: '620000',
   },
   'Тамбовская область': {
-    'Tambov': '392000',
+    Tambov: '392000',
   },
   'Республика Татарстан': {
-    'Kazan': '420000',
+    Kazan: '420000',
   },
   'Томская область': {
-    'Tomsk': '634000',
+    Tomsk: '634000',
   },
   'Тульская область': {
-    'Tula': '300000',
+    Tula: '300000',
   },
   'Республика Тыва': {
-    'Kyzyl': '667000',
+    Kyzyl: '667000',
   },
   'Тверская область': {
-    'Tver': '170000',
+    Tver: '170000',
   },
   'Тюменская область': {
-    'Tyumen': '625000',
+    Tyumen: '625000',
   },
   'Удмуртская Республика': {
-    'Izhevsk': '426000',
+    Izhevsk: '426000',
   },
   'Ульяновская область': {
-    'Ulyanovsk': '432000',
+    Ulyanovsk: '432000',
   },
   'Владимирская область': {
-    'Vladimir': '600000',
+    Vladimir: '600000',
   },
   'Волгоградская область': {
-    'Volgograd': '400000',
+    Volgograd: '400000',
   },
   'Вологодская область': {
     'Vologda (Largest city: Cherepovets)': '160000',
   },
   'Воронежская область': {
-    'Voronezh': '394000',
+    Voronezh: '394000',
   },
   'Ямало-Ненецкий автономный округ': {
     'Salekhard (Largest city: Novy Urengoy)': '629000',
   },
   'Ярославская область': {
-    'Yaroslavl': '150000',
+    Yaroslavl: '150000',
   },
   'Забайкальский край': {
-    'Chita': '672000',
-  }
+    Chita: '672000',
+  },
 }
+
+function capitalizeStatename(rawObj) {
+  const states = Object.keys(rawObj)
+  const convertedObj = {}
+
+  for (const state of states) {
+    const stateCapitalized = state.toLocaleUpperCase()
+
+    convertedObj[stateCapitalized] = rawObj[state]
+  }
+
+  return convertedObj
+}
+
+const countryData = capitalizeStatename(countryDataRaw)
 
 export default {
   country: 'RUS',
