@@ -101,4 +101,26 @@ describe('postalCodeAutoCompleteAddress()', () => {
       })
     )
   })
+
+  it.only('should keep address id when auto completing fields', done => {
+    const addressId = 'addressId1autoComplete'
+    const modifiedAddress = {
+      ...address,
+      addressId: { value: addressId },
+      postalCode: { value: '22251000' },
+    }
+
+    function callback(data) {
+      expect(data.addressId.value).toBe(addressId)
+      done()
+    }
+
+    postalCodeAutoCompleteAddress({
+      cors,
+      accountName,
+      address: modifiedAddress,
+      rules: usePostalCode,
+      callback,
+    })
+  })
 })
