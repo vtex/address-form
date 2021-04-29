@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.7.1] - 2021-04-29
+
+### Fixed
+
+- `postalCodeAutoCompleteAddress` ignoring provided `addressId`.
+
 ## [4.7.0] - 2021-04-19
 
 ### Added
 
 - Add RUS for RUSSIA.
-- Applies a behavior where the postal code isnt required, adding them as ROU example. 
+- Applies a behavior where the postal code isnt required, adding them as ROU example.
 
 ## [4.6.7] - 2021-03-23
 
@@ -31,6 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Missing countries from 3.x: ARE, DNK, FIN, IND, ITA, SMR and SWE.
+
 ## [4.6.4] - 2020-10-06 [YANKED]
 
 ### Fixed
