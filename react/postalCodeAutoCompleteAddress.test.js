@@ -102,7 +102,7 @@ describe('postalCodeAutoCompleteAddress()', () => {
     )
   })
 
-  it.only('should keep address id when auto completing fields', done => {
+  it('should keep address id when auto completing fields', done => {
     const addressId = 'addressId1autoComplete'
     const modifiedAddress = {
       ...address,
