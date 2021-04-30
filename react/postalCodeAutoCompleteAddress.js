@@ -43,6 +43,7 @@ export default function postalCodeAutoCompleteAddress({
       const autoCompletedFields = flow(functionsFlow)(responseAddress)
 
       const newAddressWithAutocompletedFields = newAddress({
+        addressId: address.addressId,
         receiverName: address.receiverName,
         ...autoCompletedFields,
       })
