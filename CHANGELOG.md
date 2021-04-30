@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Ensure the `state` field is populate when user visits `addresses` inside their account.
+## [3.16.1] - 2021-04-29
+
+### Fixed
+
+- `postalCodeAutoCompleteAddress` ignoring provided `addressId`.
+
 ## [3.16.0] - 2021-04-20
 
 ### Added
