@@ -2,6 +2,10 @@ import { TWO_LEVELS } from '../constants'
 import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 
+
+// Based on: https://docs.google.com/spreadsheets/d/1B_e735h3IP1ttom3i55WytSDhH7MZtsOu8Ul5p2wHNI/edit#gid=0
+// More info: https://vtex.slack.com/archives/C3Q96AB1B/p1619724858102700
+
 const countryData = {
   'Región Metropolitana': {
     Alhué: '9650000',
@@ -368,7 +372,7 @@ const countryData = {
     Timaukel: '6320000',
     'Torres Del Paine': '6170000',
   },
-  'XIV Región': {
+  'Los Ríos': {
     Coñaripe: '5210001',
     Corral: '5190000',
     Futrono: '5180000',
@@ -506,6 +510,27 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
+      handler: address => {
+        if (
+          !address.state ||
+          !address.state.value ||
+          !address.neighborhood ||
+          !address.neighborhood.value
+        ) {
+          return address
+        }
+
+        if (
+          countryData[address.state.value] &&
+          countryData[address.state.value][address.neighborhood.value]
+        ) {
+          address.postalCode = {
+            value: countryData[address.state.value][address.neighborhood.value],
+          }
+        }
+
+        return address
+      },
     },
     number: {
       valueIn: 'long_name',
