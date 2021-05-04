@@ -66,6 +66,21 @@ const countryData = {
     Tiltil: '9420000',
     Vitacura: '7630000',
   },
+  'Los Ríos': {
+    Coñaripe: '5210001',
+    Corral: '5190000',
+    Futrono: '5180000',
+    'La Union': '5220000',
+    'Lago Ranco': '5250000',
+    Lanco: '5160000',
+    'Los Lagos': '5170000',
+    Mafil: '5200000',
+    Mariquina: '5150000',
+    Paillaco: '5230000',
+    Panguipulli: '5210000',
+    'Rio Bueno': '5240000',
+    Valdivia: '5090000',
+  },
   'I Región': {
     Camiña: '1150000',
     Colchane: '1160000',
@@ -371,7 +386,7 @@ const countryData = {
     Timaukel: '6320000',
     'Torres Del Paine': '6170000',
   },
-  'Los Ríos': {
+  'XIV Región': {
     Coñaripe: '5210001',
     Corral: '5190000',
     Futrono: '5180000',
