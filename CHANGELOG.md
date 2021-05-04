@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed 
+
+- `CHL` rules for feeling data with Google Maps.
+
 ## [3.16.1] - 2021-04-29
 
 ### Fixed
