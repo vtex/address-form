@@ -512,10 +512,8 @@ export default {
       required: false,
       handler: address => {
         if (
-          !address.state ||
-          !address.state.value ||
-          !address.neighborhood ||
-          !address.neighborhood.value
+          !address.state?.value ||
+          !address.neighborhood?.value
         ) {
           return address
         }
