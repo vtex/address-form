@@ -527,8 +527,10 @@ export default {
       required: false,
       handler: address => {
         if (
-          !address.state?.value ||
-          !address.neighborhood?.value
+          !address.state ||
+          !address.state.value ||
+          !address.neighborhood ||
+          !address.neighborhood.value
         ) {
           return address
         }
