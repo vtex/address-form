@@ -2,6 +2,10 @@ import { TWO_LEVELS } from '../constants'
 import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 
+
+// Based on: https://docs.google.com/spreadsheets/d/1B_e735h3IP1ttom3i55WytSDhH7MZtsOu8Ul5p2wHNI/edit#gid=0
+// More info: https://vtex.slack.com/archives/C3Q96AB1B/p1619724858102700
+
 const countryData = {
   'Región Metropolitana': {
     Alhué: '9650000',
@@ -62,6 +66,21 @@ const countryData = {
     Talagante: '9670000',
     Tiltil: '9420000',
     Vitacura: '7630000',
+  },
+  'Los Ríos': {
+    Coñaripe: '5210001',
+    Corral: '5190000',
+    Futrono: '5180000',
+    'La Union': '5220000',
+    'Lago Ranco': '5250000',
+    Lanco: '5160000',
+    'Los Lagos': '5170000',
+    Mafil: '5200000',
+    Mariquina: '5150000',
+    Paillaco: '5230000',
+    Panguipulli: '5210000',
+    'Rio Bueno': '5240000',
+    Valdivia: '5090000',
   },
   'I Región': {
     Camiña: '1150000',
@@ -506,6 +525,27 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
+      handler: address => {
+        if (
+          !address.state ||
+          !address.state.value ||
+          !address.neighborhood ||
+          !address.neighborhood.value
+        ) {
+          return address
+        }
+
+        if (
+          countryData[address.state.value] &&
+          countryData[address.state.value][address.neighborhood.value]
+        ) {
+          address.postalCode = {
+            value: countryData[address.state.value][address.neighborhood.value],
+          }
+        }
+
+        return address
+      },
     },
     number: {
       valueIn: 'long_name',
