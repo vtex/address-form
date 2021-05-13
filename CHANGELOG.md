@@ -8,7 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
-- Ensure the `state` field is populate when user visits `addresses` inside their account.
+- Ensure the `state` field is populate when user visits `addresses` inside their account for `RUS`.
+## [3.16.2] - 2021-05-12
+
+### Fixed 
+
+- `CHL` rules when filling data with Google Maps.
+
 ## [3.16.1] - 2021-04-29
 
 ### Fixed

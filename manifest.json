@@ -1,15 +1,13 @@
 {
   "name": "address-form",
   "vendor": "vtex",
-  "version": "3.16.1",
+  "version": "3.16.2",
   "title": "address-form React component",
   "description": "address-form React component",
   "defaultLocale": "en",
   "mustUpdateAt": "2019-01-08",
   "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "settingsSchema": {},
   "dependencies": {
     "vtex.checkout": "0.x",
