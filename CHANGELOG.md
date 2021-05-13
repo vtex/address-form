@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.16.3] - 2021-05-13
+
 ### Fixed
 - Ensure the `state` field is populate when user visits `addresses` inside their account for `RUS`.
 ## [3.16.2] - 2021-05-12
