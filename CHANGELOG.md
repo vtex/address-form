@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Add new two new cities to col file.
+
 ## [3.16.6] - 2021-06-01
 
 ### Fixed
