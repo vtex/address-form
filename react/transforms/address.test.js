@@ -254,7 +254,20 @@ describe('Address Transform', () => {
 
       const newFields = addFocusToNextInvalidField(fields, rules)
 
-      expect(newFields).toBe(fields)
+      expect(newFields).toEqual({
+        street: {
+          value: 'Praia de Botafogo',
+          valid: true,
+        },
+        number: {
+          value: '300',
+          valid: true,
+        },
+        state: {
+          value: 'RJ',
+          valid: true,
+        },
+      })
     })
 
     it('should add focus if field is filled but is invalid', () => {
