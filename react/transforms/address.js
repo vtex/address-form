@@ -176,7 +176,7 @@ export function addFocusToNextInvalidField(fields, rules) {
     }
   }
 
-  return fields
+  return addNewField(fields, 'valid', true)
 }
 
 function getFirstInvalidFilledField(fields, rules) {

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Valid address with `valid: false` fields not correctly updated to have
+  `valid: true` in all fields.
+
 ## [3.16.5] - 2021-05-27
 
 ### Added
@@ -22,7 +27,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.16.3] - 2021-05-13
 
 ### Fixed
+
 - Ensure the `state` field is populate when user visits `addresses` inside their account for `RUS`.
+
 ## [3.16.2] - 2021-05-12
 
 ### Fixed 
