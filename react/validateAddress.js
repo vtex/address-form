@@ -196,6 +196,11 @@ function defaultValidation(value, name, address, rules) {
     return emptyField
   }
 
+  // there is no necessity to validate what comes from google maps
+  if (address[name]?.geolocationAutoCompleted) {
+    return validResult
+  }
+
   if (field && hasOptions(field)) {
     return validateOptions(value, field, address, rules)
   }

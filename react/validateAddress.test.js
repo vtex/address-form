@@ -440,4 +440,33 @@ describe('Address Validation:', () => {
 
     expect(result.postalCode.valid).toBe(false)
   })
+
+  it('should validate if a field was autocompleted by geolocation', () => {
+    const geolocationAddress = {
+      ...address,
+      state: {
+        value: 'Santa Fe',
+        geolocationAutoCompleted: true,
+      },
+    }
+
+    const rules = {
+      fields: [
+        {
+          name: 'state',
+          required: true,
+          options: ['Santa Fé'],
+        },
+      ],
+    }
+
+    const validOption = validateField(
+      'Santa Fe',
+      'state',
+      geolocationAddress,
+      rules
+    )
+
+    expect(validOption.valid).toBe(true)
+  })
 })
