@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.16.6] - 2021-06-01
+
 ### Fixed
 
 - Valid address with `valid: false` fields not correctly updated to have
