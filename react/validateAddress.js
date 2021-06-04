@@ -11,6 +11,7 @@ import {
   EGEOCOORDS,
   EPOSTALCODE,
 } from './constants.js'
+import { logGeolocationAddressMismatch } from './metrics'
 
 export function isValidAddress(address, rules) {
   const validatedAddress = addFocusToNextInvalidField(address, rules)
@@ -197,7 +198,18 @@ function defaultValidation(value, name, address, rules) {
   }
 
   if (field && hasOptions(field)) {
-    return validateOptions(value, field, address, rules)
+    const result = validateOptions(value, field, address, rules)
+
+    if (result === notAnOption && address[name]?.geolocationAutoCompleted) {
+      logGeolocationAddressMismatch({
+        fieldValue: value,
+        fieldName: name,
+        country: rules.country,
+        address,
+      })
+    }
+
+    return result
   }
 
   return validResult

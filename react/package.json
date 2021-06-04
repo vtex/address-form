@@ -28,7 +28,8 @@
     "lodash": "^4.17.4",
     "msk": "1.0.3",
     "react-intl": "^2.8.0",
-    "recompose": "^0.27.1"
+    "recompose": "^0.27.1",
+    "splunk-events": "1.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -100,7 +101,7 @@
       "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
     },
     "transform": {
-      "^.+\\.jsx?$": "<rootDir>/jest.transform.js"
+      "^.+\\.(j|t)sx?$": "<rootDir>/jest.transform.js"
     }
   }
 }

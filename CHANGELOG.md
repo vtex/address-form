@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Added
+
+- Splunk log on address mismatch between Google Maps response and the option lists
+
 ## [3.16.7] - 2021-06-08
 
 ### Added
@@ -40,7 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.16.2] - 2021-05-12
 
-### Fixed 
+### Fixed
 
 - `CHL` rules when filling data with Google Maps.
 
@@ -55,7 +59,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Add RUS for RUSSIA.
-- Applies a behavior where the postal code isnt required, adding them as ROU example. 
+- Applies a behavior where the postal code isnt required, adding them as ROU example.
 
 ## [3.15.6] - 2021-03-25
 
@@ -67,7 +71,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Change regions in CHL file. 
+- Change regions in CHL file.
 
 ## [3.15.4] - 2021-03-05
 

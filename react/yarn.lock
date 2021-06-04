@@ -5880,6 +5880,11 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
+splunk-events@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/splunk-events/-/splunk-events-1.6.0.tgz#cd4b93d6a5fcd78ba88ad2cc7821a7d26ceb0c66"
+  integrity sha512-SGTZatld08W2P1GaLadtWKbUHAFM4M12hTNWYCcXGWVzmQC+lH5GxrjW1oRCEeLuJ3eBoue0N5spJuDR0wABNA==
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
