@@ -1,0 +1,10 @@
+{
+  "extends": "@vtex/tsconfig",
+  "compilerOptions": {
+    "lib": ["DOM"],
+    "allowJs": true,
+    "strict": true,
+    "outDir": "dist/",
+    "forceConsistentCasingInFileNames": true
+  }
+}
