@@ -28,7 +28,8 @@
     "lodash": "^4.17.4",
     "msk": "1.0.3",
     "react-intl": "^2.8.0",
-    "recompose": "^0.27.1"
+    "recompose": "^0.27.1",
+    "splunk-events": "1.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -43,6 +44,7 @@
     "@types/jest": "^26.0.19",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@vtex/tsconfig": "^0.5.6",
     "babel-jest": "^26.3.0",
     "enzyme": "^3.4.1",
     "enzyme-adapter-react-16": "^1.8.0",
@@ -53,7 +55,8 @@
     "jest-enzyme": "^7.1.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-test-renderer": "^16.7.0"
+    "react-test-renderer": "^16.7.0",
+    "typescript": "3.9.7"
   },
   "resolutions": {
     "jest-environment-jsdom": "^26.3.0"
@@ -98,7 +101,7 @@
       "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
     },
     "transform": {
-      "^.+\\.jsx?$": "<rootDir>/jest.transform.js"
+      "^.+\\.(j|t)sx?$": "<rootDir>/jest.transform.js"
     }
   }
 }
