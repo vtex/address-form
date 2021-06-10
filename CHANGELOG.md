@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Fixed
+
+- Get Forgotten Postal Code Url for Brazil (Correios).
+
 ## [3.16.8] - 2021-06-08
 
 ## Added
