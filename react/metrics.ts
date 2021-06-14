@@ -26,7 +26,9 @@ interface CustomWindow extends Window {
       orderFormId?: string
     }
   }
-  __RENDER_7_COMPONENTS__?: Record<string, unknown>
+  __RUNTIME__?: {
+    account?: string
+  }
 }
 
 declare let window: CustomWindow
@@ -42,7 +44,11 @@ splunkEvents.config({
 })
 
 function getAccountName() {
-  return window.vtex?.accountName ?? window?.vtex?.vtexid?.accountName
+  return (
+    window.vtex?.accountName ??
+    window?.vtex?.vtexid?.accountName ??
+    window?.__RUNTIME__?.account
+  )
 }
 
 interface LogGeolocationAddressMismatchData {
