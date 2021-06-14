@@ -204,7 +204,8 @@ function defaultValidation(value, name, address, rules) {
       logGeolocationAddressMismatch({
         fieldValue: value,
         fieldName: name,
-        country: rules.country,
+        countryFromRules: rules.country,
+        countryFromAddress: address.country,
         address,
       })
     }

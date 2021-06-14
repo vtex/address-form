@@ -54,7 +54,8 @@ function getAccountName() {
 interface LogGeolocationAddressMismatchData {
   fieldValue: string
   fieldName: string
-  country: string
+  countryFromRules: string
+  countryFromAddress: string
   address: Record<string, unknown>
 }
 
