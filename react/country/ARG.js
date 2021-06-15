@@ -6,6 +6,15 @@ const isCABA = (googleAddress) =>
     (component) => component.short_name === 'CABA'
   )
 
+const mappedStates = {
+  'Capital Federal': 'Buenos Aires',
+  'CIUDAD AUTONOMA DE BUENOS AIRES': 'Ciudad Autónoma de Buenos Aires',
+  'Gran Buenos Aires': 'Ciudad Autónoma de Buenos Aires',
+  'Provincia de Buenos Aires': 'Buenos Aires',
+  'Santa Fe': 'Santa Fé',
+  CABA: 'Ciudad Autónoma de Buenos Aires',
+}
+
 const countryData = {
   'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma de Buenos Aires'],
   'Buenos Aires': [
@@ -21266,6 +21275,12 @@ export default {
       handler: (address, googleAddress) => {
         if (isCABA(googleAddress)) {
           address.state = { value: 'Ciudad Autónoma de Buenos Aires' }
+
+          return address
+        }
+
+        if (mappedStates[address?.state.value]) {
+          address.state = { value: mappedStates[address?.state.value] }
 
           return address
         }
