@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.16.10] - 2021-06-15
+
 ### Changed
 
 - Maps unknown `state` values to `state` options for `ARG` country.
