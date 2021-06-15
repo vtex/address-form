@@ -11,7 +11,6 @@ const isCABA = (googleAddress) =>
  */
 
 const mappedStates = {
-  'capital federal': 'Buenos Aires',
   'ciudad autonoma de buenos aires': 'Ciudad Autónoma de Buenos Aires',
   'gran buenos aires': 'Ciudad Autónoma de Buenos Aires',
   'provincia de buenos aires': 'Buenos Aires',
