@@ -15,7 +15,6 @@ const mappedStates = {
   'ciudad autonoma de buenos aires': 'Ciudad Autónoma de Buenos Aires',
   'gran buenos aires': 'Ciudad Autónoma de Buenos Aires',
   'provincia de buenos aires': 'Buenos Aires',
-  'santa fé': 'Santa Fe',
   caba: 'Ciudad Autónoma de Buenos Aires',
 }
 
