@@ -11,12 +11,12 @@ const isCABA = (googleAddress) =>
  */
 
 const mappedStates = {
-  'Capital Federal': 'Buenos Aires',
-  'CIUDAD AUTONOMA DE BUENOS AIRES': 'Ciudad Autónoma de Buenos Aires',
-  'Gran Buenos Aires': 'Ciudad Autónoma de Buenos Aires',
-  'Provincia de Buenos Aires': 'Buenos Aires',
-  'Santa Fé': 'Santa Fe',
-  CABA: 'Ciudad Autónoma de Buenos Aires',
+  'capital federal': 'Buenos Aires',
+  'ciudad autonoma de buenos aires': 'Ciudad Autónoma de Buenos Aires',
+  'gran buenos aires': 'Ciudad Autónoma de Buenos Aires',
+  'provincia de buenos aires': 'Buenos Aires',
+  'santa fé': 'Santa Fe',
+  caba: 'Ciudad Autónoma de Buenos Aires',
 }
 
 const countryData = {
@@ -21283,8 +21283,10 @@ export default {
           return address
         }
 
-        if (mappedStates[address?.state.value]) {
-          address.state = { value: mappedStates[address?.state.value] }
+        if (mappedStates[address?.state.value.toLowerCase()]) {
+          address.state = {
+            value: mappedStates[address?.state.value.toLowerCase()],
+          }
 
           return address
         }
