@@ -6,12 +6,16 @@ const isCABA = (googleAddress) =>
     (component) => component.short_name === 'CABA'
   )
 
+/**
+ * This is needed to normalize the values for state returned by GMaps
+ */
+
 const mappedStates = {
   'Capital Federal': 'Buenos Aires',
   'CIUDAD AUTONOMA DE BUENOS AIRES': 'Ciudad Autónoma de Buenos Aires',
   'Gran Buenos Aires': 'Ciudad Autónoma de Buenos Aires',
   'Provincia de Buenos Aires': 'Buenos Aires',
-  'Santa Fe': 'Santa Fé',
+  'Santa Fé': 'Santa Fe',
   CABA: 'Ciudad Autónoma de Buenos Aires',
 }
 
@@ -16404,7 +16408,7 @@ const countryData = {
     'Yegua Muerta',
     'Zanjón Del Pescado',
   ],
-  'Santa Fé': [
+  'Santa Fe': [
     '29',
     '22 De Mayo',
     '4 De Febrero',
