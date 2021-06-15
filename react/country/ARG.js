@@ -6,6 +6,16 @@ const isCABA = (googleAddress) =>
     (component) => component.short_name === 'CABA'
   )
 
+/**
+ * This is needed to normalize the values for state returned by GMaps
+ */
+
+const mappedStates = {
+  'ciudad autonoma de buenos aires': 'Ciudad Autónoma de Buenos Aires',
+  'gran buenos aires': 'Ciudad Autónoma de Buenos Aires',
+  'provincia de buenos aires': 'Buenos Aires',
+}
+
 const countryData = {
   'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma de Buenos Aires'],
   'Buenos Aires': [
@@ -16395,7 +16405,7 @@ const countryData = {
     'Yegua Muerta',
     'Zanjón Del Pescado',
   ],
-  'Santa Fé': [
+  'Santa Fe': [
     '29',
     '22 De Mayo',
     '4 De Febrero',
@@ -21266,6 +21276,14 @@ export default {
       handler: (address, googleAddress) => {
         if (isCABA(googleAddress)) {
           address.state = { value: 'Ciudad Autónoma de Buenos Aires' }
+
+          return address
+        }
+
+        if (mappedStates[address?.state.value.toLowerCase()]) {
+          address.state = {
+            value: mappedStates[address?.state.value.toLowerCase()],
+          }
 
           return address
         }
