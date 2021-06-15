@@ -71,12 +71,16 @@ export function logGeolocationAddressMismatch(
     addressFormVersion: process.env.VTEX_APP_VERSION ?? '',
   }
 
-  splunkEvents.logEvent(
-    LEVELS.DEBUG,
-    TYPES.WARNING,
-    'address-form',
-    'validate-field',
-    eventData,
-    getAccountName()
-  )
+  try {
+    splunkEvents.logEvent(
+      LEVELS.DEBUG,
+      TYPES.WARNING,
+      'address-form',
+      'validate-field',
+      eventData,
+      getAccountName()
+    )
+  } catch (error) {
+    // ignore failed log
+  }
 }
