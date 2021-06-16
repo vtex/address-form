@@ -51,22 +51,36 @@ function getAccountName() {
   )
 }
 
+type EventData = Parameters<typeof splunkEvents.logEvent>[4]
+
 interface LogGeolocationAddressMismatchData {
   fieldValue: string
   fieldName: string
   countryFromRules: string
-  countryFromAddress: string
-  address: Record<string, unknown>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  address: Record<string, any>
 }
 
-export function logGeolocationAddressMismatch(
-  data: LogGeolocationAddressMismatchData
-) {
-  const serializedAddress = JSON.stringify(data.address)
-
-  const eventData = {
-    ...data,
-    address: serializedAddress,
+export function logGeolocationAddressMismatch({
+  fieldValue,
+  fieldName,
+  countryFromRules,
+  address,
+}: LogGeolocationAddressMismatchData) {
+  const eventData: EventData = {
+    fieldValue,
+    fieldName,
+    countryFromRules,
+    query: address.addressQuery?.value ?? '',
+    country: address.country?.value ?? '',
+    state: address.state?.value ?? '',
+    city: address.city?.value ?? '',
+    street: address.street?.value ?? '',
+    number: address.number?.value ?? '',
+    postalCode: address.postalCode?.value ?? '',
+    lat: address.geoCoordinates?.value?.[1] ?? '',
+    lon: address.geoCoordinates?.value?.[0] ?? '',
+    type: address.addressType?.value ?? '',
     orderFormId: window.vtexjs?.checkout?.orderFormId ?? '',
     addressFormVersion: process.env.VTEX_APP_VERSION ?? '',
   }

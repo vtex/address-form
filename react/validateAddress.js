@@ -205,7 +205,6 @@ function defaultValidation(value, name, address, rules) {
         fieldValue: value,
         fieldName: name,
         countryFromRules: rules.country,
-        countryFromAddress: address.country,
         address,
       })
     }
