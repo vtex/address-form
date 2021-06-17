@@ -46,8 +46,8 @@ splunkEvents.config({
 function getAccountName() {
   return (
     window.vtex?.accountName ??
-    window?.vtex?.vtexid?.accountName ??
-    window?.__RUNTIME__?.account
+    window.vtex?.vtexid?.accountName ??
+    window.__RUNTIME__?.account
   )
 }
 
