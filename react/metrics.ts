@@ -26,7 +26,9 @@ interface CustomWindow extends Window {
       orderFormId?: string
     }
   }
-  __RENDER_7_COMPONENTS__?: Record<string, unknown>
+  __RUNTIME__?: {
+    account?: string
+  }
 }
 
 declare let window: CustomWindow
@@ -42,34 +44,57 @@ splunkEvents.config({
 })
 
 function getAccountName() {
-  return window.vtex?.accountName ?? window?.vtex?.vtexid?.accountName
+  return (
+    window.vtex?.accountName ??
+    window.vtex?.vtexid?.accountName ??
+    window.__RUNTIME__?.account
+  )
 }
+
+type EventData = Parameters<typeof splunkEvents.logEvent>[4]
 
 interface LogGeolocationAddressMismatchData {
   fieldValue: string
   fieldName: string
-  country: string
-  address: Record<string, unknown>
+  countryFromRules: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  address: Record<string, any>
 }
 
-export function logGeolocationAddressMismatch(
-  data: LogGeolocationAddressMismatchData
-) {
-  const serializedAddress = JSON.stringify(data.address)
-
-  const eventData = {
-    ...data,
-    address: serializedAddress,
+export function logGeolocationAddressMismatch({
+  fieldValue,
+  fieldName,
+  countryFromRules,
+  address,
+}: LogGeolocationAddressMismatchData) {
+  const eventData: EventData = {
+    fieldValue,
+    fieldName,
+    countryFromRules,
+    query: address.addressQuery?.value ?? '',
+    country: address.country?.value ?? '',
+    state: address.state?.value ?? '',
+    city: address.city?.value ?? '',
+    street: address.street?.value ?? '',
+    number: address.number?.value ?? '',
+    postalCode: address.postalCode?.value ?? '',
+    lat: address.geoCoordinates?.value?.[1] ?? '',
+    lon: address.geoCoordinates?.value?.[0] ?? '',
+    type: address.addressType?.value ?? '',
     orderFormId: window.vtexjs?.checkout?.orderFormId ?? '',
     addressFormVersion: process.env.VTEX_APP_VERSION ?? '',
   }
 
-  splunkEvents.logEvent(
-    LEVELS.DEBUG,
-    TYPES.WARNING,
-    'address-form',
-    'validate-field',
-    eventData,
-    getAccountName()
-  )
+  try {
+    splunkEvents.logEvent(
+      LEVELS.DEBUG,
+      TYPES.WARNING,
+      'address-form',
+      'validate-field',
+      eventData,
+      getAccountName()
+    )
+  } catch (error) {
+    // ignore failed log
+  }
 }

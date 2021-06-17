@@ -7,6 +7,7 @@ import {
   validateField,
 } from './validateAddress'
 import address from './__mocks__/newAddress'
+import geolocationAddress from './__mocks__/geolocationAddress2'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import {
   EEMPTY,
@@ -16,6 +17,11 @@ import {
   EGEOCOORDS,
   EPOSTALCODE,
 } from './constants.js'
+import * as mockMetrics from './metrics'
+
+jest.mock('./metrics', () => ({
+  logGeolocationAddressMismatch: jest.fn(),
+}))
 
 describe('Address Validation:', () => {
   const baseRequiredFields = ['addressId', 'addressType', 'country']
@@ -439,5 +445,96 @@ describe('Address Validation:', () => {
     )
 
     expect(result.postalCode.valid).toBe(false)
+  })
+
+  describe('Geolocation', () => {
+    beforeEach(() => {
+      mockMetrics.logGeolocationAddressMismatch.mockClear()
+    })
+
+    it('should log state mismatch', () => {
+      const rules = {
+        fields: [
+          {
+            name: 'state',
+            required: true,
+            options: ['Santa Fé'],
+          },
+          {
+            name: 'city',
+            required: true,
+            optionsMap: [{ 'Santa Fé': ['Rosario'] }],
+          },
+        ],
+      }
+
+      const validOption = validateField(
+        geolocationAddress.state.value,
+        'state',
+        geolocationAddress,
+        rules
+      )
+
+      expect(validOption.valid).toBe(false)
+      expect(mockMetrics.logGeolocationAddressMismatch).toBeCalledTimes(1)
+    })
+
+    it('should log city mismatch', () => {
+      const rules = {
+        fields: [
+          {
+            name: 'state',
+            required: true,
+            options: ['Santa Fe'],
+          },
+          {
+            name: 'city',
+            required: true,
+            optionsMap: [{ 'Santa Fe': ['Rosário'] }],
+            basedOn: 'state',
+            level: 2,
+          },
+        ],
+      }
+
+      const validOption = validateField(
+        geolocationAddress.city.value,
+        'city',
+        geolocationAddress,
+        rules
+      )
+
+      expect(validOption.valid).toBe(false)
+      expect(mockMetrics.logGeolocationAddressMismatch).toBeCalledTimes(1)
+    })
+
+    it('should not log city mismatch if state is also a mismatch', () => {
+      const rules = {
+        fields: [
+          {
+            name: 'state',
+            required: true,
+            options: ['Santa Fé'],
+          },
+          {
+            name: 'city',
+            required: true,
+            optionsMap: [{ 'Santa Fé': ['Rosário'] }],
+            basedOn: 'state',
+            level: 2,
+          },
+        ],
+      }
+
+      const validOption = validateField(
+        geolocationAddress.city.value,
+        'city',
+        geolocationAddress,
+        rules
+      )
+
+      expect(validOption.valid).toBe(false)
+      expect(mockMetrics.logGeolocationAddressMismatch).toBeCalledTimes(0)
+    })
   })
 })

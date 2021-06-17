@@ -201,12 +201,7 @@ function defaultValidation(value, name, address, rules) {
     const result = validateOptions(value, field, address, rules)
 
     if (result === notAnOption && address[name]?.geolocationAutoCompleted) {
-      logGeolocationAddressMismatch({
-        fieldValue: value,
-        fieldName: name,
-        country: rules.country,
-        address,
-      })
+      logIfGeolocationAddressMismatchExists(value, name, address, rules)
     }
 
     return result
@@ -268,4 +263,57 @@ function validatePostalCode(value, name, _, rules) {
   }
 
   return validResult
+}
+
+// To explain why this log is necessary, let's suppose that a customer searches
+// for the address "ATC, Sta Fe 581, S2000 Rosario, Santa Fe, Argentina". Google
+// Maps will correctly return "Santa Fe" as a state, but we only have "Santa Fé"
+// (with the accent) on `ARG.js`.
+//
+// This information should be logged as an address mismatch, so we can catch
+// this bug before our clients do.
+//
+// Although this works well for the state field, Google Maps would also return
+// "Rosario" as a city, which we do have properly mapped, but it would still log
+// as a mismatch since we can't find the city in `ARG.js` if we don't have the
+// state match.
+//
+// The function bellow also handles the above scenario, by checking if there was
+// a match in the immediate "superior" administrative area, which is the state
+// field for cities and the city field for neighborhoods.
+function logIfGeolocationAddressMismatchExists(value, name, address, rules) {
+  if (name === 'city') {
+    const stateField = getField('state', rules)
+    const stateResult = validateOptions(
+      address.state.value,
+      stateField,
+      address,
+      rules
+    )
+
+    if (!stateResult.valid) {
+      return
+    }
+  }
+
+  if (name === 'neighborhood') {
+    const cityField = getField('city', rules)
+    const cityResult = validateOptions(
+      address.city.value,
+      cityField,
+      address,
+      rules
+    )
+
+    if (!cityResult.valid) {
+      return
+    }
+  }
+
+  logGeolocationAddressMismatch({
+    fieldValue: value,
+    fieldName: name,
+    countryFromRules: rules.country,
+    address,
+  })
 }
