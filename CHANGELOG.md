@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.16.11] - 2021-06-17
+
 ### Added
 
 - Tests for geolocation address mismatch log
