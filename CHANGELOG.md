@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Tests for geolocation address mismatch log
+
+### Changed
+
+- Address data is now indexable by Splunk.
+
+### Fixed
+
+- Cities and neighborhoods being wrongfully logged as address mismatches.
+- Account name not being logged when used outside Checkout.
+- Country from rules object is now differentiable from address country on logger.
+- Raised exceptions from Splunk logger breaking the application.
+
 ## [3.16.10] - 2021-06-15
 
 ### Changed
