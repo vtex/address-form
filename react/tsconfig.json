@@ -1,10 +1,16 @@
 {
   "extends": "@vtex/tsconfig",
   "compilerOptions": {
-    "lib": ["DOM"],
+    "types": ["node", "jest"],
+    "lib": ["dom", "esnext"],
     "allowJs": true,
-    "strict": true,
-    "outDir": "dist/",
-    "forceConsistentCasingInFileNames": true
-  }
+    "checkJs": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "strict": true
+  },
+  "include": ["./**/*.js", "./**/*.ts", "./**/*.jsx", "./**/*.tsx"],
+  "exclude": ["node_modules"]
 }
