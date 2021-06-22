@@ -83,6 +83,8 @@ export function logGeolocationAddressMismatch({
     type: address.addressType?.value ?? '',
     orderFormId: window.vtexjs?.checkout?.orderFormId ?? '',
     addressFormVersion: process.env.VTEX_APP_VERSION ?? '',
+    urlPathname: document.location.pathname,
+    urlHash: document.location.hash,
   }
 
   try {
