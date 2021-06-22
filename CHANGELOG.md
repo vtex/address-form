@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Add URL data to address mismatch log.
+
 ## [3.16.11] - 2021-06-17
 
 ### Added
 
-- Tests for geolocation address mismatch log
+- Tests for geolocation address mismatch log.
 
 ### Changed
 
