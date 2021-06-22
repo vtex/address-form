@@ -1,6 +1,4 @@
 import reduce from 'lodash/reduce'
-import filter from 'lodash/filter'
-import map from 'lodash/map'
 import difference from 'lodash/difference'
 import find from 'lodash/find'
 import isPlainObject from 'lodash/isPlainObject'
@@ -54,19 +52,28 @@ export function removeValidation(address) {
   )
 }
 
+/**
+ * @template {keyof import('../types/address').ValidatedField} FieldName
+ * @argument address {import('../types/address').AddressWithValidation}
+ * @argument fieldName {FieldName}
+ * @argument value {import('../types/address').ValidatedField[FieldName]}
+ *
+ * @returns {import('../types/address').AddressWithValidation}
+ */
 export function addNewField(address, fieldName, value) {
-  return reduce(
-    address,
-    (newAddress, prop, propName) => {
-      newAddress[propName] = {
-        ...prop,
-        [fieldName]: value,
-      }
-
-      return newAddress
-    },
-    {}
+  const newAddressEntries = Object.entries(address).map(
+    ([field, fieldValue]) => {
+      return [
+        field,
+        {
+          ...fieldValue,
+          [fieldName]: value,
+        },
+      ]
+    }
   )
+
+  return Object.fromEntries(newAddressEntries)
 }
 
 export function removeField(address, fieldName) {
@@ -153,6 +160,10 @@ export function maskFields(addressFields, rules) {
   )
 }
 
+/**
+ * @argument fields {import('../types/address').AddressWithValidation}
+ * @argument rules {import('../types/rules').AddressRules}
+ */
 export function addFocusToNextInvalidField(fields, rules) {
   const invalidFilledField = getFirstInvalidFilledField(fields, rules)
 
@@ -179,21 +190,27 @@ export function addFocusToNextInvalidField(fields, rules) {
   return addNewField(fields, 'valid', true)
 }
 
+/**
+ * @argument fields {import('../types/address').AddressWithValidation}
+ * @argument rules {import('../types/rules').AddressRules}
+ */
 function getFirstInvalidFilledField(fields, rules) {
   const allFieldsVisited = addNewField(fields, 'visited', true)
   const validatedFields = validateAddress(allFieldsVisited, rules)
 
-  const firstInvalidField = find(
-    rules.fields,
-    (field) =>
-      validatedFields[field.name] && validatedFields[field.name].valid === false
-  )
+  const firstInvalidFieldName = /** @type {import('../types/address').FillableFields | undefined} */ (find(
+    'fields' in rules
+      ? rules.fields.map((field) => field.name)
+      : Object.keys(rules),
+    (fieldName) =>
+      validatedFields[fieldName] && validatedFields[fieldName].valid === false
+  ))
 
-  if (firstInvalidField) {
+  if (firstInvalidFieldName) {
     return {
-      fieldName: firstInvalidField.name,
+      fieldName: firstInvalidFieldName,
       field: {
-        ...validatedFields[firstInvalidField.name],
+        ...validatedFields[firstInvalidFieldName],
         focus: true,
       },
     }
@@ -202,9 +219,19 @@ function getFirstInvalidFilledField(fields, rules) {
   return null
 }
 
+/**
+ * @argument fields {import('../types/address').AddressWithValidation}
+ * @argument rules {import('../types/rules').AddressRules}
+ */
 function getFirstRequiredFieldNotFilled(fields, rules) {
-  const requiredFields = filter(rules.fields, (field) => field.required)
-  const requiredFieldsNames = map(requiredFields, (field) => field.name)
+  const requiredFieldsNames =
+    'fields' in rules
+      ? rules.fields
+          .filter((field) => field.required)
+          .map((field) => field.name)
+      : Object.entries(rules)
+          .filter(([, field]) => field.required)
+          .map(([fieldName]) => fieldName)
 
   const fieldsNames = Object.keys(fields)
   const requiredFieldNotFilled = difference(requiredFieldsNames, fieldsNames)

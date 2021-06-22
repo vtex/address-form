@@ -14,24 +14,24 @@ export const LEVELS = {
   CRITICAL: 'Critical',
 }
 
-interface CustomWindow extends Window {
-  vtex?: {
-    accountName?: string
-    vtexid?: {
+declare global {
+  interface Window {
+    vtex?: {
       accountName?: string
+      vtexid?: {
+        accountName?: string
+      }
     }
-  }
-  vtexjs?: {
-    checkout?: {
-      orderFormId?: string
+    vtexjs?: {
+      checkout?: {
+        orderFormId?: string
+      }
     }
-  }
-  __RUNTIME__?: {
-    account?: string
+    __RUNTIME__?: {
+      account?: string
+    }
   }
 }
-
-declare let window: CustomWindow
 
 const splunkEvents = new SplunkEvents()
 

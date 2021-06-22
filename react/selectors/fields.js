@@ -1,3 +1,9 @@
+/**
+ * @typedef {import('../types/rules').AddressRules} AddressRules
+ * @typedef {import('../types/rules').Rule} Rule
+ * @typedef {import('../types/address').Fields} Fields
+ * @typedef {import('../types/address').AddressWithValidation} AddressWithValidation
+ */
 import find from 'lodash/find'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
@@ -8,13 +14,29 @@ import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 import hasOption from './hasOption'
 import cleanStr from './cleanStr'
 
+/**
+ * @argument fieldName {Fields}
+ * @argument rules {AddressRules}
+ */
 export function getField(fieldName, rules) {
-  return find(rules.fields, ({ name }) => name === fieldName)
+  if ('fields' in rules) {
+    return rules.fields.find((field) => field.name === fieldName)
+  }
+
+  return rules[fieldName]
 }
 
+/**
+ * @argument field {Rule}
+ * @argument [address] {AddressWithValidation}
+ */
 export function hasOptions(field, address) {
-  const hasValueOptions =
-    address && address[field.name] && address[field.name].valueOptions
+  // geolocation rules does not contain options
+  if ('valueIn' in field) {
+    return false
+  }
+
+  const hasValueOptions = !!address?.[field.name]?.valueOptions
 
   return !!(
     field.options ||
