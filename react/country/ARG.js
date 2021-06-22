@@ -14,6 +14,7 @@ const mappedStates = {
   'ciudad autonoma de buenos aires': 'Ciudad Autónoma de Buenos Aires',
   'gran buenos aires': 'Ciudad Autónoma de Buenos Aires',
   'provincia de buenos aires': 'Buenos Aires',
+  'santa fe': 'Santa Fé',
 }
 
 const countryData = {
@@ -16405,7 +16406,7 @@ const countryData = {
     'Yegua Muerta',
     'Zanjón Del Pescado',
   ],
-  'Santa Fe': [
+  'Santa Fé': [
     '29',
     '22 De Mayo',
     '4 De Febrero',
