@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `neighborhood` info to the address summary for the country `ARG`.
+
 ## [3.17.1] - 2021-07-06
 
 ### Changed
