@@ -29,10 +29,11 @@ export function isValidAddress(address, rules) {
 export function validateAddress(address, rules) {
   return reduce(
     address,
-    (memo, { value, valueOptions }, name) => {
+    (memo, { value, valueOptions, geolocationAutoCompleted }, name) => {
       memo[name] = {
         value,
         valueOptions,
+        geolocationAutoCompleted,
         ...validateField(value, name, address, rules),
       }
 
