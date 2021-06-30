@@ -21269,6 +21269,7 @@ export default {
         'sublocality_level_3',
         'sublocality_level_4',
         'sublocality_level_5',
+        'locality',
       ],
     },
     state: {
@@ -21294,7 +21295,7 @@ export default {
     },
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['administrative_area_level_2'],
       handler: (address, googleAddress) => {
         if (isCABA(googleAddress)) {
           address.city = { value: 'Ciudad Autónoma de Buenos Aires' }
