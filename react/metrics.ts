@@ -1,5 +1,7 @@
 import SplunkEvents from 'splunk-events'
 
+import type { AddressValues, Fields } from './types/address'
+
 export const TYPES = {
   INFO: 'Info',
   WARNING: 'Warning',
@@ -54,8 +56,8 @@ function getAccountName() {
 type EventData = Parameters<typeof splunkEvents.logEvent>[4]
 
 interface LogGeolocationAddressMismatchData {
-  fieldValue: string
-  fieldName: string
+  fieldValue: AddressValues
+  fieldName: Fields
   countryFromRules: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   address: Record<string, any>
@@ -68,7 +70,7 @@ export function logGeolocationAddressMismatch({
   address,
 }: LogGeolocationAddressMismatchData) {
   const eventData: EventData = {
-    fieldValue,
+    fieldValue: (fieldValue ?? '') as string,
     fieldName,
     countryFromRules,
     query: address.addressQuery?.value ?? '',

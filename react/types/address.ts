@@ -36,6 +36,8 @@ export interface Address {
   addressQuery?: string
 }
 
+export type AddressValues = Address[Fields]
+
 export interface ValidatedField {
   value?: string
   valueOptions?: unknown

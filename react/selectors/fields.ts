@@ -1,9 +1,3 @@
-/**
- * @typedef {import('../types/rules').AddressRules} AddressRules
- * @typedef {import('../types/rules').Rule} Rule
- * @typedef {import('../types/address').Fields} Fields
- * @typedef {import('../types/address').AddressWithValidation} AddressWithValidation
- */
 import find from 'lodash/find'
 import map from 'lodash/map'
 import filter from 'lodash/filter'
@@ -13,12 +7,20 @@ import last from 'lodash/last'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
 import hasOption from './hasOption'
 import cleanStr from './cleanStr'
+import type {
+  PostalCodeFieldRule,
+  Rule,
+  AddressRules,
+  PostalCodeRules,
+} from '../types/rules'
+import type {
+  Fields,
+  AddressWithValidation,
+  ValidatedField,
+  AddressValues,
+} from '../types/address'
 
-/**
- * @argument fieldName {Fields}
- * @argument rules {AddressRules}
- */
-export function getField(fieldName, rules) {
+export function getField(fieldName: Fields, rules: AddressRules) {
   if ('fields' in rules) {
     return rules.fields.find((field) => field.name === fieldName)
   }
@@ -26,11 +28,10 @@ export function getField(fieldName, rules) {
   return rules[fieldName]
 }
 
-/**
- * @argument field {Rule}
- * @argument [address] {AddressWithValidation}
- */
-export function hasOptions(field, address) {
+export function hasOptions(
+  field: Rule,
+  address?: AddressWithValidation
+): field is PostalCodeFieldRule {
   // geolocation rules does not contain options
   if ('valueIn' in field) {
     return false
@@ -46,8 +47,14 @@ export function hasOptions(field, address) {
   )
 }
 
-function getFieldValue(field) {
-  return typeof field === 'object' ? field.value : field
+function getFieldValue(field: ValidatedField | AddressValues): AddressValues {
+  if (field == null) {
+    return undefined
+  }
+
+  return typeof field === 'object' && !Array.isArray(field)
+    ? field.value
+    : field
 }
 
 export function normalizeOptions(options) {
@@ -139,9 +146,28 @@ function getSecondLevelOptions(field, address) {
   return []
 }
 
-function getThirdLevelOptions(field, address, rules) {
-  const secondLevelField = getField(field.basedOn, rules)
-  const firstLevelField = getField(secondLevelField.basedOn, rules)
+function getThirdLevelOptions(
+  field: PostalCodeFieldRule,
+  address: AddressWithValidation,
+  rules: PostalCodeRules
+) {
+  const secondLevelField = getField(
+    field.basedOn!,
+    rules
+  ) as PostalCodeFieldRule
+
+  if (!secondLevelField) {
+    return []
+  }
+
+  const firstLevelField = getField(
+    secondLevelField.basedOn!,
+    rules
+  ) as PostalCodeFieldRule
+
+  if (!firstLevelField) {
+    return []
+  }
 
   const secondLevelValue = getFieldValue(address[secondLevelField.name])
   const firstLevelValue = getFieldValue(address[firstLevelField.name])
@@ -166,7 +192,7 @@ function toValueAndLabel(option) {
 }
 
 export function getDependentFields(fieldName, rules) {
-  let dependentFields = []
+  let dependentFields: string[] = []
 
   if (fieldAffectsPostalCode(fieldName, rules)) {
     dependentFields = [...dependentFields, 'postalCode']

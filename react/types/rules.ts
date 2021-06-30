@@ -30,7 +30,7 @@ export interface PostalCodeFieldRule {
   postalCodeAPI?: boolean
   autoComplete?: boolean
   hidden?: boolean
-  basedOn?: string
+  basedOn?: Fields
   optionsCaption?: string
   options?: string[]
   optionsPairs?: unknown
