@@ -38,7 +38,7 @@ export function isValidAddress(
 export function validateAddress(
   address: AddressWithValidation,
   rules: AddressRules
-) {
+): AddressWithValidation {
   const validatedAddressEntries = Object.entries(address).map(
     ([name, { value, valueOptions, geolocationAutoCompleted }]) => {
       return [

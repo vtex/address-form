@@ -7,6 +7,13 @@ import msk from 'msk'
 
 import { getField } from '../selectors/fields'
 import { validateAddress } from '../validateAddress'
+import type {
+  AddressWithValidation,
+  ValidatedField,
+  Fields,
+  FillableFields,
+} from '../types/address'
+import type { AddressRules } from '../types/rules'
 
 export function addValidation(address) {
   return reduce(
@@ -52,15 +59,11 @@ export function removeValidation(address) {
   )
 }
 
-/**
- * @template {keyof import('../types/address').ValidatedField} FieldName
- * @argument address {import('../types/address').AddressWithValidation}
- * @argument fieldName {FieldName}
- * @argument value {import('../types/address').ValidatedField[FieldName]}
- *
- * @returns {import('../types/address').AddressWithValidation}
- */
-export function addNewField(address, fieldName, value) {
+export function addNewField<FieldName extends keyof ValidatedField>(
+  address: AddressWithValidation,
+  fieldName: FieldName,
+  value: ValidatedField[FieldName]
+): AddressWithValidation {
   const newAddressEntries = Object.entries(address).map(
     ([field, fieldValue]) => {
       return [
@@ -143,11 +146,11 @@ export function maskFields(addressFields, rules) {
   return reduce(
     addressFields,
     (newAddressFields, prop, propName) => {
-      const fieldRule = getField(propName, rules)
+      const fieldRule = getField(propName as Fields, rules)
 
       newAddressFields[propName] = prop
 
-      if (fieldRule && fieldRule.mask) {
+      if (fieldRule && 'mask' in fieldRule && fieldRule.mask) {
         newAddressFields[propName] = {
           ...prop,
           ...(prop.value ? { value: msk(prop.value, fieldRule.mask) } : {}),
@@ -160,11 +163,10 @@ export function maskFields(addressFields, rules) {
   )
 }
 
-/**
- * @argument fields {import('../types/address').AddressWithValidation}
- * @argument rules {import('../types/rules').AddressRules}
- */
-export function addFocusToNextInvalidField(fields, rules) {
+export function addFocusToNextInvalidField(
+  fields: AddressWithValidation,
+  rules: AddressRules
+): AddressWithValidation {
   const invalidFilledField = getFirstInvalidFilledField(fields, rules)
 
   if (invalidFilledField) {
@@ -190,21 +192,20 @@ export function addFocusToNextInvalidField(fields, rules) {
   return addNewField(fields, 'valid', true)
 }
 
-/**
- * @argument fields {import('../types/address').AddressWithValidation}
- * @argument rules {import('../types/rules').AddressRules}
- */
-function getFirstInvalidFilledField(fields, rules) {
+function getFirstInvalidFilledField(
+  fields: AddressWithValidation,
+  rules: AddressRules
+) {
   const allFieldsVisited = addNewField(fields, 'visited', true)
   const validatedFields = validateAddress(allFieldsVisited, rules)
 
-  const firstInvalidFieldName = /** @type {import('../types/address').FillableFields | undefined} */ (find(
+  const firstInvalidFieldName = find(
     'fields' in rules
       ? rules.fields.map((field) => field.name)
       : Object.keys(rules),
     (fieldName) =>
       validatedFields[fieldName] && validatedFields[fieldName].valid === false
-  ))
+  ) as FillableFields | undefined
 
   if (firstInvalidFieldName) {
     return {
@@ -219,11 +220,10 @@ function getFirstInvalidFilledField(fields, rules) {
   return null
 }
 
-/**
- * @argument fields {import('../types/address').AddressWithValidation}
- * @argument rules {import('../types/rules').AddressRules}
- */
-function getFirstRequiredFieldNotFilled(fields, rules) {
+function getFirstRequiredFieldNotFilled(
+  fields: AddressWithValidation,
+  rules: AddressRules
+) {
   const requiredFieldsNames =
     'fields' in rules
       ? rules.fields
@@ -251,7 +251,7 @@ export default function getGGUID() {
   return (gguid++ * new Date().getTime() * -1).toString().replace('-', '')
 }
 
-export function createNewAddress(address = {}) {
+export function createNewAddress(address: Partial<AddressWithValidation> = {}) {
   const {
     addressType,
     city,
