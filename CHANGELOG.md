@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Remove duplicate city names and corresponding values from Romanian zipcodes list.
+
 ## [3.18.0] - 2021-07-07
 
 ### Added
