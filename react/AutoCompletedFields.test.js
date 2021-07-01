@@ -113,11 +113,11 @@ describe('AutoCompletedFields', () => {
         'geolocationAutoCompleted',
         undefined
       )
-      expect(onChangeAddressArgument.city).toHaveProperty('value', city)
       expect(onChangeAddressArgument.state).toHaveProperty(
         'postalCodeAutoCompleted',
         undefined
       )
+      expect(onChangeAddressArgument.city).toBeFalsy()
     })
 
     it('should not display country information', () => {
