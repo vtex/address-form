@@ -10,7 +10,8 @@
     "noImplicitAny": false,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "strict": true
+    "strict": true,
+    "outDir": "lib"
   },
   "include": ["./**/*.js", "./**/*.ts", "./**/*.jsx", "./**/*.tsx"],
   "exclude": ["node_modules"]
