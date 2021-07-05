@@ -43,6 +43,7 @@ Object {
   },
   "receiverName": Object {
     "focus": true,
+    "geolocationAutoCompleted": undefined,
     "reason": "ERROR_EMPTY_FIELD",
     "valid": false,
     "value": null,
