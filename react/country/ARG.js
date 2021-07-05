@@ -21295,7 +21295,7 @@ export default {
     },
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2'],
+      types: ['administrative_area_level_2', 'locality'],
       handler: (address, googleAddress) => {
         if (isCABA(googleAddress)) {
           address.city = { value: 'Ciudad Autónoma de Buenos Aires' }
