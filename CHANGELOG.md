@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.16.14] - 2021-07-05
+
 ### Fixed
 
 - `geolocationAutoCompleted` flag being lost after the address is validated.
