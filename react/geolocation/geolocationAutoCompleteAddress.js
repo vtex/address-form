@@ -132,14 +132,15 @@ export default function geolocationAutoCompleteAddress(
 function getAddressComponent(addressComponents, types) {
   let addressComponent
 
-  types.every((type) => {
-    addressComponent = addressComponents.find(
-      (component) =>
-        !!component.types.some((componentType) => componentType === type)
+  for (const type of types) {
+    addressComponent = addressComponents.find((component) =>
+      component.types.includes(type)
     )
 
-    return !addressComponent
-  })
+    if (addressComponent) {
+      return addressComponent
+    }
+  }
 
   return addressComponent
 }
