@@ -130,10 +130,8 @@ export default function geolocationAutoCompleteAddress(
 }
 
 function getAddressComponent(addressComponents, types) {
-  let addressComponent
-
   for (const type of types) {
-    addressComponent = addressComponents.find((component) =>
+    const addressComponent = addressComponents.find((component) =>
       component.types.includes(type)
     )
 
@@ -142,7 +140,7 @@ function getAddressComponent(addressComponents, types) {
     }
   }
 
-  return addressComponent
+  return undefined
 }
 
 function setAddressFieldValue(
