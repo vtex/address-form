@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Update Romanian zipcodes list
+
 ## [3.17.0] - 2021-07-06
 
 ### Changed
