@@ -1429,6 +1429,11 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
+"@types/lodash@^4.14.170":
+  version "4.14.170"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
+  integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
+
 "@types/node@*":
   version "14.6.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.6.2.tgz#264b44c5a28dfa80198fc2f7b6d3c8a054b9491f"
@@ -4523,9 +4528,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-msk@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/msk/-/msk-1.0.3.tgz#8eeb462edb48ca7965ee576b1c8faa6296cd0044"
+msk@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/msk/-/msk-1.0.5.tgz#f085744d472caf3d5a32fe85c1c71db1cddb1480"
+  integrity sha512-IdnSUa9lWrsCiwfIVmdgPhXu6+HFIEIlxMk2QDktzTP6VVkz2pm2aMktYS7mnicsKFa/K/oO6rsPKK2eYAsAzQ==
 
 nan@^2.12.1:
   version "2.14.1"

@@ -1,6 +1,4 @@
 import reduce from 'lodash/reduce'
-import filter from 'lodash/filter'
-import map from 'lodash/map'
 import difference from 'lodash/difference'
 import find from 'lodash/find'
 import isPlainObject from 'lodash/isPlainObject'
@@ -9,6 +7,13 @@ import msk from 'msk'
 
 import { getField } from '../selectors/fields'
 import { validateAddress } from '../validateAddress'
+import type {
+  AddressWithValidation,
+  ValidatedField,
+  Fields,
+  FillableFields,
+} from '../types/address'
+import type { AddressRules } from '../types/rules'
 
 export function addValidation(address) {
   return reduce(
@@ -54,19 +59,24 @@ export function removeValidation(address) {
   )
 }
 
-export function addNewField(address, fieldName, value) {
-  return reduce(
-    address,
-    (newAddress, prop, propName) => {
-      newAddress[propName] = {
-        ...prop,
-        [fieldName]: value,
-      }
-
-      return newAddress
-    },
-    {}
+export function addNewField<FieldName extends keyof ValidatedField>(
+  address: AddressWithValidation,
+  fieldName: FieldName,
+  value: ValidatedField[FieldName]
+): AddressWithValidation {
+  const newAddressEntries = Object.entries(address).map(
+    ([field, fieldValue]) => {
+      return [
+        field,
+        {
+          ...fieldValue,
+          [fieldName]: value,
+        },
+      ]
+    }
   )
+
+  return Object.fromEntries(newAddressEntries)
 }
 
 export function removeField(address, fieldName) {
@@ -136,11 +146,11 @@ export function maskFields(addressFields, rules) {
   return reduce(
     addressFields,
     (newAddressFields, prop, propName) => {
-      const fieldRule = getField(propName, rules)
+      const fieldRule = getField(propName as Fields, rules)
 
       newAddressFields[propName] = prop
 
-      if (fieldRule && fieldRule.mask) {
+      if (fieldRule && 'mask' in fieldRule && fieldRule.mask) {
         newAddressFields[propName] = {
           ...prop,
           ...(prop.value ? { value: msk(prop.value, fieldRule.mask) } : {}),
@@ -153,7 +163,10 @@ export function maskFields(addressFields, rules) {
   )
 }
 
-export function addFocusToNextInvalidField(fields, rules) {
+export function addFocusToNextInvalidField(
+  fields: AddressWithValidation,
+  rules: AddressRules
+): AddressWithValidation {
   const invalidFilledField = getFirstInvalidFilledField(fields, rules)
 
   if (invalidFilledField) {
@@ -179,21 +192,26 @@ export function addFocusToNextInvalidField(fields, rules) {
   return addNewField(fields, 'valid', true)
 }
 
-function getFirstInvalidFilledField(fields, rules) {
+function getFirstInvalidFilledField(
+  fields: AddressWithValidation,
+  rules: AddressRules
+) {
   const allFieldsVisited = addNewField(fields, 'visited', true)
   const validatedFields = validateAddress(allFieldsVisited, rules)
 
-  const firstInvalidField = find(
-    rules.fields,
-    (field) =>
-      validatedFields[field.name] && validatedFields[field.name].valid === false
-  )
+  const firstInvalidFieldName = find(
+    'fields' in rules
+      ? rules.fields.map((field) => field.name)
+      : Object.keys(rules),
+    (fieldName) =>
+      validatedFields[fieldName] && validatedFields[fieldName].valid === false
+  ) as FillableFields | undefined
 
-  if (firstInvalidField) {
+  if (firstInvalidFieldName) {
     return {
-      fieldName: firstInvalidField.name,
+      fieldName: firstInvalidFieldName,
       field: {
-        ...validatedFields[firstInvalidField.name],
+        ...validatedFields[firstInvalidFieldName],
         focus: true,
       },
     }
@@ -202,9 +220,18 @@ function getFirstInvalidFilledField(fields, rules) {
   return null
 }
 
-function getFirstRequiredFieldNotFilled(fields, rules) {
-  const requiredFields = filter(rules.fields, (field) => field.required)
-  const requiredFieldsNames = map(requiredFields, (field) => field.name)
+function getFirstRequiredFieldNotFilled(
+  fields: AddressWithValidation,
+  rules: AddressRules
+) {
+  const requiredFieldsNames =
+    'fields' in rules
+      ? rules.fields
+          .filter((field) => field.required)
+          .map((field) => field.name)
+      : Object.entries(rules)
+          .filter(([, field]) => field.required)
+          .map(([fieldName]) => fieldName)
 
   const fieldsNames = Object.keys(fields)
   const requiredFieldNotFilled = difference(requiredFieldsNames, fieldsNames)
@@ -224,7 +251,7 @@ export default function getGGUID() {
   return (gguid++ * new Date().getTime() * -1).toString().replace('-', '')
 }
 
-export function createNewAddress(address = {}) {
+export function createNewAddress(address: Partial<AddressWithValidation> = {}) {
   const {
     addressType,
     city,

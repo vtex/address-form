@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated `isValidAddress` to accept geolocation rules definition.
+
 ## [3.16.14] - 2021-07-05
 
 ### Fixed

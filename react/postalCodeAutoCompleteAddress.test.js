@@ -2,7 +2,6 @@ import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import newAddress from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
 
-jest.mock('./transforms/address')
 jest.mock('./postalCodeService')
 
 const waitForResult = async () => {
@@ -102,7 +101,7 @@ describe('postalCodeAutoCompleteAddress()', () => {
     )
   })
 
-  it('should keep address id when auto completing fields', done => {
+  it('should keep address id when auto completing fields', async () => {
     const addressId = 'addressId1autoComplete'
     const modifiedAddress = {
       ...address,
@@ -110,17 +109,19 @@ describe('postalCodeAutoCompleteAddress()', () => {
       postalCode: { value: '22251000' },
     }
 
-    function callback(data) {
-      expect(data.addressId.value).toBe(addressId)
-      done()
-    }
+    await new Promise((resolve) => {
+      function callback(data) {
+        expect(data.addressId.value).toBe(addressId)
+        resolve()
+      }
 
-    postalCodeAutoCompleteAddress({
-      cors,
-      accountName,
-      address: modifiedAddress,
-      rules: usePostalCode,
-      callback,
+      postalCodeAutoCompleteAddress({
+        cors,
+        accountName,
+        address: modifiedAddress,
+        rules: usePostalCode,
+        callback,
+      })
     })
   })
 })
