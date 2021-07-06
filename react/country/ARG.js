@@ -11062,7 +11062,7 @@ const countryData = {
     'Gaspar Campos',
     'General Acha',
     'General Alvear',
-    'General Gutiérrez',
+    'General Gutierrez',
     'General Ortega',
     'Germán Maturano',
     'Gertrudis De Ojeda',
