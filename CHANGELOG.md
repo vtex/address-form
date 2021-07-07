@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Remove duplicate city name and corresponding values from Romanian zipcodes list.
+- Update Romanian zipcodes list
+
 ## [4.7.5] - 2021-06-22
 
 ### Fixed
@@ -19,9 +24,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Ensure the `state` field is populate when user visits `addresses` inside their account for `RUS`.
+
 ## [4.7.2] - 2021-05-12
 
-### Fixed 
+### Fixed
 
 - `CHL` rules when filling data with Google Maps.
 
