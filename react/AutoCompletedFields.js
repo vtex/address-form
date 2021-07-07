@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import pickBy from 'lodash/pickBy'
-import reduce from 'lodash/reduce'
 import { compose } from 'recompose'
 
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
@@ -13,22 +12,12 @@ import { injectAddressContext } from './addressContainerContext'
 const IRRELEVANT_FIELDS = ['country', 'geoCoordinates']
 
 const removeAutoCompletedFields = (address) => {
-  return reduce(
-    address,
-    (newAddress, prop, propName) => {
-      if (
-        address[propName].postalCodeAutoCompleted ||
-        address[propName].geolocationAutoCompleted
-      ) {
-        return newAddress
-      }
-
-      newAddress[propName] = { ...prop }
-
-      return newAddress
-    },
-    {}
+  const addressFieldsNotAutoCompleted = Object.entries(address).filter(
+    ([_, value]) =>
+      !value.geolocationAutoCompleted && !value.postalCodeAutoCompleted
   )
+
+  return Object.fromEntries(addressFieldsNotAutoCompleted)
 }
 
 class AutoCompletedFields extends Component {

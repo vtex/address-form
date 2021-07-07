@@ -118,6 +118,7 @@ describe('AutoCompletedFields', () => {
         undefined
       )
       expect(onChangeAddressArgument.city).toBeFalsy()
+      expect(onChangeAddressArgument.neighborhood).toBeFalsy()
     })
 
     it('should not display country information', () => {
