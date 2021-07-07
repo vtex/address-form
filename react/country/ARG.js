@@ -21269,6 +21269,7 @@ export default {
         'sublocality_level_3',
         'sublocality_level_4',
         'sublocality_level_5',
+        'locality',
       ],
     },
     state: {
@@ -21310,6 +21311,10 @@ export default {
     [{ name: 'street' }, { delimiter: ' ', name: 'number' }],
     [{ name: 'complement' }],
     [{ name: 'postalCode' }],
-    [{ name: 'city' }, { delimiter: ', ', name: 'state' }],
+    [
+      { name: 'neighborhood', delimiterAfter: ' - ' },
+      { name: 'city' },
+      { delimiter: ', ', name: 'state' },
+    ],
   ],
 }

@@ -38,19 +38,17 @@ export default function geolocationAutoCompleteAddress(
   // from the closure created.
 
   function setAddressFields() {
-    const indexedRules = revertRuleIndex(geolocationRules)
-
-    return googleAddress.address_components.reduce(
-      (updatedAddress, component) => {
-        const checkoutFieldName = getCheckoutFieldName(
-          component.types,
-          indexedRules
+    return Object.entries(geolocationRules).reduce(
+      (updatedAddress, [fieldName, fieldValue]) => {
+        const component = getAddressComponent(
+          googleAddress.address_components,
+          fieldValue.types
         )
 
-        if (checkoutFieldName) {
+        if (component) {
           updatedAddress = setAddressFieldValue(
             updatedAddress,
-            checkoutFieldName,
+            fieldName,
             geolocationRules,
             component
           )
@@ -131,40 +129,18 @@ export default function geolocationAutoCompleteAddress(
   return address
 }
 
-/** This function creates a map like this:
- * {
- *   "postal_code": "postalCode",
- *   "street_number": "number",
- *   "route": "street",
- *   "neighborhood": "neighborhood",
- *   "sublocality_level_1": "neighborhood",
- *   "sublocality_level_2": "neighborhood",
- *   "sublocality_level_3": "neighborhood",
- *   "sublocality_level_4": "neighborhood",
- *   "sublocality_level_5": "neighborhood",
- *   "administrative_area_level_1": "state",
- *   "administrative_area_level_2": "city",
- *   "locality": "city"
- * }
- * So it's easy to find which Google address type matches ours
- */
-function revertRuleIndex(geolocationRules) {
-  return Object.entries(geolocationRules).reduce((acc, [propName, value]) => {
-    for (let i = 0; i < value.types.length; i++) {
-      const type = value.types[i]
+function getAddressComponent(addressComponents, types) {
+  for (const type of types) {
+    const addressComponent = addressComponents.find((component) =>
+      component.types.includes(type)
+    )
 
-      acc[type] = propName
+    if (addressComponent) {
+      return addressComponent
     }
+  }
 
-    return acc
-  }, {})
-}
-
-// Return the matched checkout field name
-function getCheckoutFieldName(types, indexedRules) {
-  const mappedType = types.find((type) => indexedRules[type])
-
-  return mappedType ? indexedRules[mappedType] : null
+  return undefined
 }
 
 function setAddressFieldValue(

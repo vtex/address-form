@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import pickBy from 'lodash/pickBy'
-import flow from 'lodash/flow'
 import { compose } from 'recompose'
 
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import AddressSummary from './AddressSummary'
-import { removeValidation, removeField } from './transforms/address'
+import { removeValidation } from './transforms/address'
 import { injectRules } from './addressRulesContext'
 import { injectAddressContext } from './addressContainerContext'
 
 const IRRELEVANT_FIELDS = ['country', 'geoCoordinates']
 
-const removeAutoCompletedFields = flow([
-  (address) => removeField(address, 'postalCodeAutoCompleted'),
-  (address) => removeField(address, 'geolocationAutoCompleted'),
-])
+const removeAutoCompletedFields = (address) => {
+  const addressFieldsNotAutoCompleted = Object.entries(address).filter(
+    ([_, value]) =>
+      !value.geolocationAutoCompleted && !value.postalCodeAutoCompleted
+  )
+
+  return Object.fromEntries(addressFieldsNotAutoCompleted)
+}
 
 class AutoCompletedFields extends Component {
   handleClickChange = (e) => {
