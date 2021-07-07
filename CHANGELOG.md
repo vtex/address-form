@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.18.0] - 2021-07-07
+
 ### Added
 
 - `neighborhood` info to the address summary for the country `ARG`.
