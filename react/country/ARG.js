@@ -21306,6 +21306,9 @@ export default {
         return address
       },
     },
+    receiverName: {
+      required: true,
+    },
   },
   summary: [
     [{ name: 'street' }, { delimiter: ' ', name: 'number' }],

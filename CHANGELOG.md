@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `receiverName` not required for geolocation.
+- `number` fields required in geolocation but hidden in postal code.
+
 ## [3.18.1] - 2021-07-08
 
 ### Changed

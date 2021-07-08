@@ -130,7 +130,7 @@ export default function geolocationAutoCompleteAddress(
 }
 
 function getAddressComponent(addressComponents, types) {
-  for (const type of types) {
+  for (const type of types ?? []) {
     const addressComponent = addressComponents.find((component) =>
       component.types.includes(type)
     )
