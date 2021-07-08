@@ -87,6 +87,7 @@ export default {
       types: ['postal_code'],
       required: false,
     },
+
     street: {
       valueIn: 'long_name',
       types: ['route'],
@@ -96,6 +97,7 @@ export default {
         return address
       },
     },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -107,13 +109,19 @@ export default {
         'sublocality_level_5',
       ],
     },
+
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

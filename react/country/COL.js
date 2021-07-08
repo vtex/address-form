@@ -1309,12 +1309,14 @@ export default {
         return address
       },
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
+
     street: {
       valueIn: 'long_name',
       types: ['route'],
@@ -1324,6 +1326,7 @@ export default {
         return address
       },
     },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -1336,6 +1339,7 @@ export default {
       ],
       required: false,
     },
+
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
@@ -1347,6 +1351,7 @@ export default {
         return address
       },
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
@@ -1357,6 +1362,10 @@ export default {
 
         return address
       },
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

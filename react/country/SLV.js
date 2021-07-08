@@ -386,26 +386,35 @@ export default {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
-      required: true,
+      required: false,
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: ['neighborhood'],
     },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

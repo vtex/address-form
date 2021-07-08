@@ -97,6 +97,7 @@ export default {
         return address
       },
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
@@ -109,16 +110,23 @@ export default {
         }
       },
     },
+
     street: { valueIn: 'long_name', types: ['route'], required: false },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
       required: false,
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
       required: false,
+    },
+
+    receiverName: {
+      required: true,
     },
   },
 }

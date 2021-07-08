@@ -2424,7 +2424,7 @@ export default {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
-      required: true,
+      required: false,
       handler: (address) => {
         if (!address.state || !address.city || !address.neighborhood) {
           return address
@@ -2448,13 +2448,16 @@ export default {
         return address
       },
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
       required: true,
       notApplicable: true,
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: ['administrative_area_level_3', 'locality'],
@@ -2472,6 +2475,7 @@ export default {
         return address
       },
     },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
@@ -2507,6 +2511,7 @@ export default {
         return address
       },
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2'],
@@ -2517,6 +2522,10 @@ export default {
 
         return address
       },
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

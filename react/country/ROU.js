@@ -14052,6 +14052,9 @@ export default {
       valueIn: 'long_name',
       types: ['administrative_area_level_3'],
     },
+    receiverName: {
+      required: true,
+    },
   },
   summary: [
     [

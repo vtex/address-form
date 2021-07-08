@@ -444,11 +444,14 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
     },
+
     complement: {
       valueIn: 'long_name',
       types: ['street_number'],
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -460,13 +463,19 @@ export default {
         'sublocality_level_5',
       ],
     },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [
