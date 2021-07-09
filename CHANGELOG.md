@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.18.3] - 2021-07-09
+
+### Changed
+
+- Add the county capital cities and their corresponding postal codes.
+
 ## [3.18.2] - 2021-07-08
 
 ### Fixed
