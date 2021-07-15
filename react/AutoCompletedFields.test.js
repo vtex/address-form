@@ -117,8 +117,7 @@ describe('AutoCompletedFields', () => {
         'postalCodeAutoCompleted',
         undefined
       )
-      expect(onChangeAddressArgument.city).toBeFalsy()
-      expect(onChangeAddressArgument.neighborhood).toBeFalsy()
+      expect(onChangeAddressArgument.city).toHaveProperty('value', city)
     })
 
     it('should not display country information', () => {
