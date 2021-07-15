@@ -97,7 +97,9 @@ class StyleguideInput extends Component {
     if (field.name === 'postalCode') {
       return (
         <form
-          className="vtex-address-form__postalCode"
+          className={`vtex-address-form__postalCode ${
+            field.hidden ? 'dn' : ''
+          } pb7`}
           onSubmit={this.handleSubmit}
         >
           {Button ? (
@@ -129,7 +131,11 @@ class StyleguideInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div className="vtex-address-form__addressQuery flex flex-row pb7">
+        <div
+          className={`vtex-address-form__addressQuery ${
+            field.hidden ? 'dn' : ''
+          } flex flex-row pb7`}
+        >
           <Input
             label={
               field.fixedLabel ||
@@ -166,7 +172,11 @@ class StyleguideInput extends Component {
       (field.notApplicable || address['addressQuery'].geolocationAutoCompleted)
     ) {
       return (
-        <div className="vtex-address-form__number-div flex flex-row pb7">
+        <div
+          className={`vtex-address-form__number-div ${
+            field.hidden ? 'dn' : ''
+          } flex flex-row pb7`}
+        >
           <div className="vtex-address-form__number-input flex w-50">
             <Input
               label={
@@ -212,7 +222,11 @@ class StyleguideInput extends Component {
 
     if (options) {
       return (
-        <div className={`vtex-address-form__${field.name} pb6`}>
+        <div
+          className={`vtex-address-form__${field.name} ${
+            field.hidden ? 'dn' : ''
+          } pb6`}
+        >
           <Dropdown
             options={options}
             value={address[field.name].value || ''}

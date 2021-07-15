@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Postal code `form` lack of padding.
+- `StyleguideInput` ignoring `hidden` rules in non-default fields.
+
 ## [4.7.5] - 2021-06-22
 
 ### Fixed
