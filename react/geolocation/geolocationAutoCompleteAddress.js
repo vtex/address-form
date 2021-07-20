@@ -1,7 +1,7 @@
 import flow from 'lodash/flow'
 
 import getCountryISO2 from '../countryISOMap'
-import { addNewField, addFocusToNextInvalidField } from '../transforms/address'
+import { addNewField, addFocusToNextInvalidField, createNewAddress } from '../transforms/address'
 
 export default function geolocationAutoCompleteAddress(
   baseAddress,
@@ -56,7 +56,7 @@ export default function geolocationAutoCompleteAddress(
 
         return updatedAddress
       },
-      {}
+      createNewAddress()
     )
   }
 

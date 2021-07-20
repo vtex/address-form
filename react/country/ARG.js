@@ -21269,7 +21269,6 @@ export default {
         'sublocality_level_3',
         'sublocality_level_4',
         'sublocality_level_5',
-        'locality',
       ],
     },
     state: {
