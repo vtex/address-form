@@ -60,7 +60,7 @@ describe('Geolocation Auto Complete Address', () => {
     expect(address.receiverName.value).toBe(receiverName)
   })
 
-  it('should remove fields that are not auto completed', () => {
+  it('should empty fields that are not auto completed', () => {
     const complement = 'apt 505'
 
     const address = geolocationAutoCompleteAddress(
@@ -72,7 +72,7 @@ describe('Geolocation Auto Complete Address', () => {
       usePostalCode
     )
 
-    expect(address.complement).toBeUndefined()
+    expect(address.complement.value).toBeNull()
   })
 
   it('should keep number as notApplicable', () => {
