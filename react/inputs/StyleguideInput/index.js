@@ -162,6 +162,7 @@ class StyleguideInput extends Component {
             error={!this.state.isInputValid}
             ref={inputRef}
             suffix={<SpinnerLoading isLoading={loading} />}
+            value={address[field.name].value || ''}
           />
         </div>
       )
