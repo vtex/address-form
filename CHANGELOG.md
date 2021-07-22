@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.18.6] - 2021-07-22
 ### Fixed
 - Add more cities to romanian zipcodes
 
