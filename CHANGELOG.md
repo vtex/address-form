@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Postal code `form` lack of padding.
 - `StyleguideInput` ignoring `hidden` rules in non-default fields.
+- `StyleguideInput` not using `addressQuery` value when initialized.
 
 ## [4.7.5] - 2021-06-22
 
