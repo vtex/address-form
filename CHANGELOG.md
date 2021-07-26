@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Add more cities to romanian zipcodes
+
 ## [3.18.5] - 2021-07-15
 ### Fixed
 - Change of address autocompleted by postal code.
