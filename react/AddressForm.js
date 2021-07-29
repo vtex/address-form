@@ -39,6 +39,7 @@ class AddressForm extends Component {
     const content = fields.map((field) =>
       isDefiningPostalCodeField(field.name, rules) ? (
         <SelectPostalCode
+          key={field.name}
           Input={Input}
           rules={rules}
           address={address}
