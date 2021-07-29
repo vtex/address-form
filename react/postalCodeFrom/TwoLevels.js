@@ -6,7 +6,7 @@ import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
 
 class TwoLevels extends Component {
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit && this.props.onSubmit()
   }
@@ -18,6 +18,7 @@ class TwoLevels extends Component {
       Input,
       loading,
       onChangeAddress,
+      omitContainerElement,
       onSubmit,
       submitLabel,
       Button,
@@ -49,8 +50,8 @@ class TwoLevels extends Component {
       )
     }
 
-    return (
-      <div>
+    const content = (
+      <>
         <SelectLevel
           level={0}
           Input={Input}
@@ -66,9 +67,15 @@ class TwoLevels extends Component {
           address={address}
           onChangeAddress={onChangeAddress}
         />
-      </div>
+      </>
     )
+
+    return omitContainerElement ? content : <div>{content}</div>
   }
+}
+
+TwoLevels.defaultProps = {
+  omitContainerElement: false,
 }
 
 TwoLevels.propTypes = {
@@ -80,6 +87,7 @@ TwoLevels.propTypes = {
   onSubmit: PropTypes.func,
   rules: PropTypes.object.isRequired,
   submitLabel: PropTypes.string,
+  omitContainerElement: PropTypes.bool,
 }
 
 export default TwoLevels

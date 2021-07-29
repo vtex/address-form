@@ -94,12 +94,14 @@ class StyleguideInput extends Component {
       type,
     }
 
+    const commonClassNames = `vtex-address-form__${
+      field.name
+    } vtex-address-form__field--${field.size ?? 'xlarge'} ${field.hidden ? 'dn' : ''}`
+
     if (field.name === 'postalCode') {
       return (
         <form
-          className={`vtex-address-form__postalCode ${
-            field.hidden ? 'dn' : ''
-          } pb7`}
+          className={`${commonClassNames} pb7`}
           onSubmit={this.handleSubmit}
         >
           {Button ? (
@@ -117,7 +119,7 @@ class StyleguideInput extends Component {
           )}
 
           {field.forgottenURL && (
-            <div className="pt4 flex-none">
+            <div className="vtex-address-form__postalCode-forgottenURL pt4 flex-none">
               <Link href={field.forgottenURL} target="_blank">
                 {intl.formatMessage({
                   id: 'address-form.dontKnowPostalCode',
@@ -131,11 +133,7 @@ class StyleguideInput extends Component {
 
     if (field.name === 'addressQuery') {
       return (
-        <div
-          className={`vtex-address-form__addressQuery ${
-            field.hidden ? 'dn' : ''
-          } flex flex-row pb7`}
-        >
+        <div className={`${commonClassNames} flex flex-row pb7`}>
           <Input
             label={
               field.fixedLabel ||
@@ -174,9 +172,7 @@ class StyleguideInput extends Component {
     ) {
       return (
         <div
-          className={`vtex-address-form__number-div ${
-            field.hidden ? 'dn' : ''
-          } flex flex-row pb7`}
+          className={`vtex-address-form__number-div ${commonClassNames} flex flex-row pb7`}
         >
           <div className="vtex-address-form__number-input flex w-50">
             <Input
@@ -191,12 +187,6 @@ class StyleguideInput extends Component {
                     })
                   : undefined
               }
-              placeholder={intl.formatMessage({
-                id: `address-form.geolocation.example.${address.country.value}`,
-                defaultMessage: intl.formatMessage({
-                  id: 'address-form.geolocation.example.UNI',
-                }),
-              })}
               autoFocus={autoFocus}
               onChange={this.handleChange}
               onBlur={this.handleBlur}
@@ -223,11 +213,7 @@ class StyleguideInput extends Component {
 
     if (options) {
       return (
-        <div
-          className={`vtex-address-form__${field.name} ${
-            field.hidden ? 'dn' : ''
-          } pb6`}
-        >
+        <div className={`${commonClassNames} pb6`}>
           <Dropdown
             options={options}
             value={address[field.name].value || ''}
@@ -244,11 +230,7 @@ class StyleguideInput extends Component {
     }
 
     return (
-      <div
-        className={`vtex-address-form__${field.name} ${
-          field.hidden ? 'dn' : ''
-        } pb7`}
-      >
+      <div className={`${commonClassNames} pb7`}>
         <Input
           label={this.props.intl.formatMessage({
             id: `address-form.field.${field.label}`,

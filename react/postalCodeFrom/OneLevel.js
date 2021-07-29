@@ -5,7 +5,7 @@ import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
 
 class OneLevel extends Component {
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit && this.props.onSubmit()
   }
@@ -18,6 +18,7 @@ class OneLevel extends Component {
       loading,
       onSubmit,
       onChangeAddress,
+      omitContainerElement,
       rules,
       submitLabel,
     } = this.props
@@ -39,18 +40,23 @@ class OneLevel extends Component {
         </form>
       )
     }
-    return (
-      <div>
-        <SelectPostalCode
-          address={address}
-          Input={Input}
-          loading={loading}
-          rules={rules}
-          onChangeAddress={onChangeAddress}
-        />
-      </div>
+
+    const content = (
+      <SelectPostalCode
+        address={address}
+        Input={Input}
+        loading={loading}
+        rules={rules}
+        onChangeAddress={onChangeAddress}
+      />
     )
+
+    return omitContainerElement ? content : <div>{content}</div>
   }
+}
+
+OneLevel.defaultProps = {
+  omitContainerElement: false,
 }
 
 OneLevel.propTypes = {
@@ -60,6 +66,7 @@ OneLevel.propTypes = {
   Input: PropTypes.func.isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
+  omitContainerElement: PropTypes.bool,
   onSubmit: PropTypes.func,
   submitLabel: PropTypes.string,
 }

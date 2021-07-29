@@ -6,7 +6,7 @@ import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
 
 class ThreeLevels extends Component {
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit && this.props.onSubmit()
   }
@@ -19,6 +19,7 @@ class ThreeLevels extends Component {
       Input,
       loading,
       onChangeAddress,
+      omitContainerElement,
       onSubmit,
       submitLabel,
     } = this.props
@@ -57,8 +58,8 @@ class ThreeLevels extends Component {
       )
     }
 
-    return (
-      <div>
+    const content = (
+      <>
         <SelectLevel
           level={0}
           Input={Input}
@@ -82,9 +83,15 @@ class ThreeLevels extends Component {
           address={address}
           onChangeAddress={onChangeAddress}
         />
-      </div>
+      </>
     )
+
+    return omitContainerElement ? content : <div>{content}</div>
   }
+}
+
+ThreeLevels.defaultProps = {
+  omitContainerElement: false,
 }
 
 ThreeLevels.propTypes = {
@@ -96,6 +103,7 @@ ThreeLevels.propTypes = {
   onSubmit: PropTypes.func,
   rules: PropTypes.object.isRequired,
   submitLabel: PropTypes.string,
+  omitContainerElement: PropTypes.bool,
 }
 
 export default ThreeLevels

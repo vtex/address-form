@@ -25,6 +25,7 @@ class AddressForm extends Component {
       notApplicableLabel,
       omitPostalCodeFields,
       omitAutoCompletedFields,
+      omitContainerElement,
     } = this.props
 
     let fields = omitPostalCodeFields
@@ -35,30 +36,31 @@ class AddressForm extends Component {
       ? filterAutoCompletedFields({ fields }, address)
       : fields
 
-    return (
-      <div>
-        {fields.map(field =>
-          isDefiningPostalCodeField(field.name, rules) ? (
-            <SelectPostalCode
-              Input={Input}
-              rules={rules}
-              address={address}
-              onChangeAddress={onChangeAddress}
-            />
-          ) : (
-            <InputFieldContainer
-              intl={intl}
-              key={field.name}
-              Input={Input}
-              field={field}
-              address={address}
-              rules={rules}
-              onChangeAddress={onChangeAddress}
-              notApplicableLabel={notApplicableLabel}
-            />
-          ),
-        )}
-      </div>
+    const content = fields.map((field) =>
+      isDefiningPostalCodeField(field.name, rules) ? (
+        <SelectPostalCode
+          Input={Input}
+          rules={rules}
+          address={address}
+          onChangeAddress={onChangeAddress}
+        />
+      ) : (
+        <InputFieldContainer
+          intl={intl}
+          key={field.name}
+          Input={Input}
+          field={field}
+          address={address}
+          rules={rules}
+          onChangeAddress={onChangeAddress}
+          notApplicableLabel={notApplicableLabel}
+        />
+      ),
+    )
+    return omitContainerElement ? (
+      content
+    ) : (
+      <div className="vtex-address-form__container">{content}</div>
     )
   }
 }
@@ -66,6 +68,7 @@ class AddressForm extends Component {
 AddressForm.defaultProps = {
   omitPostalCodeFields: true,
   omitAutoCompletedFields: true,
+  omitContainerElement: false,
   Input: DefaultInput,
 }
 
@@ -80,9 +83,5 @@ AddressForm.propTypes = {
   notApplicableLabel: PropTypes.string,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-  injectIntl,
-)
+const enhance = compose(injectAddressContext, injectRules, injectIntl)
 export default enhance(AddressForm)
