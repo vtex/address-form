@@ -16,6 +16,10 @@ Object {
     "geolocationAutoCompleted": true,
     "value": "Rio de Janeiro",
   },
+  "complement": Object {
+    "geolocationAutoCompleted": true,
+    "value": null,
+  },
   "country": Object {
     "geolocationAutoCompleted": true,
     "value": "BRA",
@@ -48,6 +52,10 @@ Object {
     "valid": false,
     "value": null,
     "valueOptions": undefined,
+  },
+  "reference": Object {
+    "geolocationAutoCompleted": true,
+    "value": null,
   },
   "state": Object {
     "geolocationAutoCompleted": true,
