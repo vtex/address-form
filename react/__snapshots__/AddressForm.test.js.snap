@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AddressForm should omit fields that are used in to get the postal code 1`] = `
-<div>
+<div
+  className="vtex-address-form__container"
+>
   <p
     className="input ship-street required text"
   >

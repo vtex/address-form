@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import SelectLevel from './SelectLevel'
@@ -59,7 +59,7 @@ class ThreeLevels extends Component {
     }
 
     const content = (
-      <>
+      <Fragment>
         <SelectLevel
           level={0}
           Input={Input}
@@ -83,7 +83,7 @@ class ThreeLevels extends Component {
           address={address}
           onChangeAddress={onChangeAddress}
         />
-      </>
+      </Fragment>
     )
 
     return omitContainerElement ? content : <div>{content}</div>
