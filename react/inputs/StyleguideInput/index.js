@@ -96,7 +96,7 @@ class StyleguideInput extends Component {
 
     const commonClassNames = `vtex-address-form__${
       field.name
-    } vtex-address-form__field--${field.size ?? 'xlarge'} ${field.hidden ? 'dn' : ''}`
+    } vtex-address-form__field--${field.size || 'xlarge'} ${field.hidden ? 'dn' : ''}`
 
     if (field.name === 'postalCode') {
       return (
