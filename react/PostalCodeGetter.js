@@ -28,6 +28,7 @@ class PostalCodeGetter extends Component {
       intl,
       onSubmit,
       submitLabel,
+      omitContainerElement,
     } = this.props
 
     switch (rules.postalCodeFrom) {
@@ -41,6 +42,7 @@ class PostalCodeGetter extends Component {
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            omitContainerElement={omitContainerElement}
             onSubmit={onSubmit}
             submitLabel={submitLabel}
           />
@@ -55,6 +57,7 @@ class PostalCodeGetter extends Component {
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            omitContainerElement={omitContainerElement}
             onSubmit={onSubmit}
             submitLabel={submitLabel}
           />
@@ -69,6 +72,7 @@ class PostalCodeGetter extends Component {
             address={address}
             rules={rules}
             onChangeAddress={onChangeAddress}
+            omitContainerElement={omitContainerElement}
             onSubmit={onSubmit}
             submitLabel={submitLabel}
           />
@@ -103,6 +107,7 @@ PostalCodeGetter.defaultProps = {
   loading: false,
   Input: DefaultInput,
   shouldShowNumberKeyboard: false,
+  omitContainerElement: false,
 }
 
 PostalCodeGetter.propTypes = {
@@ -117,6 +122,7 @@ PostalCodeGetter.propTypes = {
   rules: PropTypes.object.isRequired,
   shouldShowNumberKeyboard: PropTypes.bool,
   submitLabel: PropTypes.string,
+  omitContainerElement: PropTypes.bool,
 }
 
 const enhance = compose(injectAddressContext, injectRules, injectIntl)

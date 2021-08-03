@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `StyleguideInput` field size classes, allowing generic CSS styling.
+- `omitContainerElement` prop to enhance CSS styling in `AddressForm` and `PostalCodeGetter`.
+
+### Removed
+
+- `StyleguideInput` number field wrong placeholder.
+
 ## [4.7.6] - 2021-07-27
 
 ### Fixed
