@@ -27,7 +27,7 @@ class GeolocationInput extends Component {
   }
 
   handleMountInput = input => {
-    const { useSearchBox, rules, googleMaps } = this.props
+    const { useSearchBox, rules, googleMaps, autocompleteOptions } = this.props
 
     if (!input) {
       this.input = null
@@ -38,14 +38,16 @@ class GeolocationInput extends Component {
 
     this.input = input
 
-    const options = rules.abbr
-      ? {
-        types: ['address'],
-        componentRestrictions: {
-          country: rules.abbr,
-        },
-      }
-      : { types: ['address'] }
+    const options =
+      autocompleteOptions ||
+      (rules.abbr
+        ? {
+            types: ['address'],
+            componentRestrictions: {
+              country: rules.abbr,
+            },
+          }
+        : { types: ['address'] })
 
     if (useSearchBox) {
       this.autocomplete = new googleMaps.places.SearchBox(this.input)
@@ -192,6 +194,8 @@ GeolocationInput.propTypes = {
   loadingGoogle: PropTypes.bool,
   autoFocus: PropTypes.bool,
   googleMaps: PropTypes.object,
+  // See: https://developers.google.com/maps/documentation/javascript/reference/places-widget#AutocompleteOptions
+  autocompleteOptions: PropTypes.object,
 }
 
 const enhance = compose(
