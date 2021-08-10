@@ -18,7 +18,7 @@ export default function geolocationAutoCompleteAddress(
     setCountry,
     setAddressQuery,
     (updatedAddress) =>
-      addNewField(updatedAddress, 'geolocationAutoCompleted', true),
+      addNewField(updatedAddress, 'geolocationAutoCompleted', (fieldValue) => { return (fieldValue?.value !== null) }),
     (updatedAddress) => ({
       ...updatedAddress,
       addressId: baseAddress.addressId,
