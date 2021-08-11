@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.18.8] - 2021-08-11
+
 ### Changed
 
 - Forgotten URL for CEP in Brazil
