@@ -38,16 +38,18 @@ class GeolocationInput extends Component {
 
     this.input = input
 
-    const options =
-      autocompleteOptions ||
-      (rules.abbr
-        ? {
-            types: ['address'],
-            componentRestrictions: {
-              country: rules.abbr,
-            },
-          }
-        : { types: ['address'] })
+    const options = rules.abbr
+      ? {
+          types: ['address'],
+          componentRestrictions: {
+            country: rules.abbr,
+            ...((autocompleteOptions &&
+              autocompleteOptions.componentRestrictions) ||
+              {}),
+          },
+          ...autocompleteOptions,
+        }
+      : { types: ['address'], ...autocompleteOptions }
 
     if (useSearchBox) {
       this.autocomplete = new googleMaps.places.SearchBox(this.input)
