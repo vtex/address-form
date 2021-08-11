@@ -12,6 +12,7 @@ class AddressRules extends Component {
     this.state = {
       country: null,
       rules: null,
+      loading: false,
     }
   }
 
@@ -35,6 +36,7 @@ class AddressRules extends Component {
   }
 
   fetchRules(rulePromise) {
+    this.setState({ loading: true })
     return rulePromise
       .then(ruleData => ruleData.default || ruleData)
       .catch(error => {
@@ -51,6 +53,8 @@ class AddressRules extends Component {
         if (process.env.NODE_ENV !== 'production') {
           console.error('An unknown error occurred.', error)
         }
+      }).finally(() => {
+        this.setState({ loading: false })
       })
   }
 
@@ -89,12 +93,12 @@ class AddressRules extends Component {
 
   render() {
     const { children } = this.props
-    const { rules } = this.state
+    const { rules, loading } = this.state
 
     if (!rules) return null
 
     return (
-      <RulesContext.Provider value={rules}>{children}</RulesContext.Provider>
+      <RulesContext.Provider value={{ rules, loading }}>{children}</RulesContext.Provider>
     )
   }
 }
