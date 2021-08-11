@@ -21,7 +21,7 @@ export default {
       mask: '99999-999',
       regex: '^([\\d]{5})\\-?([\\d]{3})$',
       postalCodeAPI: true,
-      forgottenURL: '//buscacepinter.correios.com.br',
+      forgottenURL: '//buscacepinter.correios.com.br/app/endereco/index.php?t',
       size: 'small',
       autoComplete: 'nope',
     },
