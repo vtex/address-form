@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- I18n It
+
 ## [3.18.9] - 2021-08-23
 ### Fixed
 - Adress fields with null value being marked with `geolocationAutoCompleted` flag
