@@ -44,13 +44,12 @@ class AddressRules extends Component {
         return ruleData.default || ruleData
       })
       .catch((error) => {
-        this.setState({ error })
-        const errorType = this.parseError(error)
+        const notFoundErrorType = this.parseError(error)
 
-        if (errorType || this.props.useDefaultRulesAsFallback) {
+        if (notFoundErrorType) {
           if (process.env.NODE_ENV !== 'production') {
             console.warn(
-              `Couldn't load rules for country ${errorType}, using default rules instead.`,
+              `Couldn't load rules for country ${notFoundErrorType}, using default rules instead.`,
             )
           }
           return defaultRules
@@ -58,6 +57,14 @@ class AddressRules extends Component {
 
         if (process.env.NODE_ENV !== 'production') {
           console.error('An unknown error occurred.', error)
+        }
+
+        if (this.props.useDefaultRulesAsFallback) {
+          // Since not found rules can happen quite frequently,
+          // only unexpected errors should notify the consumers.
+          this.setState({ error })
+
+          return defaultRules
         }
       })
       .finally(() => {
