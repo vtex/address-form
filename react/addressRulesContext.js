@@ -9,7 +9,15 @@ export function injectRules(Component) {
 
     return (
       <RulesContext.Consumer>
-        {({ rules, loadingRules } = {}) => <Component {...props} rules={rules} loadingRules={loadingRules} />}
+        {({ rules, loadingRules, rulesError, fetchRules } = {}) => (
+          <Component
+            {...props}
+            rules={rules}
+            loadingRules={loadingRules}
+            rulesError={rulesError}
+            fetchRules={fetchRules}
+          />
+        )}
       </RulesContext.Consumer>
     )
   }

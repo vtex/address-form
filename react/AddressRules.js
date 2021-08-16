@@ -13,6 +13,7 @@ class AddressRules extends Component {
       country: null,
       rules: null,
       loadingRules: false,
+      error: null,
     }
   }
 
@@ -38,10 +39,15 @@ class AddressRules extends Component {
   fetchRules(rulePromise) {
     this.setState({ loadingRules: true })
     return rulePromise
-      .then(ruleData => ruleData.default || ruleData)
-      .catch(error => {
+      .then((ruleData) => {
+        this.setState({ error: null })
+        return ruleData.default || ruleData
+      })
+      .catch((error) => {
+        this.setState({ error })
         const errorType = this.parseError(error)
-        if (errorType) {
+
+        if (errorType || this.props.useDefaultRulesAsFallback) {
           if (process.env.NODE_ENV !== 'production') {
             console.warn(
               `Couldn't load rules for country ${errorType}, using default rules instead.`,
@@ -53,7 +59,8 @@ class AddressRules extends Component {
         if (process.env.NODE_ENV !== 'production') {
           console.error('An unknown error occurred.', error)
         }
-      }).finally(() => {
+      })
+      .finally(() => {
         this.setState({ loadingRules: false })
       })
   }
@@ -73,7 +80,7 @@ class AddressRules extends Component {
         // set a hidden flag for internal usage
         _usingGeolocationRules: true,
         // overwrite field with configs defined on `rules.geolocation`
-        fields: rules.fields.map(field => {
+        fields: rules.fields.map((field) => {
           if (rules.geolocation[field.name]) {
             // ignore unrelated props for the field
             // eslint-disable-next-line no-unused-vars
@@ -93,12 +100,21 @@ class AddressRules extends Component {
 
   render() {
     const { children } = this.props
-    const { rules, loadingRules } = this.state
+    const { rules, loadingRules, error } = this.state
 
     if (!rules) return null
 
     return (
-      <RulesContext.Provider value={{ rules, loadingRules }}>{children}</RulesContext.Provider>
+      <RulesContext.Provider
+        value={{
+          rules,
+          loadingRules,
+          fetchRules: this.updateRules.bind(this),
+          rulesError: error,
+        }}
+      >
+        {children}
+      </RulesContext.Provider>
     )
   }
 }
@@ -111,6 +127,8 @@ AddressRules.propTypes = {
   shouldUseIOFetching: PropTypes.bool,
   /** Whether the rules should contemplate the geolocation field rules */
   useGeolocation: PropTypes.bool,
+  /** Whether to always use the default rules as fallback or not */
+  useDefaultRulesAsFallback: PropTypes.bool,
 }
 
 export default AddressRules
