@@ -62,7 +62,9 @@ export function removeValidation(address) {
 export function addNewField<FieldName extends keyof ValidatedField>(
   address: AddressWithValidation,
   fieldName: FieldName,
-  value: ValidatedField[FieldName] | ((fieldValue: ValidatedField) => boolean)
+  value:
+    | ValidatedField[FieldName]
+    | ((fieldValue: ValidatedField) => ValidatedField[FieldName])
 ): AddressWithValidation {
   const newAddressEntries = Object.entries(address).map(
     ([field, fieldValue]) => {
