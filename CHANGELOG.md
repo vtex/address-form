@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `GeolocationInput` optional `autocompleteOptions` prop.
+- `loadingRules`, `rulesError` and `fetchRules` to `AddressRulesContext` to enhance UX possibilities.
+- `AddressRules` optional `useDefaultRulesAsFallback` prop.
+
 ## [4.8.0] - 2021-08-03
 
 ### Added
