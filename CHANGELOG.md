@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.9.0] - 2021-08-23
+
 ### Added
 
 - `GeolocationInput` optional `autocompleteOptions` prop.
