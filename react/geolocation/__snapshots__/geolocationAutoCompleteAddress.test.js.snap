@@ -17,7 +17,7 @@ Object {
     "value": "Rio de Janeiro",
   },
   "complement": Object {
-    "geolocationAutoCompleted": true,
+    "geolocationAutoCompleted": false,
     "value": null,
   },
   "country": Object {
@@ -54,7 +54,7 @@ Object {
     "valueOptions": undefined,
   },
   "reference": Object {
-    "geolocationAutoCompleted": true,
+    "geolocationAutoCompleted": false,
     "value": null,
   },
   "state": Object {

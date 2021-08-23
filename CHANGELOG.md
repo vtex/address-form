@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Adress fields with null value being marked with `geolocationAutoCompleted` flag
 
 ## [3.18.8] - 2021-08-11
 
