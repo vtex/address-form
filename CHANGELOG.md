@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `field.placeholder` and `field.fixedLabel` usage in all `StyleguideInput` field cases.
+
 ## [4.9.0] - 2021-08-23
 
 ### Added

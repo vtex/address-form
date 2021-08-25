@@ -26,7 +26,7 @@ class GeolocationInput extends Component {
     })
   }
 
-  handleMountInput = input => {
+  handleMountInput = (input) => {
     const { useSearchBox, rules, googleMaps, autocompleteOptions } = this.props
 
     if (!input) {
@@ -98,7 +98,7 @@ class GeolocationInput extends Component {
         if (!firstPlaceFound.address_components) {
           this.geocoder.geocode(
             { address: firstPlaceFound.formatted_address },
-            address => (firstPlaceFound = address),
+            (address) => (firstPlaceFound = address),
           )
         }
 
@@ -110,12 +110,12 @@ class GeolocationInput extends Component {
     )
   }
 
-  handleAddress = googleAddress => {
+  handleAddress = (googleAddress) => {
     this.handleChangeInput(googleAddress.formatted_address)
     this.handlePlaceChanged(googleAddress)
   }
 
-  handlePlaceChanged = googleAddress => {
+  handlePlaceChanged = (googleAddress) => {
     const address = geolocationAutoCompleteAddress(
       this.state.address,
       googleAddress,
@@ -125,8 +125,8 @@ class GeolocationInput extends Component {
     this.props.onChangeAddress(address)
   }
 
-  handleChangeInput = value => {
-    this.setState(prevState => ({
+  handleChangeInput = (value) => {
+    this.setState((prevState) => ({
       address: {
         ...prevState.address,
         addressQuery: {
@@ -159,17 +159,21 @@ class GeolocationInput extends Component {
       },
     }
 
+    const field = (rules.fields &&
+      rules.fields.length > 0 &&
+      rules.fields.find((field) => field.name === 'addressQuery')) || {
+      label: 'addressQuery',
+      name: 'addressQuery',
+    }
+
     return (
       <Input
         {...inputProps}
         key={rules.country}
-        field={{
-          label: 'addressQuery',
-          name: 'addressQuery',
-        }}
+        field={field}
         options={null}
         address={newAddress}
-        placeholder={placeholder}
+        placeholder={field.placeholder || placeholder}
         autoFocus={autoFocus}
         onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
@@ -200,9 +204,5 @@ GeolocationInput.propTypes = {
   autocompleteOptions: PropTypes.object,
 }
 
-const enhance = compose(
-  injectAddressContext,
-  injectRules,
-  injectIntl,
-)
+const enhance = compose(injectAddressContext, injectRules, injectIntl)
 export default enhance(GeolocationInput)
