@@ -73,9 +73,16 @@ class StyleguideInput extends Component {
     const type = shouldShowNumberKeyboard ? 'tel' : 'text'
 
     const inputCommonProps = {
-      label: this.props.intl.formatMessage({
-        id: `address-form.field.${field.name}`,
-      }),
+      label:
+        field.fixedLabel ||
+        this.props.intl.formatMessage({
+          id: `address-form.field.${field.label}`,
+          defaultMessage: this.props.intl.formatMessage({
+            id: `address-form.field.${field.name}`,
+            defaultMessage: '',
+          }),
+        }),
+      placeholder: field.placeholder,
       autoFocus,
       value: address[field.name].value || '',
       disabled,
@@ -96,7 +103,9 @@ class StyleguideInput extends Component {
 
     const commonClassNames = `vtex-address-form__${
       field.name
-    } vtex-address-form__field--${field.size || 'xlarge'} ${field.hidden ? 'dn' : ''}`
+    } vtex-address-form__field--${field.size || 'xlarge'} ${
+      field.hidden ? 'dn' : ''
+    }`
 
     if (field.name === 'postalCode') {
       return (
@@ -135,32 +144,21 @@ class StyleguideInput extends Component {
       return (
         <div className={`${commonClassNames} flex flex-row pb7`}>
           <Input
-            label={
-              field.fixedLabel ||
-              intl.formatMessage({ id: `address-form.field.${field.label}` })
-            }
-            errorMessage={
-              address[field.name].reason && this.state.showErrorMessage
-                ? this.props.intl.formatMessage({
-                    id: `address-form.error.${address[field.name].reason}`,
+            {...inputCommonProps}
+            placeholder={
+              inputCommonProps.placeholder != null
+                ? inputCommonProps.placeholder
+                : intl.formatMessage({
+                    id: `address-form.geolocation.example.${
+                      address.country.value || 'UNI'
+                    }`,
+                    defaultMessage: intl.formatMessage({
+                      id: 'address-form.geolocation.example.UNI',
+                    }),
                   })
-                : undefined
             }
-            placeholder={intl.formatMessage({
-              id: `address-form.geolocation.example.${address.country.value}`,
-              defaultMessage: intl.formatMessage({
-                id: 'address-form.geolocation.example.UNI',
-              }),
-            })}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onFocus={this.handleFocus}
-            autoFocus={autoFocus}
             disabled={loading || disabled}
-            error={!this.state.isInputValid}
-            ref={inputRef}
             suffix={<SpinnerLoading isLoading={loading} />}
-            value={address[field.name].value || ''}
           />
         </div>
       )
@@ -175,32 +173,17 @@ class StyleguideInput extends Component {
           className={`vtex-address-form__number-div ${commonClassNames} flex flex-row pb7`}
         >
           <div className="vtex-address-form__number-input flex w-50">
-            <Input
-              label={
-                field.fixedLabel ||
-                intl.formatMessage({ id: `address-form.field.${field.label}` })
-              }
-              errorMessage={
-                address[field.name].reason && this.showErrorMessage
-                  ? this.props.intl.formatMessage({
-                      id: `address-form.error.${address[field.name].reason}`,
-                    })
-                  : undefined
-              }
-              autoFocus={autoFocus}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-              onFocus={this.handleFocus}
-              disabled={loading || disabled}
-              error={!this.state.isInputValid}
-              ref={inputRef}
-              value={address[field.name].value || ''}
-            />
+            <Input {...inputCommonProps} disabled={loading || disabled} />
           </div>
           <div className="vtex-address-form__number-checkbox flex flex-row ml7 mt6 w-50">
             <Checkbox
               id="option-0"
-              label={this.props.notApplicableLabel || 'N/A'}
+              label={
+                this.props.notApplicableLabel ||
+                intl.formatMessage({
+                  id: `address-form.field.notApplicable`,
+                })
+              }
               name="default-checkbox-group"
               onChange={toggleNotApplicable}
               value="op"
@@ -214,17 +197,7 @@ class StyleguideInput extends Component {
     if (options) {
       return (
         <div className={`${commonClassNames} pb6`}>
-          <Dropdown
-            options={options}
-            value={address[field.name].value || ''}
-            disabled={disabled}
-            ref={inputRef}
-            label={intl.formatMessage({
-              id: `address-form.field.${field.label}`,
-            })}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-          />
+          <Dropdown {...inputCommonProps} options={options} />
         </div>
       )
     }
@@ -232,30 +205,16 @@ class StyleguideInput extends Component {
     return (
       <div className={`${commonClassNames} pb7`}>
         <Input
-          label={this.props.intl.formatMessage({
-            id: `address-form.field.${field.label}`,
-          })}
-          errorMessage={
-            address[field.name].reason
-              ? intl.formatMessage({
-                  id: `address-form.error.${address[field.name].reason}`,
-                })
-              : undefined
-          }
-          value={address[field.name].value || ''}
-          disabled={disabled}
-          error={!this.state.isInputValid}
+          {...inputCommonProps}
           maxLength={`${field.maxLength}`}
-          ref={inputRef}
           placeholder={
-            !field.hidden && !field.required
+            // Avoid empty string replacement
+            inputCommonProps.placeholder != null
+              ? inputCommonProps.placeholder
+              : !field.hidden && !field.required
               ? this.props.intl.formatMessage({ id: 'address-form.optional' })
               : null
           }
-          onBlur={this.handleBlur}
-          autoFocus={autoFocus}
-          onChange={this.handleChange}
-          onFocus={this.handleFocus}
         />
       </div>
     )
