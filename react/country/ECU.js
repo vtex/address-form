@@ -441,9 +441,17 @@ const countryData = {
     'San Lorenzo': '0007',
   },
   Galapagos: {
+    Bellavista: '0008',
+    'El Progreso': '0008',
     Isabela: '0008',
+    'Isla Santa Maria (Floreana)(Cab. en Pto. Velasco Ibarra)': '0008',
+    'Puerto Ayora': '0008',
+    'Puerto Baquerizo Moreno': '0008',
+    'Puerto Villamil': '0008',
     'San Cristobal': '0008',
+    'Santa Rosa (Incluye La Isla Baltra)': '0008',
     'Santa Cruz': '0008',
+    'Tomas de Berlanga (Santo Tomas)': '0008',
   },
   Guayas: {
     '3 Postes': '0009',
