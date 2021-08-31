@@ -6,15 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Adding new cities to ECU country
 
 ## [3.18.11] - 2021-09-02
-
 ### Added
-
 - Add new cities to COL country 
 
 ## [3.18.10] - 2021-08-30
-
 ### Fixed
 - I18n It
 
@@ -23,9 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Adress fields with null value being marked with `geolocationAutoCompleted` flag
 
 ## [3.18.8] - 2021-08-11
-
 ### Changed
-
 - Forgotten URL for CEP in Brazil
 
 ## [3.18.7] - 2021-07-29
@@ -33,7 +30,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Address fields being overwritten with old information on geolocation.
 
 ## [3.18.6] - 2021-07-26
-
 ### Fixed
 - Add more cities to romanian zipcodes
 
