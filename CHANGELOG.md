@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Add new cities to COL country 
+
 ## [3.18.10] - 2021-08-30
 
 ### Fixed
