@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- I18n Ar
+
 ## [3.18.13] - 2021-09-13
 ### Added
 - Adding new cities to BOL country
