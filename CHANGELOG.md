@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Update Romanian zipcodes list
+
 ## [4.10.0] - 2021-08-26
 
 ### Added
@@ -51,10 +55,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.7.3] - 2021-05-13
 
 ### Fixed
+
 - Ensure the `state` field is populate when user visits `addresses` inside their account for `RUS`.
+
 ## [4.7.2] - 2021-05-12
 
-### Fixed 
+### Fixed
 
 - `CHL` rules when filling data with Google Maps.
 
