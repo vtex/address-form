@@ -15,7 +15,7 @@ const countryData = {
     'San Lorenzo': '2115',
     'San Pedro Puxtla': '2116',
     Tacuba: '2117',
-    Turín: '2118'
+    Turín: '2118',
   },
   Cabañas: {
     Cinquera: '1202',
@@ -26,7 +26,7 @@ const countryData = {
     'San Isidro': '1207',
     Sensuntepeque: '1201',
     Tejutepeque: '1208',
-    Victoria: '1210'
+    Victoria: '1210',
   },
   Chalatenango: {
     'Agua Caliente': '1302',
@@ -61,7 +61,7 @@ const countryData = {
     'San Miguel de Mercedes': '1332',
     'San Rafael': '1333',
     'Santa Rita': '1334',
-    Tejutla: '1335'
+    Tejutla: '1335',
   },
   Cuscatlán: {
     Candelaria: '1402',
@@ -79,7 +79,7 @@ const countryData = {
     'Santa Cruz Analquito': '1413',
     'Santa Cruz Michapa': '1414',
     Suchitoto: '1415',
-    Tenancingo: '1416'
+    Tenancingo: '1416',
   },
   'La Libertad': {
     'Antiguo Cuscatlán': '1502',
@@ -103,7 +103,7 @@ const countryData = {
     Tamanique: '1522',
     Teotepeque: '1523',
     Tepecoyo: '1524',
-    Zaragoza: '1525'
+    Zaragoza: '1525',
   },
   'La Paz': {
     Cuyultitán: '1603',
@@ -127,7 +127,7 @@ const countryData = {
     'Santa María Ostuma': '1621',
     'Santiago Nonualco': '1622',
     Tapalhuaca: '1623',
-    Zacatecoluca: '1601'
+    Zacatecoluca: '1601',
   },
   'La Unión': {
     Anamorós: '3104',
@@ -147,7 +147,7 @@ const countryData = {
     'San José de La Fuente': '3120',
     'Santa Rosa de Lima': '3121',
     Yayantique: '3122',
-    Yucuaiquín: '3123'
+    Yucuaiquín: '3123',
   },
   Morazán: {
     Arambala: '3202',
@@ -175,7 +175,7 @@ const countryData = {
     Sociedad: '3223',
     Torola: '3224',
     Yamabal: '3225',
-    Yoloaiquín: '3226'
+    Yoloaiquín: '3226',
   },
   'San Miguel': {
     Carolina: '3302',
@@ -197,7 +197,7 @@ const countryData = {
     'San Miguel': '3301',
     'San Rafael Oriente': '3322',
     Sesori: '3323',
-    Uluazapa: '3324'
+    Uluazapa: '3324',
   },
   'San Salvador': {
     Aguilares: '1122',
@@ -218,7 +218,7 @@ const countryData = {
     'Santiago Texacuangos': '1130',
     'Santo Tomas': '1131',
     Soyapango: '1116',
-    Tonacatepeque: '1132'
+    Tonacatepeque: '1132',
   },
   'San Vicente': {
     Apastepeque: '1702',
@@ -233,7 +233,7 @@ const countryData = {
     'Santo Domingo': '1710',
     Tecoluca: '1711',
     Tepetitán: '1712',
-    Verapaz: '1713'
+    Verapaz: '1713',
   },
   'Santa Ana': {
     'Candelaria de la Frontera': '2203',
@@ -248,7 +248,7 @@ const countryData = {
     'Santa Ana': '2201',
     'Santa Rosa Guachipilín': '2216',
     'Santiago de la Frontera': '2217',
-    Texistepeque: '2218'
+    Texistepeque: '2218',
   },
   Sonsonate: {
     Acajutla: '2302',
@@ -266,7 +266,7 @@ const countryData = {
     'Santa Isabel Ishuatán': '2318',
     'Santo Domingo Guzmán': '2319',
     Sonsonate: '2301',
-    Sonzacate: '2320'
+    Sonzacate: '2320',
   },
   Usulután: {
     Alegría: '3402',
@@ -291,8 +291,8 @@ const countryData = {
     'Santa María': '3423',
     'Santiago de María': '3424',
     Tecapán: '3426',
-    Usulután: '3401'
-  }
+    Usulután: '3401',
+  },
 }
 
 export default {
@@ -386,26 +386,35 @@ export default {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
-      required: true,
+      required: false,
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: ['neighborhood'],
     },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

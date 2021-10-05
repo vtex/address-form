@@ -1,6 +1,22 @@
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 import { POSTAL_CODE } from '../constants'
 
+const isCABA = (googleAddress) =>
+  !!googleAddress?.address_components?.find(
+    (component) => component.short_name === 'CABA'
+  )
+
+/**
+ * This is needed to normalize the values for state returned by GMaps
+ */
+
+const mappedStates = {
+  'ciudad autonoma de buenos aires': 'Ciudad Autónoma de Buenos Aires',
+  'gran buenos aires': 'Ciudad Autónoma de Buenos Aires',
+  'provincia de buenos aires': 'Buenos Aires',
+  'santa fe': 'Santa Fé',
+}
+
 const countryData = {
   'Ciudad Autónoma de Buenos Aires': ['Ciudad Autónoma de Buenos Aires'],
   'Buenos Aires': [
@@ -767,6 +783,7 @@ const countryData = {
     'Faro Querandi',
     'Faro San Antonio',
     'Faro Segunda Barrancosa',
+    'Fátima',
     'Fátima Estación Empalme',
     'Fatralo',
     'Fauzon',
@@ -1006,6 +1023,7 @@ const countryData = {
     'Juan G Pujol',
     'Juan José Almeyra',
     'Juan José Paso',
+    'Jose Leon Suarez',
     'Juan Maria Gutierrez',
     'Juan N Fernández',
     'Juan Tronconi',
@@ -11044,7 +11062,7 @@ const countryData = {
     'Gaspar Campos',
     'General Acha',
     'General Alvear',
-    'General Gutiérrez',
+    'General Gutierrez',
     'General Ortega',
     'Germán Maturano',
     'Gertrudis De Ojeda',
@@ -11822,7 +11840,7 @@ const countryData = {
     'Villa Comparto',
     'Villa Del Carmen',
     'Villa Gaviola',
-    'Villa Hipódromo',
+    'Villa Hipodromo',
     'Villa La Paz',
     'Villa Los Corralitos',
     'Villa Molino Orfila',
@@ -17171,7 +17189,7 @@ const countryData = {
     'Rodolfo Alcorta',
     'Roldan',
     'Romang',
-    'Rosario',
+    'Rosário',
     'Rueda',
     'Rufino',
     'Ruinas Santa Fe La Vieja',
@@ -21221,6 +21239,19 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
+      handler: (address) => {
+        return {
+          ...address,
+          postalCode: {
+            ...address.postalCode,
+            value:
+              address.postalCode?.value?.replace(
+                /(?:[a-zA-Z]*)(\d+)(?:[a-zA-Z]*)/,
+                '$1'
+              ) ?? '',
+          },
+        }
+      },
     },
     number: {
       valueIn: 'long_name',
@@ -21238,21 +21269,55 @@ export default {
         'sublocality_level_3',
         'sublocality_level_4',
         'sublocality_level_5',
+        'locality',
       ],
     },
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
+      handler: (address, googleAddress) => {
+        if (isCABA(googleAddress)) {
+          address.state = { value: 'Ciudad Autónoma de Buenos Aires' }
+
+          return address
+        }
+
+        if (mappedStates[address?.state.value.toLowerCase()]) {
+          address.state = {
+            value: mappedStates[address?.state.value.toLowerCase()],
+          }
+
+          return address
+        }
+
+        return address
+      },
     },
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+      handler: (address, googleAddress) => {
+        if (isCABA(googleAddress)) {
+          address.city = { value: 'Ciudad Autónoma de Buenos Aires' }
+
+          return address
+        }
+
+        return address
+      },
+    },
+    receiverName: {
+      required: true,
     },
   },
   summary: [
     [{ name: 'street' }, { delimiter: ' ', name: 'number' }],
     [{ name: 'complement' }],
     [{ name: 'postalCode' }],
-    [{ name: 'city' }, { delimiter: ', ', name: 'state' }],
+    [
+      { name: 'neighborhood', delimiterAfter: ' - ' },
+      { name: 'city' },
+      { delimiter: ', ', name: 'state' },
+    ],
   ],
 }

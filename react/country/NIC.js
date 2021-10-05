@@ -9,7 +9,7 @@ const countryData = {
     'San José de los Remates': '52500',
     'San Lorenzo': '52400',
     'Santa Lucía': '52200',
-    Teustepe: '52300'
+    Teustepe: '52300',
   },
   Carazo: {
     Diriamba: '46300',
@@ -19,7 +19,7 @@ const countryData = {
     'La Conquista': '46700',
     'La Paz de Oriente': '46500',
     'San Marcos': '46400',
-    'Santa Teresa': '46600'
+    'Santa Teresa': '46600',
   },
   Chinandega: {
     Chichigalpa: '26100',
@@ -34,7 +34,7 @@ const countryData = {
     'San Pedro del Norte': '27300',
     'Santo Tomás del Norte': '27100',
     Somotillo: '26800',
-    Villanueva: '26700'
+    Villanueva: '26700',
   },
   Chontales: {
     Acoyapa: '56100',
@@ -46,7 +46,7 @@ const countryData = {
     'San Pedro de Lóvago': '56700',
     'Santo Domingo': '56800',
     'Santo Tomás': '56200',
-    'Villa Sandino': '56600'
+    'Villa Sandino': '56600',
   },
   'Costa Caribe Norte': {
     Bonanza: '72300',
@@ -56,7 +56,7 @@ const countryData = {
     Rosita: '72200',
     Siuna: '72400',
     Waslala: '72700',
-    Waspán: '72100'
+    Waspán: '72100',
   },
   'Costa Caribe Sur': {
     Bluefields: '81000',
@@ -70,7 +70,7 @@ const countryData = {
     'Laguna de Perlas': '82600',
     'Muelle de los Bueyes': '82400',
     'Nueva Guinea': '82500',
-    Paiwas: '83200'
+    Paiwas: '83200',
   },
   Estelí: {
     Condega: '32100',
@@ -78,13 +78,13 @@ const countryData = {
     'La Trinidad': '32500',
     'Pueblo Nuevo': '32200',
     'San Juan de Limay': '32300',
-    'San Nicolás': '32400'
+    'San Nicolás': '32400',
   },
   Granada: {
     Diriá: '44200',
     Diriomo: '44100',
     Granada: '43000',
-    Nandaime: '44300'
+    Nandaime: '44300',
   },
   Jinotega: {
     'El Cuá': '66500',
@@ -94,7 +94,7 @@ const countryData = {
     'San Rafael del Norte': '66100',
     'San Sebastián de Yalí': '66200',
     'Santa María de Pantasma': '66400',
-    'Wiwilí de Jinotega': '66700'
+    'Wiwilí de Jinotega': '66700',
   },
   León: {
     Achuapa: '22900',
@@ -106,7 +106,7 @@ const countryData = {
     Nagarote: '22200',
     Quezalguaque: '22300',
     'Santa Rosa del Peñón': '22700',
-    Telica: '22400'
+    Telica: '22400',
   },
   Madriz: {
     'Las Sabanas': '35500',
@@ -117,7 +117,7 @@ const countryData = {
     Somoto: '34000',
     Telpaneca: '35700',
     Totogalpa: '35300',
-    Yalagüina: '35100'
+    Yalagüina: '35100',
   },
   Managua: {
     'Ciudad Sandino': '15700',
@@ -128,7 +128,7 @@ const countryData = {
     'San Rafael del Sur': '16700',
     Ticuantepe: '16300',
     Tipitapa: '15100',
-    'Villa El Carmen': '16500'
+    'Villa El Carmen': '16500',
   },
   Masaya: {
     Catarina: '42500',
@@ -139,7 +139,7 @@ const countryData = {
     Nindirí: '42200',
     Niquinohomo: '42700',
     'San Juan de Oriente': '42800',
-    Tisma: '42100'
+    Tisma: '42100',
   },
   Matagalpa: {
     'Ciudad Darío': '62800',
@@ -154,7 +154,7 @@ const countryData = {
     'San Isidro': '62900',
     'San Ramón': '62100',
     Sébaco: '62200',
-    Terrabona: '62300'
+    Terrabona: '62300',
   },
   'Nueva Segovia': {
     'Ciudad Antigua': '38400',
@@ -168,7 +168,7 @@ const countryData = {
     Quilalí: '38700',
     'San Fernando': '38500',
     'Santa María': '38600',
-    Wiwilí: '39100'
+    Wiwilí: '39100',
   },
   'Río San Juan': {
     'El Almendro': '92300',
@@ -176,7 +176,7 @@ const countryData = {
     Morrito: '92400',
     'San Carlos': '91000',
     'San Juan del Norte': '92500',
-    'San Miguelito': '92100'
+    'San Miguelito': '92100',
   },
   Rivas: {
     Altagracia: '48800',
@@ -188,8 +188,8 @@ const countryData = {
     Rivas: '47000',
     'San Jorge': '48100',
     'San Juan del Sur': '48600',
-    Tola: '48500'
-  }
+    Tola: '48500',
+  },
 }
 
 export default {
@@ -282,26 +282,35 @@ export default {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
-      required: true,
+      required: false,
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: ['neighborhood'],
     },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

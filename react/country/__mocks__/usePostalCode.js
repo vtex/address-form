@@ -14,7 +14,7 @@ export default {
       regex: '^([\\d]{5})\\-?([\\d]{3})$',
       postalCodeAPI: true,
       forgottenURL:
-        'https://buscacepinter.correios.com.br/app/endereco/index.php',
+        'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
       size: 'small',
     },
     {
@@ -78,21 +78,26 @@ export default {
       types: ['postal_code'],
       required: false,
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
       required: true,
       notApplicable: true,
-      handler: address => {
-        return {...address,
-          number: {...address['number'], notApplicable: true}}
+      handler: (address) => {
+        return {
+          ...address,
+          number: { ...address.number, notApplicable: true },
+        }
       },
     },
+
     street: {
       valueIn: 'long_name',
       types: ['route'],
       required: false,
     },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -105,15 +110,21 @@ export default {
       ],
       required: false,
     },
+
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
       required: false,
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
       required: false,
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

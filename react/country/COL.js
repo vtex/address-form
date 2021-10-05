@@ -20,6 +20,7 @@ const countryData = {
     Abejorral: '05002',
     Abriaquí: '05004',
     Alejandría: '05021',
+    Altavista: '05001',
     Amagá: '05030',
     Amalfi: '05031',
     Andes: '05034',
@@ -106,6 +107,7 @@ const countryData = {
     Sabaneta: '05631',
     Salgar: '05642',
     'San Andrés De Cuerquía': '05647',
+    'San Antonio de Prado': '05001',
     'San Carlos': '05649',
     'San Francisco': '05652',
     'San Jerónimo': '05656',
@@ -118,6 +120,7 @@ const countryData = {
     'San Roque': '05670',
     'San Vicente Ferrer': '05674',
     'Santa Bárbara': '05679',
+    'Santa Elena': '05001',
     'Santa Fé De Antioquia': '05042',
     'Santa Rosa De Osos': '05686',
     'Santo Domingo': '05690',
@@ -480,6 +483,7 @@ const countryData = {
     González: '20310',
     'La Gloria': '20383',
     'La Jagua De Ibirico': '20400',
+    'La Loma': '20250',
     'La Paz': '20621',
     'Manaure Balcón Del Cesar': '20443',
     Pailitas: '20517',
@@ -846,6 +850,7 @@ const countryData = {
     'La Unión': '52399',
     Leiva: '52405',
     Linares: '52411',
+    Llorente: '52835',
     'Los Andes': '52418',
     Magüí: '52427',
     Mallama: '52435',
@@ -1284,7 +1289,7 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: address => {
+      handler: (address) => {
         if (
           !address.state ||
           !address.city ||
@@ -1306,20 +1311,24 @@ export default {
         return address
       },
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
+
     street: {
       valueIn: 'long_name',
       types: ['route'],
       handler: (address, googleAddress) => {
         address.street = { value: googleAddress.name }
+
         return address
       },
     },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -1332,25 +1341,33 @@ export default {
       ],
       required: false,
     },
+
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
-      handler: address => {
+      handler: (address) => {
         if (address.state && address.state.value === 'Bogotá') {
           address.state.value = 'Bogotá, D.C.'
         }
+
         return address
       },
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
-      handler: address => {
+      handler: (address) => {
         if (address.city && address.city.value === 'Bogotá') {
           address.city.value = 'Bogotá, D.c.'
         }
+
         return address
       },
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [
