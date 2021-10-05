@@ -19,7 +19,6 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       data-hj-whitelist={true}
       disabled={false}
       id="ship-street"
-      maxLength={undefined}
       name="street"
       onBlur={[Function]}
       onChange={[Function]}
@@ -119,7 +118,6 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       data-hj-whitelist={true}
       disabled={false}
       id="ship-city"
-      maxLength={undefined}
       name="city"
       onBlur={[Function]}
       onChange={[Function]}
@@ -147,7 +145,6 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
       value=""
     >
       <option
-        disabled={undefined}
         value=""
       >
         UF
