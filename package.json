@@ -1,126 +1,37 @@
 {
-  "name": "@vtex/address-form",
-  "version": "4.7.5",
-  "description": "address-form React component",
-  "main": "lib/index.js",
-  "files": [
-    "lib"
-  ],
+  "private": true,
   "scripts": {
-    "build": "nwb build-react-component --no-demo && npm run removeMocks && npm run addLocales",
-    "build:symlinks": "npm run symlink:remove && npm run symlink:remove-locales && npm run symlink && npm run symlink:locales && npm run build &&  npm run symlink:remove-locales && npm run symlink:remove",
-    "build:link": "npm link && watch 'npm run build' src",
-    "removeMocks": "rm -rf lib/**/__mocks__ && rm -rf lib/__mocks__",
-    "addLocales": "cp -R -f react/locales/ lib/locales/",
-    "clean": "nwb clean-module && nwb clean-demo",
-    "start": "npm run symlink:remove && npm run symlink && nwb serve-react-demo",
-    "symlink": "ln -s react src",
-    "symlink:remove": "rm -rf src",
-    "symlink:locales": "cd react/ && ln -s ../messages locales && cd ..",
-    "symlink:remove-locales": "rm -rf react/locales",
-    "test": "jest --env=jsdom",
-    "test:coverage": "jest --env=jsdom --coverage",
-    "test:watch": "jest --env=jsdom --watch",
-    "prepublishOnly": "npm run build:symlinks",
-    "postreleasy": "npm publish --access public",
-    "lint:locales": "intl-equalizer"
-  },
-  "dependencies": {
-    "@vtex/styleguide": "^9.113.0",
-    "axios": "^0.16.2",
-    "classnames": "^2.2.5",
-    "eslint-utils": "^1.3.1",
-    "load-google-maps-api": "^1.0.0",
-    "lodash": "^4.17.4",
-    "msk": "1.0.3",
-    "recompose": "^0.27.1"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.5.10",
-    "react": "15.x || 16.x",
-    "react-intl": "^2.4.0",
-    "vtex-tachyons": "^2.5.0"
-  },
-  "devDependencies": {
-    "@vtex/intl-equalizer": "^2.0.1",
-    "babel-eslint": "7",
-    "babel-jest": "^20.0.3",
-    "babel-plugin-add-react-displayname": "^0.0.5",
-    "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
-    "babel-preset-react-app": "^3.0.1",
-    "enzyme": "^3.4.1",
-    "enzyme-adapter-react-16": "^1.8.0",
-    "enzyme-to-json": "^3.3.4",
-    "eslint": "3",
-    "eslint-config-vtex": "5.1.0",
-    "eslint-config-vtex-react": "3.0.2",
-    "eslint-config-vtex-react-app": "^1.0.4",
-    "eslint-plugin-flowtype": "^2.35.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "5",
-    "eslint-plugin-react": "7",
-    "husky": "^1.3.1",
-    "i18n-iso-countries": "^1.13.0",
-    "jest": "^22.0.4",
-    "jest-cli": "^22.4.3",
-    "jest-dom": "^3.0.1",
-    "jest-enzyme": "^6.0.2",
-    "nwb": "^0.20.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-hot-loader": "next",
-    "react-intl": "^2.8.0",
-    "react-test-renderer": "^16.7.0",
-    "react-testing-library": "^5.4.4",
-    "watch": "^1.0.2"
+    "lint": "eslint --ext js,jsx,ts,tsx .",
+    "lint:locales": "intl-equalizer",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\""
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run lint:locales && yarn test"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run lint:locales && yarn --cwd react test"
     }
   },
-  "author": "Breno Calazans (@klzns)",
-  "homepage": "https://github.com/vtex/address-form",
-  "license": "AGPL-3.0-only",
-  "repository": "https://github.com/vtex/address-form",
-  "keywords": [
-    "react-component",
-    "vtex",
-    "checkout",
-    "address"
-  ],
+  "lint-staged": {
+    "!(demo)**/*.{ts,js,tsx,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,graphql,gql}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@vtex/intl-equalizer": "^2.5.0",
+    "@vtex/prettier-config": "^0.3.6",
+    "eslint": "^7.16.0",
+    "eslint-config-vtex": "^12.9.3",
+    "eslint-config-vtex-react": "^6.9.3",
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
+    "typescript": "^3.7.5"
+  },
   "intl-equalizer": {
     "referenceLocale": "pt"
-  },
-  "jest": {
-    "testURL": "http://localhost/",
-    "setupTestFrameworkScriptFile": "<rootDir>/react/setupTests.js",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/es/",
-      "<rootDir>/lib/",
-      "<rootDir>/umd/"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "<rootDir>/react/test-modules"
-    ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/es/",
-      "<rootDir>/lib/",
-      "<rootDir>/umd/"
-    ],
-    "transformIgnorePatterns": [
-      "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]es[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
-    "moduleNameMapper": {
-      "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
-    },
-    "transform": {
-      "^.+\\.js$": "<rootDir>/jest.transform.js"
-    }
   }
 }

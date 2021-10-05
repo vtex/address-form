@@ -1,29 +1,11 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "vtex",
-    "vtex-react",
-    "plugin:prettier/recommended",
-    "plugin:import/recommended"
-  ],
-  "plugins": ["import"],
-  "rules": {
-    "import/no-unresolved": [
-      "error",
-      {
-        "commonjs": true,
-        "amd": true,
-        "ignore": ["^([a-zA-Z@]+[-\\.]?)+"]
-      }
-    ]
-  },
+  "extends": "vtex",
+  "root": true,
   "env": {
-    "browser": true,
     "node": true,
-    "mocha": true,
-    "jest": true
+    "es6": true,
+    "jest": true,
+    "browser": true
   },
-  "globals": {
-    "__DEV__": true
-  }
+  "parser": "@typescript-eslint/parser"
 }

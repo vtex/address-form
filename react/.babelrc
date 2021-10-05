@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    [
+      "@babel/plugin-transform-runtime",
+      { "helpers": false }
+    ]
+  ],
+  "ignore": ["**/node_modules/*", "**/__mocks__/*", "**/*.test.js"]
+}
