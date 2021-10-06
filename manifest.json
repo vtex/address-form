@@ -13,8 +13,5 @@
     "react": "3.x",
     "messages": "1.x"
   },
-  "scripts": {
-    "postreleasy": "vtex publish --public && npm publish"
-  },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

@@ -4,15 +4,16 @@ phases:
     commands:
       - echo Installing Package...
       - node -v
-      - npm install
+      - yarn install
+      - yarn --cwd react install
       - echo Packages installed!
   pre_build:
     commands:
       - echo Building application...
-      - npm run build:symlinks
+      - yarn --cwd react build
       - echo Build finished!
       - echo Running tests...
-      - npm run test
+      - yarn --cwd react test
       - echo Tests finished!
 cache:
   paths:
