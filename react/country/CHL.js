@@ -2,7 +2,6 @@ import { TWO_LEVELS } from '../constants'
 import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 
-
 // Based on: https://docs.google.com/spreadsheets/d/1B_e735h3IP1ttom3i55WytSDhH7MZtsOu8Ul5p2wHNI/edit#gid=0
 // More info: https://vtex.slack.com/archives/C3Q96AB1B/p1619724858102700
 
@@ -151,7 +150,7 @@ const countryData = {
     Hijuelas: '2310000',
     'Isla De Pascua': '2770000',
     'Juan Fernández': '2600000',
-    'La Calera': '1768121',
+    'La Calera': '2290000',
     'La Cruz': '2280000',
     'La Ligua': '2030000',
     Limache: '2240000',
@@ -317,7 +316,7 @@ const countryData = {
     Quilaco: '4520000',
     Quilleco: '4500000',
     Recinto: '3880001',
-    'San Pedro De la Paz': '4120000',
+    'San Pedro De la Paz': '4130000',
     'San Rosendo': '4570000',
     'Santa Bárbara': '4510000',
     'Santa Juana': '4230000',
@@ -428,7 +427,7 @@ const countryData = {
     'San Fabián': '3860000',
     'San Ignacio': '3890000',
     'San Nicolás': '4020000',
-    Treguaco: '5248145',
+    Treguaco: '3980000',
     Yungay: '3920000',
   },
 }
@@ -525,7 +524,7 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: address => {
+      handler: (address) => {
         if (
           !address.state ||
           !address.state.value ||
@@ -547,13 +546,16 @@ export default {
         return address
       },
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
       required: true,
       notApplicable: true,
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -567,10 +569,16 @@ export default {
         'sublocality_level_5',
       ],
     },
+
     state: { valueIn: 'short_name', types: ['administrative_area_level_1'] },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

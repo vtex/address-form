@@ -427,12 +427,15 @@ export default {
       types: ['postal_code'],
       required: false,
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
       notApplicable: true,
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -444,13 +447,19 @@ export default {
         'sublocality_level_5',
       ],
     },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

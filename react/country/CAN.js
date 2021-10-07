@@ -81,12 +81,12 @@ export default {
         { label: 'Newfoundland and Labrador', value: 'NL' },
         { label: 'Northwest Territories', value: 'NT' },
         { label: 'Nova Scotia', value: 'NS' },
-        { label: 'Nunavut', value: 'NV' },
+        { label: 'Nunavut', value: 'NU' },
         { label: 'Ontario', value: 'ON' },
         { label: 'Prince Edward Island', value: 'PE' },
         { label: 'Quebec', value: 'QC' },
         { label: 'Saskatchewan', value: 'SK' },
-        { label: 'Yukon', value: 'YK' },
+        { label: 'Yukon', value: 'YT' },
       ],
     },
     {
@@ -104,13 +104,16 @@ export default {
       types: ['postal_code'],
       required: false,
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
+
     street: { valueIn: 'long_name', types: ['route'] },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -122,13 +125,19 @@ export default {
         'sublocality_level_5',
       ],
     },
+
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

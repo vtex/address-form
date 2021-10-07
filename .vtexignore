@@ -3,7 +3,6 @@
 .gitignore
 package.json
 README.md
-CHANGELOG.md
 node_modules/
 react/node_modules
 react/coverage
@@ -12,7 +11,8 @@ react/__tests__
 react/.babelrc
 react/.eslintrc
 react/setupTests.js
+react/jest.transform.js
 **/__tests__/**
-lib/
+react/lib/
 **/**.test.js
 demo/

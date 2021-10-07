@@ -148,6 +148,11 @@ function revertRuleIndex(geolocationRules) {
   return reduce(
     geolocationRules,
     (acc, value, propName) => {
+      // E.g.: `receiverName` has no `types`.
+      if (value.types == null) {
+        return acc
+      }
+
       for (let i = 0; i < value.types.length; i++) {
         const type = value.types[i]
         acc[type] = propName

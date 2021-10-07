@@ -21,8 +21,7 @@ export default {
       mask: '99999-999',
       regex: '^([\\d]{5})\\-?([\\d]{3})$',
       postalCodeAPI: true,
-      forgottenURL:
-        'https://buscacepinter.correios.com.br/app/endereco/index.php',
+      forgottenURL: '//buscacepinter.correios.com.br/app/endereco/index.php?t',
       size: 'small',
       autoComplete: 'nope',
     },
@@ -119,16 +118,19 @@ export default {
       types: ['postal_code'],
       required: false,
     },
+
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
       required: true,
       notApplicable: true,
     },
+
     street: {
       valueIn: 'long_name',
       types: ['route'],
     },
+
     neighborhood: {
       valueIn: 'long_name',
       types: [
@@ -140,13 +142,19 @@ export default {
         'sublocality_level_5',
       ],
     },
+
     state: {
       valueIn: 'short_name',
       types: ['administrative_area_level_1'],
     },
+
     city: {
       valueIn: 'long_name',
       types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
     },
   },
   summary: [

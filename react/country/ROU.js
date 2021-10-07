@@ -14038,7 +14038,7 @@ export default {
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
-      handler: address => {
+      handler: (address) => {
         if (!address.city || !address.state) {
           return address
         }

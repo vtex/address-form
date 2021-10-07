@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Update Romanian zipcodes list
 
+## [4.10.1] - 2021-10-06
+
+### Fixed
+
+- Update country rules.
+
 ## [4.10.0] - 2021-08-26
 
 ### Added
