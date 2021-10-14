@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel --delete-dir-on-start --config-file ./.babelrc . -d lib -x .js,.jsx,.ts,tsx && yarn add-locales",
+    "build": "babel --delete-dir-on-start --config-file ./.babelrc . -d lib -x .js,.jsx,.ts,.tsx && yarn add-locales",
     "add-locales": "cp -R -f ../messages/ lib/locales/",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
