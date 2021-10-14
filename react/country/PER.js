@@ -73,6 +73,7 @@ const countryData = {
       'Carmen De La Legua Reynoso': '070103',
       'La Perla': '070104',
       'La Punta': '070105',
+      'Mi Perú': '07056',
       Ventanilla: '070106',
     },
     Canta: {
