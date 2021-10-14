@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.20.1] - 2021-10-14
+
 ### Fixed
 
 - Update build script and update @babel/preset-typescript for transforms/address lib generation.
