@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Update build script and update @babel/preset-typescript for transforms/address lib generation.
+
 ## [3.20.0] - 2021-10-07
 ### Added
 - Exports `geolocationAutoCompleteAddress` to VTEX IO apps.

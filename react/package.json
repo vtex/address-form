@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel --delete-dir-on-start --config-file ./.babelrc . -d lib && yarn add-locales",
+    "build": "babel --delete-dir-on-start --config-file ./.babelrc . -d lib -x .js,.jsx,.ts,.tsx && yarn add-locales",
     "add-locales": "cp -R -f ../messages/ lib/locales/",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
@@ -38,7 +38,7 @@
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
-    "@babel/preset-typescript": "^7.10.4",
+    "@babel/preset-typescript": "^7.15.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.4.9",
     "@types/jest": "^26.0.19",
