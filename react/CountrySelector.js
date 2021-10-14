@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { intlShape, injectIntl } from 'react-intl'
+
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import InputFieldContainer from './InputFieldContainer'
 import DefaultInput from './inputs/DefaultInput'
 import { injectAddressContext } from './addressContainerContext'
-import { intlShape, injectIntl } from 'react-intl'
 
 class CountrySelector extends Component {
-  handleChangeCountry = changedFields => {
+  handleChangeCountry = (changedFields) => {
     const { address } = this.props
 
     if (changedFields.country.value === address.country.value) return
@@ -47,8 +48,9 @@ class CountrySelector extends Component {
   }
 
   render() {
-    const { address, shipsTo, Input, intl } = this.props
-    const field = {
+    const { address, shipsTo, Input, intl, rules } = this.props
+    // rules?.fields?.find gives the possibility of overwriting the country selector field rules.
+    const field = rules?.fields?.find(({ name }) => name === 'country') ?? {
       name: 'country',
       label: 'country',
       optionsCaption: false,
@@ -60,7 +62,7 @@ class CountrySelector extends Component {
         intl={intl}
         Input={Input}
         field={field}
-        rules={{}}
+        rules={rules}
         options={this.sortOptionsByLabel(shipsTo)}
         address={address}
         onChangeAddress={this.handleChangeCountry}
@@ -71,6 +73,7 @@ class CountrySelector extends Component {
 
 CountrySelector.defaultProps = {
   Input: DefaultInput,
+  rules: {},
 }
 
 CountrySelector.propTypes = {
@@ -79,6 +82,7 @@ CountrySelector.propTypes = {
   address: AddressShapeWithValidation,
   shipsTo: PropTypes.array.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
+  rules: PropTypes.object,
 }
 
 export default injectAddressContext(injectIntl(CountrySelector))

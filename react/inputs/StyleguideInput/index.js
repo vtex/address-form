@@ -6,9 +6,14 @@ import Link from '@vtex/styleguide/lib/Link'
 import InputButton from '@vtex/styleguide/lib/InputButton'
 import Checkbox from '@vtex/styleguide/lib/Checkbox'
 import { injectIntl, intlShape } from 'react-intl'
-import { injectRules } from '../../addressRulesContext'
-import { injectAddressContext } from '../../addressContainerContext'
 import { compose } from 'recompose'
+
+import { injectRules } from '../../addressRulesContext'
+import {
+  injectAddressContext,
+  addressContextPropTypes,
+  REQUIRED_INDICATORS,
+} from '../../addressContainerContext'
 import SpinnerLoading from '../../Spinner'
 
 class StyleguideInput extends Component {
@@ -37,7 +42,7 @@ class StyleguideInput extends Component {
     }
   }
 
-  handleFocus = (event) => {
+  handleFocus = () => {
     this.setState({ showErrorMessage: false })
   }
 
@@ -55,6 +60,7 @@ class StyleguideInput extends Component {
   render() {
     const {
       address,
+      addressStyleRules,
       autoFocus,
       Button,
       field,
@@ -66,23 +72,39 @@ class StyleguideInput extends Component {
       shouldShowNumberKeyboard,
       submitLabel,
     } = this.props
+
     const disabled = !!address[field.name].disabled
 
     const loading =
       loadingProp != null ? loadingProp : address[field.name].loading
+
     const type = shouldShowNumberKeyboard ? 'tel' : 'text'
 
-    const inputCommonProps = {
-      label:
-        field.fixedLabel ||
-        this.props.intl.formatMessage({
-          id: `address-form.field.${field.label}`,
-          defaultMessage: this.props.intl.formatMessage({
-            id: `address-form.field.${field.name}`,
-            defaultMessage: '',
-          }),
+    const label =
+      field.fixedLabel ||
+      this.props.intl.formatMessage({
+        id: `address-form.field.${field.label}`,
+        defaultMessage: this.props.intl.formatMessage({
+          id: `address-form.field.${field.name}`,
+          defaultMessage: '',
         }),
-      placeholder: field.placeholder,
+      })
+
+    const inputCommonProps = {
+      label: `${label}${
+        field.required &&
+        addressStyleRules?.requiredIndicator ===
+          REQUIRED_INDICATORS.ASTERISK_ON_LABEL
+          ? ' *'
+          : ''
+      }`,
+      placeholder:
+        field.placeholder ??
+        (!field.required &&
+        addressStyleRules?.requiredIndicator ===
+          REQUIRED_INDICATORS.OPTIONAL_PLACEHOLDER
+          ? this.props.intl.formatMessage({ id: 'address-form.optional' })
+          : null),
       autoFocus,
       value: address[field.name].value || '',
       disabled,
@@ -146,16 +168,15 @@ class StyleguideInput extends Component {
           <Input
             {...inputCommonProps}
             placeholder={
-              inputCommonProps.placeholder != null
-                ? inputCommonProps.placeholder
-                : intl.formatMessage({
-                    id: `address-form.geolocation.example.${
-                      address.country.value || 'UNI'
-                    }`,
-                    defaultMessage: intl.formatMessage({
-                      id: 'address-form.geolocation.example.UNI',
-                    }),
-                  })
+              field.placeholder ??
+              intl.formatMessage({
+                id: `address-form.geolocation.example.${
+                  address.country.value || 'UNI'
+                }`,
+                defaultMessage: intl.formatMessage({
+                  id: 'address-form.geolocation.example.UNI',
+                }),
+              })
             }
             disabled={loading || disabled}
             suffix={<SpinnerLoading isLoading={loading} />}
@@ -166,7 +187,7 @@ class StyleguideInput extends Component {
 
     if (
       field.name === 'number' &&
-      (field.notApplicable || address['addressQuery'].geolocationAutoCompleted)
+      (field.notApplicable || address.addressQuery.geolocationAutoCompleted)
     ) {
       return (
         <div
@@ -204,18 +225,7 @@ class StyleguideInput extends Component {
 
     return (
       <div className={`${commonClassNames} pb7`}>
-        <Input
-          {...inputCommonProps}
-          maxLength={`${field.maxLength}`}
-          placeholder={
-            // Avoid empty string replacement
-            inputCommonProps.placeholder != null
-              ? inputCommonProps.placeholder
-              : !field.hidden && !field.required
-              ? this.props.intl.formatMessage({ id: 'address-form.optional' })
-              : null
-          }
-        />
+        <Input {...inputCommonProps} maxLength={`${field.maxLength}`} />
       </div>
     )
   }
@@ -227,9 +237,10 @@ StyleguideInput.defaultProps = {
 }
 
 StyleguideInput.propTypes = {
-  address: PropTypes.object,
+  ...addressContextPropTypes,
   autoFocus: PropTypes.bool,
   loading: PropTypes.bool,
+  shouldShowNumberKeyboard: PropTypes.bool,
   Button: PropTypes.func,
   field: PropTypes.object.isRequired,
   inputRef: PropTypes.func,
