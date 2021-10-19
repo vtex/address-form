@@ -60,7 +60,7 @@ class StyleguideInput extends Component {
   render() {
     const {
       address,
-      addressStyleRules,
+      fieldsStyleRules,
       autoFocus,
       Button,
       field,
@@ -93,7 +93,7 @@ class StyleguideInput extends Component {
     const inputCommonProps = {
       label: `${label}${
         field.required &&
-        addressStyleRules?.requiredIndicator ===
+        fieldsStyleRules?.requiredIndicator ===
           REQUIRED_INDICATORS.ASTERISK_ON_LABEL
           ? ' *'
           : ''
@@ -101,7 +101,7 @@ class StyleguideInput extends Component {
       placeholder:
         field.placeholder ??
         (!field.required &&
-        addressStyleRules?.requiredIndicator ===
+        fieldsStyleRules?.requiredIndicator ===
           REQUIRED_INDICATORS.OPTIONAL_PLACEHOLDER
           ? this.props.intl.formatMessage({ id: 'address-form.optional' })
           : null),

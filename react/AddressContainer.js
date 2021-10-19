@@ -100,12 +100,12 @@ class AddressContainer extends Component {
   }
 
   render() {
-    const { children, Input, address, addressStyleRules } = this.props
+    const { children, Input, address, fieldsStyleRules } = this.props
     const { handleAddressChange } = this
 
     return (
       <AddressContext.Provider
-        value={{ address, handleAddressChange, Input, addressStyleRules }}
+        value={{ address, handleAddressChange, Input, fieldsStyleRules }}
       >
         {children}
       </AddressContext.Provider>

@@ -24,16 +24,16 @@ export function injectAddressContext(Component) {
     return (
       <AddressContext.Consumer>
         {(ctx) => {
-          const addressStyleRules = {
+          const fieldsStyleRules = {
             ...DEFAULT_ADDRESS_STYLE_RULES,
-            ...(props.addressStyleRules ?? ctx.addressStyleRules),
+            ...(props.fieldsStyleRules ?? ctx.fieldsStyleRules),
           }
 
           return (
             <Component
               {...props}
               address={props.address ?? ctx.address}
-              addressStyleRules={addressStyleRules}
+              fieldsStyleRules={fieldsStyleRules}
               onChangeAddress={props.onChangeAddress ?? ctx.handleAddressChange}
               Input={props.Input ?? ctx.Input}
             />
@@ -46,7 +46,7 @@ export function injectAddressContext(Component) {
 
 export const addressContextPropTypes = {
   address: AddressShapeWithValidation,
-  addressStyleRules: PropTypes.shape({
+  fieldsStyleRules: PropTypes.shape({
     requiredIndicator: PropTypes.oneOf(Object.values(REQUIRED_INDICATORS)),
   }),
   Input: PropTypes.func,
