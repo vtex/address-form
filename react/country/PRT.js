@@ -19,7 +19,7 @@ export default {
       required: true,
       mask: '9999-999',
       regex: '^(?:[\\d]{4})(?:\\-|)(?:[\\d]{3})$',
-      postalCodeAPI: false,
+      postalCodeAPI: true,
       forgottenURL:
         'https://www.ctt.pt/feapl_2/app/open/objectSearch/objectSearch.jspx',
       size: 'small',
