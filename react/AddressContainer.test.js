@@ -1,19 +1,18 @@
 import React from 'react'
+import { mount, render } from 'test-utils'
+
 import AddressContainer from './AddressContainer'
+import AddressForm from './AddressForm'
+import StyleguideInput from './inputs/StyleguideInput'
 import address from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
 import PostalCodeGetter from './PostalCodeGetter'
-import { mount, render } from 'test-utils'
 
 jest.mock('./postalCodeAutoCompleteAddress')
 
-const descendToChild = wrapper =>
-  wrapper
-    .children()
-    .children()
-    .children()
-    .children()
+const descendToChild = (wrapper) =>
+  wrapper.children().children().children().children()
 
 describe('AddressContainer', () => {
   const accountName = 'qamarketplace'
@@ -36,7 +35,7 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <span data-testid={testId} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
@@ -58,11 +57,12 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
-    const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+    const { onChangeAddress } = descendToChild(wrapper).props()
+
     onChangeAddress({ city: { value: 'Rio de Janeiro' } })
 
     // Assert
@@ -84,11 +84,12 @@ describe('AddressContainer', () => {
         rules={usePostalCode}
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     // Act
-    const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+    const { onChangeAddress } = descendToChild(wrapper).props()
+
     onChangeAddress({ country: { value: 'ECU' } })
 
     // Assert
@@ -100,7 +101,10 @@ describe('AddressContainer', () => {
 
   it('should call onChangeAddress when postal code changes if shouldHandleAddressChangeOnMount is true', () => {
     const handleAddressChange = jest.fn()
-    const addressWithPostalCode = { ...address, postalCode: { value: '22250-040' } }
+    const addressWithPostalCode = {
+      ...address,
+      postalCode: { value: '22250-040' },
+    }
 
     const wrapper = mount(
       <AddressContainer
@@ -110,7 +114,7 @@ describe('AddressContainer', () => {
         shouldHandleAddressChangeOnMount
       >
         <PostalCodeGetter rules={usePostalCode} />
-      </AddressContainer>,
+      </AddressContainer>
     )
 
     wrapper.setProps({
@@ -137,11 +141,12 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({ postalCode: { value: '22231000' } })
 
       // Assert
@@ -160,11 +165,12 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({ postalCode: { value: '222' } })
 
       // Assert
@@ -183,11 +189,12 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({
         postalCode: { value: '22231000', geolocationAutoCompleted: true },
       })
@@ -209,15 +216,108 @@ describe('AddressContainer', () => {
           rules={usePostalCode}
         >
           <PostalCodeGetter rules={usePostalCode} />
-        </AddressContainer>,
+        </AddressContainer>
       )
 
       // Act
-      const onChangeAddress = descendToChild(wrapper).props().onChangeAddress
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
       onChangeAddress({ postalCode: { value: '22231000' } })
 
       // Assert
       expect(postalCodeAutoCompleteAddress).not.toHaveBeenCalled()
+    })
+  })
+  describe('fieldsStyleRules', () => {
+    describe('should use different required indicators when using StyleguideInput and fieldsStyleRules is set', () => {
+      it('asterisk-on-label', () => {
+        const wrapper = mount(
+          <AddressContainer
+            fieldsStyleRules={{ requiredIndicator: 'asterisk-on-label' }}
+            address={address}
+            rules={usePostalCode}
+            Input={StyleguideInput}
+            onChangeAddress={jest.fn()}
+          >
+            <AddressForm rules={usePostalCode} />
+          </AddressContainer>
+        )
+
+        expect(wrapper.find('div.vtex-address-form__street label')).toHaveText(
+          'Street *'
+        )
+        expect(
+          wrapper.find('div.vtex-address-form__street input').props()
+            .placeholder
+        ).toBeNull()
+
+        expect(
+          wrapper.find('div.vtex-address-form__complement label')
+        ).toHaveText('Additional info (eg: apt 201)')
+        expect(
+          wrapper.find('div.vtex-address-form__complement input').props()
+            .placeholder
+        ).toBeNull()
+      })
+
+      it('optional-placeholder', () => {
+        const wrapper = mount(
+          <AddressContainer
+            fieldsStyleRules={{ requiredIndicator: 'optional-placeholder' }}
+            rules={usePostalCode}
+            address={address}
+            Input={StyleguideInput}
+            onChangeAddress={jest.fn()}
+          >
+            <AddressForm rules={usePostalCode} />
+          </AddressContainer>
+        )
+
+        expect(wrapper.find('div.vtex-address-form__street label')).toHaveText(
+          'Street'
+        )
+        expect(
+          wrapper.find('div.vtex-address-form__street input').props()
+            .placeholder
+        ).toBeNull()
+
+        expect(
+          wrapper.find('div.vtex-address-form__complement label')
+        ).toHaveText('Additional info (eg: apt 201)')
+        expect(
+          wrapper.find('div.vtex-address-form__complement input').props()
+            .placeholder
+        ).toBe('Optional')
+      })
+
+      it('default = optional-placeholder', () => {
+        const wrapper = mount(
+          <AddressContainer
+            rules={usePostalCode}
+            address={address}
+            Input={StyleguideInput}
+            onChangeAddress={jest.fn()}
+          >
+            <AddressForm rules={usePostalCode} />
+          </AddressContainer>
+        )
+
+        expect(wrapper.find('div.vtex-address-form__street label')).toHaveText(
+          'Street'
+        )
+        expect(
+          wrapper.find('div.vtex-address-form__street input').props()
+            .placeholder
+        ).toBeNull()
+
+        expect(
+          wrapper.find('div.vtex-address-form__complement label')
+        ).toHaveText('Additional info (eg: apt 201)')
+        expect(
+          wrapper.find('div.vtex-address-form__complement input').props()
+            .placeholder
+        ).toBe('Optional')
+      })
     })
   })
 })

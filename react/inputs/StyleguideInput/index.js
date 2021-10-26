@@ -91,6 +91,7 @@ class StyleguideInput extends Component {
       })
 
     const inputCommonProps = {
+      name: field.name,
       label: `${label}${
         field.required &&
         fieldsStyleRules?.requiredIndicator ===
