@@ -218,7 +218,14 @@ class StyleguideInput extends Component {
     if (options) {
       return (
         <div className={`${commonClassNames} pb6`}>
-          <Dropdown {...inputCommonProps} options={options} />
+          <Dropdown
+            {...inputCommonProps}
+            // Since the label is used as the placeholder's fallback, we do this not to have
+            // the asterisk on required fields' placeholder.
+            // https://github.com/vtex/styleguide/blob/master/react/components/Dropdown/index.js#L57-L58
+            placeholder={inputCommonProps.placeholder ?? label}
+            options={options}
+          />
         </div>
       )
     }

@@ -1,9 +1,10 @@
 import React, { Fragment, Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+
 import SelectLevel from './SelectLevel'
 import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
+import { addressContextPropTypes } from '../addressContainerContext'
 
 class TwoLevels extends Component {
   handleSubmit = (event) => {
@@ -15,6 +16,7 @@ class TwoLevels extends Component {
     const {
       address,
       rules,
+      fieldsStyleRules,
       Input,
       loading,
       onChangeAddress,
@@ -35,6 +37,7 @@ class TwoLevels extends Component {
             Input={Input}
             loading={loading}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             address={address}
             onChangeAddress={onChangeAddress}
           />
@@ -42,6 +45,7 @@ class TwoLevels extends Component {
             Input={Input}
             loading={loading}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             address={address}
             onChangeAddress={onChangeAddress}
           />
@@ -57,6 +61,7 @@ class TwoLevels extends Component {
           Input={Input}
           loading={loading}
           rules={rules}
+          fieldsStyleRules={fieldsStyleRules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
@@ -64,6 +69,7 @@ class TwoLevels extends Component {
           Input={Input}
           loading={loading}
           rules={rules}
+          fieldsStyleRules={fieldsStyleRules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
@@ -79,7 +85,7 @@ TwoLevels.defaultProps = {
 }
 
 TwoLevels.propTypes = {
-  address: AddressShapeWithValidation,
+  ...addressContextPropTypes,
   Button: PropTypes.func,
   loading: PropTypes.bool,
   Input: PropTypes.func.isRequired,

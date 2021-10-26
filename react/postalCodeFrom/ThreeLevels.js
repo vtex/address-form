@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+
 import SelectLevel from './SelectLevel'
 import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
+import { addressContextPropTypes } from '../addressContainerContext'
 
 class ThreeLevels extends Component {
   handleSubmit = (event) => {
@@ -16,6 +17,7 @@ class ThreeLevels extends Component {
       address,
       Button,
       rules,
+      fieldsStyleRules,
       Input,
       loading,
       onChangeAddress,
@@ -35,6 +37,7 @@ class ThreeLevels extends Component {
             Input={Input}
             loading={loading}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             address={address}
             onChangeAddress={onChangeAddress}
           />
@@ -43,6 +46,7 @@ class ThreeLevels extends Component {
             Input={Input}
             loading={loading}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             address={address}
             onChangeAddress={onChangeAddress}
           />
@@ -50,6 +54,7 @@ class ThreeLevels extends Component {
             Input={Input}
             loading={loading}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             address={address}
             onChangeAddress={onChangeAddress}
           />
@@ -65,6 +70,7 @@ class ThreeLevels extends Component {
           Input={Input}
           loading={loading}
           rules={rules}
+          fieldsStyleRules={fieldsStyleRules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
@@ -73,6 +79,7 @@ class ThreeLevels extends Component {
           Input={Input}
           loading={loading}
           rules={rules}
+          fieldsStyleRules={fieldsStyleRules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
@@ -80,6 +87,7 @@ class ThreeLevels extends Component {
           Input={Input}
           loading={loading}
           rules={rules}
+          fieldsStyleRules={fieldsStyleRules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
@@ -95,7 +103,7 @@ ThreeLevels.defaultProps = {
 }
 
 ThreeLevels.propTypes = {
-  address: AddressShapeWithValidation,
+  ...addressContextPropTypes,
   Button: PropTypes.func,
   loading: PropTypes.func,
   Input: PropTypes.func.isRequired,

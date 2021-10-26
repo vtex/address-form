@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import { injectIntl, intlShape } from 'react-intl'
 
-import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { POSTAL_CODE, ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from './constants'
 import OneLevel from './postalCodeFrom/OneLevel'
 import TwoLevels from './postalCodeFrom/TwoLevels'
@@ -12,7 +11,10 @@ import DefaultInput from './inputs/DefaultInput'
 import InputFieldContainer from './InputFieldContainer'
 import { getField } from './selectors/fields'
 import { injectRules } from './addressRulesContext'
-import { injectAddressContext } from './addressContainerContext'
+import {
+  injectAddressContext,
+  addressContextPropTypes,
+} from './addressContainerContext'
 import { removeNonWords } from './transforms/utils'
 
 class PostalCodeGetter extends Component {
@@ -22,6 +24,7 @@ class PostalCodeGetter extends Component {
       autoFocus,
       loading,
       rules,
+      fieldsStyleRules,
       onChangeAddress,
       Input,
       Button,
@@ -41,12 +44,14 @@ class PostalCodeGetter extends Component {
             Button={Button}
             address={address}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             onChangeAddress={onChangeAddress}
             omitContainerElement={omitContainerElement}
             onSubmit={onSubmit}
             submitLabel={submitLabel}
           />
         )
+
       case TWO_LEVELS:
         return (
           <TwoLevels
@@ -56,12 +61,14 @@ class PostalCodeGetter extends Component {
             Button={Button}
             address={address}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             onChangeAddress={onChangeAddress}
             omitContainerElement={omitContainerElement}
             onSubmit={onSubmit}
             submitLabel={submitLabel}
           />
         )
+
       case ONE_LEVEL:
         return (
           <OneLevel
@@ -71,16 +78,21 @@ class PostalCodeGetter extends Component {
             Button={Button}
             address={address}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             onChangeAddress={onChangeAddress}
             omitContainerElement={omitContainerElement}
             onSubmit={onSubmit}
             submitLabel={submitLabel}
           />
         )
+
       default:
       case POSTAL_CODE: {
         const field = getField('postalCode', rules)
-        const shouldShowNumberKeyboard = !isNaN(removeNonWords(field.mask))
+        const shouldShowNumberKeyboard = !Number.isNaN(
+          removeNonWords(field.mask)
+        )
+
         return (
           <InputFieldContainer
             intl={intl}
@@ -91,6 +103,7 @@ class PostalCodeGetter extends Component {
             address={address}
             autoFocus={autoFocus}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             onChangeAddress={onChangeAddress}
             onSubmit={onSubmit}
             submitLabel={submitLabel}
@@ -111,7 +124,7 @@ PostalCodeGetter.defaultProps = {
 }
 
 PostalCodeGetter.propTypes = {
-  address: AddressShapeWithValidation,
+  ...addressContextPropTypes,
   autoFocus: PropTypes.bool,
   loading: PropTypes.bool,
   Input: PropTypes.func,
@@ -126,4 +139,5 @@ PostalCodeGetter.propTypes = {
 }
 
 const enhance = compose(injectAddressContext, injectRules, injectIntl)
+
 export default enhance(PostalCodeGetter)
