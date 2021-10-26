@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.11.0] - 2021-10-26
+
 ### Added
 
 - `AddressContainer.fieldsStyleRules` prop, starting with `fieldsStyleRules.requiredIndicator` to fit the form into different design patterns.
