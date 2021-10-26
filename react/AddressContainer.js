@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 
-import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
 import { validateChangedFields } from './validateAddress'
 import { POSTAL_CODE } from './constants'
 import postalCodeAutoCompleteAddress from './postalCodeAutoCompleteAddress'
-import { AddressContext } from './addressContainerContext'
+import {
+  AddressContext,
+  addressContextPropTypes,
+} from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
 
 class AddressContainer extends Component {
@@ -32,7 +34,7 @@ class AddressContainer extends Component {
     }
   }
 
-  handleAddressChange = changedAddressFields => {
+  handleAddressChange = (changedAddressFields) => {
     const {
       cors,
       accountName,
@@ -58,7 +60,7 @@ class AddressContainer extends Component {
     const validatedAddress = validateChangedFields(
       changedAddressFields,
       address,
-      rules,
+      rules
     )
 
     if (
@@ -67,10 +69,12 @@ class AddressContainer extends Component {
       !changedAddressFields.postalCode.geolocationAutoCompleted
     ) {
       const postalCodeField = rules.fields.find(
-        field => field.name === 'postalCode',
+        (field) => field.name === 'postalCode'
       )
+
       const diffFromPrev =
         address.postalCode.value !== validatedAddress.postalCode.value
+
       const isValidPostalCode = validatedAddress.postalCode.valid === true
       const shouldAutoComplete =
         rules.postalCodeFrom === POSTAL_CODE &&
@@ -87,7 +91,7 @@ class AddressContainer extends Component {
             rules,
             callback: this.handleAddressChange,
             shouldAddFocusToNextInvalidField,
-          }),
+          })
         )
       }
     }
@@ -96,11 +100,13 @@ class AddressContainer extends Component {
   }
 
   render() {
-    const { children, Input, address } = this.props
+    const { children, Input, address, fieldsStyleRules } = this.props
     const { handleAddressChange } = this
 
     return (
-      <AddressContext.Provider value={{ address, handleAddressChange, Input }}>
+      <AddressContext.Provider
+        value={{ address, handleAddressChange, Input, fieldsStyleRules }}
+      >
         {children}
       </AddressContext.Provider>
     )
@@ -117,9 +123,8 @@ AddressContainer.defaultProps = {
 AddressContainer.propTypes = {
   cors: PropTypes.bool,
   accountName: PropTypes.string,
-  address: AddressShapeWithValidation,
+  ...addressContextPropTypes,
   rules: PropTypes.object.isRequired,
-  Input: PropTypes.func,
   onChangeAddress: PropTypes.func.isRequired,
   children: PropTypes.any.isRequired,
   autoCompletePostalCode: PropTypes.bool,

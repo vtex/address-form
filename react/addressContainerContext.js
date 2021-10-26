@@ -1,23 +1,54 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export const AddressContext = React.createContext()
+import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
+
+export const AddressContext = React.createContext({})
+
+export const REQUIRED_INDICATORS = {
+  OPTIONAL_PLACEHOLDER: 'optional-placeholder',
+  ASTERISK_ON_LABEL: 'asterisk-on-label',
+}
+
+const DEFAULT_ADDRESS_STYLE_RULES = {
+  requiredIndicator: REQUIRED_INDICATORS.OPTIONAL_PLACEHOLDER,
+}
 
 /* eslint-disable react/prop-types */
 export function injectAddressContext(Component) {
   return function AddressInjectedComponent(props) {
-    if (props.address || props.onChangeAddress) return <Component {...props} />
+    if (props.address || props.onChangeAddress) {
+      return <Component {...props} />
+    }
 
     return (
       <AddressContext.Consumer>
-        {ctx => (
-          <Component
-            {...props}
-            address={ctx.address}
-            onChangeAddress={ctx.handleAddressChange}
-            Input={props.Input || ctx.Input}
-          />
-        )}
+        {(ctx) => {
+          const fieldsStyleRules = {
+            ...DEFAULT_ADDRESS_STYLE_RULES,
+            ...(props.fieldsStyleRules ?? ctx.fieldsStyleRules),
+          }
+
+          return (
+            <Component
+              {...props}
+              address={props.address ?? ctx.address}
+              fieldsStyleRules={fieldsStyleRules}
+              onChangeAddress={props.onChangeAddress ?? ctx.handleAddressChange}
+              Input={props.Input ?? ctx.Input}
+            />
+          )
+        }}
       </AddressContext.Consumer>
     )
   }
+}
+
+export const addressContextPropTypes = {
+  address: AddressShapeWithValidation,
+  fieldsStyleRules: PropTypes.shape({
+    requiredIndicator: PropTypes.oneOf(Object.values(REQUIRED_INDICATORS)),
+  }),
+  Input: PropTypes.func,
+  onChangeAddress: PropTypes.func,
 }
