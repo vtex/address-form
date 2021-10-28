@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
+
 import SelectPostalCode from './SelectPostalCode'
 import SubmitButton from './SubmitButton'
+import { addressContextPropTypes } from '../addressContainerContext'
 
 class OneLevel extends Component {
   handleSubmit = (event) => {
@@ -20,6 +21,7 @@ class OneLevel extends Component {
       onChangeAddress,
       omitContainerElement,
       rules,
+      fieldsStyleRules,
       submitLabel,
     } = this.props
 
@@ -34,6 +36,7 @@ class OneLevel extends Component {
             Input={Input}
             loading={loading}
             rules={rules}
+            fieldsStyleRules={fieldsStyleRules}
             onChangeAddress={onChangeAddress}
           />
           <SubmitButton Button={Button} buttonLabel={submitLabel} />
@@ -47,6 +50,7 @@ class OneLevel extends Component {
         Input={Input}
         loading={loading}
         rules={rules}
+        fieldsStyleRules={fieldsStyleRules}
         onChangeAddress={onChangeAddress}
       />
     )
@@ -60,7 +64,7 @@ OneLevel.defaultProps = {
 }
 
 OneLevel.propTypes = {
-  address: AddressShapeWithValidation,
+  ...addressContextPropTypes,
   Button: PropTypes.func,
   loading: PropTypes.bool,
   Input: PropTypes.func.isRequired,

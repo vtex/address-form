@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { injectIntl, intlShape } from 'react-intl'
+
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import {
   getPostalCodeOptions,
   getLastLevelField,
 } from '../selectors/postalCode'
 import InputFieldContainer from '../InputFieldContainer'
-import { injectIntl, intlShape } from 'react-intl'
+import { addressContextPropTypes } from '../addressContainerContext'
 
 class SelectPostalCode extends Component {
-  handleChange = changedFields => {
-    const rules = this.props.rules
+  handleChange = (changedFields) => {
+    const { rules } = this.props
     const currentLevelName = getLastLevelField(rules).name
-    const value = changedFields[currentLevelName].value
+    const { value } = changedFields[currentLevelName]
 
     this.props.onChangeAddress({
       ...this.deComposeValue(currentLevelName, value || ''),
@@ -29,6 +31,7 @@ class SelectPostalCode extends Component {
 
   deComposeValue = (currentLevelName, value) => {
     const [field, postalCode] = value.split('___')
+
     return {
       [currentLevelName]: { value: field },
       postalCode: { value: postalCode },
@@ -43,12 +46,14 @@ class SelectPostalCode extends Component {
           [fieldName]: { value: label },
           postalCode: { value: postalCode },
         }),
-      }),
+      })
     )
   }
 
   render() {
-    const { address, rules, Input, loading, intl } = this.props
+    const { address, fieldsStyleRules, rules, Input, loading, intl } =
+      this.props
+
     const currentLevelField = getLastLevelField(rules)
     const fieldName = currentLevelField.name
 
@@ -69,6 +74,7 @@ class SelectPostalCode extends Component {
         address={newAddress}
         options={this.getOptions(fieldName, address, rules)}
         rules={rules}
+        fieldsStyleRules={fieldsStyleRules}
         onChangeAddress={this.handleChange}
       />
     )
@@ -76,6 +82,7 @@ class SelectPostalCode extends Component {
 }
 
 SelectPostalCode.propTypes = {
+  ...addressContextPropTypes,
   Input: PropTypes.func.isRequired,
   intl: intlShape,
   loading: PropTypes.bool,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
+import { compose } from 'recompose'
+import { injectIntl, intlShape } from 'react-intl'
+
 import InputFieldContainer from './InputFieldContainer'
 import DefaultInput from './inputs/DefaultInput'
 import {
@@ -10,15 +12,17 @@ import {
 } from './selectors/fields'
 import SelectPostalCode from './postalCodeFrom/SelectPostalCode'
 import { injectRules } from './addressRulesContext'
-import { compose } from 'recompose'
-import { injectAddressContext } from './addressContainerContext'
-import { injectIntl, intlShape } from 'react-intl'
+import {
+  injectAddressContext,
+  addressContextPropTypes,
+} from './addressContainerContext'
 
 class AddressForm extends Component {
   render() {
     const {
       address,
       rules,
+      fieldsStyleRules,
       onChangeAddress,
       Input,
       intl,
@@ -42,6 +46,7 @@ class AddressForm extends Component {
           key={field.name}
           Input={Input}
           rules={rules}
+          fieldsStyleRules={fieldsStyleRules}
           address={address}
           onChangeAddress={onChangeAddress}
         />
@@ -53,11 +58,13 @@ class AddressForm extends Component {
           field={field}
           address={address}
           rules={rules}
+          fieldsStyleRules={fieldsStyleRules}
           onChangeAddress={onChangeAddress}
           notApplicableLabel={notApplicableLabel}
         />
-      ),
+      )
     )
+
     return omitContainerElement ? (
       content
     ) : (
@@ -74,9 +81,9 @@ AddressForm.defaultProps = {
 }
 
 AddressForm.propTypes = {
+  ...addressContextPropTypes,
   Input: PropTypes.func,
   intl: intlShape,
-  address: AddressShapeWithValidation,
   omitPostalCodeFields: PropTypes.bool,
   omitAutoCompletedFields: PropTypes.bool,
   rules: PropTypes.object.isRequired,
@@ -85,4 +92,5 @@ AddressForm.propTypes = {
 }
 
 const enhance = compose(injectAddressContext, injectRules, injectIntl)
+
 export default enhance(AddressForm)

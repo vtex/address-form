@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, rendererCreate } from 'test-utils'
+
 import AddressForm from './AddressForm'
 import address from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
@@ -11,7 +12,7 @@ describe('AddressForm', () => {
         address={address}
         rules={usePostalCode}
         onChangeAddress={jest.fn()}
-      />,
+      />
     )
   })
 
@@ -22,8 +23,7 @@ describe('AddressForm', () => {
         rules={usePostalCode}
         onChangeAddress={jest.fn()}
       />
-    )
-    .toJSON()
+    ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
