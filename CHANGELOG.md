@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.11.1] - 2021-10-28
+
 ### Fixed
 
 - `AddressContainer.fieldsStyleRules` prop should be passed down by every `AddressForm` children.
