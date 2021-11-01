@@ -28,19 +28,12 @@ class CountrySelector extends Component {
   }
 
   shouldComponentUpdate(prevProps) {
-    if (prevProps.address.country.value !== this.props.address.country.value) {
-      return true
-    }
-
-    if (prevProps.Input !== this.props.Input) {
-      return true
-    }
-
-    if (prevProps.shipsTo !== this.props.shipsTo) {
-      return true
-    }
-
-    return false
+    return (
+      prevProps.address.country !== this.props.address.country ||
+      prevProps.rules !== this.props.rules ||
+      prevProps.Input !== this.props.Input ||
+      prevProps.shipsTo !== this.props.shipsTo
+    )
   }
 
   sortOptionsByLabel(options) {

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { RulesContext } from './addressRulesContext'
 
+import { RulesContext } from './addressRulesContext'
 import defaultRules from './country/default'
 
-const MODULE_NOT_FOUND_PATTERN = /Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/
+const MODULE_NOT_FOUND_PATTERN =
+  /Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/
 
 class AddressRules extends Component {
   constructor(props) {
@@ -32,15 +33,19 @@ class AddressRules extends Component {
 
   parseError(e) {
     const result = MODULE_NOT_FOUND_PATTERN.exec(e.message)
+
     if (!result) return false
+
     return result[1]
   }
 
   fetchRules(rulePromise) {
     this.setState({ loadingRules: true })
+
     return rulePromise
       .then((ruleData) => {
         this.setState({ error: null })
+
         return ruleData.default || ruleData
       })
       .catch((error) => {
@@ -49,9 +54,10 @@ class AddressRules extends Component {
         if (notFoundErrorType) {
           if (process.env.NODE_ENV !== 'production') {
             console.warn(
-              `Couldn't load rules for country ${notFoundErrorType}, using default rules instead.`,
+              `Couldn't load rules for country ${notFoundErrorType}, using default rules instead.`
             )
           }
+
           return defaultRules
         }
 
@@ -91,17 +97,19 @@ class AddressRules extends Component {
           if (rules.geolocation[field.name]) {
             // ignore unrelated props for the field
             // eslint-disable-next-line no-unused-vars
-            const { valueIn, types, handler, ...props } = rules.geolocation[
-              field.name
-            ]
+            const { valueIn, types, handler, ...props } =
+              rules.geolocation[field.name]
+
             return { ...field, ...props }
           }
+
           return field
         }),
       }
     }
 
     this.setState({ rules })
+
     return rules
   }
 

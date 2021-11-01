@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+<<<<<<< HEAD
+=======
 ### Added
 
 - `showErrorMessage` and `customErrorMessage` to `address[field.name]` evaluation on `StyleguideInput` component to control error state corner cases.
@@ -15,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `CountrySelector` component update condition.
 
+>>>>>>> 9e4977c (Add address error handling tools to StyleguideInput and fix CountrySelector update condition.)
 ## [4.11.1] - 2021-10-28
 
 ### Fixed
