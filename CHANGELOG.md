@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Update the cities order in CHL file
+
 ## [3.20.3] - 2021-10-25
 ### Changed
 - Activate postal code API for Portugal
