@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.12.0] - 2021-11-04
+
 ### Added
 
 - `showErrorMessage` and `customErrorMessage` to `address[field.name]` evaluation on `StyleguideInput` component to control error state corner cases.
