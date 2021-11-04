@@ -112,9 +112,11 @@ class StyleguideInput extends Component {
       error: !this.state.isInputValid,
       ref: inputRef,
       errorMessage:
-        this.state.showErrorMessage && address[field.name].reason
+        (this.state.showErrorMessage || address[field.name].showErrorMessage) &&
+        (address[field.name].reason || address[field.name].customErrorMessage)
           ? this.props.intl.formatMessage({
               id: `address-form.error.${address[field.name].reason}`,
+              defaultMessage: address[field.name].customErrorMessage ?? '',
             })
           : undefined,
       onBlur: this.handleBlur,
