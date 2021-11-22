@@ -19,7 +19,7 @@ export default {
       label: 'postalCode',
       required: true,
       mask: '99999',
-      regex: /^(10|20|21|22|23|31|32|33|34|35|40|42|43|44|47|48|49|51|52|53)\d{3}$/
+      regex: /^(10|20|21|22|23|31|32|33|34|35|40|42|43|44|47|48|49|51|52|53)\d{3}$/,
       postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
