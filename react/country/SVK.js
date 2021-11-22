@@ -19,7 +19,7 @@ export default {
       label: 'postalCode',
       required: true,
       mask: '999 99',
-      regex: /^[0,8,9]\d{2}\ \d{2}$/, //shares zipcode range with Czech republic, 1-7 are reserved there.
+      regex: /^[089]\d{2}\ \d{2}$/, //shares zipcode range with Czech republic, 1-7 are reserved there.
       postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
