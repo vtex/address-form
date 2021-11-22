@@ -19,7 +19,7 @@ export default {
       label: 'postalCode',
       required: true,
       mask: '99-999',
-      regex: /^\d{2}\-\d{3}$/
+      regex: /^\d{2}\-\d{3}$/,
       postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
