@@ -43,6 +43,8 @@ splunkEvents.config({
   headers: {
     'Content-Type': 'text/plain',
   },
+	useExponentialBackoff: true,
+	maxNumberOfRetries: 4,
 })
 
 function getAccountName() {

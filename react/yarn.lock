@@ -6037,10 +6037,10 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
-splunk-events@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/splunk-events/-/splunk-events-1.6.0.tgz#cd4b93d6a5fcd78ba88ad2cc7821a7d26ceb0c66"
-  integrity sha512-SGTZatld08W2P1GaLadtWKbUHAFM4M12hTNWYCcXGWVzmQC+lH5GxrjW1oRCEeLuJ3eBoue0N5spJuDR0wABNA==
+splunk-events@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/splunk-events/-/splunk-events-1.7.0.tgz#4400c2b224387e598806c8fb7e6e687cf9143fe4"
+  integrity sha512-OdqBiyE45GIYWWzeNZVcZHqvagRwBINy26+u2Iu2nWQYzPtD7HnL6hSgWzFXNBzRxdQuUQWeAKE58I6pvJ9xjA==
 
 sprintf-js@~1.0.2:
   version "1.0.3"
