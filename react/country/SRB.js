@@ -19,7 +19,7 @@ export default {
       label: 'postalCode',
       required: true,
       mask: '99999',
-      regex: /^[1,2,3]\d{4}/, //has to start on 1, 2 or 3.
+      regex: /^[123]\d{4}/, //has to start on 1, 2 or 3.
       postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
