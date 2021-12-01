@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.21.0] - 2021-12-01
+
 ## [3.20.6] - 2021-11-25
 ### Changed
 - Use exponential backoff and limit retries on Splunk calls.
