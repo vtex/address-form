@@ -29,6 +29,7 @@
   "address-form.geolocation.example.ITA": "مثال: Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "مثال: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "مثال: Ulica Twarda 3, Szczecin",
+  "address-form.geolocation.example.RUS": "مثال: Арбат, 3 Москва",
   "address-form.error.ERROR_EMPTY_FIELD": "هذا الحقل مطلوب.",
   "address-form.error.ERROR_POSTAL_CODE": "رمز بريدي غير صالح.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "عنوان غير صالح.",
