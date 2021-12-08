@@ -146,10 +146,6 @@ const invalidGeoCoords = { valid: false, reason: EGEOCOORDS }
 const invalidPostalCode = { valid: false, reason: EPOSTALCODE }
 
 function valueInOptions(value, options) {
-  if (value == null) {
-    return false
-  }
-
   const normalizedValue = value.toLowerCase()
   const normalizedOptions = options.map((option) => option.toLowerCase())
 
@@ -158,12 +154,10 @@ function valueInOptions(value, options) {
 
 function valueInOptionsPairs(value, optionsPairs) {
   return (
-    (value != null &&
-      find(
-        optionsPairs,
-        (optionPair) => optionPair.value.toLowerCase() === value.toLowerCase()
-      )) ||
-    false
+    find(
+      optionsPairs,
+      (optionPair) => optionPair.value.toLowerCase() === value.toLowerCase()
+    ) || false
   )
 }
 
@@ -202,7 +196,7 @@ function defaultValidation(value, name, address, rules) {
     return emptyField
   }
 
-  if (field && hasOptions(field)) {
+  if (field && value && hasOptions(field)) {
     return validateOptions(value, field, address, rules)
   }
 
