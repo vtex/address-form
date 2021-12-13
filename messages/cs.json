@@ -29,6 +29,7 @@
   "address-form.geolocation.example.ITA": "Např. Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "Např. Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Např. Ulica Twarda 3, Szczecin",
+  "address-form.geolocation.example.RUS": "Např. Арбат, 3 Москва",
   "address-form.error.ERROR_EMPTY_FIELD": "Toto pole je povinné.",
   "address-form.error.ERROR_POSTAL_CODE": "Neplatné PSČ.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Neplatná adresa.",

@@ -29,6 +29,7 @@
   "address-form.geolocation.example.ITA": "Es: Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "Es: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Es: Ulica Twarda 3, Stettino",
+  "address-form.geolocation.example.RUS": "Es: Арбат, 3 Москва",
   "address-form.error.ERROR_EMPTY_FIELD": "Questo campo è obbligatorio.",
   "address-form.error.ERROR_POSTAL_CODE": "Codice postale non valido.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Indirizzo non valido.",

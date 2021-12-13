@@ -29,6 +29,7 @@
   "address-form.geolocation.example.ITA": "Ej: Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "Ej: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Ej: Ulica Twarda 3, Szczecin",
+  "address-form.geolocation.example.RUS": "Ej: Арбат, 3 Москва",
   "address-form.error.ERROR_EMPTY_FIELD": "Este campo es obligatorio.",
   "address-form.error.ERROR_POSTAL_CODE": "Código postal no válido.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Dirección no válida.",

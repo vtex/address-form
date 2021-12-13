@@ -29,6 +29,7 @@
   "address-form.geolocation.example.ITA": "Exemplu: Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "Exemplu: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Exemplu: Ulica Twarda 3, Szczecin",
+  "address-form.geolocation.example.RUS": "Exemplu: Арбат, 3 Москва",
   "address-form.error.ERROR_EMPTY_FIELD": "Acest câmp este obligatoriu.",
   "address-form.error.ERROR_POSTAL_CODE": "Cod poștal invalid.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adresă invalidă.",

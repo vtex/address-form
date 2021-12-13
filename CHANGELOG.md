@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `address-form.geolocation.example.RUS` to all language files.
+
 ## [3.21.0] - 2021-12-01
 
 ## [3.20.6] - 2021-11-25

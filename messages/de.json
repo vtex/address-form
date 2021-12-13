@@ -29,6 +29,7 @@
   "address-form.geolocation.example.ITA": "z. B.: Corso Vittorio Emanuele 69, Milano",
   "address-form.geolocation.example.NLD": "z. B.: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "z. B.: Ulica Twarda 3, Szczecin",
+  "address-form.geolocation.example.RUS": "z. B.: Арбат, 3 Москва",
   "address-form.error.ERROR_EMPTY_FIELD": "Dieses Feld muss ausgefüllt werden.",
   "address-form.error.ERROR_POSTAL_CODE": "Ungültige Postleitzahl.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Ungültige Adresse.",

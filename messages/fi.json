@@ -29,6 +29,7 @@
   "address-form.geolocation.example.ITA": "Esim.: Corso Vittorio Emanuele 69, Milan",
   "address-form.geolocation.example.NLD": "Esim.: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Esim.: Ulica Twarda 3, Szczecin",
+  "address-form.geolocation.example.RUS": "Esim.: Арбат, 3 Москва",
   "address-form.error.ERROR_EMPTY_FIELD": "Tämä kenttä on pakollinen.",
   "address-form.error.ERROR_POSTAL_CODE": "Virheellinen postinumero.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Virheellinen osoite.",
