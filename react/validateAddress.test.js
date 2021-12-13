@@ -49,23 +49,30 @@ describe('Address Validation:', () => {
       expect(result.valid).toBe(false)
     })
 
-    it('should return false if a field with option pairs is null and not required', () => {
-      const invalidAddress = {
+    it('should not throw and return true if a field with option pairs is null and not required', () => {
+      const validAddress = {
         ...address,
         postalCode: { value: '22231000' },
         city: { value: 'Rio de Janeiro' },
+        street: { value: 'Praia de Botafogo' },
+        number: { value: '300' },
+        neighborhood: { value: 'Botafogo' },
+        receiverName: { value: 'Linus' },
+        // Field with optionsPairs in rules
         state: { value: null },
       }
 
-      const result = isValidAddress(invalidAddress, {
-        ...usePostalCode,
-        fields: usePostalCode.fields.map((field) => ({
-          ...field,
-          required: field.name !== 'state' && field.required,
-        })),
-      })
+      const validate = () =>
+        isValidAddress(validAddress, {
+          ...usePostalCode,
+          fields: usePostalCode.fields.map((field) => ({
+            ...field,
+            required: field.name !== 'state' && field.required,
+          })),
+        })
 
-      expect(result.valid).toBe(false)
+      expect(validate).not.toThrow()
+      expect(validate().valid).toBe(true)
     })
 
     it('should focus on the next invalid field', () => {
