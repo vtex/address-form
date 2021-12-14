@@ -1,3 +1,5 @@
+import reduce from 'lodash/reduce'
+
 import {
   isValidAddress,
   validateAddress,
@@ -5,7 +7,6 @@ import {
   validateField,
 } from './validateAddress'
 import address from './__mocks__/newAddress'
-import reduce from 'lodash/reduce'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import {
   EEMPTY,
@@ -22,7 +23,7 @@ describe('Address Validation:', () => {
   function getRulesRequiredFields(rules, withBaseRequiredFields = true) {
     return rules.fields.reduce(
       (acc, field) => (field.required ? acc.concat([field.name]) : acc),
-      withBaseRequiredFields ? [...baseRequiredFields] : [],
+      withBaseRequiredFields ? [...baseRequiredFields] : []
     )
   }
 
@@ -30,7 +31,7 @@ describe('Address Validation:', () => {
     return reduce(
       validationResult,
       (acc, value, field) => (value.valid ? acc : acc.concat([field])),
-      [],
+      []
     )
   }
 
@@ -46,6 +47,32 @@ describe('Address Validation:', () => {
       const result = isValidAddress(invalidAddress, usePostalCode)
 
       expect(result.valid).toBe(false)
+    })
+
+    it('should not throw and return true if a field with option pairs is null and not required', () => {
+      const validAddress = {
+        ...address,
+        postalCode: { value: '22231000' },
+        city: { value: 'Rio de Janeiro' },
+        street: { value: 'Praia de Botafogo' },
+        number: { value: '300' },
+        neighborhood: { value: 'Botafogo' },
+        receiverName: { value: 'Linus' },
+        // Field with optionsPairs in rules
+        state: { value: null },
+      }
+
+      const validate = () =>
+        isValidAddress(validAddress, {
+          ...usePostalCode,
+          fields: usePostalCode.fields.map((field) => ({
+            ...field,
+            required: field.name !== 'state' && field.required,
+          })),
+        })
+
+      expect(validate).not.toThrow()
+      expect(validate().valid).toBe(true)
     })
 
     it('should focus on the next invalid field', () => {
@@ -88,7 +115,7 @@ describe('Address Validation:', () => {
         addressId: { value: null },
         addressType: { value: null },
       },
-      usePostalCode,
+      usePostalCode
     )
 
     const invalidFields = getAllInvalidFieldsNames(result)
@@ -242,7 +269,7 @@ describe('Address Validation:', () => {
       'AMAZON',
       'state',
       validAddress,
-      rules,
+      rules
     )
 
     expect(validcityOption.valid).toBe(true)
@@ -289,7 +316,7 @@ describe('Address Validation:', () => {
       validGeoCoords,
       'geoCoordinates',
       address,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(validResult.valid).toBe(true)
@@ -302,7 +329,7 @@ describe('Address Validation:', () => {
       invalidGeoCoords,
       'geoCoordinates',
       address,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(invalidResult.valid).toBe(false)
@@ -316,7 +343,7 @@ describe('Address Validation:', () => {
       invalidPostalCode,
       'postalCode',
       address,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(result.valid).toBe(false)
@@ -330,7 +357,7 @@ describe('Address Validation:', () => {
       validPostalCode,
       'postalCode',
       address,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(result.valid).toBe(true)
@@ -397,13 +424,21 @@ describe('Address Validation:', () => {
       postalCode: { value: '22231000' },
     }
 
-    const validatedAddress = validateChangedFields(changedFieldsValid, address, usePostalCode)
+    const validatedAddress = validateChangedFields(
+      changedFieldsValid,
+      address,
+      usePostalCode
+    )
 
     const changedFieldsValid2 = {
       postalCode: { value: '22231001' },
     }
 
-    const result = validateChangedFields(changedFieldsValid2, validatedAddress, usePostalCode)
+    const result = validateChangedFields(
+      changedFieldsValid2,
+      validatedAddress,
+      usePostalCode
+    )
 
     expect(result.postalCode.valid).toBe(true)
   })
@@ -412,10 +447,11 @@ describe('Address Validation:', () => {
     const changedFieldsValid = {
       postalCode: { value: '22231000' },
     }
+
     const validatedAddress = validateChangedFields(
       changedFieldsValid,
       address,
-      usePostalCode,
+      usePostalCode
     )
 
     const changedFieldsInvalid = {
@@ -425,7 +461,7 @@ describe('Address Validation:', () => {
     const result = validateChangedFields(
       changedFieldsInvalid,
       validatedAddress,
-      usePostalCode,
+      usePostalCode
     )
 
     expect(result.postalCode.valid).toBe(false)
