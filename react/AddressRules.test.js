@@ -22,6 +22,25 @@ describe('AddressRules', () => {
     expect(rules).toEqual(braRules)
   })
 
+  it('should call onLoadRules if passed', async () => {
+    const onLoadRules = jest.fn()
+
+    const instance = shallow(
+      <AddressRules
+        country="BRA"
+        fetch={(country) => import(`./country/${country}`)}
+        onLoadRules={onLoadRules}
+      >
+        <h1>It works!</h1>
+      </AddressRules>
+    ).instance()
+
+    const rules = await instance.componentDidMount()
+
+    expect(rules).toEqual(braRules)
+    expect(onLoadRules).toHaveBeenCalledWith({ rules })
+  })
+
   it('should render its children', async () => {
     const testId = 'foo'
 

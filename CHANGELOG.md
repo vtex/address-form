@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `onLoadRules` callback prop to `AddressRules` component.
+
 ## [4.12.1] - 2021-12-14
 
 ### Fixed
