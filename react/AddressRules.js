@@ -108,6 +108,10 @@ class AddressRules extends Component {
       }
     }
 
+    if (this.props.onLoadRules) {
+      this.props.onLoadRules({ rules })
+    }
+
     this.setState({ rules })
 
     return rules
@@ -144,6 +148,8 @@ AddressRules.propTypes = {
   useGeolocation: PropTypes.bool,
   /** Whether to always use the default rules as fallback or not */
   useDefaultRulesAsFallback: PropTypes.bool,
+  /** Callback function when the address rules are loaded */
+  onLoadRules: PropTypes.func,
 }
 
 export default AddressRules
