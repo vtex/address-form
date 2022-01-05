@@ -688,7 +688,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - This Changelog
 - **`AddressSubmitter`** component and tests
-
-
-[Unreleased]: https://github.com/vtex/address-form/compare/v4.13.1...HEAD
-[4.13.1]: https://github.com/vtex/address-form/compare/v4.13.0...v4.13.1
