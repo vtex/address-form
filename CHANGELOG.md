@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.13.1] - 2022-01-05
+
 ### Added
 
 - Validation for 12 european countries.
@@ -686,3 +688,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - This Changelog
 - **`AddressSubmitter`** component and tests
+
+
+[Unreleased]: https://github.com/vtex/address-form/compare/v4.13.1...HEAD
+[4.13.1]: https://github.com/vtex/address-form/compare/v4.13.0...v4.13.1
