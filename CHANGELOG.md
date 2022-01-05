@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.13.1] - 2022-01-05
+
+### Added
+
+- Validation for 12 european countries.
+
 ## [4.13.0] - 2021-12-15
 
 ### Added
