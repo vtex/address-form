@@ -15,7 +15,7 @@ export default {
     {
       name: 'postalCode',
       maxLength: 50,
-      label: 'ص. ب.',
+      fixedLabel: 'ص. ب.',
       required: true,
       mask: '99999',
       regex: '^([\\d]{5})$',
