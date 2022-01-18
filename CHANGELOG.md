@@ -6,14 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Invalid address `field` name for `IRQ`.
 
 ## [3.22.0] - 2022-01-13
-
 ### Added
 - Address rules for Iraq.
 
 ## [3.21.1] - 2021-12-13
-
 ### Added
 - `address-form.geolocation.example.RUS` to all language files.
 
