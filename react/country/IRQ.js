@@ -65,7 +65,7 @@ export default {
       size: 'large',
     },
     {
-      name: 'region',
+      name: 'state',
       maxLength: 100,
       label: 'region',
       required: true,
@@ -86,12 +86,7 @@ export default {
       { delimiter: '+', name: 'number' },
       { delimiter: ', ', name: 'complement' },
     ],
-    [
-      { name: 'city' },
-      { delimiter: ' , ', name: 'state' },
-    ],
-    [
-      { name: 'postalCode' },
-    ],
+    [{ name: 'city' }, { delimiter: ' , ', name: 'state' }],
+    [{ name: 'postalCode' }],
   ],
 }
