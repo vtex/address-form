@@ -311,6 +311,7 @@ export default {
       hidden: true,
       maxLength: 750,
       label: 'number',
+      required: true,
       size: 'mini',
       autoComplete: 'nope',
     },
@@ -336,7 +337,7 @@ export default {
     {
       name: 'state',
       maxLength: 100,
-      label: 'state',
+      label: 'region',
       required: true,
       size: 'large',
       level: 1,
