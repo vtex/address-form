@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Adding new cities to ECU country.
+
 ## [3.22.1] - 2022-01-18
 ### Fixed
 - Invalid address `field` name for `IRQ`.
@@ -68,7 +72,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.18.11] - 2021-09-02
 ### Added
-- Add new cities to COL country 
+- Add new cities to COL country
 
 ## [3.18.10] - 2021-08-30
 ### Fixed
