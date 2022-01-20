@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Russia country rules.
+
+### Fixed
+- Russian translation.
+
 ## [3.22.2] - 2022-01-19
-
 ### Added
-
-- Adding new cities to ECU country.
+- New cities to ECU country.
 
 ## [3.22.1] - 2022-01-18
 ### Fixed
