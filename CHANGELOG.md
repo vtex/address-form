@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+-Russia country rules.
+
 ## [3.22.3] - 2022-01-20
 
 ### Changed
