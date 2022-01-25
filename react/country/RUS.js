@@ -308,7 +308,6 @@ export default {
     },
     {
       name: 'number',
-      hidden: true,
       maxLength: 750,
       label: 'number',
       required: true,
