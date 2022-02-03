@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: SGP,
-  abbr: SG,
+  country: 'SGP',
+  abbr: 'SG',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
