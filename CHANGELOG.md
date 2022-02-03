@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.23.0] - 2022-02-03
+
 ### Added
 - Address rules for Singapore.
 - Address rules for Iraq.
