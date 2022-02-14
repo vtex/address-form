@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Ecuador city `San Rafael`.
+- India's cities and states.
 
 ### Removed
 - Peru's Callao department.
