@@ -40,8 +40,8 @@
   "address-form.field.country": "البلد",
   "address-form.field.postalCode": "الرمز البريدي",
   "address-form.field.street": "الشارع",
-  "address-form.field.addressLine1": "سطر العنوان 1",
-  "address-form.field.addressLine2": "سطر العنوان 2",
+  "address-form.field.addressLine1": "العنوان الرئيسي",
+  "address-form.field.addressLine2": "أقرب نقطة دالة",
   "address-form.field.number": "الرقم",
   "address-form.field.exteriorNumber": "رقم خارجي",
   "address-form.field.interiorNumber": "رقم داخلي",
@@ -64,6 +64,6 @@
   "address-form.field.delegation": "المديرية",
   "address-form.field.municipalityDelegation": "البلدية أو المديرية",
   "address-form.field.province": "الولاية",
-  "address-form.field.receiverName": "المستقبِل",
+  "address-form.field.receiverName": "اسم الشخص المستلم",
   "address-form.field.county": "المقاطعة"
 }
