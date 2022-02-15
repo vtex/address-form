@@ -1073,6 +1073,7 @@ const countryData = {
     'San Antonio': '0018',
     'San Jose de Minas': '0018',
     'San Miguel De Los Bancos': '0018',
+    'San Rafael': '0018',
     'Santa Rosa de Cuzubamba': '0018',
     Sangolqui: '0018',
     Tababela: '0018',

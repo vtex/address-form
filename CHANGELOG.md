@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Ecuador city `San Rafael`.
+- India's cities and states.
+
+### Fixed
+- Arabic translation.
+
 ## [3.23.1] - 2022-02-08
 
 ### Removed
