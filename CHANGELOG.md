@@ -14,9 +14,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Arabic translation.
 
-### Removed
-- Peru's Callao department.
-
 ## [3.23.1] - 2022-02-08
 
 ### Removed
