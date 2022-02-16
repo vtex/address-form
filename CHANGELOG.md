@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Arabic translation.
+
+### Added
+- South Africa country rules.
+
 ## [3.24.1] - 2022-02-21
 ### Changed
 - Add required flag to India's postal code field.
@@ -35,7 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.22.4] - 2022-01-25
 
 ### Fixed
--Russia country rules.
+- Russia country rules.
 
 ## [3.22.3] - 2022-01-20
 
