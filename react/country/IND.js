@@ -2,9 +2,7 @@ import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 import { POSTAL_CODE } from '../constants'
 
 const countryData = {
-  'Andaman and Nicobar Islands': [
-    'Port Blair'
-  ],
+  'Andaman and Nicobar Islands': ['Port Blair'],
   'Andhra Pradesh': [
     'Adoni',
     'Amaravati',
@@ -27,9 +25,7 @@ const countryData = {
     'Vizianagaram',
     'Yemmiganur',
   ],
-  'Arunachal Pradesh': [
-    'Itanagar',
-  ],
+  'Arunachal Pradesh': ['Itanagar'],
   Assam: [
     'Dhuburi',
     'Dibrugarh',
@@ -72,9 +68,7 @@ const countryData = {
     'Sitamarhi',
     'Siwan',
   ],
-  Chandigarh: [
-    'Chandigarh',
-  ],
+  Chandigarh: ['Chandigarh'],
   Chhattisgarh: [
     'Ambikapur',
     'Bhilai',
@@ -85,19 +79,9 @@ const countryData = {
     'Raipur',
     'Rajnandgaon',
   ],
-  'Dadra and Nagar Haveli and Daman and Diu': [
-    'Daman',
-    'Diu',
-    'Silvassa',
-  ],
-  Delhi: [
-    'Delhi',
-    'New Delhi',
-  ],
-  Goa: [
-    'Madgaon',
-    'Panaji',
-  ],
+  'Dadra and Nagar Haveli and Daman and Diu': ['Daman', 'Diu', 'Silvassa'],
+  Delhi: ['Delhi', 'New Delhi'],
+  Goa: ['Madgaon', 'Panaji'],
   Gujarat: [
     'Ahmadabad',
     'Amreli',
@@ -226,10 +210,7 @@ const countryData = {
     'Thiruvananthapuram',
     'Thrissur',
   ],
-  Ladakh: [
-    'Kargil',
-    'Leh',
-  ],
+  Ladakh: ['Kargil', 'Leh'],
   'Madhya Pradesh': [
     'Balaghat',
     'Barwani',
@@ -322,24 +303,10 @@ const countryData = {
     'Wardha',
     'Yavatmal',
   ],
-  Manipur: [
-    'Imphal',
-  ],
-  Meghalaya: [
-    'Cherrapunji',
-    'Shillong',
-  ],
-  Mizoram: [
-    'Aizawl',
-    'Lunglei',
-  ],
-  Nagaland: [
-    'Kohima',
-    'Mon',
-    'Phek',
-    'Wokha',
-    'Zunheboto',
-  ],
+  Manipur: ['Imphal'],
+  Meghalaya: ['Cherrapunji', 'Shillong'],
+  Mizoram: ['Aizawl', 'Lunglei'],
+  Nagaland: ['Kohima', 'Mon', 'Phek', 'Wokha', 'Zunheboto'],
   Odisha: [
     'Balangir',
     'Baleshwar',
@@ -357,12 +324,7 @@ const countryData = {
     'Sambalpur',
     'Udayagiri',
   ],
-  Puducherry: [
-    'Karaikal',
-    'Mahe',
-    'Puducherry',
-    'Yanam',
-  ],
+  Puducherry: ['Karaikal', 'Mahe', 'Puducherry', 'Yanam'],
   Punjab: [
     'Amritsar',
     'Batala',
@@ -417,12 +379,7 @@ const countryData = {
     'Tonk',
     'Udaipur',
   ],
-  Sikkim: [
-    'Gangtok',
-    'Gyalshing',
-    'Lachung',
-    'Mangan',
-  ],
+  Sikkim: ['Gangtok', 'Gyalshing', 'Lachung', 'Mangan'],
   'Tamil Nadu': [
     'Arcot',
     'Chengalpattu',
@@ -463,9 +420,7 @@ const countryData = {
     'Sangareddi',
     'Warangal',
   ],
-  Tripura: [
-    'Agartala',
-  ],
+  Tripura: ['Agartala'],
   'Uttar Pradesh': [
     'Agra',
     'Aligarh',
@@ -580,7 +535,8 @@ const countryData = {
     'Tamluk',
     'Titagarh',
   ],
-}  
+}
+
 export default {
   country: 'IND',
   abbr: 'IN',
@@ -596,6 +552,7 @@ export default {
     {
       name: 'postalCode',
       maxLength: 50,
+      required: true,
       label: 'postalCode',
       size: 'small',
       regex: '^[1-9][0-9]{5}$',
