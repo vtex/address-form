@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- South Africa country rules for geolocation.
+
 ## [3.24.2] - 2022-02-24
 
 ### Fixed
