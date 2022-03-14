@@ -62,14 +62,14 @@ export default {
       name: 'city',
       maxLength: 25,
       label: 'city',
-      required: true,
+      hidden: true,
       size: 'large',
     },
     {
       name: 'state',
       maxLength: 40,
       label: 'state',
-      required: true,
+      hidden: true,
       size: 'large',
     },
     {
