@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.14.0] - 2022-03-14
+
+### Added
+
+- Address rules for Singapore.
+
 ## [4.13.1] - 2022-01-05
 
 ### Added
