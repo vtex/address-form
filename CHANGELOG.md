@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Singapore address rules, hiding `city` and `state` fields. 
+
 ## [3.24.3] - 2022-02-25
 
 ### Fixed
