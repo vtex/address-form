@@ -291,7 +291,6 @@ export default {
     },
     {
       autoComplete: 'nope',
-      hidden: true,
       label: 'postalCode',
       maxLength: 50,
       name: 'postalCode',
