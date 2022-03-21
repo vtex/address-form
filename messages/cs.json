@@ -30,6 +30,7 @@
   "address-form.geolocation.example.NLD": "Např. Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Např. Ulica Twarda 3, Szczecin",
   "address-form.geolocation.example.RUS": "Např. Арбат, 3 Москва",
+  "address-form.geolocation.example.ZAF": "Např. 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.error.ERROR_EMPTY_FIELD": "Toto pole je povinné.",
   "address-form.error.ERROR_POSTAL_CODE": "Neplatné PSČ.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Neplatná adresa.",

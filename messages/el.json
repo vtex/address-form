@@ -30,6 +30,7 @@
   "address-form.geolocation.example.NLD": "Π.χ.: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Π.χ.: Ulica Twarda 3, Szczecin",
   "address-form.geolocation.example.RUS": "Π.χ.: Арбат, 3 Москва",
+  "address-form.geolocation.example.ZAF": "Π.χ.: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.error.ERROR_EMPTY_FIELD": "Αυτό το πεδίο είναι υποχρεωτικό.",
   "address-form.error.ERROR_POSTAL_CODE": "Άκυρος ταχυδρομικός κώδικας.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Άκυρη διεύθυνση.",
