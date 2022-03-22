@@ -30,6 +30,7 @@
   "address-form.geolocation.example.NLD": "F.eks.: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "F.eks.: Ulica Twarda 3, Szczecin",
   "address-form.geolocation.example.RUS": "F.eks.: Арбат, 3 Москва",
+  "address-form.geolocation.example.ZAF": "F.eks.: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.error.ERROR_EMPTY_FIELD": "Dette felt er påkrævet.",
   "address-form.error.ERROR_POSTAL_CODE": "Ugyldigt postnummer.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Ugyldig adresse.",

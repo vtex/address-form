@@ -30,6 +30,7 @@
   "address-form.geolocation.example.NLD": "Eg: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Eg: Ulica Twarda 3, Szczecin",
   "address-form.geolocation.example.RUS": "Eg: Арбат, 3 Москва",
+  "address-form.geolocation.example.ZAF": "Eg: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.error.ERROR_EMPTY_FIELD": "This field is required.",
   "address-form.error.ERROR_POSTAL_CODE": "Invalid postal code.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Invalid address.",

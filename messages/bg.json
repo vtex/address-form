@@ -30,6 +30,7 @@
   "address-form.geolocation.example.NLD": "Напр.: Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Напр.: Ulica Twarda 3, Szczecin",
   "address-form.geolocation.example.RUS": "Напр: Арбат, 3 Москва",
+  "address-form.geolocation.example.ZAF": "Hanp: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.error.ERROR_EMPTY_FIELD": "Това поле е задължително.",
   "address-form.error.ERROR_POSTAL_CODE": "Невалиден пощенски код.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Невалиден адрес.",

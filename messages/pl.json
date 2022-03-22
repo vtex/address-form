@@ -30,6 +30,7 @@
   "address-form.geolocation.example.NLD": "Np. Surinamestraat 27, Amsterdam",
   "address-form.geolocation.example.POL": "Np. Ulica Twarda 3, Szczecin",
   "address-form.geolocation.example.RUS": "Np. Арбат, 3 Москва",
+  "address-form.geolocation.example.ZAF": "NP: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.error.ERROR_EMPTY_FIELD": "To pole jest wymagane.",
   "address-form.error.ERROR_POSTAL_CODE": "Nieprawidłowy kod pocztowy.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Nieprawidłowy adres.",
