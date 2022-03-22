@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
-- Added support for ZAF locale
+### Added
+- Support for ZAF locale
 
 ## [3.24.6] - 2022-03-21
 
