@@ -1,6 +1,6 @@
-import { TWO_LEVELS } from '../constants'
-import { secondLevelPostalCodes } from '../transforms/postalCodes'
-import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
+import { ONE_LEVEL } from '../constants'
+import { firstLevelPostalCodes } from '../transforms/postalCodes'
+import { getOneLevel } from '../transforms/addressFieldsOptions'
 
 const countryDataRaw = {
   'Республика Адыгея': {
@@ -278,9 +278,9 @@ const countryData = capitalizeStatename(countryDataRaw)
 export default {
   country: 'RUS',
   abbr: 'RU',
-  postalCodeFrom: TWO_LEVELS,
-  postalCodeLevels: ['state', 'city'],
-  secondLevelPostalCodes: secondLevelPostalCodes(countryData),
+  postalCodeFrom: ONE_LEVEL,
+  postalCodeLevels: ['state'],
+  firstLevelPostalCodes: firstLevelPostalCodes(countryData),
   fields: [
     {
       hidden: true,
@@ -347,9 +347,6 @@ export default {
       label: 'city',
       required: true,
       size: 'large',
-      level: 2,
-      basedOn: 'state',
-      optionsMap: getTwoLevels(countryData),
     },
     {
       name: 'receiverName',
