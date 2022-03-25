@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.24.8] - 2022-03-23
+## [3.24.8] - 2022-03-23 [YANKED]
 
 ### Fixed
 - Arabic translation and Russia country rules for two-levels postal code.
