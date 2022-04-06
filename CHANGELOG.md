@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `address-form.field.suburb` string
+
 ### Changed
 - Missing India's states and cities.
+- South Africa neighborhood label.
 
 ## [3.24.9] - 2022-04-06
 
