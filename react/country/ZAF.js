@@ -54,7 +54,7 @@ export default {
       hidden: true,
       name: 'neighborhood',
       maxLength: 100,
-      label: 'neighborhood',
+      label: 'suburb',
       size: 'large',
     },
     {
