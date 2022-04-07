@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.0] - 2022-04-07
+
 ### Added
 - `address-form.field.suburb` string
 - US states
