@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Support for ZAF locale.
+- `address-form.field.suburb` string
+- US states
+
+### Changed
+
+- Missing India's states and cities.
+
+### Removed
+
+- Invalid US states.
+
 ## [4.14.0] - 2022-03-14
 
 ### Added
