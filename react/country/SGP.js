@@ -43,6 +43,7 @@ export default {
       maxLength: 750,
       label: 'addressLine2',
       size: 'xlarge',
+      required: true,
     },
     {
       hidden: true,
