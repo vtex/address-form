@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.1] - 2022-04-14
+
 ### Changed
 - Singapore address rules, `complement field` as mandatory
 
