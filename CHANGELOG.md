@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.2] - 2022-05-11
+
 ### Fixed
 - `NLD` and `BEL` users not able to proceed to payment due to missing `number` geolocation field.
 
