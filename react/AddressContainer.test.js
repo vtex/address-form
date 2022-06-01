@@ -228,5 +228,31 @@ describe('AddressContainer', () => {
       // Assert
       expect(postalCodeAutoCompleteAddress).not.toHaveBeenCalled()
     })
+
+    it('should not auto complete postal code when country value is not valid', () => {
+      // Arrange
+      const handleAddressChange = jest.fn()
+      const wrapper = mount(
+        <AddressContainer
+          cors
+          accountName={accountName}
+          address={address}
+          onChangeAddress={handleAddressChange}
+          rules={usePostalCode}
+        >
+          <PostalCodeGetter rules={usePostalCode} />
+        </AddressContainer>
+      )
+
+      // Act
+      const { onChangeAddress } = descendToChild(wrapper).props()
+
+      onChangeAddress({
+        postalCode: { value: '22231000' },
+      })
+
+      // Assert
+      expect(postalCodeAutoCompleteAddress).not.toHaveBeenCalled()
+    })
   })
 })
