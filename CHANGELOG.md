@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Address autocompletion by postal code with `null` country value.
+
 ## [3.25.2] - 2022-05-11
 
 ### Fixed
