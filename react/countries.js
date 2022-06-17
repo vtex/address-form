@@ -20,6 +20,7 @@ import PRT from './country/PRT'
 import PRY from './country/PRY'
 import ROU from './country/ROU'
 import RUS from './country/RUS'
+import SAU from './country/SAU'
 import SMR from './country/SMR'
 import URY from './country/URY'
 import USA from './country/USA'
@@ -47,6 +48,7 @@ export default {
   PRY,
   ROU,
   RUS,
+  SAU,
   SMR,
   URY,
   USA,

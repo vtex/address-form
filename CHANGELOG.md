@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Saudi Arabia ('SAU') country rules.
+
 ## [3.25.2] - 2022-05-11
 
 ### Fixed
