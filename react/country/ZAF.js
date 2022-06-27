@@ -44,14 +44,12 @@ export default {
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'reference',
       maxLength: 750,
       label: 'reference',
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'neighborhood',
       maxLength: 100,
       label: 'suburb',
@@ -61,7 +59,7 @@ export default {
       name: 'city',
       maxLength: 100,
       label: 'city',
-      required: true,
+      required: false,
       size: 'large',
     },
     {
