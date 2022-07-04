@@ -12,8 +12,14 @@
       "image": "053131491888.dkr.ecr.us-east-1.amazonaws.com/awsbuild/ubuntu/node:10",
       "vpc": {
         "id": "vpc-d4f109b1",
-        "subnets": ["subnet-955f63d3", "subnet-245f030c", "subnet-0e35267a"],
-        "securityGroups": ["sg-c84127b3"]
+        "subnets": [
+          "subnet-955f63d3",
+          "subnet-245f030c",
+          "subnet-0e35267a"
+        ],
+        "securityGroups": [
+          "sg-c84127b3"
+        ]
       }
     },
     "service": {
@@ -32,6 +38,7 @@
         "key": "Team",
         "value": "Post Purchase XP"
       }
-    ]
+    ],
+    "iamInstanceProfile": "BeanstalkRole_address-form"
   }
 ]
