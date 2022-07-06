@@ -57,7 +57,11 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-test-renderer": "^16.7.0",
-    "typescript": "3.9.7"
+    "typescript": "3.9.7",
+    "vtex.address-form": "https://restrules--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.address-form@3.25.4+build1657133643/public/@types/vtex.address-form",
+    "vtex.checkout": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout@0.6.0/public/_types/react",
+    "vtex.country-codes": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.country-codes@1.1.2/public/_types/react",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.45.0/public/@types/vtex.render-runtime"
   },
   "resolutions": {
     "jest-environment-jsdom": "^26.3.0"

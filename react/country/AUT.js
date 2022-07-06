@@ -19,7 +19,7 @@ export default {
       label: 'postalCode',
       required: true,
       mask: '9999',
-      regex: /^[1-9]\d{3}$/,  //4 digits, cannot start with leading zero
+      regex: /^[1-9]\d{3}$/, //4 digits, cannot start with leading zero
       postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
@@ -72,15 +72,15 @@ export default {
       required: true,
       optionsCaption: '',
       options: [
-        'Burgenland', 
-        'Kärnten', 
-        'Niederösterreich', 
-        'Oberösterreich', 
-        'Salzburg', 
-        'Steiermark', 
-        'Tirol', 
-        'Vorarlberg', 
-        'Wien'
+        'Burgenland',
+        'Kärnten',
+        'Niederösterreich',
+        'Oberösterreich',
+        'Salzburg',
+        'Steiermark',
+        'Tirol',
+        'Vorarlberg',
+        'Wien',
       ],
       size: 'large',
     },

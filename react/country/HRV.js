@@ -92,7 +92,7 @@ export default {
         'Istarska županija',
         'Dubrovačko-neretvanska županija',
         'Međimurska županija',
-        'Grad Zagreb'
+        'Grad Zagreb',
       ],
       size: 'large',
     },

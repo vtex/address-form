@@ -1,8 +1,14 @@
 {
   "extends": "@vtex/tsconfig",
   "compilerOptions": {
-    "types": ["node", "jest"],
-    "lib": ["dom", "esnext"],
+    "types": [
+      "node",
+      "jest"
+    ],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "allowJs": true,
     "checkJs": true,
     "noUnusedLocals": false,
@@ -11,8 +17,18 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "strict": true,
-    "outDir": "lib"
+    "outDir": "lib",
+    "module": "es6",
+    "moduleResolution": "node",
+    "target": "es2017"
   },
-  "include": ["./**/*.js", "./**/*.ts", "./**/*.jsx", "./**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./**/*.js",
+    "./**/*.ts",
+    "./**/*.jsx",
+    "./**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

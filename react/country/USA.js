@@ -70,7 +70,10 @@ export default {
         { label: 'Arizona', value: 'AZ' },
         { label: 'Arkansas', value: 'AR' },
         { label: 'Armed Forces Americas', value: 'AA' },
-        { label: 'Armed Forces Europe, the Middle East, and Canada', value: 'AE' },
+        {
+          label: 'Armed Forces Europe, the Middle East, and Canada',
+          value: 'AE',
+        },
         { label: 'Armed Forces Pacific', value: 'AP' },
         { label: 'California', value: 'CA' },
         { label: 'Colorado', value: 'CO' },

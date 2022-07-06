@@ -1,0 +1,19 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@types/co-body": "^0.0.3",
+    "@types/node": "12.x",
+    "@vtex/api": "6.45.12",
+    "eslint": "^6.3.0",
+    "eslint-config-vtex": "^11.0.0",
+    "prettier": "^1.18.2",
+    "typescript": "3.9.7",
+    "vtex.address-form": "https://restrules--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.address-form@3.25.4+build1657133643/public/@types/vtex.address-form",
+    "vtex.checkout": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout@0.6.0/public/_types/react",
+    "vtex.country-codes": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.country-codes@1.1.2/public/_types/react"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit --pretty && eslint -c .eslintrc.json --fix './**/*.ts'"
+  },
+  "version": "1.0.0"
+}

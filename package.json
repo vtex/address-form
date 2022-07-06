@@ -1,9 +1,11 @@
 {
+  "name": "address-form",
   "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "lint": "eslint --ext js,jsx,ts,tsx .",
-    "lint:locales": "intl-equalizer",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
+    "lint:locales": "intl-equalizer"
   },
   "husky": {
     "hooks": {
@@ -12,16 +14,21 @@
     }
   },
   "lint-staged": {
-    "!(demo)**/*.{ts,js,tsx,jsx}": [
+    "*.{ts,js,tsx,jsx}": [
       "eslint --fix",
       "prettier --write"
     ],
     "*.{json,graphql,gql}": [
       "prettier --write"
+    ],
+    "!(demo)**/*.{ts,js,tsx,jsx}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "devDependencies": {
     "@types/jscodeshift": "^0.7.1",
+    "@types/node": "^12.12.21",
     "@vtex/intl-equalizer": "^2.5.0",
     "@vtex/prettier-config": "^0.3.6",
     "eslint": "^7.16.0",

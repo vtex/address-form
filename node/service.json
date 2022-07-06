@@ -1,0 +1,13 @@
+{
+  "memory": 256,
+  "ttl": 60,
+  "timeout": 30000,
+  "minReplicas": 2,
+  "maxReplicas": 4,
+  "routes": {
+    "apiGetCountryRules": {
+      "path": "/rules/:countryCode",
+      "public": true
+    }
+  }
+}

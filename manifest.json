@@ -17,7 +17,8 @@
   },
   "builders": {
     "react": "2.x",
-    "messages": "0.x"
+    "messages": "0.x",
+    "node": "6.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
