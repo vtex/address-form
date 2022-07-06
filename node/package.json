@@ -2,8 +2,10 @@
   "type": "module",
   "devDependencies": {
     "@types/co-body": "^0.0.3",
+    "@types/jest": "^28.1.4",
     "@types/node": "12.x",
     "@vtex/api": "6.45.12",
+    "@vtex/tsconfig": "^0.6.0",
     "eslint": "^6.3.0",
     "eslint-config-vtex": "^11.0.0",
     "prettier": "^1.18.2",

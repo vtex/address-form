@@ -1,0 +1,7 @@
+{
+  "extends": "@vtex/tsconfig",
+  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"],
+  "compilerOptions": {
+    "types": ["node", "jest"]
+  }
+}
