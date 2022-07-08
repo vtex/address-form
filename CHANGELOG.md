@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Thai, Slovak and Czech translations.
+
 ## [4.15.2] - 2022-07-06
 
 ### Fixed
