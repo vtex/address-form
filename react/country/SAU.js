@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: 'ZAF',
-  abbr: 'ZA',
+  country: 'SAU',
+  abbr: 'SA',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -13,12 +13,10 @@ export default {
       size: 'medium',
     },
     {
+      hidden: true,
       name: 'postalCode',
       maxLength: 50,
       label: 'postalCode',
-      required: true,
-      mask: '9999',
-      regex: '^([\\d]{4})$',
       size: 'small',
       autoComplete: 'nope',
       postalCodeAPI: false,
@@ -26,7 +24,6 @@ export default {
     {
       name: 'street',
       label: 'addressLine1',
-      maxLength: 150,
       required: true,
       size: 'xlarge',
     },
@@ -36,6 +33,7 @@ export default {
       label: 'number',
       size: 'small',
       autoComplete: 'nope',
+      notApplicable: false,
     },
     {
       name: 'complement',
@@ -44,28 +42,30 @@ export default {
       size: 'xlarge',
     },
     {
+      hidden: true,
       name: 'reference',
       maxLength: 750,
       label: 'reference',
       size: 'xlarge',
     },
     {
+      hidden: true,
       name: 'neighborhood',
       maxLength: 100,
-      label: 'suburb',
+      label: 'neighborhood',
       size: 'large',
     },
     {
       name: 'city',
       maxLength: 100,
       label: 'city',
-      required: false,
+      required: true,
       size: 'large',
     },
     {
       name: 'state',
       maxLength: 100,
-      label: 'province',
+      label: 'state',
       required: true,
       size: 'large',
     },
@@ -121,11 +121,36 @@ export default {
     },
   },
   summary: [
-    [{ name: 'street' }, { delimiter: ', ', name: 'complement' }],
     [
-      { name: 'city' },
-      { delimiter: ', ', name: 'state' },
-      { delimiter: ' ', name: 'postalCode' },
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ', ',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'neighborhood',
+        delimiterAfter: ' - ',
+      },
+      {
+        name: 'city',
+      },
+      {
+        delimiter: ' - ',
+        name: 'state',
+      },
+    ],
+    [
+      {
+        name: 'postalCode',
+      },
     ],
   ],
 }

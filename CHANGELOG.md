@@ -15,6 +15,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Czech and Slovak translations.
 
+## [3.25.4] - 2022-06-27
+
+## [3.25.3] - 2022-06-20
+
+### Added
+- Saudi Arabia ('SAU') country rules.
+
+## [3.25.2] - 2022-05-11
+
+### Fixed
+- `NLD` and `BEL` users not able to proceed to payment due to missing `number` geolocation field.
+
+## [3.25.1] - 2022-04-14
+
+### Changed
+- Singapore address rules, `complement field` as mandatory
+
+## [3.25.0] - 2022-04-07
+
+### Added
+- `address-form.field.suburb` string
+- US states
+
+### Changed
+- Missing India's states and cities.
+- South Africa neighborhood label.
+
+### Removed
+- Invalid US states.
+
 ## [3.24.9] - 2022-04-06
 
 ### Fixed
