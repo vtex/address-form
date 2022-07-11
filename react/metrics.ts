@@ -43,8 +43,8 @@ splunkEvents.config({
   headers: {
     'Content-Type': 'text/plain',
   },
-	useExponentialBackoff: true,
-	maxNumberOfRetries: 4,
+  useExponentialBackoff: true,
+  maxNumberOfRetries: 4,
 })
 
 function getAccountName() {
@@ -58,9 +58,9 @@ function getAccountName() {
 type EventData = Parameters<typeof splunkEvents.logEvent>[4]
 
 interface LogGeolocationAddressMismatchData {
-  fieldValue: AddressValues
+  fieldValue: AddressValues | null
   fieldName: Fields
-  countryFromRules: string
+  countryFromRules: string | null
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   address: Record<string, any>
 }
@@ -74,7 +74,7 @@ export function logGeolocationAddressMismatch({
   const eventData: EventData = {
     fieldValue: (fieldValue ?? '') as string,
     fieldName,
-    countryFromRules,
+    countryFromRules: countryFromRules ?? 'null',
     query: address.addressQuery?.value ?? '',
     country: address.country?.value ?? '',
     state: address.state?.value ?? '',

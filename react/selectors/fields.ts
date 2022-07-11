@@ -10,17 +10,23 @@ import cleanStr from './cleanStr'
 import type {
   PostalCodeFieldRule,
   Rule,
-  AddressRules,
+  Rules,
   PostalCodeRules,
+  GeolocationRule,
 } from '../types/rules'
 import type {
   Fields,
   AddressWithValidation,
   ValidatedField,
   AddressValues,
+  Address,
 } from '../types/address'
 
-export function getField(fieldName: Fields, rules: AddressRules) {
+function isGeolocationRule(rule: Rule): rule is GeolocationRule {
+  return !('name' in rule)
+}
+
+export function getField(fieldName: Fields, rules: Rules) {
   if ('fields' in rules) {
     return rules.fields.find((field) => field.name === fieldName)
   }
@@ -33,7 +39,7 @@ export function hasOptions(
   address?: AddressWithValidation
 ): field is PostalCodeFieldRule {
   // geolocation rules does not contain options
-  if ('valueIn' in field) {
+  if (isGeolocationRule(field)) {
     return false
   }
 
@@ -47,7 +53,9 @@ export function hasOptions(
   )
 }
 
-function getFieldValue(field: ValidatedField | AddressValues): AddressValues {
+function getFieldValue<Field extends Fields>(
+  field: ValidatedField<Address[Field]> | AddressValues
+) {
   if (field == null) {
     return undefined
   }

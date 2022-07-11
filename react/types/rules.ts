@@ -1,52 +1,60 @@
-import type { FillableFields, Fields } from './address'
+import type { FillableFields, Fields, AddressWithValidation } from './address'
 
-const enum PostalCodeSource {
-  POSTAL_CODE = 'POSTAL_CODE',
-  ONE_LEVEL = 'ONE_LEVEL',
-  TWO_LEVELS = 'TWO_LEVELS',
-  THREE_LEVELS = 'THREE_LEVELS',
-}
+export type PostalCodeSource =
+  | 'POSTAL_CODE'
+  | 'ONE_LEVEL'
+  | 'TWO_LEVELS'
+  | 'THREE_LEVELS'
 
 export interface GeolocationRule {
-  valueIn: string
-  types: string[]
+  valueIn?: string
+  types?: string[]
   required?: boolean
   notApplicable?: boolean
+  handler?: (
+    address: AddressWithValidation,
+    geolocationAddress: unknown,
+    pass: number
+  ) => AddressWithValidation
 }
 
 export type GeolocationRules = {
-  [fieldName in Fields]: GeolocationRule
+  [fieldName in Exclude<FillableFields, 'country'>]?: GeolocationRule
 }
 
-export interface PostalCodeFieldRule {
+type RuleLabel = { label: string } | { fixedLabel: string }
+
+export type PostalCodeFieldRule = RuleLabel & {
   name: FillableFields
-  label: string
-  size: string
-  fixedLabel?: string
+  size?: string
   mask?: string
   required?: boolean
   regex?: string
   maxLength?: number
   postalCodeAPI?: boolean
-  autoComplete?: boolean
+  autoComplete?: boolean | string
+  notApplicable?: boolean
   hidden?: boolean
   basedOn?: Fields
+  level?: number
   optionsCaption?: string
   options?: string[]
   optionsPairs?: unknown
   optionsMap?: unknown
   elementName?: string
+  forgottenURL?: string
+  defaultValue?: unknown
 }
 
 type PostalCodeSummary = {
-  name: string
+  name: FillableFields
   delimiter?: string
   delimiterAfter?: string
 }
 
 export interface PostalCodeRules {
-  country: string
-  abbr: string
+  country: string | null
+  abbr: string | null
   postalCodeFrom?: PostalCodeSource
   postalCodeProtectedFields?: string[]
   fields: PostalCodeFieldRule[]
@@ -56,4 +64,4 @@ export interface PostalCodeRules {
 
 export type Rule = GeolocationRule | PostalCodeFieldRule
 
-export type AddressRules = PostalCodeRules | GeolocationRules
+export type Rules = PostalCodeRules | GeolocationRules

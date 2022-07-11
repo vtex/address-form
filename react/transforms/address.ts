@@ -12,10 +12,13 @@ import type {
   ValidatedField,
   Fields,
   FillableFields,
+  Address,
 } from '../types/address'
-import type { AddressRules } from '../types/rules'
+import type { Rules } from '../types/rules'
 
-export function addValidation(address) {
+export function addValidation(
+  address: Address | AddressWithValidation
+): AddressWithValidation {
   return reduce(
     address,
     (newAddress, propValue, propName) => {
@@ -24,7 +27,7 @@ export function addValidation(address) {
 
       newAddress[propName] = {
         value:
-          propValue && !isUndefined(propValue.value)
+          typeof propValue === 'object' && 'value' in propValue
             ? propValue.value
             : isStringOrArray
             ? propValue
@@ -34,10 +37,10 @@ export function addValidation(address) {
       return newAddress
     },
     {}
-  )
+  ) as AddressWithValidation
 }
 
-export function removeValidation(address) {
+export function removeValidation(address: AddressWithValidation): Address {
   return reduce(
     address,
     (newAddress, propValue, propName) => {
@@ -56,15 +59,19 @@ export function removeValidation(address) {
       return newAddress
     },
     {}
-  )
+  ) as Address
 }
 
-export function addNewField<FieldName extends keyof ValidatedField>(
+export function addNewField<
+  FieldName extends Exclude<keyof ValidatedField<unknown>, 'value'>
+>(
   address: AddressWithValidation,
   fieldName: FieldName,
   value:
-    | ValidatedField[FieldName]
-    | ((fieldValue: ValidatedField) => ValidatedField[FieldName])
+    | ValidatedField<unknown>[FieldName]
+    | ((
+        fieldValue: ValidatedField<unknown>
+      ) => ValidatedField<unknown>[FieldName])
 ): AddressWithValidation {
   const newAddressEntries = Object.entries(address).map(
     ([field, fieldValue]) => {
@@ -167,7 +174,7 @@ export function maskFields(addressFields, rules) {
 
 export function addFocusToNextInvalidField(
   fields: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ): AddressWithValidation {
   const invalidFilledField = getFirstInvalidFilledField(fields, rules)
 
@@ -196,7 +203,7 @@ export function addFocusToNextInvalidField(
 
 function getFirstInvalidFilledField(
   fields: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ) {
   const allFieldsVisited = addNewField(fields, 'visited', true)
   const validatedFields = validateAddress(allFieldsVisited, rules)
@@ -224,7 +231,7 @@ function getFirstInvalidFilledField(
 
 function getFirstRequiredFieldNotFilled(
   fields: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ) {
   const requiredFieldsNames =
     'fields' in rules
@@ -232,7 +239,7 @@ function getFirstRequiredFieldNotFilled(
           .filter((field) => field.required)
           .map((field) => field.name)
       : Object.entries(rules)
-          .filter(([, field]) => field.required)
+          .filter(([, field]) => field?.required)
           .map(([fieldName]) => fieldName)
 
   const fieldsNames = Object.keys(fields)

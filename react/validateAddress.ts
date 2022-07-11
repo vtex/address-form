@@ -10,19 +10,12 @@ import {
   ECOUNTRY,
   EGEOCOORDS,
   EPOSTALCODE,
-} from './constants.js'
+} from './constants'
 import { logGeolocationAddressMismatch } from './metrics'
 import type { AddressWithValidation, Fields, Address } from './types/address'
-import type {
-  AddressRules,
-  PostalCodeFieldRule,
-  PostalCodeRules,
-} from './types/rules'
+import type { Rules, PostalCodeFieldRule, PostalCodeRules } from './types/rules'
 
-export function isValidAddress(
-  address: AddressWithValidation,
-  rules: AddressRules
-) {
+export function isValidAddress(address: AddressWithValidation, rules: Rules) {
   const validatedAddress = addFocusToNextInvalidField(address, rules)
   const hasInvalidField = find(
     validatedAddress,
@@ -37,7 +30,7 @@ export function isValidAddress(
 
 export function validateAddress(
   address: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ): AddressWithValidation {
   const validatedAddressEntries = Object.entries(address).map(
     ([name, { value, valueOptions, geolocationAutoCompleted }]) => {
@@ -118,10 +111,10 @@ type ValidationResult =
 const validResult: ValidationResult = { valid: true, reason: undefined }
 
 export function validateField<FieldName extends Fields>(
-  value: Address[FieldName],
+  value: Address[FieldName] | null,
   name: FieldName,
   address: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ): ValidationResult {
   switch (name) {
     case 'addressId':
@@ -211,10 +204,10 @@ function valueInOptionsMap(value, field, address, rules) {
 }
 
 function validateOptions<FieldName extends Fields>(
-  value: Address[FieldName],
+  value: Address[FieldName] | null,
   field: PostalCodeFieldRule,
   address: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ): ValidationResult {
   if (field.options) {
     return valueInOptions(value, field.options) ? validResult : notAnOption
@@ -232,10 +225,10 @@ function validateOptions<FieldName extends Fields>(
 }
 
 function defaultValidation<FieldName extends Fields>(
-  value: Address[FieldName],
+  value: Address[FieldName] | null,
   name: FieldName,
   address: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ): ValidationResult {
   const field = getField(name, rules)
 
@@ -293,7 +286,7 @@ function validateGeoCoordinates(value?: number[]): ValidationResult {
 
 function validatePostalCode(
   value: string | undefined,
-  rules: AddressRules
+  rules: Rules
 ): ValidationResult {
   const field = getField('postalCode', rules)
 
@@ -333,10 +326,10 @@ function validatePostalCode(
  * field for cities and the city field for neighborhoods.
  */
 function logIfGeolocationAddressMismatchExists<FieldName extends Fields>(
-  value: Address[FieldName],
+  value: Address[FieldName] | null,
   name: FieldName,
   address: AddressWithValidation,
-  rules: AddressRules
+  rules: Rules
 ) {
   if (name === 'city') {
     const stateField = getField('state', rules) as PostalCodeFieldRule

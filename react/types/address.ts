@@ -9,14 +9,13 @@ export type FillableFields = Exclude<
   | 'addressQuery'
 >
 
-export const enum AddressType {
-  RESIDENTIAL = 'residential',
-  SEARCH = 'search',
-  PICKUP = 'pickup',
-  GIFT_REGISTRY = 'giftRegistry',
-  INSTORE = 'instore',
-  COMMERCIAL = 'commercial',
-}
+export type AddressType =
+  | 'residential'
+  | 'search'
+  | 'pickup'
+  | 'giftRegistry'
+  | 'instore'
+  | 'commercial'
 
 export interface Address {
   addressId: string
@@ -38,8 +37,8 @@ export interface Address {
 
 export type AddressValues = Address[Fields]
 
-export interface ValidatedField {
-  value?: string
+export interface ValidatedField<Value> {
+  value?: Value | null
   valueOptions?: any
   valid?: boolean
   reason?: string
@@ -50,5 +49,5 @@ export interface ValidatedField {
 }
 
 export type AddressWithValidation = {
-  [field in Fields]: ValidatedField
+  [field in Fields]: ValidatedField<Address[field]>
 }
