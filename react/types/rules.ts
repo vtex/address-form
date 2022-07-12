@@ -74,3 +74,7 @@ export interface PostalCodeRules {
 export type Rule = GeolocationRule | PostalCodeFieldRule
 
 export type Rules = PostalCodeRules | GeolocationRules
+
+export function isPostalCodeRules(rules: Rules): rules is PostalCodeRules {
+  return 'fields' in rules
+}
