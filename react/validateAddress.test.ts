@@ -16,6 +16,7 @@ import {
   ECOUNTRY,
   EGEOCOORDS,
   EPOSTALCODE,
+  TWO_LEVELS,
 } from './constants'
 import * as mockMetrics from './metrics'
 import type { PostalCodeRules } from './types/rules'
@@ -615,6 +616,8 @@ describe('isValidAddress()', () => {
     const myRules: PostalCodeRules = {
       country: 'BRA',
       abbr: 'BR',
+      postalCodeFrom: TWO_LEVELS,
+      postalCodeLevels: ['state', 'city'],
       fields: [
         {
           name: 'postalCode',

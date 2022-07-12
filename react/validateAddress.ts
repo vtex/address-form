@@ -10,6 +10,7 @@ import {
   ECOUNTRY,
   EGEOCOORDS,
   EPOSTALCODE,
+  POSTAL_CODE,
 } from './constants'
 import { logGeolocationAddressMismatch } from './metrics'
 import type {
@@ -52,7 +53,28 @@ export function validateAddress(
     }
   )
 
-  return Object.fromEntries(validatedAddressEntries)
+  const addressValidated = Object.fromEntries(
+    validatedAddressEntries
+  ) as AddressWithValidation
+
+  if (
+    addressValidated.postalCode?.valid &&
+    isPostalCodeRules(rules) &&
+    rules.postalCodeFrom &&
+    rules.postalCodeFrom !== POSTAL_CODE
+  ) {
+    rules.postalCodeLevels?.forEach((field) => {
+      if (
+        !addressValidated[field].valid &&
+        addressValidated[field].reason === ENOTOPTION
+      ) {
+        addressValidated[field].valid = true
+        addressValidated[field].reason = undefined
+      }
+    })
+  }
+
+  return addressValidated
 }
 
 export function validateChangedFields(changedFields, address, rules) {
