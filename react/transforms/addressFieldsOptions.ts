@@ -1,6 +1,6 @@
-type OneLevelData = Record<string, unknown>
-type TwoLevelsData = Record<string, string[] | OneLevelData>
-type ThreeLevelsData = Record<string, TwoLevelsData>
+export type OneLevelData = Record<string, unknown>
+export type TwoLevelsData = Record<string, string[] | OneLevelData>
+export type ThreeLevelsData = Record<string, TwoLevelsData>
 
 export function getOneLevel(countryData: OneLevelData) {
   return Object.keys(countryData)

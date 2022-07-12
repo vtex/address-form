@@ -1,4 +1,9 @@
 import type { FillableFields, Fields, AddressWithValidation } from './address'
+import type {
+  firstLevelPostalCodes,
+  secondLevelPostalCodes,
+  thirdLevelPostalCodes,
+} from '../transforms/postalCodes'
 
 export type PostalCodeSource =
   | 'POSTAL_CODE'
@@ -29,7 +34,7 @@ export type PostalCodeFieldRule = RuleLabel & {
   size?: string
   mask?: string
   required?: boolean
-  regex?: string
+  regex?: string | RegExp
   maxLength?: number
   postalCodeAPI?: boolean
   autoComplete?: boolean | string
@@ -56,7 +61,11 @@ export interface PostalCodeRules {
   country: string | null
   abbr: string | null
   postalCodeFrom?: PostalCodeSource
+  postalCodeLevels?: FillableFields[]
   postalCodeProtectedFields?: string[]
+  firstLevelPostalCodes?: ReturnType<typeof firstLevelPostalCodes>
+  secondLevelPostalCodes?: ReturnType<typeof secondLevelPostalCodes>
+  thirdLevelPostalCodes?: ReturnType<typeof thirdLevelPostalCodes>
   fields: PostalCodeFieldRule[]
   geolocation?: GeolocationRules
   summary?: PostalCodeSummary[][]
