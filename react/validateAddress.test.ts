@@ -21,6 +21,7 @@ import {
 import * as mockMetrics from './metrics'
 import type { PostalCodeRules } from './types/rules'
 import type { AddressWithValidation, FillableFields } from './types/address'
+import { addNewField } from './transforms/address'
 
 jest.mock('./metrics', () => ({
   logGeolocationAddressMismatch: jest.fn(),
@@ -451,10 +452,42 @@ describe('Geolocation', () => {
     >).mockClear()
   })
 
+  it("should not log if there's no mismatch", () => {
+    const rules: PostalCodeRules = {
+      country: 'ARG',
+      abbr: 'AR',
+      fields: [
+        {
+          name: 'state' as const,
+          label: 'state',
+          required: true,
+          options: ['Santa Fe'],
+        },
+        {
+          name: 'city' as const,
+          label: 'city',
+          required: true,
+          basedOn: 'state' as const,
+          optionsMap: { 'Santa Fe': ['Rosario'] },
+        },
+      ],
+    }
+
+    const validOption = validateField(
+      geolocationAddress.state.value,
+      'state',
+      geolocationAddress,
+      rules
+    )
+
+    expect(validOption.valid).toBe(true)
+    expect(mockMetrics.logGeolocationAddressMismatch).toBeCalledTimes(0)
+  })
+
   it('should log state mismatch', () => {
-    const rules = {
-      country: 'BRA',
-      abbr: 'BR',
+    const rules: PostalCodeRules = {
+      country: 'ARG',
+      abbr: 'AR',
       fields: [
         {
           name: 'state' as const,
@@ -484,9 +517,9 @@ describe('Geolocation', () => {
   })
 
   it('should log city mismatch', () => {
-    const rules = {
-      country: 'BRA',
-      abbr: 'BR',
+    const rules: PostalCodeRules = {
+      country: 'ARG',
+      abbr: 'AR',
       fields: [
         {
           name: 'state' as const,
@@ -517,9 +550,9 @@ describe('Geolocation', () => {
   })
 
   it('should not log city mismatch if state is also a mismatch', () => {
-    const rules = {
-      country: 'BRA',
-      abbr: 'BR',
+    const rules: PostalCodeRules = {
+      country: 'ARG',
+      abbr: 'AR',
       fields: [
         {
           name: 'state' as const,
@@ -547,6 +580,61 @@ describe('Geolocation', () => {
 
     expect(validOption.valid).toBe(false)
     expect(mockMetrics.logGeolocationAddressMismatch).toBeCalledTimes(0)
+  })
+
+  it('should log neighborhood mismatch based on state', () => {
+    const rules: PostalCodeRules = {
+      country: 'CHL',
+      abbr: 'CL',
+      fields: [
+        {
+          name: 'state',
+          label: 'state',
+          required: true,
+          options: ['Región Metropolitana'],
+          level: 1,
+        },
+        {
+          name: 'neighborhood',
+          label: 'neighborhood',
+          required: true,
+          optionsMap: { 'Región Metropolitana': ['Alhué'] },
+          basedOn: 'state',
+          level: 2,
+        },
+        {
+          name: 'city',
+          label: 'state',
+          required: true,
+        },
+      ],
+    }
+
+    const myAddress = addNewField(
+      ({
+        state: { value: 'Región Metropolitana' },
+        neighborhood: { value: 'Non-existent neighborhood' },
+        city: { value: 'Talca' },
+      } as unknown) as AddressWithValidation,
+      'geolocationAutoCompleted',
+      true
+    )
+
+    const result = validateField(
+      myAddress.neighborhood.value,
+      'neighborhood',
+      myAddress,
+      rules
+    )
+
+    expect(result.valid).toBe(false)
+    expect(mockMetrics.logGeolocationAddressMismatch).toHaveBeenCalledTimes(1)
+    expect(mockMetrics.logGeolocationAddressMismatch).toHaveBeenCalledWith(
+      expect.objectContaining({
+        fieldValue: 'Non-existent neighborhood',
+        fieldName: 'neighborhood',
+      })
+    )
   })
 })
 

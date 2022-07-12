@@ -30,7 +30,7 @@ function isGeolocationRule(rule: Rule): rule is GeolocationRule {
   return !('name' in rule)
 }
 
-export function getField(fieldName: Fields, rules: Rules) {
+export function getField(fieldName: Fields, rules: Rules): Rule | undefined {
   if ('fields' in rules) {
     return rules.fields.find((field) => field.name === fieldName)
   }

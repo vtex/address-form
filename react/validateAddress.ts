@@ -381,31 +381,20 @@ function logIfGeolocationAddressMismatchExists<FieldName extends Fields>(
   address: AddressWithValidation,
   rules: PostalCodeRules
 ) {
-  if (name === 'city') {
-    const stateField = getField('state', rules) as PostalCodeFieldRule
+  const field = getField(name, rules)
 
-    const stateResult = validateOptions(
-      address.state.value,
-      stateField,
+  if (field && 'basedOn' in field && field.basedOn) {
+    const { basedOn } = field
+    const basedOnField = getField(basedOn, rules) as PostalCodeFieldRule
+
+    const result = validateOptions(
+      address[basedOn].value,
+      basedOnField,
       address,
       rules
     )
 
-    if (!stateResult.valid) {
-      return
-    }
-  }
-
-  if (name === 'neighborhood') {
-    const cityField = getField('city', rules) as PostalCodeFieldRule
-    const cityResult = validateOptions(
-      address.city.value,
-      cityField,
-      address,
-      rules
-    )
-
-    if (!cityResult.valid) {
+    if (!result.valid) {
       return
     }
   }
