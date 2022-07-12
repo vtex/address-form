@@ -1,3 +1,5 @@
+import type { AddressWithValidation } from '../types/address'
+
 export default {
   addressId: { value: '1' },
   addressType: { value: 'residential' },
@@ -12,5 +14,6 @@ export default {
   reference: { value: null },
   state: { value: null },
   street: { value: null },
+  isDisposable: { value: true },
   addressQuery: { value: null },
-}
+} as AddressWithValidation

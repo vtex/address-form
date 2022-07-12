@@ -1,3 +1,5 @@
+import type { Address } from '../types/address'
+
 export default {
   addressId: '1',
   addressType: 'residential',
@@ -12,5 +14,6 @@ export default {
   reference: null,
   state: null,
   street: null,
+  isDisposable: true,
   addressQuery: null,
-}
+} as Address
