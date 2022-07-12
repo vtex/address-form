@@ -109,8 +109,7 @@ export function getListOfOptions(
   rules: PostalCodeRules
 ) {
   // Has options provided by Postal Code
-  const postalCodeOptions =
-    address && address[field.name] && address[field.name].valueOptions
+  const postalCodeOptions = address?.[field.name]?.valueOptions
 
   if (postalCodeOptions) {
     if (field.options && !field.basedOn) {
@@ -154,10 +153,12 @@ export function getListOfOptions(
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    throw new Error('Invalid rule set')
+    throw new Error(`Invalid rule set for field "${field.name}"`)
   } else {
-    return []
+    console.warn(`Invalid rule set for field "${field.name}"`)
   }
+
+  return []
 }
 
 function getSecondLevelOptions(
