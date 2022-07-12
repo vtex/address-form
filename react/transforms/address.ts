@@ -22,14 +22,16 @@ export function addValidation(
   return reduce(
     address,
     (newAddress, propValue, propName) => {
-      const isStringOrArray =
-        typeof propValue === 'string' || Array.isArray(propValue)
+      const isPrimitive =
+        typeof propValue === 'string' ||
+        typeof propValue === 'boolean' ||
+        Array.isArray(propValue)
 
       newAddress[propName] = {
         value:
-          typeof propValue === 'object' && 'value' in propValue
+          typeof propValue === 'object' && propValue && 'value' in propValue
             ? propValue.value
-            : isStringOrArray
+            : isPrimitive
             ? propValue
             : null,
       }
@@ -40,7 +42,9 @@ export function addValidation(
   ) as AddressWithValidation
 }
 
-export function removeValidation(address: AddressWithValidation): Address {
+export function removeValidation(
+  address: AddressWithValidation | Address
+): Address {
   return reduce(
     address,
     (newAddress, propValue, propName) => {
@@ -50,11 +54,15 @@ export function removeValidation(address: AddressWithValidation): Address {
         return newAddress
       }
 
-      newAddress[propName] = isUndefined(propValue.value)
-        ? isPlainObject(propValue)
+      newAddress[propName] =
+        typeof propValue === 'object' &&
+        propValue &&
+        'value' in propValue &&
+        !isUndefined(propValue.value)
+          ? propValue.value
+          : isPlainObject(propValue)
           ? null
           : propValue
-        : propValue.value
 
       return newAddress
     },
@@ -65,7 +73,7 @@ export function removeValidation(address: AddressWithValidation): Address {
 export function addNewField<
   FieldName extends Exclude<keyof ValidatedField<unknown>, 'value'>
 >(
-  address: AddressWithValidation,
+  address: Partial<AddressWithValidation>,
   fieldName: FieldName,
   value:
     | ValidatedField<unknown>[FieldName]
@@ -79,7 +87,7 @@ export function addNewField<
         field,
         {
           ...fieldValue,
-          [fieldName]: typeof value === 'function' ? value(fieldValue) : value,
+          [fieldName]: typeof value === 'function' ? value(fieldValue!) : value,
         },
       ]
     }
@@ -122,7 +130,7 @@ export function addDisabledToProtectedFields(fields, rules) {
       return newFields
     },
     {}
-  )
+  ) as AddressWithValidation
 }
 
 const MULTIPLE_OPTIONS_SEPARATOR_REGEX = new RegExp(/;|(?:::)/)
@@ -148,7 +156,7 @@ export function handleMultipleValues(fields) {
       return newFields
     },
     {}
-  )
+  ) as AddressWithValidation
 }
 
 export function maskFields(addressFields, rules) {
@@ -169,13 +177,13 @@ export function maskFields(addressFields, rules) {
       return newAddressFields
     },
     {}
-  )
+  ) as AddressWithValidation
 }
 
 export function addFocusToNextInvalidField(
-  fields: AddressWithValidation,
+  fields: Partial<AddressWithValidation>,
   rules: Rules
-): AddressWithValidation {
+): Partial<AddressWithValidation> {
   const invalidFilledField = getFirstInvalidFilledField(fields, rules)
 
   if (invalidFilledField) {
@@ -202,7 +210,7 @@ export function addFocusToNextInvalidField(
 }
 
 function getFirstInvalidFilledField(
-  fields: AddressWithValidation,
+  fields: Partial<AddressWithValidation>,
   rules: Rules
 ) {
   const allFieldsVisited = addNewField(fields, 'visited', true)
@@ -230,7 +238,7 @@ function getFirstInvalidFilledField(
 }
 
 function getFirstRequiredFieldNotFilled(
-  fields: AddressWithValidation,
+  fields: Partial<AddressWithValidation>,
   rules: Rules
 ) {
   const requiredFieldsNames =

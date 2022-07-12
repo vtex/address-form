@@ -23,6 +23,7 @@ describe('Address Transform', () => {
     const result = addValidation({
       ...addressWithObjectValuesWithoutValidation,
       street: {
+        ...addressWithObjectValuesWithoutValidation.street,
         focus: true,
       },
     })
@@ -84,7 +85,7 @@ describe('Address Transform', () => {
   })
 
   it('should add a new field to all address properties', () => {
-    const fieldName = 'foo'
+    const fieldName = 'reason'
     const value = 'bar'
 
     const result = addNewField(address, fieldName, value)
@@ -99,7 +100,7 @@ describe('Address Transform', () => {
       postalCode: { value: '123', valid: true },
     }
 
-    const fieldName = 'foo'
+    const fieldName = 'reason'
     const value = 'bar'
 
     const result = addNewField(changedAddress, fieldName, value)
@@ -224,17 +225,19 @@ describe('Address Transform', () => {
       }
 
       const rules = {
+        country: 'BRA',
+        abbr: 'BR',
         fields: [
-          { name: 'street' },
-          { name: 'number' },
-          { name: 'state', required: true },
+          { name: 'street', label: 'street' },
+          { name: 'number', label: 'number' },
+          { name: 'state', label: 'state', required: true },
         ],
       }
 
       const newFields = addFocusToNextInvalidField(fields, rules)
 
       expect(newFields.state).not.toBeUndefined()
-      expect(newFields.state.focus).toBe(true)
+      expect(newFields.state?.focus).toBe(true)
     })
 
     it("should not add a thing if there's no required field left to fill", () => {
@@ -245,10 +248,12 @@ describe('Address Transform', () => {
       }
 
       const rules = {
+        country: 'BRA',
+        abbr: 'BR',
         fields: [
-          { name: 'street' },
-          { name: 'number' },
-          { name: 'state', required: true },
+          { name: 'street', label: 'street' },
+          { name: 'number', label: 'number' },
+          { name: 'state', label: 'state', required: true },
         ],
       }
 

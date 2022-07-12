@@ -20,19 +20,19 @@ export type AddressType =
 export interface Address {
   addressId: string
   addressType: AddressType
-  postalCode?: string
-  country?: string
-  street?: string
-  number?: string
-  complement?: string
-  city?: string
-  state?: string
-  neighborhood?: string
-  reference?: string
-  isDisposable?: boolean
-  geoCoordinates?: number[]
-  receiverName?: string
-  addressQuery?: string
+  postalCode?: string | null
+  country?: string | null
+  street?: string | null
+  number?: string | null
+  complement?: string | null
+  city?: string | null
+  state?: string | null
+  neighborhood?: string | null
+  reference?: string | null
+  isDisposable?: boolean | null
+  geoCoordinates?: number[] | null
+  receiverName?: string | null
+  addressQuery?: string | null
 }
 
 export type AddressValues = Address[Fields] | null

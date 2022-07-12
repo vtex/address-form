@@ -573,7 +573,7 @@ describe('isValidAddress()', () => {
 
     const result = isValidAddress(invalidAddress, usePostalCode)
 
-    expect(result.address.street.focus).toBe(true)
+    expect(result.address.street?.focus).toBe(true)
   })
 
   it('should tell if an address is valid', () => {

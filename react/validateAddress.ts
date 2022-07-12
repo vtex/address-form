@@ -25,7 +25,7 @@ export function isValidAddress(address: AddressWithValidation, rules: Rules) {
   const validatedAddress = addFocusToNextInvalidField(address, rules)
   const hasInvalidField = find(
     validatedAddress,
-    (field) => field.valid === false
+    (field) => field?.valid === false
   )
 
   return {
@@ -284,7 +284,7 @@ function validateAddressType(value: string): ValidationResult {
     : invalidAddressType
 }
 
-function validateCountry(value?: string): ValidationResult {
+function validateCountry(value?: string | null): ValidationResult {
   if (!value) {
     return emptyField
   }
@@ -296,14 +296,14 @@ function validateCountry(value?: string): ValidationResult {
   return validResult
 }
 
-function validateGeoCoordinates(value?: number[]): ValidationResult {
+function validateGeoCoordinates(value?: number[] | null): ValidationResult {
   return value && (value.length === 0 || value.length === 2)
     ? validResult
     : invalidGeoCoords
 }
 
 function validatePostalCode(
-  value: string | undefined,
+  value: string | undefined | null,
   rules: Rules
 ): ValidationResult {
   const field = getField('postalCode', rules)
