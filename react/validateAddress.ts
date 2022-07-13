@@ -12,8 +12,14 @@ import {
   EPOSTALCODE,
 } from './constants'
 import { logGeolocationAddressMismatch } from './metrics'
-import type { AddressWithValidation, Fields, Address } from './types/address'
+import type {
+  AddressWithValidation,
+  Fields,
+  Address,
+  AddressValues,
+} from './types/address'
 import type { Rules, PostalCodeFieldRule, PostalCodeRules } from './types/rules'
+import { isPostalCodeRules } from './types/rules'
 
 export function isValidAddress(address: AddressWithValidation, rules: Rules) {
   const validatedAddress = addFocusToNextInvalidField(address, rules)
@@ -182,7 +188,14 @@ function valueInOptions(value, options) {
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }
 
-function valueInOptionsPairs(value, optionsPairs) {
+function valueInOptionsPairs(
+  value: AddressValues,
+  optionsPairs: Array<{ value: string; label: string }>
+) {
+  if (typeof value !== 'string') {
+    return false
+  }
+
   return (
     find(
       optionsPairs,
@@ -191,7 +204,12 @@ function valueInOptionsPairs(value, optionsPairs) {
   )
 }
 
-function valueInOptionsMap(value, field, address, rules) {
+function valueInOptionsMap(
+  value: AddressValues,
+  field: PostalCodeFieldRule,
+  address: AddressWithValidation,
+  rules: PostalCodeRules
+) {
   const options = getListOfOptions(field, address, rules)
 
   return (
@@ -207,7 +225,7 @@ function validateOptions<FieldName extends Fields>(
   value: Address[FieldName] | null,
   field: PostalCodeFieldRule,
   address: AddressWithValidation,
-  rules: Rules
+  rules: PostalCodeRules
 ): ValidationResult {
   if (field.options) {
     return valueInOptions(value, field.options) ? validResult : notAnOption
@@ -236,7 +254,7 @@ function defaultValidation<FieldName extends Fields>(
     return emptyField
   }
 
-  if (field && hasOptions(field)) {
+  if (field && hasOptions(field) && isPostalCodeRules(rules)) {
     const result = validateOptions(value, field, address, rules)
 
     if (result === notAnOption && address[name]?.geolocationAutoCompleted) {
@@ -329,7 +347,7 @@ function logIfGeolocationAddressMismatchExists<FieldName extends Fields>(
   value: Address[FieldName] | null,
   name: FieldName,
   address: AddressWithValidation,
-  rules: Rules
+  rules: PostalCodeRules
 ) {
   if (name === 'city') {
     const stateField = getField('state', rules) as PostalCodeFieldRule

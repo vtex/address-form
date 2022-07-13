@@ -47,6 +47,7 @@ export interface ValidatedField<Value> {
   disabled?: boolean
   postalCodeAutoCompleted?: boolean
   geolocationAutoCompleted?: boolean
+  notApplicable?: boolean
 }
 
 export type AddressWithValidation = {
