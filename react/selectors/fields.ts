@@ -21,6 +21,10 @@ import type {
   AddressValues,
   Address,
 } from '../types/address'
+import type {
+  getThreeLevels,
+  getTwoLevels,
+} from '../transforms/addressFieldsOptions'
 
 function isGeolocationRule(rule: Rule): rule is GeolocationRule {
   return !('name' in rule)
@@ -32,6 +36,14 @@ export function getField(fieldName: Fields, rules: Rules) {
   }
 
   return rules[fieldName]
+}
+
+export function getFieldLabel(field: PostalCodeFieldRule) {
+  if ('label' in field) {
+    return field.label
+  }
+
+  return field.fixedLabel
 }
 
 export function hasOptions(
@@ -65,7 +77,9 @@ function getFieldValue<Field extends Fields>(
     : field
 }
 
-export function normalizeOptions(options) {
+export function normalizeOptions<T = string>(
+  options: Record<string, T>
+): Record<string, T> {
   return reduce(
     options,
     (acc, option, key) => {
@@ -89,7 +103,11 @@ function fixOptions(options, fieldOptions) {
   )
 }
 
-export function getListOfOptions(field, address, rules) {
+export function getListOfOptions(
+  field: PostalCodeFieldRule,
+  address: AddressWithValidation,
+  rules: PostalCodeRules
+) {
   // Has options provided by Postal Code
   const postalCodeOptions =
     address && address[field.name] && address[field.name].valueOptions
@@ -142,10 +160,15 @@ export function getListOfOptions(field, address, rules) {
   }
 }
 
-function getSecondLevelOptions(field, address) {
-  const basedOn = getFieldValue(address[field.basedOn])
+function getSecondLevelOptions(
+  field: PostalCodeFieldRule,
+  address: Address | AddressWithValidation
+) {
+  const basedOn = getFieldValue(address[field.basedOn!]) as string
   const cleanBasedOn = cleanStr(basedOn)
-  const normalizedOptionsMap = normalizeOptions(field.optionsMap)
+  const normalizedOptionsMap = normalizeOptions(
+    field.optionsMap as ReturnType<typeof getTwoLevels>
+  )
 
   if (cleanBasedOn && normalizedOptionsMap[cleanBasedOn]) {
     return normalizedOptionsMap[cleanBasedOn]
@@ -177,10 +200,16 @@ function getThirdLevelOptions(
     return []
   }
 
-  const secondLevelValue = getFieldValue(address[secondLevelField.name])
-  const firstLevelValue = getFieldValue(address[firstLevelField.name])
+  const secondLevelValue = getFieldValue(
+    address[secondLevelField.name]
+  ) as string
 
-  const normalizedOptionsMap = normalizeOptions(field.optionsMap)
+  const firstLevelValue = getFieldValue(address[firstLevelField.name]) as string
+
+  const normalizedOptionsMap = normalizeOptions(
+    field.optionsMap as ReturnType<typeof getThreeLevels>
+  )
+
   const cleanFirstLevelValue = cleanStr(firstLevelValue)
 
   if (
@@ -195,12 +224,12 @@ function getThirdLevelOptions(
   return []
 }
 
-function toValueAndLabel(option) {
+function toValueAndLabel(option: string) {
   return { value: option, label: option }
 }
 
-export function getDependentFields(fieldName, rules) {
-  let dependentFields: string[] = []
+export function getDependentFields(fieldName: Fields, rules: Rules) {
+  let dependentFields: Fields[] = []
 
   if (fieldAffectsPostalCode(fieldName, rules)) {
     dependentFields = [...dependentFields, 'postalCode']
@@ -265,7 +294,10 @@ export function isDefiningPostalCodeField(fieldName, rules) {
   return fieldName === lastLevelField
 }
 
-export function filterAutoCompletedFields(rules, address) {
+export function filterAutoCompletedFields(
+  rules: PostalCodeRules,
+  address: AddressWithValidation
+) {
   return reduce(
     rules.fields,
     (fields, field) => {
@@ -282,6 +314,6 @@ export function filterAutoCompletedFields(rules, address) {
 
       return fields.concat(field)
     },
-    []
+    [] as PostalCodeFieldRule[]
   )
 }

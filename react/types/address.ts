@@ -44,7 +44,8 @@ export interface ValidatedField<Value> {
   reason?: string
   visited?: boolean
   focus?: boolean
-  postalCodeAutocompleted?: boolean
+  disabled?: boolean
+  postalCodeAutoCompleted?: boolean
   geolocationAutoCompleted?: boolean
 }
 

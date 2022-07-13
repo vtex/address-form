@@ -8,30 +8,36 @@ import {
   filterPostalCodeFields,
   filterAutoCompletedFields,
   isDefiningPostalCodeField,
+  getFieldLabel,
 } from './fields'
 import { ONE_LEVEL, TWO_LEVELS, POSTAL_CODE } from '../constants'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
+import type { PostalCodeRules, PostalCodeFieldRule } from '../types/rules'
+import type { AddressWithValidation } from '../types/address'
 
 describe('Field Selectors', () => {
   it('getField()', () => {
-    const rules = {
+    const rules: PostalCodeRules = {
+      country: null,
+      abbr: null,
       fields: [
         { name: 'postalCode', label: 'zipCode' },
         { name: 'city', label: 'community' },
       ],
     }
 
-    const field = getField('city', rules)
+    const field = getField('city', rules) as PostalCodeFieldRule
 
-    expect(field.label).toBe('community')
+    expect(getFieldLabel(field)).toBe('community')
   })
 
   describe('hasOptions()', () => {
     it('for field with options', () => {
-      const field = {
+      const field: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         options: ['PE', 'SP'],
       }
 
@@ -41,8 +47,9 @@ describe('Field Selectors', () => {
     })
 
     it('for field with optionsPairs', () => {
-      const field = {
+      const field: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         optionsPairs: [
           { value: 'PE', label: 'Pernambuco' },
           { value: 'SP', label: 'São Paulo' },
@@ -55,8 +62,9 @@ describe('Field Selectors', () => {
     })
 
     it('for field with optionsMap', () => {
-      const field = {
+      const field: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         optionsMap: {
           PE: ['Recife', 'Olinda'],
           SP: ['São Paulo', 'Santos'],
@@ -71,13 +79,14 @@ describe('Field Selectors', () => {
 
   describe('getListOfOptions()', () => {
     it('field with options should get an object of value and label', () => {
-      const field = {
+      const field: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         options: ['PE', 'SP'],
       }
 
-      const address = {}
-      const rules = {}
+      const address = {} as AddressWithValidation
+      const rules = {} as PostalCodeRules
 
       const options = getListOfOptions(field, address, rules)
 
@@ -85,16 +94,17 @@ describe('Field Selectors', () => {
     })
 
     it('field with optionsPairs should return its optionsPairs', () => {
-      const field = {
+      const field: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         optionsPairs: [
           { value: 'PE', label: 'Pernambuco' },
           { value: 'SP', label: 'São Paulo' },
         ],
       }
 
-      const address = {}
-      const rules = {}
+      const address = {} as AddressWithValidation
+      const rules = {} as PostalCodeRules
 
       const options = getListOfOptions(field, address, rules)
 
@@ -102,8 +112,9 @@ describe('Field Selectors', () => {
     })
 
     it('field with optionsMap level 2 should get options based on other field value', () => {
-      const field = {
+      const field: PostalCodeFieldRule = {
         name: 'city',
+        label: 'city',
         basedOn: 'state',
         level: 2,
         optionsMap: {
@@ -111,8 +122,8 @@ describe('Field Selectors', () => {
         },
       }
 
-      const address = { state: { value: 'ANTIOQUIA' } }
-      const rules = {}
+      const address = { state: { value: 'ANTIOQUIA' } } as AddressWithValidation
+      const rules = {} as PostalCodeRules
 
       const options = getListOfOptions(field, address, rules)
 
@@ -123,8 +134,9 @@ describe('Field Selectors', () => {
     })
 
     it('field with optionsMap level 3 should get options based on other field value', () => {
-      const field = {
+      const field: PostalCodeFieldRule = {
         name: 'neighborhood',
+        label: 'neighborhood',
         basedOn: 'city',
         level: 3,
         optionsMap: {
@@ -134,11 +146,15 @@ describe('Field Selectors', () => {
         },
       }
 
-      const address = { state: { value: 'PE' }, city: { value: 'Recife' } }
+      const address = {
+        state: { value: 'PE' },
+        city: { value: 'Recife' },
+      } as AddressWithValidation
+
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [{ name: 'city', basedOn: 'state' }, { name: 'state' }],
-      }
+      } as PostalCodeRules
 
       const options = getListOfOptions(field, address, rules)
 
@@ -149,16 +165,20 @@ describe('Field Selectors', () => {
     })
 
     it('should filter options suggested by postal code service', () => {
-      const stateField = {
+      const stateField: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         options: ['Foo', 'Bar', 'Zoo'],
       }
 
-      const address = { state: { value: null, valueOptions: ['Bar', 'Too'] } }
+      const address = {
+        state: { value: null, valueOptions: ['Bar', 'Too'] },
+      } as AddressWithValidation
+
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [stateField],
-      }
+      } as PostalCodeRules
 
       const options = getListOfOptions(stateField, address, rules)
 
@@ -170,16 +190,20 @@ describe('Field Selectors', () => {
     })
 
     it('should fix options suggested by postal code service', () => {
-      const stateField = {
+      const stateField: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         options: ['Foo', 'Bar', 'Zóo'],
       }
 
-      const address = { state: { value: null, valueOptions: ['Bar', 'zoo'] } }
+      const address = {
+        state: { value: null, valueOptions: ['Bar', 'zoo'] },
+      } as AddressWithValidation
+
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [stateField],
-      }
+      } as PostalCodeRules
 
       const options = getListOfOptions(stateField, address, rules)
 
@@ -191,13 +215,15 @@ describe('Field Selectors', () => {
     })
 
     it('should not display options if basedOn field is not filled', () => {
-      const stateField = {
+      const stateField: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         options: ['Foo', 'Bar', 'Zóo'],
       }
 
-      const cityField = {
+      const cityField: PostalCodeFieldRule = {
         name: 'city',
+        label: 'city',
         basedOn: 'state',
         level: 2,
         optionsMap: { Foo: ['Foolite'], Bar: ['Bartoo'] },
@@ -206,12 +232,12 @@ describe('Field Selectors', () => {
       const address = {
         state: { value: null, valueOptions: ['Bar', 'zoo'] },
         city: { value: null, valueOptions: ['Foolite', 'Bartoo'] },
-      }
+      } as AddressWithValidation
 
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [stateField, cityField],
-      }
+      } as PostalCodeRules
 
       const options = getListOfOptions(cityField, address, rules)
 
@@ -219,13 +245,15 @@ describe('Field Selectors', () => {
     })
 
     it('should display only the suggested options of the basedOn field', () => {
-      const stateField = {
+      const stateField: PostalCodeFieldRule = {
         name: 'state',
+        label: 'state',
         options: ['Foo', 'Bar', 'Zóo'],
       }
 
-      const cityField = {
+      const cityField: PostalCodeFieldRule = {
         name: 'city',
+        label: 'city',
         basedOn: 'state',
         level: 2,
         optionsMap: { Foo: ['Foolite'], Bar: ['Bartoo'] },
@@ -234,12 +262,12 @@ describe('Field Selectors', () => {
       const address = {
         state: { value: 'Bar', valueOptions: ['Bar', 'zoo'] },
         city: { value: null, valueOptions: ['Foolite', 'Bartoo'] },
-      }
+      } as AddressWithValidation
 
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [stateField, cityField],
-      }
+      } as PostalCodeRules
 
       const options = getListOfOptions(cityField, address, rules)
 
@@ -252,7 +280,7 @@ describe('Field Selectors', () => {
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [{ basedOn: 'state', name: 'city' }],
-      }
+      } as PostalCodeRules
 
       const dependentFields = getDependentFields('state', rules)
 
@@ -267,7 +295,7 @@ describe('Field Selectors', () => {
           { basedOn: 'state', name: 'city' },
           { basedOn: 'city', name: 'neighborhood' },
         ],
-      }
+      } as PostalCodeRules
 
       const dependentFields = getDependentFields('state', rules)
 
@@ -277,10 +305,12 @@ describe('Field Selectors', () => {
 
     it('postal code based on a field', () => {
       const rules = {
+        country: null,
+        abbr: null,
         postalCodeFrom: ONE_LEVEL,
         postalCodeLevels: ['state'],
         fields: [],
-      }
+      } as PostalCodeRules
 
       const dependentFields = getDependentFields('state', rules)
 
@@ -290,10 +320,12 @@ describe('Field Selectors', () => {
 
     it("should not clear any if it's a field that doesn't define a postal code", () => {
       const rules = {
+        country: null,
+        abbr: null,
         postalCodeFrom: TWO_LEVELS,
         postalCodeLevels: ['state', 'city'],
         fields: [],
-      }
+      } as PostalCodeRules
 
       const dependentFields = getDependentFields('street', rules)
 
@@ -345,15 +377,15 @@ describe('Field Selectors', () => {
 
   describe('filterAutoCompletedFields()', () => {
     it('should filter auto completed fields', () => {
-      const address = {
+      const address = ({
         neighborhood: { value: 'Botafogo', geolocationAutoCompleted: true },
         city: { value: 'Rio de Janeiro', postalCodeAutoCompleted: true },
         state: { value: 'RJ' },
-      }
+      } as unknown) as AddressWithValidation
 
       const rules = {
         fields: [{ name: 'neighborhood' }, { name: 'city' }, { name: 'state' }],
-      }
+      } as PostalCodeRules
 
       const result = filterAutoCompletedFields(rules, address)
 

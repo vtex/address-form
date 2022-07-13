@@ -4,6 +4,11 @@ import type {
   secondLevelPostalCodes,
   thirdLevelPostalCodes,
 } from '../transforms/postalCodes'
+import type {
+  getOneLevel,
+  getTwoLevels,
+  getThreeLevels,
+} from '../transforms/addressFieldsOptions'
 
 export type PostalCodeSource =
   | 'POSTAL_CODE'
@@ -44,8 +49,11 @@ export type PostalCodeFieldRule = RuleLabel & {
   level?: number
   optionsCaption?: string
   options?: string[]
-  optionsPairs?: unknown
-  optionsMap?: unknown
+  optionsPairs?: Array<{ label: string; value: string }>
+  optionsMap?:
+    | ReturnType<typeof getOneLevel>
+    | ReturnType<typeof getTwoLevels>
+    | ReturnType<typeof getThreeLevels>
   elementName?: string
   forgottenURL?: string
   defaultValue?: unknown
