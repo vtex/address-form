@@ -9,5 +9,5 @@ test('failing prop', () => {
 test('OK prop', () => {
   const result = CountryType({ country: 'BRA' }, 'country', 'Component')
 
-  expect(result).toBeUndefined()
+  expect(result).toBeNull()
 })

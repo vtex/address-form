@@ -72,7 +72,7 @@ InputText.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   onFocus: PropTypes.func,
 }
 

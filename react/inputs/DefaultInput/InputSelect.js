@@ -58,7 +58,7 @@ InputSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 }
 
 export default InputSelect

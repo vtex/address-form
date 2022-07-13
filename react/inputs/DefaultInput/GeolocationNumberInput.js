@@ -87,7 +87,7 @@ GeolocationNumberInput.propTypes = {
   options: PropTypes.array,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   shouldShowNumberKeyboard: PropTypes.bool,
   disabled: PropTypes.bool,
   handleToggle: PropTypes.func,

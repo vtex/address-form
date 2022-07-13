@@ -5,7 +5,7 @@ import { ERROR_TYPES } from '../constants'
 import { Address } from './AddressShape'
 
 export const ValidationType = {
-  visited: false,
+  visited: PropTypes.bool,
   valid: PropTypes.bool,
   reason: PropTypes.oneOf(ERROR_TYPES),
 }

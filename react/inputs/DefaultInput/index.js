@@ -192,7 +192,7 @@ Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   intl: intlShape,
   shouldShowNumberKeyboard: PropTypes.bool,
   toggleNotApplicable: PropTypes.func,

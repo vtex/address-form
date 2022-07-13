@@ -266,7 +266,7 @@ StyleguideInput.propTypes = {
   loading: PropTypes.bool,
   Button: PropTypes.func,
   field: PropTypes.object.isRequired,
-  inputRef: PropTypes.func,
+  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   intl: intlShape,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,

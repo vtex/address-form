@@ -11,4 +11,6 @@ export default function (props, propName, componentName) {
         ` \`${componentName}\`. It should be 3 alpha digits.`
     )
   }
+
+  return null
 }
