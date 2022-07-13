@@ -72,11 +72,11 @@ describe('InputField container', () => {
       />
     )
 
-    const citySelector = screen.getByRole('combobox')
+    const citySelect = screen.getByRole('combobox')
 
-    expect(citySelector).toBeInTheDocument()
-    expect(citySelector).toHaveValue('')
-    expect(citySelector).toMatchInlineSnapshot(`
+    expect(citySelect).toBeInTheDocument()
+    expect(citySelect).toHaveValue('')
+    expect(citySelect).toMatchInlineSnapshot(`
       <select
         class="error"
         id="ship-city"
@@ -118,11 +118,10 @@ describe('InputField container', () => {
       />
     )
 
-    const citySelector = screen.getByRole('combobox')
+    const citySelect = screen.getByRole('combobox')
 
-    expect(citySelector).toBeInTheDocument()
-    expect(citySelector).toHaveValue('Campina Grande')
-    expect(citySelector).toMatchInlineSnapshot(`
+    expect(citySelect).toHaveValue('Campina Grande')
+    expect(citySelect).toMatchInlineSnapshot(`
       <select
         class="success"
         id="ship-city"
@@ -167,11 +166,10 @@ describe('InputField container', () => {
       />
     )
 
-    const citySelector = screen.getByRole('combobox')
+    const citySelect = screen.getByRole('combobox')
 
-    expect(citySelector).toBeInTheDocument()
-    expect(citySelector).toHaveValue('Cabedelo')
-    expect(citySelector).toMatchInlineSnapshot(`
+    expect(citySelect).toHaveValue('Cabedelo')
+    expect(citySelect).toMatchInlineSnapshot(`
       <select
         class="error"
         id="ship-city"
@@ -211,10 +209,9 @@ describe('InputField container', () => {
       />
     )
 
-    const citySelector = screen.getByRole('combobox')
+    const citySelect = screen.getByRole('combobox')
 
-    expect(citySelector).toBeInTheDocument()
-    expect(citySelector).toMatchInlineSnapshot(`
+    expect(citySelect).toMatchInlineSnapshot(`
       <select
         class="error"
         id="ship-city"
@@ -228,6 +225,43 @@ describe('InputField container', () => {
         >
           Cabedelo
         </option>
+      </select>
+    `)
+  })
+
+  it('should render empty combobox if basedOn field value is not set', () => {
+    const myAddress = validateAddress(
+      {
+        ...address,
+        state: {
+          value: '',
+        },
+      },
+      rulesWithOptions
+    )
+
+    render(
+      <InputFieldContainer
+        field={cityField}
+        address={myAddress}
+        rules={rulesWithOptions}
+        Input={DefaultInput}
+        onChangeAddress={jest.fn()}
+      />
+    )
+
+    const citySelect = screen.getByRole('combobox')
+
+    expect(citySelect).toHaveValue('')
+    expect(citySelect).toMatchInlineSnapshot(`
+      <select
+        class="error"
+        id="ship-city"
+        name="city"
+      >
+        <option
+          value=""
+        />
       </select>
     `)
   })
