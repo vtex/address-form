@@ -10,15 +10,58 @@ import {
   getDependentFields,
 } from './selectors/fields'
 import pureInputField from './pureInputField'
+import type { AddressWithValidation, Fields } from './types/address'
+import type { PostalCodeFieldRule, PostalCodeRules } from './types/rules'
 
-class InputFieldContainer extends Component {
-  clearDependentFields(address, dependentFields) {
+const propTypes = {
+  Button: PropTypes.elementType,
+  Input: PropTypes.elementType.isRequired,
+  loading: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  field: PropTypes.object.isRequired,
+  address: AddressShapeWithValidation,
+  rules: PropTypes.object.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  onChangeAddress: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+  notApplicableLabel: PropTypes.string,
+  shouldShowNumberKeyboard: PropTypes.bool,
+  submitLabel: PropTypes.string,
+}
+
+class InputFieldContainer extends Component<
+  PropTypes.InferProps<typeof propTypes> & {
+    field: PostalCodeFieldRule
+    address: AddressWithValidation
+    rules: PostalCodeRules
+    options?: Array<{ value: string; label: string }>
+  }
+> {
+  public static defaultProps = {
+    autoFocus: false,
+    shouldShowNumberKeyboard: false,
+    loading: false,
+  }
+
+  public static propTypes = propTypes
+
+  private inputRef = React.createRef<HTMLInputElement>()
+
+  private clearDependentFields(
+    address: AddressWithValidation,
+    dependentFields: Fields[]
+  ) {
     if (dependentFields && dependentFields.length === 0) return {}
 
     return reduce(
       address,
       (cleanAddress, addressField, prop) => {
-        const isDependentField = dependentFields.indexOf(prop) !== -1
+        const isDependentField = dependentFields.indexOf(prop as Fields) !== -1
 
         return isDependentField
           ? {
@@ -34,11 +77,11 @@ class InputFieldContainer extends Component {
     )
   }
 
-  bindOnChange = () => {
+  private bindOnChange = () => {
     const { field, address, rules, onChangeAddress } = this.props
     const dependentFields = getDependentFields(field.name, rules)
 
-    return (value) => {
+    return (value: string) => {
       const clearedFields = this.clearDependentFields(address, dependentFields)
 
       onChangeAddress({
@@ -53,7 +96,7 @@ class InputFieldContainer extends Component {
     }
   }
 
-  bindNotApplicable = () => {
+  private bindNotApplicable = () => {
     const { address, onChangeAddress, notApplicableLabel } = this.props
     const labelNotApplicable = notApplicableLabel || 'N/A'
 
@@ -68,11 +111,11 @@ class InputFieldContainer extends Component {
     }
   }
 
-  bindOnBlur = () => {
+  private bindOnBlur = () => {
     const { field, address, onChangeAddress } = this.props
     const value = address[field.name] ? address[field.name].value : ''
 
-    const maskedValue = field.mask ? msk(value, field.mask) : value
+    const maskedValue = field.mask ? msk(value ?? '', field.mask) : value
 
     const isPostalCode = field.name === 'postalCode'
 
@@ -89,24 +132,25 @@ class InputFieldContainer extends Component {
     }
   }
 
-  inputRef = (el) => {
-    this.el = el
-  }
-
-  componentDidMount() {
+  public componentDidMount() {
     this.addFocusIfNeeded()
   }
 
-  componentDidUpdate() {
+  public componentDidUpdate() {
     this.addFocusIfNeeded()
   }
 
-  addFocusIfNeeded() {
+  public addFocusIfNeeded() {
     const { address, field, onChangeAddress } = this.props
     const fieldValue = address[field.name]
 
-    if (this.el && typeof this.el.focus === 'function' && fieldValue.focus) {
-      this.el.focus()
+    if (
+      this.inputRef.current &&
+      typeof this.inputRef.current.focus === 'function' &&
+      fieldValue.focus
+    ) {
+      this.inputRef.current.focus()
+
       onChangeAddress({
         [field.name]: {
           ...fieldValue,
@@ -116,7 +160,7 @@ class InputFieldContainer extends Component {
     }
   }
 
-  render() {
+  public render() {
     const {
       Input,
       Button,
@@ -124,18 +168,35 @@ class InputFieldContainer extends Component {
       field,
       autoFocus,
       address,
-      options,
       onSubmit,
       submitLabel,
       rules,
       shouldShowNumberKeyboard,
     } = this.props
 
-    const _options =
-      options ||
+    let options =
+      this.props.options ||
       (hasOptions(field, address)
         ? getListOfOptions(field, address, rules)
         : undefined)
+
+    if (options != null) {
+      const addressField = address[field.name]
+
+      if (
+        addressField.value != null &&
+        !options.find((option) => option.value === addressField.value) &&
+        addressField.valid !== false
+      ) {
+        options = [
+          ...options,
+          {
+            value: addressField.value!,
+            label: addressField.value!,
+          },
+        ]
+      }
+    }
 
     const notApplicableProps =
       // the right side of the || is for lib consumers without the 'useGeolocation' flag
@@ -154,7 +215,7 @@ class InputFieldContainer extends Component {
         loading={loading}
         field={field}
         autoFocus={autoFocus}
-        options={_options}
+        options={options}
         onSubmit={onSubmit}
         submitLabel={submitLabel}
         onChange={this.bindOnChange()}
@@ -165,28 +226,6 @@ class InputFieldContainer extends Component {
       />
     )
   }
-}
-
-InputFieldContainer.propTypes = {
-  autoFocus: false,
-  shouldShowNumberKeyboard: false,
-  loading: false,
-}
-
-InputFieldContainer.propTypes = {
-  Button: PropTypes.func,
-  Input: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
-  autoFocus: PropTypes.bool,
-  field: PropTypes.object.isRequired,
-  address: AddressShapeWithValidation,
-  rules: PropTypes.object.isRequired,
-  options: PropTypes.array,
-  onChangeAddress: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func,
-  notApplicableLabel: PropTypes.string,
-  shouldShowNumberKeyboard: PropTypes.bool,
-  submitLabel: PropTypes.string,
 }
 
 export default pureInputField(InputFieldContainer)
