@@ -12,7 +12,11 @@
     "strictPropertyInitialization": true,
     "strict": true,
     "outDir": "lib",
-    "rootDirs": ["test-modules"]
+    "baseUrl": ".",
+    "paths": {
+      "test-utils": ["test-modules/test-utils"]
+    },
+    "resolveJsonModule": true
   },
   "include": ["./**/*.js", "./**/*.ts", "./**/*.jsx", "./**/*.tsx"],
   "exclude": ["node_modules", "lib"]
