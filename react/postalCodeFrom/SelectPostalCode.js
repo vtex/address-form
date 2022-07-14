@@ -7,7 +7,6 @@ import {
   getLastLevelField,
 } from '../selectors/postalCode'
 import InputFieldContainer from '../InputFieldContainer'
-import { injectIntl, intlShape } from '../intl/utils'
 
 class SelectPostalCode extends Component {
   handleChange = (changedFields) => {
@@ -32,7 +31,7 @@ class SelectPostalCode extends Component {
     const [field, postalCode] = value.split('___')
 
     return {
-      [currentLevelName]: { value: field },
+      [currentLevelName]: { value: field, postalCodeAutoCompleted: true },
       postalCode: { value: postalCode },
     }
   }
@@ -50,7 +49,7 @@ class SelectPostalCode extends Component {
   }
 
   render() {
-    const { address, rules, Input, loading, intl } = this.props
+    const { address, rules, Input, loading } = this.props
     const currentLevelField = getLastLevelField(rules)
     const fieldName = currentLevelField.name
 
@@ -64,7 +63,6 @@ class SelectPostalCode extends Component {
 
     return (
       <InputFieldContainer
-        intl={intl}
         Input={Input}
         loading={loading}
         field={currentLevelField}
@@ -78,12 +76,11 @@ class SelectPostalCode extends Component {
 }
 
 SelectPostalCode.propTypes = {
-  Input: PropTypes.func.isRequired,
-  intl: intlShape,
+  Input: PropTypes.elementType.isRequired,
   loading: PropTypes.bool,
   address: AddressShapeWithValidation.isRequired,
   rules: PropTypes.object.isRequired,
   onChangeAddress: PropTypes.func.isRequired,
 }
 
-export default injectIntl(SelectPostalCode)
+export default SelectPostalCode

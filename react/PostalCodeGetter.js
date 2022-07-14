@@ -82,7 +82,6 @@ class PostalCodeGetter extends Component {
 
         return (
           <InputFieldContainer
-            intl={intl}
             loading={loading}
             Input={Input}
             Button={Button}

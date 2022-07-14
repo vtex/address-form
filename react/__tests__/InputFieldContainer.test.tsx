@@ -265,4 +265,53 @@ describe('InputField container', () => {
       </select>
     `)
   })
+
+  it('should include only address field value in combobox if parent value is mismatched', () => {
+    const myAddress = validateAddress(
+      {
+        ...address,
+        postalCode: {
+          value: '22250040',
+        },
+        state: {
+          value: 'RJ',
+        },
+        city: {
+          value: 'Rio de Janeiro',
+        },
+      },
+      rulesWithOptions
+    )
+
+    render(
+      <InputFieldContainer
+        field={cityField}
+        address={myAddress}
+        rules={rulesWithOptions}
+        Input={DefaultInput}
+        onChangeAddress={jest.fn()}
+      />
+    )
+
+    const citySelect = screen.getByRole('combobox')
+
+    expect(citySelect).toHaveValue('Rio de Janeiro')
+    expect(citySelect).toMatchInlineSnapshot(`
+      <select
+        class="success"
+        id="ship-city"
+        name="city"
+      >
+        <option
+          disabled=""
+          value=""
+        />
+        <option
+          value="Rio de Janeiro"
+        >
+          Rio de Janeiro
+        </option>
+      </select>
+    `)
+  })
 })

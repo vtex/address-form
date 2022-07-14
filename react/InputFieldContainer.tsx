@@ -188,11 +188,20 @@ class InputFieldContainer extends Component<
         !options.find((option) => option.value === addressField.value) &&
         addressField.valid !== false
       ) {
+        let label = addressField.value
+
+        // accounts for input rendered from `SelectPostalCode` component, where
+        // the value inside the address object contains both the field value,
+        // and the postal code value separated by `___`
+        if (label.includes('___')) {
+          label = label.split('___')[0]
+        }
+
         options = [
           ...options,
           {
-            value: addressField.value!,
-            label: addressField.value!,
+            value: addressField.value,
+            label,
           },
         ]
       }

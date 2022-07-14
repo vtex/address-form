@@ -64,12 +64,14 @@ export function validateAddress(
     rules.postalCodeFrom !== POSTAL_CODE
   ) {
     rules.postalCodeLevels?.forEach((field) => {
+      // eslint-disable-next-line vtex/prefer-early-return
       if (
         !addressValidated[field].valid &&
         addressValidated[field].reason === ENOTOPTION
       ) {
         addressValidated[field].valid = true
         addressValidated[field].reason = undefined
+        addressValidated[field].postalCodeAutoCompleted = true
       }
     })
   }
