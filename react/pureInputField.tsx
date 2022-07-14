@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import AddressShapeWithValidation from './propTypes/AddressShapeWithValidation'
+import type { AddressWithValidation, ValidatedField } from './types/address'
+import type { PostalCodeFieldRule } from './types/rules'
 
 const SHALLOW_PROPS = [
   'Input',
@@ -15,7 +17,7 @@ const SHALLOW_PROPS = [
   'intl',
 ]
 
-function shallowCompareProps(prevProps, thisProps) {
+function shallowCompareProps(prevProps: Props, thisProps: Props) {
   return SHALLOW_PROPS.find((field) => {
     return prevProps[field] !== thisProps[field]
   })
@@ -32,15 +34,30 @@ const SHALLOW_FIELDS = [
   'disabled',
 ]
 
-function shallowCompareField(prevProps, thisProps) {
+function shallowCompareField(
+  prevProps: ValidatedField<unknown>,
+  thisProps: ValidatedField<unknown>
+) {
   return SHALLOW_FIELDS.find((field) => {
     return prevProps[field] !== thisProps[field]
   })
 }
 
-function pureInputField(WrappedComponent) {
-  class PureInput extends Component {
-    shouldComponentUpdate(prevProps) {
+interface Props {
+  address: AddressWithValidation
+  field: PostalCodeFieldRule
+}
+
+function pureInputField<T extends Props>(
+  WrappedComponent: React.ComponentType<T>
+) {
+  class PureInput extends Component<T> {
+    public static propTypes = {
+      field: PropTypes.object.isRequired,
+      address: AddressShapeWithValidation,
+    }
+
+    public shouldComponentUpdate(prevProps: T) {
       if (shallowCompareProps(prevProps, this.props)) {
         return true
       }
@@ -66,27 +83,9 @@ function pureInputField(WrappedComponent) {
       return false
     }
 
-    render() {
+    public render() {
       return <WrappedComponent {...this.props} />
     }
-  }
-
-  PureInput.propTypes = {
-    autoFocus: false,
-    loading: false,
-    shouldShowNumberKeyboard: false,
-  }
-
-  PureInput.propTypes = {
-    Input: PropTypes.func.isRequired,
-    autoFocus: PropTypes.bool,
-    loading: PropTypes.bool,
-    field: PropTypes.object.isRequired,
-    address: AddressShapeWithValidation,
-    rules: PropTypes.object.isRequired,
-    options: PropTypes.array,
-    onChangeAddress: PropTypes.func.isRequired,
-    shouldShowNumberKeyboard: PropTypes.bool,
   }
 
   return PureInput

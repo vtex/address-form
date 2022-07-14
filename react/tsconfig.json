@@ -1,7 +1,7 @@
 {
   "extends": "@vtex/tsconfig",
   "compilerOptions": {
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "lib": ["dom", "esnext"],
     "allowJs": true,
     "checkJs": true,

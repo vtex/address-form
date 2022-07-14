@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import React from 'react'
 import * as reactTestingLibrary from '@testing-library/react'
 import { shallow, mount } from 'enzyme'
@@ -10,7 +11,7 @@ import countryCodes from 'i18n-iso-countries/codes.json'
 import { intlShape } from '../intl/utils'
 import defaultStrings from '../../messages/en.json'
 
-function getISOAlpha3(countryCodeAlpha2) {
+function getISOAlpha3(countryCodeAlpha2: string) {
   return countryCodes.find((c) => c[0] === countryCodeAlpha2)?.[1] ?? null
 }
 
@@ -31,7 +32,10 @@ const messages = {
   ...addCountryCodeNameSpace(enCountryCodeTranslations),
 }
 
-const customRender = (node, options) => {
+const customRender = (
+  node: ReactNode,
+  options?: Omit<reactTestingLibrary.RenderOptions, 'queries'>
+) => {
   const rendered = reactTestingLibrary.render(
     <IntlProvider messages={messages} locale="en-US">
       {node}
@@ -41,7 +45,7 @@ const customRender = (node, options) => {
 
   return {
     ...rendered,
-    rerender: (newUi) =>
+    rerender: (newUi: ReactNode) =>
       customRender(newUi, {
         container: rendered.container,
         baseElement: rendered.baseElement,
@@ -49,7 +53,7 @@ const customRender = (node, options) => {
   }
 }
 
-function customMount(node, { context, childContextTypes } = {}) {
+function customMount(node, { context = {}, childContextTypes = {} } = {}) {
   const intlProvider = new IntlProvider(
     {
       locale: 'en-US',
@@ -86,17 +90,19 @@ function customShallow(node, options = { context: {} }) {
   })
 }
 
-// re-export everything
-module.exports = {
-  ...reactTestingLibrary,
-  render: customRender,
-  mount: customMount,
-  shallow: customShallow,
-  rendererCreate(node) {
-    return renderer.create(
-      <IntlProvider messages={messages} locale="en-US">
-        {node}
-      </IntlProvider>
-    )
-  },
+export * from '@testing-library/react'
+
+function rendererCreate(node) {
+  return renderer.create(
+    <IntlProvider messages={messages} locale="en-US">
+      {node}
+    </IntlProvider>
+  )
+}
+
+export {
+  customRender as render,
+  customMount as mount,
+  customShallow as shallow,
+  rendererCreate,
 }
