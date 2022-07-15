@@ -3,7 +3,7 @@
   "compilerOptions": {
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "lib": ["dom", "esnext"],
-    "module": "esnext",
+    "module": "es6",
     "allowJs": true,
     "checkJs": true,
     "noUnusedLocals": false,
