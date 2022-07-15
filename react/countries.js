@@ -11,6 +11,7 @@ import ESP from './country/ESP'
 import FRA from './country/FRA'
 import GBR from './country/GBR'
 import GTM from './country/GTM'
+import IDN from './country/IDN'
 import KOR from './country/KOR'
 import MEX from './country/MEX'
 import PER from './country/PER'
@@ -34,6 +35,7 @@ export default {
   FRA,
   GBR,
   GTM,
+  IDN,
   KOR,
   MEX,
   PER,
