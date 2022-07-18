@@ -659,4 +659,68 @@ describe('isValidAddress()', () => {
       })
     )
   })
+
+  it('should consider null or undefined values as empty', () => {
+    const invalidAddress: AddressWithValidation = {
+      country: { value: 'BRA' },
+      addressQuery: { value: '' },
+      addressId: { value: '172ba60df8b9019cd' },
+      addressType: { value: 'residential' },
+      postalCode: { value: '010011' },
+      city: { value: null },
+      street: { value: 'Av. Epitácio Pessoa' },
+      number: { value: '1834' },
+      neighborhood: { value: 'Expedicionários' },
+      state: { value: 'PB' },
+      receiverName: { value: 'Geraldo' },
+      complement: { value: '' },
+      reference: { value: '' },
+      geoCoordinates: { value: [0, 0] },
+      isDisposable: { value: true },
+    }
+
+    const myRules: PostalCodeRules = {
+      country: 'BRA',
+      abbr: 'BR',
+      postalCodeFrom: TWO_LEVELS,
+      postalCodeLevels: ['state', 'city'],
+      fields: [
+        {
+          name: 'postalCode',
+          label: 'postalCode',
+        },
+        {
+          name: 'state',
+          label: 'state',
+          options: ['RJ', 'SP'],
+          level: 1,
+        },
+        {
+          name: 'city',
+          label: 'city',
+          optionsMap: {
+            RJ: ['Rio de Janeiro'],
+            SP: ['São Paulo'],
+          },
+          level: 2,
+          basedOn: 'state',
+        },
+      ],
+    }
+
+    const { address: validatedAddress, valid } = isValidAddress(
+      invalidAddress,
+      myRules
+    )
+
+    expect(valid).toBe(false)
+    expect(validatedAddress).toStrictEqual(
+      expect.objectContaining({
+        city: expect.objectContaining({
+          valid: false,
+          reason: EEMPTY,
+        }),
+      })
+    )
+  })
 })

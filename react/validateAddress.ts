@@ -203,7 +203,11 @@ const invalidPostalCode: ValidationResult = {
   reason: EPOSTALCODE,
 }
 
-function valueInOptions(value, options) {
+function valueInOptions(value: AddressValues, options: string[]) {
+  if (typeof value !== 'string') {
+    return false
+  }
+
   const normalizedValue = value.toLowerCase()
   const normalizedOptions = options.map((option) => option.toLowerCase())
 
@@ -239,7 +243,7 @@ function valueInOptionsMap(
     options.length > 0 &&
     (typeof options[0] === 'object'
       ? valueInOptionsPairs(value, options)
-      : valueInOptions(value, options))
+      : valueInOptions(value, (options as unknown) as string[]))
   )
 }
 
@@ -249,6 +253,10 @@ function validateOptions<FieldName extends Fields>(
   address: AddressWithValidation,
   rules: PostalCodeRules
 ): ValidationResult {
+  if (value == null || value === '') {
+    return emptyField
+  }
+
   if (field.options) {
     return valueInOptions(value, field.options) ? validResult : notAnOption
   }
