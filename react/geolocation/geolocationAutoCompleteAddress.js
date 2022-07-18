@@ -42,6 +42,8 @@ export default function geolocationAutoCompleteAddress(
     address = setNumberNotApplicable(address)
   }
 
+  return address
+
   // The functions below use googleAddress and geolocationRules
   // from the closure created.
 
@@ -133,8 +135,6 @@ export default function geolocationAutoCompleteAddress(
 
     return updatedAddress
   }
-
-  return address
 }
 
 function getAddressComponent(addressComponents, types) {

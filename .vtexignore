@@ -14,5 +14,5 @@ react/setupTests.js
 react/jest.transform.js
 **/__tests__/**
 react/lib/
-**/**.test.js
+**/**.test.{js,jsx,ts,tsx}
 demo/

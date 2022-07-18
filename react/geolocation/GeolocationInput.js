@@ -21,7 +21,8 @@ class GeolocationInput extends Component {
     this.handleMountInput = this.handleMountInput.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       address: nextProps.address,
     })
@@ -30,10 +31,14 @@ class GeolocationInput extends Component {
   handleMountInput = (input) => {
     const { useSearchBox, rules, googleMaps } = this.props
 
+    if (this.autocompleteListener) {
+      this.autocompleteListener.remove()
+      this.autocompleteListener = null
+    }
+
     if (!input) {
       this.input = null
       this.autocomplete = null
-      this.autocompleteListener.remove()
 
       return
     }
@@ -59,21 +64,19 @@ class GeolocationInput extends Component {
       )
     }
 
-    if (this.autocompleteListener) {
-      this.autocompleteListener.remove()
-    }
-
     this.autocompleteListener = useSearchBox
       ? this.addSearchBoxListener()
       : this.addAutocompleteListener()
   }
 
   addAutocompleteListener = () => {
+    const { autocomplete } = this
+
     return this.props.googleMaps.event.addListener(
       this.autocomplete,
       'place_changed',
       () => {
-        const googleAddress = this.autocomplete.getPlace()
+        const googleAddress = autocomplete.getPlace()
 
         if (googleAddress.geometry) {
           this.handleAddress(googleAddress)

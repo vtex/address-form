@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import React from 'react'
 import * as reactTestingLibrary from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { shallow, mount } from 'enzyme'
 import renderer from 'react-test-renderer'
 import { IntlProvider } from 'react-intl'
@@ -105,4 +106,5 @@ export {
   customMount as mount,
   customShallow as shallow,
   rendererCreate,
+  userEvent,
 }
