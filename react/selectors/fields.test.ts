@@ -365,8 +365,11 @@ describe('Field Selectors', () => {
 
   describe('isDefiningPostalCodeField()', () => {
     it('when rules have postalCodeLevels', () => {
-      const rules = {
+      const rules: PostalCodeRules = {
+        country: null,
+        abbr: null,
         postalCodeLevels: ['state', 'city', 'neighborhood'],
+        fields: [],
       }
 
       const result = isDefiningPostalCodeField('neighborhood', rules)

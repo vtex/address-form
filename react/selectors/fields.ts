@@ -91,7 +91,7 @@ export function normalizeOptions<T = string>(
   )
 }
 
-function fixOptions(options, fieldOptions) {
+function fixOptions(options: string[], fieldOptions: string[]) {
   return reduce(
     options,
     (acc, option) => {
@@ -99,7 +99,7 @@ function fixOptions(options, fieldOptions) {
 
       return cleanOption ? acc.concat(cleanOption) : acc
     },
-    []
+    [] as string[]
   )
 }
 
@@ -229,7 +229,7 @@ function toValueAndLabel(option: string) {
   return { value: option, label: option }
 }
 
-export function getDependentFields(fieldName: Fields, rules: Rules) {
+export function getDependentFields(fieldName: Fields, rules: PostalCodeRules) {
   let dependentFields: Fields[] = []
 
   if (fieldAffectsPostalCode(fieldName, rules)) {
@@ -251,30 +251,30 @@ export function getDependentFields(fieldName: Fields, rules: Rules) {
   return dependentFields
 }
 
-function getFieldBasedOn(fieldName, rules) {
+function getFieldBasedOn(fieldName: Fields, rules: PostalCodeRules) {
   const field = find(rules.fields, ({ basedOn }) => basedOn === fieldName)
 
   return field ? field.name : null
 }
 
-export function filterPostalCodeFields(rules) {
+export function filterPostalCodeFields(rules: PostalCodeRules) {
   switch (rules.postalCodeFrom) {
     case THREE_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
+        ({ name }) => rules.postalCodeLevels?.indexOf(name) === -1
       )
 
     case TWO_LEVELS:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels.indexOf(name) === -1
+        ({ name }) => rules.postalCodeLevels?.indexOf(name) === -1
       )
 
     case ONE_LEVEL:
       return filter(
         rules.fields,
-        ({ name }) => rules.postalCodeLevels[0] !== name
+        ({ name }) => rules.postalCodeLevels?.[0] !== name
       )
 
     default:
@@ -283,13 +283,17 @@ export function filterPostalCodeFields(rules) {
   }
 }
 
-function fieldAffectsPostalCode(fieldName, rules) {
+function fieldAffectsPostalCode(fieldName: Fields, rules: PostalCodeRules) {
   return (
-    rules.postalCodeLevels && rules.postalCodeLevels.indexOf(fieldName) !== -1
+    rules.postalCodeLevels &&
+    (rules.postalCodeLevels as string[]).indexOf(fieldName as string) !== -1
   )
 }
 
-export function isDefiningPostalCodeField(fieldName, rules) {
+export function isDefiningPostalCodeField(
+  fieldName: Fields,
+  rules: PostalCodeRules
+) {
   const lastLevelField = last(rules.postalCodeLevels)
 
   return fieldName === lastLevelField

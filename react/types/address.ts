@@ -39,7 +39,7 @@ export type AddressValues = Address[Fields] | null
 
 export interface ValidatedField<Value> {
   value?: Value | null
-  valueOptions?: any
+  valueOptions?: string[]
   valid?: boolean
   reason?: string
   visited?: boolean
