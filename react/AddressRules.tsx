@@ -89,10 +89,7 @@ class AddressRules extends Component<Props, State> {
 
     const rulePromise =
       shouldUseIOFetching || !fetch
-        ? // @ts-expect-error: react 2.x builder specifies an older verion for
-          // modules that typescript doesn't allow for dynamic importa, but it
-          // works on runtime
-          import(`./country/${country}`)
+        ? import(`./country/${country}`)
         : fetch(country)
 
     let rules:

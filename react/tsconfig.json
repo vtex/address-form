@@ -1,9 +1,9 @@
 {
   "extends": "@vtex/tsconfig",
   "compilerOptions": {
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "types": ["node", "jest", "@testing-library/jest-dom", "google.maps"],
     "lib": ["dom", "esnext"],
-    "module": "es6",
+    "module": "esnext",
     "allowJs": true,
     "checkJs": true,
     "noUnusedLocals": false,
