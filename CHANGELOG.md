@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Relax validation of field options when validating an address value.
+- Include valid option in combobox if postalCode is valid.
 
 ## [3.25.5] - 2022-07-11
 
