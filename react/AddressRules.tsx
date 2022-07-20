@@ -5,7 +5,11 @@ import type { PostalCodeRules } from 'types/rules'
 import { RulesContext } from './addressRulesContext'
 import defaultRules from './country/default'
 
-const MODULE_NOT_FOUND_PATTERN = /Cannot find module '(.*)'(?: from '.*')/
+const pathSegment = '(?:\\.|\\.\\.|[\\w\\d\\s.-]+)'
+
+const MODULE_NOT_FOUND_PATTERN = new RegExp(
+  `Cannot find module '(${pathSegment}(?:(?:\\/|\\\\)${pathSegment})*)'`
+)
 
 const propTypes = {
   children: PropTypes.any.isRequired,

@@ -66,6 +66,42 @@ describe('AddressRules', () => {
     )
   })
 
+  it('should use default rules when error message matches module not found', async () => {
+    const warnSpy = jest
+      .spyOn(global.console, 'warn')
+      .mockImplementation(() => {})
+
+    let rules: PostalCodeRules | null = null
+
+    const MyComponent = () => {
+      rules = useAddressRules()
+
+      if (rules == null) {
+        return null
+      }
+
+      return <span>loaded rules</span>
+    }
+
+    render(
+      <AddressRules
+        country="BRA"
+        fetch={(country) =>
+          Promise.reject(new Error(`Cannot find module '${country}'`))
+        }
+      >
+        <MyComponent />
+      </AddressRules>
+    )
+
+    await screen.findByText('loaded rules')
+
+    expect(rules).toEqual(defaultRules)
+    expect(warnSpy).toHaveBeenCalledWith(
+      "Couldn't load rules for country BRA, using default rules instead."
+    )
+  })
+
   it('should merge geolocation field rules with default field rules', async () => {
     let rules: PostalCodeRules | null = null
 
