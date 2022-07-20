@@ -9,6 +9,22 @@ import braRules from '../country/BRA'
 import { getField } from '../selectors/fields'
 
 describe('AddressRules', () => {
+  let loadedRules: PostalCodeRules | null = null
+
+  const LoadedRulesComponent = () => {
+    loadedRules = useAddressRules()
+
+    if (loadedRules == null) {
+      return null
+    }
+
+    return <span>loaded rules</span>
+  }
+
+  beforeEach(() => {
+    loadedRules = null
+  })
+
   it('should load the defined rules', async () => {
     let rules: PostalCodeRules | null = null
 
@@ -37,30 +53,18 @@ describe('AddressRules', () => {
       .spyOn(global.console, 'warn')
       .mockImplementation(() => {})
 
-    let rules: PostalCodeRules | null = null
-
-    const MyComponent = () => {
-      rules = useAddressRules()
-
-      if (rules == null) {
-        return null
-      }
-
-      return <span>loaded rules</span>
-    }
-
     render(
       <AddressRules
         country="XXX"
         fetch={(country) => import(`../country/${country}`)}
       >
-        <MyComponent />
+        <LoadedRulesComponent />
       </AddressRules>
     )
 
     await screen.findByText('loaded rules')
 
-    expect(rules).toEqual(defaultRules)
+    expect(loadedRules).toEqual(defaultRules)
     expect(warnSpy).toHaveBeenCalledWith(
       "Couldn't load rules for country XXX, using default rules instead."
     )
@@ -71,18 +75,6 @@ describe('AddressRules', () => {
       .spyOn(global.console, 'warn')
       .mockImplementation(() => {})
 
-    let rules: PostalCodeRules | null = null
-
-    const MyComponent = () => {
-      rules = useAddressRules()
-
-      if (rules == null) {
-        return null
-      }
-
-      return <span>loaded rules</span>
-    }
-
     render(
       <AddressRules
         country="BRA"
@@ -90,15 +82,34 @@ describe('AddressRules', () => {
           Promise.reject(new Error(`Cannot find module '${country}'`))
         }
       >
-        <MyComponent />
+        <LoadedRulesComponent />
       </AddressRules>
     )
 
     await screen.findByText('loaded rules')
 
-    expect(rules).toEqual(defaultRules)
+    expect(loadedRules).toEqual(defaultRules)
     expect(warnSpy).toHaveBeenCalledWith(
       "Couldn't load rules for country BRA, using default rules instead."
+    )
+  })
+
+  it('should use default rules with IO fetching when country does not exist', async () => {
+    const warnSpy = jest
+      .spyOn(global.console, 'warn')
+      .mockImplementation(() => {})
+
+    render(
+      <AddressRules country="XXX" shouldUseIOFetching>
+        <LoadedRulesComponent />
+      </AddressRules>
+    )
+
+    await screen.findByText('loaded rules')
+
+    expect(loadedRules).toEqual(defaultRules)
+    expect(warnSpy).toHaveBeenCalledWith(
+      "Couldn't load rules for country XXX, using default rules instead."
     )
   })
 
