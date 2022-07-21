@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Indonesia ('IDN') country rules.
+- Australia ('AUS'), Indonesia ('IDN') and New Zealand ('NZL') country rules.
 
 ## [3.26.3] - 2022-07-22
 ### Added

@@ -1,6 +1,7 @@
 import { POSTAL_CODE } from '../constants'
+import type { PostalCodeRules } from '../types/rules'
 
-export default {
+const rules: PostalCodeRules = {
   country: 'IDN',
   abbr: 'ID',
   postalCodeFrom: POSTAL_CODE,
@@ -153,3 +154,5 @@ export default {
     ],
   ],
 }
+
+export default rules
