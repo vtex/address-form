@@ -161,12 +161,12 @@ const rules: PostalCodeRules = {
 
     state: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_1'],
+      types: ['administrative_area_level_2'],
     },
 
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['locality'],
     },
 
     receiverName: {
