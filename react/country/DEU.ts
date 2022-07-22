@@ -121,6 +121,11 @@ const rules: PostalCodeRules = {
       types: ['neighborhood'],
     },
 
+    complement: {
+      valueIn: 'long_name',
+      types: ['subpremise'],
+    },
+
     state: {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
