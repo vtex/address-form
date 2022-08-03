@@ -5,12 +5,11 @@ import {
   getTwoLevels,
   getThreeLevels,
 } from '../transforms/addressFieldsOptions'
-import type { PostalCodeRules } from '../types/rules'
-import countryData from './data/CRI.json'
+import countryData from './data/PAN.json'
 
-const rules: PostalCodeRules = {
-  country: 'CRI',
-  abbr: 'CR',
+export default {
+  country: 'PAN',
+  abbr: 'PA',
   postalCodeFrom: THREE_LEVELS,
   postalCodeLevels: ['state', 'city', 'neighborhood'],
   thirdLevelPostalCodes: thirdLevelPostalCodes(countryData),
@@ -30,7 +29,7 @@ const rules: PostalCodeRules = {
       name: 'postalCode',
       postalCodeAPI: false,
       required: true,
-      regex: /^([\d]{5})$/,
+      regex: /^[\d]{4,5}$/,
       size: 'small',
     },
     {
@@ -109,7 +108,6 @@ const rules: PostalCodeRules = {
         }
 
         if (
-          address.state.value &&
           countryData[address.state.value] &&
           countryData[address.state.value][address.city.value] &&
           countryData[address.state.value][address.city.value][
@@ -172,5 +170,3 @@ const rules: PostalCodeRules = {
     [{ name: 'city' }, { delimiter: ', ', name: 'state' }],
   ],
 }
-
-export default rules

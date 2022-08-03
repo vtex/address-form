@@ -8,6 +8,7 @@ import BRA from './country/BRA'
 import CAN from './country/CAN'
 import CHL from './country/CHL'
 import COL from './country/COL'
+import CRI from './country/CRI'
 import ECU from './country/ECU'
 import ESP from './country/ESP'
 import FRA from './country/FRA'
@@ -18,6 +19,7 @@ import IND from './country/IND'
 import KOR from './country/KOR'
 import MEX from './country/MEX'
 import NZL from './country/NZL'
+import PAN from './country/PAN'
 import PER from './country/PER'
 import PRT from './country/PRT'
 import PRY from './country/PRY'
@@ -39,6 +41,7 @@ export default {
   CAN,
   CHL,
   COL,
+  CRI,
   ECU,
   ESP,
   FRA,
@@ -49,6 +52,7 @@ export default {
   KOR,
   MEX,
   NZL,
+  PAN,
   PER,
   PRT,
   PRY,

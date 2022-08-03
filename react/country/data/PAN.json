@@ -1,0 +1,911 @@
+{
+  "Bocas Del Toro": {
+    "Bocas Del Toro": {
+      "Bastimentos": "1002",
+      "Bocas Del Toro (Cabecera)": "1001",
+      "Cauchero": "1004",
+      "Punta Laurel": "1003",
+      "Tierra Oscura": "1005"
+    },
+    "Changuinola": {
+      "Almirante": "1007",
+      "Changuinola (Cabec)": "1006",
+      "El Empalme": "1011",
+      "El Teribe": "1009",
+      "Guabito": "1008",
+      "Las Tablas": "1012",
+      "Valle Del Risco": "1010"
+    },
+    "Chiriqui Grande": {
+      "Chiriqui Grande (Cabec)": "1013",
+      "Miramar": "1015",
+      "Punta Peña": "1016",
+      "Punta Robalo": "1014",
+      "Rambala": "1017"
+    }
+  },
+  "Chiriqui": {
+    "Alanje": {
+      "Alanje (Cabec)": "4029",
+      "Canta Gallo": "4035",
+      "Divala": "4030",
+      "Guarumal": "4031",
+      "Nuevo Mexico": "4036",
+      "Palo Grande": "4032",
+      "Querevalo": "4033",
+      "Santo Tomas": "4034"
+    },
+    "Baru": {
+      "Baco": "4014",
+      "Limones": "4012",
+      "Progreso": "4013",
+      "Puerto Armuelles (Cabec)": "4011",
+      "Rodolfo Aguilar": "4015"
+    },
+    "Boqueron": {
+      "Bagala": "4038",
+      "Boqueron (Cabec)": "4037",
+      "Cordillera": "4039",
+      "Guabal": "4040",
+      "Guayabal": "4041",
+      "Paraiso": "4042",
+      "Pedregal": "4043",
+      "Tijeras": "4044"
+    },
+    "Boquete": {
+      "Alto Boquete": "4056",
+      "Bajo Boquete (Cabec)": "4053",
+      "Caldera": "4054",
+      "Jaramillo": "4057",
+      "Los Naranjos": "4058",
+      "Palmira": "4055"
+    },
+    "Bugaba": {
+      "Aserrio De Gariche": "4017",
+      "Bugaba": "4018",
+      "Cerro Punta": "4019",
+      "El Bongo": "4028",
+      "Gomez": "4020",
+      "La Concepcion (Cabec)": "4016",
+      "La Estrella": "4021",
+      "San Andres": "4022",
+      "Santa Marta": "4023",
+      "Santa Rosa": "4024",
+      "Santo Domingo": "4025",
+      "Sortova": "4026",
+      "Volcan": "4027"
+    },
+    "David": {
+      "Bijagual": "4002",
+      "Chiriqui": "4004",
+      "Cochea": "4003",
+      "David (Cabec)": "4001",
+      "Guaca": "4005",
+      "Las Lomas": "4006",
+      "Pedregal": "4007",
+      "San Carlos": "4008",
+      "San Pablo Nuevo": "4009",
+      "San Pablo Viejo": "4010"
+    },
+    "Dolega": {
+      "Dolega (Cabec)": "4059",
+      "Dos Rios": "4060",
+      "Los Algarrobos": "4066",
+      "Los Anastacios": "4061",
+      "Potrerillos": "4062",
+      "Potrerillos Abajo": "4063",
+      "Rovira": "4064",
+      "Tinajas": "4065"
+    },
+    "Gualaca": {
+      "Gualaca (Cabec)": "4067",
+      "Hornito": "4068",
+      "Los Angeles": "4069",
+      "Paja De Sombrero": "4070",
+      "Rincon": "4071"
+    },
+    "Remedios": {
+      "El Nancito": "4073",
+      "El Porvenir": "4074",
+      "El Puerto": "4075",
+      "Remedios (Cabec)": "4072",
+      "Santa Lucia": "4076"
+    },
+    "Renacimiento": {
+      "Breñon": "4046",
+      "Cañas Gordas": "4047",
+      "Dominical": "4052",
+      "Monte Lirio": "4048",
+      "Plaza De Caisan": "4049",
+      "Rio Sereno (Cabec)": "4045",
+      "Santa Clara": "4051",
+      "Santa Cruz": "4050"
+    },
+    "San Felix": {
+      "Juay": "4092",
+      "Lajas Adentro": "4094",
+      "Las Lajas (Cabec)": "4091",
+      "San Felix": "4093",
+      "Santa Cruz": "4095"
+    },
+    "San Lorenzo": {
+      "Boca Chica": "4078",
+      "Boca Del Monte": "4079",
+      "Horconcitos (Cabec)": "4077",
+      "San Juan": "4080",
+      "San Lorenzo": "4081"
+    },
+    "Tole": {
+      "Cbella Vista": "4087",
+      "Cerro Viejo": "4083",
+      "El Cristo": "4088",
+      "Justo Fidel Palacios": "4089",
+      "Lasjas De Tole": "4084",
+      "Potrero De Caña": "4085",
+      "Quebrada De Piedra": "4086",
+      "Tole(Cabec)": "4082",
+      "Veladero": "4090"
+    }
+  },
+  "Cocle": {
+    "Aguadulce": {
+      "Aguadulce (Cabec)": "2038",
+      "Barrios Unidos": "2042",
+      "El Cristo": "2039",
+      "El Roble": "2040",
+      "Pocri": "2041"
+    },
+    "Anton": {
+      "Anton (Cabec)": "2001",
+      "Caballero": "2010",
+      "Cabuya": "2002",
+      "El Chiru": "2003",
+      "El Retiro": "2004",
+      "El Valle": "2005",
+      "El Valle": "2043",
+      "Juan Diaz": "2006",
+      "Rio Hato": "2007",
+      "San Juan De Dios": "2008",
+      "Santa Rita": "2009"
+    },
+    "La Pintada": {
+      "El Harino": "2022",
+      "El Potrero": "2023",
+      "La Pintada (Cabec)": "2021",
+      "Las Lomas": "2026",
+      "Llano Grande": "2024",
+      "Piedras Gordas": "2025"
+    },
+    "Nata": {
+      "Capellania": "2028",
+      "El Caño": "2029",
+      "Guzman": "2030",
+      "Las Huacas": "2031",
+      "Nata (Cabec)": "2027",
+      "Toza": "2032"
+    },
+    "Ola": {
+      "El Cope": "2034",
+      "El Palmar": "2035",
+      "El Picacho": "2036",
+      "La Pava": "2037",
+      "Ola (Cabec)": "2033"
+    },
+    "Penonome": {
+      "Cañaberal": "2012",
+      "Chiriqui Arriba": "2014",
+      "Cocle": "2013",
+      "El Coco": "2015",
+      "Pajonal": "2016",
+      "Penonome (Cabec)": "2011",
+      "Rio Grande": "2017",
+      "Rio Indio": "2018",
+      "Toabre": "2019",
+      "Tulu": "2020"
+    }
+  },
+  "Colon": {
+    "Chagres": {
+      "Achiote": "3016",
+      "El Guabo": "3017",
+      "La Encantada": "3018",
+      "Nuevo Chagres (Cabec)": "3015",
+      "Palmas Bellas": "3019",
+      "Piña": "3020",
+      "Salud": "3021"
+    },
+    "Colon": {
+      "Bahia La Mina": "3042",
+      "Barrio Norte": "3001",
+      "Barrio Sur": "3002",
+      "Buena Vista": "3003",
+      "Cativa": "3004",
+      "Ciricito": "3005",
+      "Colon": "3041",
+      "Cristobal": "3006",
+      "El Espinar": "3046",
+      "Escobal": "3007",
+      "Limon": "3008",
+      "Manzanillo": "3047",
+      "Nueva Providencia": "3009",
+      "Porto Belo": "3049",
+      "Puerto Pilon": "3010",
+      "Sabanitas": "3011",
+      "Salamanca": "3012",
+      "San Juan": "3013",
+      "Santa Rosa": "3014",
+      "Zona Libre": "3050"
+    },
+    "Donoso": {
+      "Cocle Del Norte": "3023",
+      "El Guasimo": "3024",
+      "Gobea": "3025",
+      "Miguel De La Borda (Cabec)": "3022",
+      "Rio Indio": "3026",
+      "San Jose Del General": "3027"
+    },
+    "Portobelo": {
+      "Cacique": "3029",
+      "Garrote": "3030",
+      "Isla Grande": "3031",
+      "Maria Chiquita": "3032",
+      "Portobelo (Cabec)": "3028"
+    },
+    "Santa Isabel": {
+      "Cuango": "3034",
+      "Miramar": "3035",
+      "Nombre De Dios": "3036",
+      "Palenque (Cabec)": "3033",
+      "Palmira": "3037",
+      "Playa Chiquita": "3038",
+      "Santa Isabel": "3039",
+      "Viento Frio": "3040"
+    }
+  },
+  "Comarca Kuna Yala": {
+    "Kuna Yala": {
+      "Aligandi": "9001",
+      "Nargana": "9002",
+      "Puerto Obaldia": "9003",
+      "Tibuala": "9004"
+    }
+  },
+  "Comarca Ngobe Bugle": {
+    "Besiko": {
+      "Boca De Balsa": "10018",
+      "Camaron Arriba": "10021",
+      "Cerro Banco": "10019",
+      "Cerro De Patena": "10020",
+      "Emplanada De Corcha": "10022",
+      "Namnoni": "10023",
+      "Niba": "10024",
+      "Soloy": "10017"
+    },
+    "Kankintu": {
+      "Bisisra": "10001",
+      "Buri": "10002",
+      "Guariviara": "10004",
+      "Guaroni": "10005",
+      "Kankitu": "10003",
+      "Man Creek": "10009",
+      "Mununi": "10006",
+      "Piedra Roja": "10007",
+      "Tuwai": "10008"
+    },
+    "Kusapin": {
+      "Bahia Azul": "10012",
+      "Calovebora": "10011",
+      "Kusapin": "10010",
+      "Loma Yuca": "10014",
+      "Rio Chiriqui": "10013",
+      "Tobobe": "10015",
+      "Valle Bonito": "10016"
+    },
+    "Mirono": {
+      "Cascabel": "10026",
+      "Hato Corotu": "10027",
+      "Hato Culantro": "10028",
+      "Hato Jobo": "10029",
+      "Hato Juli": "10030",
+      "Hato Pilon": "10025",
+      "Quebrada De Loro": "10031",
+      "Salto Dupi": "10032"
+    },
+    "Muna": {
+      "Alto Caballero": "10039",
+      "Bagama": "10040",
+      "Cerro Caña": "10041",
+      "Cerro Puerco": "10042",
+      "Chichica": "10038",
+      "Krua": "10043",
+      "Maraca": "10044",
+      "Nibra": "10045",
+      "Peña Blanca": "10046",
+      "Roka": "10047",
+      "Sitio Prado": "10048",
+      "Umani": "10049"
+    },
+    "Nole Duima": {
+      "Cerro Iglesias": "10033",
+      "Hato Chami": "10035",
+      "Jadeberi": "10037",
+      "Lajero": "10034",
+      "Susama": "10036"
+    },
+    "ñurun": {
+      "Agua De Salud": "10051",
+      "Alto De Jesus": "10052",
+      "Buenos Aires": "10050",
+      "Cerro Pelado": "10053",
+      "El Bale": "10054",
+      "El Paredon": "10055",
+      "El Piro": "10056",
+      "Guayabito": "10057",
+      "Guibale": "10058"
+    }
+  },
+  "Comarca Wargandi": {
+    "Wargandi": {
+      "Wargandi": "11001"
+    }
+  },
+  "Darien Y Comarca Embera": {
+    "Cemaco": {
+      "Cirilo Guaynora": "12027",
+      "Lajas Blancas": "12028",
+      "Manuel Ortega": "12029"
+    },
+    "Chepigana": {
+      "Agua Fria": "12013",
+      "Camoganti": "12002",
+      "Chepigana": "12003",
+      "Cucunati": "12014",
+      "Garachine": "12004",
+      "Jaque": "12005",
+      "La Palma (Cabec)": "12001",
+      "Puerto Piña": "12006",
+      "Rio Congo": "12007",
+      "Rio Congo Arriba": "12015",
+      "Rio Iglesias": "12008",
+      "Sambu": "12009",
+      "Santa Fe": "12016",
+      "Seteganti": "12010",
+      "Taimati": "12011",
+      "Tucuti": "12012"
+    },
+    "Pinogana": {
+      "Boca De Chupe": "12020",
+      "El Real S. M. (Cabec)": "12019",
+      "Meteti": "12026",
+      "Paya": "12021",
+      "Pinogana": "12022",
+      "Pucuro": "12023",
+      "Yape": "12024",
+      "Yaviza": "12025"
+    },
+    "Sambu": {
+      "Jingurudo": "12017",
+      "Rio Sabalo": "12018"
+    }
+  },
+  "Herrera": {
+    "Chitre": {
+      "Chitre (Cabec)": "5001",
+      "La Arena": "5002",
+      "Llano Bonito": "5005",
+      "Monagrillo": "5003",
+      "San Uan Bautista": "5004"
+    },
+    "Las Minas": {
+      "Chepo": "5031",
+      "Chepo": "5050",
+      "Chumical": "5032",
+      "El Ciprian": "5036",
+      "El Toro": "5033",
+      "Las Minas (Cabec)": "5030",
+      "Leones": "5034",
+      "Quebrada Del Rosario": "5035"
+    },
+    "Los Pozos": {
+      "Capuri": "5007",
+      "El Calabacito": "5008",
+      "El Cedro": "5009",
+      "La Arena": "5010",
+      "La Pitaloza": "5011",
+      "Las Llanas": "5014",
+      "Los Cerritos": "5012",
+      "Los Cerros De Paja": "5013",
+      "Los Pozos (Cabec)": "5006"
+    },
+    "Ocu": {
+      "Cerro Largo": "5038",
+      "El Tijera": "5042",
+      "Llano Grande": "5040",
+      "Los Llanos": "5039",
+      "Menchaca": "5043",
+      "Ocu (Cabec)": "5037",
+      "Peñas Chatas": "5041"
+    },
+    "Parita": {
+      "Cabuya": "5016",
+      "Llana De La Cruz": "5018",
+      "Los Castillos": "5017",
+      "Paris": "5019",
+      "Parita (Cabec)": "5015",
+      "Portobelillo": "5020",
+      "Potuga": "5021"
+    },
+    "Pese": {
+      "El Barrero": "5025",
+      "El Ciruelo": "5027",
+      "El Pajaro": "5024",
+      "El Pedregoso": "5026",
+      "Las Cabras": "5023",
+      "Pese (Cabec)": "5022",
+      "Rincon Hondo": "5029",
+      "Sabanagrande": "5028"
+    },
+    "Santa Maria": {
+      "Chupampa": "5045",
+      "El Limon": "5047",
+      "El Rincon": "5046",
+      "Los Canelos": "5048",
+      "Santa Maria (Cabec)": "5044"
+    }
+  },
+  "Los Santos": {
+    "Guarare": {
+      "El Enea": "6034",
+      "El Espinal": "6031",
+      "El Hato": "6038",
+      "El Macano": "6032",
+      "Guarare": "6030",
+      "Guarare Arriba": "6033",
+      "La Pasera": "6035",
+      "Las Trancas": "6036",
+      "Llano Abajo": "6037",
+      "Perales": "6039"
+    },
+    "Las Tablas": {
+      "Bajo Corral": "6002",
+      "Bayano": "6003",
+      "Carate": "6004",
+      "El Cocal": "6005",
+      "El Manantial": "6006",
+      "El Muñoz": "6007",
+      "El Pedregoso": "6008",
+      "El Sesteadero": "6022",
+      "La Laja": "6009",
+      "La Miel": "6010",
+      "La Palma": "6011",
+      "La Tiza": "6012",
+      "Las Palmitas": "6013",
+      "Las Tablas (Cabec)": "6001",
+      "Las Tablas Abajo": "6014",
+      "Nuario": "6015",
+      "Palmira": "6016",
+      "Peña Blanca": "6017",
+      "Rio Hondo": "6018",
+      "San Jose": "6019",
+      "San Miguel": "6020",
+      "Santo Domingo": "6021",
+      "Valle Rico": "6023",
+      "Vallerriquito": "6024"
+    },
+    "Los Santos": {
+      "Agua Buena": "6053",
+      "El Guasimo": "6041",
+      "La Colorada": "6042",
+      "La Espigadilla": "6043",
+      "La Villa De Los Santos": "6040",
+      "Las Cruces": "6044",
+      "Las Guabas": "6045",
+      "Llano Largo": "6048",
+      "Los Angeles": "6046",
+      "Los Olivos": "6047",
+      "Sabanagrande": "6049",
+      "Santa Ana": "6050",
+      "Tres Quebradas": "6051",
+      "Villa Lourdes": "6052"
+    },
+    "Macaracas": {
+      "Bahia Honda": "6055",
+      "Bajos De Guerra": "6056",
+      "Chupa": "6058",
+      "Corozal": "6057",
+      "El Cedro": "6059",
+      "Espino Amarillo": "6060",
+      "La Mesa": "6061",
+      "Las Palmas": "6062",
+      "Llano De Piedra": "6063",
+      "Macaracas (Cabec)": "6054",
+      "Mogollon": "6064"
+    },
+    "Pedasi": {
+      "Los Asientos": "6066",
+      "Mariabe": "6067",
+      "Oria Arriba": "6069",
+      "Pedasi (Cabec)": "6065",
+      "Purio": "6068"
+    },
+    "Pocri": {
+      "El Cañafistulo": "6026",
+      "Lajaminas": "6027",
+      "Paraiso": "6028",
+      "Paritilla": "6029",
+      "Pocri (Cabec)": "6025"
+    },
+    "Tonosi": {
+      "Altos De Guerra": "6071",
+      "Cañas": "6072",
+      "El Bebedero": "6073",
+      "El Cacao": "6074",
+      "El Cortezo": "6075",
+      "Flores": "6076",
+      "Guanico": "6077",
+      "La Tronosa": "6078",
+      "Tonosi (Cabec)": "6070"
+    }
+  },
+  "Panama": {
+    "Arraijan": {
+      "Arraijan (Cabec)": "7001",
+      "Burunga": "7007",
+      "Cerro Silvestre": "7008",
+      "Juan D. Arosemena": "7002",
+      "Nuevo Emperador": "7003",
+      "Santa Clara": "7004",
+      "Veracruz": "7005",
+      "Vista Alegre": "7006"
+    },
+    "Balboa": {
+      "La Ensenada": "7043",
+      "La Esmeralda": "7044",
+      "La Guinea": "7045",
+      "Pedro Gonzalez": "7046",
+      "Saboga": "7047",
+      "San Miguel /Cabec)": "7042"
+    },
+    "Capira": {
+      "Caimito": "7010",
+      "Campana": "7011",
+      "Capira": "7009",
+      "Cermeño": "7012",
+      "Ciri De Los Sotos": "7013",
+      "Ciri Grande": "7014",
+      "El Cacao": "7015",
+      "La Trinidad": "7016",
+      "Las Ollas Arriba": "7017",
+      "Lidice": "7018",
+      "Santa Rosa": "7021",
+      "Viila Carmen": "7019",
+      "Villa Rosario": "7020"
+    },
+    "Chame": {
+      "Bejuco": "7023",
+      "Cabuya": "7025",
+      "Cbuenos Aires": "7024",
+      "Chame (Cabec)": "7022",
+      "Chica": "7026",
+      "El Libano": "7027",
+      "Las Lajas": "7028",
+      "Nueva Gorgona": "7029",
+      "Punta Chame": "7030",
+      "Sajalices": "7031",
+      "Sora": "7032"
+    },
+    "Chepo": {
+      "Carita": "7049",
+      "Chepillo": "7050",
+      "Chepo (Cabec)": "7048",
+      "El Llano": "7051",
+      "Las Margaritas": "7052",
+      "Sta. Cruz De Chinina": "7053",
+      "Torti": "7054"
+    },
+    "Chiman": {
+      "Brujas": "7056",
+      "Chiman (Cabec)": "7055",
+      "Gonzalo Vasquez": "7057",
+      "Pasiga": "7059",
+      "Union Santeña": "7058"
+    },
+    "La Chorrera": {
+      "Amador": "7066",
+      "Arosemena": "7067",
+      "Barrio Balboa": "7064",
+      "Barrio Colon": "7065",
+      "El Arado": "7068",
+      "El Coco": "7069",
+      "Feuillet": "7070",
+      "Guadalupe": "7071",
+      "Herrera": "7072",
+      "Hurtado": "7073",
+      "Iturralde": "7074",
+      "La Represa": "7075",
+      "Los Diaz": "7076",
+      "Mendoza": "7077",
+      "Obaldia": "7078",
+      "Playa Leonapuerto Caimito": "7079",
+      "Santa Rita": "7080",
+      "Vaca Monte": "7112"
+    },
+    "Panama": {
+      "24 De Diciembre": "7109",
+      "24 Diciembre": "7113",
+      "Aeropuerto De Tocumen": "7114",
+      "Alameda": "7115",
+      "Albrook": "7116",
+      "Alta Mira": "7117",
+      "Alto Del Chace": "7118",
+      "Altos De Curundu": "7119",
+      "Altos De Tocumen": "7120",
+      "Altos Del Crisol": "7121",
+      "Altos Del Hipodromo": "7122",
+      "Ancon": "7098",
+      "Arcoiris": "7124",
+      "Arraijan": "7125",
+      "Ato Pintado Urbanización": "7126",
+      "Ave. Balboa": "7127",
+      "Belen": "7128",
+      "Bella Vista": "7096",
+      "Bello Horizonte": "7129",
+      "Betania": "7095",
+      "Boca La Caja": "7131",
+      "Cabulla": "7132",
+      "Calidonia": "7093",
+      "Campo Alegre": "7134",
+      "Cardenas": "7135",
+      "Carrasquilla": "7136",
+      "Catedral": "7137",
+      "Cerro Batea": "7138",
+      "Cerro Viento": "7139",
+      "Chame": "7140",
+      "Chilibre": "7103",
+      "Chilibre": "7141",
+      "Chorrillo": "7142",
+      "Ciudad Radial": "7143",
+      "Clayton": "7144",
+      "Coco Solo": "7145",
+      "Cocoli": "7146",
+      "Colinas Del Golf": "7147",
+      "Concepcion": "7148",
+      "Coquira": "7149",
+      "Coronado": "7150",
+      "Cuatro Altos": "7151",
+      "Curundu": "7094",
+      "Diablo": "7153",
+      "Don Bosco": "7154",
+      "El Bosque": "7155",
+      "El Cangrejo": "7156",
+      "El Carmen": "7157",
+      "El Chorrillo": "7091",
+      "El Ingenio": "7158",
+      "El Milagro": "7159",
+      "El Pantanal": "7160",
+      "Gatun": "7162",
+      "Gonzalillo": "7163",
+      "Jardin Olimpico": "7164",
+      "Jose De Espinar": "7165",
+      "Juan Diaz": "7101",
+      "La Boca": "7166",
+      "La Cresta": "7167",
+      "La Doña": "7168",
+      "La Pradera": "7169",
+      "Las Acacias": "7170",
+      "Las Cumbres": "7104",
+      "Las Mercedes": "7172",
+      "Llano Bonito": "7173",
+      "Los Andes": "7174",
+      "Los Caobos": "7175",
+      "Los Cerilla": "7176",
+      "Los Robles": "7177",
+      "Madungandi": "7063",
+      "Mano De Piedra": "7178",
+      "Marbella": "7179",
+      "Miraflores": "7181",
+      "Monte Oscuro": "7182",
+      "Monterrico": "7183",
+      "Nuevo San Juan": "7184",
+      "Obarrio": "7185",
+      "Pacora": "7105",
+      "Pan De Azucar": "7187",
+      "Panama Viejo": "7188",
+      "Parque Lefevre": "7110",
+      "Pedregal": "7102",
+      "Perejil": "7190",
+      "Pueblo Nuevo": "7097",
+      "Punta Paitilla": "7192",
+      "Rio Abajo": "7100",
+      "Rio Abajo Ato Pintado": "7194",
+      "Rodman": "7195",
+      "San Felipe": "7090",
+      "San Francisco": "7196",
+      "San Fransisco": "7099",
+      "San Isidro": "7197",
+      "San Martin": "7106",
+      "Santa Ana": "7092",
+      "Santa Librada": "7198",
+      "Santa Maria": "7199",
+      "Terminal": "7200",
+      "Tocumen": "7107",
+      "Torrijos-Carter": "7202",
+      "Urb. Dos Mares": "7203",
+      "Urbanizacion Nuevoreparto Chanis": "7204",
+      "Veranillo": "7205",
+      "Via España": "7206",
+      "Viejo Veranillo": "7207",
+      "Villa Caceres": "7208",
+      "Villa De La Fuente": "7209",
+      "Villa Saita": "7210",
+      "Villa Unida": "7211",
+      "Vista Hermosa": "7212"
+    },
+    "San Carlos": {
+      "El Espino": "7034",
+      "El Higo": "7035",
+      "Guayabito": "7036",
+      "La Ermita": "7037",
+      "La Laguna": "7038",
+      "Las Uvas": "7039",
+      "Los Llanitos": "7040",
+      "San Carlos /Cabec)": "7033",
+      "San Jose": "7041"
+    },
+    "San Miguelito": {
+      "Amelia D. De Icaza": "7081",
+      "Arnulfo Arias": "7086",
+      "Belisario Frias": "7087",
+      "Belisario Porras": "7082",
+      "El Bosque": "7213",
+      "Jose D. Espinar": "7083",
+      "Mateo Iturralde": "7084",
+      "Omar Torrijos": "7088",
+      "Rufina Alfaro": "7089",
+      "Victoriano Lorenzo": "7085"
+    },
+    "Taboga": {
+      "Otoque Occidente": "7061",
+      "Otoque Oriente": "7062",
+      "Taboga": "7060"
+    },
+    "Tocumen": {
+      "Mañanitas": "7215",
+      "Nueva California": "7216",
+      "Rana De Oro": "7217",
+      "Residencial La Castellana": "7218",
+      "San Cristobal": "7219",
+      "San Joaquin": "7220",
+      "San Pedro": "7221",
+      "San Sebastian": "7222",
+      "Santa Monica": "7223",
+      "Urb. Remon Cantera": "7224",
+      "Urbanizacion Balmoral": "7225",
+      "Urbanizacion Tere Mar": "7226",
+      "Villa Flor": "7227",
+      "Villa Lobos": "7228",
+      "Villa Lucre": "7229"
+    }
+  },
+  "Veraguas": {
+    "Atalaya": {
+      "Atalaya (Cabec)": "8054",
+      "El Barrito": "8055",
+      "La Carrillo": "8058",
+      "La Montañuela": "8056",
+      "San Antonio": "8057"
+    },
+    "Calobre": {
+      "Barnizal": "8030",
+      "Calobre (Cabec)": "8029",
+      "Chitra": "8031",
+      "El Cocla": "8032",
+      "El Potrero": "8033",
+      "La Laguna": "8034",
+      "La Raya De Calobre": "8035",
+      "La Tetilla": "8036",
+      "La Yeguada": "8037",
+      "Las Guias": "8038",
+      "Monjaras": "8039",
+      "San Jose": "8040"
+    },
+    "Cañazas": {
+      "Cañazas (Cabec)": "8077",
+      "Cerro De Plata": "8078",
+      "El Aromillo": "8083",
+      "El Picador": "8081",
+      "Los Valles": "8079",
+      "San Jose": "8082",
+      "San Marcelo": "8080"
+    },
+    "La Mesa": {
+      "Bisvalles": "8014",
+      "Boro": "8015",
+      "La Mesa (Cabec)": "8013",
+      "Llano Grande": "8016",
+      "Los Milagros": "8018",
+      "San Bartolo": "8017"
+    },
+    "Las Palmas": {
+      "Cerro De Casa": "8085",
+      "Corozal": "8086",
+      "El Maria": "8087",
+      "El Prado": "8088",
+      "El Rincon": "8089",
+      "Las Palmas (Cabec)": "8084",
+      "Lola": "8090",
+      "Pixvae": "8091",
+      "Puerto Vidal": "8092",
+      "San Martin De Porres": "8094",
+      "Vigui": "8095",
+      "Zapotillo": "8093"
+    },
+    "Mariato": {
+      "Arena": "8073",
+      "El Cacao": "8076",
+      "Llano De Cativa": "8072",
+      "Quebro": "8074",
+      "Tebario": "8075"
+    },
+    "Montijo": {
+      "Cebaco": "8066",
+      "Costa Hermosa": "8065",
+      "Gobernadora": "8060",
+      "La Garcena": "8061",
+      "Leones": "8062",
+      "Montijo (Cabec)": "8059",
+      "Pilon": "8063",
+      "Union Del Norte": "8064"
+    },
+    "Riio De Jesus": {
+      "Catorce De Noviembre": "8071",
+      "Las Huacas": "8068",
+      "Los Castillos": "8069",
+      "Rio De Jesus (Cabec)": "8067",
+      "Utira": "8070"
+    },
+    "San Fransisco": {
+      "Corra Falso": "8042",
+      "Los Hatillos": "8043",
+      "Remance": "8044",
+      "San Fransisco (Cabec)": "8041",
+      "San Jose": "8046",
+      "San Juan": "8045"
+    },
+    "Santa Fe": {
+      "Calovebora": "8048",
+      "El Alto": "8049",
+      "El Cuay": "8050",
+      "El Pantano": "8051",
+      "Gatuncito": "8052",
+      "Rio Luis": "8053",
+      "Santa Fe (Cabec)": "8047"
+    },
+    "Santiago": {
+      "Canto Del Llano": "8007",
+      "Carlos Santana": "8009",
+      "Edwin Fabrega": "8010",
+      "La Colorada": "8002",
+      "La Peña": "8003",
+      "La Raya Sta. Maria": "8004",
+      "Los Algarrobos": "8008",
+      "Ponuga": "8005",
+      "San Martin De Porres": "8011",
+      "San Pedro Del Espino": "8006",
+      "Santiago": "8001",
+      "Urraca": "8012"
+    },
+    "Sona": {
+      "Bahia Honda": "8020",
+      "Calidonia": "8021",
+      "Cative": "8022",
+      "El Marañon": "8023",
+      "Guarumal": "8024",
+      "La Soledad": "8025",
+      "Quebrada De Oro": "8026",
+      "Rio Grande": "8027",
+      "Rodeo Viejo": "8028",
+      "Sona (Cabec)": "8019"
+    }
+  }
+}
