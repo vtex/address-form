@@ -38,6 +38,7 @@ const countryData = {
       Bolívar: '20308',
       Grecia: '20301',
       'Puente de Piedra': '20307',
+      'Río Cuarto': '20306',
       'San Isidro': '20302',
       'San José': '20303',
       'San Roque': '20304',

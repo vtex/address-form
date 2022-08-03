@@ -58,6 +58,7 @@ const countryData = {
     'San Jose Poaquil': '4002',
     'San Martin Jilotepeque': '4003',
     'Santa Apolonia': '4005',
+    'Santa Cruz Balanya': '4040',
     'Tecpan Guatemala': '4006',
     Yepocapa: '4012',
     Zaragoza: '4015',
