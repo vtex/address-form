@@ -19,7 +19,6 @@ import IND from './country/IND'
 import KOR from './country/KOR'
 import MEX from './country/MEX'
 import NZL from './country/NZL'
-import PAN from './country/PAN'
 import PER from './country/PER'
 import PRT from './country/PRT'
 import PRY from './country/PRY'
@@ -52,7 +51,6 @@ export default {
   KOR,
   MEX,
   NZL,
-  PAN,
   PER,
   PRT,
   PRY,
