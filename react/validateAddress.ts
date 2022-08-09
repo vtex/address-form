@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 import reduce from 'lodash/reduce'
 import find from 'lodash/find'
 

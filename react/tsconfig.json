@@ -17,6 +17,7 @@
     "paths": {
       "test-utils": ["test-modules/test-utils"]
     },
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   },
   "include": ["./**/*.js", "./**/*.ts", "./**/*.jsx", "./**/*.tsx"],
