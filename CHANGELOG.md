@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Invalidate whitespace-only required fields.
 
 ## [3.26.7] - 2022-08-08
 
@@ -14,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.26.6] - 2022-08-05
 ### Fixed
-- Address rules for SPAIN
+- Address rules for SPAIN.
 
 ## [3.26.5] - 2022-08-03
 

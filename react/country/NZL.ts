@@ -124,7 +124,7 @@ const rules: PostalCodeRules = {
     },
   },
   summary: [
-    [{ name: 'complement' }, { delimiter: ' ', name: 'street'}],
+    [{ name: 'complement' }, { delimiter: ' ', name: 'street' }],
     [
       { name: 'city' },
       { delimiter: ', ', name: 'state' },

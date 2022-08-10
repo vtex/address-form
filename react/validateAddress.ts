@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 import reduce from 'lodash/reduce'
 import find from 'lodash/find'
 
@@ -282,7 +283,10 @@ function defaultValidation<FieldName extends Fields>(
 ): ValidationResult {
   const field = getField(name, rules)
 
-  if (field && !value && field.required) {
+  if (
+    field?.required &&
+    (!value || (typeof value === 'string' && !value.trim()))
+  ) {
     return emptyField
   }
 

@@ -7,6 +7,7 @@ import {
   validateField,
 } from './validateAddress'
 import address from './__mocks__/newAddress'
+import whitespaceAddress from './__mocks__/whitespaceAddress'
 import geolocationAddress from './__mocks__/geolocationAddress2'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import {
@@ -69,6 +70,27 @@ describe('Address Validation:', () => {
     expect(result.addressId.reason).toBe(EEMPTY)
     expect(result.addressType.reason).toBe(EADDRESSTYPE)
     expect(invalidFields).toEqual(expect.arrayContaining(requiredFields))
+  })
+
+  it('should invalidate whitespace-only required fields', () => {
+    const result = validateAddress(whitespaceAddress, usePostalCode)
+
+    const invalidFields = getAllInvalidFieldsNames(result)
+
+    const requiredWhitespaceFields = [
+      'city',
+      'neighborhood',
+      'number',
+      'receiverName',
+      'street',
+    ]
+
+    expect(result.city.reason).toBe(EEMPTY)
+    expect(result.neighborhood.reason).toBe(EEMPTY)
+    expect(result.street.reason).toBe(EEMPTY)
+    expect(result.number.reason).toBe(EEMPTY)
+    expect(result.receiverName.reason).toBe(EEMPTY)
+    expect(invalidFields).toEqual(requiredWhitespaceFields)
   })
 
   it('should validate a country', () => {
