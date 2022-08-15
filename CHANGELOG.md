@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Indonesian translation.
+- City "Villa Madero" to "Buenos Aires" province.
+
+### Fixed
+
+- English, Portuguese, Italian and Spanish translations.
+
 ## [4.16.0] - 2022-12-21
 
 ### Added
