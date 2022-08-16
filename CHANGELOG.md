@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Indonesian translation.
 
 ## [3.28.0] - 2022-12-22
 
@@ -31,7 +33,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Invalidate whitespace-only required fields.
 
 ## [3.26.7] - 2022-08-08
-
 ### Removed
 - Panama country rules.
 
