@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.26.8] - 2022-08-10
 ### Fixed
+- Fixed city type being retrieved from GMaps API
+
+### Fixed
 - Invalidate whitespace-only required fields.
 
 ## [3.26.7] - 2022-08-08
