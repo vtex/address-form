@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Replace usage of `splunkevents-js` with `window.logSplunk`.
 
 ## [3.26.8] - 2022-08-10
 ### Fixed

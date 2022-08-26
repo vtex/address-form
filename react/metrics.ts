@@ -1,5 +1,3 @@
-import SplunkEvents from 'splunk-events'
-
 import type { AddressValues, Fields } from './types/address'
 
 export const TYPES = {
@@ -32,20 +30,9 @@ declare global {
     __RUNTIME__?: {
       account?: string
     }
+    logSplunk?: (config: any) => void
   }
 }
-
-const splunkEvents = new SplunkEvents()
-
-splunkEvents.config({
-  endpoint: 'https://splunk-heavyforwarder-public.vtex.com:8088',
-  token: '50fe94b0-30b6-442a-9cb1-a476c97ba917',
-  headers: {
-    'Content-Type': 'text/plain',
-  },
-  useExponentialBackoff: true,
-  maxNumberOfRetries: 4,
-})
 
 function getAccountName() {
   return (
@@ -54,8 +41,6 @@ function getAccountName() {
     window.__RUNTIME__?.account
   )
 }
-
-type EventData = Parameters<typeof splunkEvents.logEvent>[4]
 
 interface LogGeolocationAddressMismatchData {
   fieldValue: AddressValues | null
@@ -71,7 +56,7 @@ export function logGeolocationAddressMismatch({
   countryFromRules,
   address,
 }: LogGeolocationAddressMismatchData) {
-  const eventData: EventData = {
+  const eventData = {
     fieldValue: (fieldValue ?? '') as string,
     fieldName,
     countryFromRules: countryFromRules ?? 'null',
@@ -92,14 +77,13 @@ export function logGeolocationAddressMismatch({
   }
 
   try {
-    splunkEvents.logEvent(
-      LEVELS.DEBUG,
-      TYPES.WARNING,
-      'address-form',
-      'validate-field',
-      eventData,
-      getAccountName()
-    )
+    window.logSplunk?.({
+      level: LEVELS.DEBUG,
+      type: TYPES.WARNING,
+      workflowType: 'address-form',
+      workflowInstance: 'validate-field',
+      event: eventData,
+    })
   } catch (error) {
     // ignore failed log
   }
