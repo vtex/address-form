@@ -16,6 +16,7 @@ import GBR from './country/GBR'
 import GTM from './country/GTM'
 import IDN from './country/IDN'
 import IND from './country/IND'
+import JAM from './country/JAM'
 import KOR from './country/KOR'
 import MEX from './country/MEX'
 import NZL from './country/NZL'
@@ -48,6 +49,7 @@ export default {
   GTM,
   IDN,
   IND,
+  JAM,
   KOR,
   MEX,
   NZL,
