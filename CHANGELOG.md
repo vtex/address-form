@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Fixed city type being retrieved from GMaps API
 
 ## [3.27.1] - 2022-09-01
 ### Changed
@@ -17,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Jamaica country rules.
 
 ## [3.26.8] - 2022-08-10
+
 ### Fixed
 - Invalidate whitespace-only required fields.
 
