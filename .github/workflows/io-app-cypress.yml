@@ -20,9 +20,14 @@ jobs:
       with:
         repository: vtex/checkout-ui-tests
     - id: get-accounts
+      name: Get accounts.json
       run: |
-        accounts=$(cat ./accounts.json)
-        echo "::set-output name=accounts::$accounts"
+        {
+          accounts=$(cat ./accounts.json)
+          echo "accounts<<EOF"
+          echo $accounts
+          echo "EOF"
+        } >> $GITHUB_OUTPUT
       shell: bash
 
   Cypress:
