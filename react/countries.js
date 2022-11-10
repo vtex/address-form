@@ -12,6 +12,7 @@ import ECU from './country/ECU'
 import ESP from './country/ESP'
 import FRA from './country/FRA'
 import GBR from './country/GBR'
+import GRC from './country/GRC'
 import GTM from './country/GTM'
 import IDN from './country/IDN'
 import KOR from './country/KOR'
@@ -39,6 +40,7 @@ export default {
   ESP,
   FRA,
   GBR,
+  GRC,
   GTM,
   IDN,
   KOR,
