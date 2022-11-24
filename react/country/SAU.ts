@@ -14,7 +14,7 @@ const rules: PostalCodeRules = {
       size: 'medium',
     },
     {
-      hidden: true,
+      hidden: false,
       name: 'postalCode',
       maxLength: 50,
       label: 'postalCode',
