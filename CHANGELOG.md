@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - `SAU` to have **postalCode**
+- `ARE` to have **postalCode**
 
 
 ## [3.27.2] - 2022-09-06
