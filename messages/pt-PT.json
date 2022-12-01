@@ -1,4 +1,7 @@
 {
   "address-form.field.addressLine1": "Morada Linha 1",
-  "address-form.field.addressLine2": "Morada Linha 2"
+  "address-form.field.addressLine2": "Morada Linha 2",
+  "address-form.dontKnowPostalCode": "Não sei meu código postal",
+  "address-form.error.ERROR_POSTAL_CODE": "Código postal inválido.",
+  "address-form.field.postalCode": "Código Postal"
 }
