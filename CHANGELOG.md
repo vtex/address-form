@@ -22,10 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Greece country rules.
 
-### Fixed
-
-- English, Portuguese, Italian and Spanish translations.
-
 ## [4.15.6] - 2022-08-08
 
 ### Removed

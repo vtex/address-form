@@ -2032,6 +2032,7 @@ const countryData = {
     'Villa Luzuriaga',
     'Villa Lynch',
     'Villa Lynch Pueyrredon',
+    'Villa Madero',
     'Villa Maio',
     'Villa Margarita',
     'Villa María',
