@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Greece country rules.
+
 ## [3.27.2] - 2022-09-06
 ### Fixed
 - Fixed city type being retrieved from GMaps API
