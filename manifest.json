@@ -1,7 +1,7 @@
 {
   "name": "address-form",
   "vendor": "vtex",
-  "version": "3.27.2",
+  "version": "3.28.0",
   "title": "address-form React component",
   "description": "address-form React component",
   "defaultLocale": "en",
