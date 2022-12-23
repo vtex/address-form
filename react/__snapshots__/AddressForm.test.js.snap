@@ -57,7 +57,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     <label
       htmlFor="ship-complement"
     >
-      Additional info (eg: apt 201)
+      Additional information (e.g.: apt 201)
     </label>
     <input
       autoComplete="on"
@@ -175,7 +175,7 @@ exports[`AddressForm should omit fields that are used in to get the postal code 
     <label
       htmlFor="ship-receiverName"
     >
-      Receiver
+      Recipient
     </label>
     <input
       autoComplete="on"

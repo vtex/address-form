@@ -82,7 +82,7 @@ describe('PostalCodeGetter', () => {
       />
     )
 
-    const firstLevel = getByLabelText('Departament')
+    const firstLevel = getByLabelText('Department')
     const secondLevel = getByLabelText('Province')
     const thirdLevel = getByLabelText('City')
 
