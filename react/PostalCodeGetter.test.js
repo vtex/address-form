@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'test-utils'
+
 import PostalCodeGetter from './PostalCodeGetter'
 import address from './__mocks__/newAddress'
 import usePostalCode from './country/__mocks__/usePostalCode'
@@ -14,7 +15,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={usePostalCode}
         onChangeAddress={jest.fn()}
-      />,
+      />
     )
   })
 
@@ -26,7 +27,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={usePostalCode}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
     const result = getByLabelText('CEP')
@@ -42,7 +43,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useOneLevel}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
     const result = getByLabelText('Province')
@@ -58,7 +59,7 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useTwoLevels}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
     const firstLevel = getByLabelText('Region')
@@ -76,10 +77,10 @@ describe('PostalCodeGetter', () => {
         address={address}
         rules={useThreeLevels}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
-    const firstLevel = getByLabelText('Departament')
+    const firstLevel = getByLabelText('Department')
     const secondLevel = getByLabelText('Province')
     const thirdLevel = getByLabelText('City')
 

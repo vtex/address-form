@@ -253,7 +253,7 @@ describe('AddressContainer', () => {
 
         expect(
           wrapper.find('div.vtex-address-form__complement label')
-        ).toHaveText('Additional info (eg: apt 201)')
+        ).toHaveText('Additional information (e.g.: apt 201)')
         expect(
           wrapper.find('div.vtex-address-form__complement input').props()
             .placeholder
@@ -283,7 +283,7 @@ describe('AddressContainer', () => {
 
         expect(
           wrapper.find('div.vtex-address-form__complement label')
-        ).toHaveText('Additional info (eg: apt 201)')
+        ).toHaveText('Additional information (e.g.: apt 201)')
         expect(
           wrapper.find('div.vtex-address-form__complement input').props()
             .placeholder
@@ -312,7 +312,7 @@ describe('AddressContainer', () => {
 
         expect(
           wrapper.find('div.vtex-address-form__complement label')
-        ).toHaveText('Additional info (eg: apt 201)')
+        ).toHaveText('Additional information (e.g.: apt 201)')
         expect(
           wrapper.find('div.vtex-address-form__complement input').props()
             .placeholder
