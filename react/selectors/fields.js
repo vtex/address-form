@@ -165,7 +165,7 @@ function getFieldBasedOn(fieldName, rules) {
   return field ? field.name : null
 }
 
-export function filterPostalCodeFields(rules) {
+export function filterPostalCodeFields(rules, address) {
   switch (rules.postalCodeFrom) {
     case THREE_LEVELS:
       return filter(
@@ -184,7 +184,7 @@ export function filterPostalCodeFields(rules) {
       )
     default:
     case POSTAL_CODE:
-      return filter(rules.fields, ({ name }) => name !== 'postalCode')
+      return filter(rules.fields, ({ name }) => name !== 'postalCode' ? true : !address?.postalCode?.geolocationAutoCompleted)
   }
 }
 

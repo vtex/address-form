@@ -33,7 +33,7 @@ class AddressForm extends Component {
     } = this.props
 
     let fields = omitPostalCodeFields
-      ? filterPostalCodeFields(rules)
+      ? filterPostalCodeFields(rules, address)
       : rules.fields
 
     fields = omitAutoCompletedFields
