@@ -2,6 +2,7 @@ import reduce from 'lodash/reduce'
 import find from 'lodash/find'
 
 import { hasOptions, getField, getListOfOptions } from './selectors/fields'
+import cleanStr from './selectors/cleanStr'
 import { addFocusToNextInvalidField } from './transforms/address'
 import {
   EEMPTY,
@@ -146,8 +147,8 @@ const invalidGeoCoords = { valid: false, reason: EGEOCOORDS }
 const invalidPostalCode = { valid: false, reason: EPOSTALCODE }
 
 function valueInOptions(value, options) {
-  const normalizedValue = value.toLowerCase()
-  const normalizedOptions = options.map((option) => option.toLowerCase())
+  const normalizedValue = cleanStr(value)
+  const normalizedOptions = options.map((option) => cleanStr(option))
 
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }

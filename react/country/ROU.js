@@ -3513,6 +3513,7 @@ const countryData = {
     Zizin: '507223',
   },
   Bucureşti: {
+    'Bucuresti': '000000',
     'Bucuresti (Sectorul 1)': '010000',
     'Bucuresti (Sectorul 2)': '020000',
     'Bucuresti (Sectorul 3)': '030000',

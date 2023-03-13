@@ -133,11 +133,15 @@ class InputFieldContainer extends Component {
       shouldShowNumberKeyboard,
     } = this.props
 
-    const _options =
+    let _options =
       options ||
       (hasOptions(field, address)
         ? getListOfOptions(field, address, rules)
         : undefined)
+    
+    if (field?.name === 'city' && _options?.length) {
+      _options = _options?.filter(({ label, value }) => value !== `${label}___000000`)
+    }
 
     const notApplicableProps =
       // the right side of the || is for lib consumers without the 'useGeolocation' flag
