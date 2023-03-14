@@ -12,11 +12,11 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "strict": true,
-    "outDir": "lib",
     "baseUrl": ".",
     "paths": {
       "test-utils": ["test-modules/test-utils"]
     },
+    "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   },

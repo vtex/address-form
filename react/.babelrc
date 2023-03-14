@@ -6,10 +6,7 @@
   ],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
-    [
-      "@babel/plugin-transform-runtime",
-      { "helpers": false }
-    ]
+    ["@babel/plugin-transform-runtime", { "helpers": false }]
   ],
-  "ignore": ["**/node_modules/*", "**/__mocks__/*", "**/*.test.js"]
+  "ignore": ["**/node_modules/**/*", "**/__mocks__/*", "**/*.test.js"]
 }

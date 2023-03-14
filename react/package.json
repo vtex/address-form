@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel --delete-dir-on-start --config-file ./.babelrc . -d lib -x .js,.jsx,.ts,.tsx && yarn add-locales",
+    "build": "../node_modules/.bin/rollup -c && yarn add-locales",
     "add-locales": "cp -R -f ../messages/ lib/locales/",
     "test": "jest --env=jsdom",
     "test:coverage": "jest --env=jsdom --coverage",
@@ -31,13 +31,6 @@
     "recompose": "^0.27.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.4",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-transform-runtime": "^7.11.5",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
-    "@babel/preset-typescript": "^7.15.0",
     "@googlemaps/jest-mocks": "^2.7.5",
     "@testing-library/dom": "^8.0.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -49,7 +42,7 @@
     "@types/prop-types": "^15.7.5",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@vtex/tsconfig": "^0.5.6",
+    "@vtex/tsconfig": "^0.6.0",
     "babel-jest": "^26.3.0",
     "enzyme": "^3.4.1",
     "enzyme-adapter-react-16": "^1.8.0",
