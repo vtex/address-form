@@ -10,11 +10,13 @@ fi
 version=${unparsed_version//v}
 
 if [[ -z "$NPM_TOKEN" ]]; then
-  echo "No NPM_TOKEN, exiting.."
-  exit 0;
+  if [[ ! -z "$CI" ]]; then
+    echo "No NPM_TOKEN, exiting.."
+    exit 0;
+  fi
+else
+  echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 fi
-
-echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 
 # Remove react-intl from dependencies because it only
 # exist there for builder-hub to be able to build this
