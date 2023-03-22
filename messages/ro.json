@@ -51,6 +51,7 @@
   "address-form.field.reference": "Punct de referință",
   "address-form.field.district": "Sector",
   "address-form.field.neighborhood": "Cartier",
+  "address-form.field.suburb": "Suburbie",
   "address-form.field.commercial": "Adresă comercială",
   "address-form.field.city": "Oraș",
   "address-form.field.town": "Comună",

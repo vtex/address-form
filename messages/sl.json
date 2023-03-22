@@ -51,6 +51,7 @@
   "address-form.field.reference": "Blizu",
   "address-form.field.district": "Okrožje",
   "address-form.field.neighborhood": "Soseska",
+  "address-form.field.suburb": "Predmestje",
   "address-form.field.commercial": "Poslovni naslov",
   "address-form.field.city": "Mesto",
   "address-form.field.town": "Mesto",

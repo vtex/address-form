@@ -51,6 +51,7 @@
   "address-form.field.reference": "Lähellä",
   "address-form.field.district": "Kaupunginosa",
   "address-form.field.neighborhood": "Alue",
+  "address-form.field.suburb": "Esikaupunki",
   "address-form.field.commercial": "Kaupallinen osoite",
   "address-form.field.city": "Kaupunki",
   "address-form.field.town": "Kaupunki",

@@ -51,6 +51,7 @@
   "address-form.field.reference": "В близост с",
   "address-form.field.district": "Район",
   "address-form.field.neighborhood": "Квартал",
+  "address-form.field.suburb": "Предградие",
   "address-form.field.commercial": "Търговски адрес",
   "address-form.field.city": "Град",
   "address-form.field.town": "Селище",

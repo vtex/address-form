@@ -62,6 +62,7 @@ export default {
   RUS,
   SAU,
   SMR,
+  SVK,
   URY,
   USA,
   VEN,

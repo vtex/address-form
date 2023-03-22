@@ -51,6 +51,7 @@
   "address-form.field.reference": "Dichtbij",
   "address-form.field.district": "Regio",
   "address-form.field.neighborhood": "Buurt",
+  "address-form.field.suburb": "Voorstad",
   "address-form.field.commercial": "Commercieel adres",
   "address-form.field.city": "Stad",
   "address-form.field.town": "Stad",

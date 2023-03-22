@@ -51,6 +51,7 @@
   "address-form.field.reference": "Blisko",
   "address-form.field.district": "Rejon",
   "address-form.field.neighborhood": "Dzielnica",
+  "address-form.field.suburb": "Przedmieście",
   "address-form.field.commercial": "Adres firmy",
   "address-form.field.city": "Miasto",
   "address-form.field.town": "Miasto",

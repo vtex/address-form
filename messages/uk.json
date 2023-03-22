@@ -51,6 +51,7 @@
   "address-form.field.reference": "Поруч з",
   "address-form.field.district": "Район",
   "address-form.field.neighborhood": "Мікрорайон",
+  "address-form.field.suburb": "Передмістя",
   "address-form.field.commercial": "Бізнес-адреса",
   "address-form.field.city": "Місто",
   "address-form.field.town": "Районний центр",

@@ -51,6 +51,7 @@
   "address-form.field.reference": "가까이에",
   "address-form.field.district": "지역",
   "address-form.field.neighborhood": "인근 지역",
+  "address-form.field.suburb": "교외",
   "address-form.field.commercial": "상업 주소",
   "address-form.field.city": "도시",
   "address-form.field.town": "읍",
