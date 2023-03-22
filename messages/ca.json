@@ -49,6 +49,7 @@
   "address-form.field.reference": "Punt de referència",
   "address-form.field.district": "Districte",
   "address-form.field.neighborhood": "Barri",
+  "address-form.field.suburb": "Barri",
   "address-form.field.commercial": "Adreça professional",
   "address-form.field.city": "Ciutat",
   "address-form.field.town": "Poble",

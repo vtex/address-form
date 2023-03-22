@@ -49,6 +49,7 @@
   "address-form.field.reference": "Этаж",
   "address-form.field.district": "Район",
   "address-form.field.neighborhood": "Дом",
+  "address-form.field.suburb": "Пригород",
   "address-form.field.commercial": "Коммерческий адрес",
   "address-form.field.city": "Город",
   "address-form.field.town": "Поселок",

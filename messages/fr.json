@@ -49,6 +49,7 @@
   "address-form.field.reference": "Près de",
   "address-form.field.district": "District",
   "address-form.field.neighborhood": "Quartier",
+  "address-form.field.suburb": "Banlieue",
   "address-form.field.commercial": "Adresse commerciale",
   "address-form.field.city": "Ville",
   "address-form.field.town": "Ville",
