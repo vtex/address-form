@@ -49,6 +49,7 @@
   "address-form.field.reference": "Aproape de",
   "address-form.field.district": "Sector",
   "address-form.field.neighborhood": "Cartier",
+  "address-form.field.suburb": "Suburbie",
   "address-form.field.commercial": "Adresă comercială",
   "address-form.field.city": "Oraș",
   "address-form.field.town": "Oraș",

@@ -49,6 +49,7 @@
   "address-form.field.reference": "Close to",
   "address-form.field.district": "District",
   "address-form.field.neighborhood": "Neighborhod",
+  "address-form.field.suburb": "교외",
   "address-form.field.commercial": "Commercial address",
   "address-form.field.city": "City",
   "address-form.field.town": "Town",
