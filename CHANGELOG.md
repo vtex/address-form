@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.17.2] - 2023-03-23
+
 ### Fixed
 - Australia ('AUS') postal code auto-fill enable.
 
