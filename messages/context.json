@@ -51,6 +51,7 @@
   "address-form.field.reference": "Close to",
   "address-form.field.district": "District",
   "address-form.field.neighborhood": "Neighborhood",
+  "address-form.field.suburb": "Suburb",
   "address-form.field.commercial": "Commercial address",
   "address-form.field.city": "City",
   "address-form.field.town": "Town",

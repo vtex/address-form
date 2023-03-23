@@ -51,6 +51,7 @@
   "address-form.field.reference": "Nahe bei",
   "address-form.field.district": "Bezirk",
   "address-form.field.neighborhood": "Nachbarschaft",
+  "address-form.field.suburb": "Vorort",
   "address-form.field.commercial": "Kommerzielle Adresse",
   "address-form.field.city": "Stadt",
   "address-form.field.town": "Stadt",

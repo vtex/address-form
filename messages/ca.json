@@ -51,6 +51,7 @@
   "address-form.field.reference": "A prop de",
   "address-form.field.district": "Districte",
   "address-form.field.neighborhood": "Barri",
+  "address-form.field.suburb": "Barri",
   "address-form.field.commercial": "Adreça comercial",
   "address-form.field.city": "Ciutat",
   "address-form.field.town": "Població",

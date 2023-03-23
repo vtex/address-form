@@ -51,6 +51,7 @@
   "address-form.field.reference": "Nära till",
   "address-form.field.district": "Distrikt",
   "address-form.field.neighborhood": "Område",
+  "address-form.field.suburb": "Förort",
   "address-form.field.commercial": "Kommersiell adress",
   "address-form.field.city": "Stad",
   "address-form.field.town": "Liten stad",

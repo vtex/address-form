@@ -51,6 +51,7 @@
   "address-form.field.reference": "Κοντά σε",
   "address-form.field.district": "Περιοχή",
   "address-form.field.neighborhood": "Γειτονιά",
+  "address-form.field.suburb": "Προάστιο",
   "address-form.field.commercial": "Εμπορική διεύθυνση",
   "address-form.field.city": "Πόλη",
   "address-form.field.town": "Πόλη",
