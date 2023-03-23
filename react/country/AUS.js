@@ -19,7 +19,7 @@ export default {
       required: true,
       mask: '9999',
       regex: /^\d{4}$/,
-      postalCodeAPI: false,
+      postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
     },
