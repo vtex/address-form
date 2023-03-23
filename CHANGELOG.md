@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.29.4] - 2023-03-23
+
 ### Added
 - `Suburb` translation
 
