@@ -20,7 +20,7 @@ const rules: PostalCodeRules = {
       required: true,
       mask: '9999',
       regex: /^\d{4}$/,
-      postalCodeAPI: true,
+      postalCodeAPI: false,
       size: 'small',
       autoComplete: 'nope',
     },
