@@ -7,92 +7,127 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Filter optionsMap, valueOptions and options out from `AddressRules` geolocation validation.
+
 ## [3.29.5] - 2023-03-23
 
 ### Fixed
+
 - Australia ('AUS') postal code auto-fill enable.
 
 ## [3.29.4] - 2023-03-23
 
 ### Added
+
 - `Suburb` translation
 
 ## [3.29.3] - 2023-03-17
+
 ### Fixed
+
 - Build script not including JSON files.
 
 ## [3.29.2] - 2023-02-17
 
 ### Fixed
+
 - Geolocation implementation for Australia ('AUS').
 
 ## [3.29.1] - 2023-02-14
+
 ### Changed
+
 - Add the number field as hidden in France config file.
 
 ## [3.29.0] - 2022-12-23
+
 ### Added
+
 - Indonesian translation.
 - City "Villa Madero" to "Buenos Aires" province.
 
 ### Fixed
+
 - English, Portuguese, Italian and Spanish translations.
 
 ## [3.28.0] - 2022-12-22
 
 ### Added
+
 - Greece country rules.
 
 ## [3.27.2] - 2022-09-06
+
 ### Fixed
+
 - Fixed city type being retrieved from GMaps API
 
 ## [3.27.1] - 2022-09-01
+
 ### Changed
+
 - Replace usage of `splunkevents-js` with `window.logSplunk`.
 
 ## [3.27.0] - 2022-08-30
 
 ### Added
+
 - Jamaica country rules.
 
 ## [3.26.8] - 2022-08-10
 
 ### Fixed
+
 - Invalidate whitespace-only required fields.
 
 ## [3.26.7] - 2022-08-08
+
 ### Removed
+
 - Panama country rules.
 
 ## [3.26.6] - 2022-08-05
+
 ### Fixed
+
 - Address rules for SPAIN.
 
 ## [3.26.5] - 2022-08-03
 
 ### Changed
+
 - Missing Guatemala, Costa Rica and Panama states and cities.
 
 ## [3.26.4] - 2022-07-22
 
 ### Added
+
 - Australia ('AUS'), Indonesia ('IDN') and New Zealand ('NZL') country rules.
 
 ## [3.26.3] - 2022-07-22
+
 ### Added
+
 - Added German complement to rules
 
 ## [3.26.2] - 2022-07-22
+
 ### Fixed
+
 - Logic for log of mismatched addresses.
 
 ## [3.26.1] - 2022-07-20
+
 ### Fixed
+
 - Regex for detecting "module not found" error.
 
 ## [3.26.0] - 2022-07-19
+
 ### Changed
+
 - Relax validation of field options when validating an address value.
 - Include valid option in combobox if postalCode is valid.
 
@@ -111,29 +146,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.25.3] - 2022-06-20
 
 ### Added
+
 - Saudi Arabia ('SAU') country rules.
 
 ## [3.25.2] - 2022-05-11
 
 ### Fixed
+
 - `NLD` and `BEL` users not able to proceed to payment due to missing `number` geolocation field.
 
 ## [3.25.1] - 2022-04-14
 
 ### Changed
+
 - Singapore address rules, `complement field` as mandatory
 
 ## [3.25.0] - 2022-04-07
 
 ### Added
+
 - `address-form.field.suburb` string
 - US states
 
 ### Changed
+
 - Missing India's states and cities.
 - South Africa neighborhood label.
 
 ### Removed
+
 - Invalid US states.
 
 ## [3.24.9] - 2022-04-06
@@ -145,52 +186,64 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.24.8] - 2022-03-23 [YANKED]
 
 ### Fixed
+
 - Arabic translation and Russia country rules for two-levels postal code.
 
 ## [3.24.7] - 2022-03-22
 
 ### Added
+
 - Support for ZAF locale
 
 ## [3.24.6] - 2022-03-21
 
 ### Fixed
+
 - Russia postal code country rules
 
 ## [3.24.5] - 2022-03-16
 
 ### Fixed
+
 - Arabic translation.
 
 ## [3.24.4] - 2022-03-14
 
 ### Changed
-- Singapore address rules, hiding `city` and `state` fields. 
+
+- Singapore address rules, hiding `city` and `state` fields.
 
 ## [3.24.3] - 2022-02-25
 
 ### Fixed
+
 - South Africa country rules for geolocation.
 
 ## [3.24.2] - 2022-02-24
 
 ### Fixed
+
 - Arabic translation.
 
 ### Added
+
 - South Africa country rules.
 
 ## [3.24.1] - 2022-02-21
+
 ### Changed
+
 - Add required flag to India's postal code field.
 
 ## [3.24.0] - 2022-02-15
 
 ### Added
+
 - Ecuador city `San Rafael`.
 - India's cities and states.
 
 ### Fixed
+
 - Arabic translation.
 
 ## [3.23.1] - 2022-02-08
@@ -202,60 +255,80 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.23.0] - 2022-02-03
 
 ### Added
+
 - Address rules for Singapore.
 - Address rules for Iraq.
 
 ## [3.22.4] - 2022-01-25
 
 ### Fixed
+
 - Russia country rules.
 
 ## [3.22.3] - 2022-01-20
 
 ### Changed
+
 - Russia country rules.
 
 ### Fixed
+
 - Russian translation.
 
 ## [3.22.2] - 2022-01-19
+
 ### Added
+
 - New cities to ECU country.
 
 ## [3.22.1] - 2022-01-18
+
 ### Fixed
+
 - Invalid address `field` name for `IRQ`.
 
 ## [3.22.0] - 2022-01-13
+
 ### Added
+
 - Address rules for Iraq.
 
 ## [3.21.1] - 2021-12-13
+
 ### Added
+
 - `address-form.geolocation.example.RUS` to all language files.
 
 ## [3.21.0] - 2021-12-01
 
 ## [3.20.6] - 2021-11-25
+
 ### Changed
+
 - Use exponential backoff and limit retries on Splunk calls.
 
 ## [3.20.5] - 2021-11-08
 
 ### Fixed
+
 - Russian translation
 
 ## [3.20.4] - 2021-11-04
 
 ### Changed
+
 - Update the cities order in CHL file
 
 ## [3.20.3] - 2021-10-25
+
 ### Changed
+
 - Activate postal code API for Portugal
 
 ## [3.20.2] - 2021-10-21
+
 ### Added
+
 - Add "Mi Perú" city to PER country
 
 ## [3.20.1] - 2021-10-14
@@ -265,56 +338,81 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update build script and update @babel/preset-typescript for transforms/address lib generation.
 
 ## [3.20.0] - 2021-10-07
+
 ### Added
+
 - Exports `geolocationAutoCompleteAddress` to VTEX IO apps.
 
 ## [3.19.0] - 2021-09-30
 
 ### Added
+
 - I18n Ar
 
 ## [3.18.13] - 2021-09-13
+
 ### Added
+
 - Adding new cities to BOL country
 
 ## [3.18.12] - 2021-09-02
+
 ### Added
+
 - Adding new cities to ECU country
 
 ## [3.18.11] - 2021-09-02
+
 ### Added
+
 - Add new cities to COL country
 
 ## [3.18.10] - 2021-08-30
+
 ### Fixed
+
 - I18n It
 
 ## [3.18.9] - 2021-08-23
+
 ### Fixed
+
 - Adress fields with null value being marked with `geolocationAutoCompleted` flag
 
 ## [3.18.8] - 2021-08-11
+
 ### Changed
+
 - Forgotten URL for CEP in Brazil
 
 ## [3.18.7] - 2021-07-29
+
 ### Fixed
+
 - Address fields being overwritten with old information on geolocation.
 
 ## [3.18.6] - 2021-07-26
+
 ### Fixed
+
 - Add more cities to romanian zipcodes
 
 ## [3.18.5] - 2021-07-15
+
 ### Fixed
+
 - Change of address autocompleted by postal code.
 
 ## [3.18.4] - 2021-07-13
+
 ### Fixed
+
 - Address "General Gutierrez" mismatch for postal code based argentina stores.
 
 ## [3.18.3] - 2021-07-12
+
 ### Changed
+
 - Add the county capital cities and their corresponding postal codes.
 
 ## [3.18.2] - 2021-07-08
