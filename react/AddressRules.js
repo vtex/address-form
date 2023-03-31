@@ -97,10 +97,12 @@ class AddressRules extends Component {
           if (rules.geolocation[field.name]) {
             // ignore unrelated props for the field
             // eslint-disable-next-line no-unused-vars
-            const { valueIn, types, handler, ...props } =
+            const { valueIn, types, handler, ...geolocationProps } =
               rules.geolocation[field.name]
 
-            return { ...field, ...props }
+            const { optionsMap, valueOptions, options, ...fieldProps } = field
+
+            return { ...fieldProps, ...geolocationProps }
           }
 
           return field

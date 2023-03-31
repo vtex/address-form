@@ -7,14 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Filter optionsMap, valueOptions and options out from `AddressRules` geolocation validation.
+
 ## [4.17.2] - 2023-03-23
 
 ### Fixed
+
 - Australia ('AUS') postal code auto-fill enable.
 
 ## [4.17.1] - 2023-03-23
 
 ### Added
+
 - `Suburb` translation
 
 ## [4.17.0] - 2023-01-02
@@ -186,10 +192,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [4.7.3] - 2021-05-13
 
 ### Fixed
+
 - Ensure the `state` field is populate when user visits `addresses` inside their account for `RUS`.
+
 ## [4.7.2] - 2021-05-12
 
-### Fixed 
+### Fixed
 
 - `CHL` rules when filling data with Google Maps.
 
