@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.29.7] - 2023-04-04
+
 ### Fixed
 - Australia ('AUS') postal code auto-fill API has been disabled to allow GAPI to perperly auto-fill.
 
