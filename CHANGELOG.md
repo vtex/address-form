@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Rules for Puerto Rico ('PRI'). Same as USA, but with 'State' field pre-filled with 'PR'.
+
 ## [3.29.7] - 2023-04-04
 
 ### Fixed
