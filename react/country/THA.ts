@@ -2,8 +2,8 @@ import { POSTAL_CODE } from '../constants'
 import type { PostalCodeRules } from '../types/rules'
 
 const rules: PostalCodeRules = {
-  country: 'AUS',
-  abbr: 'AU',
+  country: 'THA',
+  abbr: 'TH',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -15,24 +15,25 @@ const rules: PostalCodeRules = {
     },
     {
       name: 'postalCode',
+      maxLength: 50,
       label: 'postalCode',
-      maxLength: 4,
       required: true,
       mask: '9999',
-      regex: /^\d{4}$/,
-      postalCodeAPI: false,
+      regex: '^([\\d]{5}((-)?[\\d]{4})?)$',
       size: 'small',
       autoComplete: 'nope',
+      postalCodeAPI: false,
     },
     {
       name: 'street',
       label: 'addressLine1',
+      maxLength: 250,
       required: true,
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'number',
+      hidden: true,
       maxLength: 750,
       label: 'number',
       size: 'small',
@@ -45,30 +46,28 @@ const rules: PostalCodeRules = {
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'reference',
       maxLength: 750,
       label: 'reference',
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'neighborhood',
       maxLength: 100,
-      label: 'neighborhood',
+      label: 'district',
       size: 'large',
     },
     {
       name: 'city',
       maxLength: 100,
       label: 'city',
-      required: true,
+      required: false,
       size: 'large',
     },
     {
       name: 'state',
       maxLength: 100,
-      label: 'state',
+      label: 'province',
       required: true,
       size: 'large',
     },
@@ -92,17 +91,10 @@ const rules: PostalCodeRules = {
       valueIn: 'long_name',
       types: ['street_number'],
       required: false,
-      notApplicable: true,
+      notApplicable: false,
     },
 
-    street: {
-      valueIn: 'long_name',
-      types: ['route'],
-      handler: (address, googleAddress) => {
-        address.street = { value: (googleAddress as { name: string }).name }
-          return address
-      },
-    },
+    street: { valueIn: 'long_name', types: ['route'] },
 
     neighborhood: {
       valueIn: 'long_name',
@@ -123,7 +115,7 @@ const rules: PostalCodeRules = {
 
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['political', 'locality'],
     },
 
     receiverName: {
@@ -131,9 +123,10 @@ const rules: PostalCodeRules = {
     },
   },
   summary: [
-    [{ name: 'complement' }, { delimiter: ' ', name: 'street' }],
+    [{ name: 'street' }, { delimiter: ', ', name: 'complement' }],
     [
-      { name: 'city' },
+      { name: 'neighborhood' },
+      { delimiter: ', ', name: 'city' },
       { delimiter: ', ', name: 'state' },
       { delimiter: ' ', name: 'postalCode' },
     ],
