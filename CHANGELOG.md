@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Dominican Republic (DOM) rules.
+
 ## [4.17.3] - 2023-03-31
 
 ### Changed
