@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Rules for Puerto Rico ('PRI')
 
+## [4.18.0] - 2023-04-25
+
+### Added
+
+- Rules for Thailand ('THA').
+
 ## [4.17.3] - 2023-03-31
 
 ### Changed
