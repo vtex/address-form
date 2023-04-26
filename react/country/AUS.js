@@ -109,13 +109,13 @@ export default {
     },
 
     state: {
-      valueIn: 'long_name',
+      valueIn: 'short_name',
       types: ['administrative_area_level_1'],
     },
 
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['locality', 'administrative_area_level_4'],
     },
 
     receiverName: {
