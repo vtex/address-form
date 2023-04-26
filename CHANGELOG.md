@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.30.1] - 2023-04-26
+
 ### Fixed
 - Australia ('AUS') address fields rearranged using GAPI.
 
