@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.19.0] - 2023-04-27
+
 ### Added
 
 - Rules for Puerto Rico ('PRI')
