@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: 'AUS',
-  abbr: 'AU',
+  country: 'PRI',
+  abbr: 'PR',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -14,12 +14,13 @@ export default {
     },
     {
       name: 'postalCode',
-      label: 'postalCode',
-      maxLength: 4,
+      maxLength: 50,
+      fixedLabel: 'ZIP',
       required: true,
-      mask: '9999',
-      regex: /^\d{4}$/,
+      mask: '99999',
+      regex: '^([\\d]{5}((-)?[\\d]{4})?)$',
       postalCodeAPI: true,
+      forgottenURL: 'https://tools.usps.com/go/ZipLookupAction!input.action',
       size: 'small',
       autoComplete: 'nope',
     },
@@ -28,14 +29,6 @@ export default {
       label: 'addressLine1',
       required: true,
       size: 'xlarge',
-    },
-    {
-      hidden: true,
-      name: 'number',
-      maxLength: 750,
-      label: 'number',
-      size: 'small',
-      autoComplete: 'nope',
     },
     {
       name: 'complement',
@@ -69,7 +62,20 @@ export default {
       maxLength: 100,
       label: 'state',
       required: true,
+      hidden: true,
       size: 'large',
+      optionsPairs: [
+        { label: 'Puerto Rico', value: 'PR' },
+      ],
+      defaultValue: 'PR'
+    },
+    {
+      name: 'number',
+      maxLength: 750,
+      label: 'number',
+      hidden: true,
+      defaultValue: 'N/A',
+      autoComplete: 'nope',
     },
     {
       name: 'receiverName',
@@ -87,14 +93,15 @@ export default {
       required: false,
     },
 
-    number: {
+    street: {
       valueIn: 'long_name',
-      types: ['street_number'],
-      required: false,
-      notApplicable: true,
-    },
+      types: ['route'],
+      handler: (address, googleAddress) => {
+        address.street = { value: googleAddress.name }
 
-    street: { valueIn: 'long_name', types: ['route'] },
+        return address
+      },
+    },
 
     neighborhood: {
       valueIn: 'long_name',
@@ -115,7 +122,7 @@ export default {
 
     city: {
       valueIn: 'long_name',
-      types: ['locality', 'administrative_area_level_4'],
+      types: ['locality'],
     },
 
     receiverName: {
@@ -123,7 +130,7 @@ export default {
     },
   },
   summary: [
-    [{ name: 'complement' }, { delimiter: ' ', name: 'street'}],
+    [{ name: 'street' }, { delimiter: ', ', name: 'complement' }],
     [
       { name: 'city' },
       { delimiter: ', ', name: 'state' },

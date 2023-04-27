@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: 'AUS',
-  abbr: 'AU',
+  country: 'THA',
+  abbr: 'TH',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -14,24 +14,25 @@ export default {
     },
     {
       name: 'postalCode',
+      maxLength: 50,
       label: 'postalCode',
-      maxLength: 4,
       required: true,
-      mask: '9999',
-      regex: /^\d{4}$/,
-      postalCodeAPI: true,
+      mask: '99999',
+      regex: '^([\\d]{5}((-)?[\\d]{4})?)$',
       size: 'small',
       autoComplete: 'nope',
+      postalCodeAPI: false,
     },
     {
       name: 'street',
       label: 'addressLine1',
+      maxLength: 250,
       required: true,
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'number',
+      hidden: true,
       maxLength: 750,
       label: 'number',
       size: 'small',
@@ -44,17 +45,16 @@ export default {
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'reference',
       maxLength: 750,
       label: 'reference',
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'neighborhood',
       maxLength: 100,
-      label: 'neighborhood',
+      label: 'district',
+      required: true,
       size: 'large',
     },
     {
@@ -67,7 +67,7 @@ export default {
     {
       name: 'state',
       maxLength: 100,
-      label: 'state',
+      label: 'province',
       required: true,
       size: 'large',
     },
@@ -91,7 +91,7 @@ export default {
       valueIn: 'long_name',
       types: ['street_number'],
       required: false,
-      notApplicable: true,
+      notApplicable: false,
     },
 
     street: { valueIn: 'long_name', types: ['route'] },
@@ -109,13 +109,13 @@ export default {
     },
 
     state: {
-      valueIn: 'short_name',
+      valueIn: 'long_name',
       types: ['administrative_area_level_1'],
     },
 
     city: {
       valueIn: 'long_name',
-      types: ['locality', 'administrative_area_level_4'],
+      types: ['political', 'locality'],
     },
 
     receiverName: {
@@ -123,9 +123,10 @@ export default {
     },
   },
   summary: [
-    [{ name: 'complement' }, { delimiter: ' ', name: 'street'}],
+    [{ name: 'street' }, { delimiter: ', ', name: 'complement' }],
     [
-      { name: 'city' },
+      { name: 'neighborhood' },
+      { delimiter: ', ', name: 'city' },
       { delimiter: ', ', name: 'state' },
       { delimiter: ' ', name: 'postalCode' },
     ],
