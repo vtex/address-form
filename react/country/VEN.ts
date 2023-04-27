@@ -298,6 +298,13 @@ const rules: PostalCodeRules = {
       types: ['street_number'],
     },
 
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: true,
+      notApplicable: true,
+    },
+
     street: { valueIn: 'long_name', types: ['route'] },
 
     neighborhood: {
