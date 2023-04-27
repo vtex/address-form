@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Address review flow is removing essential address information.
+- Number field discarded in geolocation mode for FRA
 - Address being reviewed in the geolocation mode even for complete addresses.
 
 ## [3.31.0] - 2023-04-27
