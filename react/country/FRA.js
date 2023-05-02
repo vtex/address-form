@@ -30,6 +30,14 @@ export default {
       size: 'xlarge',
     },
     {
+      hidden: true,
+      name: 'number',
+      maxLength: 750,
+      label: 'number',
+      size: 'min',
+      autoComplete: 'nope',
+    },
+    {
       name: 'complement',
       maxLength: 750,
       label: 'addressLine2',
@@ -70,6 +78,13 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
+    },
+
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+      notApplicable: true,
     },
 
     street: {
