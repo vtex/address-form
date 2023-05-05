@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Dominican Republic (DOM) rules.
 
+## [4.19.1] - 2023-05-02
+### Fixed
+- Number field discarded in geolocation mode for FRA
+- Number field discarded in geolocation mode for USA
+- Number field as required in geolocation mode for USA
+- Address being reviewed in the geolocation mode even for complete addresses.
+
 ## [4.19.0] - 2023-04-27
 
 ### Added

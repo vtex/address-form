@@ -346,11 +346,11 @@ export default {
       { delimiter: ', ', name: 'complement' },
     ],
     [
-      { name: 'neighborhood'},
+      { name: 'neighborhood' },
       { delimiter: ' ', name: 'postalCode' },
     ],
     [
-      {name: 'city' },
+      { name: 'city' },
       { delimiter: ', ', name: 'state' },
     ],
   ],
