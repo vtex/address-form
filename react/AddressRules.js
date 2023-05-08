@@ -107,6 +107,10 @@ class AddressRules extends Component {
               label: 'label' in field ? field.label : undefined,
               fixedLabel: 'fixedLabel' in field ? field.fixedLabel : undefined,
               required: false,
+              hidden: field.hidden,
+              mask: field.mask,
+              size: field.size,
+              forgottenURL: field.forgottenURL,
               ...geolocationProps,
             }
           }
