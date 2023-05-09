@@ -31,7 +31,7 @@ const rules: PostalCodeRules = {
       size: 'xlarge',
     },
     {
-      hidden: true,
+      hidden: false,
       name: 'number',
       maxLength: 750,
       label: 'number',
