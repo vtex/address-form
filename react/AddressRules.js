@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 import { RulesContext } from './addressRulesContext'
 import defaultRules from './country/default'
 
-const MODULE_NOT_FOUND_PATTERN =
-  /Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/
+const MODULE_NOT_FOUND_PATTERN = /Cannot find module '\.\/[a-z]*\/?([A-z-]{1,7})'/
 
 class AddressRules extends Component {
   constructor(props) {
@@ -96,13 +95,24 @@ class AddressRules extends Component {
         fields: rules.fields.map((field) => {
           if (rules.geolocation[field.name]) {
             // ignore unrelated props for the field
-            // eslint-disable-next-line no-unused-vars
-            const { valueIn, types, handler, ...geolocationProps } =
-              rules.geolocation[field.name]
+            const {
+              valueIn,
+              types,
+              handler,
+              ...geolocationProps
+            } = rules.geolocation[field.name]
 
-            const { optionsMap, valueOptions, options, ...fieldProps } = field
-
-            return { ...fieldProps, ...geolocationProps }
+            return {
+              name: field.name,
+              label: 'label' in field ? field.label : undefined,
+              fixedLabel: 'fixedLabel' in field ? field.fixedLabel : undefined,
+              required: false,
+              hidden: field.hidden,
+              mask: field.mask,
+              size: field.size,
+              forgottenURL: field.forgottenURL,
+              ...geolocationProps,
+            }
           }
 
           return field
