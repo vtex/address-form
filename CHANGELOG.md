@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Placeholder addresses for several countries.
+
+### Fixed
+
+- Country index list.
+
 ## [3.32.0] - 2023-05-05
 
 ### Added
