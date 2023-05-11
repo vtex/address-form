@@ -113,12 +113,24 @@ class AddressRules extends Component<Props, State> {
         fields: rules.fields.map((field) => {
           if (geolocationRules[field.name]) {
             // ignore unrelated props for the field
-            const { valueIn, types, handler, ...geolocationProps } =
-              geolocationRules[field.name]
+            const {
+              valueIn,
+              types,
+              handler,
+              ...geolocationProps
+            } = geolocationRules[field.name]
 
-            const { optionsMap, optionsPairs, options, ...fieldProps } = field
-
-            return { ...fieldProps, ...geolocationProps }
+            return {
+              name: field.name,
+              label: 'label' in field ? field.label : undefined,
+              fixedLabel: 'fixedLabel' in field ? field.fixedLabel : undefined,
+              required: false,
+              hidden: field.hidden,
+              mask: field.mask,
+              size: field.size,
+              forgottenURL: field.forgottenURL,
+              ...geolocationProps,
+            }
           }
 
           return field
