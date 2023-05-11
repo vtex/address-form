@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Placeholder addresses for several countries.
+- Language files for several countries.
+
+### Fixed
+
+- RUS country rules.
+- IDN translations.
+- Country index list.
+
 ## [4.20.0] - 2023-05-05
 
 ### Added

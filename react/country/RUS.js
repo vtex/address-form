@@ -336,7 +336,7 @@ export default {
     {
       name: 'state',
       maxLength: 100,
-      label: 'state',
+      label: 'region',
       required: true,
       size: 'large',
       level: 1,
