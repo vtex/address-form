@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Street field using geolocation in New Zealand (NZL) file.
+
 ## [4.21.1] - 2023-05-11
 ### Fixed
 - Discard postal code rules when using geolocation mode in `AddressRules`.
