@@ -95,7 +95,14 @@ const rules: PostalCodeRules = {
       notApplicable: true,
     },
 
-    street: { valueIn: 'long_name', types: ['route'] },
+    street: {
+      valueIn: 'long_name',
+      types: ['route'],
+      handler: (address, googleAddress) => {
+        address.street = { value: (googleAddress as { name: string }).name }
+        return address
+      },
+    },
 
     neighborhood: {
       valueIn: 'long_name',
