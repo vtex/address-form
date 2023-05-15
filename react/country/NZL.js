@@ -98,8 +98,8 @@ export default {
       valueIn: 'long_name',
       types: ['route'],
       handler: (address, googleAddress) => {
-        address.street = { value: (googleAddress as { name: string }).name }
-          return address
+        address.street = { value: googleAddress.name }
+        return address
       },
     },
 
