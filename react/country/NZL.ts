@@ -100,7 +100,7 @@ const rules: PostalCodeRules = {
       types: ['route'],
       handler: (address, googleAddress) => {
         address.street = { value: (googleAddress as { name: string }).name }
-          return address
+        return address
       },
     },
 
