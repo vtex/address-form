@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Rules for Japan ('JPN') and Jamaica ('JAM').
+
 ## [4.21.2] - 2023-05-15
 
 ### Fixed

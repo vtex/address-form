@@ -28,6 +28,8 @@ import IDN from './country/IDN'
 import IND from './country/IND'
 import IRL from './country/IRL'
 import ITA from './country/ITA'
+import JAM from './country/JAM'
+import JPN from './country/JPN'
 import KOR from './country/KOR'
 import MEX from './country/MEX'
 import NIC from './country/NIC'
@@ -83,6 +85,8 @@ export default {
   IND,
   IRL,
   ITA,
+  JAM,
+  JPN,
   KOR,
   MEX,
   NIC,
