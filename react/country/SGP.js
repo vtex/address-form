@@ -82,6 +82,43 @@ export default {
       required: true,
     },
   ],
+  geolocation: {
+    postalCode: {
+      valueIn: 'long_name',
+      types: ['postal_code'],
+      required: true,
+    },
+
+    number: {
+      valueIn: 'long_name',
+      types: ['street_number'],
+      required: false,
+      notApplicable: true,
+    },
+
+    street: { valueIn: 'long_name', types: ['route'] },
+
+    neighborhood: {
+      valueIn: 'long_name',
+      types: [
+        'neighborhood',
+      ],
+    },
+
+    state: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_1'],
+    },
+
+    city: {
+      valueIn: 'long_name',
+      types: ['administrative_area_level_2', 'locality'],
+    },
+
+    receiverName: {
+      required: true,
+    },
+  },
   summary: [
     [{ name: 'street' }, { delimiter: ', ', name: 'complement' }],
     [

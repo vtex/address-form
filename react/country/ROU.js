@@ -14027,6 +14027,7 @@ export default {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
+      required: false,
     },
     number: {
       valueIn: 'long_name',

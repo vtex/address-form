@@ -96,6 +96,7 @@ export default {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
+      required: false,
     },
 
     number: {

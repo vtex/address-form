@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Postal code rules when using geolocation mode.
+
 ## [4.22.1] - 2023-06-19
 
 ### Fixed
