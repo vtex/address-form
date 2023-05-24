@@ -1,15 +1,18 @@
+// @ts-check
+
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import glob from 'glob'
 import { babel } from '@rollup/plugin-babel'
-import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import jsx from 'acorn-jsx'
 import externals from 'rollup-plugin-node-externals'
 
 const EXTENSIONS = ['.js', '.jsx', '.mjs', '.json', '.ts', '.tsx']
 
+const dirname = fileURLToPath(new URL('.', import.meta.url))
+
+/** @type {import('rollup').RollupOptions} */
 export default {
   input: Object.fromEntries(
     glob
@@ -40,13 +43,14 @@ export default {
     dir: 'lib',
     preserveModules: true,
     exports: 'named',
+    interop: 'auto',
   },
-  acornInjectPlugins: [jsx()],
   plugins: [
     nodeResolve({
+      preferBuiltins: false,
       extensions: EXTENSIONS,
+      jail: dirname,
     }),
-    commonjs(),
     externals({
       include: [/@babel\/runtime/],
     }),
