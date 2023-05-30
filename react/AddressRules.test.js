@@ -99,7 +99,7 @@ describe('AddressRules', () => {
       required: true,
     })
     expect(getField('postalCode', rules)).toMatchObject({
-      required: false,
+      required: true,
     })
 
     expect(getField('number', initialRules).notApplicable).toBeUndefined()
