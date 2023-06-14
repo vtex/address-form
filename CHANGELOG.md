@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Change Uruguay geolocation city types order for accuracy.
+
 ## [3.34.2] - 2023-06-13
 ### Fixed
 - Fix missing`notApplicable` property in `number` field for geolocation mode
