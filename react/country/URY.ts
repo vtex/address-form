@@ -456,7 +456,7 @@ const rules: PostalCodeRules = {
 
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['locality', 'administrative_area_level_2'],
     },
 
     receiverName: {
