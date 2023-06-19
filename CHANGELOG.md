@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Change Uruguay geolocation city types order for accuracy.
+
 ## [4.22.0] - 2023-05-17
 
 ### Added
