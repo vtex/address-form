@@ -85,7 +85,7 @@ const rules: PostalCodeRules = {
     postalCode: {
       valueIn: 'long_name',
       types: ['postal_code'],
-      required: true,
+      required: false,
     },
 
     street: {
