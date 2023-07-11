@@ -1279,7 +1279,7 @@ const rules: PostalCodeRules = {
   country: 'ECU',
   abbr: 'EC',
   postalCodeFrom: ONE_LEVEL,
-  postalCodeLevels: ['state'],
+  postalCodeLevels: ['city'],
   firstLevelPostalCodes: firstLevelPostalCodes(countryData),
   fields: [
     {
