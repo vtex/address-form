@@ -1,5 +1,5 @@
-import { ONE_LEVEL } from '../constants'
-import { firstLevelPostalCodes } from '../transforms/postalCodes'
+import { TWO_LEVELS } from '../constants'
+import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 
 const countryData = {
@@ -1266,9 +1266,9 @@ const countryData = {
 export default {
   country: 'ECU',
   abbr: 'EC',
-  postalCodeFrom: ONE_LEVEL,
-  postalCodeLevels: ['state'],
-  firstLevelPostalCodes: firstLevelPostalCodes(countryData),
+  postalCodeFrom: TWO_LEVELS,
+  postalCodeLevels: ['state', 'city'],
+  secondLevelPostalCodes: secondLevelPostalCodes(countryData),
   fields: [
     {
       hidden: true,
