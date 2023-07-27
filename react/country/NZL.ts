@@ -130,10 +130,11 @@ const rules: PostalCodeRules = {
       required: true,
     },
   },
-  summary: [
+summary: [
     [{ name: 'complement' }, { delimiter: ' ', name: 'street' }],
     [
       { name: 'city' },
+      { delimiter: ', ', name: 'neighborhood' },
       { delimiter: ', ', name: 'state' },
       { delimiter: ' ', name: 'postalCode' },
     ],
