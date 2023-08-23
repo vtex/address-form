@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.22.3] - 2023-08-23
+
 ### Added
 
 - Virgin Islands (US) country rules.
