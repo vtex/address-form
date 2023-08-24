@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.34.5] - 2023-08-24
+
 ### Added
 
 - Virgin Islands (US) country rules.
@@ -1477,3 +1479,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - This Changelog
 - **`AddressSubmitter`** component and tests
+
+
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.34.5...HEAD
+[3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
