@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Ecuador postal code settings to be more granular and show the cities list during check-out.
 
+## [3.34.6] - 2023-08-24
+
+## [3.34.5] - 2023-08-24
+
+### Added
+
+- Virgin Islands (US) country rules.
+
 ## [3.34.4] - 2023-06-27
 
 ### Fixed
@@ -1477,3 +1485,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - This Changelog
 - **`AddressSubmitter`** component and tests
+
+
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.34.6...HEAD
+[3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
+[3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
