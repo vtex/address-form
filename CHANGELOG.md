@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Ecuador postal code settings to be more granular and show the cities list during check-out.
+
 ## [4.22.3] - 2023-08-23
 
 ### Added
