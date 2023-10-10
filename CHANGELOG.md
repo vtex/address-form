@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.34.7] - 2023-10-09
+
+### Fixed
+
+- New Zealand geolocation to include neighborhood.
+
 ### Fixed
 
 - Ecuador postal code settings to be more granular and show the cities list during check-out.
