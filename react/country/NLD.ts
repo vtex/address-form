@@ -31,6 +31,14 @@ const rules: PostalCodeRules = {
       size: 'xlarge',
     },
     {
+      name: 'number',
+      maxLength: 750,
+      label: 'number',
+      required: true,
+      size: 'mini',
+      autoComplete: 'nope',
+    },
+    {
       name: 'complement',
       maxLength: 750,
       label: 'addressLine2',
@@ -41,13 +49,14 @@ const rules: PostalCodeRules = {
       maxLength: 100,
       label: 'city',
       required: true,
-      size: 'large',
+      size: 'xlarge',
     },
     {
+      hidden: true,
       name: 'state',
       maxLength: 100,
       label: 'department',
-      required: true,
+      required: false,
       size: 'large',
     },
     {
