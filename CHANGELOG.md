@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fields displayed for Netherlands customers, in order to better reflect the usual experience for shoppers in that country.
 
+## [3.34.8] - 2023-10-10
+
 ## [3.34.7] - 2023-10-09
 
 ### Fixed
