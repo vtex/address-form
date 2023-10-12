@@ -34,7 +34,7 @@ const rules: PostalCodeRules = {
       name: 'number',
       maxLength: 750,
       label: 'number',
-      required: true,
+      required: false,
       size: 'mini',
       autoComplete: 'nope',
     },
