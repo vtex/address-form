@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.22.6] - 2023-10-13
+
 ### Fixed
 
 - Made Number field not required for NLD customers.
