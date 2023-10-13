@@ -9,10 +9,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Fields displayed for Netherlands customers, in order to better reflect the usual experience for shoppers in that country.
+- New Zealand geolocation to format neighborhood.
+
+## [3.34.10] - 2023-10-12
+
+## [3.34.9] - 2023-10-12
+
+### Fixed
+
 - Made Number field not required for NLD customers.
 
 ## [3.34.8] - 2023-10-10
+
+### Fixed
+
+- Fields displayed for Netherlands customers, in order to better reflect the usual experience for shoppers in that country.
 
 ## [3.34.7] - 2023-10-09
 
