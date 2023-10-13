@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Fields displayed for Netherlands customers, in order to better reflect the usual experience for shoppers in that country.
+- Made Number field not required for NLD customers.
 
 ## [3.34.8] - 2023-10-10
 
