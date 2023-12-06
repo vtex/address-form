@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Belgium ('BEL') country rules.
+- Netherlands ('NDL')  country rules.
 
 ## [3.34.11] - 2023-10-18
 

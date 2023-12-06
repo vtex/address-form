@@ -36,7 +36,6 @@ const rules: PostalCodeRules = {
       label: 'number',
       required: false,
       size: 'mini',
-      autoComplete: 'nope',
     },
     {
       name: 'complement',
