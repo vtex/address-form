@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Hungary country rules and placeholder.
+
 ## [3.34.12] - 2023-12-06
 
 ### Fixed
