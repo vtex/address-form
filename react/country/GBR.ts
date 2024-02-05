@@ -128,7 +128,10 @@ const rules: PostalCodeRules = {
 
     state: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_1'],
+      types: [
+        'postal_town',
+        'administrative_area_level_1'
+      ],
     },
 
     city: {
