@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.22.8] - 2024-02-05
+
 ### Fixed
 
 - Netherlands ('NLD')  country rules to show number in address summary.
