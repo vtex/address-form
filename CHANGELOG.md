@@ -11,6 +11,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fix prop for state in GBR
 
+## [3.35.1] - 2024-02-05
+
+### Fixed
+
+- Netherlands ('NLD') country rules to show number in address summary.
+
+## [3.35.0] - 2024-01-25
+
+### Added
+
+- Hungary country rules and placeholder.
+
+## [3.34.12] - 2023-12-06
+
+### Fixed
+
+- Belgium ('BEL') country rules.
+- Netherlands ('NDL')  country rules.
+
 ## [3.34.11] - 2023-10-18
 
 ### Fixed
@@ -1517,7 +1536,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.34.11...HEAD
+[Unreleased]: https://github.com/address-form//compare/v3.35.1...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
+[3.35.1]: https://github.com/address-form//compare/v3.35.0...v3.35.1
+[3.35.0]: https://github.com/vtex/address-form/compare/v3.34.12...v3.35.0
+[3.34.12]: https://github.com/vtex/address-form/compare/v3.34.11...v3.34.12
 [3.34.11]: https://github.com/vtex/address-form/compare/v3.34.10...v3.34.11

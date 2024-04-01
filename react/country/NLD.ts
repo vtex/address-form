@@ -36,7 +36,6 @@ const rules: PostalCodeRules = {
       label: 'number',
       required: false,
       size: 'mini',
-      autoComplete: 'nope',
     },
     {
       name: 'complement',
@@ -114,8 +113,8 @@ const rules: PostalCodeRules = {
     },
   },
   summary: [
+    [{ name: 'street' }, { delimiter: ' ', name: 'number' }],
     [{ name: 'complement' }],
-    [{ name: 'street' }],
     [{ name: 'postalCode' }, { delimiter: ' ', name: 'city' }],
   ],
 }
