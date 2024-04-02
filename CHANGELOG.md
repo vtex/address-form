@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix prop for state in GBR
+
 ## [3.35.1] - 2024-02-05
 
 ### Fixed
