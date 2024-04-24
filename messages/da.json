@@ -61,6 +61,7 @@
   "address-form.geolocation.example.VEN": "F.eks.: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ZAF": "F.eks.: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.geolocation.example.UNI": "F.eks.: 225 East 41st Street, New York",
+  "address-form.geolocation.example.MLT": "F.eks.: 35, Dawret Fra Giovanni Bichi Il-Kalkara, KKR 1280 Malta",
   "address-form.error.ERROR_EMPTY_FIELD": "Dette felt er påkrævet.",
   "address-form.error.ERROR_POSTAL_CODE": "Ugyldigt postnummer.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Ugyldig adresse.",
