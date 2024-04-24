@@ -61,6 +61,7 @@
   "address-form.geolocation.example.VEN": "Es: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ZAF": "Es: 234 Brickfield Rd, Salt River, Città Del Capo, 7501, Sud Africa",
   "address-form.geolocation.example.UNI": "Es: 225 East 41st Street, New York",
+  "address-form.geolocation.example.MLT": "Es: 35, Dawret Fra Giovanni Bichi Il-Kalkara, KKR 1280 Malta",
   "address-form.error.ERROR_EMPTY_FIELD": "Questo campo è obbligatorio.",
   "address-form.error.ERROR_POSTAL_CODE": "Codice postale non valido.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Indirizzo non valido.",

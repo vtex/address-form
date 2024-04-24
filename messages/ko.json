@@ -61,6 +61,7 @@
   "address-form.geolocation.example.VEN": "예: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ZAF": "예: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.geolocation.example.UNI": "예: 225 East 41st Street, New York",
+  "address-form.geolocation.example.MLT": "예: 35, Dawret Fra Giovanni Bichi Il-Kalkara, KKR 1280 Malta",
   "address-form.error.ERROR_EMPTY_FIELD": "해당 입력란은 필수 입력 사항입니다.",
   "address-form.error.ERROR_POSTAL_CODE": "잘못된 우편번호입니다.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "잘못된 주소입니다.",
