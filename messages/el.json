@@ -61,6 +61,7 @@
   "address-form.geolocation.example.VEN": "Π.χ.: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ZAF": "Π.χ.: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.geolocation.example.UNI": "Π.χ.: 225 East 41st Street, New York",
+  "address-form.geolocation.example.MLT": "Π.χ.: 35, Dawret Fra Giovanni Bichi Il-Kalkara, KKR 1280 Malta",
   "address-form.error.ERROR_EMPTY_FIELD": "Αυτό το πεδίο είναι υποχρεωτικό.",
   "address-form.error.ERROR_POSTAL_CODE": "Άκυρος ταχυδρομικός κώδικας.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Άκυρη διεύθυνση.",

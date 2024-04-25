@@ -55,6 +55,7 @@ import URY from './country/URY'
 import USA from './country/USA'
 import VEN from './country/VEN'
 import ZAF from './country/ZAF'
+import MLT from './country/MLT'
 
 export default {
   defaultRules,
@@ -112,5 +113,6 @@ export default {
   URY,
   USA,
   VEN,
-  ZAF
+  ZAF,
+  MLT
 }

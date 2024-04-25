@@ -61,6 +61,7 @@
   "address-form.geolocation.example.VEN": "Eg: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ZAF": "Eg: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.geolocation.example.UNI": "Eg: 225 East 41st Street, New York",
+  "address-form.geolocation.example.MLT": "Eg: 35, Dawret Fra Giovanni Bichi Il-Kalkara, KKR 1280 Malta",
   "address-form.error.ERROR_EMPTY_FIELD": "Це поле необхідно заповнити.",
   "address-form.error.ERROR_POSTAL_CODE": "Недійсний поштовий індекс.",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Недійсна адреса.",
