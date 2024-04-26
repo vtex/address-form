@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.23.0] - 2024-04-26
+
+### Added
+
+- Malta address rules.
+
 ## [4.22.8] - 2024-02-05
 
 ### Fixed
@@ -892,3 +898,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - This Changelog
 - **`AddressSubmitter`** component and tests
+
+
+[Unreleased]: https://github.com/vtex/address-form/compare/v4.23.0...HEAD
+[4.23.0]: https://github.com/vtex/address-form/compare/v4.22.8...v4.23.0

@@ -61,6 +61,7 @@
   "address-form.geolocation.example.VEN": "ตย.: Avenida Mohedano, Caracas",
   "address-form.geolocation.example.ZAF": "ตย.: 234  Brickfield Rd, Salt River, Cape Town, 7501, South Africa",
   "address-form.geolocation.example.UNI": "ตย.: 225 East 41st Street, New York",
+  "address-form.geolocation.example.MLT": "ตย.: 35, Dawret Fra Giovanni Bichi Il-Kalkara, KKR 1280 Malta",
   "address-form.error.ERROR_EMPTY_FIELD": "ต้องระบุฟิลด์ข้อมูลนี้",
   "address-form.error.ERROR_POSTAL_CODE": "รหัสไปรษณีย์ไม่ถูกต้อง",
   "address-form.error.ERROR_GOOGLE_ADDRESS": "ที่อยู่ไม่ถูกต้อง",
