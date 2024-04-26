@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.35.3] - 2024-04-26
+
 ## [3.35.2] - 2024-04-25
 
 ### Added
@@ -1542,9 +1544,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.35.2...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.35.3...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
+[3.35.3]: https://github.com/vtex/address-form/compare/v3.35.2...v3.35.3
 [3.35.2]: https://github.com/vtex/address-form/compare/v3.35.1...v3.35.2
 [3.35.1]: https://github.com/address-form//compare/v3.35.0...v3.35.1
 [3.35.0]: https://github.com/vtex/address-form/compare/v3.34.12...v3.35.0
