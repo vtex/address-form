@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Malta postal code validation.
+
 ## [3.35.3] - 2024-04-26
 
 ## [3.35.2] - 2024-04-25
