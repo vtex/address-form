@@ -18,7 +18,7 @@ export default {
       fixedLabel: 'Post code',
       required: true,
       mask: 'AAA 999',
-      regex: '^[a-zA-Z]{2,3}\d{4}$',
+      regex: '^[a-zA-Z]{2,3}\s?\d{4}$',
       postalCodeAPI: false,
       size: 'small',
       autoComplete: 'nope',
