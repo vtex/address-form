@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.23.1] - 2024-05-06
+
 ### Fixed
 
 - Malta postal code validation.
@@ -904,5 +906,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v4.23.0...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v4.23.1...HEAD
+[4.23.1]: https://github.com/vtex/address-form/compare/v4.23.0...v4.23.1
 [4.23.0]: https://github.com/vtex/address-form/compare/v4.22.8...v4.23.0
