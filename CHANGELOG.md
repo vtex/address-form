@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [5.0.0] - 2024-05-06
+## [4.23.2] - 2024-05-06
+
+### Fixed
+- Invalid release created by vtex io ci/cd.
 
 ## [4.23.1] - 2024-05-06
 
@@ -908,6 +911,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v4.23.1...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v4.23.2...HEAD
+[4.23.2]: https://github.com/vtex/address-form/compare/v4.23.1...v4.23.2
 [4.23.1]: https://github.com/vtex/address-form/compare/v4.23.0...v4.23.1
 [4.23.0]: https://github.com/vtex/address-form/compare/v4.22.8...v4.23.0
