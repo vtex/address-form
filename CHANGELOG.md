@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [5.0.0] - 2024-05-06
+### Fixed
+- Invalid release created by vtex io ci/cd.
 
 ## [4.23.1] - 2024-05-06
 
