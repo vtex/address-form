@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Hungarian translations.
+
 ## [3.35.5] - 2024-05-09
 
 ### Fixed
