@@ -169,6 +169,10 @@ const rules: PostalCodeRules = {
     street: {
       valueIn: 'long_name',
       types: ['route'],
+      handler: (address, googleAddress) => {
+        address.street = { value: (googleAddress as { name: string }).name }
+          return address
+      },
     },
 
     neighborhood: {
@@ -199,16 +203,15 @@ const rules: PostalCodeRules = {
   },
   summary: [
     [
-      { name: 'street' },
-      { delimiter: ' ', name: 'number' },
-      { delimiter: ', ', name: 'complement' },
+      { name: 'complement' },
+      { delimiter: ' ', name: 'street' },
+      { delimiter: ', ', name: 'neighborhood' },
     ],
     [
-      { name: 'neighborhood', delimiterAfter: ' - ' },
       { name: 'city' },
-      { delimiter: ' - ', name: 'state' },
+      { delimiter: ', ', name: 'state' },
+      { delimiter: ' ', name: 'postalCode' },
     ],
-    [{ name: 'postalCode' }],
   ],
 }
 
