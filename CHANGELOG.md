@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Hungarian translations.
+
 ## [4.23.4] - 2024-05-21
 
 ### Fixed
@@ -18,10 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Malta postal code validation.
-
-### Added
-
-- Hungarian translations.
 
 ## [4.23.2] - 2024-05-06
 
