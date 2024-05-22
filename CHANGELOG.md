@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Hungarian translations.
 
+## [3.35.6] - 2024-05-21
+
+- Malta geolocation.
+
 ## [3.35.5] - 2024-05-09
 
 ### Fixed
