@@ -11,10 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Ecuador ZIP code regex validation to accept both 6-digit postal codes and the older 4-digit municipality codes used in the list of provinces.
 
-
 ## [3.35.6] - 2024-05-21
 
-### Fixed
+### Added
+
+- Hungarian translations.
+
+## [3.35.6] - 2024-05-21
 
 - Malta geolocation.
 
