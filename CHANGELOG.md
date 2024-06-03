@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+### Fixed
+
+- New city ('Guatemala Zona 25') in Guatemala.
+
 ## [4.24.1] - 2024-05-29
 
 ### Fixed
