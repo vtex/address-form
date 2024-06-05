@@ -34,7 +34,7 @@ export default {
       name: 'number',
       maxLength: 750,
       label: 'number',
-      required: true,
+      required: false,
       size: 'mini',
       autoComplete: 'nope',
     },
@@ -68,19 +68,8 @@ export default {
     {
       name: 'state',
       maxLength: 100,
-      label: 'province',
-      required: true,
-      optionsCaption: '',
-      options: [
-        'Border', 
-        'West', 
-        'Mid-West', 
-        'South-East', 
-        'South-West', 
-        'Dublin', 
-        'Mid-East', 
-        'Midlands'
-      ],
+      label: 'county',
+      required: false,
       size: 'large',
     },
     {
