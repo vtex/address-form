@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Ecuador ZIP code regex validation to accept both 6-digit postal codes and the older 4-digit municipality codes used in the list of provinces.
 
+## [3.36.1] - 2024-05-29
+
+### Fixed
+
+- Rules for Ireland.
+
 ## [3.36.0] - 2024-05-22
 
 ### Added
@@ -1570,7 +1576,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.36.0...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.36.1...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1581,4 +1587,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.35.0]: https://github.com/vtex/address-form/compare/v3.34.12...v3.35.0
 [3.34.12]: https://github.com/vtex/address-form/compare/v3.34.11...v3.34.12
 [3.34.11]: https://github.com/vtex/address-form/compare/v3.34.10...v3.34.11
+[3.36.1]: https://github.com/vtex/address-form/compare/v3.36.0...v3.36.1
 [3.36.0]: https://github.com/vtex/address-form/compare/v3.35.6...v3.36.0
