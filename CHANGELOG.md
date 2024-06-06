@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.24.3] - 2024-06-06
+
 ### Fixed
 
 - Ecuador ZIP code regex validation to accept both 6-digit postal codes and the older 4-digit municipality codes used in the list of provinces.
