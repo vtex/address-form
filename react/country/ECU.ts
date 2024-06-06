@@ -1296,7 +1296,7 @@ const rules: PostalCodeRules = {
       maxLength: 50,
       name: 'postalCode',
       postalCodeAPI: false,
-      regex: /^([\d]{4})$/,
+      regex: /^([\d]{6}|[\d]{4})$/,
       size: 'small',
     },
     {
