@@ -16,4 +16,5 @@ export default {
   street: { value: null },
   isDisposable: { value: true },
   addressQuery: { value: null },
+  contactId: { value: null },
 } as AddressWithValidation

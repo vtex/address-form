@@ -7,6 +7,7 @@ export { default as AddressContainer } from './AddressContainer'
 export { default as AutoCompletedFields } from './AutoCompletedFields'
 export { default as AddressRules } from './AddressRules'
 export { default as AddressSubmitter } from './AddressSubmitter'
+export { default as ContactInfoForm } from './ContactInfoForm'
 
 export { default as components } from './components'
 

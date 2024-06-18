@@ -1,0 +1,40 @@
+.mainContactInfoContainer {
+}
+.mainContactInfoForm {
+}
+
+.contactInfoCheckbox input {
+    margin: 0;
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+}
+
+.contactInfoCheckbox {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+}
+
+.contactInfoTitle {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+.contactInfoFlex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contactInfoFlex .input {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .contactInfoFlex {
+    flex-wrap: wrap;
+  }
+}

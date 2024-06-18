@@ -7,8 +7,10 @@ import {
   validateAddress,
 } from './validateAddress'
 import getAddressByGeolocation from './geolocation/Utils'
+import { getPreviousContactInfo } from './ContactInfoForm'
 
 export default {
+  getPreviousContactInfo,
   isValidAddress,
   validateField,
   validateAddress,
