@@ -78,12 +78,12 @@ const ContactInfoForm = ({
     if (useUserInfo) {
       onChangeContactInfo({
         id: address?.contactId?.value ?? '',
-        email: clientProfileData?.email ?? '',
+        email: '',
         firstName: clientProfileData?.firstName ?? '',
         lastName: clientProfileData?.lastName ?? '',
-        document: clientProfileData?.document ?? '',
+        document: '',
         phone: clientProfileData?.phone ?? '',
-        documentType: clientProfileData?.documentType ?? '',
+        documentType: '',
       })
     } else {
       onChangeContactInfo(localUserInfo)
@@ -98,11 +98,6 @@ const ContactInfoForm = ({
     clientProfileData,
     onChangeAddress,
   ])
-
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('address contactInfo', contactInfo)
-  }, [contactInfo])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -124,14 +119,6 @@ const ContactInfoForm = ({
         <div className={styles.mainContactInfoForm}>
           <h4 className={styles.contactInfoTitle}>Receiver Information</h4>
           <div>
-            <Input
-              id="custom-contact-information-email"
-              label="Receiver e-mail"
-              name="email"
-              type="email"
-              onChange={handleInputChange}
-              value={localUserInfo.email ?? ''}
-            />
             <div className={styles.contactInfoFlex}>
               <Input
                 id="custom-contact-information-first-name"
@@ -152,25 +139,16 @@ const ContactInfoForm = ({
                 error={contactInfo?.error?.lastName}
               />
             </div>
-            <div className={styles.contactInfoFlex}>
-              <Input
-                id="custom-contact-information-phone"
-                label="Receiver phone *"
-                type="tel"
-                name="phone"
-                onChange={handleInputChange}
-                value={localUserInfo.phone ?? ''}
-                placeholder="Required"
-                error={contactInfo?.error?.phone}
-              />
-              <Input
-                id="custom-contact-information-document"
-                label="Receiver document"
-                name="document"
-                onChange={handleInputChange}
-                value={localUserInfo.document ?? ''}
-              />
-            </div>
+            <Input
+              id="custom-contact-information-phone"
+              label="Receiver phone *"
+              type="tel"
+              name="phone"
+              onChange={handleInputChange}
+              value={localUserInfo.phone ?? ''}
+              placeholder="Required"
+              error={contactInfo?.error?.phone}
+            />
           </div>
         </div>
       ) : null}
@@ -190,9 +168,6 @@ const areEqual = (obj1, obj2) => {
   for (const key in obj1) {
     if (key !== 'id' && key !== 'error') {
       if (obj1[key] && obj1[key] !== obj2[key]) {
-        // eslint-disable-next-line no-console
-        console.log('key', key, obj1[key], obj2[key])
-
         return false
       }
     }
