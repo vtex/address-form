@@ -209,13 +209,24 @@ export const isContactInfoFormValid = (contactInfo, onChangeContactInfo) => {
 export const getPreviousContactInfo = (state) => {
   const { orderForm, addressForm } = state
 
-  return (
+  let contactId =
     orderForm?.shippingData?.contactInformation?.find(
       ({ id }) =>
         addressForm?.addresses?.[addressForm?.residentialId]?.contactId
           ?.value === id
     ) ?? null
-  )
+
+  if (!contactId) {
+    contactId =
+      orderForm?.shippingData?.contactInformation?.find(
+        ({ id }) =>
+          orderForm?.shippingData?.availableAddresses?.find(
+            ({ addressId }) => addressId === addressForm?.residentialId
+          )?.contactId === id
+      ) ?? null
+  }
+
+  return contactId
 }
 
 export default ContactInfoForm
