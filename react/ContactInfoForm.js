@@ -69,10 +69,11 @@ const ContactInfoForm = ({
       return
     }
 
-    address.contactId.value = getGGUID(1234)
-    onChangeAddress(address)
+    address.contactId.value = prevContactInfo?.id ?? getGGUID(1234)
+
     onChangeContactInfo({ id: address.contactId.value })
-  }, [address, onChangeAddress, onChangeContactInfo])
+    onChangeAddress(address)
+  }, [address, onChangeAddress, onChangeContactInfo, prevContactInfo])
 
   useEffect(() => {
     if (useUserInfo) {
