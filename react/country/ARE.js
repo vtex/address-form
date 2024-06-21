@@ -13,7 +13,6 @@ export default {
       size: 'medium',
     },
     {
-      hidden: true,
       name: 'postalCode',
       maxLength: 50,
       label: 'postalCode',
