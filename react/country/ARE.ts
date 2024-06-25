@@ -57,7 +57,6 @@ const rules: PostalCodeRules = {
       size: 'xlarge',
     },
     {
-      // hidden: true,
       name: 'reference',
       maxLength: 750,
       label: 'emirates',
