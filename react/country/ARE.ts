@@ -1,10 +1,18 @@
-import { POSTAL_CODE } from '../constants'
+import { ONE_LEVEL } from '../constants'
+import { firstLevelPostalCodes } from '../transforms/postalCodes'
+import { getOneLevel } from '../transforms/addressFieldsOptions'
 import type { PostalCodeRules } from '../types/rules'
+
+const countryData = {
+  'Emiratos Árabes Unidos': '0',
+}
 
 const rules: PostalCodeRules = {
   country: 'ARE',
   abbr: 'AE',
-  postalCodeFrom: POSTAL_CODE,
+  postalCodeFrom: ONE_LEVEL,
+  postalCodeLevels: ['reference'],
+  firstLevelPostalCodes: firstLevelPostalCodes(countryData),
   fields: [
     {
       hidden: true,
@@ -43,11 +51,13 @@ const rules: PostalCodeRules = {
       size: 'xlarge',
     },
     {
-      hidden: true,
+      // hidden: true,
       name: 'reference',
       maxLength: 750,
-      label: 'reference',
+      label: 'postalCode',
       size: 'xlarge',
+      level: 1,
+      options: getOneLevel(countryData),
     },
     {
       hidden: true,
