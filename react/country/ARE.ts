@@ -3,8 +3,14 @@ import { firstLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel } from '../transforms/addressFieldsOptions'
 import type { PostalCodeRules } from '../types/rules'
 
-const countryData = {
-  'Emiratos Árabes Unidos': '0',
+const emiratesPostalCodeData = {
+  'Abu Dhabi': '00000',
+  Dubai: '00000',
+  Sharjah: '00000',
+  Ajman: '00000',
+  'Umm Al Quwain': '00000',
+  'Ras Al Khaimah': '00000',
+  Fujairah: '00000',
 }
 
 const rules: PostalCodeRules = {
@@ -12,7 +18,7 @@ const rules: PostalCodeRules = {
   abbr: 'AE',
   postalCodeFrom: ONE_LEVEL,
   postalCodeLevels: ['reference'],
-  firstLevelPostalCodes: firstLevelPostalCodes(countryData),
+  firstLevelPostalCodes: firstLevelPostalCodes(emiratesPostalCodeData),
   fields: [
     {
       hidden: true,
@@ -54,10 +60,10 @@ const rules: PostalCodeRules = {
       // hidden: true,
       name: 'reference',
       maxLength: 750,
-      label: 'postalCode',
+      label: 'emirates',
       size: 'xlarge',
       level: 1,
-      options: getOneLevel(countryData),
+      options: getOneLevel(emiratesPostalCodeData),
     },
     {
       hidden: true,

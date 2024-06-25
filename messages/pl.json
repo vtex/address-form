@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Nieprawidłowy adres.",
   "address-form.error.generic": "Nieprawidłowe pole.",
   "address-form.field.addressQuery": "Adres",
+  "address-form.field.emirates": "Emiraty",
   "address-form.field.notApplicable": "B/D",
   "address-form.field.noNumber": "Brak numeru",
   "address-form.field.country": "Kraj",

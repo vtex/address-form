@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Endereço inválido.",
   "address-form.error.generic": "Campo inválido.",
   "address-form.field.addressQuery": "Endereço",
+  "address-form.field.emirates": "Emirados",
   "address-form.field.notApplicable": "S/N",
   "address-form.field.noNumber": "Sem número",
   "address-form.field.country": "País",
