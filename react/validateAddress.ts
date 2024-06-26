@@ -182,6 +182,8 @@ export function validateField<FieldName extends Fields>(
     case 'addressQuery':
 
     case 'isDisposable':
+
+    case 'contactId':
       return defaultValidation(value, name, address, rules)
 
     default: {

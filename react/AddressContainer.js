@@ -12,6 +12,19 @@ import { AddressContext } from './addressContainerContext'
 import { injectRules } from './addressRulesContext'
 
 class AddressContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.contactInfo = {
+      id: null,
+      email: null,
+      firstName: null,
+      lastName: null,
+      document: null,
+      phone: null,
+      documentType: null,
+    }
+  }
+
   componentDidMount() {
     if (
       this.props.shouldHandleAddressChangeOnMount &&
@@ -106,12 +119,34 @@ class AddressContainer extends Component {
     onChangeAddress(validatedAddress, ...args)
   }
 
+  handleContactInfoChange = (field) => {
+    return (this.contactInfo = {
+      ...this.contactInfo,
+      ...field,
+    })
+  }
+
   render() {
-    const { children, Input, address } = this.props
-    const { handleAddressChange } = this
+    const { children, Input, address, handleCompleteOmnishipping } = this.props
+    const { handleAddressChange, handleContactInfoChange, contactInfo } = this
+
+    if (!address?.contactId?.value) {
+      address.contactId = { value: null }
+    } else {
+      address.contactId = { value: address.contactId.value }
+    }
 
     return (
-      <AddressContext.Provider value={{ address, handleAddressChange, Input }}>
+      <AddressContext.Provider
+        value={{
+          address,
+          contactInfo,
+          handleContactInfoChange,
+          handleCompleteOmnishipping,
+          handleAddressChange,
+          Input,
+        }}
+      >
         {children}
       </AddressContext.Provider>
     )
@@ -136,6 +171,8 @@ AddressContainer.propTypes = {
   autoCompletePostalCode: PropTypes.bool,
   shouldHandleAddressChangeOnMount: PropTypes.bool,
   shouldAddFocusToNextInvalidField: PropTypes.bool,
+  contactInfo: PropTypes.object,
+  handleCompleteOmnishipping: PropTypes.func,
 }
 
 export default injectRules(AddressContainer)

@@ -98,5 +98,6 @@
   "address-form.field.municipalityDelegation": "Municipality/Delegation",
   "address-form.field.province": "Province",
   "address-form.field.receiverName": "Recipient",
-  "address-form.field.county": "County"
+  "address-form.field.county": "County",
+  "address-form.field.contactId": "Contact Id"
 }
