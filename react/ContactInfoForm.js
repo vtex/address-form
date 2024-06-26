@@ -208,7 +208,10 @@ export const isContactInfoFormValid = (contactInfo, onChangeContactInfo) => {
 }
 
 export const getPreviousContactInfo = (state) => {
-  const { orderForm, addressForm } = state
+  const { orderForm: OFState, addressForm } = state
+  const browseOF = vtexjs?.checkout?.orderForm
+
+  const orderForm = browseOF ?? OFState?.orderForm
 
   let contactId =
     orderForm?.shippingData?.contactInformation?.find(
