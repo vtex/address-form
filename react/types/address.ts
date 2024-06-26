@@ -33,6 +33,7 @@ export interface Address {
   geoCoordinates?: number[] | null
   receiverName?: string | null
   addressQuery?: string | null
+  contactId?: string | null
 }
 
 export type AddressValues = Address[Fields] | null
