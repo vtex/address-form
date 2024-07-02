@@ -20,7 +20,6 @@ const rules: PostalCodeRules = {
       required: true,
       mask: '99999',
       regex: '^\\d{5}$',
-      forgottenURL: 'https://splonline.com.sa/en/services/national-address',
       size: 'small',
       autoComplete: 'nope',
       postalCodeAPI: false,
