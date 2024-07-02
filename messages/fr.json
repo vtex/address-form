@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adresse non valable.",
   "address-form.error.generic": "Champ non valable.",
   "address-form.field.addressQuery": "Adresse",
+  "address-form.field.emirates": "Émirats",
   "address-form.field.notApplicable": "N/A",
   "address-form.field.noNumber": "Pas de numéro",
   "address-form.field.country": "Pays",

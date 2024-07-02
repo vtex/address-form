@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Neveljaven naslov.",
   "address-form.error.generic": "Neveljavno polje.",
   "address-form.field.addressQuery": "Naslov",
+  "address-form.field.emirates": "Emirati",
   "address-form.field.notApplicable": "Ni na voljo",
   "address-form.field.noNumber": "Ni števila",
   "address-form.field.country": "Država",

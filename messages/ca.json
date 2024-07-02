@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adreça no vàlida.",
   "address-form.error.generic": "Camp no vàlid.",
   "address-form.field.addressQuery": "Adreça",
+  "address-form.field.emirates": "Emirats",
   "address-form.field.notApplicable": "No escau",
   "address-form.field.noNumber": "Sense número",
   "address-form.field.country": "País",

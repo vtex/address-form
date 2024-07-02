@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Indirizzo non valido.",
   "address-form.error.generic": "Campo non valido.",
   "address-form.field.addressQuery": "Indirizzo",
+  "address-form.field.emirates": "Emirati",
   "address-form.field.notApplicable": "N/D",
   "address-form.field.noNumber": "Nessun numero",
   "address-form.field.country": "Nazione",

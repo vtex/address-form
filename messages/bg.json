@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Невалиден адрес.",
   "address-form.error.generic": "Невалидно поле.",
   "address-form.field.addressQuery": "Адрес",
+  "address-form.field.emirates": "إمارات",
   "address-form.field.notApplicable": "Няма",
   "address-form.field.noNumber": "Няма номер",
   "address-form.field.country": "Държава",
