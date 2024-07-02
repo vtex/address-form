@@ -1,23 +1,9 @@
-import { firstLevelPostalCodes } from '../transforms/postalCodes'
-import { getOneLevel } from '../transforms/addressFieldsOptions'
-import { POSTAL_CODE ,  ONE_LEVEL} from '../constants'
-
-const emiratesPostalCodeData = {
-  'Abu Dhabi': '00000',
-  Dubai: '00000',
-  Sharjah: '00000',
-  Ajman: '00000',
-  'Umm Al Quwain': '00000',
-  'Ras Al Khaimah': '00000',
-  Fujairah: '00000',
-}
+import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: 'ARE',
-  abbr: 'AE',
-  postalCodeFrom: ONE_LEVEL,
-  postalCodeLevels: ['reference'],
-  firstLevelPostalCodes: firstLevelPostalCodes(emiratesPostalCodeData),
+  country: 'SAU',
+  abbr: 'SA',
+  postalCodeFrom: POSTAL_CODE,
   fields: [
     {
       hidden: true,
@@ -27,10 +13,12 @@ export default {
       size: 'medium',
     },
     {
-      hidden: true,
       name: 'postalCode',
-      maxLength: 50,
+      maxLength: 5,
       label: 'postalCode',
+      required: true,
+      mask: '99999',
+      regex: '^\\d{5}$',
       size: 'small',
       autoComplete: 'nope',
       postalCodeAPI: false,
@@ -56,12 +44,11 @@ export default {
       size: 'xlarge',
     },
     {
+      hidden: true,
       name: 'reference',
       maxLength: 750,
-      label: 'emirates',
+      label: 'reference',
       size: 'xlarge',
-      level: 1,
-      options: getOneLevel(emiratesPostalCodeData),
     },
     {
       hidden: true,

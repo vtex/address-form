@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Alamat tidak valid.",
   "address-form.error.generic": "Bidang tidak valid.",
   "address-form.field.addressQuery": "Alamat",
+  "address-form.field.emirates": "Emirat",
   "address-form.field.notApplicable": "Tidak Ada",
   "address-form.field.noNumber": "Tidak ada angka",
   "address-form.field.country": "Negara",

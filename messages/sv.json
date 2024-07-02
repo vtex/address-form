@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Ogiltig adress.",
   "address-form.error.generic": "Ogiltigt fält.",
   "address-form.field.addressQuery": "Adress",
+  "address-form.field.emirates": "Förenade Arabemiraten",
   "address-form.field.notApplicable": "Ej tillgängligt",
   "address-form.field.noNumber": "Inga nummer",
   "address-form.field.country": "Land",

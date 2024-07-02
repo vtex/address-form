@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Ugyldig adresse.",
   "address-form.error.generic": "Ugyldigt felt.",
   "address-form.field.addressQuery": "Adresse",
+  "address-form.field.emirates": "Emiraterne",
   "address-form.field.notApplicable": "Ikke tilgængelig",
   "address-form.field.noNumber": "Intet nummer",
   "address-form.field.country": "Land",
