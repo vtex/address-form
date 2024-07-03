@@ -43,12 +43,15 @@ const ContactInfoForm = ({
   onChangeContactInfo = (_, __) => {},
   clientProfileData,
   prevContactInfo,
+  canEditData,
 }) => {
   const isPrevUserData = areEqual(prevContactInfo, clientProfileData)
   const [useUserInfo, setUseUserInfo] = useState(
     prevContactInfo?.id
-      ? address?.contactId?.value === prevContactInfo?.id && isPrevUserData
-      : true
+      ? address?.contactId?.value === prevContactInfo?.id &&
+          isPrevUserData &&
+          canEditData
+      : canEditData
   )
 
   const [localUserInfo, setLocalUserInfo] = useState(
@@ -65,15 +68,23 @@ const ContactInfoForm = ({
   )
 
   useEffect(() => {
-    if (address?.contactId?.value) {
+    if (address?.contactId?.value && contactInfo?.id) {
       return
     }
 
-    address.contactId.value = prevContactInfo?.id ?? getGGUID(1234)
+    if (!address?.contactId?.value) {
+      address.contactId.value = prevContactInfo?.id ?? getGGUID(1234)
+    }
 
     onChangeContactInfo({ id: address.contactId.value })
     onChangeAddress(address)
-  }, [address, onChangeAddress, onChangeContactInfo, prevContactInfo])
+  }, [
+    address,
+    onChangeAddress,
+    onChangeContactInfo,
+    prevContactInfo,
+    contactInfo,
+  ])
 
   useEffect(() => {
     if (useUserInfo) {
@@ -86,7 +97,7 @@ const ContactInfoForm = ({
         phone: clientProfileData?.phone ?? '',
         documentType: '',
       })
-    } else {
+    } else if (!isUserInfoEmpty(localUserInfo)) {
       onChangeContactInfo(localUserInfo)
     }
 
@@ -106,13 +117,27 @@ const ContactInfoForm = ({
     setLocalUserInfo((prev) => ({ ...prev, [name]: value }))
   }
 
+  const handleResetUserData = (resetData) => {
+    if (resetData) {
+      onChangeContactInfo(localUserInfo)
+    }
+  }
+
   return (
     <div className={styles.mainContactInfoContainer}>
       <label className={styles.contactInfoCheckbox}>
         <input
           type="checkbox"
           checked={useUserInfo}
-          onChange={() => setUseUserInfo((prev) => !prev)}
+          style={{ display: 'block' }}
+          onChange={() =>
+            setUseUserInfo((prev) => {
+              handleResetUserData(prev)
+
+              return !prev
+            })
+          }
+          disabled={!canEditData}
         />
         Receiver Information same as contact Information
       </label>
@@ -157,6 +182,16 @@ const ContactInfoForm = ({
   )
 }
 
+const isUserInfoEmpty = (userInfo) => {
+  for (const key in userInfo) {
+    if (key !== 'id' && key !== 'error' && userInfo[key]) {
+      return false
+    }
+  }
+
+  return true
+}
+
 const areEqual = (obj1, obj2) => {
   if (obj1 === obj2) {
     return true
@@ -177,8 +212,18 @@ const areEqual = (obj1, obj2) => {
   return true
 }
 
-export const isContactInfoFormValid = (contactInfo, onChangeContactInfo) => {
-  const { firstName, lastName, phone } = contactInfo
+export const isContactInfoFormValid = (
+  contactInfo,
+  onChangeContactInfo,
+  address
+) => {
+  const { contactId } = address ?? {}
+
+  const { firstName, lastName, phone, id } = contactInfo
+
+  if (!contactId?.value && !id) {
+    return true
+  }
 
   if (firstName) {
     if (lastName) {
