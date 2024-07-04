@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Disable editing country for existing address to be compliant with Profile V2 structure.
+
 ## [4.24.3] - 2024-06-06
 
 ### Fixed
