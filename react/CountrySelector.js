@@ -50,6 +50,10 @@ class CountrySelector extends Component {
       value: address.country.value,
     }
 
+    if (!!address?.addressId?.value) {
+      address.country.disabled = true
+    }
+
     return (
       <InputFieldContainer
         intl={intl}
