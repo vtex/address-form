@@ -68,7 +68,10 @@ const ContactInfoForm = ({
   )
 
   useEffect(() => {
-    if (address?.contactId?.value && contactInfo?.id) {
+    if (
+      (address?.contactId?.value && contactInfo?.id) ||
+      isUserInfoEmpty(contactInfo)
+    ) {
       return
     }
 
@@ -215,13 +218,11 @@ const areEqual = (obj1, obj2) => {
 export const isContactInfoFormValid = (
   contactInfo,
   onChangeContactInfo,
-  address
+  omitValidation = false
 ) => {
-  const { contactId } = address ?? {}
+  const { firstName, lastName, phone } = contactInfo
 
-  const { firstName, lastName, phone, id } = contactInfo
-
-  if (!contactId?.value && !id) {
+  if (omitValidation) {
     return true
   }
 

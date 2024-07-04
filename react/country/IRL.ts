@@ -80,7 +80,7 @@ const rules: PostalCodeRules = {
       maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
-      required: true,
+      required: false,
     },
     {
       hidden: true,
