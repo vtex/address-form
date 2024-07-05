@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Άκυρη διεύθυνση.",
   "address-form.error.generic": "Άκυρο πεδίο.",
   "address-form.field.addressQuery": "Διεύθυνση",
+  "address-form.field.emirates": "Ηνωμένα Αραβικά Εμιράτα",
   "address-form.field.notApplicable": "Κ/Α",
   "address-form.field.noNumber": "Δεν υπάρχει αριθμός",
   "address-form.field.country": "Χώρα",
