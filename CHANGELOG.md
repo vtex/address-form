@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.24.4] - 2024-07-05
+
 ### Fixed
 
 - Fix the validations rules for Saudi Arabia.
