@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Adresă invalidă.",
   "address-form.error.generic": "Câmp invalid.",
   "address-form.field.addressQuery": "Adresă",
+  "address-form.field.emirates": "Emiratele Arabe Unite",
   "address-form.field.notApplicable": "Nu se aplică",
   "address-form.field.noNumber": "Fără număr",
   "address-form.field.country": "Țara",

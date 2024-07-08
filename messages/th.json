@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "ที่อยู่ไม่ถูกต้อง",
   "address-form.error.generic": "ฟิลด์ข้อมูลไม่ถูกต้อง",
   "address-form.field.addressQuery": "ที่อยู่",
+  "address-form.field.emirates": "อาหรับเอมิเรตส์",
   "address-form.field.notApplicable": "N/A",
   "address-form.field.noNumber": "ไม่มีเลขที่",
   "address-form.field.country": "ประเทศ",

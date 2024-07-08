@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "잘못된 주소입니다.",
   "address-form.error.generic": "잘못된 필드입니다.",
   "address-form.field.addressQuery": "주소",
+  "address-form.field.emirates": "아랍에미리트",
   "address-form.field.notApplicable": "해당 없음",
   "address-form.field.noNumber": "번호 없음",
   "address-form.field.country": "국가",

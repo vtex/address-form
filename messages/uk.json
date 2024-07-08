@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Недійсна адреса.",
   "address-form.error.generic": "Недійсне значення поля.",
   "address-form.field.addressQuery": "Адреса",
+  "address-form.field.emirates": "Емірати",
   "address-form.field.notApplicable": "Не доступно",
   "address-form.field.noNumber": "Номер відсутній",
   "address-form.field.country": "Країна",

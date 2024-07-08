@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Virheellinen osoite.",
   "address-form.error.generic": "Virheellinen kenttä.",
   "address-form.field.addressQuery": "Osoite",
+  "address-form.field.emirates": "Emiraatit",
   "address-form.field.notApplicable": "–",
   "address-form.field.noNumber": "Ei numeroa",
   "address-form.field.country": "Maa",

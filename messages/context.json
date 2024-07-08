@@ -35,6 +35,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Invalid address.",
   "address-form.error.generic": "Invalid field.",
   "address-form.field.addressQuery": "Address",
+  "address-form.field.emirates": "Emirates",
   "address-form.field.notApplicable": "N/A",
   "address-form.field.noNumber": "No number",
   "address-form.field.country": "Country",

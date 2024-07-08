@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Ongeldig adres.",
   "address-form.error.generic": "Ongeldig veld.",
   "address-form.field.addressQuery": "Adres",
+  "address-form.field.emirates": "Emiraten",
   "address-form.field.notApplicable": "NVT",
   "address-form.field.noNumber": "Geen nummer",
   "address-form.field.country": "Land",

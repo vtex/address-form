@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "عنوان غير صالح.",
   "address-form.error.generic": "حقل غير صالح.",
   "address-form.field.addressQuery": "العنوان",
+  "address-form.field.emirates": "إمارات",
   "address-form.field.notApplicable": "غير متاح",
   "address-form.field.noNumber": "بدون أرقام",
   "address-form.field.country": "البلد",

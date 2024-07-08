@@ -67,6 +67,7 @@
     "address-form.error.ERROR_GOOGLE_ADDRESS": "Érvénytelen cím.",
     "address-form.error.generic": "Érvénytelen mező.",
     "address-form.field.addressQuery": "Cím",
+    "address-form.field.emirates": "Emirátusok",
     "address-form.field.notApplicable": "Nem elérhető",
     "address-form.field.noNumber": "Nincs szám",
     "address-form.field.country": "Ország",
