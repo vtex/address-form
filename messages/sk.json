@@ -67,6 +67,7 @@
   "address-form.error.ERROR_GOOGLE_ADDRESS": "Neplatná adresa.",
   "address-form.error.generic": "Neplatné pole.",
   "address-form.field.addressQuery": "Adresa",
+  "address-form.field.emirates": "Emiráty",
   "address-form.field.notApplicable": "Nevzťahuje sa",
   "address-form.field.noNumber": "Žiadne číslo",
   "address-form.field.country": "Krajina",

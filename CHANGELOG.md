@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.36.5] - 2024-07-02
+
+### Fixed
+- Fix the validations rules for Saudi Arabia.
+
+## [3.36.4] - 2024-07-02
+
+## [3.36.3] - 2024-07-02
+
+### Fixed
+
+- Enable autocomplete postal code from reference field for ARE [[KI#312132](https://vtexhelp.zendesk.com/agent/tickets/312132)].
+
 ## [3.36.2] - 2024-06-06
 
 ### Fixed
