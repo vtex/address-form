@@ -22,6 +22,7 @@ export default {
       postalCodeAPI: false,
       size: 'small',
       autoComplete: 'nope',
+      autoUpperCase: true,
     },
     {
       name: 'street',

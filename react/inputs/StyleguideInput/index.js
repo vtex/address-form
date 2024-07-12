@@ -27,8 +27,15 @@ class StyleguideInput extends Component {
   }
 
   handleChange = (e) => {
+    const { field } = this.props
+    let { value } = e.target
+
+    if (field.autoUpperCase === true) {
+      value = value.toUpperCase()
+    }
+
     this.setState({ showErrorMessage: false })
-    this.props.onChange && this.props.onChange(e.target.value)
+    this.props.onChange && this.props.onChange(value)
   }
 
   componentDidUpdate(prevProps) {
