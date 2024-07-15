@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.24.6] - 2024-07-15
+
 ### Added
 - implemented autoUpperCase rule for countries with alphanumeric postal codes, ensuring consistent uppercase formatting.
 
