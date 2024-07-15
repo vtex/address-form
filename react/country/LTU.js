@@ -1,10 +1,9 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: 'IRL',
-  abbr: 'IE',
+  country: null,
+  abbr: null,
   postalCodeFrom: POSTAL_CODE,
-  postalCodeProtectedFields: ['state'],
   fields: [
     {
       hidden: true,
@@ -15,35 +14,32 @@ export default {
     },
     {
       name: 'postalCode',
-      maxLength: 8,
+      maxLength: 50,
       label: 'postalCode',
-      required: true,
-      mask: '999 9999',
-      regex: /(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$/,
-      postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
+      postalCodeAPI: false,
       autoUpperCase: true,
     },
     {
       name: 'street',
-      label: 'street',
+      label: 'addressLine1',
       required: true,
       size: 'xlarge',
     },
     {
+      hidden: true,
       name: 'number',
       maxLength: 750,
       label: 'number',
-      required: false,
-      size: 'mini',
+      size: 'small',
       autoComplete: 'nope',
     },
     {
       name: 'complement',
       maxLength: 750,
-      label: 'floorAndLetter',
-      size: 'large',
+      label: 'addressLine2',
+      size: 'xlarge',
     },
     {
       hidden: true,
@@ -69,8 +65,8 @@ export default {
     {
       name: 'state',
       maxLength: 100,
-      label: 'county',
-      required: false,
+      label: 'state',
+      required: true,
       size: 'large',
     },
     {
@@ -92,7 +88,7 @@ export default {
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: true,
+      required: false,
       notApplicable: true,
     },
 
@@ -100,7 +96,14 @@ export default {
 
     neighborhood: {
       valueIn: 'long_name',
-      types: ['neighborhood'],
+      types: [
+        'neighborhood',
+        'sublocality_level_1',
+        'sublocality_level_2',
+        'sublocality_level_3',
+        'sublocality_level_4',
+        'sublocality_level_5',
+      ],
     },
 
     state: {
@@ -119,14 +122,35 @@ export default {
   },
   summary: [
     [
-      { name: 'street' },
-      { delimiter: ' ', name: 'number' },
-      { delimiter: ' ', name: 'complement' },
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ', ',
+        name: 'complement',
+      },
     ],
     [
-      { name: 'postalCode' },
-      { delimiter: ' ', name: 'city' },
-      { delimiter: ' (', name: 'state', delimiterAfter: ')' },
+      {
+        name: 'neighborhood',
+        delimiterAfter: ' - ',
+      },
+      {
+        name: 'city',
+      },
+      {
+        delimiter: ' - ',
+        name: 'state',
+      },
+    ],
+    [
+      {
+        name: 'postalCode',
+      },
     ],
   ],
 }

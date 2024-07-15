@@ -22,6 +22,7 @@ export default {
       postalCodeAPI: false,
       size: 'small',
       autoComplete: 'nope',
+      autoUpperCase: true,
     },
     {
       name: 'street',
@@ -139,8 +140,8 @@ export default {
         'Żebbuġ (Zebbug)',
         'Zebbug (Zebbug-Gozo)',
         'Zejtun (Zejtun)',
-        'Zurrieq (Zurrieq)'
-        ],
+        'Zurrieq (Zurrieq)',
+      ],
     },
     {
       name: 'receiverName',
