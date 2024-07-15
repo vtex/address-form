@@ -88,7 +88,7 @@ const rules: PostalCodeRules = {
       maxLength: 100,
       label: 'contactId',
       size: 'xlarge',
-      required: true,
+      required: false,
     },
   ],
   geolocation: {
