@@ -95,6 +95,20 @@ export function validateChangedFields(changedFields, address, rules) {
   return reduce(
     changeFieldsNames,
     (resultAddress, fieldName) => {
+      const fieldRule =
+        rules.fields && rules.fields.find((field) => field.name === fieldName)
+
+      // Convert value to uppercase if autoUpperCase is true
+      if (
+        fieldRule &&
+        fieldRule.autoUpperCase &&
+        typeof resultAddress[fieldName].value === 'string'
+      ) {
+        resultAddress[fieldName].value = resultAddress[
+          fieldName
+        ].value.toUpperCase()
+      }
+
       const validationResult = validateField(
         resultAddress[fieldName].value,
         fieldName as Fields,

@@ -43,6 +43,7 @@ export type PostalCodeFieldRule = RuleLabel & {
   maxLength?: number
   postalCodeAPI?: boolean
   autoComplete?: boolean | string
+  autoUpperCase?: boolean
   notApplicable?: boolean
   hidden?: boolean
   basedOn?: Fields
