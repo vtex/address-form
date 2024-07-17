@@ -23,6 +23,7 @@ const rules: PostalCodeRules = {
       postalCodeAPI: false,
       size: 'small',
       autoComplete: 'nope',
+      autoUpperCase: true,
     },
     {
       name: 'street',
@@ -140,8 +141,8 @@ const rules: PostalCodeRules = {
         'Żebbuġ (Zebbug)',
         'Zebbug (Zebbug-Gozo)',
         'Zejtun (Zejtun)',
-        'Zurrieq (Zurrieq)'
-        ],
+        'Zurrieq (Zurrieq)',
+      ],
     },
     {
       name: 'receiverName',
@@ -171,7 +172,8 @@ const rules: PostalCodeRules = {
       types: ['route'],
       handler: (address, googleAddress) => {
         address.street = { value: (googleAddress as { name: string }).name }
-          return address
+
+        return address
       },
     },
 
