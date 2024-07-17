@@ -23,6 +23,7 @@ const rules: PostalCodeRules = {
       postalCodeAPI: false,
       size: 'small',
       autoComplete: 'nope',
+      autoUpperCase: true,
     },
     {
       name: 'street',

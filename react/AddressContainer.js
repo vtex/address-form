@@ -75,6 +75,11 @@ class AddressContainer extends Component {
         rules.fields &&
         rules.fields.find((field) => field.name === 'postalCode')
 
+      // Convert postal code to uppercase if autoUpperCase is true
+      if (postalCodeField && postalCodeField.autoUpperCase) {
+        changedAddressFields.postalCode.value = changedAddressFields.postalCode.value.toUpperCase()
+      }
+
       const diffFromPrev =
         address.postalCode.value !== validatedAddress.postalCode.value
 
