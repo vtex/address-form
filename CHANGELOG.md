@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Malta geolocation rules.
+
 ## [4.24.6] - 2024-07-15
 
 ### Added
