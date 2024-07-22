@@ -15,14 +15,14 @@ const countryData = {
     Peralta: '71500',
     'Sabana Yegua': '71600',
     'Tábara Arriba': '71700',
-    Estebanía: '71800'
+    Estebanía: '71800',
   },
   Baoruco: {
     Neiba: '82000',
     Galván: '82100',
     'Los Ríos': '82200',
     Tamayo: '82300',
-    'Villa Jaragua': '82400'
+    'Villa Jaragua': '82400',
   },
   Barahona: {
     Barahona: '81000',
@@ -34,17 +34,17 @@ const countryData = {
     'Vicente Noble': '81600',
     'El Peñón': '81700',
     Fundación: '81800',
-    'La Ciénaga': '81900'
+    'La Ciénaga': '81900',
   },
   Dajabón: {
     Dajabón: '63000',
     'Loma De Cabrera': '63100',
     Partido: '63200',
     Restauración: '63300',
-    'El Pino': '63400'
+    'El Pino': '63400',
   },
   'Distrito Nacional': {
-    'Santo Domingo De Guzmán': '10101'
+    'Santo Domingo De Guzmán': '10101',
   },
   Duarte: {
     'San Francisco de Macorís': '31000',
@@ -53,34 +53,34 @@ const countryData = {
     'Eugenio María De Hostos': '31300',
     Pimentel: '31400',
     'Villa Riva': '31500',
-    'Las Guáranas': '31600'
+    'Las Guáranas': '31600',
   },
   'El Seibo': {
     'El Seibo': '24000',
-    Miches: '24101'
+    Miches: '24101',
   },
   'Elías Piña': {
     Comendador: '73000',
     Bánica: '73100',
     'El Llano': '73200',
     'Hondo Valle': '73300',
-    'Juan Santiago': '73500'
+    'Juan Santiago': '73500',
   },
   Espaillat: {
     Moca: '53011',
     'Cayetano Germosén': '56100',
     'Gaspar Hernández': '56200',
-    'Jamao Al Norte': '56400'
+    'Jamao Al Norte': '56400',
   },
   'Hato Mayor': {
     'Hato Mayor': '25000',
     'Sabana De La Mar': '25100',
-    'El Valle': '25200'
+    'El Valle': '25200',
   },
   'Hermanas Mirabal': {
     Salcedo: '34000',
     Tenares: '34100',
-    'Villa Tapia': '34200'
+    'Villa Tapia': '34200',
   },
   Independencia: {
     Jimaní: '83000',
@@ -88,33 +88,33 @@ const countryData = {
     'La Descubierta': '83200',
     Mella: '83300',
     'Postrer Río': '83400',
-    Cristóbal: '83500'
+    Cristóbal: '83500',
   },
   'La Altagracia': {
     Higüey: '23000',
-    'San Rafael Del Yuma': '23100'
+    'San Rafael Del Yuma': '23100',
   },
   'La Romana': {
     'La Romana': '22000',
     Guaymate: '22100',
-    'Villa Hermosa': '22200'
+    'Villa Hermosa': '22200',
   },
   'La Vega': {
     'La Vega': '41000',
     Constanza: '41100',
     Jarabacoa: '41200',
-    'Jima Abajo': '41300'
+    'Jima Abajo': '41300',
   },
   'María Trinidad Sánchez': {
     Nagua: '33000',
     Cabrera: '33100',
     'El Factor': '33200',
-    'Río San Juan': '33300'
+    'Río San Juan': '33300',
   },
   'Monseñor Nouel': {
     Bonao: '42000',
     Maimón: '42100',
-    'Piedra Blanca': '42200'
+    'Piedra Blanca': '42200',
   },
   'Monte Cristi': {
     'Monte Cristi': '62000',
@@ -122,21 +122,21 @@ const countryData = {
     Guayubín: '62200',
     'Las Matas de Santa Cruz': '62300',
     'Pepillo Salcedo': '62400',
-    'Villa Vásquez': '62500'
+    'Villa Vásquez': '62500',
   },
   'Monte Plata': {
     'Monte Plata': '92000',
     Bayaguana: '92100',
     'Sabana Grande De Boyá': '92200',
-    Yamasá: '92300'
+    Yamasá: '92300',
   },
   Pedernales: {
     Pedernales: '84000',
-    Oviedo: '84100'
+    Oviedo: '84100',
   },
   Peravia: {
     Baní: '94000',
-    Nizao: '94100'
+    Nizao: '94100',
   },
   'Puerto Plata': {
     'Puerto Plata': '57000',
@@ -147,12 +147,12 @@ const countryData = {
     Luperón: '57500',
     Sosúa: '57600',
     'Villa Isabela': '57700',
-    'Villa Montellano': '57800'
+    'Villa Montellano': '57800',
   },
   Samaná: {
     Samaná: '32000',
     Sánchez: '32100',
-    'Las Terrenas': '32200'
+    'Las Terrenas': '32200',
   },
   'San Cristóbal': {
     'San Cristóbal': '91000',
@@ -162,11 +162,11 @@ const countryData = {
     'San Gregorio de Nigua': '91400',
     'Sabana Grande de Palenque': '91500',
     Yaguate: '91600',
-    'Villa Altagracia': '91700'
+    'Villa Altagracia': '91700',
   },
   'San José de Ocoa': {
     'San José De Ocoa': '93000',
-    'Sabana Larga': '93100'
+    'Sabana Larga': '93100',
   },
   'San Juan': {
     'San Juan': '72000',
@@ -174,20 +174,20 @@ const countryData = {
     'El Cercado': '72200',
     'Juan De Herrera': '72300',
     'Las Matas De Farfán': '72400',
-    Vallejuelo: '72500'
+    Vallejuelo: '72500',
   },
   'San Pedro de Macorís': {
     'San Pedro De Macorís': '21000',
     'Los Llanos': '21100',
     'Ramón Santana': '21200',
     Consuelo: '21300',
-    Quisqueya: '21400'
+    Quisqueya: '21400',
   },
   'Sánchez Ramírez': {
     Cotuí: '43000',
     Cevicos: '43100',
     Fantino: '43200',
-    'La Mata': '43400'
+    'La Mata': '43400',
   },
   Santiago: {
     Santiago: '51000',
@@ -197,25 +197,25 @@ const countryData = {
     'Licey Al Medio': '51400',
     Tamboril: '51500',
     'Villa González': '51600',
-    'Sabana Iglesia': '51800'
+    'Sabana Iglesia': '51800',
   },
   'Santiago Rodríguez': {
     'San Ignacio De Sabaneta': '64000',
     'Villa Los Almácigos': '64100',
-    Monción: '64200'
+    Monción: '64200',
   },
   'Santo Domingo': {
     'Los Alcarrizos': '10705',
     'Santo Domingo Oeste': '10804',
     'Santo Domingo Norte': '11200',
     'San Antonio De Guerra': '11500',
-    'Santo Domingo Este': '11501'
+    'Santo Domingo Este': '11501',
   },
   Valverde: {
     Mao: '61000',
     Esperanza: '61100',
-    'Laguna Salada': '61200'
-  }
+    'Laguna Salada': '61200',
+  },
 }
 
 const rules: PostalCodeRules = {
@@ -297,12 +297,21 @@ const rules: PostalCodeRules = {
       size: 'large',
     },
     {
+      hidden: true,
       name: 'receiverName',
       elementName: 'receiver',
       maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
-      required: true,
+      required: false,
+    },
+    {
+      hidden: true,
+      name: 'contactId',
+      maxLength: 100,
+      label: 'contactId',
+      size: 'xlarge',
+      required: false,
     },
   ],
   geolocation: {
@@ -346,14 +355,8 @@ const rules: PostalCodeRules = {
       { delimiter: ' ', name: 'number' },
       { delimiter: ', ', name: 'complement' },
     ],
-    [
-      { name: 'neighborhood' },
-      { delimiter: ' ', name: 'postalCode' },
-    ],
-    [
-      { name: 'city' },
-      { delimiter: ', ', name: 'state' },
-    ],
+    [{ name: 'neighborhood' }, { delimiter: ' ', name: 'postalCode' }],
+    [{ name: 'city' }, { delimiter: ', ', name: 'state' }],
   ],
 }
 

@@ -73,12 +73,21 @@ const rules: PostalCodeRules = {
       size: 'large',
     },
     {
+      hidden: true,
       name: 'receiverName',
       elementName: 'receiver',
       maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
-      required: true,
+      required: false,
+    },
+    {
+      hidden: true,
+      name: 'contactId',
+      maxLength: 100,
+      label: 'contactId',
+      size: 'xlarge',
+      required: false,
     },
   ],
   geolocation: {
@@ -100,7 +109,8 @@ const rules: PostalCodeRules = {
       types: ['route'],
       handler: (address, googleAddress) => {
         address.street = { value: (googleAddress as { name: string }).name }
-          return address
+
+        return address
       },
     },
 
@@ -123,7 +133,7 @@ const rules: PostalCodeRules = {
 
     city: {
       valueIn: 'long_name',
-      types: ['locality','administrative_area_level_4'],
+      types: ['locality', 'administrative_area_level_4'],
     },
 
     receiverName: {

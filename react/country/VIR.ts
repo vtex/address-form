@@ -12,14 +12,14 @@ const rules: PostalCodeRules = {
       maxLength: 100,
       label: 'country',
       size: 'medium',
-    }, 
+    },
     {
       name: 'postalCode',
       maxLength: 50,
       fixedLabel: 'ZIP',
       required: true,
       mask: '99999-9999',
-      regex: '^008(01|02|03|04|05|20|21|22|23|24|30|31|40|41|50|51)-\d{0,4}$',
+      regex: '^008(01|02|03|04|05|20|21|22|23|24|30|31|40|41|50|51)-d{0,4}$',
       // Asserts zipcode starts with 008, then contains one of the local accepted area values, then followed by hyphen and 4 digits.
       postalCodeAPI: true,
       forgottenURL: 'https://tools.usps.com/go/ZipLookupAction!input.action',
@@ -67,10 +67,8 @@ const rules: PostalCodeRules = {
       required: true,
       hidden: true,
       size: 'large',
-      optionsPairs: [
-        { label: 'Virgin Islands', value: 'USVI' },
-      ],
-      defaultValue: 'USVI'
+      optionsPairs: [{ label: 'Virgin Islands', value: 'USVI' }],
+      defaultValue: 'USVI',
     },
     {
       hidden: true,
@@ -80,12 +78,21 @@ const rules: PostalCodeRules = {
       size: 'xlarge',
     },
     {
+      hidden: true,
       name: 'receiverName',
       elementName: 'receiver',
       maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
-      required: true,
+      required: false,
+    },
+    {
+      hidden: true,
+      name: 'contactId',
+      maxLength: 100,
+      label: 'contactId',
+      size: 'xlarge',
+      required: false,
     },
   ],
   geolocation: {

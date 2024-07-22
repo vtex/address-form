@@ -785,12 +785,21 @@ const rules: PostalCodeRules = {
       optionsMap: getThreeLevels(countryData),
     },
     {
+      hidden: true,
       name: 'receiverName',
       elementName: 'receiver',
       maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
-      required: true,
+      required: false,
+    },
+    {
+      hidden: true,
+      name: 'contactId',
+      maxLength: 100,
+      label: 'contactId',
+      size: 'xlarge',
+      required: false,
     },
   ],
   geolocation: {
