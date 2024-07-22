@@ -26,6 +26,7 @@ const rules: PostalCodeRules = {
         'https://www.canadapost.ca/cpo/mc/personal/postalcode/fpc.jsf',
       size: 'small',
       autoComplete: 'nope',
+      autoUpperCase: true,
     },
     {
       name: 'street',
