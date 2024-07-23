@@ -65,10 +65,8 @@ const rules: PostalCodeRules = {
       required: true,
       hidden: true,
       size: 'large',
-      optionsPairs: [
-        { label: 'Puerto Rico', value: 'PR' },
-      ],
-      defaultValue: 'PR'
+      optionsPairs: [{ label: 'Puerto Rico', value: 'PR' }],
+      defaultValue: 'PR',
     },
     {
       name: 'number',
@@ -79,12 +77,21 @@ const rules: PostalCodeRules = {
       autoComplete: 'nope',
     },
     {
+      hidden: true,
       name: 'receiverName',
       elementName: 'receiver',
       maxLength: 750,
       label: 'receiverName',
       size: 'xlarge',
-      required: true,
+      required: false,
+    },
+    {
+      hidden: true,
+      name: 'contactId',
+      maxLength: 100,
+      label: 'contactId',
+      size: 'xlarge',
+      required: false,
     },
   ],
   geolocation: {
