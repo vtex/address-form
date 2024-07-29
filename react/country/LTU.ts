@@ -2,8 +2,8 @@ import { POSTAL_CODE } from '../constants'
 import type { PostalCodeRules } from '../types/rules'
 
 const rules: PostalCodeRules = {
-  country: 'GBR',
-  abbr: 'GB',
+  country: null,
+  abbr: null,
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -16,13 +16,10 @@ const rules: PostalCodeRules = {
     {
       name: 'postalCode',
       maxLength: 50,
-      fixedLabel: 'Postcode',
-      required: true,
-      mask: '',
-      regex: /^([A-Za-z][A-Ha-hJ-Yj-y]?[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$/,
-      postalCodeAPI: false,
+      label: 'postalCode',
       size: 'small',
       autoComplete: 'nope',
+      postalCodeAPI: false,
       autoUpperCase: true,
     },
     {
@@ -30,6 +27,14 @@ const rules: PostalCodeRules = {
       label: 'addressLine1',
       required: true,
       size: 'xlarge',
+    },
+    {
+      hidden: true,
+      name: 'number',
+      maxLength: 750,
+      label: 'number',
+      size: 'small',
+      autoComplete: 'nope',
     },
     {
       name: 'complement',
@@ -54,24 +59,16 @@ const rules: PostalCodeRules = {
     {
       name: 'city',
       maxLength: 100,
-      label: 'town',
+      label: 'city',
       required: true,
       size: 'large',
     },
     {
       name: 'state',
       maxLength: 100,
-      label: 'county',
+      label: 'state',
       required: true,
       size: 'large',
-    },
-    {
-      name: 'number',
-      maxLength: 750,
-      label: 'number',
-      hidden: true,
-      defaultValue: 'N/A',
-      autoComplete: 'nope',
     },
     {
       name: 'receiverName',
@@ -89,24 +86,19 @@ const rules: PostalCodeRules = {
       required: false,
     },
 
-    street: {
+    number: {
       valueIn: 'long_name',
-      types: ['route', 'street_address'],
-      handler: (address, googleAddress) => {
-        address.street = { value: (googleAddress as { name: string }).name }
-
-        return address
-      },
+      types: ['street_number'],
+      required: false,
+      notApplicable: true,
     },
+
+    street: { valueIn: 'long_name', types: ['route'] },
 
     neighborhood: {
       valueIn: 'long_name',
       types: [
         'neighborhood',
-        'administrative_area_level_3',
-        'administrative_area_level_4',
-        'administrative_area_level_5',
-        'sublocality',
         'sublocality_level_1',
         'sublocality_level_2',
         'sublocality_level_3',
@@ -115,26 +107,14 @@ const rules: PostalCodeRules = {
       ],
     },
 
-    complement: {
-      valueIn: 'complement',
-      types: [
-        'street_number',
-        'colloquial_area',
-        'floor',
-        'room',
-        'premise',
-        'subpremise',
-      ],
-    },
-
     state: {
       valueIn: 'long_name',
-      types: ['postal_town', 'administrative_area_level_1'],
+      types: ['administrative_area_level_1'],
     },
 
     city: {
       valueIn: 'long_name',
-      types: ['locality', 'administrative_area_level_2'],
+      types: ['administrative_area_level_2', 'locality'],
     },
 
     receiverName: {
@@ -142,11 +122,36 @@ const rules: PostalCodeRules = {
     },
   },
   summary: [
-    [{ name: 'street' }, { delimiter: ', ', name: 'complement' }],
     [
-      { name: 'city' },
-      { delimiter: ', ', name: 'state' },
-      { delimiter: ' ', name: 'postalCode' },
+      {
+        name: 'street',
+      },
+      {
+        delimiter: ' ',
+        name: 'number',
+      },
+      {
+        delimiter: ', ',
+        name: 'complement',
+      },
+    ],
+    [
+      {
+        name: 'neighborhood',
+        delimiterAfter: ' - ',
+      },
+      {
+        name: 'city',
+      },
+      {
+        delimiter: ' - ',
+        name: 'state',
+      },
+    ],
+    [
+      {
+        name: 'postalCode',
+      },
     ],
   ],
 }
