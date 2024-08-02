@@ -8,8 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- required prop for postalCode at the default, DNK, FIN, GIB, LTU and SWE country rules.
+- required prop for postalCode at DNK, FIN, GIB, LTU and SWE country rules.
 - required prop for emirates at ARE country rule.
+- placeholder prop empty for default country rule.
 
 ## [4.24.6] - 2024-07-15
 

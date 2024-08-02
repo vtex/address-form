@@ -16,9 +16,9 @@ export default {
       name: 'postalCode',
       maxLength: 50,
       label: 'postalCode',
-      required: true,
       size: 'small',
       autoComplete: 'nope',
+      placeholder: '',
       postalCodeAPI: false,
     },
     {
