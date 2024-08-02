@@ -59,6 +59,7 @@ export default {
       name: 'reference',
       maxLength: 750,
       label: 'emirates',
+      required: true,
       size: 'xlarge',
       level: 1,
       options: getOneLevel(emiratesPostalCodeData),
