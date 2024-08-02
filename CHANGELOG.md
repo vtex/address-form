@@ -8,14 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- required prop for postalCode at DNK, FIN, GIB, LTU and SWE country rules.
-- required prop for emirates at ARE country rule.
-- placeholder prop empty for default country rule.
+- Required prop for postalCode at DNK, FIN, GIB, LTU and SWE country rules.
+- Required prop for emirates at ARE country rule.
+- Placeholder prop empty for default country rule.
 
 ## [4.24.6] - 2024-07-15
 
 ### Added
-- implemented autoUpperCase rule for countries with alphanumeric postal codes, ensuring consistent uppercase formatting.
+- Implemented autoUpperCase rule for countries with alphanumeric postal codes, ensuring consistent uppercase formatting.
 
 ## [4.24.5] - 2024-07-05
 
