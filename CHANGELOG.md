@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.24.7] - 2024-08-30
+
 ### Added
 - Required prop for postalCode at DNK, FIN, GIB, LTU and SWE country rules.
 - Required prop for emirates at ARE country rule.
