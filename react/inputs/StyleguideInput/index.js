@@ -82,6 +82,8 @@ class StyleguideInput extends Component {
 
     const disabled = !!address[field.name].disabled
 
+    const valid = address[field.name].valid === false ? false : true
+
     const loading =
       loadingProp != null ? loadingProp : address[field.name].loading
 
@@ -137,6 +139,10 @@ class StyleguideInput extends Component {
       field.name
     } vtex-address-form__field--${field.size || 'xlarge'} ${
       field.hidden ? 'dn' : ''
+    } ${
+      disabled ? 'vtex-address-form__field-disabled' : ''
+    } ${
+      !valid ? 'vtex-address-form__field-invalid' : ''
     }`
 
     if (field.name === 'postalCode') {
