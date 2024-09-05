@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- "disabled" and "invalid" classNames for the StyleguideInput component.
+
 ## [4.24.7] - 2024-08-30
 
 ### Added
