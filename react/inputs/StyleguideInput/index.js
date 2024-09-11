@@ -23,6 +23,7 @@ class StyleguideInput extends Component {
     this.state = {
       isInputValid: props.address[props.field.name].valid || true,
       showErrorMessage: false,
+      isFocused: false,
     }
   }
 
@@ -50,7 +51,7 @@ class StyleguideInput extends Component {
   }
 
   handleFocus = () => {
-    this.setState({ showErrorMessage: false })
+    this.setState({ showErrorMessage: false, isFocused: true })
   }
 
   handleSubmit = (event) => {
@@ -60,7 +61,7 @@ class StyleguideInput extends Component {
   }
 
   handleBlur = (event) => {
-    this.setState({ showErrorMessage: true })
+    this.setState({ showErrorMessage: true, isFocused: false })
     this.props.onBlur && this.props.onBlur(event)
   }
 
@@ -143,6 +144,10 @@ class StyleguideInput extends Component {
       disabled ? 'vtex-address-form__field-disabled' : ''
     } ${
       !valid ? 'vtex-address-form__field-invalid' : ''
+    } ${
+      !address[field.name].value ? 'vtex-address-form__field-empty' : ''
+    } ${
+      this.state.isFocused ? 'vtex-address-form__field-focused' : ''
     }`
 
     if (field.name === 'postalCode') {
