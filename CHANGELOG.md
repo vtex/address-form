@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.25.0] - 2024-09-13
+
 ### Fixed
 - Logic to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
 
