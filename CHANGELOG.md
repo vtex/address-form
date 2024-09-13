@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Input field for Postal Code at CAN, GBR, IRL and NLD for mobile.
+
 ## [4.24.7] - 2024-08-30
 
 ### Added

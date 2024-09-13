@@ -18,7 +18,7 @@ export default {
       maxLength: 50,
       label: 'postalCode',
       required: true,
-      mask: 'A9A 9A9',
+      mask: NaN,
       regex: '^[A-z][0-9][A-z]\\ ?[0-9][A-z][0-9]$',
       postalCodeAPI: true,
       forgottenURL:

@@ -17,7 +17,7 @@ export default {
       label: 'postalCode',
       maxLength: 7,
       required: true,
-      mask: '9999 AA',
+      mask: NaN,
       regex: /^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-zA-Z]{2}$/,
       postalCodeAPI: false,
       size: 'small',

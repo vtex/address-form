@@ -17,8 +17,9 @@ export default {
       maxLength: 50,
       fixedLabel: 'Postcode',
       required: true,
-      mask: '',
-      regex: /^([A-Za-z][A-Ha-hJ-Yj-y]?[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$/,
+      mask: NaN,
+      regex:
+        /^([A-Za-z][A-Ha-hJ-Yj-y]?[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}|[Gg][Ii][Rr] ?0[Aa]{2})$/,
       postalCodeAPI: false,
       size: 'small',
       autoComplete: 'nope',
