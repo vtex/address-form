@@ -89,9 +89,12 @@ class PostalCodeGetter extends Component {
       default:
       case POSTAL_CODE: {
         const field = getField('postalCode', rules)
-        const shouldShowNumberKeyboard = !Number.isNaN(
-          removeNonWords(field.mask)
-        )
+        const numericString = field.mask ? removeNonWords(field.mask) : ''
+        const isPurelyNumeric =
+          numericString === '' || /^\d+$/.test(numericString)
+        const shouldShowNumberKeyboard = isNaN(field.mask)
+          ? isPurelyNumeric
+          : false
 
         return (
           <InputFieldContainer
