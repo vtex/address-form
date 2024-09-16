@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - "...-disabled", "...-empty", "...-focused" and "...-invalid" classNames for the StyleguideInput component.
 
+## [4.25.0] - 2024-09-13
+
+### Fixed
+- Logic to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
+
 ## [4.24.7] - 2024-08-30
 
 ### Added
