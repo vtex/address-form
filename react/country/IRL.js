@@ -18,7 +18,7 @@ export default {
       maxLength: 8,
       label: 'postalCode',
       required: true,
-      mask: '999 9999',
+      mask: 'A99 A9A9',
       regex: /(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$/,
       postalCodeAPI: true,
       size: 'small',
