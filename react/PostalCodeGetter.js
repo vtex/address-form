@@ -15,7 +15,7 @@ import {
   injectAddressContext,
   addressContextPropTypes,
 } from './addressContainerContext'
-import { removeNonWords } from './transforms/utils'
+import { shouldShowNumberKeyboard as determineShouldShowNumberKeyboard } from './transforms/shouldShowNumberKeyboard'
 
 class PostalCodeGetter extends Component {
   render() {
@@ -89,12 +89,8 @@ class PostalCodeGetter extends Component {
       default:
       case POSTAL_CODE: {
         const field = getField('postalCode', rules)
-        const numericString = field.mask ? removeNonWords(field.mask) : ''
-        const isPurelyNumeric =
-          numericString === '' || /^\d+$/.test(numericString)
-        const shouldShowNumberKeyboard = isNaN(field.mask)
-          ? isPurelyNumeric
-          : false
+        const mask = field?.mask
+        const shouldShowNumberKeyboard = determineShouldShowNumberKeyboard(mask)
 
         return (
           <InputFieldContainer
