@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Changed the rules for France (FRA) so the number field is shown to users.
 
+## [4.25.2] - 2024-09-18
+
+### Added
+- "...-disabled", "...-empty", "...-focused" and "...-invalid" classNames for the StyleguideInput component.
+
+## [4.25.1] - 2024-09-17
+
+### Added
+- Tests to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
+
+### Fixed
+- Logic to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
+
 ## [4.25.0] - 2024-09-13
 
 ### Fixed
