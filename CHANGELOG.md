@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.37.1] - 2024-09-23
+
 ### Fixed
 
 - Changed the rules for France (FRA) so the number field is shown to users.
@@ -1606,7 +1608,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.37.0...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.37.1...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1621,5 +1623,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.36.1]: https://github.com/vtex/address-form/compare/v3.36.0...v3.36.1
 [3.36.0]: https://github.com/vtex/address-form/compare/v3.35.6...v3.36.0
 
+[3.37.1]: https://github.com/vtex/address-form/compare/v3.37.0...v3.37.1
 [3.37.0]: https://github.com/vtex/address-form/compare/v3.36.6...v3.37.0
 [3.36.6]: https://github.com/vtex/address-form/compare/v3.36.5...v3.36.6
