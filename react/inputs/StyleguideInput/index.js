@@ -83,7 +83,7 @@ class StyleguideInput extends Component {
 
     const disabled = !!address[field.name].disabled
 
-    const valid = address[field.name].valid !== false
+    const valid = address[field.name].valid === false ? false : true
 
     const loading =
       loadingProp != null ? loadingProp : address[field.name].loading
