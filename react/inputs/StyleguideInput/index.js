@@ -83,7 +83,7 @@ class StyleguideInput extends Component {
 
     const disabled = !!address[field.name].disabled
 
-    const valid = address[field.name].valid === false ? false : true
+    const valid = address[field.name].valid !== false
 
     const loading =
       loadingProp != null ? loadingProp : address[field.name].loading
@@ -140,15 +140,11 @@ class StyleguideInput extends Component {
       field.name
     } vtex-address-form__field--${field.size || 'xlarge'} ${
       field.hidden ? 'dn' : ''
-    } ${
-      disabled ? 'vtex-address-form__field-disabled' : ''
-    } ${
+    } ${disabled ? 'vtex-address-form__field-disabled' : ''} ${
       !valid ? 'vtex-address-form__field-invalid' : ''
-    } ${
-      !address[field.name].value ? 'vtex-address-form__field-empty' : ''
-    } ${
+    } ${!address[field.name].value ? 'vtex-address-form__field-empty' : ''} ${
       this.state.isFocused ? 'vtex-address-form__field-focused' : ''
-    }`
+    } ${field.required ? 'vtex-address-form__field-required' : ''}`
 
     if (field.name === 'postalCode') {
       return (
