@@ -7,13 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.25.2] - 2024-09-18
+
+### Added
+- "...-disabled", "...-empty", "...-focused" and "...-invalid" classNames for the StyleguideInput component.
+
+## [4.25.1] - 2024-09-17
+
+### Added
+- Tests to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
+
 ### Fixed
-- Malta geolocation rules.
+- Logic to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
+
+
+## [4.25.0] - 2024-09-13
+
+### Fixed
+- Logic to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
+
+## [4.24.7] - 2024-08-30
+
+### Added
+- Required prop for postalCode at DNK, FIN, GIB, LTU and SWE country rules.
+- Required prop for emirates at ARE country rule.
+- Placeholder prop empty for default country rule.
 
 ## [4.24.6] - 2024-07-15
 
 ### Added
-- implemented autoUpperCase rule for countries with alphanumeric postal codes, ensuring consistent uppercase formatting.
+- Implemented autoUpperCase rule for countries with alphanumeric postal codes, ensuring consistent uppercase formatting.
 
 ## [4.24.5] - 2024-07-05
 

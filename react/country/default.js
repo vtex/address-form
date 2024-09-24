@@ -18,6 +18,7 @@ export default {
       label: 'postalCode',
       size: 'small',
       autoComplete: 'nope',
+      placeholder: '',
       postalCodeAPI: false,
     },
     {
