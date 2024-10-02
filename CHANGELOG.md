@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Two new postal codes to Dominican Republic (DOM) country file.
+
 ### Fixed
 
 - Changed the rules for France (FRA) so the number field is shown to users.
