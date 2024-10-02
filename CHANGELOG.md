@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Changed the rules for France (FRA) so the number field is shown to users.
+
 ## [4.25.2] - 2024-09-18
 
 ### Added
@@ -19,7 +23,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Logic to validate if a country should use Number Keyboard (shouldShowNumberKeyboard).
-
 
 ## [4.25.0] - 2024-09-13
 
