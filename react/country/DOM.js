@@ -1,6 +1,6 @@
 import { TWO_LEVELS } from '../constants'
-import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
+import { secondLevelPostalCodes } from '../transforms/postalCodes'
 
 // Based on sheet provided by Rodolfo Bússola:
 // https://docs.google.com/spreadsheets/d/1_uoFfVCg-E8lrGJ235ZkcqnK0cspyX53/edit?usp=sharing&ouid=113929948326320493678&rtpof=true&sd=true
@@ -43,7 +43,8 @@ const countryData = {
     'El Pino': '63400'
   },
   'Distrito Nacional': {
-    'Santo Domingo De Guzmán': '10101'
+    'Santo Domingo De Guzmán': '10101',
+    'Santo Domingo Distrito Nacional': '10100'
   },
   Duarte: {
     'San Francisco de Macorís': '31000',
@@ -69,7 +70,8 @@ const countryData = {
     Moca: '53011',
     'Cayetano Germosén': '56100',
     'Gaspar Hernández': '56200',
-    'Jamao Al Norte': '56400'
+    'Jamao Al Norte': '56400',
+    'El Higuerito': '56000'
   },
   'Hato Mayor': {
     'Hato Mayor': '25000',

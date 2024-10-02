@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Two new postal codes to Dominican Republic (DOM) country file.
+
 ## [4.25.3] - 2024-10-02
 
 ### Fixed
