@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.25.3] - 2024-10-02
+
 ### Fixed
 
 - Changed the rules for France (FRA) so the number field is shown to users.
