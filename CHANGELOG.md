@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Denmark (DNK) postal code rules.
+
 ## [4.25.4] - 2024-10-02
 
 ### Added
