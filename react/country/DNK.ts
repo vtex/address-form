@@ -15,8 +15,10 @@ const rules: PostalCodeRules = {
     },
     {
       name: 'postalCode',
-      maxLength: 50,
-      label: 'postalCode',
+      maxLength: 4,
+      label: 'Postnumre',
+      mask: '1234',
+      regex: '^\\d{4}$',
       size: 'small',
       autoComplete: 'nope',
       postalCodeAPI: false,
