@@ -14,8 +14,10 @@ export default {
     },
     {
       name: 'postalCode',
-      maxLength: 50,
-      label: 'postalCode',
+      maxLength: 4,
+      label: 'Postnumre',
+      mask: '1234',
+      regex: '^\\d{4}$',
       required: true,
       size: 'small',
       autoComplete: 'nope',
