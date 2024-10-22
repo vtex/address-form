@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.25.6] - 2024-10-22
+
 ### Added
 - "...-required" classNames for the StyleguideInput component.
 
