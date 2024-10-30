@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- El Salvador (SLV) locality list structure and fields. This breaks previously saved addresses.
+
 ## [4.25.7] - 2024-10-29
 ### Fixed
 
