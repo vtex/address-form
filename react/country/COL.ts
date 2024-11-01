@@ -121,7 +121,7 @@ const countryData = {
     'San Roque': '05670',
     'San Vicente Ferrer': '05674',
     'Santa Bárbara': '05679',
-    'Santa Elena': '05001',
+    'Santa Elena': '05001004',
     'Santa Fé De Antioquia': '05042',
     'Santa Rosa De Osos': '05686',
     'Santo Domingo': '05690',
@@ -1221,7 +1221,7 @@ const rules: PostalCodeRules = {
       name: 'postalCode',
       postalCodeAPI: false,
       required: true,
-      regex: /^([\d]{5})$/,
+      regex: /^([\d]{5})|05001004$/,
       size: 'small',
     },
     {
