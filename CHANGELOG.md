@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Add optionsPairs for DEU to complain with checkout autocomplete.
+
 ## [3.38.0] - 2024-10-30
 
 ### Fixed
