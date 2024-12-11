@@ -59,6 +59,7 @@ const countryData = {
     Copacabana: '05212',
     Dabeiba: '05234',
     Donmatías: '05237',
+    Doradal: '53448',
     Ebéjico: '05240',
     'El Bagre': '05250',
     'El Carmen De Viboral': '05148',
