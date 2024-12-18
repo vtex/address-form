@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - El Salvador (SLV) address summary to reflect the new address structure.
 
+## [4.26.1] - 2024-12-11
+
+### Added
+
+- New postal code for Doradal to Colombia (COL) country file.
+
 ## [4.26.0] - 2024-10-31
 
 ### Fixed
