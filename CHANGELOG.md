@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.26.2] - 2024-12-18
+
 ### Fixed
 
 - El Salvador (SLV) address summary to reflect the new address structure.
