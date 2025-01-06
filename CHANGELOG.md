@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Postal code for Santa Elena in COL. This locality will now use an 8-digit code.
 
+### Fixed
+
+- El Salvador (SLV) address summary to reflect the new address structure.
+
+## [3.38.1] - 2024-12-11
+
+### Added
+
+- New postal code for Doradal to Colombia (COL) country file.
+
+### Fixed
+- Add optionsPairs for DEU to complain with checkout autocomplete.
+
 ## [3.38.0] - 2024-10-30
 
 ### Fixed
@@ -1630,7 +1643,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.38.0...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.38.1...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1645,6 +1658,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.36.1]: https://github.com/vtex/address-form/compare/v3.36.0...v3.36.1
 [3.36.0]: https://github.com/vtex/address-form/compare/v3.35.6...v3.36.0
 
+[3.38.1]: https://github.com/vtex/address-form/compare/v3.38.0...v3.38.1
 [3.38.0]: https://github.com/vtex/address-form/compare/v3.37.3...v3.38.0
 [3.37.3]: https://github.com/vtex/address-form/compare/v3.37.2...v3.37.3
 [3.37.2]: https://github.com/vtex/address-form/compare/v3.37.1...v3.37.2
