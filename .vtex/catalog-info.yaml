@@ -3,19 +3,19 @@ kind: Component
 metadata:
   name: address-form
   description: "A React component that renders VTEX's address forms "
-  annotations:
-    github.com/project-slug: vtex/address-form
-    vtex.com/o11y-os-index: checkout_ui*
-    vtex.com/janus-acronym: ""
-    grafana/dashboard-selector: ""
-    backstage.io/techdocs-ref: dir:../
   tags:
     - typescript
     - react
+  annotations:
+    vtex.com/janus-acronym: ""
+    vtex.com/o11y-os-index: checkout_ui*
+    grafana/dashboard-selector: ""
+    github.com/project-slug: vtex/address-form
+    backstage.io/techdocs-ref: dir:../
 spec:
-  type: library
+  system: checkout
   lifecycle: stable
   owner: checkout-experience
-  system: checkout
+  type: library
   dependsOn: []
   subcomponentOf: checkout-ui
