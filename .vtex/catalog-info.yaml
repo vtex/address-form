@@ -9,6 +9,7 @@ metadata:
     vtex.com/janus-acronym: ""
     grafana/dashboard-selector: ""
     backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: CK8TDYV0
   tags:
     - typescript
     - react
