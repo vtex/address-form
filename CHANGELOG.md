@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Postal code for Santa Elena in COL. This locality will now use an 8-digit code.
+
 ## [4.26.2] - 2024-12-18
 
 ### Fixed
