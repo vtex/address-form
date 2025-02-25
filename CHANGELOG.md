@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Postal code for Santa Elena in COL. This locality will now use an 8-digit code.
+
 ### Fixed
 
 - El Salvador (SLV) address summary to reflect the new address structure.
