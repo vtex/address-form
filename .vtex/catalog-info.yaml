@@ -16,7 +16,7 @@ metadata:
 spec:
   type: library
   lifecycle: stable
-  owner: checkout-experience
+  owner: te-0001
   system: checkout
   dependsOn: []
   subcomponentOf: checkout-ui
