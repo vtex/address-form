@@ -19,7 +19,7 @@ jobs:
       - run: |
           yarn install --frozen-lockfile --check-files
           yarn --cwd react install --frozen-lockfile --check-files
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         id: cache-build
         with:
           path: ./*
@@ -30,7 +30,7 @@ jobs:
     needs: install
     steps:
     - name: Restore cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       id: restore-build
       with:
         path: ./*
@@ -42,7 +42,7 @@ jobs:
     needs: install
     steps:
     - name: Restore cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       id: restore-build
       with:
         path: ./*
@@ -55,7 +55,7 @@ jobs:
 
     steps:
     - name: Restore cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       id: restore-build
       with:
         path: ./*
