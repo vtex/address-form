@@ -127,6 +127,7 @@ const countryData = {
     'Andrés Bello': '2410',
     'Paz Castillo': '2411',
     Independencia: '2412',
+    Urdaneta: '1211',
   },
   Monagas: {
     Piar: '6200',
@@ -181,6 +182,14 @@ const countryData = {
   },
   Vargas: {
     Vargas: '1162',
+    Caraballeda: '1165',
+    Carayaca: '1167',
+    'Catia La Mar': '1162',
+    'La Guaira': '1160',
+    'La Sabana': '1168',
+    Macuto: '1164',
+    Maiquetía: '1161',
+    Naiguatá: '1166',
   },
   Yaracuy: {
     Bruzual: '3202',
