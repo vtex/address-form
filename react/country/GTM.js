@@ -348,7 +348,7 @@ const countryData = {
     'El Tambor (El Palmar)': '9032',
     'Flores Costa Cuca': '9022',
     Genova: '9021',
-    Huitla: '9015',
+    Huitán: '9015',
     'La Esperanza': '9023',
     'Las Mercedes (Colomba)': '9033',
     'Las Palmas Coatepeque': '9027',
