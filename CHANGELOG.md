@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Guatemala's locality name: Huitán.
+
 ## [4.26.4] - 2025-05-19
 
 ### Fixed
