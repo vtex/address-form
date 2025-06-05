@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Simple postal code validation for Lithuania.
+
 ## [3.38.5] - 2025-05-27
 
 ### Fixed
