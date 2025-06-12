@@ -18,6 +18,8 @@ export default {
       label: 'postalCode',
       required: true,
       size: 'small',
+      mask: 'AA-99999',
+      regex: /^LT-\d{5}$/,
       autoComplete: 'nope',
       postalCodeAPI: false,
       autoUpperCase: true,
