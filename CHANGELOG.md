@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- New locality Barwaha to India's country data.
+
 ## [4.26.5] - 2025-05-27
 
 ### Fixed
