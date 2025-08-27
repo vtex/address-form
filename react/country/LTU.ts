@@ -18,6 +18,8 @@ const rules: PostalCodeRules = {
       maxLength: 50,
       label: 'postalCode',
       size: 'small',
+      mask: 'AA-99999',
+      regex: /^((L|l)(T|t)-|)\d{5}$/,
       autoComplete: 'nope',
       postalCodeAPI: false,
       autoUpperCase: true,
