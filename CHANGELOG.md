@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Denmark's postal code field label
+
 ## [4.26.7] - 2025-08-27
 
 ### Added
