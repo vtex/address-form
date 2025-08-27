@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Denmark's postal code field label
+
 ### Added
 
 - Postal code validation for Lithuania to accept 5-digit codes preceded or not by 'LT-'.
