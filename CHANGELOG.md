@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.39.0] - 2025-08-27
+
 ### Fixed
 
 - Denmark's postal code field label
@@ -1674,7 +1676,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.38.6...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.39.0...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1689,6 +1691,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.36.1]: https://github.com/vtex/address-form/compare/v3.36.0...v3.36.1
 [3.36.0]: https://github.com/vtex/address-form/compare/v3.35.6...v3.36.0
 
+[3.39.0]: https://github.com/vtex/address-form/compare/v3.38.6...v3.39.0
 [3.38.6]: https://github.com/vtex/address-form/compare/v3.38.5...v3.38.6
 [3.38.5]: https://github.com/vtex/address-form/compare/v3.38.4...v3.38.5
 [3.38.4]: https://github.com/vtex/address-form/compare/v3.38.3...v3.38.4
