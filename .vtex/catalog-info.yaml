@@ -10,6 +10,7 @@ metadata:
     grafana/dashboard-selector: ""
     backstage.io/techdocs-ref: dir:../
     vtex.com/application-id: CK8TDYV0
+    vtex.com/platform-flow-id: Shopper#4
   tags:
     - typescript
     - react
