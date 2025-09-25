@@ -1,5 +1,6 @@
 // countries
 import defaultRules from './country/default'
+import AGO from './country/AGO'
 import ARE from './country/ARE'
 import ARG from './country/ARG'
 import AUS from './country/AUS'
@@ -58,6 +59,7 @@ import MLT from './country/MLT'
 
 export default {
   defaultRules,
+  AGO,
   ARE,
   ARG,
   AUS,
