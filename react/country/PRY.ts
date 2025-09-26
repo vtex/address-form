@@ -63,7 +63,7 @@ const countryData = {
     'Cecilio Baez': '3880',
     'Colonia Genaro Romero': '3300',
     'Coronel Oviedo': '3300',
-    'Dr. Jose E. Estigarribia': '3660',
+    'Dr. Juan E. Estigarribia': '3660',
     'Dr. Juan Manuel Frutos': '3600',
     'Jose Domingo Ocampos': '3640',
     'La Pastora': '3950',
