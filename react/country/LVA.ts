@@ -2,8 +2,8 @@ import { POSTAL_CODE } from '../constants'
 import type { PostalCodeRules } from '../types/rules'
 
 const rules: PostalCodeRules = {
-  country: LVA,
-  abbr: LV,
+  country: 'LVA',
+  abbr: 'LV',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
