@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: null,
-  abbr: null,
+  country: 'LTU',
+  abbr: 'LT',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
