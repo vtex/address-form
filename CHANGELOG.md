@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Paraguay location with wrong name.
 
+## [4.26.12] - 2025-10-15
+
+## [4.26.11] - 2025-10-15
+
+### Fixed
+
+- Spain geolocation state and city formatting to match main branch
+
+## [4.26.10] - 2025-10-15
+
+### Fixed
+
+- German translation
+
 ## [4.26.9] - 2025-08-27
 
 ### Added
