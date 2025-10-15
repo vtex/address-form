@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Postal code mask for Lithuania, to properly accept 5-digit codes preceded or not by 'LT-'.
 
+## [4.26.14] - 2025-10-15
+
+### Changed
+
+- State selection behavior for DEU, matching the main branch.
+
 ## [4.26.13] - 2025-10-15
 
 ### Fixed
