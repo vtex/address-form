@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Angola country rules.
 
+### Fixed
+
+- German translation
+
 ## [3.39.0] - 2025-08-27
 
 ### Fixed
