@@ -21,7 +21,6 @@ export default {
       regex: /^((L|l)(V|v)-|)\d{4}$/,
       autoComplete: 'nope',
       postalCodeAPI: false,
-      autoUpperCase: true,
     },
     {
       name: 'street',
