@@ -2,8 +2,8 @@ import { POSTAL_CODE } from '../constants'
 import type { PostalCodeRules } from '../types/rules'
 
 const rules: PostalCodeRules = {
-  country: null,
-  abbr: null,
+  country: 'LTU',
+  abbr: 'LT',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -18,7 +18,6 @@ const rules: PostalCodeRules = {
       maxLength: 50,
       label: 'postalCode',
       size: 'small',
-      mask: 'AA-99999',
       regex: /^((L|l)(T|t)-|)\d{5}$/,
       autoComplete: 'nope',
       postalCodeAPI: false,
