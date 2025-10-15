@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- State selection behavior for DEU, matching the main branch.
+
 ## [4.26.13] - 2025-10-15
 
 ### Fixed
