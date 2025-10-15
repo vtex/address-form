@@ -16,7 +16,6 @@ export default {
       name: 'postalCode',
       maxLength: 50,
       label: 'postalCode',
-      required: true,
       size: 'small',
       regex: /^((L|l)(V|v)-|)\d{4}$/,
       autoComplete: 'nope',
