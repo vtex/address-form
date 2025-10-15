@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Paraguay location with wrong name.
 - German translation
 
 ## [3.39.0] - 2025-08-27
