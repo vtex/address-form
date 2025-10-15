@@ -98,7 +98,7 @@
   "address-form.field.municipality": "Stadtbezirk",
   "address-form.field.delegation": "Vertretung",
   "address-form.field.municipalityDelegation": "Stadtverwaltung/Delegation",
-  "address-form.field.province": "Provinz",
+  "address-form.field.province": "Bundesland",
   "address-form.field.receiverName": "Empfänger",
   "address-form.field.county": "Landkreis"
 }
