@@ -32,6 +32,7 @@ import ITA from './country/ITA'
 import JAM from './country/JAM'
 import JPN from './country/JPN'
 import KOR from './country/KOR'
+import LTU from './country/LTU'
 import LVA from './country/LVA'
 import MEX from './country/MEX'
 import NIC from './country/NIC'
@@ -92,6 +93,7 @@ export default {
   JAM,
   JPN,
   KOR,
+  LTU,
   LVA,
   MEX,
   NIC,

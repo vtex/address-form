@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Angola country rules.
 
+## [4.26.15] - 2025-10-15
+
+### Fixed
+
+- Postal code mask for Lithuania, to properly accept 5-digit codes preceded or not by 'LT-'.
+
 ## [4.26.14] - 2025-10-15
 
 ### Changed
