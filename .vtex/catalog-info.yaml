@@ -12,6 +12,8 @@ metadata:
     grafana/dashboard-selector: ""
     github.com/project-slug: vtex/address-form
     backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: CK8TDYV0
+    vtex.com/platform-flow-id: Shopper#4
 spec:
   system: checkout
   lifecycle: stable
