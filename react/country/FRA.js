@@ -112,8 +112,11 @@ export default {
     },
   },
   summary: [
-    [{ name: 'complement' }],
-    [{ name: 'street' }],
+    [
+      { name: 'street' },
+      { delimiter: ' ', name: 'number' },
+      { delimiter: ' ', name: 'complement' },
+    ],
     [{ name: 'postalCode' }, { delimiter: ' ', name: 'city' }],
   ],
 }
