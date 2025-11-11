@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Nu se aplică in România",
   "address-form.field.province": "Județ",
   "address-form.field.receiverName": "Destinatar",
-  "address-form.field.county": "Județ"
+  "address-form.field.county": "Județ",
+  "address-form.field.canton": "Canton"
 }

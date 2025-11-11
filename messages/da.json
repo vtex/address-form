@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Kommune/delegering",
   "address-form.field.province": "Provins",
   "address-form.field.receiverName": "Modtager",
-  "address-form.field.county": "Amt"
+  "address-form.field.county": "Amt",
+  "address-form.field.canton": "Kanton"
 }

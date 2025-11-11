@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "البلدية أو المديرية",
   "address-form.field.province": "الولاية",
   "address-form.field.receiverName": "المستلم",
-  "address-form.field.county": "المقاطعة"
+  "address-form.field.county": "المقاطعة",
+  "address-form.field.canton": "الكانتون"
 }

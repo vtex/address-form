@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Kunta/delegaatio",
   "address-form.field.province": "Lääni",
   "address-form.field.receiverName": "Vastaanottaja",
-  "address-form.field.county": "Piirikunta"
+  "address-form.field.county": "Piirikunta",
+  "address-form.field.canton": "Kantoni"
 }

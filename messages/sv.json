@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Kommun/Delegation",
   "address-form.field.province": "Provins",
   "address-form.field.receiverName": "Mottagare",
-  "address-form.field.county": "Ort"
+  "address-form.field.county": "Ort",
+  "address-form.field.canton": "Kanton"
 }

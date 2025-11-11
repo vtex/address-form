@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Samospráva/delegácia",
   "address-form.field.province": "Provincia",
   "address-form.field.receiverName": "Príjemca",
-  "address-form.field.county": "Okres"
+  "address-form.field.county": "Okres",
+  "address-form.field.canton": "Kantón"
 }

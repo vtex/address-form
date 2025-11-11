@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Municipio/Delegación",
   "address-form.field.province": "Provincia",
   "address-form.field.receiverName": "Destinatario",
-  "address-form.field.county": "Condado"
+  "address-form.field.county": "Condado",
+  "address-form.field.canton": "Cantón"
 }

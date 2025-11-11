@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Municipi/Delegació",
   "address-form.field.province": "Província",
   "address-form.field.receiverName": "Receptor",
-  "address-form.field.county": "Comtat"
+  "address-form.field.county": "Comtat",
+  "address-form.field.canton": "Cantó"
 }

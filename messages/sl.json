@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Občina/Predstavništvo",
   "address-form.field.province": "Provinca",
   "address-form.field.receiverName": "Prejemnik",
-  "address-form.field.county": "Okraj"
+  "address-form.field.county": "Okraj",
+  "address-form.field.canton": "Kanton"
 }

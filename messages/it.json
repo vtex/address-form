@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Municipalità/Delegazione",
   "address-form.field.province": "Provincia",
   "address-form.field.receiverName": "Consegna a: (nome e cognome)",
-  "address-form.field.county": "Contea"
+  "address-form.field.county": "Contea",
+  "address-form.field.canton": "Cantone"
 }

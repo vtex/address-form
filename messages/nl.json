@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Gemeente/Delegatie",
   "address-form.field.province": "Provincie",
   "address-form.field.receiverName": "Ontvanger",
-  "address-form.field.county": "Land"
+  "address-form.field.county": "Land",
+  "address-form.field.canton": "Kanton"
 }

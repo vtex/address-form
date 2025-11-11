@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Муніципалітет/представництво",
   "address-form.field.province": "Провінція",
   "address-form.field.receiverName": "Одержувач",
-  "address-form.field.county": "Округ"
+  "address-form.field.county": "Округ",
+  "address-form.field.canton": "Кантон"
 }

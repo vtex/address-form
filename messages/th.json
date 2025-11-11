@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "เทศบาล/กลุ่มการรับมอบหมาย",
   "address-form.field.province": "จังหวัด",
   "address-form.field.receiverName": "ผู้รับ",
-  "address-form.field.county": "เขตปกครอง"
+  "address-form.field.county": "เขตปกครอง",
+  "address-form.field.canton": "แคนตอน"
 }

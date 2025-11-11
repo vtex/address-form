@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Δήμος/Αντιπροσωπεία",
   "address-form.field.province": "Επαρχία",
   "address-form.field.receiverName": "Παραλήπτης",
-  "address-form.field.county": "Χώρα"
+  "address-form.field.county": "Χώρα",
+  "address-form.field.canton": "Καντόνι"
 }

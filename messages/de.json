@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Stadtverwaltung/Delegation",
   "address-form.field.province": "Bundesland",
   "address-form.field.receiverName": "Empfänger",
-  "address-form.field.county": "Landkreis"
+  "address-form.field.county": "Landkreis",
+  "address-form.field.canton": "Kanton"
 }

@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Önkormányzat/Küldöttség",
   "address-form.field.province": "Tartomány",
   "address-form.field.receiverName": "Címzett",
-  "address-form.field.county": "Ország"
+  "address-form.field.county": "Ország",
+  "address-form.field.canton": "Kanton"
 }

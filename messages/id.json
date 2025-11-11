@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Kotamadya/Delegasi",
   "address-form.field.province": "Provinsi",
   "address-form.field.receiverName": "Penerima",
-  "address-form.field.county": "N/A"
+  "address-form.field.county": "N/A",
+  "address-form.field.canton": "Kanton"
 }

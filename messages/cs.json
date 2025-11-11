@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "Obec/městský obvod",
   "address-form.field.province": "Provincie",
   "address-form.field.receiverName": "Příjemce",
-  "address-form.field.county": "Kraj"
+  "address-form.field.county": "Kraj",
+  "address-form.field.canton": "Kanton"
 }

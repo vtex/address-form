@@ -101,5 +101,6 @@
   "address-form.field.municipalityDelegation": "시/대표단",
   "address-form.field.province": "주",
   "address-form.field.receiverName": "받는 사람",
-  "address-form.field.county": "군"
+  "address-form.field.county": "군",
+  "address-form.field.canton": "칸톤"
 }
