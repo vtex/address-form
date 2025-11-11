@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.27.1] - 2025-11-11
+
 ### Changed
 
 - Display house number in French street address summary
