@@ -15,6 +15,7 @@
   "address-form.geolocation.example.GTM": "Eg: 6A Calle 6, Guatemala",
   "address-form.geolocation.example.HUN": "Eg: Tétényi út 12--16, Budapest",
   "address-form.geolocation.example.LTU": "Eg: Karaliaus Mindaugo pr. 17, Kaunas, 44295",
+  "address-form.geolocation.example.LUX": "Eg: 10 Rue de la Gare, 1610 Luxembourg",
   "address-form.geolocation.example.MEX": "Eg: Calle de Tacuba 8, Ciudad de México",
   "address-form.geolocation.example.PER": "Eg: Av. José Pardo, 850, Miraflores, Lima",
   "address-form.geolocation.example.PRT": "Eg: Av. da França 20, Porto",
@@ -68,5 +69,6 @@
   "address-form.field.municipalityDelegation": "Municipality/Delegation",
   "address-form.field.province": "Province",
   "address-form.field.receiverName": "Receiver",
-  "address-form.field.county": "County"
+  "address-form.field.county": "County",
+  "address-form.field.canton": "Canton"
 }
