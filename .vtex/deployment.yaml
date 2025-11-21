@@ -1,0 +1,18 @@
+name: address-form
+referenceId: CK8TDYV0
+description: CI/CD and TechDocs pipeline for address-form
+build:
+  provider: dkcicd
+  pipelines:
+    - name: techdocs-v1
+      parameters:
+        entityReference: default/component/address-form
+      when:
+        - event: push
+          source: branch
+          regex: main
+          path:
+            - "docs/**"
+            - ".vtex/deployment.yaml"
+            - ".vtex/deployment.json"
+            - "README.md"

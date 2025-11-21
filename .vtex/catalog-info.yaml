@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: address-form
-  description: "A React component that renders VTEX's address forms "
+  description: "A React component that renders VTEX's address forms"
   tags:
     - typescript
     - react
