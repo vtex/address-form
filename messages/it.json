@@ -37,6 +37,7 @@
   "address-form.geolocation.example.JPN": "Es: 2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo",
   "address-form.geolocation.example.KOR": "Es: 21 Namdaemunsijang 4-gil, Jung-gu, Seoul",
   "address-form.geolocation.example.LTU": "Es: Karaliaus Mindaugo pr. 17, Kaunas, 44295",
+  "address-form.geolocation.example.LUX": "Es: 10 Rue de la Gare, 1610 Luxembourg",
   "address-form.geolocation.example.LVA": "Es: Barona iela 7, dz. 1, RĪGA, LV-1050, LATVIA",
   "address-form.geolocation.example.MEX": "Es: Calle de Tacuba 8, Città del Messico",
   "address-form.geolocation.example.NIC": "Es: Pista de La Solidaridad, Managua 15000",
@@ -101,5 +102,6 @@
   "address-form.field.municipalityDelegation": "Municipalità/Delegazione",
   "address-form.field.province": "Provincia",
   "address-form.field.receiverName": "Consegna a: (nome e cognome)",
-  "address-form.field.county": "Contea"
+  "address-form.field.county": "Contea",
+  "address-form.field.canton": "Cantone"
 }

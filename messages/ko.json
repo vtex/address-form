@@ -37,6 +37,7 @@
   "address-form.geolocation.example.JPN": "예: 2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo",
   "address-form.geolocation.example.KOR": "예: 21 Namdaemunsijang 4-gil, Jung-gu, Seoul",
   "address-form.geolocation.example.LTU": "예: Karaliaus Mindaugo pr. 17, Kaunas, 44295",
+  "address-form.geolocation.example.LUX": "예: 10 Rue de la Gare, 1610 Luxembourg",
   "address-form.geolocation.example.LVA": "예: Barona iela 7, dz. 1, RĪGA, LV-1050, LATVIA",
   "address-form.geolocation.example.MEX": "예: Calle de Tacuba 8, Ciudad de México",
   "address-form.geolocation.example.NIC": "예: Pista de La Solidaridad, Managua 15000",
@@ -101,5 +102,6 @@
   "address-form.field.municipalityDelegation": "시/대표단",
   "address-form.field.province": "주",
   "address-form.field.receiverName": "받는 사람",
-  "address-form.field.county": "군"
+  "address-form.field.county": "군",
+  "address-form.field.canton": "칸톤"
 }

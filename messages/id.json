@@ -37,6 +37,7 @@
   "address-form.geolocation.example.JPN": "Mis: 2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo",
   "address-form.geolocation.example.KOR": "Mis: 21 Namdaemunsijang 4-gil, Jung-gu, Seoul",
   "address-form.geolocation.example.LTU": "Mis: Karaliaus Mindaugo pr. 17, Kaunas, 44295",
+  "address-form.geolocation.example.LUX": "Mis.: 10 Rue de la Gare, 1610 Luxembourg",
   "address-form.geolocation.example.LVA": "Mis: Barona iela 7, dz. 1, RĪGA, LV-1050, LATVIA",
   "address-form.geolocation.example.MEX": "Mis.: Calle de Tacuba 8, Ciudad de México",
   "address-form.geolocation.example.NIC": "Mis: Pista de La Solidaridad, Managua 15000",
@@ -101,5 +102,6 @@
   "address-form.field.municipalityDelegation": "Kotamadya/Delegasi",
   "address-form.field.province": "Provinsi",
   "address-form.field.receiverName": "Penerima",
-  "address-form.field.county": "N/A"
+  "address-form.field.county": "N/A",
+  "address-form.field.canton": "Kanton"
 }
