@@ -3,6 +3,15 @@ import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 
 const countryData = {
+  Apure: {
+    Achaguas: '7002',
+    Biruaca: '7007',
+    'Muñoz': '7005',
+    'Páez': '5063',
+    'Pedro Camejo': '7004',
+    'Rómulo Gallegos': '7011',
+    'San Fernando': '7001',
+  },
   Anzoategui: {
     'Anaco ': '6001',
     'Aragua ': '6002',
