@@ -37,6 +37,7 @@
   "address-form.geolocation.example.JPN": "F.eks.: 2 Chome-8-1 Nishishinjuku, Shinjuku City, Tokyo",
   "address-form.geolocation.example.KOR": "F.eks.: 21 Namdaemunsijang 4-gil, Jung-gu, Seoul",
   "address-form.geolocation.example.LTU": "F.eks.: Karaliaus Mindaugo pr. 17, Kaunas, 44295",
+  "address-form.geolocation.example.LUX": "F.eks.: 10 Rue de la Gare, 1610 Luxembourg",
   "address-form.geolocation.example.LVA": "F.eks.: Barona iela 7, dz. 1, RĪGA, LV-1050, LATVIA",
   "address-form.geolocation.example.MEX": "F.eks.: Calle de Tacuba 8, Ciudad de México",
   "address-form.geolocation.example.NIC": "F.eks.: Pista de La Solidaridad, Managua 15000",
@@ -101,5 +102,6 @@
   "address-form.field.municipalityDelegation": "Kommune/delegering",
   "address-form.field.province": "Provins",
   "address-form.field.receiverName": "Modtager",
-  "address-form.field.county": "Amt"
+  "address-form.field.county": "Amt",
+  "address-form.field.canton": "Kanton"
 }
