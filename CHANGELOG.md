@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Luxembourg country rules.
 
+### Fixed
+
+- Venezuela's countryData to include Apure state
+
 ## [3.41.0] - 2025-11-04
 
 - Display house number in French street address summary
