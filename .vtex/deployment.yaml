@@ -6,6 +6,9 @@
     pipelines:
       - name: node-ci-v2
         parameters:
+          nodeCommands:
+            - install
+            - test:coverage
           sonarProjectName: address-form
           nodeVersion: 20-bookworm
         runtime:
