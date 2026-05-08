@@ -3,7 +3,8 @@
   "scripts": {
     "lint": "eslint --ext js,jsx,ts,tsx .",
     "lint:locales": "intl-equalizer",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
+    "test:coverage": "yarn --cwd react install --frozen-lockfile && yarn --cwd react test:coverage"
   },
   "husky": {
     "hooks": {

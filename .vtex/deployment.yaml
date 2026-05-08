@@ -4,6 +4,21 @@
   build:
     provider: dkcicd
     pipelines:
+      - name: node-ci-v2
+        parameters:
+          nodeCommands:
+            - install
+            - test:coverage
+          sonarProjectName: address-form
+          nodeVersion: 20-bookworm
+        runtime:
+          architecture: amd64
+        when:
+          - event: pull_request
+            source: branch
+          - event: push
+            source: branch
+            regex: main
       - name: techdocs-v1
         parameters:
           entityReference: default/component/address-form
