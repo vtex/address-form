@@ -28,3 +28,14 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+
+# Spec Kit (SDD Full) — ephemeral artifacts.
+# spec.md is the only committed artifact under specs/<feature>/.
+specs/**/plan.md
+specs/**/tasks.md
+specs/**/analysis.md
+.specify/cache/
+.specify/.tmp/
+
+# Claude Code internal worktrees (per-engineer, never committed)
+.claude/worktrees/
