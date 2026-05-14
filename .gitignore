@@ -5,6 +5,7 @@ node_modules
 
 # testing
 /coverage
+react/coverage
 
 # production
 react/locales
