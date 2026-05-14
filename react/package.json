@@ -92,10 +92,10 @@
       "<rootDir>/umd/"
     ],
     "transformIgnorePatterns": [
-      "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]es[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+      "<rootDir>/lib/.+\\.(js|jsx)$",
+      "<rootDir>/umd/.+\\.(js|jsx)$",
+      "<rootDir>/es/.+\\.(js|jsx)$",
+      "[/\\\\]node_modules[/\\\\](?!axios[/\\\\]).+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
       "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
