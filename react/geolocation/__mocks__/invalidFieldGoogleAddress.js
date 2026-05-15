@@ -1,3 +1,3 @@
-import { createRuaBaraoItambiGoogleAddress } from './ruaBaraoItambiGoogleAddress'
+import { createRuaBaraoItambiGoogleAddress } from './postalCodeGoogleAddress'
 
 export default createRuaBaraoItambiGoogleAddress('22231')
