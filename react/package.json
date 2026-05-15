@@ -10,7 +10,8 @@
     "build": "../node_modules/.bin/rollup -c && yarn add-locales",
     "add-locales": "cp -R -f ../messages/ lib/locales/",
     "test": "jest --env=jsdom",
-    "test:coverage": "jest --env=jsdom --coverage",
+    "test:coverage": "jest --env=jsdom --coverage && yarn normalize-coverage",
+    "normalize-coverage": "sed 's|^SF:|SF:react/|' coverage/lcov.info > coverage/lcov.sonar.info",
     "test:watch": "jest --env=jsdom --watch",
     "prepublishOnly": "yarn build"
   },

@@ -1,5 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+.env.local
+
 # dependencies
 node_modules
 
@@ -40,3 +42,8 @@ specs/**/analysis.md
 
 # Claude Code internal worktrees (per-engineer, never committed)
 .claude/worktrees/
+
+# SonarQube
+sonar-project.properties
+sonar-analyze.sh
+.scannerwork/
