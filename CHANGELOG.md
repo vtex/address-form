@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Overhauled Venezuela's countryData to use three levels of administrative subdivisions and include several missing ZIP codes.
+
 ## [4.28.0] - 2025-12-09
 
 ### Added
