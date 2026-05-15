@@ -6,6 +6,12 @@ import {
   getThreeLevels,
 } from '../../transforms/addressFieldsOptions'
 import type { PostalCodeRules } from '../../types/rules'
+import {
+  mockComplementField,
+  mockNumberField,
+  mockReceiverNameField,
+  mockStreetField,
+} from './sharedMockRuleFields'
 
 const countryData = {
   Beni: {
@@ -38,25 +44,9 @@ const rules: PostalCodeRules = {
   postalCodeLevels: ['state', 'city', 'neighborhood'],
   thirdLevelPostalCodes: thirdLevelPostalCodes(countryData),
   fields: [
-    {
-      name: 'street',
-      label: 'street',
-      required: true,
-      size: 'xlarge',
-    },
-    {
-      name: 'number',
-      maxLength: 750,
-      label: 'number',
-      required: true,
-      size: 'mini',
-    },
-    {
-      name: 'complement',
-      maxLength: 750,
-      label: 'complement',
-      size: 'large',
-    },
+    mockStreetField,
+    mockNumberField,
+    mockComplementField,
     {
       name: 'state',
       maxLength: 100,
@@ -84,14 +74,7 @@ const rules: PostalCodeRules = {
       basedOn: 'city',
       optionsMap: getThreeLevels(countryData),
     },
-    {
-      name: 'receiverName',
-      elementName: 'receiver',
-      maxLength: 750,
-      label: 'receiverName',
-      size: 'large',
-      required: true,
-    },
+    mockReceiverNameField,
   ],
 }
 

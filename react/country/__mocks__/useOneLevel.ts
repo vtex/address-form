@@ -5,6 +5,12 @@ import {
   getTwoLevels,
 } from '../../transforms/addressFieldsOptions'
 import type { PostalCodeRules } from '../../types/rules'
+import {
+  mockComplementField,
+  mockNumberField,
+  mockReceiverNameField,
+  mockStreetField,
+} from './sharedMockRuleFields'
 
 const countryData = {
   Azuay: {
@@ -25,25 +31,9 @@ const rules: PostalCodeRules = {
   postalCodeLevels: ['state'],
   firstLevelPostalCodes: firstLevelPostalCodes(countryData),
   fields: [
-    {
-      name: 'street',
-      label: 'street',
-      required: true,
-      size: 'xlarge',
-    },
-    {
-      name: 'number',
-      maxLength: 750,
-      label: 'number',
-      required: true,
-      size: 'mini',
-    },
-    {
-      name: 'complement',
-      maxLength: 750,
-      label: 'complement',
-      size: 'large',
-    },
+    mockStreetField,
+    mockNumberField,
+    mockComplementField,
     {
       name: 'state',
       maxLength: 100,
@@ -62,14 +52,7 @@ const rules: PostalCodeRules = {
       level: 2,
       optionsMap: getTwoLevels(countryData),
     },
-    {
-      name: 'receiverName',
-      elementName: 'receiver',
-      maxLength: 750,
-      label: 'receiverName',
-      size: 'large',
-      required: true,
-    },
+    mockReceiverNameField,
   ],
   geolocation: {
     postalCode: {
@@ -86,12 +69,12 @@ const rules: PostalCodeRules = {
           return address
         }
 
-        if (
-          countryData[address.state.value] &&
-          countryData[address.state.value][address.city.value]
-        ) {
+        const postalCodeValue =
+          countryData[address.state.value]?.[address.city.value]
+
+        if (postalCodeValue) {
           address.postalCode = {
-            value: countryData[address.state.value][address.city.value],
+            value: postalCodeValue,
           }
         }
 

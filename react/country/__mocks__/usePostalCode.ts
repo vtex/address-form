@@ -13,10 +13,10 @@ const rules: PostalCodeRules = {
       fixedLabel: 'CEP',
       required: true,
       mask: '99999-999',
-      regex: '^([\\d]{5})\\-?([\\d]{3})$',
+      regex: String.raw`^([\d]{5})\-?([\d]{3})$`,
       postalCodeAPI: true,
       forgottenURL:
-        'http://www.buscacep.correios.com.br/servicos/dnec/index.do',
+        'https://www.buscacep.correios.com.br/servicos/dnec/index.do',
       size: 'small',
     },
     {
