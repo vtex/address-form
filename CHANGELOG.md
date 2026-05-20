@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Updated Colombia municipality list and moved it to `react/country/data/COL.json`.
+
 ### Changed
 
 - Deduplicated test fixtures: shared Google Geocoder payloads (factory exported from `postalCodeGoogleAddress.js`), address/geolocation mock bases, and `sharedMockRuleFields` for `useOneLevel` / `useThreeLevels` to satisfy Sonar CPD on new code.
