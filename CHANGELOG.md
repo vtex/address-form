@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Panama (PAN) country rules.
 ## [4.28.0] - 2025-12-09
 
 ### Added
