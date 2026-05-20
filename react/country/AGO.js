@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: null,
-  abbr: null,
+  country: 'AGO',
+  abbr: 'AO',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -14,11 +14,11 @@ export default {
     },
     {
       name: 'postalCode',
-      maxLength: 4,
+      maxLength: 10,
       label: 'postalCode',
-      mask: '1234',
-      regex: '^\\d{4}$',
       required: true,
+      mask: '9999',
+      regex: '^[a-zA-Z0-9\\s-]{3,10}$',
       size: 'small',
       autoComplete: 'nope',
       postalCodeAPI: false,
@@ -26,22 +26,24 @@ export default {
     {
       name: 'street',
       label: 'addressLine1',
+      maxLength: 150,
       required: true,
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'number',
-      maxLength: 750,
+      maxLength: 10,
       label: 'number',
       size: 'small',
       autoComplete: 'nope',
+      required: false,
     },
     {
       name: 'complement',
       maxLength: 750,
       label: 'addressLine2',
       size: 'xlarge',
+      required: false,
     },
     {
       hidden: true,
@@ -49,9 +51,9 @@ export default {
       maxLength: 750,
       label: 'reference',
       size: 'xlarge',
+      required: false,
     },
     {
-      hidden: true,
       name: 'neighborhood',
       maxLength: 100,
       label: 'neighborhood',
@@ -62,14 +64,13 @@ export default {
       maxLength: 100,
       label: 'city',
       required: true,
-      size: 'xlarge',
+      size: 'large',
     },
     {
       name: 'state',
       maxLength: 100,
-      label: 'state',
-      required: false,
-      hidden: true,
+      label: 'province',
+      required: true,
       size: 'large',
     },
     {
@@ -92,7 +93,7 @@ export default {
       valueIn: 'long_name',
       types: ['street_number'],
       required: false,
-      notApplicable: true,
+      notApplicable: false,
     },
 
     street: { valueIn: 'long_name', types: ['route'] },
@@ -116,7 +117,7 @@ export default {
 
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['political', 'locality'],
     },
 
     receiverName: {
@@ -124,32 +125,10 @@ export default {
     },
   },
   summary: [
+    [{ name: 'street' }, { delimiter: ', ', name: 'number' }],
     [
-      {
-        name: 'street',
-      },
-      {
-        delimiter: ' ',
-        name: 'number',
-      },
-      {
-        delimiter: ', ',
-        name: 'complement',
-      },
-    ],
-    [
-      {
-        name: 'neighborhood',
-        delimiterAfter: ' - ',
-      },
-      {
-        name: 'city',
-      },
-    ],
-    [
-      {
-        name: 'postalCode',
-      },
+      { delimiter: ' ', name: 'city' },
+      { delimiter: ', ', name: 'state' },
     ],
   ],
 }

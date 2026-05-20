@@ -213,6 +213,7 @@ const countryData = {
   Ladakh: ['Kargil', 'Leh'],
   'Madhya Pradesh': [
     'Balaghat',
+    'Barwaha',
     'Barwani',
     'Betul',
     'Bharhut',

@@ -1,5 +1,6 @@
 // countries
 import defaultRules from './country/default'
+import AGO from './country/AGO'
 import ARE from './country/ARE'
 import ARG from './country/ARG'
 import AUS from './country/AUS'
@@ -31,6 +32,9 @@ import ITA from './country/ITA'
 import JAM from './country/JAM'
 import JPN from './country/JPN'
 import KOR from './country/KOR'
+import LTU from './country/LTU'
+import LUX from './country/LUX'
+import LVA from './country/LVA'
 import MEX from './country/MEX'
 import NIC from './country/NIC'
 import NLD from './country/NLD'
@@ -58,6 +62,7 @@ import MLT from './country/MLT'
 
 export default {
   defaultRules,
+  AGO,
   ARE,
   ARG,
   AUS,
@@ -89,6 +94,9 @@ export default {
   JAM,
   JPN,
   KOR,
+  LTU,
+  LUX,
+  LVA,
   MEX,
   NIC,
   NLD,

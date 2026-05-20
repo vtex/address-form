@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: null,
-  abbr: null,
+  country: 'LVA',
+  abbr: 'LV',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -14,12 +14,10 @@ export default {
     },
     {
       name: 'postalCode',
-      maxLength: 4,
+      maxLength: 50,
       label: 'postalCode',
-      mask: '1234',
-      regex: '^\\d{4}$',
-      required: true,
       size: 'small',
+      regex: /^((L|l)(V|v)-|)\d{4}$/,
       autoComplete: 'nope',
       postalCodeAPI: false,
     },
@@ -62,14 +60,13 @@ export default {
       maxLength: 100,
       label: 'city',
       required: true,
-      size: 'xlarge',
+      size: 'large',
     },
     {
       name: 'state',
       maxLength: 100,
       label: 'state',
-      required: false,
-      hidden: true,
+      required: true,
       size: 'large',
     },
     {
@@ -144,6 +141,10 @@ export default {
       },
       {
         name: 'city',
+      },
+      {
+        delimiter: ' - ',
+        name: 'state',
       },
     ],
     [

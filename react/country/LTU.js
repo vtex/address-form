@@ -1,8 +1,8 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: null,
-  abbr: null,
+  country: 'LTU',
+  abbr: 'LT',
   postalCodeFrom: POSTAL_CODE,
   fields: [
     {
@@ -18,6 +18,7 @@ export default {
       label: 'postalCode',
       required: true,
       size: 'small',
+      regex: /^((L|l)(T|t)-|)\d{5}$/,
       autoComplete: 'nope',
       postalCodeAPI: false,
       autoUpperCase: true,

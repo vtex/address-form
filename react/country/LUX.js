@@ -1,9 +1,10 @@
 import { POSTAL_CODE } from '../constants'
 
 export default {
-  country: null,
-  abbr: null,
+  country: 'LUX',
+  abbr: 'LU',
   postalCodeFrom: POSTAL_CODE,
+  postalCodeProtectedFields: ['city', 'state'],
   fields: [
     {
       hidden: true,
@@ -16,32 +17,32 @@ export default {
       name: 'postalCode',
       maxLength: 4,
       label: 'postalCode',
-      mask: '1234',
-      regex: '^\\d{4}$',
       required: true,
+      mask: '9999',
+      regex: /^\d{4}$/,
+      postalCodeAPI: true,
       size: 'small',
       autoComplete: 'nope',
-      postalCodeAPI: false,
     },
     {
       name: 'street',
-      label: 'addressLine1',
+      label: 'street',
       required: true,
       size: 'xlarge',
     },
     {
-      hidden: true,
       name: 'number',
       maxLength: 750,
       label: 'number',
-      size: 'small',
+      required: true,
+      size: 'mini',
       autoComplete: 'nope',
     },
     {
       name: 'complement',
       maxLength: 750,
-      label: 'addressLine2',
-      size: 'xlarge',
+      label: 'floorAndLetter',
+      size: 'large',
     },
     {
       hidden: true,
@@ -62,14 +63,28 @@ export default {
       maxLength: 100,
       label: 'city',
       required: true,
-      size: 'xlarge',
+      size: 'large',
     },
     {
       name: 'state',
       maxLength: 100,
-      label: 'state',
-      required: false,
-      hidden: true,
+      label: 'canton',
+      required: true,
+      optionsCaption: '',
+      optionsPairs: [
+        { label: 'Capellen', value: 'CA' },
+        { label: 'Clervaux', value: 'CL' },
+        { label: 'Diekirch', value: 'DI' },
+        { label: 'Echternach', value: 'EC' },
+        { label: 'Esch-sur-Alzette', value: 'ES' },
+        { label: 'Grevenmacher', value: 'GR' },
+        { label: 'Luxembourg', value: 'LU' },
+        { label: 'Mersch', value: 'ME' },
+        { label: 'Redange', value: 'RD' },
+        { label: 'Remich', value: 'RM' },
+        { label: 'Vianden', value: 'VD' },
+        { label: 'Wiltz', value: 'WI' },
+      ],
       size: 'large',
     },
     {
@@ -91,7 +106,7 @@ export default {
     number: {
       valueIn: 'long_name',
       types: ['street_number'],
-      required: false,
+      required: true,
       notApplicable: true,
     },
 
@@ -99,14 +114,12 @@ export default {
 
     neighborhood: {
       valueIn: 'long_name',
-      types: [
-        'neighborhood',
-        'sublocality_level_1',
-        'sublocality_level_2',
-        'sublocality_level_3',
-        'sublocality_level_4',
-        'sublocality_level_5',
-      ],
+      types: ['neighborhood'],
+    },
+
+    complement: {
+      valueIn: 'long_name',
+      types: ['subpremise'],
     },
 
     state: {
@@ -116,7 +129,7 @@ export default {
 
     city: {
       valueIn: 'long_name',
-      types: ['administrative_area_level_2', 'locality'],
+      types: ['locality', 'political'],
     },
 
     receiverName: {
@@ -125,31 +138,14 @@ export default {
   },
   summary: [
     [
-      {
-        name: 'street',
-      },
-      {
-        delimiter: ' ',
-        name: 'number',
-      },
-      {
-        delimiter: ', ',
-        name: 'complement',
-      },
+      { name: 'street' },
+      { delimiter: ' ', name: 'number' },
+      { delimiter: ', ', name: 'complement' },
     ],
     [
-      {
-        name: 'neighborhood',
-        delimiterAfter: ' - ',
-      },
-      {
-        name: 'city',
-      },
-    ],
-    [
-      {
-        name: 'postalCode',
-      },
+      { name: 'postalCode' },
+      { delimiter: ' ', name: 'city' },
     ],
   ],
 }
+

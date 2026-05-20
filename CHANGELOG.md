@@ -10,6 +10,97 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Panama (PAN) country rules.
+## [4.28.0] - 2025-12-09
+
+### Added
+
+- Luxembourg country rules
+
+## [4.27.2] - 2025-12-09
+
+### Fixed
+
+- Venezuela's countryData to include Apure state
+
+## [4.27.1] - 2025-11-11
+
+### Changed
+
+- Display house number in French street address summary
+
+## [4.27.0] - 2025-10-16
+
+### Added
+
+- Angola country rules.
+
+## [4.26.15] - 2025-10-15
+
+### Fixed
+
+- Postal code mask for Lithuania, to properly accept 5-digit codes preceded or not by 'LT-'.
+
+## [4.26.14] - 2025-10-15
+
+### Changed
+
+- State selection behavior for DEU, matching the main branch.
+
+## [4.26.13] - 2025-10-15
+
+### Fixed
+
+- Paraguay location with wrong name.
+
+## [4.26.12] - 2025-10-15
+
+## [4.26.11] - 2025-10-15
+
+### Fixed
+
+- Spain geolocation state and city formatting to match main branch
+
+## [4.26.10] - 2025-10-15
+
+### Fixed
+
+- German translation
+
+## [4.26.9] - 2025-08-27
+
+### Added
+
+- Postal code validation for Lithuania to accept 5-digit codes preceded or not by 'LT-'.
+
+## [4.26.8] - 2025-08-27
+
+### Fixed
+
+- Denmark's postal code field label
+
+## [4.26.7] - 2025-08-27
+
+### Added
+
+- New localities to Dominican Republic's country data.
+
+## [4.26.6] - 2025-06-12
+
+### Added
+
+- New locality Barwaha to India's country data.
+
+## [4.26.5] - 2025-05-27
+
+### Fixed
+
+- Guatemala's locality name: Huitán.
+
+## [4.26.4] - 2025-05-19
+
+### Fixed
+
+- New cities in Venezuela.
 
 ## [4.26.3] - 2025-02-25
 
