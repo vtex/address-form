@@ -1,0 +1,33 @@
+- name: address-form
+  referenceId: CK8TDYV0
+  description: CI/CD and TechDocs pipeline for address-form
+  build:
+    provider: dkcicd
+    pipelines:
+      - name: node-ci-v2
+        parameters:
+          nodeCommands:
+            - install
+            - test:coverage
+          sonarProjectName: address-form
+          nodeVersion: 20-bookworm
+        runtime:
+          architecture: amd64
+        when:
+          - event: pull_request
+            source: branch
+          - event: push
+            source: branch
+            regex: main
+      - name: techdocs-v1
+        parameters:
+          entityReference: default/component/address-form
+        when:
+          - event: push
+            source: branch
+            regex: main
+            path:
+              - "docs/**"
+              - ".vtex/deployment.yaml"
+              - ".vtex/deployment.json"
+              - "README.md"

@@ -4,6 +4,15 @@ import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
 import type { PostalCodeRules } from '../types/rules'
 
 const countryData = {
+  Apure: {
+    Achaguas: '7002',
+    Biruaca: '7007',
+    'Muñoz': '7005',
+    'Páez': '5063',
+    'Pedro Camejo': '7004',
+    'Rómulo Gallegos': '7011',
+    'San Fernando': '7001',
+  },
   Anzoategui: {
     'Anaco ': '6001',
     'Aragua ': '6002',
@@ -128,6 +137,7 @@ const countryData = {
     'Andrés Bello': '2410',
     'Paz Castillo': '2411',
     Independencia: '2412',
+    Urdaneta: '1211',
   },
   Monagas: {
     Piar: '6200',
@@ -182,6 +192,14 @@ const countryData = {
   },
   Vargas: {
     Vargas: '1162',
+    Caraballeda: '1165',
+    Carayaca: '1167',
+    'Catia La Mar': '1162',
+    'La Guaira': '1160',
+    'La Sabana': '1168',
+    Macuto: '1164',
+    Maiquetía: '1161',
+    Naiguatá: '1166',
   },
   Yaracuy: {
     Bruzual: '3202',

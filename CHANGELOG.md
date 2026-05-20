@@ -11,6 +11,65 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Panama (PAN) country rules.
 
+### Changed
+
+- Deduplicated test fixtures: shared Google Geocoder payloads (factory exported from `postalCodeGoogleAddress.js`), address/geolocation mock bases, and `sharedMockRuleFields` for `useOneLevel` / `useThreeLevels` to satisfy Sonar CPD on new code.
+
+## [3.42.0] - 2025-12-09
+
+### Added
+
+- Luxembourg country rules.
+
+### Fixed
+
+- Venezuela's countryData to include Apure state
+
+## [3.41.0] - 2025-11-04
+
+- Display house number in French street address summary
+
+## [3.40.0] - 2025-10-16
+
+### Added
+
+- Angola country rules.
+
+### Fixed
+
+- Postal code mask for Lithuania, to properly accept 5-digit codes preceded or not by 'LT-'.
+- Paraguay location with wrong name.
+- German translation
+
+## [3.39.0] - 2025-08-27
+
+### Fixed
+
+- Denmark's postal code field label
+
+### Added
+
+- Postal code validation for Lithuania to accept 5-digit codes preceded or not by 'LT-'.
+- New localities to Dominican Republic's country data.
+
+## [3.38.6] - 2025-06-12
+
+### Added
+
+- New locality Barwaha to India's country data.
+
+## [3.38.5] - 2025-05-27
+
+### Fixed
+
+- Guatemala's locality name: Huitán.
+
+## [3.38.4] - 2025-05-19
+
+### Fixed
+
+- New cities in Venezuela.
+
 ## [3.38.3] - 2025-02-25
 
 ## [3.38.2] - 2025-02-25
@@ -1651,7 +1710,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.38.3...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.41.0...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1666,6 +1725,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.36.1]: https://github.com/vtex/address-form/compare/v3.36.0...v3.36.1
 [3.36.0]: https://github.com/vtex/address-form/compare/v3.35.6...v3.36.0
 
+[3.41.0]: https://github.com/vtex/address-form/compare/v3.40.0...v3.41.0
+[3.40.0]: https://github.com/vtex/address-form/compare/v3.39.0...v3.40.0
+[3.39.0]: https://github.com/vtex/address-form/compare/v3.38.6...v3.39.0
+[3.38.6]: https://github.com/vtex/address-form/compare/v3.38.5...v3.38.6
+[3.38.5]: https://github.com/vtex/address-form/compare/v3.38.4...v3.38.5
+[3.38.4]: https://github.com/vtex/address-form/compare/v3.38.3...v3.38.4
 [3.38.3]: https://github.com/vtex/address-form/compare/v3.38.2...v3.38.3
 [3.38.2]: https://github.com/vtex/address-form/compare/v3.38.1...v3.38.2
 [3.38.1]: https://github.com/vtex/address-form/compare/v3.38.0...v3.38.1
