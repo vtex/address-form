@@ -1040,7 +1040,7 @@ const countryData = {
     'San Andrés de Tumaco': '52835',
     'San Bernardo': '52685',
     'San Jose': '52019',
-    'San Jose': '52621',
+    "San Jose (52621)": "52621",
     'San Lorenzo': '52687',
     'San Pablo': '52693',
     'San Pedro de Cartago': '52694',
