@@ -29,20 +29,23 @@ const addresses = {
 
 export function getAddress({ country, postalCode }) {
   return new Promise((resolve, reject) => {
-    const address = addresses[country] && addresses[country][postalCode]
-
-    const shouldResolve = !address || !address.reject
+    const address = addresses[country]?.[postalCode]
+    const shouldReject = address?.reject === true
 
     process.nextTick(() => {
-      shouldResolve
-        ? address
-          ? resolve({ ...address })
-          : resolve({
-              ...fallbackAddress,
-              country,
-              postalCode,
-            })
-        : reject('Error')
+      if (shouldReject) {
+        reject(new Error('Error'))
+
+        return
+      }
+
+      if (address) {
+        resolve({ ...address })
+
+        return
+      }
+
+      resolve({ ...fallbackAddress, country, postalCode })
     })
   })
 }

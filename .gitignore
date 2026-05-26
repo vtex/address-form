@@ -1,10 +1,13 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+.env.local
+
 # dependencies
 node_modules
 
 # testing
 /coverage
+react/coverage
 
 # production
 react/locales
@@ -28,3 +31,19 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+
+# Spec Kit (SDD Full) — ephemeral artifacts.
+# spec.md is the only committed artifact under specs/<feature>/.
+specs/**/plan.md
+specs/**/tasks.md
+specs/**/analysis.md
+.specify/cache/
+.specify/.tmp/
+
+# Claude Code internal worktrees (per-engineer, never committed)
+.claude/worktrees/
+
+# SonarQube
+sonar-project.properties
+sonar-analyze.sh
+.scannerwork/

@@ -10,7 +10,8 @@
     "build": "../node_modules/.bin/rollup -c && yarn add-locales",
     "add-locales": "cp -R -f ../messages/ lib/locales/",
     "test": "jest --env=jsdom",
-    "test:coverage": "jest --env=jsdom --coverage",
+    "test:coverage": "jest --env=jsdom --coverage && yarn normalize-coverage",
+    "normalize-coverage": "sed 's|^SF:|SF:react/|' coverage/lcov.info > coverage/lcov.sonar.info",
     "test:watch": "jest --env=jsdom --watch",
     "prepublishOnly": "yarn build"
   },
@@ -92,10 +93,10 @@
       "<rootDir>/umd/"
     ],
     "transformIgnorePatterns": [
-      "[/\\\\]lib[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]umd[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]es[/\\\\].+\\.(js|jsx)$",
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+      "<rootDir>/lib/.+\\.(js|jsx)$",
+      "<rootDir>/umd/.+\\.(js|jsx)$",
+      "<rootDir>/es/.+\\.(js|jsx)$",
+      "[/\\\\]node_modules[/\\\\](?!axios[/\\\\]).+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
       "\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)(\\?.*)?$": "identity-obj-proxy"
