@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Virgin Islands' postal code validation
+- Paraguay's locality Itauguá typo
 
 ## [4.28.0] - 2025-12-09
 
