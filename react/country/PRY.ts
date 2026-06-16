@@ -128,7 +128,7 @@ const countryData = {
     'Fernando De La Mora': '2300',
     Guarambare: '2670',
     Ita: '2710',
-    Itagua: '2740',
+    Itauguá: '2740',
     'Julian Augusto Saldivar': '2630',
     Lambare: '2420',
     Limpio: '2020',
