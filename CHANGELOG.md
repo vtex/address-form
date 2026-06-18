@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixed
+### Added
 
-- Costa Rica's countryData to fix a couple of issues.
+- Test for the postal code handler function.
 
 ### Changed
 
@@ -17,8 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Costa Rica's countryData to fix a couple of issues.
 - Virgin Islands' postal code validation
 - Paraguay's locality Itauguá typo
+- Bolivia province and municipality list aligned with INE 2024 Census data.
 
 ## [3.42.0] - 2025-12-09
 
