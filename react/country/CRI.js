@@ -122,7 +122,7 @@ const countryData = {
       'Piedades Sur': '20205',
       'San Isidro': '20207',
       'San Juan': '20203',
-      'San Lorenzo4': '20214',
+      'San Lorenzo': '20214',
       'San Rafael': '20206',
       'San Ramón': '20201',
       Santiago: '20202',
@@ -521,7 +521,7 @@ const countryData = {
       'San Josecito': '11002',
     },
     Aserrí: {
-      Aserrí: '10504',
+      Aserrí: '10601',
       Legua: '10605',
       Monterrey: '10606',
       Salitrillos: '10607',
