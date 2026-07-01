@@ -1,3 +1,5 @@
+import get from 'lodash/get'
+
 import type { AddressWithValidation, FillableFields } from '../types/address'
 import type { GeolocationRule } from '../types/rules'
 
@@ -26,17 +28,9 @@ function lookupPostalCode(
   countryData: HierarchyCountryData,
   keys: string[]
 ): string | undefined {
-  let current: unknown = countryData
+  const result = get(countryData, keys)
 
-  for (const key of keys) {
-    if (current == null || typeof current !== 'object') {
-      return undefined
-    }
-
-    current = (current as Record<string, unknown>)[key]
-  }
-
-  return typeof current === 'string' ? current : undefined
+  return typeof result === 'string' ? result : undefined
 }
 
 export function createPostalCodeFromHierarchyHandler(
