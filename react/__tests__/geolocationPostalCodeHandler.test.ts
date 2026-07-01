@@ -42,28 +42,28 @@ describe('BOL geolocation postalCode handler', () => {
 
   const alternateSample = getAlternateHierarchySample(rules)
 
-  if (alternateSample) {
-    it('resolves postalCode using the full hierarchy path', () => {
-      const firstResult = handler(
-        buildAddress(alternateSample.first.values),
-        {},
-        0
-      )
-      const secondResult = handler(
-        buildAddress(alternateSample.second.values),
-        {},
-        0
-      )
+  it('resolves postalCode using the full hierarchy path', () => {
+    expect(alternateSample).not.toBeNull()
 
-      expect(firstResult.postalCode).toEqual({
-        value: alternateSample.first.expectedPostal,
-      })
-      expect(secondResult.postalCode).toEqual({
-        value: alternateSample.second.expectedPostal,
-      })
-      expect(firstResult.postalCode?.value).not.toBe(
-        secondResult.postalCode?.value
-      )
+    const firstResult = handler(
+      buildAddress(alternateSample!.first.values),
+      {},
+      0
+    )
+    const secondResult = handler(
+      buildAddress(alternateSample!.second.values),
+      {},
+      0
+    )
+
+    expect(firstResult.postalCode).toEqual({
+      value: alternateSample!.first.expectedPostal,
     })
-  }
+    expect(secondResult.postalCode).toEqual({
+      value: alternateSample!.second.expectedPostal,
+    })
+    expect(firstResult.postalCode?.value).not.toBe(
+      secondResult.postalCode?.value
+    )
+  })
 })
