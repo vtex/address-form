@@ -138,19 +138,3 @@ export function getAlternateHierarchySample(
     },
   }
 }
-
-export function hasHierarchyPostalHandler(rules: PostalCodeRules): boolean {
-  return (
-    typeof rules.geolocation?.postalCode?.handler === 'function' &&
-    getHierarchySample(rules) !== null
-  )
-}
-
-export function getCountriesWithHierarchyPostalHandler(
-  countries: Record<string, PostalCodeRules>
-): Array<[string, PostalCodeRules]> {
-  return Object.entries(countries)
-    .filter(([countryCode]) => countryCode !== 'defaultRules')
-    .filter(([, rules]) => hasHierarchyPostalHandler(rules))
-    .sort(([left], [right]) => left.localeCompare(right))
-}

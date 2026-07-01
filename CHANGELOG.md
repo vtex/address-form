@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Geolocation postal code lookup for BOL, COL, CRI, PER, and CHL now uses shared `createPostalCodeFromHierarchyHandler` transform.
 - Deduplicated test fixtures: shared Google Geocoder payloads (factory exported from `postalCodeGoogleAddress.js`), address/geolocation mock bases, and `sharedMockRuleFields` for `useOneLevel` / `useThreeLevels` to satisfy Sonar CPD on new code.
 
 ### Fixed
