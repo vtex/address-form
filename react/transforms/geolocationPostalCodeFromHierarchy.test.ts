@@ -1,5 +1,5 @@
 import { createPostalCodeFromHierarchyHandler } from './geolocationPostalCodeFromHierarchy'
-import type { AddressWithValidation } from '../types/address'
+import type { AddressWithValidation, FillableFields } from '../types/address'
 
 const threeLevelData = {
   Ica: {
@@ -22,12 +22,12 @@ const twoLevelStateNeighborhoodData = {
 }
 
 function buildAddress(
-  values: Partial<Record<string, string>>
+  values: Partial<Record<FillableFields, string>>
 ): AddressWithValidation {
   const address = {} as AddressWithValidation
 
   Object.entries(values).forEach(([field, value]) => {
-    address[field as keyof AddressWithValidation] = { value }
+    address[field as FillableFields] = { value }
   })
 
   return address
