@@ -5,12 +5,9 @@ import {
   getTwoLevels,
   getThreeLevels,
 } from '../transforms/addressFieldsOptions'
+import { createPostalCodeFromHierarchyHandler } from '../transforms/geolocationPostalCodeFromHierarchy'
 import type { PostalCodeRules } from '../types/rules'
 import countryData from './data/BOL.json'
-
-type CountryData = Record<string, Record<string, Record<string, string>>>
-
-const countryDataByKey = countryData as CountryData
 
 const rules: PostalCodeRules = {
   country: 'BOL',
@@ -106,32 +103,11 @@ const rules: PostalCodeRules = {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: (address) => {
-        if (
-          !address.state ||
-          !address.city ||
-          !address.neighborhood ||
-          !address.state.value ||
-          !address.city.value ||
-          !address.neighborhood.value
-        ) {
-          return address
-        }
-
-        const department = countryDataByKey[address.state.value]
-        const province = department && department[address.city.value]
-        const municipality =
-          province && province[address.neighborhood.value]
-
-        if (municipality) {
-          return {
-            ...address,
-            postalCode: { value: municipality },
-          }
-        }
-
-        return address
-      },
+      handler: createPostalCodeFromHierarchyHandler(countryData, [
+        'state',
+        'city',
+        'neighborhood',
+      ]),
     },
 
     number: {
