@@ -1,3 +1,5 @@
+import get from 'lodash/get'
+
 function getFieldValue(address, field) {
   const fieldValue = address[field]
 
@@ -14,17 +16,9 @@ function getFieldValue(address, field) {
 }
 
 function lookupPostalCode(countryData, keys) {
-  let current = countryData
+  const result = get(countryData, keys)
 
-  for (let i = 0; i < keys.length; i++) {
-    if (current == null || typeof current !== 'object') {
-      return undefined
-    }
-
-    current = current[keys[i]]
-  }
-
-  return typeof current === 'string' ? current : undefined
+  return typeof result === 'string' ? result : undefined
 }
 
 export function createPostalCodeFromHierarchyHandler(countryData, levels) {
