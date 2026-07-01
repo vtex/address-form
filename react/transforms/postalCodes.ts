@@ -8,47 +8,67 @@ import type {
   ThreeLevelsData,
 } from './addressFieldsOptions'
 
-export function firstLevelPostalCodes(countryData: OneLevelData) {
+export type PostalCodeOption = {
+  label: string
+  postalCode: string
+}
+
+export type FirstLevelPostalCodesList = PostalCodeOption[]
+
+export type SecondLevelPostalCodesMap = Record<string, PostalCodeOption[]>
+
+export type ThirdLevelPostalCodesMap = Record<
+  string,
+  Record<string, PostalCodeOption[]>
+>
+
+export function firstLevelPostalCodes(
+  countryData: OneLevelData
+): FirstLevelPostalCodesList {
   return map(countryData, (secondLevel, label) => ({
     label,
-    postalCode: values(secondLevel)[0],
+    postalCode: String(values(secondLevel)[0]),
   }))
 }
 
-export function secondLevelPostalCodes(countryData: TwoLevelsData) {
+export function secondLevelPostalCodes(
+  countryData: TwoLevelsData
+): SecondLevelPostalCodesMap {
   return reduce(
     countryData,
-    (memo, secondLevels, firstLevel) => {
+    (memo: SecondLevelPostalCodesMap, secondLevels, firstLevel) => {
       memo[firstLevel] = map(secondLevels, (postalCode, label) => ({
-        postalCode,
+        postalCode: String(postalCode),
         label,
       }))
 
       return memo
     },
-    {}
+    {} as SecondLevelPostalCodesMap
   )
 }
 
-export function thirdLevelPostalCodes(countryData: ThreeLevelsData) {
+export function thirdLevelPostalCodes(
+  countryData: ThreeLevelsData
+): ThirdLevelPostalCodesMap {
   return reduce(
     countryData,
-    (memo, secondLevels, firstLevel) => {
+    (memo: ThirdLevelPostalCodesMap, secondLevels, firstLevel) => {
       memo[firstLevel] = reduce(
         secondLevels,
         (memoSecond, thirdLevels, secondLevel) => {
           memoSecond[secondLevel] = map(thirdLevels, (postalCode, label) => ({
-            postalCode,
+            postalCode: String(postalCode),
             label,
           }))
 
           return memoSecond
         },
-        {}
+        {} as Record<string, PostalCodeOption[]>
       )
 
       return memo
     },
-    {}
+    {} as ThirdLevelPostalCodesMap
   )
 }
