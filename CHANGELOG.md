@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Test for the postal code handler function.
 
+### Changed
+
+- Geolocation postal code lookup for BOL, COL, CRI, PER, and CHL now uses shared `createPostalCodeFromHierarchyHandler` transform.
+
 ### Fixed
 
 - Virgin Islands' postal code validation

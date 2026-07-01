@@ -117,21 +117,3 @@ export function getAlternateHierarchySample(rules) {
     },
   }
 }
-
-export function hasHierarchyPostalHandler(rules) {
-  const handler =
-    rules.geolocation &&
-    rules.geolocation.postalCode &&
-    rules.geolocation.postalCode.handler
-
-  return (
-    typeof handler === 'function' && getHierarchySample(rules) !== null
-  )
-}
-
-export function getCountriesWithHierarchyPostalHandler(countries) {
-  return Object.entries(countries)
-    .filter(([countryCode]) => countryCode !== 'defaultRules')
-    .filter(([, rules]) => hasHierarchyPostalHandler(rules))
-    .sort(([left], [right]) => left.localeCompare(right))
-}

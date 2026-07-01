@@ -5,6 +5,7 @@ import {
   getTwoLevels,
   getThreeLevels,
 } from '../transforms/addressFieldsOptions.js'
+import { createPostalCodeFromHierarchyHandler } from '../transforms/geolocationPostalCodeFromHierarchy'
 
 const countryData = {
   Beni: {
@@ -690,32 +691,11 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: (address) => {
-        if (
-          !address.state ||
-          !address.city ||
-          !address.neighborhood ||
-          !address.state.value ||
-          !address.city.value ||
-          !address.neighborhood.value
-        ) {
-          return address
-        }
-
-        const department = countryData[address.state.value]
-        const province = department && department[address.city.value]
-        const municipality =
-          province && province[address.neighborhood.value]
-
-        if (municipality) {
-          return {
-            ...address,
-            postalCode: { value: municipality },
-          }
-        }
-
-        return address
-      },
+      handler: createPostalCodeFromHierarchyHandler(countryData, [
+        'state',
+        'city',
+        'neighborhood',
+      ]),
     },
 
     number: {
