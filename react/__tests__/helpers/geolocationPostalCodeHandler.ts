@@ -106,35 +106,57 @@ export function getAlternateHierarchySample(
 
   const provinceEntries = Object.entries(secondLevels)
 
-  if (provinceEntries.length < 2) {
-    return null
-  }
-
-  const [firstProvince, firstEntries] = provinceEntries[0]
-  const [secondProvince, secondEntries] = provinceEntries[1]
-  const firstEntry = firstEntries[0]
-  const secondEntry = secondEntries[0]
-
-  if (!firstEntry || !secondEntry) {
-    return null
-  }
-
-  return {
-    first: {
-      values: {
-        [levels[0]]: firstLevel,
-        [levels[1]]: firstProvince,
-        [levels[2]]: firstEntry.label,
-      },
-      expectedPostal: firstEntry.postalCode,
+  const toSample = (province: string, entry: { label: string; postalCode: string }) => ({
+    values: {
+      [levels[0]]: firstLevel,
+      [levels[1]]: province,
+      [levels[2]]: entry.label,
     },
-    second: {
-      values: {
-        [levels[0]]: firstLevel,
-        [levels[1]]: secondProvince,
-        [levels[2]]: secondEntry.label,
-      },
-      expectedPostal: secondEntry.postalCode,
-    },
+    expectedPostal: entry.postalCode,
+  })
+
+  for (let p = 0; p < provinceEntries.length; p++) {
+    for (let q = p + 1; q < provinceEntries.length; q++) {
+      const [firstProvince, firstEntries] = provinceEntries[p]
+      const [secondProvince, secondEntries] = provinceEntries[q]
+
+      for (const firstEntry of firstEntries) {
+        for (const secondEntry of secondEntries) {
+          if (firstEntry.postalCode !== secondEntry.postalCode) {
+            return {
+              first: toSample(firstProvince, firstEntry),
+              second: toSample(secondProvince, secondEntry),
+            }
+          }
+        }
+      }
+    }
   }
+
+  const candidates: Array<{
+    province: string
+    entry: { label: string; postalCode: string }
+  }> = []
+
+  for (const [province, entries] of provinceEntries) {
+    for (const entry of entries) {
+      candidates.push({ province, entry })
+    }
+  }
+
+  for (let i = 0; i < candidates.length; i++) {
+    for (let j = i + 1; j < candidates.length; j++) {
+      const first = candidates[i]
+      const second = candidates[j]
+
+      if (first.entry.postalCode !== second.entry.postalCode) {
+        return {
+          first: toSample(first.province, first.entry),
+          second: toSample(second.province, second.entry),
+        }
+      }
+    }
+  }
+
+  return null
 }
