@@ -8,6 +8,10 @@ import {
 import type { PostalCodeRules } from '../types/rules'
 import countryData from './data/BOL.json'
 
+type CountryData = Record<string, Record<string, Record<string, string>>>
+
+const countryDataByKey = countryData as CountryData
+
 const rules: PostalCodeRules = {
   country: 'BOL',
   abbr: 'BO',
@@ -114,13 +118,16 @@ const rules: PostalCodeRules = {
           return address
         }
 
-        const department = countryData[address.state.value]
+        const department = countryDataByKey[address.state.value]
         const province = department && department[address.city.value]
         const municipality =
           province && province[address.neighborhood.value]
 
         if (municipality) {
-          address.postalCode = { value: municipality }
+          return {
+            ...address,
+            postalCode: { value: municipality },
+          }
         }
 
         return address

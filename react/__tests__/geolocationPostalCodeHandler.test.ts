@@ -74,8 +74,10 @@ function describeCountry(countryCode: string, rules: PostalCodeRules) {
 }
 
 describe('geolocation postalCode handler (hierarchy lookup)', () => {
-  it('includes at least one country with hierarchy-based postal lookup', () => {
-    expect(countriesWithHandler.length).toBeGreaterThan(0)
+  it('includes Bolivia with hierarchy-based postal lookup', () => {
+    expect(countriesWithHandler.map(([countryCode]) => countryCode)).toContain(
+      'BOL'
+    )
   })
 
   countriesWithHandler.forEach(([countryCode, rules]) => {
