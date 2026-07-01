@@ -99,8 +99,6 @@ export function getAlternateHierarchySample(rules) {
   }
 
   return {
-    sharedField: levels[0],
-    sharedValue: firstLevel,
     first: {
       values: {
         [levels[0]]: firstLevel,
@@ -120,28 +118,20 @@ export function getAlternateHierarchySample(rules) {
   }
 }
 
-export function resolvesPostalCodeFromHierarchy(rules) {
+export function hasHierarchyPostalHandler(rules) {
   const handler =
     rules.geolocation &&
     rules.geolocation.postalCode &&
     rules.geolocation.postalCode.handler
-  const sample = getHierarchySample(rules)
-
-  if (!handler || !sample) {
-    return false
-  }
-
-  const result = handler(buildAddress(sample.values), {}, 0)
 
   return (
-    result.postalCode &&
-    result.postalCode.value === sample.expectedPostal
+    typeof handler === 'function' && getHierarchySample(rules) !== null
   )
 }
 
 export function getCountriesWithHierarchyPostalHandler(countries) {
   return Object.entries(countries)
     .filter(([countryCode]) => countryCode !== 'defaultRules')
-    .filter(([, rules]) => resolvesPostalCodeFromHierarchy(rules))
+    .filter(([, rules]) => hasHierarchyPostalHandler(rules))
     .sort(([left], [right]) => left.localeCompare(right))
 }

@@ -575,8 +575,8 @@ const countryData = {
       Padcaya: "60201",
     },
     Avilez: {
-      Uriondo: "92001",
-      "Yunchará": "92002",
+      Uriondo: "60401",
+      "Yunchará": "60402",
     },
     Cercado: {
       Tarija: "60101",
@@ -708,7 +708,10 @@ export default {
           province && province[address.neighborhood.value]
 
         if (municipality) {
-          address.postalCode = { value: municipality }
+          return {
+            ...address,
+            postalCode: { value: municipality },
+          }
         }
 
         return address

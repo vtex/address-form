@@ -72,6 +72,7 @@
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
+      "<rootDir>/__tests__/helpers/",
       "<rootDir>/es/",
       "<rootDir>/lib/",
       "<rootDir>/umd/"
