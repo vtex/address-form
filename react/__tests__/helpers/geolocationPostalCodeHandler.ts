@@ -7,8 +7,6 @@ export type HierarchySample = {
 }
 
 export type AlternateHierarchySample = {
-  sharedField: FillableFields
-  sharedValue: string
   first: HierarchySample
   second: HierarchySample
 }
@@ -122,8 +120,6 @@ export function getAlternateHierarchySample(
   }
 
   return {
-    sharedField: levels[0],
-    sharedValue: firstLevel,
     first: {
       values: {
         [levels[0]]: firstLevel,
@@ -143,19 +139,11 @@ export function getAlternateHierarchySample(
   }
 }
 
-export function resolvesPostalCodeFromHierarchy(
-  rules: PostalCodeRules
-): boolean {
-  const handler = rules.geolocation?.postalCode?.handler
-  const sample = getHierarchySample(rules)
-
-  if (!handler || !sample) {
-    return false
-  }
-
-  const result = handler(buildAddress(sample.values), {}, 0)
-
-  return result.postalCode?.value === sample.expectedPostal
+export function hasHierarchyPostalHandler(rules: PostalCodeRules): boolean {
+  return (
+    typeof rules.geolocation?.postalCode?.handler === 'function' &&
+    getHierarchySample(rules) !== null
+  )
 }
 
 export function getCountriesWithHierarchyPostalHandler(
@@ -163,6 +151,6 @@ export function getCountriesWithHierarchyPostalHandler(
 ): Array<[string, PostalCodeRules]> {
   return Object.entries(countries)
     .filter(([countryCode]) => countryCode !== 'defaultRules')
-    .filter(([, rules]) => resolvesPostalCodeFromHierarchy(rules))
+    .filter(([, rules]) => hasHierarchyPostalHandler(rules))
     .sort(([left], [right]) => left.localeCompare(right))
 }
