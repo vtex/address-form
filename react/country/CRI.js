@@ -5,6 +5,7 @@ import {
   getTwoLevels,
   getThreeLevels,
 } from '../transforms/addressFieldsOptions'
+import { createPostalCodeFromHierarchyHandler } from '../transforms/geolocationPostalCodeFromHierarchy'
 
 const countryData = {
   Alajuela: {
@@ -768,28 +769,11 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: (address) => {
-        if (!address.state || !address.city || !address.neighborhood) {
-          return address
-        }
-
-        if (
-          countryData[address.state.value] &&
-          countryData[address.state.value][address.city.value] &&
-          countryData[address.state.value][address.city.value][
-            address.neighborhood.value
-          ]
-        ) {
-          address.postalCode = {
-            value:
-              countryData[address.state.value][address.city.value][
-                address.neighborhood.value
-              ],
-          }
-        }
-
-        return address
-      },
+      handler: createPostalCodeFromHierarchyHandler(countryData, [
+        'state',
+        'city',
+        'neighborhood',
+      ]),
     },
 
     number: {
