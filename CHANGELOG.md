@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.29.0] - 2026-07-13
+
 ### Added
 
 - Test for the postal code handler function.
