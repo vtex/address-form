@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Virgin Islands' postal code validation
 - Fix misspelled city name in PRY country data: Itagua → Itauguá
+- Costa Rica's countryData to fix a couple of issues.
 
 ## [4.28.0] - 2025-12-09
 
