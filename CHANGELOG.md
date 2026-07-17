@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.0] - 2026-07-17
+
 ### Added
 
 - Test for the postal code handler function.
@@ -1718,7 +1720,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.41.0...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.43.0...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1748,3 +1750,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.37.1]: https://github.com/vtex/address-form/compare/v3.37.0...v3.37.1
 [3.37.0]: https://github.com/vtex/address-form/compare/v3.36.6...v3.37.0
 [3.36.6]: https://github.com/vtex/address-form/compare/v3.36.5...v3.36.6
+
+[3.43.0]: https://github.com/vtex/address-form/compare/v3.42.0...v3.43.0
