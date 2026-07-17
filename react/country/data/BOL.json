@@ -1,0 +1,589 @@
+{
+  "Beni": {
+    "Cercado": {
+      "San Javier": "80102",
+      "Trinidad": "80101"
+    },
+    "General José Ballivián": {
+      "Puerto Menor de Rurrenabaque": "80304",
+      "Reyes": "80301",
+      "San Borja": "80302",
+      "Santa Rosa": "80303"
+    },
+    "Iténez": {
+      "Baures": "80802",
+      "Huacaraje": "80803",
+      "Magdalena": "80801"
+    },
+    "Mamoré": {
+      "Puerto Siles": "80703",
+      "San Joaquín": "80701",
+      "San Ramón": "80702"
+    },
+    "Marbán": {
+      "Loreto": "80601",
+      "San Andrés": "80602"
+    },
+    "Moxos": {
+      "San Ignacio": "80501"
+    },
+    "Territorio Indígena Multiétnico": {
+      "TIOC-Territorio Indígena Multiétnico": "80001"
+    },
+    "Vaca Diez": {
+      "Guayaramerín": "80202",
+      "Riberalta": "80201"
+    },
+    "Yacuma": {
+      "Exaltación": "80402",
+      "Santa Ana": "80401"
+    }
+  },
+  "Chuquisaca": {
+    "Azurduy": {
+      "Azurduy": "10201",
+      "Tarvita": "10202"
+    },
+    "Belisario Boeto": {
+      "Villa Serrano": "10801"
+    },
+    "Hernando Siles": {
+      "Huacareta": "10502",
+      "Monteagudo": "10501"
+    },
+    "Luis Calvo": {
+      "Huacaya (Autonomía Guaraní Chaqueño de Huacaya)": "11002",
+      "Macharetí": "11003",
+      "Villa Vaca Guzmán": "11001"
+    },
+    "Nor Cinti": {
+      "Camargo": "10701",
+      "Incahuasi": "10703",
+      "San Lucas": "10702",
+      "Villa Charcas": "10704"
+    },
+    "Oropeza": {
+      "Poroma": "10103",
+      "Sucre": "10101",
+      "Yotala": "10102"
+    },
+    "Sud Cinti": {
+      "Culpina": "10902",
+      "Las Carreras": "10903",
+      "Villa Abecia": "10901"
+    },
+    "Tomina": {
+      "Alcalá": "10404",
+      "El Villar": "10405",
+      "Padilla": "10401",
+      "Sopachuy": "10403",
+      "Tomina": "10402"
+    },
+    "Yamparáez": {
+      "Tarabuco": "10601",
+      "Yamparáez": "10602"
+    },
+    "Zudáñez": {
+      "Icla": "10304",
+      "Mojocoya": "10303",
+      "Presto": "10302",
+      "Zudáñez": "10301"
+    }
+  },
+  "Cochabamba": {
+    "Arani": {
+      "Arani": "30501",
+      "Vacas": "30502"
+    },
+    "Arque": {
+      "Arque": "30601",
+      "Tacopaya": "30602"
+    },
+    "Ayopaya": {
+      "Ayopaya": "30301",
+      "Cocapata": "30303",
+      "Morochata": "30302"
+    },
+    "Bolívar": {
+      "Bolívar": "31501"
+    },
+    "Campero": {
+      "Aiquile": "30201",
+      "Omereque": "30203",
+      "Pasorapa": "30202"
+    },
+    "Capinota": {
+      "Capinota": "30701",
+      "Santiváñez": "30702",
+      "Sicaya": "30703"
+    },
+    "Carrasco": {
+      "Chimoré": "31204",
+      "Entre Ríos": "31206",
+      "Pocona": "31203",
+      "Pojo": "31202",
+      "Puerto Villarroel": "31205",
+      "Totora": "31201"
+    },
+    "Cercado": {
+      "Cochabamba": "30101"
+    },
+    "Chapare": {
+      "Colomi": "31002",
+      "Sacaba": "31001",
+      "Villa Tunari": "31003"
+    },
+    "Esteban Arze": {
+      "Anzaldo": "30402",
+      "Arbieto": "30403",
+      "Sacabamba": "30404",
+      "Tarata": "30401"
+    },
+    "Germán Jordán": {
+      "Cliza": "30801",
+      "Toco": "30802",
+      "Tolata": "30803"
+    },
+    "Mizque": {
+      "Alalay": "31303",
+      "Mizque": "31301",
+      "TIOC-Raqaypampa": "31304",
+      "Vila Vila": "31302"
+    },
+    "Punata": {
+      "Punata": "31401",
+      "San Benito": "31403",
+      "Tacachi": "31404",
+      "Villa Gualberto Villarroel": "31405",
+      "Villa Rivero": "31402"
+    },
+    "Quillacollo": {
+      "Colcapirhua": "30905",
+      "Quillacollo": "30901",
+      "Sipesipe": "30902",
+      "Tiquipaya": "30903",
+      "Vinto": "30904"
+    },
+    "Tapacarí": {
+      "Tapacarí": "31101"
+    },
+    "Tiraque": {
+      "Shinahota": "31602",
+      "Tiraque": "31601"
+    }
+  },
+  "La Paz": {
+    "Abel Iturralde": {
+      "Ixiamas": "21501",
+      "San Buenaventura": "21502"
+    },
+    "Aroma": {
+      "Ayo Ayo": "21303",
+      "Calamarca": "21304",
+      "Collana": "21307",
+      "Colquencha": "21306",
+      "Patacamaya": "21305",
+      "Sicasica": "21301",
+      "Umala": "21302"
+    },
+    "Bautista Saavedra": {
+      "Charazani": "21601",
+      "Curva": "21602"
+    },
+    "Camacho": {
+      "Escoma": "20405",
+      "Humanata": "20404",
+      "Mocomoco": "20402",
+      "Puerto Acosta": "20401",
+      "Puerto Mayor de Carabuco": "20403"
+    },
+    "Caranavi": {
+      "Alto Beni": "22002",
+      "Caranavi": "22001"
+    },
+    "Franz Tamayo": {
+      "Apolo": "20701",
+      "Pelechuco": "20702"
+    },
+    "General José Manuel Pando": {
+      "Catacora": "21902",
+      "Santiago de Machaca": "21901"
+    },
+    "Gualberto Villarroel": {
+      "Chacarilla": "21803",
+      "Papel Pampa": "21802",
+      "San Pedro de Curahuara": "21801"
+    },
+    "Ingavi": {
+      "Desaguadero": "20804",
+      "Jesús de Machaka": "20806",
+      "La (Marka) San Andrés de Machaca": "20805",
+      "Puerto Mayor de Guaqui": "20802",
+      "Taraco": "20807",
+      "Tiahuanacu": "20803",
+      "Viacha": "20801"
+    },
+    "Inquisivi": {
+      "Cajuata": "21003",
+      "Colquiri": "21004",
+      "Ichoca": "21005",
+      "Inquisivi": "21001",
+      "Quime": "21002",
+      "Villa Libertad Licoma": "21006"
+    },
+    "Larecaja": {
+      "Combaya": "20605",
+      "Guanay": "20602",
+      "Mapiri": "20607",
+      "Quiabaya": "20604",
+      "Sorata": "20601",
+      "Tacacoma": "20603",
+      "Teoponte": "20608",
+      "Tipuani": "20606"
+    },
+    "Loayza": {
+      "Cairoma": "20905",
+      "Luribay": "20901",
+      "Malla": "20904",
+      "Sapahaqui": "20902",
+      "Yaco": "20903"
+    },
+    "Los Andes": {
+      "Batallas": "21203",
+      "Laja": "21202",
+      "Pucarani": "21201",
+      "Puerto Pérez": "21204"
+    },
+    "Manco Kapac": {
+      "Copacabana": "21701",
+      "San Pedro de Tiquina": "21702",
+      "Tito Yupanqui": "21703"
+    },
+    "Murillo": {
+      "Achocalla": "20104",
+      "El Alto": "20105",
+      "Mecapaca": "20103",
+      "Nuestra Señora de La Paz": "20101",
+      "Palca": "20102"
+    },
+    "Muñecas": {
+      "Aucapata": "20503",
+      "Ayata": "20502",
+      "Chuma": "20501"
+    },
+    "Nor Yungas": {
+      "Coripata": "21402",
+      "Coroico": "21401"
+    },
+    "Omasuyos": {
+      "Achacachi": "20201",
+      "Chua Cocani": "20203",
+      "Huarina": "20204",
+      "Huatajata": "20206",
+      "Santiago de Huata": "20205",
+      "Villa Ancoraimes": "20202"
+    },
+    "Pacajes": {
+      "Calacoto": "20303",
+      "Caquiaviri": "20302",
+      "Charaña": "20305",
+      "Comanche": "20304",
+      "Corocoro": "20301",
+      "Nazacara de Pacajes": "20307",
+      "Santiago de Callapa": "20308",
+      "Waldo Ballivián": "20306"
+    },
+    "Sur Yungas": {
+      "Chulumani": "21101",
+      "Irupana": "21102",
+      "La Asunta": "21105",
+      "Palos Blancos": "21104",
+      "Yanacachi": "21103"
+    }
+  },
+  "Oruro": {
+    "Abaroa": {
+      "Challapata": "40201",
+      "Santuario de Quillacas": "40202"
+    },
+    "Carangas": {
+      "Choquecota": "40302",
+      "Corque": "40301"
+    },
+    "Cercado": {
+      "Caracollo": "40102",
+      "El Choro": "40103",
+      "Oruro": "40101",
+      "Paria": "40104"
+    },
+    "Ladislao Cabrera": {
+      "Pampa Aullagas": "40802",
+      "Salinas de Garci Mendoza (Autonomía Indígena Originario Campesina de Salinas)": "40801"
+    },
+    "Litoral": {
+      "Cruz de Machacamarca": "40503",
+      "Escara": "40502",
+      "Esmeralda": "40505",
+      "Huachacalla": "40501",
+      "Yunguyo del Litoral": "40504"
+    },
+    "Mejillones": {
+      "Carangas": "41503",
+      "La Rivera": "41501",
+      "Todos Santos": "41502"
+    },
+    "Nor Carangas": {
+      "Santiago de Huayllamarca": "41601"
+    },
+    "Pantaleón Dalence": {
+      "Huanuni": "40701",
+      "Machacamarca": "40702"
+    },
+    "Poopó": {
+      "Antequera": "40603",
+      "Pazña": "40602",
+      "Poopó": "40601"
+    },
+    "Sabaya": {
+      "Coipasa": "40902",
+      "Sabaya": "40901",
+      "Uru Chipaya (Nación Originaria Uru Chipaya)": "40903"
+    },
+    "Sajama": {
+      "Curahuara de Carangas": "40401",
+      "Turco": "40402"
+    },
+    "San Pedro de Totora": {
+      "Totora": "41301"
+    },
+    "Saucarí": {
+      "Toledo": "41001"
+    },
+    "Sebastián Pagador": {
+      "Santiago de Huari": "41401"
+    },
+    "Sur Carangas": {
+      "Andamarca": "41201",
+      "Belén de Andamarca": "41202"
+    },
+    "Tomás Barrón": {
+      "Eucaliptus": "41101"
+    }
+  },
+  "Pando": {
+    "Abuná": {
+      "Ingavi": "90402",
+      "Santa Rosa": "90401"
+    },
+    "Federico Román": {
+      "Nueva Esperanza": "90501",
+      "Santos Mercado": "90503",
+      "Villa Nueva": "90502"
+    },
+    "Madre de Dios": {
+      "Puerto Gonzalo Moreno": "90301",
+      "San Lorenzo": "90302",
+      "Sena": "90303"
+    },
+    "Manuripi": {
+      "Filadelfia": "90203",
+      "Puerto Rico": "90201",
+      "San Pedro": "90202"
+    },
+    "Nicolás Suárez": {
+      "Bella Flor": "90104",
+      "Bolpebra": "90103",
+      "Cobija": "90101",
+      "Porvenir": "90102"
+    }
+  },
+  "Potosí": {
+    "Alonso de Ibáñez": {
+      "Caripuyo": "50702",
+      "Sacaca": "50701"
+    },
+    "Antonio Quijarro": {
+      "Porco": "51203",
+      "TIOC-Jatun Ayllu Yura": "51204",
+      "Tomave": "51202",
+      "Uyuni": "51201"
+    },
+    "Charcas": {
+      "San Pedro": "50501",
+      "Toro Toro": "50502"
+    },
+    "Chayanta": {
+      "Colquechaca": "50401",
+      "Ocurí": "50404",
+      "Pocoata": "50403",
+      "Ravelo": "50402",
+      "San Pedro de Macha": "50405"
+    },
+    "Cornelio Saavedra": {
+      "Betanzos": "50301",
+      "Chaquí": "50302",
+      "Tacobamba": "50303"
+    },
+    "Daniel Campos": {
+      "Llica": "51401",
+      "Tahua": "51402"
+    },
+    "Enrique Baldivieso": {
+      "San Agustín": "51601"
+    },
+    "General Bernardino Bilbao": {
+      "Acasio": "51302",
+      "Arampampa": "51301"
+    },
+    "José María Linares": {
+      "Caiza \"D\"": "51102",
+      "Ckochas": "51103",
+      "Puna": "51101"
+    },
+    "Modesto Omiste": {
+      "Villazón": "51501"
+    },
+    "Nor Chichas": {
+      "Cotagaita": "50601",
+      "Vitichi": "50602"
+    },
+    "Nor Lípez": {
+      "Colcha \"K\"": "50901",
+      "San Pedro de Quemes": "50902"
+    },
+    "Rafael Bustillo": {
+      "Chayanta": "50202",
+      "Chuquihuta Ayllu Jucumani": "50204",
+      "Llallagua": "50203",
+      "Uncía": "50201"
+    },
+    "Sur Chichas": {
+      "Atocha": "50802",
+      "Tupiza": "50801"
+    },
+    "Sur Lípez": {
+      "Mojinete": "51002",
+      "San Antonio de Esmoruco": "51003",
+      "San Pablo": "51001"
+    },
+    "Tomás Frías": {
+      "Potosí": "50101",
+      "Tinguipaya": "50102",
+      "Urmiri": "50104",
+      "Yocalla": "50103"
+    }
+  },
+  "Santa Cruz": {
+    "Andrés Ibáñez": {
+      "Cotoca": "70102",
+      "El Torno": "70105",
+      "La Guardia": "70104",
+      "Porongo": "70103",
+      "Santa Cruz de la Sierra": "70101"
+    },
+    "Chiquitos": {
+      "Pailón": "70502",
+      "Roboré": "70503",
+      "San José": "70501"
+    },
+    "Cordillera": {
+      "Boyuibe": "70707",
+      "Cabezas": "70703",
+      "Camiri": "70706",
+      "Charagua (Autonomía Guaraní Charagua Iyambae)": "70702",
+      "Cuevo": "70704",
+      "Gutiérrez (Autonomía Indígena Kereimba Iyaambae)": "70705",
+      "Lagunillas": "70701"
+    },
+    "Florida": {
+      "Mairana": "70903",
+      "Pampagrande": "70902",
+      "Quirusillas": "70904",
+      "Samaipata": "70901"
+    },
+    "Germán Busch": {
+      "El Carmen Rivero Tórrez": "71403",
+      "Puerto Quijarro": "71402",
+      "Puerto Suárez": "71401"
+    },
+    "Guarayos": {
+      "Ascención de Guarayos": "71501",
+      "El Puente": "71503",
+      "Urubichá": "71502"
+    },
+    "Ichilo": {
+      "Buena Vista": "70401",
+      "San Carlos": "70402",
+      "San Juan": "70404",
+      "Yapacaní": "70403"
+    },
+    "Manuel María Caballero": {
+      "Comarapa": "71301",
+      "Saipina": "71302"
+    },
+    "Obispo Santisteban": {
+      "Fernández Alonso": "71004",
+      "General Saavedra": "71002",
+      "Mineros": "71003",
+      "Montero": "71001",
+      "San Pedro": "71005"
+    },
+    "Sara": {
+      "Colpa Bélgica": "70603",
+      "Portachuelo": "70601",
+      "Santa Rosa": "70602"
+    },
+    "Valle Grande": {
+      "Moromoro": "70803",
+      "Postrervalle": "70804",
+      "Pucará": "70805",
+      "Trigal": "70802",
+      "Vallegrande": "70801"
+    },
+    "Velasco": {
+      "San Ignacio": "70301",
+      "San Miguel": "70302",
+      "San Rafael": "70303"
+    },
+    "Warnes": {
+      "Okinawa Uno": "70202",
+      "Warnes": "70201"
+    },
+    "Ángel Sandoval": {
+      "San Matías": "71201"
+    },
+    "Ñuflo de Chávez": {
+      "Concepción": "71101",
+      "Cuatro Cañadas": "71106",
+      "San Antonio de Lomerio": "71104",
+      "San Javier": "71102",
+      "San Julián": "71103",
+      "San Ramón": "71105"
+    }
+  },
+  "Tarija": {
+    "Arce": {
+      "Bermejo": "60202",
+      "Padcaya": "60201"
+    },
+    "Avilez": {
+      "Uriondo": "60401",
+      "Yunchará": "60402"
+    },
+    "Cercado": {
+      "Tarija": "60101"
+    },
+    "Gran Chaco": {
+      "Caraparí": "60302",
+      "Villa Montes": "60303",
+      "Yacuiba": "60301"
+    },
+    "Méndez": {
+      "El Puente": "60502",
+      "San Lorenzo": "60501"
+    },
+    "O'Connor": {
+      "Entre Ríos": "60601"
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import type { FillableFields, Fields, AddressWithValidation } from './address'
 import type {
-  firstLevelPostalCodes,
-  secondLevelPostalCodes,
-  thirdLevelPostalCodes,
+  FirstLevelPostalCodesList,
+  SecondLevelPostalCodesMap,
+  ThirdLevelPostalCodesMap,
 } from '../transforms/postalCodes'
 import type {
   getOneLevel,
@@ -72,9 +72,9 @@ export interface PostalCodeRules {
   postalCodeFrom?: PostalCodeSource
   postalCodeLevels?: FillableFields[]
   postalCodeProtectedFields?: string[]
-  firstLevelPostalCodes?: ReturnType<typeof firstLevelPostalCodes>
-  secondLevelPostalCodes?: ReturnType<typeof secondLevelPostalCodes>
-  thirdLevelPostalCodes?: ReturnType<typeof thirdLevelPostalCodes>
+  firstLevelPostalCodes?: FirstLevelPostalCodesList
+  secondLevelPostalCodes?: SecondLevelPostalCodesMap
+  thirdLevelPostalCodes?: ThirdLevelPostalCodesMap
   fields: PostalCodeFieldRule[]
   geolocation?: GeolocationRules
   summary?: PostalCodeSummary[][]
