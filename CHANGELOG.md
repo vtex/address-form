@@ -11,6 +11,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Updated Colombia municipality list.
 
+## [4.29.0] - 2026-07-13
+
+### Added
+
+- Test for the postal code handler function.
+
+### Changed
+
+- Geolocation postal code lookup for BOL, COL, CRI, PER, and CHL now uses shared `createPostalCodeFromHierarchyHandler` transform.
+
+### Fixed
+
+- Virgin Islands' postal code validation
+- Fix misspelled city name in PRY country data: Itagua → Itauguá
+- Costa Rica's countryData to fix a couple of issues.
+- Bolivia province and municipality list aligned with INE 2024 Census data.
+
 ## [4.28.0] - 2025-12-09
 
 ### Added

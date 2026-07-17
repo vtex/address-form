@@ -1,6 +1,6 @@
 {
   "name": "@vtex/address-form",
-  "version": "4.28.0",
+  "version": "4.29.0",
   "description": "address-form React component",
   "main": "lib/index.js",
   "files": [
@@ -72,6 +72,7 @@
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
+      "<rootDir>/__tests__/helpers/",
       "<rootDir>/es/",
       "<rootDir>/lib/",
       "<rootDir>/umd/"
