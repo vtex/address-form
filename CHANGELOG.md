@@ -11,9 +11,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Updated Colombia municipality list and moved it to `react/country/data/COL.json`.
 
+## [3.43.0] - 2026-07-17
+
+### Added
+
+- Test for the postal code handler function.
+
 ### Changed
 
+- Geolocation postal code lookup for BOL, COL, CRI, PER, and CHL now uses shared `createPostalCodeFromHierarchyHandler` transform.
 - Deduplicated test fixtures: shared Google Geocoder payloads (factory exported from `postalCodeGoogleAddress.js`), address/geolocation mock bases, and `sharedMockRuleFields` for `useOneLevel` / `useThreeLevels` to satisfy Sonar CPD on new code.
+
+### Fixed
+
+- Costa Rica's countryData to fix a couple of issues.
+- Virgin Islands' postal code validation
+- Paraguay's locality Itauguá typo
+- Bolivia province and municipality list aligned with INE 2024 Census data.
 
 ## [3.42.0] - 2025-12-09
 
@@ -1710,7 +1724,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.41.0...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.43.0...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1740,3 +1754,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.37.1]: https://github.com/vtex/address-form/compare/v3.37.0...v3.37.1
 [3.37.0]: https://github.com/vtex/address-form/compare/v3.36.6...v3.37.0
 [3.36.6]: https://github.com/vtex/address-form/compare/v3.36.5...v3.36.6
+
+[3.43.0]: https://github.com/vtex/address-form/compare/v3.42.0...v3.43.0

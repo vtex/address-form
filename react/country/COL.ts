@@ -1,6 +1,7 @@
 import { TWO_LEVELS } from '../constants'
 import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
+import { createPostalCodeFromHierarchyHandler } from '../transforms/geolocationPostalCodeFromHierarchy'
 import type { PostalCodeRules } from '../types/rules'
 import countryData from './data/COL.json'
 
@@ -95,27 +96,10 @@ const rules: PostalCodeRules = {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: (address) => {
-        if (
-          !address.state ||
-          !address.city ||
-          !address.state.value ||
-          !address.city.value
-        ) {
-          return address
-        }
-
-        if (
-          countryData[address.state.value] &&
-          countryData[address.state.value][address.city.value]
-        ) {
-          address.postalCode = {
-            value: countryData[address.state.value][address.city.value],
-          }
-        }
-
-        return address
-      },
+      handler: createPostalCodeFromHierarchyHandler(countryData, [
+        'state',
+        'city',
+      ]),
     },
 
     number: {

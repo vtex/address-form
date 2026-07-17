@@ -1,0 +1,69 @@
+import BOL from '../country/BOL'
+import type { FillableFields } from '../types/address'
+import {
+  buildAddress,
+  getAlternateHierarchySample,
+  getHierarchySample,
+} from './helpers/geolocationPostalCodeHandler'
+
+describe('BOL geolocation postalCode handler', () => {
+  const rules = BOL
+  const handler = rules.geolocation!.postalCode!.handler!
+  const sample = getHierarchySample(rules)!
+  const levels = rules.postalCodeLevels!
+  const lastLevel = levels[levels.length - 1] as FillableFields
+
+  it('sets postalCode from the selected administrative hierarchy', () => {
+    const address = buildAddress(sample.values)
+    const result = handler(address, {}, 0)
+
+    expect(result.postalCode).toEqual({ value: sample.expectedPostal })
+  })
+
+  it('returns the address unchanged when a required hierarchy field is empty', () => {
+    const address = buildAddress(sample.values, lastLevel)
+    const result = handler(address, {}, 0)
+
+    expect(result).toBe(address)
+    expect(result.postalCode).toBeUndefined()
+  })
+
+  it('returns the address unchanged when the deepest level is not in countryData', () => {
+    const invalidValues = {
+      ...sample.values,
+      [lastLevel]: 'Unknown Administrative Unit',
+    }
+    const address = buildAddress(invalidValues)
+    const result = handler(address, {}, 0)
+
+    expect(result).toBe(address)
+    expect(result.postalCode).toBeUndefined()
+  })
+
+  const alternateSample = getAlternateHierarchySample(rules)
+
+  it('resolves postalCode using the full hierarchy path', () => {
+    expect(alternateSample).not.toBeNull()
+
+    const firstResult = handler(
+      buildAddress(alternateSample!.first.values),
+      {},
+      0
+    )
+    const secondResult = handler(
+      buildAddress(alternateSample!.second.values),
+      {},
+      0
+    )
+
+    expect(firstResult.postalCode).toEqual({
+      value: alternateSample!.first.expectedPostal,
+    })
+    expect(secondResult.postalCode).toEqual({
+      value: alternateSample!.second.expectedPostal,
+    })
+    expect(firstResult.postalCode?.value).not.toBe(
+      secondResult.postalCode?.value
+    )
+  })
+})
