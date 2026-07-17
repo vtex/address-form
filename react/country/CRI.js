@@ -5,6 +5,7 @@ import {
   getTwoLevels,
   getThreeLevels,
 } from '../transforms/addressFieldsOptions'
+import { createPostalCodeFromHierarchyHandler } from '../transforms/geolocationPostalCodeFromHierarchy'
 
 const countryData = {
   Alajuela: {
@@ -122,7 +123,7 @@ const countryData = {
       'Piedades Sur': '20205',
       'San Isidro': '20207',
       'San Juan': '20203',
-      'San Lorenzo4': '20214',
+      'San Lorenzo': '20214',
       'San Rafael': '20206',
       'San Ramón': '20201',
       Santiago: '20202',
@@ -521,7 +522,7 @@ const countryData = {
       'San Josecito': '11002',
     },
     Aserrí: {
-      Aserrí: '10504',
+      Aserrí: '10601',
       Legua: '10605',
       Monterrey: '10606',
       Salitrillos: '10607',
@@ -768,28 +769,11 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: (address) => {
-        if (!address.state || !address.city || !address.neighborhood) {
-          return address
-        }
-
-        if (
-          countryData[address.state.value] &&
-          countryData[address.state.value][address.city.value] &&
-          countryData[address.state.value][address.city.value][
-            address.neighborhood.value
-          ]
-        ) {
-          address.postalCode = {
-            value:
-              countryData[address.state.value][address.city.value][
-                address.neighborhood.value
-              ],
-          }
-        }
-
-        return address
-      },
+      handler: createPostalCodeFromHierarchyHandler(countryData, [
+        'state',
+        'city',
+        'neighborhood',
+      ]),
     },
 
     number: {

@@ -1,6 +1,7 @@
 import { TWO_LEVELS } from '../constants'
 import { secondLevelPostalCodes } from '../transforms/postalCodes'
 import { getOneLevel, getTwoLevels } from '../transforms/addressFieldsOptions'
+import { createPostalCodeFromHierarchyHandler } from '../transforms/geolocationPostalCodeFromHierarchy'
 
 // Based on: https://docs.google.com/spreadsheets/d/1B_e735h3IP1ttom3i55WytSDhH7MZtsOu8Ul5p2wHNI/edit#gid=0
 // More info: https://vtex.slack.com/archives/C3Q96AB1B/p1619724858102700
@@ -524,27 +525,10 @@ export default {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: (address) => {
-        if (
-          !address.state ||
-          !address.state.value ||
-          !address.neighborhood ||
-          !address.neighborhood.value
-        ) {
-          return address
-        }
-
-        if (
-          countryData[address.state.value] &&
-          countryData[address.state.value][address.neighborhood.value]
-        ) {
-          address.postalCode = {
-            value: countryData[address.state.value][address.neighborhood.value],
-          }
-        }
-
-        return address
-      },
+      handler: createPostalCodeFromHierarchyHandler(countryData, [
+        'state',
+        'neighborhood',
+      ]),
     },
 
     number: {
