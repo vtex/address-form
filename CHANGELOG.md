@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Overhauled Venezuela's countryData to use three levels of administrative subdivisions and include several missing ZIP codes.
+- 
+## [4.29.1] - 2026-07-20
+
+### Fixed
+
+- Updated Colombia municipality list.
 
 ## [4.29.0] - 2026-07-13
 
