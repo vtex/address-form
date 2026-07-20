@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.29.1] - 2026-07-20
+
 ### Fixed
 
 - Updated Colombia municipality list.
