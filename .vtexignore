@@ -16,3 +16,9 @@ react/jest.transform.js
 react/lib/
 **/**.test.{js,jsx,ts,tsx}
 demo/
+.agents/
+.claude/
+.specify/
+specs/
+AGENTS.md
+CLAUDE.md
