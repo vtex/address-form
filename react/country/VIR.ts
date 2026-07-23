@@ -18,8 +18,8 @@ const rules: PostalCodeRules = {
       maxLength: 50,
       fixedLabel: 'ZIP',
       required: true,
-      mask: '99999-9999',
-      regex: '^008(01|02|03|04|05|20|21|22|23|24|30|31|40|41|50|51)(-\d{4})?$',
+      mask: '99999',
+      regex: '^008(01|02|03|04|05|20|21|22|23|24|30|31|40|41|50|51)(-\\d{4})?$',
       // Asserts zipcode starts with 008, then contains one of the local accepted area values, optionally followed by hyphen and exactly 4 digits.
       postalCodeAPI: true,
       forgottenURL: 'https://tools.usps.com/go/ZipLookupAction!input.action',
@@ -61,16 +61,17 @@ const rules: PostalCodeRules = {
       size: 'large',
     },
     {
+      // Hidden field that no input ever fills: the postal code API returns an
+      // empty `state` for VIR and `defaultValue` is not applied automatically,
+      // so it must not be required nor restricted to options — otherwise the
+      // address never validates and checkout silently blocks (same pattern as
+      // the hidden `number` field above).
       name: 'state',
       maxLength: 100,
       label: 'state',
-      required: true,
       hidden: true,
       size: 'large',
-      optionsPairs: [
-        { label: 'Virgin Islands', value: 'USVI' },
-      ],
-      defaultValue: 'USVI'
+      defaultValue: 'VI',
     },
     {
       hidden: true,
