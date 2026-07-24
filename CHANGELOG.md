@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [4.29.3] - 2026-07-24
+
 ### Fixed
 
 - Fixed Virgin Islands (VIR) address form not advancing to payment (`react/country/VIR.js` only): corrected unescaped `\d` in the postal code regex string (was matching a literal `d` instead of digits); changed mask from `99999-9999` to `99999` to match the 5-digit USPS ZIP format; made the hidden `state` field non-blocking by removing `required` and `optionsPairs` and keeping `defaultValue: 'VI'` — the postal code API returns an empty `state` for VIR and `defaultValue` is never applied automatically, so the hidden required field could never be filled and silently failed validation, blocking checkout (verified that the checkout API accepts VIR addresses with both `state: 'VI'` and `state: null`).
