@@ -19,7 +19,7 @@ const rules: PostalCodeRules = {
       fixedLabel: 'ZIP',
       required: true,
       mask: '99999',
-      regex: '^008(01|02|03|04|05|20|21|22|23|24|30|31|40|41|50|51)(-\\d{4})?$',
+      regex: String.raw`^008(01|02|03|04|05|20|21|22|23|24|30|31|40|41|50|51)(-\d{4})?$`,
       // Asserts zipcode starts with 008, then contains one of the local accepted area values, optionally followed by hyphen and exactly 4 digits.
       postalCodeAPI: true,
       forgottenURL: 'https://tools.usps.com/go/ZipLookupAction!input.action',
