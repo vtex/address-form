@@ -14,7 +14,7 @@ When a shopper uses geolocation in checkout, the Google `postal_code` (CPN) is c
 
 Reported case (Zendesk #1290373, account `florayfauna`): the address *Calle Sucre 655, Chincha Alta – Chincha – Ica* gets postal code `11701` (CPN), which does not exist in `PER.ts` (`110201` is the ubigeo). Merchants configure shipping from the `PER.ts` list, so orders carrying CPN codes cannot be matched to any shipping rate.
 
-Peruvian CXs confirmed that **ubigeo must remain the canonical "postal code" for Peru** — all store shipping configurations depend on it, and switching to CPN would break every Peru store.
+CXs confirmed that **ubigeo must remain the canonical "postal code" for Peru** — all store shipping configurations depend on it, and switching to CPN would break every Peru store.
 
 ### Goals
 
