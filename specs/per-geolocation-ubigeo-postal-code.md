@@ -136,7 +136,7 @@ flowchart LR
 
 Single PR (branch `feat/per-geolocation-ubigeo-postal-code`):
 
-1. `react/country/data/PER.json` — INEI 2025 ubigeo tree (regenerable via `scripts/generate-per-ubigeo-data.mjs`).
+1. `react/country/data/PER.json` — INEI 2025 ubigeo tree.
 2. `react/country/PER.ts` — import JSON; helpers (`stripGeoLevelPrefix`, `normalizeGeoName`, `findCountryDataKey`); geolocation rule changes; `Mi Perú` fix.
 3. `react/country/__tests__/PER.test.ts` — regression tests covering the Zendesk case, CPN leak, accents, Lima/Callao cases, INEI 2025 district, department inference.
 4. `CHANGELOG.md` — Fixed/Changed entries under Unreleased.
