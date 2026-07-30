@@ -18,9 +18,9 @@ Peruvian CXs confirmed that **ubigeo must remain the canonical "postal code" for
 
 ### Goals
 
-- Geolocation-completed addresses in Peru always carry a 6-digit ubigeo from `PER.ts`, or no postal code at all — never a Google CPN.
+- Geolocation-completed addresses in Peru always carry a 6-digit ubigeo from the Peru country data, or no postal code at all — never a Google CPN.
 - Geolocation autocomplete resolves the ubigeo for provinces outside Lima (prefix and accent tolerant matching).
-- No change to merchant-facing data model: `PER.ts` keeps ubigeos, shipping configurations keep working unchanged.
+- Peru ubigeo country data stays aligned with current INEI districts (shipping configurations continue to use ubigeos).
 
 ### User Stories
 
@@ -54,7 +54,8 @@ Peruvian CXs confirmed that **ubigeo must remain the canonical "postal code" for
 - The `postalCode` geolocation handler derives the ubigeo by resolving department → province → district against `PER.ts` country data with normalization: strip level prefixes (`Provincia de`, `Provincia Constitucional del`, `Departamento de`, `Distrito de`, `Región de`), lowercase, and remove diacritics (`cleanStr`).
 - On a successful three-level match, canonicalize `state`, `city` and `neighborhood` values to the `PER.ts` keys so they match the form dropdown options.
 - Generalize the Lima-only special cases in the `state`, `city` and `neighborhood` handlers to all departments/provinces/districts.
-- Fix the `Mi Perú` (Lima > Callao) ubigeo data typo: `07056` → `070107`.
+- Fix the `Mi Perú` (Callao) ubigeo data typo: `07056` → `070107`.
+- Refresh Peru country data from INEI 2025 into `react/country/data/PER.json` (1,891 districts): add missing districts, remove obsolete Maynas entries moved to Putumayo province, and keep Callao only as its own department.
 
 ### Non-Functional Requirements
 
@@ -63,9 +64,8 @@ Peruvian CXs confirmed that **ubigeo must remain the canonical "postal code" for
 
 ### Out of Scope
 
-- Switching Peru to CPN postal codes or adding a CPN↔ubigeo mapping (rejected by Peruvian CXs — would break all Peru shipping configurations).
+- Switching Peru to CPN postal codes or adding a CPN↔ubigeo mapping (rejected by CXs — would break all Peru shipping configurations).
 - Tightening the `postalCode` field regex from `/^\d{5,6}$/` to `/^\d{6}$/`. With the CPN leak closed, no new 5-digit codes can enter; tightening would invalidate previously saved addresses that carry leaked CPNs, forcing shoppers to re-enter them. Flagged as a possible follow-up once leaked-code volume is measured.
-- Refreshing the ubigeo dataset itself (districts created since the file was authored). Separate data task.
 - Checkout-side or Logistics-side handling of already-stored CPN addresses.
 
 ---
@@ -96,7 +96,7 @@ flowchart LR
 
 | Alternative | Pros | Cons | Verdict |
 |---|---|---|---|
-| Switch `PER.ts` to 5-digit CPN codes (match Google) | Aligns with Google and the official postal standard | Breaks every Peru store's shipping configuration; CPN barely used in practice | Rejected (Peruvian CXs) |
+| Switch `PER.ts` to 5-digit CPN codes (match Google) | Aligns with Google and the official postal standard | Breaks every Peru store's shipping configuration; CPN barely used in practice | Rejected (CXs) |
 | Add a CPN→ubigeo mapping table | Could translate Google's code directly | Large dataset to maintain; CPN↔district is not 1:1 (e.g. `11701` covers two districts); still needs name matching as fallback | Rejected — name-based resolution is simpler and already required |
 | Keep mapping Google's CPN but clear it in the handler on lookup failure | Smaller diff | CPN would still ship whenever the handler doesn't run or a future refactor reorders handlers; mapping a value only to discard it is fragile | Rejected in favor of not mapping at all |
 | Tighten field regex to `/^\d{6}$/` | Hard guarantee at validation level | Invalidates existing saved addresses carrying leaked CPNs | Deferred (follow-up) |
@@ -136,10 +136,11 @@ flowchart LR
 
 Single PR (branch `feat/per-geolocation-ubigeo-postal-code`):
 
-1. `react/country/PER.ts` — helpers (`stripGeoLevelPrefix`, `normalizeGeoName`, `findCountryDataKey`), geolocation rule changes, `Mi Perú` data fix.
-2. `react/country/__tests__/PER.test.ts` — regression tests covering the Zendesk case, CPN leak, accents, Lima special cases, Callao, department inference.
-3. `CHANGELOG.md` — Fixed entries under Unreleased.
-4. Manual QA in the demo app with geolocation enabled (Chincha Alta and Lima addresses) before release.
+1. `react/country/data/PER.json` — INEI 2025 ubigeo tree (regenerable via `scripts/generate-per-ubigeo-data.mjs`).
+2. `react/country/PER.ts` — import JSON; helpers (`stripGeoLevelPrefix`, `normalizeGeoName`, `findCountryDataKey`); geolocation rule changes; `Mi Perú` fix.
+3. `react/country/__tests__/PER.test.ts` — regression tests covering the Zendesk case, CPN leak, accents, Lima/Callao cases, INEI 2025 district, department inference.
+4. `CHANGELOG.md` — Fixed/Changed entries under Unreleased.
+5. Manual QA in the demo app with geolocation enabled (Chincha Alta and Lima addresses) before release.
 
 ---
 
@@ -147,7 +148,7 @@ Single PR (branch `feat/per-geolocation-ubigeo-postal-code`):
 
 ### Data Models
 
-- `countryData` in `react/country/PER.ts`: `Record<department, Record<province, Record<district, ubigeo>>>` — 1,873 unique 6-digit INEI ubigeos. Keys are the canonical display values used by form dropdowns and stored addresses.
+- `react/country/data/PER.json`: `Record<department, Record<province, Record<district, ubigeo>>>` — 1,891 unique 6-digit INEI 2025 ubigeos. Keys are the canonical display values used by form dropdowns and stored addresses.
 
 ### Interfaces
 
