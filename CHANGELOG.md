@@ -7,15 +7,44 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Changed
-
-- Deduplicated test fixtures: shared Google Geocoder payloads (factory exported from `postalCodeGoogleAddress.js`), address/geolocation mock bases, and `sharedMockRuleFields` for `useOneLevel` / `useThreeLevels` to satisfy Sonar CPD on new code.
-
 ### Fixed
 
 - Peru geolocation no longer copies Google's 5-digit CPN postal code into the address; the 6-digit INEI ubigeo is always derived from `PER` country data instead.
 - Peru geolocation now resolves department/province/district names ignoring Google's level prefixes (e.g. "Provincia de Chincha") and accent differences, so ubigeo autocomplete works outside Lima.
 - Corrected the ubigeo of Mi Perú (Callao) from `07056` to `070107`.
+
+## [3.44.2] - 2026-07-24
+
+### Fixed
+
+- Fixed Virgin Islands (VIR) address form not advancing to payment (`react/country/VIR.ts` only): corrected unescaped `\d` in the postal code regex string (was matching a literal `d` instead of digits); changed mask from `99999-9999` to `99999` to match the 5-digit USPS ZIP format; made the hidden `state` field non-blocking by removing `required` and `optionsPairs` and keeping `defaultValue: 'VI'` — the postal code API returns an empty `state` for VIR and `defaultValue` is never applied automatically, so the hidden required field could never be filled and silently failed validation, blocking checkout (verified that the checkout API accepts VIR addresses with both `state: 'VI'` and `state: null`).
+
+## [3.44.1] - 2026-07-23
+
+## [3.44.0] - 2026-07-20
+
+### Fixed
+
+- Overhauled Venezuela's countryData to use three levels of administrative subdivisions and include several missing ZIP codes.
+- Updated Colombia municipality list and moved it to `react/country/data/COL.json`.
+
+## [3.43.0] - 2026-07-17
+
+### Added
+
+- Test for the postal code handler function.
+
+### Changed
+
+- Geolocation postal code lookup for BOL, COL, CRI, PER, and CHL now uses shared `createPostalCodeFromHierarchyHandler` transform.
+- Deduplicated test fixtures: shared Google Geocoder payloads (factory exported from `postalCodeGoogleAddress.js`), address/geolocation mock bases, and `sharedMockRuleFields` for `useOneLevel` / `useThreeLevels` to satisfy Sonar CPD on new code.
+
+### Fixed
+
+- Costa Rica's countryData to fix a couple of issues.
+- Virgin Islands' postal code validation
+- Paraguay's locality Itauguá typo
+- Bolivia province and municipality list aligned with INE 2024 Census data.
 
 ## [3.42.0] - 2025-12-09
 
@@ -1712,7 +1741,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **`AddressSubmitter`** component and tests
 
 
-[Unreleased]: https://github.com/vtex/address-form/compare/v3.41.0...HEAD
+[Unreleased]: https://github.com/vtex/address-form/compare/v3.43.0...HEAD
 [3.34.6]: https://github.com/vtex/address-form/compare/v3.34.5...v3.34.6
 [3.34.5]: https://github.com/vtex/address-form/compare/v3.34.4...v3.34.5
 [3.35.5]: https://github.com/vtex/address-form/compare/v3.35.4...v3.35.5
@@ -1742,3 +1771,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [3.37.1]: https://github.com/vtex/address-form/compare/v3.37.0...v3.37.1
 [3.37.0]: https://github.com/vtex/address-form/compare/v3.36.6...v3.37.0
 [3.36.6]: https://github.com/vtex/address-form/compare/v3.36.5...v3.36.6
+
+[3.43.0]: https://github.com/vtex/address-form/compare/v3.42.0...v3.43.0
