@@ -89,7 +89,7 @@ describe('PER geolocation rules', () => {
     const address = geolocationAutoCompleteAddress(
       newAddress,
       createPeruGoogleAddress({
-        district: 'Jesús María',
+        district: 'Jesus Maria',
         province: 'Provincia de Lima',
         department: 'Lima',
         postalCode: '15072',
@@ -99,7 +99,7 @@ describe('PER geolocation rules', () => {
 
     expect(address.state.value).toBe('Lima')
     expect(address.city.value).toBe('Lima')
-    expect(address.neighborhood.value).toBe('Jesus Maria')
+    expect(address.neighborhood.value).toBe('Jesús María')
     expect(address.postalCode.value).toBe('150113')
   })
 
@@ -138,7 +138,7 @@ describe('PER geolocation rules', () => {
     expect(address.postalCode.value).toBe('070102')
   })
 
-  it('should use the corrected ubigeo for Mi Perú', () => {
+  it('should resolve Callao even when Google attributes it to Lima', () => {
     const address = geolocationAutoCompleteAddress(
       newAddress,
       createPeruGoogleAddress({
@@ -149,7 +149,27 @@ describe('PER geolocation rules', () => {
       rules
     )
 
+    expect(address.state.value).toBe('Callao')
+    expect(address.city.value).toBe('Callao')
+    expect(address.neighborhood.value).toBe('Mi Perú')
     expect(address.postalCode.value).toBe('070107')
+  })
+
+  it('should resolve districts added in the INEI 2025 refresh', () => {
+    const address = geolocationAutoCompleteAddress(
+      newAddress,
+      createPeruGoogleAddress({
+        district: 'Alto Trujillo',
+        province: 'Provincia de Trujillo',
+        department: 'La Libertad',
+      }),
+      rules
+    )
+
+    expect(address.state.value).toBe('La Libertad')
+    expect(address.city.value).toBe('Trujillo')
+    expect(address.neighborhood.value).toBe('Alto Trujillo')
+    expect(address.postalCode.value).toBe('130112')
   })
 
   it('should infer the department from the province when Google omits it', () => {

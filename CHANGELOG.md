@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Peru geolocation now resolves department/province/district names ignoring Google's level prefixes (e.g. "Provincia de Chincha") and accent differences, so ubigeo autocomplete works outside Lima.
 - Corrected the ubigeo of Mi Perú (Callao) from `07056` to `070107`.
 
+### Changed
+
+- Refreshed Peru ubigeo dataset from INEI 2025 (1,891 districts) into `react/country/data/PER.json`: added 21 new districts, removed obsolete Maynas entries for Putumayo / Teniente Manuel Clavero (now under Putumayo province), and dropped the duplicate Callao province under Lima.
+
 ## [3.44.2] - 2026-07-24
 
 ### Fixed
