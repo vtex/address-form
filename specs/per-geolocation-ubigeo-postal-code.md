@@ -14,7 +14,7 @@ When a shopper uses geolocation in checkout, the Google `postal_code` (CPN) is c
 
 Reported case (Zendesk #1290373, account `florayfauna`): the address *Calle Sucre 655, Chincha Alta – Chincha – Ica* gets postal code `11701` (CPN), which does not exist in `PER.ts` (`110201` is the ubigeo). Merchants configure shipping from the `PER.ts` list, so orders carrying CPN codes cannot be matched to any shipping rate.
 
-Product Localization confirmed with Checkout LATAM (Manuel Palacios, 2026-07-27) that **ubigeo must remain the canonical "postal code" for Peru** — all store shipping configurations depend on it, and switching to CPN would break every Peru store.
+Peruvian CXs confirmed that **ubigeo must remain the canonical "postal code" for Peru** — all store shipping configurations depend on it, and switching to CPN would break every Peru store.
 
 ### Goals
 
@@ -63,7 +63,7 @@ Product Localization confirmed with Checkout LATAM (Manuel Palacios, 2026-07-27)
 
 ### Out of Scope
 
-- Switching Peru to CPN postal codes or adding a CPN↔ubigeo mapping (rejected by Checkout LATAM — would break all Peru shipping configurations).
+- Switching Peru to CPN postal codes or adding a CPN↔ubigeo mapping (rejected by Peruvian CXs — would break all Peru shipping configurations).
 - Tightening the `postalCode` field regex from `/^\d{5,6}$/` to `/^\d{6}$/`. With the CPN leak closed, no new 5-digit codes can enter; tightening would invalidate previously saved addresses that carry leaked CPNs, forcing shoppers to re-enter them. Flagged as a possible follow-up once leaked-code volume is measured.
 - Refreshing the ubigeo dataset itself (districts created since the file was authored). Separate data task.
 - Checkout-side or Logistics-side handling of already-stored CPN addresses.
@@ -96,7 +96,7 @@ flowchart LR
 
 | Alternative | Pros | Cons | Verdict |
 |---|---|---|---|
-| Switch `PER.ts` to 5-digit CPN codes (match Google) | Aligns with Google and the official postal standard | Breaks every Peru store's shipping configuration; CPN barely used in practice | Rejected (Checkout LATAM) |
+| Switch `PER.ts` to 5-digit CPN codes (match Google) | Aligns with Google and the official postal standard | Breaks every Peru store's shipping configuration; CPN barely used in practice | Rejected (Peruvian CXs) |
 | Add a CPN→ubigeo mapping table | Could translate Google's code directly | Large dataset to maintain; CPN↔district is not 1:1 (e.g. `11701` covers two districts); still needs name matching as fallback | Rejected — name-based resolution is simpler and already required |
 | Keep mapping Google's CPN but clear it in the handler on lookup failure | Smaller diff | CPN would still ship whenever the handler doesn't run or a future refactor reorders handlers; mapping a value only to discard it is fragile | Rejected in favor of not mapping at all |
 | Tighten field regex to `/^\d{6}$/` | Hard guarantee at validation level | Invalidates existing saved addresses carrying leaked CPNs | Deferred (follow-up) |
