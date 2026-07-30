@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Deduplicated test fixtures: shared Google Geocoder payloads (factory exported from `postalCodeGoogleAddress.js`), address/geolocation mock bases, and `sharedMockRuleFields` for `useOneLevel` / `useThreeLevels` to satisfy Sonar CPD on new code.
 
+### Fixed
+
+- Peru geolocation no longer copies Google's 5-digit CPN postal code into the address; the 6-digit INEI ubigeo is always derived from `PER` country data instead.
+- Peru geolocation now resolves department/province/district names ignoring Google's level prefixes (e.g. "Provincia de Chincha") and accent differences, so ubigeo autocomplete works outside Lima.
+- Corrected the ubigeo of Mi Perú (Callao) from `07056` to `070107`.
+
 ## [3.42.0] - 2025-12-09
 
 ### Added

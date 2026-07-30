@@ -5,9 +5,10 @@ import {
   getTwoLevels,
   getThreeLevels,
 } from '../transforms/addressFieldsOptions'
+import cleanStr from '../selectors/cleanStr'
 import type { PostalCodeRules } from '../types/rules'
 
-const countryData = {
+const countryData: Record<string, Record<string, Record<string, string>>> = {
   Lima: {
     Lima: {
       Lima: '150101',
@@ -74,7 +75,7 @@ const countryData = {
       'Carmen De La Legua Reynoso': '070103',
       'La Perla': '070104',
       'La Punta': '070105',
-      'Mi Perú': '07056',
+      'Mi Perú': '070107',
       Ventanilla: '070106',
     },
     Canta: {
@@ -2333,6 +2334,43 @@ const countryData = {
   },
 }
 
+/**
+ * Google prefixes Peruvian administrative names with the level, e.g.
+ * "Provincia de Chincha", "Distrito de Lima" or
+ * "Provincia Constitucional del Callao", while `countryData` keys hold
+ * only the bare name.
+ */
+const stripGeoLevelPrefix = (name: string) =>
+  name.replace(
+    /^(provincia( constitucional)?|departamento|distrito|region) de(l)?\s+/i,
+    ''
+  )
+
+const normalizeGeoName = (name?: string | null) =>
+  name ? cleanStr(stripGeoLevelPrefix(name)) : ''
+
+/**
+ * Finds the canonical `countryData` key matching a name returned by
+ * Google, tolerating level prefixes, casing and accent differences
+ * (`countryData` keys are inconsistently accented).
+ */
+const findCountryDataKey = (
+  data: Record<string, unknown>,
+  name?: string | null
+): string | undefined => {
+  if (!name) {
+    return undefined
+  }
+
+  if (data[name] !== undefined) {
+    return name
+  }
+
+  const normalizedName = normalizeGeoName(name)
+
+  return Object.keys(data).find((key) => cleanStr(key) === normalizedName)
+}
+
 const rules: PostalCodeRules = {
   country: 'PER',
   abbr: 'PE',
@@ -2423,29 +2461,47 @@ const rules: PostalCodeRules = {
     },
   ],
   geolocation: {
+    // Google's postal_code component holds Peru's 5-digit CPN, which VTEX
+    // stores don't use — shipping is configured with the 6-digit INEI
+    // ubigeos in countryData. `types` is intentionally omitted so Google's
+    // CPN is never copied into the address; the handler derives the ubigeo
+    // from the department/province/district instead.
     postalCode: {
-      valueIn: 'long_name',
-      types: ['postal_code'],
       required: false,
       handler: (address) => {
         if (!address.state || !address.city || !address.neighborhood) {
           return address
         }
 
-        if (
-          address.state.value &&
-          countryData[address.state.value] &&
-          countryData[address.state.value][address.city.value] &&
-          countryData[address.state.value][address.city.value][
-            address.neighborhood.value
-          ]
-        ) {
-          address.postalCode = {
-            value:
-              countryData[address.state.value][address.city.value][
-                address.neighborhood.value
-              ],
-          }
+        const stateKey = findCountryDataKey(countryData, address.state.value)
+
+        if (!stateKey) {
+          return address
+        }
+
+        const cityKey = findCountryDataKey(
+          countryData[stateKey],
+          address.city.value
+        )
+
+        if (!cityKey) {
+          return address
+        }
+
+        const neighborhoodKey = findCountryDataKey(
+          countryData[stateKey][cityKey],
+          address.neighborhood.value
+        )
+
+        if (!neighborhoodKey) {
+          return address
+        }
+
+        address.state = { value: stateKey }
+        address.city = { value: cityKey }
+        address.neighborhood = { value: neighborhoodKey }
+        address.postalCode = {
+          value: countryData[stateKey][cityKey][neighborhoodKey],
         }
 
         return address
@@ -2465,14 +2521,13 @@ const rules: PostalCodeRules = {
       valueIn: 'long_name',
       types: ['administrative_area_level_3', 'locality'],
       handler: (address) => {
-        if (
-          address.neighborhood &&
-          (address.neighborhood.value === 'Distrito de Lima' ||
-            address.neighborhood.value === 'Lima')
-        ) {
-          address.neighborhood = { value: 'Lima' }
-
+        if (!address.neighborhood || !address.neighborhood.value) {
           return address
+        }
+
+        // e.g. 'Distrito de Lima' -> 'Lima'
+        address.neighborhood = {
+          value: stripGeoLevelPrefix(address.neighborhood.value),
         }
 
         return address
@@ -2483,26 +2538,33 @@ const rules: PostalCodeRules = {
       valueIn: 'long_name',
       types: ['administrative_area_level_1'],
       handler: (address) => {
-        if (!address.city || !address.state) {
+        if (!address.state) {
           return address
         }
 
-        if (address.state && address.state.value === 'Provincia de Lima') {
-          address.state.value = 'Lima'
+        // e.g. 'Provincia de Lima' -> 'Lima'
+        const stateKey = findCountryDataKey(countryData, address.state.value)
+
+        if (stateKey) {
+          address.state = { value: stateKey }
 
           return address
         }
 
-        if (address.state && address.state.value === 'Lima') {
+        if (!address.city || !address.city.value) {
           return address
         }
 
+        // Google returned something that isn't a department — infer the
+        // department from the province instead.
+        const cityName = normalizeGeoName(address.city.value)
         const states = Object.keys(countryData)
 
         for (let i = 0; i < states.length; i++) {
           const state = states[i]
-          const cities = Object.keys(countryData[state])
-          const hasCity = cities.indexOf(address.city.value ?? '') !== -1
+          const hasCity = Object.keys(countryData[state]).some(
+            (city) => cleanStr(city) === cityName
+          )
 
           if (hasCity) {
             address.state = { value: state }
@@ -2519,8 +2581,18 @@ const rules: PostalCodeRules = {
       valueIn: 'long_name',
       types: ['administrative_area_level_2'],
       handler: (address) => {
-        if (address.city && address.city.value === 'Provincia de Lima') {
-          address.city.value = 'Lima'
+        if (!address.city || !address.city.value) {
+          return address
+        }
+
+        const stateKey = findCountryDataKey(countryData, address.state?.value)
+        const cityKey = stateKey
+          ? findCountryDataKey(countryData[stateKey], address.city.value)
+          : undefined
+
+        // e.g. 'Provincia de Chincha' -> 'Chincha'
+        address.city = {
+          value: cityKey ?? stripGeoLevelPrefix(address.city.value),
         }
 
         return address
