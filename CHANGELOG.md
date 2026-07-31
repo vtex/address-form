@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Refreshed Peru ubigeo dataset from INEI 2025 (1,891 districts) into `react/country/data/PER.json`: added 21 new districts, removed obsolete Maynas entries for Putumayo / Teniente Manuel Clavero (now under Putumayo province), and dropped the duplicate Callao province under Lima.
+- Hierarchy geolocation postal-code lookup (`createPostalCodeFromHierarchyHandler`) now supports optional accent/prefix-tolerant matching; enabled for BOL, CHL, COL, CRI, and PER. Peru also uses cross-department fallback and omits Google's CPN `postal_code` mapping.
 
 ## [3.44.2] - 2026-07-24
 
