@@ -511,10 +511,11 @@ const rules: PostalCodeRules = {
       valueIn: 'long_name',
       types: ['postal_code'],
       required: false,
-      handler: createPostalCodeFromHierarchyHandler(countryData, [
-        'state',
-        'neighborhood',
-      ]),
+      handler: createPostalCodeFromHierarchyHandler(
+        countryData,
+        ['state', 'neighborhood'],
+        { normalizeKeys: true }
+      ),
     },
 
     number: {
