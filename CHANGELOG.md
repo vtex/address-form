@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Paraguay's Itapúa city name spelling: Encarnacion → Encarnación.
 
+### Changed
+
+- Synced missing geolocation example keys in `messages/context.json` from `main`.
+
 ## [4.29.3] - 2026-07-24
 
 ### Fixed
