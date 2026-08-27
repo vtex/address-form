@@ -1,7 +1,9 @@
+/* eslint-disable max-params */
 import reduce from 'lodash/reduce'
 import find from 'lodash/find'
 
 import { hasOptions, getField, getListOfOptions } from './selectors/fields'
+import cleanStr from './selectors/cleanStr'
 import { addFocusToNextInvalidField } from './transforms/address'
 import {
   EEMPTY,
@@ -146,8 +148,8 @@ const invalidGeoCoords = { valid: false, reason: EGEOCOORDS }
 const invalidPostalCode = { valid: false, reason: EPOSTALCODE }
 
 function valueInOptions(value, options) {
-  const normalizedValue = value.toLowerCase()
-  const normalizedOptions = options.map((option) => option.toLowerCase())
+  const normalizedValue = cleanStr(value)
+  const normalizedOptions = options.map((option) => cleanStr(option))
 
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }
@@ -156,7 +158,7 @@ function valueInOptionsPairs(value, optionsPairs) {
   return (
     find(
       optionsPairs,
-      (optionPair) => optionPair.value.toLowerCase() === value.toLowerCase()
+      (optionPair) => cleanStr(optionPair.value) === cleanStr(value)
     ) || false
   )
 }
@@ -203,7 +205,7 @@ function defaultValidation(value, name, address, rules) {
   return validResult
 }
 
-function validateAddressId(value, name, address, rules) {
+function validateAddressId(value, _name, _address, _rules) {
   return value ? validResult : emptyField
 }
 
@@ -214,13 +216,13 @@ const validAddressTypes = [
   'giftRegistry',
 ]
 
-function validateAddressType(value, name, address, rules) {
+function validateAddressType(value, _name, _address, _rules) {
   return validAddressTypes.indexOf(value) !== -1
     ? validResult
     : invalidAddressType
 }
 
-function validateCountry(value, name, address, rules) {
+function validateCountry(value, _name, _address, _rules) {
   if (!value) {
     return emptyField
   }
@@ -232,7 +234,7 @@ function validateCountry(value, name, address, rules) {
   return validResult
 }
 
-function validateGeoCoordinates(value, name, address, rules) {
+function validateGeoCoordinates(value, _name, _address, _rules) {
   return value && (value.length === 0 || value.length === 2)
     ? validResult
     : invalidGeoCoords
