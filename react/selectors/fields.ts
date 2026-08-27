@@ -91,6 +91,23 @@ export function normalizeOptions<T = string>(
   )
 }
 
+export function findOptionsMapKey<T>(
+  options: Record<string, T> | undefined,
+  value: string
+): T | undefined {
+  if (!options || !value) {
+    return undefined
+  }
+
+  const cleanValue = cleanStr(value)
+  const matchedKey = find(
+    Object.keys(options),
+    (key) => cleanStr(key) === cleanValue
+  )
+
+  return matchedKey ? options[matchedKey] : undefined
+}
+
 function fixOptions(options: string[], fieldOptions: string[]) {
   return reduce(
     options,
@@ -212,14 +229,13 @@ function getThirdLevelOptions(
   )
 
   const cleanFirstLevelValue = cleanStr(firstLevelValue)
+  const thirdLevelOptions = findOptionsMapKey(
+    normalizedOptionsMap[cleanFirstLevelValue],
+    secondLevelValue
+  )
 
-  if (
-    cleanFirstLevelValue &&
-    secondLevelValue &&
-    normalizedOptionsMap[cleanFirstLevelValue] &&
-    normalizedOptionsMap[cleanFirstLevelValue][secondLevelValue]
-  ) {
-    return normalizedOptionsMap[cleanFirstLevelValue][secondLevelValue]
+  if (thirdLevelOptions) {
+    return thirdLevelOptions
   }
 
   return []

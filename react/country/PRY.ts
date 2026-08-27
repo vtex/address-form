@@ -227,7 +227,7 @@ const countryData = {
     'Coronel Bogado': '6920',
     Curuñai: '6920',
     Edelira: '6490',
-    Encarnacion: '6000',
+    Encarnación: '6000',
     Fram: '6980',
     'General Artigas': '6820',
     'General Delgado': '6860',

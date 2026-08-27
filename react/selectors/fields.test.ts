@@ -14,6 +14,7 @@ import { ONE_LEVEL, TWO_LEVELS, POSTAL_CODE } from '../constants'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
+import { accentInsensitiveThreeLevelsRules } from '../country/__mocks__/useAccentInsensitiveOptions'
 import type { PostalCodeRules, PostalCodeFieldRule } from '../types/rules'
 import type { AddressWithValidation } from '../types/address'
 
@@ -162,6 +163,32 @@ describe('Field Selectors', () => {
         value: 'Boa Viagem',
         label: 'Boa Viagem',
       })
+    })
+
+    it('should return third level options when second level value differs only by accent', () => {
+      const neighborhoodField = getField(
+        'neighborhood',
+        accentInsensitiveThreeLevelsRules
+      ) as PostalCodeFieldRule
+
+      const address = {
+        state: { value: 'Cusco' },
+        city: { value: 'La Convencion' },
+      } as AddressWithValidation
+
+      const options = getListOfOptions(
+        neighborhoodField,
+        address,
+        accentInsensitiveThreeLevelsRules
+      )
+
+      expect(options).toHaveLength(2)
+      expect(options).toEqual(
+        expect.arrayContaining([
+          { value: 'Urubamba', label: 'Urubamba' },
+          { value: 'Calca', label: 'Calca' },
+        ])
+      )
     })
 
     it('should filter options suggested by postal code service', () => {

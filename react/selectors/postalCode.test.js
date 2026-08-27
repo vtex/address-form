@@ -2,10 +2,15 @@ import {
   getPostalCodeOptions,
   getLastLevelField,
   getLevelField,
+  getResolvedPostalCodeFieldLabel,
 } from './postalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
+import {
+  accentInsensitiveThreeLevelsRules,
+  accentInsensitiveTwoLevelsRules,
+} from '../country/__mocks__/useAccentInsensitiveOptions'
 
 describe('Field Selectors', () => {
   describe('getPostalCodeOptions()', () => {
@@ -47,6 +52,41 @@ describe('Field Selectors', () => {
       expect(postalCodes).toMatchObject([
         { label: 'San Ramon', postalCode: '10200' },
       ])
+    })
+
+    it('with three levels when second level value differs only by accent', () => {
+      const address = {
+        state: { value: 'Cusco' },
+        city: { value: 'La Convencion' },
+      }
+
+      const postalCodes = getPostalCodeOptions(
+        address,
+        accentInsensitiveThreeLevelsRules
+      )
+
+      expect(postalCodes).toMatchObject([
+        { label: 'Urubamba', postalCode: '100' },
+        { label: 'Calca', postalCode: '101' },
+      ])
+    })
+  })
+
+  describe('getResolvedPostalCodeFieldLabel()', () => {
+    it('should resolve the canonical label when saved value differs only by accent', () => {
+      const address = {
+        state: { value: 'Itapúa' },
+        city: { value: 'Encarnacion' },
+        postalCode: { value: '6000' },
+      }
+
+      expect(
+        getResolvedPostalCodeFieldLabel(
+          'city',
+          address,
+          accentInsensitiveTwoLevelsRules
+        )
+      ).toBe('Encarnación')
     })
   })
 

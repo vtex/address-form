@@ -3,6 +3,7 @@ import reduce from 'lodash/reduce'
 import find from 'lodash/find'
 
 import { hasOptions, getField, getListOfOptions } from './selectors/fields'
+import cleanStr from './selectors/cleanStr'
 import { addFocusToNextInvalidField } from './transforms/address'
 import {
   EEMPTY,
@@ -220,20 +221,46 @@ const invalidPostalCode: ValidationResult = {
   reason: EPOSTALCODE,
 }
 
-function valueInOptions(value: AddressValues, options: string[]) {
+type OptionValueNormalizer = (value: string) => string
+
+function normalizeOptionValueStrict(value: string) {
+  return value.toLowerCase()
+}
+
+function normalizeOptionValueAccentInsensitive(value: string) {
+  return cleanStr(value)
+}
+
+function getOptionValueNormalizer(
+  fieldName: Fields,
+  address: AddressWithValidation
+): OptionValueNormalizer {
+  if (address[fieldName]?.geolocationAutoCompleted) {
+    return normalizeOptionValueStrict
+  }
+
+  return normalizeOptionValueAccentInsensitive
+}
+
+function valueInOptions(
+  value: AddressValues,
+  options: string[],
+  normalize: OptionValueNormalizer
+) {
   if (typeof value !== 'string') {
     return false
   }
 
-  const normalizedValue = value.toLowerCase()
-  const normalizedOptions = options.map((option) => option.toLowerCase())
+  const normalizedValue = normalize(value)
+  const normalizedOptions = options.map(normalize)
 
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }
 
 function valueInOptionsPairs(
   value: AddressValues,
-  optionsPairs: Array<{ value: string; label: string }>
+  optionsPairs: Array<{ value: string; label: string }>,
+  normalize: OptionValueNormalizer
 ) {
   if (typeof value !== 'string') {
     return false
@@ -242,7 +269,7 @@ function valueInOptionsPairs(
   return (
     find(
       optionsPairs,
-      (optionPair) => optionPair.value.toLowerCase() === value.toLowerCase()
+      (optionPair) => normalize(optionPair.value) === normalize(value)
     ) || false
   )
 }
@@ -251,7 +278,8 @@ function valueInOptionsMap(
   value: AddressValues,
   field: PostalCodeFieldRule,
   address: AddressWithValidation,
-  rules: PostalCodeRules
+  rules: PostalCodeRules,
+  normalize: OptionValueNormalizer
 ) {
   const options = getListOfOptions(field, address, rules)
 
@@ -259,8 +287,8 @@ function valueInOptionsMap(
     options &&
     options.length > 0 &&
     (typeof options[0] === 'object'
-      ? valueInOptionsPairs(value, options)
-      : valueInOptions(value, (options as unknown) as string[]))
+      ? valueInOptionsPairs(value, options, normalize)
+      : valueInOptions(value, (options as unknown) as string[], normalize))
   )
 }
 
@@ -268,23 +296,28 @@ function validateOptions<FieldName extends Fields>(
   value: Address[FieldName] | null,
   field: PostalCodeFieldRule,
   address: AddressWithValidation,
-  rules: PostalCodeRules
+  rules: PostalCodeRules,
+  fieldName: FieldName
 ): ValidationResult {
   if (value == null || value === '') {
     return emptyField
   }
 
-  if (field.options) {
-    return valueInOptions(value, field.options) ? validResult : notAnOption
-  }
+  const normalize = getOptionValueNormalizer(fieldName, address)
 
-  if (field.optionsPairs) {
-    return valueInOptionsPairs(value, field.optionsPairs)
+  if (field.options) {
+    return valueInOptions(value, field.options, normalize)
       ? validResult
       : notAnOption
   }
 
-  return valueInOptionsMap(value, field, address, rules)
+  if (field.optionsPairs) {
+    return valueInOptionsPairs(value, field.optionsPairs, normalize)
+      ? validResult
+      : notAnOption
+  }
+
+  return valueInOptionsMap(value, field, address, rules, normalize)
     ? validResult
     : notAnOption
 }
@@ -305,7 +338,7 @@ function defaultValidation<FieldName extends Fields>(
   }
 
   if (field && hasOptions(field) && isPostalCodeRules(rules)) {
-    const result = validateOptions(value, field, address, rules)
+    const result = validateOptions(value, field, address, rules, name)
 
     if (result === notAnOption && address[name]?.geolocationAutoCompleted) {
       logIfGeolocationAddressMismatchExists(value, name, address, rules)
@@ -409,7 +442,8 @@ function logIfGeolocationAddressMismatchExists<FieldName extends Fields>(
       address[basedOn].value,
       basedOnField,
       address,
-      rules
+      rules,
+      basedOn
     )
 
     if (!result.valid) {

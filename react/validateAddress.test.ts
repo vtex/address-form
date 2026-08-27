@@ -11,6 +11,10 @@ import whitespaceAddress from './__mocks__/whitespaceAddress'
 import geolocationAddress from './__mocks__/geolocationAddress2'
 import usePostalCode from './country/__mocks__/usePostalCode'
 import {
+  accentInsensitiveTwoLevelsRules,
+  accentInsensitiveValidationRules,
+} from './country/__mocks__/useAccentInsensitiveOptions'
+import {
   EEMPTY,
   EADDRESSTYPE,
   ENOTOPTION,
@@ -261,6 +265,79 @@ describe('Address Validation:', () => {
 
     expect(validcityOption.valid).toBe(true)
     expect(validStateOption.valid).toBe(true)
+  })
+
+  it('should validate if a city is a valid option in optionsMap even if accents differ', () => {
+    const validAddress = {
+      ...address,
+      state: { value: 'Itapúa' },
+      city: { value: 'Encarnacion' },
+    }
+
+    const validCityOption = validateField(
+      'Encarnacion',
+      'city',
+      validAddress,
+      accentInsensitiveValidationRules
+    )
+
+    expect(validCityOption.valid).toBe(true)
+  })
+
+  it('should validate if a field option matches even if accents differ', () => {
+    const rules = {
+      country: 'MOCK',
+      abbr: 'MK',
+      fields: [
+        {
+          name: 'state' as const,
+          label: 'state',
+          required: true,
+          options: ['São Paulo'],
+        },
+      ],
+    }
+
+    const validOption = validateField('Sao Paulo', 'state', address, rules)
+
+    expect(validOption.valid).toBe(true)
+  })
+
+  it('should validate if an optionsPairs value matches even if accents differ', () => {
+    const rules = {
+      country: 'MOCK',
+      abbr: 'MK',
+      fields: [
+        {
+          name: 'state' as const,
+          label: 'state',
+          required: true,
+          optionsPairs: [{ value: 'São Paulo', label: 'São Paulo' }],
+        },
+      ],
+    }
+
+    const validOption = validateField('Sao Paulo', 'state', address, rules)
+
+    expect(validOption.valid).toBe(true)
+  })
+
+  it('should invalidate if an accented option value is actually different', () => {
+    const invalidAddress = {
+      ...address,
+      state: { value: 'Itapúa' },
+      city: { value: 'EncarnacionX' },
+    }
+
+    const invalidOption = validateField(
+      'EncarnacionX',
+      'city',
+      invalidAddress,
+      accentInsensitiveValidationRules
+    )
+
+    expect(invalidOption.valid).toBe(false)
+    expect(invalidOption.reason).toBe(ENOTOPTION)
   })
 
   it('should invalidate if a city is a valid option in optionsMap', () => {
