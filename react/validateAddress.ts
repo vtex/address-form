@@ -3,6 +3,7 @@ import reduce from 'lodash/reduce'
 import find from 'lodash/find'
 
 import { hasOptions, getField, getListOfOptions } from './selectors/fields'
+import cleanStr from './selectors/cleanStr'
 import { addFocusToNextInvalidField } from './transforms/address'
 import {
   EEMPTY,
@@ -220,20 +221,38 @@ const invalidPostalCode: ValidationResult = {
   reason: EPOSTALCODE,
 }
 
-function valueInOptions(value: AddressValues, options: string[]) {
+function normalizeOptionValue(value: string, accentInsensitive: boolean) {
+  return accentInsensitive ? cleanStr(value) : value.toLowerCase()
+}
+
+function shouldCompareAccentsInsensitively(
+  fieldName: Fields,
+  address: AddressWithValidation
+) {
+  return !address[fieldName]?.geolocationAutoCompleted
+}
+
+function valueInOptions(
+  value: AddressValues,
+  options: string[],
+  accentInsensitive: boolean
+) {
   if (typeof value !== 'string') {
     return false
   }
 
-  const normalizedValue = value.toLowerCase()
-  const normalizedOptions = options.map((option) => option.toLowerCase())
+  const normalizedValue = normalizeOptionValue(value, accentInsensitive)
+  const normalizedOptions = options.map((option) =>
+    normalizeOptionValue(option, accentInsensitive)
+  )
 
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }
 
 function valueInOptionsPairs(
   value: AddressValues,
-  optionsPairs: Array<{ value: string; label: string }>
+  optionsPairs: Array<{ value: string; label: string }>,
+  accentInsensitive: boolean
 ) {
   if (typeof value !== 'string') {
     return false
@@ -242,7 +261,9 @@ function valueInOptionsPairs(
   return (
     find(
       optionsPairs,
-      (optionPair) => optionPair.value.toLowerCase() === value.toLowerCase()
+      (optionPair) =>
+        normalizeOptionValue(optionPair.value, accentInsensitive) ===
+        normalizeOptionValue(value, accentInsensitive)
     ) || false
   )
 }
@@ -251,7 +272,9 @@ function valueInOptionsMap(
   value: AddressValues,
   field: PostalCodeFieldRule,
   address: AddressWithValidation,
-  rules: PostalCodeRules
+  rules: PostalCodeRules,
+  fieldName: Fields,
+  accentInsensitive: boolean
 ) {
   const options = getListOfOptions(field, address, rules)
 
@@ -259,8 +282,12 @@ function valueInOptionsMap(
     options &&
     options.length > 0 &&
     (typeof options[0] === 'object'
-      ? valueInOptionsPairs(value, options)
-      : valueInOptions(value, (options as unknown) as string[]))
+      ? valueInOptionsPairs(value, options, accentInsensitive)
+      : valueInOptions(
+          value,
+          (options as unknown) as string[],
+          accentInsensitive
+        ))
   )
 }
 
@@ -268,23 +295,38 @@ function validateOptions<FieldName extends Fields>(
   value: Address[FieldName] | null,
   field: PostalCodeFieldRule,
   address: AddressWithValidation,
-  rules: PostalCodeRules
+  rules: PostalCodeRules,
+  fieldName: FieldName
 ): ValidationResult {
   if (value == null || value === '') {
     return emptyField
   }
 
-  if (field.options) {
-    return valueInOptions(value, field.options) ? validResult : notAnOption
-  }
+  const accentInsensitive = shouldCompareAccentsInsensitively(
+    fieldName,
+    address
+  )
 
-  if (field.optionsPairs) {
-    return valueInOptionsPairs(value, field.optionsPairs)
+  if (field.options) {
+    return valueInOptions(value, field.options, accentInsensitive)
       ? validResult
       : notAnOption
   }
 
-  return valueInOptionsMap(value, field, address, rules)
+  if (field.optionsPairs) {
+    return valueInOptionsPairs(value, field.optionsPairs, accentInsensitive)
+      ? validResult
+      : notAnOption
+  }
+
+  return valueInOptionsMap(
+    value,
+    field,
+    address,
+    rules,
+    fieldName,
+    accentInsensitive
+  )
     ? validResult
     : notAnOption
 }
@@ -305,7 +347,7 @@ function defaultValidation<FieldName extends Fields>(
   }
 
   if (field && hasOptions(field) && isPostalCodeRules(rules)) {
-    const result = validateOptions(value, field, address, rules)
+    const result = validateOptions(value, field, address, rules, name)
 
     if (result === notAnOption && address[name]?.geolocationAutoCompleted) {
       logIfGeolocationAddressMismatchExists(value, name, address, rules)
@@ -409,7 +451,8 @@ function logIfGeolocationAddressMismatchExists<FieldName extends Fields>(
       address[basedOn].value,
       basedOnField,
       address,
-      rules
+      rules,
+      basedOn
     )
 
     if (!result.valid) {

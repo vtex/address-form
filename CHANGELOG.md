@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Paraguay's Itapúa city name spelling: Encarnacion → Encarnación.
+- Paraguay (Itapúa): Encarnación city name spelling corrected (Encarnacion → Encarnación).
+- Option validation now ignores accents when matching saved address values to country options.
 
 ## [3.44.2] - 2026-07-24
 

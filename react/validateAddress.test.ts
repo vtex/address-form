@@ -10,6 +10,7 @@ import address from './__mocks__/newAddress'
 import whitespaceAddress from './__mocks__/whitespaceAddress'
 import geolocationAddress from './__mocks__/geolocationAddress2'
 import usePostalCode from './country/__mocks__/usePostalCode'
+import pryRules from './country/PRY'
 import {
   EEMPTY,
   EADDRESSTYPE,
@@ -261,6 +262,23 @@ describe('Address Validation:', () => {
 
     expect(validcityOption.valid).toBe(true)
     expect(validStateOption.valid).toBe(true)
+  })
+
+  it('should validate if a city is a valid option in optionsMap even if accents differ', () => {
+    const validAddress = {
+      ...address,
+      state: { value: 'Itapúa' },
+      city: { value: 'Encarnacion' },
+    }
+
+    const validCityOption = validateField(
+      'Encarnacion',
+      'city',
+      validAddress,
+      pryRules
+    )
+
+    expect(validCityOption.valid).toBe(true)
   })
 
   it('should invalidate if a city is a valid option in optionsMap', () => {
