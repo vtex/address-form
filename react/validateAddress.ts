@@ -221,30 +221,38 @@ const invalidPostalCode: ValidationResult = {
   reason: EPOSTALCODE,
 }
 
-function normalizeOptionValue(value: string, accentInsensitive: boolean) {
-  return accentInsensitive ? cleanStr(value) : value.toLowerCase()
+type OptionValueNormalizer = (value: string) => string
+
+function normalizeOptionValueStrict(value: string) {
+  return value.toLowerCase()
 }
 
-function shouldCompareAccentsInsensitively(
+function normalizeOptionValueAccentInsensitive(value: string) {
+  return cleanStr(value)
+}
+
+function getOptionValueNormalizer(
   fieldName: Fields,
   address: AddressWithValidation
-) {
-  return !address[fieldName]?.geolocationAutoCompleted
+): OptionValueNormalizer {
+  if (address[fieldName]?.geolocationAutoCompleted) {
+    return normalizeOptionValueStrict
+  }
+
+  return normalizeOptionValueAccentInsensitive
 }
 
 function valueInOptions(
   value: AddressValues,
   options: string[],
-  accentInsensitive: boolean
+  normalize: OptionValueNormalizer
 ) {
   if (typeof value !== 'string') {
     return false
   }
 
-  const normalizedValue = normalizeOptionValue(value, accentInsensitive)
-  const normalizedOptions = options.map((option) =>
-    normalizeOptionValue(option, accentInsensitive)
-  )
+  const normalizedValue = normalize(value)
+  const normalizedOptions = options.map(normalize)
 
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }
@@ -252,7 +260,7 @@ function valueInOptions(
 function valueInOptionsPairs(
   value: AddressValues,
   optionsPairs: Array<{ value: string; label: string }>,
-  accentInsensitive: boolean
+  normalize: OptionValueNormalizer
 ) {
   if (typeof value !== 'string') {
     return false
@@ -261,9 +269,7 @@ function valueInOptionsPairs(
   return (
     find(
       optionsPairs,
-      (optionPair) =>
-        normalizeOptionValue(optionPair.value, accentInsensitive) ===
-        normalizeOptionValue(value, accentInsensitive)
+      (optionPair) => normalize(optionPair.value) === normalize(value)
     ) || false
   )
 }
@@ -273,8 +279,7 @@ function valueInOptionsMap(
   field: PostalCodeFieldRule,
   address: AddressWithValidation,
   rules: PostalCodeRules,
-  fieldName: Fields,
-  accentInsensitive: boolean
+  normalize: OptionValueNormalizer
 ) {
   const options = getListOfOptions(field, address, rules)
 
@@ -282,12 +287,8 @@ function valueInOptionsMap(
     options &&
     options.length > 0 &&
     (typeof options[0] === 'object'
-      ? valueInOptionsPairs(value, options, accentInsensitive)
-      : valueInOptions(
-          value,
-          (options as unknown) as string[],
-          accentInsensitive
-        ))
+      ? valueInOptionsPairs(value, options, normalize)
+      : valueInOptions(value, (options as unknown) as string[], normalize))
   )
 }
 
@@ -302,31 +303,21 @@ function validateOptions<FieldName extends Fields>(
     return emptyField
   }
 
-  const accentInsensitive = shouldCompareAccentsInsensitively(
-    fieldName,
-    address
-  )
+  const normalize = getOptionValueNormalizer(fieldName, address)
 
   if (field.options) {
-    return valueInOptions(value, field.options, accentInsensitive)
+    return valueInOptions(value, field.options, normalize)
       ? validResult
       : notAnOption
   }
 
   if (field.optionsPairs) {
-    return valueInOptionsPairs(value, field.optionsPairs, accentInsensitive)
+    return valueInOptionsPairs(value, field.optionsPairs, normalize)
       ? validResult
       : notAnOption
   }
 
-  return valueInOptionsMap(
-    value,
-    field,
-    address,
-    rules,
-    fieldName,
-    accentInsensitive
-  )
+  return valueInOptionsMap(value, field, address, rules, normalize)
     ? validResult
     : notAnOption
 }
