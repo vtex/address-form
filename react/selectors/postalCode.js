@@ -1,7 +1,7 @@
 import last from 'lodash/last'
 
 import { ONE_LEVEL, TWO_LEVELS, THREE_LEVELS } from '../constants'
-import { getField, normalizeOptions } from './fields'
+import { getField, normalizeOptions, findOptionsMapKey } from './fields'
 import cleanStr from './cleanStr'
 
 export function getPostalCodeOptions(address, rules) {
@@ -41,22 +41,42 @@ function getThreeLevelsPostalCodes(address, rules) {
   const secondLevel = getField(rules.postalCodeLevels[1], rules)
 
   const firstLevelValue = cleanStr(address[firstLevel.name].value)
+  const secondLevelValue = address[secondLevel.name]?.value
   const normalizedThirdLevelPostalCodes = normalizeOptions(
     rules.thirdLevelPostalCodes
   )
 
-  return address[firstLevel.name] &&
-    firstLevelValue &&
-    address[secondLevel.name] &&
-    address[secondLevel.name].value &&
-    normalizedThirdLevelPostalCodes[firstLevelValue] &&
-    normalizedThirdLevelPostalCodes[firstLevelValue][
-      address[secondLevel.name].value
-    ]
-    ? normalizedThirdLevelPostalCodes[firstLevelValue][
-        address[secondLevel.name].value
-      ]
-    : []
+  if (
+    !address[firstLevel.name]?.value ||
+    !firstLevelValue ||
+    !secondLevelValue
+  ) {
+    return []
+  }
+
+  const postalCodes = findOptionsMapKey(
+    normalizedThirdLevelPostalCodes[firstLevelValue],
+    secondLevelValue
+  )
+
+  return postalCodes || []
+}
+
+export function getResolvedPostalCodeFieldLabel(fieldName, address, rules) {
+  const fieldValue = address[fieldName]?.value
+  const postalCodeValue = address.postalCode?.value
+
+  if (!fieldValue || !postalCodeValue) {
+    return null
+  }
+
+  const matchingOption = getPostalCodeOptions(address, rules).find(
+    (option) =>
+      cleanStr(option.label) === cleanStr(fieldValue) &&
+      option.postalCode === postalCodeValue
+  )
+
+  return matchingOption ? matchingOption.label : fieldValue
 }
 
 export function getLastLevelField(rules) {

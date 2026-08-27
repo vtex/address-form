@@ -6,6 +6,7 @@ import DefaultInput from '../inputs/DefaultInput'
 import SelectPostalCode from './SelectPostalCode'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
+import { accentInsensitiveTwoLevelsRules } from '../country/__mocks__/useAccentInsensitiveOptions'
 import address from '../__mocks__/newAddress'
 import pt from '../../messages/pt.json'
 import { validateAddress } from '../validateAddress'
@@ -129,5 +130,28 @@ describe('SelectPostalCode', () => {
 
     expect(neighborhood).toHaveValue(option.value)
     expect(allOptions).toHaveLength(2)
+  })
+
+  it('should render postal-code-defining field when saved value differs only by accent', () => {
+    render(
+      <IntlProvider locale="pt" messages={pt}>
+        <SelectPostalCode
+          Input={DefaultInput}
+          address={{
+            ...address,
+            state: { value: 'Itapúa' },
+            city: { value: 'Encarnacion' },
+            postalCode: { value: '6000' },
+          }}
+          rules={accentInsensitiveTwoLevelsRules}
+          onChangeAddress={jest.fn()}
+        />
+      </IntlProvider>
+    )
+
+    const city = screen.getByRole('combobox')
+    const option = screen.getByRole('option', { name: 'Encarnación' })
+
+    expect(city).toHaveValue(option.getAttribute('value'))
   })
 })
