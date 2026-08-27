@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { mount } from 'test-utils'
-import SelectPostalCode from './SelectPostalCode'
-import useOneLevel from '../country/__mocks__/useOneLevel'
-import address from '../__mocks__/newAddress'
 import find from 'lodash/find'
 import { IntlProvider } from 'react-intl'
+
+import SelectPostalCode from './SelectPostalCode'
+import useOneLevel from '../country/__mocks__/useOneLevel'
+import { accentInsensitiveTwoLevelsRules } from '../country/__mocks__/useAccentInsensitiveOptions'
+import address from '../__mocks__/newAddress'
 import pt from '../../messages/pt.json'
 
 describe('SelectPostalCode', () => {
   const firstLevelName = useOneLevel.postalCodeLevels[0]
   const firstLevelField = find(
     useOneLevel.fields,
-    field => field.name === firstLevelName,
+    (field) => field.name === firstLevelName
   )
 
   class MockInput extends Component {
@@ -29,7 +31,7 @@ describe('SelectPostalCode', () => {
           rules={useOneLevel}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     const props = wrapper.find('PureInput').props()
@@ -46,8 +48,8 @@ describe('SelectPostalCode', () => {
     const firstLevelOptions = useOneLevel.firstLevelPostalCodes.map(
       ({ label, postalCode }) => ({
         value: `${label}___${postalCode}`,
-        label: label,
-      }),
+        label,
+      })
     )
 
     const wrapper = mount(
@@ -58,7 +60,7 @@ describe('SelectPostalCode', () => {
           rules={useOneLevel}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     const props = wrapper.find('PureInput').props()
@@ -84,7 +86,7 @@ describe('SelectPostalCode', () => {
           rules={useOneLevel}
           onChangeAddress={jest.fn()}
         />
-      </IntlProvider>,
+      </IntlProvider>
     )
 
     const props = wrapper.find('PureInput').props()
@@ -95,15 +97,17 @@ describe('SelectPostalCode', () => {
   })
 
   it('should handle change leaving postal-code-defining-field clean', () => {
-    const Component = jest.fn(({ onChange }) => {
+    const ChangeInput = jest.fn(({ onChange }) => {
       onChange('Azuay___0000')
+
       return <div />
     })
+
     const handleChange = jest.fn()
 
     mount(
       <SelectPostalCode
-        Input={Component}
+        Input={ChangeInput}
         address={{
           ...address,
           postalCode: { value: '0001' },
@@ -111,12 +115,36 @@ describe('SelectPostalCode', () => {
         }}
         rules={useOneLevel}
         onChangeAddress={handleChange}
-      />,
+      />
     )
 
     expect(handleChange).toHaveBeenCalledWith({
       postalCode: { value: '0000' },
       state: { value: 'Azuay' },
+    })
+  })
+
+  it('should render PureInput with canonical value when saved value differs only by accent', () => {
+    const wrapper = mount(
+      <IntlProvider locale="pt" messages={pt}>
+        <SelectPostalCode
+          Input={MockInput}
+          address={{
+            ...address,
+            state: { value: 'Itapúa' },
+            city: { value: 'Encarnacion' },
+            postalCode: { value: '6000' },
+          }}
+          rules={accentInsensitiveTwoLevelsRules}
+          onChangeAddress={jest.fn()}
+        />
+      </IntlProvider>
+    )
+
+    const props = wrapper.find('PureInput').props()
+
+    expect(props.address.city).toMatchObject({
+      value: 'Encarnación___6000',
     })
   })
 })

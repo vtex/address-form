@@ -6,6 +6,7 @@ import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
 import {
   getPostalCodeOptions,
   getLastLevelField,
+  getResolvedPostalCodeFieldLabel,
 } from '../selectors/postalCode'
 import InputFieldContainer from '../InputFieldContainer'
 import { addressContextPropTypes } from '../addressContainerContext'
@@ -21,13 +22,18 @@ class SelectPostalCode extends Component {
     })
   }
 
-  composeValue = (currentLevelName, address) =>
-    address[currentLevelName] &&
-    address[currentLevelName].value &&
-    address.postalCode &&
-    address.postalCode.value
-      ? `${address[currentLevelName].value}___${address.postalCode.value}`
+  composeValue = (currentLevelName, address, rules) => {
+    const postalCodeValue = address.postalCode?.value
+    const fieldLabel = getResolvedPostalCodeFieldLabel(
+      currentLevelName,
+      address,
+      rules
+    )
+
+    return fieldLabel && postalCodeValue
+      ? `${fieldLabel}___${postalCodeValue}`
       : null
+  }
 
   deComposeValue = (currentLevelName, value) => {
     const [field, postalCode] = value.split('___')
@@ -42,17 +48,20 @@ class SelectPostalCode extends Component {
     return getPostalCodeOptions(address, rules).map(
       ({ postalCode, label }) => ({
         label,
-        value: this.composeValue(fieldName, {
-          [fieldName]: { value: label },
-          postalCode: { value: postalCode },
-        }),
+        value: `${label}___${postalCode}`,
       })
     )
   }
 
   render() {
-    const { address, fieldsStyleRules, rules, Input, loading, intl } =
-      this.props
+    const {
+      address,
+      fieldsStyleRules,
+      rules,
+      Input,
+      loading,
+      intl,
+    } = this.props
 
     const currentLevelField = getLastLevelField(rules)
     const fieldName = currentLevelField.name
@@ -61,7 +70,7 @@ class SelectPostalCode extends Component {
       ...address,
       [fieldName]: {
         ...address[fieldName],
-        value: this.composeValue(fieldName, address),
+        value: this.composeValue(fieldName, address, rules),
       },
     }
 

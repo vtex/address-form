@@ -147,46 +147,78 @@ const invalidCountry = { valid: false, reason: ECOUNTRY }
 const invalidGeoCoords = { valid: false, reason: EGEOCOORDS }
 const invalidPostalCode = { valid: false, reason: EPOSTALCODE }
 
-function valueInOptions(value, options) {
-  const normalizedValue = cleanStr(value)
-  const normalizedOptions = options.map((option) => cleanStr(option))
+function normalizeOptionValueStrict(value) {
+  return value.toLowerCase()
+}
+
+function normalizeOptionValueAccentInsensitive(value) {
+  return cleanStr(value)
+}
+
+function getOptionValueNormalizer(fieldName, address) {
+  if (address[fieldName]?.geolocationAutoCompleted) {
+    return normalizeOptionValueStrict
+  }
+
+  return normalizeOptionValueAccentInsensitive
+}
+
+function valueInOptions(value, options, normalize) {
+  if (typeof value !== 'string') {
+    return false
+  }
+
+  const normalizedValue = normalize(value)
+  const normalizedOptions = options.map(normalize)
 
   return normalizedOptions.indexOf(normalizedValue) !== -1
 }
 
-function valueInOptionsPairs(value, optionsPairs) {
+function valueInOptionsPairs(value, optionsPairs, normalize) {
+  if (typeof value !== 'string') {
+    return false
+  }
+
   return (
     find(
       optionsPairs,
-      (optionPair) => cleanStr(optionPair.value) === cleanStr(value)
+      (optionPair) => normalize(optionPair.value) === normalize(value)
     ) || false
   )
 }
 
-function valueInOptionsMap(value, field, address, rules) {
+function valueInOptionsMap(value, field, address, rules, normalize) {
   const options = getListOfOptions(field, address, rules)
 
   return (
     options &&
     options.length > 0 &&
     (typeof options[0] === 'object'
-      ? valueInOptionsPairs(value, options)
-      : valueInOptions(value, options))
+      ? valueInOptionsPairs(value, options, normalize)
+      : valueInOptions(value, options, normalize))
   )
 }
 
-function validateOptions(value, field, address, rules) {
-  if (field.options) {
-    return valueInOptions(value, field.options) ? validResult : notAnOption
+function validateOptions(value, field, address, rules, fieldName) {
+  if (value == null || value === '') {
+    return emptyField
   }
 
-  if (field.optionsPairs) {
-    return valueInOptionsPairs(value, field.optionsPairs)
+  const normalize = getOptionValueNormalizer(fieldName, address)
+
+  if (field.options) {
+    return valueInOptions(value, field.options, normalize)
       ? validResult
       : notAnOption
   }
 
-  return valueInOptionsMap(value, field, address, rules)
+  if (field.optionsPairs) {
+    return valueInOptionsPairs(value, field.optionsPairs, normalize)
+      ? validResult
+      : notAnOption
+  }
+
+  return valueInOptionsMap(value, field, address, rules, normalize)
     ? validResult
     : notAnOption
 }
@@ -199,7 +231,7 @@ function defaultValidation(value, name, address, rules) {
   }
 
   if (field && value && hasOptions(field)) {
-    return validateOptions(value, field, address, rules)
+    return validateOptions(value, field, address, rules, name)
   }
 
   return validResult
