@@ -1,3 +1,5 @@
+import diff from 'lodash/difference'
+
 import {
   getField,
   hasOptions,
@@ -8,10 +10,10 @@ import {
   isDefiningPostalCodeField,
 } from './fields'
 import { ONE_LEVEL, TWO_LEVELS, POSTAL_CODE } from '../constants'
-import diff from 'lodash/difference'
 import useOneLevel from '../country/__mocks__/useOneLevel'
 import useTwoLevels from '../country/__mocks__/useTwoLevels'
 import useThreeLevels from '../country/__mocks__/useThreeLevels'
+import { accentInsensitiveThreeLevelsRules } from '../country/__mocks__/useAccentInsensitiveOptions'
 
 describe('Field Selectors', () => {
   it('getField()', () => {
@@ -74,6 +76,7 @@ describe('Field Selectors', () => {
         name: 'state',
         options: ['PE', 'SP'],
       }
+
       const address = {}
       const rules = {}
 
@@ -90,6 +93,7 @@ describe('Field Selectors', () => {
           { value: 'SP', label: 'São Paulo' },
         ],
       }
+
       const address = {}
       const rules = {}
 
@@ -107,6 +111,7 @@ describe('Field Selectors', () => {
           Antioquia: ['Barranco Minas', 'Cacahual'],
         },
       }
+
       const address = { state: { value: 'ANTIOQUIA' } }
       const rules = {}
 
@@ -129,6 +134,7 @@ describe('Field Selectors', () => {
           },
         },
       }
+
       const address = { state: { value: 'PE' }, city: { value: 'Recife' } }
       const rules = {
         postalCodeFrom: POSTAL_CODE,
@@ -143,11 +149,37 @@ describe('Field Selectors', () => {
       })
     })
 
+    it('should return third level options when second level value differs only by accent', () => {
+      const field = accentInsensitiveThreeLevelsRules.fields.find(
+        ({ name }) => name === 'neighborhood'
+      )
+
+      const address = {
+        state: { value: 'Cusco' },
+        city: { value: 'La Convencion' },
+      }
+
+      const options = getListOfOptions(
+        field,
+        address,
+        accentInsensitiveThreeLevelsRules
+      )
+
+      expect(options).toHaveLength(2)
+      expect(options).toEqual(
+        expect.arrayContaining([
+          { value: 'Urubamba', label: 'Urubamba' },
+          { value: 'Calca', label: 'Calca' },
+        ])
+      )
+    })
+
     it('should filter options suggested by postal code service', () => {
       const stateField = {
         name: 'state',
         options: ['Foo', 'Bar', 'Zoo'],
       }
+
       const address = { state: { value: null, valueOptions: ['Bar', 'Too'] } }
       const rules = {
         postalCodeFrom: POSTAL_CODE,
@@ -168,6 +200,7 @@ describe('Field Selectors', () => {
         name: 'state',
         options: ['Foo', 'Bar', 'Zóo'],
       }
+
       const address = { state: { value: null, valueOptions: ['Bar', 'zoo'] } }
       const rules = {
         postalCodeFrom: POSTAL_CODE,
@@ -188,16 +221,19 @@ describe('Field Selectors', () => {
         name: 'state',
         options: ['Foo', 'Bar', 'Zóo'],
       }
+
       const cityField = {
         name: 'city',
         basedOn: 'state',
         level: 2,
         optionsMap: { Foo: ['Foolite'], Bar: ['Bartoo'] },
       }
+
       const address = {
         state: { value: null, valueOptions: ['Bar', 'zoo'] },
         city: { value: null, valueOptions: ['Foolite', 'Bartoo'] },
       }
+
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [stateField, cityField],
@@ -213,16 +249,19 @@ describe('Field Selectors', () => {
         name: 'state',
         options: ['Foo', 'Bar', 'Zóo'],
       }
+
       const cityField = {
         name: 'city',
         basedOn: 'state',
         level: 2,
         optionsMap: { Foo: ['Foolite'], Bar: ['Bartoo'] },
       }
+
       const address = {
         state: { value: 'Bar', valueOptions: ['Bar', 'zoo'] },
         city: { value: null, valueOptions: ['Foolite', 'Bartoo'] },
       }
+
       const rules = {
         postalCodeFrom: POSTAL_CODE,
         fields: [stateField, cityField],
@@ -297,7 +336,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useOneLevel)
 
       expect(
-        diff(getFieldNames(useOneLevel.fields), getFieldNames(fields)),
+        diff(getFieldNames(useOneLevel.fields), getFieldNames(fields))
       ).toMatchSnapshot()
     })
 
@@ -305,7 +344,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useTwoLevels)
 
       expect(
-        diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields)),
+        diff(getFieldNames(useTwoLevels.fields), getFieldNames(fields))
       ).toMatchSnapshot()
     })
 
@@ -313,7 +352,7 @@ describe('Field Selectors', () => {
       const fields = filterPostalCodeFields(useThreeLevels)
 
       expect(
-        diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields)),
+        diff(getFieldNames(useThreeLevels.fields), getFieldNames(fields))
       ).toMatchSnapshot()
     })
   })
@@ -337,6 +376,7 @@ describe('Field Selectors', () => {
         city: { value: 'Rio de Janeiro', postalCodeAutoCompleted: true },
         state: { value: 'RJ' },
       }
+
       const rules = {
         fields: [{ name: 'neighborhood' }, { name: 'city' }, { name: 'state' }],
       }

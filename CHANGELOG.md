@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Paraguay (Itapúa): Encarnación city name spelling corrected (Encarnacion → Encarnación).
+- Option validation now ignores accents when matching saved address values to country options.
+- Postal code selectors resolve accent-insensitive matches for saved addresses in multi-level countries.
+- El Salvador geolocation example corrected across all locale files (was showing Ljubljana).
+
+### Changed
+
+- Synced missing geolocation example keys in `messages/context.json` from `main`.
+
 ## [4.29.3] - 2026-07-24
 
 ### Fixed
