@@ -11,6 +11,7 @@ import AddressRules from '../AddressRules'
 import { resetPlacesMode } from './placesMode'
 import {
   MockAutocompleteSessionToken,
+  apiKeyServiceBlockedError,
   createPrediction,
   installPlacesApiNew,
   toNewPlace,
@@ -641,6 +642,29 @@ describe('GeolocationInput', () => {
           setTimeout(resolve, SUGGESTIONS_DEBOUNCE_MS + 50)
         )
         expect(fetchAutocompleteSuggestions).not.toHaveBeenCalled()
+      })
+
+      it('switches to the legacy Autocomplete when the key blocks the new API', async () => {
+        fetchAutocompleteSuggestions.mockRejectedValue(
+          apiKeyServiceBlockedError()
+        )
+
+        const { input } = await renderInput({ country: 'BRA' })
+
+        await userEvent.type(input, 'a')
+
+        await waitFor(() =>
+          expect(
+            mockInstances.get(google.maps.places.Autocomplete)
+          ).toHaveLength(1)
+        )
+        expect(window.logSplunk).toHaveBeenCalledWith(
+          expect.objectContaining({
+            event: expect.objectContaining({
+              reason: 'API_KEY_SERVICE_BLOCKED',
+            }),
+          })
+        )
       })
 
       it('switches to the legacy SearchBox when useSearchBox is set', async () => {

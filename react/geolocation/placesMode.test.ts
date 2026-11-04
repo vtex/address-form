@@ -6,6 +6,10 @@ import {
   resetPlacesMode,
   resolvePlacesMode,
 } from './placesMode'
+import {
+  apiKeyServiceBlockedError,
+  createRpcError,
+} from './__mocks__/placesApiNew'
 
 const googleMapsWithNewApi = {
   places: {
@@ -68,7 +72,27 @@ describe('placesMode', () => {
     expect(isPlacesApiNewUnavailableError(error)).toBe(true)
   })
 
+  it('treats the RpcError of a key that blocks Places API (New) as unavailable', () => {
+    expect(isPlacesApiNewUnavailableError(apiKeyServiceBlockedError())).toBe(
+      true
+    )
+  })
+
+  it('treats a numeric PERMISSION_DENIED RpcError as unavailable', () => {
+    expect(
+      isPlacesApiNewUnavailableError(
+        createRpcError(
+          7,
+          'Places API (New) has not been used in project 123 before or it is disabled.',
+          'SERVICE_DISABLED'
+        )
+      )
+    ).toBe(true)
+  })
+
   it.each([
+    [createRpcError(14, 'Network error')],
+    [createRpcError(8, 'Quota exceeded', 'RATE_LIMIT_EXCEEDED')],
     [new Error('Failed to fetch')],
     [{ code: 'OVER_QUERY_LIMIT', message: 'rate limited' }],
     [{ code: 'UNKNOWN_ERROR' }],
@@ -83,5 +107,14 @@ describe('placesMode', () => {
       'PERMISSION_DENIED'
     )
     expect(getFallbackReason(new Error('not enabled'))).toBe(API_NOT_ENABLED)
+  })
+
+  it('uses the RpcError metadata reason as fallback reason', () => {
+    expect(getFallbackReason(apiKeyServiceBlockedError())).toBe(
+      'API_KEY_SERVICE_BLOCKED'
+    )
+    expect(getFallbackReason(createRpcError(7, 'denied'))).toBe(
+      'PERMISSION_DENIED'
+    )
   })
 })
