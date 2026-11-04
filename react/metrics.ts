@@ -88,3 +88,34 @@ export function logGeolocationAddressMismatch({
     // ignore failed log
   }
 }
+
+interface LogPlacesApiFallbackData {
+  reason: string
+  country?: string
+}
+
+export function logPlacesApiFallback({
+  reason,
+  country,
+}: LogPlacesApiFallbackData) {
+  const eventData = {
+    reason,
+    country: country ?? '',
+    account: getAccountName() ?? '',
+    orderFormId: window.vtexjs?.checkout?.orderFormId ?? '',
+    addressFormVersion: process.env.VTEX_APP_VERSION ?? '',
+    urlPathname: document.location.pathname,
+  }
+
+  try {
+    window.logSplunk?.({
+      level: LEVELS.DEBUG,
+      type: TYPES.WARNING,
+      workflowType: 'address-form',
+      workflowInstance: 'places-api-fallback',
+      event: eventData,
+    })
+  } catch (error) {
+    // ignore failed log
+  }
+}
