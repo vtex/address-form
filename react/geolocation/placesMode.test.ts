@@ -1,6 +1,8 @@
 import {
   API_NOT_ENABLED,
   getFallbackReason,
+  getPlacesApiPreference,
+  isPlacesApiNewSupported,
   isPlacesApiNewUnavailableError,
   markLegacyFallback,
   resetPlacesMode,
@@ -21,12 +23,46 @@ const googleMapsWithNewApi = {
 describe('placesMode', () => {
   beforeEach(() => {
     resetPlacesMode()
+    window.vtex = { googlePlacesApi: 'new' }
     window.logSplunk = () => {}
     jest.spyOn(window, 'logSplunk')
   })
 
   afterEach(() => {
     delete window.logSplunk
+    delete window.vtex
+  })
+
+  it.each([
+    [undefined, 'legacy'],
+    ['legacy', 'legacy'],
+    ['new', 'new'],
+    [' NEW ', 'new'],
+    ['{{ config.googlePlacesApi }}', 'legacy'],
+    ['true', 'legacy'],
+    ['', 'legacy'],
+  ])('reads the store preference %p as %p', (value, expected) => {
+    window.vtex = value === undefined ? {} : { googlePlacesApi: value }
+
+    expect(getPlacesApiPreference()).toBe(expected)
+  })
+
+  it('defaults to legacy when window.vtex is missing', () => {
+    delete window.vtex
+
+    expect(getPlacesApiPreference()).toBe('legacy')
+  })
+
+  it('uses the legacy widgets when the store did not opt in, even if the new API is available', () => {
+    window.vtex = {}
+
+    expect(resolvePlacesMode(googleMapsWithNewApi)).toBe('legacy')
+  })
+
+  it('detects whether the loaded Maps version has the new API classes', () => {
+    expect(isPlacesApiNewSupported(googleMapsWithNewApi)).toBe(true)
+    expect(isPlacesApiNewSupported({ places: {} })).toBe(false)
+    expect(isPlacesApiNewSupported(undefined)).toBe(false)
   })
 
   it('uses the new API when its classes are available', () => {

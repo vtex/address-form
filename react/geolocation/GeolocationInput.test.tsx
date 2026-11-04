@@ -182,6 +182,56 @@ describe('GeolocationInput', () => {
     )
   })
 
+  describe('without the store opt-in (default)', () => {
+    let fetchAutocompleteSuggestions: jest.Mock
+
+    beforeEach(() => {
+      ;({ fetchAutocompleteSuggestions } = installPlacesApiNew())
+      window.logSplunk = () => {}
+      jest.spyOn(window, 'logSplunk')
+    })
+
+    afterEach(() => {
+      delete window.logSplunk
+      delete window.vtex
+    })
+
+    it.each([
+      ['window.vtex is missing', undefined],
+      ['the preference is legacy', { googlePlacesApi: 'legacy' }],
+      [
+        'the template placeholder was not rendered',
+        { googlePlacesApi: '{{ config.googlePlacesApi }}' },
+      ],
+    ])('keeps the legacy Autocomplete when %s', async (_description, vtex) => {
+      if (vtex) {
+        window.vtex = vtex
+      }
+
+      render(
+        <AddressRules country="BRA" shouldUseIOFetching>
+          <AddressContainer address={address} onChangeAddress={jest.fn()}>
+            <GeolocationInput googleMaps={google.maps} />
+          </AddressContainer>
+        </AddressRules>
+      )
+
+      const input = await screen.findByLabelText(/address/i)
+
+      expect(mockInstances.get(google.maps.places.Autocomplete)).toHaveLength(1)
+      expect(input).not.toHaveAttribute('role')
+
+      await userEvent.type(input, 'praia')
+      await new Promise((resolve) =>
+        setTimeout(resolve, SUGGESTIONS_DEBOUNCE_MS + 50)
+      )
+
+      expect(fetchAutocompleteSuggestions).not.toHaveBeenCalled()
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
+      expect(window.logSplunk).not.toHaveBeenCalled()
+    })
+  })
+
   describe('with Places API (New)', () => {
     let fetchAutocompleteSuggestions: jest.Mock
     let searchByText: jest.Mock
@@ -261,12 +311,14 @@ describe('GeolocationInput', () => {
 
     beforeEach(() => {
       ;({ fetchAutocompleteSuggestions, searchByText } = installPlacesApiNew())
+      window.vtex = { googlePlacesApi: 'new' }
       window.logSplunk = () => {}
       jest.spyOn(window, 'logSplunk')
     })
 
     afterEach(() => {
       delete window.logSplunk
+      delete window.vtex
     })
 
     it('shows suggestions restricted to the country region', async () => {

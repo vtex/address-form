@@ -62,22 +62,36 @@ function toErrorLike(error: unknown): ErrorLike {
     : { message: String(error) }
 }
 
+export type PlacesApiPreference = 'legacy' | 'new'
+
+// Set per store by the Checkout page (portal v2 site configuration rendered
+// into `window.vtex`). Anything other than "new" (missing, invalid or the
+// unrendered template placeholder) keeps the legacy Places widgets.
+export function getPlacesApiPreference(): PlacesApiPreference {
+  const value =
+    typeof window === 'undefined' ? undefined : window.vtex?.googlePlacesApi
+
+  return typeof value === 'string' && value.trim().toLowerCase() === 'new'
+    ? 'new'
+    : 'legacy'
+}
+
+export function isPlacesApiNewSupported(googleMaps): boolean {
+  const places = googleMaps?.places
+
+  return !!(places?.AutocompleteSuggestion && places?.AutocompleteSessionToken)
+}
+
 // Once a page falls back to the legacy widgets it stays there, so every
 // GeolocationInput mounted later skips the new API.
 let legacyFallbackReason: string | null = null
 
 export function resolvePlacesMode(googleMaps): PlacesMode {
-  if (legacyFallbackReason) {
+  if (getPlacesApiPreference() !== 'new' || legacyFallbackReason) {
     return 'legacy'
   }
 
-  const places = googleMaps?.places
-
-  if (!places?.AutocompleteSuggestion || !places?.AutocompleteSessionToken) {
-    return 'legacy'
-  }
-
-  return 'new'
+  return isPlacesApiNewSupported(googleMaps) ? 'new' : 'legacy'
 }
 
 export function markLegacyFallback(reason: string, country?: string) {

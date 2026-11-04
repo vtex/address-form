@@ -21,6 +21,8 @@ import {
 import {
   UNSUPPORTED_MAPS_VERSION,
   getFallbackReason,
+  getPlacesApiPreference,
+  isPlacesApiNewSupported,
   isPlacesApiNewUnavailableError,
   markLegacyFallback,
   resolvePlacesMode,
@@ -100,18 +102,18 @@ class GeolocationInput extends Component {
   getPlacesMode = () => {
     const { googleMaps, rules } = this.props
 
-    if (!SUPPORTS_ARRAY_RENDER) {
+    // Legacy Places is the default: Places API (New) is opt-in per store.
+    if (!SUPPORTS_ARRAY_RENDER || getPlacesApiPreference() !== 'new') {
       return 'legacy'
     }
 
-    const mode = resolvePlacesMode(googleMaps)
-
-    if (mode === 'legacy') {
-      // No-op when the page already fell back for another reason.
+    if (!isPlacesApiNewSupported(googleMaps)) {
       markLegacyFallback(UNSUPPORTED_MAPS_VERSION, rules.country)
+
+      return 'legacy'
     }
 
-    return mode
+    return resolvePlacesMode(googleMaps)
   }
 
   attachLegacyWidget = () => {
@@ -534,7 +536,8 @@ class GeolocationInput extends Component {
       />
     )
 
-    if (!SUPPORTS_ARRAY_RENDER) {
+    // Without the opt-in the rendered tree stays exactly the legacy one.
+    if (!SUPPORTS_ARRAY_RENDER || getPlacesApiPreference() !== 'new') {
       return input
     }
 

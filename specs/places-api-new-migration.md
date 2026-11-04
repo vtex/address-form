@@ -14,31 +14,41 @@
 
 Since 2025-03-01, Google no longer lets Google Cloud projects that did not already use the legacy Places API enable it. A Maps API key from such a project gets `LegacyApiNotActivatedMapError`, and the address search shows no suggestions. Anyone affected cannot use geolocation-based address entry in checkout (`vtex.omnishipping`), the shipping preview (`vtex.shipping-preview`) or `vtex.checkout`: new merchants, merchants who rotate to a new GCP project, and developers testing locally.
 
-Merchants whose keys come from older projects still work today. Some of those keys may have **only** the legacy API enabled, so switching straight to the new API would break them.
+Merchants whose keys come from older projects still work today. Some of those keys may have **only** the legacy API enabled, so switching straight to the new API would break them. Others have both APIs enabled: switching them to Places API (New) automatically would change what they are billed by Google without the store owner doing anything.
+
+The legacy Places API therefore stays the **default**, which is a must for this solution. Places API (New) is used only by stores that opt in, through a per-store preference that the Checkout page exposes as `window.vtex.googlePlacesApi`, in the same way it already exposes `window.vtex.googleMapsApiKey` from the store's site configuration.
 
 ### Goals
 
-- `GeolocationInput` returns suggestions and fills the address with a key that has **only** Places API (New) enabled.
-- `GeolocationInput` keeps working with a key that has **only** the legacy Places API enabled.
+- Without the opt-in, `GeolocationInput` behaves exactly as today: same legacy widgets, same Google requests, same billing, same rendered tree.
+- With the opt-in (`window.vtex.googlePlacesApi === 'new'`), `GeolocationInput` returns suggestions and fills the address with a key that has **only** Places API (New) enabled.
+- With the opt-in and a key that only allows the legacy API, `GeolocationInput` falls back to the legacy widgets instead of breaking.
 - For the same Google place, the address produced is identical to the one the legacy flow produces today.
 - Consumers make zero code changes: no changes to `react/index.ts`, `react/components.ts`, `react/inputs.ts`, `react/types/rules.ts`, `react/country/*.ts`, or any exported component's props. Ships as a minor release (`feat:`).
 
 ### User Stories
 
+#### US-0: Legacy Places stays the default
+
+- **Story**: As a store owner who did not opt in to Places API (New), I want address search to keep working exactly as it does today, so that nothing changes in my checkout or in my Google billing without my action.
+- **Acceptance Criteria**:
+  - **Given** `window.vtex.googlePlacesApi` is missing, `'legacy'`, any value other than `'new'`, or the unrendered template placeholder `'{{ config.googlePlacesApi }}'`, **when** the input mounts, **then** the legacy `places.Autocomplete` (or `places.SearchBox` with `useSearchBox`) is attached as today, `GeolocationInput` renders only the `Input`, and no `role="combobox"` is added.
+  - **Given** the store did not opt in, **when** the shopper types, **then** no Places API (New) request is made, no suggestions dropdown of ours is rendered and no Splunk fallback event is emitted, even if the loaded Maps version has the new API classes.
+
 #### US-1: Address search with a new Google Cloud project key
 
-- **Story**: As a shopper on a store whose Maps key only has Places API (New) enabled, I want to type my address and pick a suggestion, so that my address fields are filled automatically.
+- **Story**: As a shopper on a store that opted in and whose Maps key only has Places API (New) enabled, I want to type my address and pick a suggestion, so that my address fields are filled automatically.
 - **Acceptance Criteria**:
-  - **Given** a key with only Places API (New) enabled and country rules with `abbr: 'BR'`, **when** the shopper types at least one character in the address input, **then** a suggestions list restricted to region `br` appears under the input after the debounce window.
+  - **Given** the store opted in (`window.vtex.googlePlacesApi === 'new'`), a key with only Places API (New) enabled and country rules with `abbr: 'BR'`, **when** the shopper types at least one character in the address input, **then** a suggestions list restricted to region `br` appears under the input after the debounce window.
   - **Given** the suggestions list is open, **when** the shopper clicks a suggestion, **then** place details are fetched (`addressComponents`, `formattedAddress`, `location`), `onChangeAddress` is called once with the address produced by `geolocationAutoCompleteAddress`, and the input value becomes the place's formatted address.
   - **Given** a selection was completed, **when** the shopper starts typing again, **then** a new session token is used for the next suggestions request.
 
-#### US-2: Address search with a legacy-only key (fallback)
+#### US-2: Opted-in store whose key blocks Places API (New) (fallback)
 
-- **Story**: As a shopper on a store whose Maps key only has the legacy Places API enabled, I want address search to keep working as it does today, so that the migration does not break my checkout.
+- **Story**: As a shopper on a store that opted in but whose Maps key only allows the legacy Places API, I want address search to keep working as it does today, so that a misconfigured opt-in does not break my checkout.
 - **Acceptance Criteria**:
-  - **Given** a key where the new API rejects requests (the API is not enabled or not authorized), **when** the first suggestions request fails, **then** the component switches to the legacy `places.Autocomplete` widget (or `places.SearchBox` when `useSearchBox` is set) on the same input element, and subsequent typing behaves exactly as before this change.
-  - **Given** `google.maps.places.AutocompleteSuggestion` is undefined (an old Maps JS version was loaded), **when** the input mounts, **then** the component uses the legacy widget directly.
+  - **Given** the store opted in and a key where the new API rejects requests (the API is not enabled or not authorized), **when** the first suggestions request fails, **then** the component switches to the legacy `places.Autocomplete` widget (or `places.SearchBox` when `useSearchBox` is set) on the same input element, and subsequent typing behaves exactly as before this change.
+  - **Given** the store opted in and `google.maps.places.AutocompleteSuggestion` is undefined (an old Maps JS version was loaded), **when** the input mounts, **then** the component uses the legacy widget directly.
   - **Given** the fallback was triggered once in the page, **when** another `GeolocationInput` mounts on the same page, **then** it goes straight to legacy mode without retrying the new API.
   - **Given** the fallback is triggered, **then** a single `window.logSplunk` event is emitted (via `react/metrics.ts`) identifying the fallback reason.
 
@@ -63,11 +73,13 @@ Merchants whose keys come from older projects still work today. Some of those ke
 
 | Scenario | Pre-conditions | Steps | Expected Result |
 |---|---|---|---|
-| Happy path (new API) | Key with Places API (New); BRA rules | Type "Praia de Botafogo 300", click first suggestion | Fields filled; `country: 'BRA'`; `geoCoordinates` = `[lng, lat]`; `addressQuery` = formatted address; `geolocationAutoCompleted` flags set |
+| Default, no opt-in | `window.vtex.googlePlacesApi` missing; new API classes available | Mount and type | Legacy Autocomplete attached; no Places API (New) request; no listbox; no Splunk event |
+| Explicit legacy or unrendered placeholder | `googlePlacesApi` is `'legacy'` or `'{{ config.googlePlacesApi }}'` | Mount and type | Same as the default |
+| Happy path (new API) | Store opted in; key with Places API (New); BRA rules | Type "Praia de Botafogo 300", click first suggestion | Fields filled; `country: 'BRA'`; `geoCoordinates` = `[lng, lat]`; `addressQuery` = formatted address; `geolocationAutoCompleted` flags set |
 | Parity with legacy | Same `place_id` resolved by both flows | Feed legacy `PlaceResult` and adapted new `Place` into `geolocationAutoCompleteAddress` | Deep-equal output addresses |
 | ARG CABA handler | ARG rules; place in Ciudad Autónoma de Buenos Aires | Select suggestion | `state` and `city` = "Ciudad Autónoma de Buenos Aires" (handler reads adapted `address_components`) |
-| Legacy-only key (fallback) | New API rejects with not-enabled error | Type text | Legacy widget attached; `.pac-container` from Google appears; one Splunk fallback event |
-| Old Maps JS version | `places.AutocompleteSuggestion` undefined | Mount input | Legacy widget attached; no new-API call |
+| Opted-in store, legacy-only key (fallback) | Store opted in; new API rejects with `RpcError` code 7 (`API_KEY_SERVICE_BLOCKED`) | Type text | Legacy widget attached; `.pac-container` from Google appears; one Splunk fallback event |
+| Old Maps JS version | Store opted in; `places.AutocompleteSuggestion` undefined | Mount input | Legacy widget attached; no new-API call |
 | Network error mid-session | New API worked earlier; one request fails with a transient error | Type text | List closes for that keystroke; no fallback; next keystroke retries the new API |
 | No results | Query matches nothing | Type gibberish | List stays closed; no text rendered (no new i18n key) |
 | Place without geometry | `fetchFields` returns no `location` | Select suggestion | `onChangeAddress` not called (matches the legacy `if (googleAddress.geometry)` guard) |
@@ -78,13 +90,14 @@ Merchants whose keys come from older projects still work today. Some of those ke
 
 ### Functional Requirements
 
-- FR-1: Use `google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions` with an `AutocompleteSessionToken` per search session (new token after each selection, rules change or unmount).
+- FR-0: Read the store preference from `window.vtex.googlePlacesApi`. Only the string `'new'` (trimmed, case-insensitive) enables Places API (New). Any other value, a missing `window.vtex` or the unrendered placeholder keeps the legacy widgets, and the component then renders and behaves exactly as before this change.
+- FR-1: When the store opted in, use `google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions` with an `AutocompleteSessionToken` per search session (new token after each selection, rules change or unmount).
 - FR-2: Restrict suggestions with `includedRegionCodes: [rules.abbr.toLowerCase()]` when `rules.abbr` is set, and with no region filter otherwise. Pass `language` from the locale already used by the loader.
 - FR-3: On selection, call `placePrediction.toPlace().fetchFields({ fields: ['addressComponents', 'formattedAddress', 'location'] })` and request **only** these fields.
 - FR-4: Convert the new `Place` to the legacy `PlaceResult` shape with a pure adapter before calling `geolocationAutoCompleteAddress`, so that `geolocationAutoCompleteAddress`, `GeolocationRules` handlers and all `react/country/*.ts` files stay untouched.
 - FR-5: Render a suggestions dropdown under the existing `Input` (the `Input` prop, `DefaultInput` by default), using the existing `inputRef` mount point. Do not replace the input element.
 - FR-6: The dropdown uses class names `pac-container` (dropdown root, wrapping the `role="listbox"` list) and `pac-item` (option) so that existing selectors (omnishipping Cypress `cy.get('.pac-item')`, merchant CSS) keep working. Each option shows the prediction's main and secondary text.
-- FR-7: Fall back to the legacy widgets when the new API is unavailable (FR-8). The fallback decision is cached at module level for the page lifetime.
+- FR-7: When the store opted in, fall back to the legacy widgets if the new API is unavailable (FR-8). The fallback decision is cached at module level for the page lifetime.
 - FR-8: "Unavailable" means: `AutocompleteSuggestion` is undefined, **or** `fetchAutocompleteSuggestions` rejects with an error whose message or code indicates the API is not enabled or not authorized (for example `PERMISSION_DENIED`, `REQUEST_DENIED`, "API has not been used", "not authorized"). Other errors (network, rate limit) do not trigger the fallback.
 - FR-9: Debounce suggestion requests (300 ms). Ignore responses that arrive for a query that is no longer current.
 - FR-10: Preserve the `useSearchBox` semantics described in US-4.
@@ -108,6 +121,8 @@ Merchants whose keys come from older projects still work today. Some of those ke
 - Migrating `GoogleMapsContainer` to `importLibrary` / the dynamic bootstrap loader.
 - Removing the legacy widget path. That is a future major version, once Google retires legacy Places for existing keys.
 - Changes in `vtex.omnishipping`, `vtex.shipping-preview` or `vtex.checkout`.
+- Exposing the preference on the page. That needs, in other repositories and with their own specs: a `SiteConfiguration` field validated and exposed by portal v2's `ConfigContextProvider`, the line `vtex.googlePlacesApi = "{{ config.googlePlacesApi }}" || undefined` in `vcs.checkout-ui/src/index.html` (next to `googleMapsApiKey`, `geolocation` and `leanShipping`), and a field in the portal-ui site configuration admin. This repo only reads the value.
+- Automatic detection of stores whose key no longer accepts the legacy API (a possible future `'auto'` value).
 - Showing "no results" or error text in the dropdown.
 
 ---
@@ -116,14 +131,16 @@ Merchants whose keys come from older projects still work today. Some of those ke
 
 ### Proposed Solution
 
-Introduce a small **places provider** abstraction inside `react/geolocation/`, with two implementations: `new`, built on Places API (New), and `legacy`, built on today's widgets. `GeolocationInput` asks a resolver which provider to use. With the new provider, it renders a controlled suggestions dropdown under the existing `Input`. On selection, the new `Place` goes through `toLegacyPlaceResult()` and then into the unchanged `handleAddress(googleAddress)` path. With the legacy provider, the current code path attaches the Google widget to the input exactly as today.
+Keep the legacy widgets as the default and gate Places API (New) behind a per-store preference read from `window.vtex.googlePlacesApi`. For opted-in stores, introduce a small **places provider** abstraction inside `react/geolocation/`, with two implementations: `new`, built on Places API (New), and `legacy`, built on today's widgets. `GeolocationInput` asks a resolver which provider to use. With the new provider, it renders a controlled suggestions dropdown under the existing `Input`. On selection, the new `Place` goes through `toLegacyPlaceResult()` and then into the unchanged `handleAddress(googleAddress)` path. With the legacy provider, the current code path attaches the Google widget to the input exactly as today.
 
 ### Architecture Overview
 
 ```mermaid
 flowchart TD
   GMC[GoogleMapsContainer<br/>unchanged] -->|googleMaps| GI[GeolocationInput]
-  GI --> R{resolvePlacesMode}
+  GI --> P{window.vtex.googlePlacesApi<br/>=== 'new'?}
+  P -->|no: default| LW
+  P -->|yes| R{resolvePlacesMode}
   R -->|new| NS[newPlacesSource<br/>fetchSuggestions / fetchPlace / searchByText]
   R -->|legacy| LW[legacy widgets<br/>places.Autocomplete / SearchBox]
   NS --> DD[PlaceSuggestions dropdown<br/>.pac-container / .pac-item]
@@ -163,19 +180,25 @@ sequenceDiagram
 | `PlaceAutocompleteElement` web component | Google-maintained UI, little code | Renders its own `<input>` in shadow DOM; breaks the `Input`, `inputProps`, `placeholder`, `autoFocus` props and consumer styling; hard to theme; no `.pac-item` selectors | Rejected: breaking for consumers |
 | Change `geolocationAutoCompleteAddress` and the country rules to the new shape (`longText`/`shortText`) | No adapter layer | Touches 64 rule files and `GeolocationRule.valueIn` semantics; `handler` signatures change; requires a major version | Rejected: breaking change |
 | New API only, no legacy fallback | Simpler; one code path | Breaks merchants whose key has only the legacy API enabled | Rejected: production risk |
-| Opt-in prop (`usePlacesApiNew`) | Zero risk to current traffic | Requires every consumer to change; does not fix the issue by default | Rejected: violates the "changes only in address-form" goal |
-| Legacy first, new on `LegacyApiNotActivatedMapError` | Current traffic untouched | The legacy error is only reported through the console/`gm_authFailure`, not catchable per request; detection is unreliable | Rejected |
-| **New API first, legacy fallback on a catchable error** | Works for both key types; the error is a rejected promise | Two code paths to maintain until the legacy path is removed | **Accepted** |
+| Opt-in prop (`usePlacesApiNew`) | Zero risk to current traffic | Requires every consumer to change and to have a source for the value | Rejected: violates the "changes only in address-form" goal |
+| New API first, legacy fallback on a catchable error (first version of this spec) | Works for both key types without configuration | Stores with both APIs enabled move to Places API (New) billing without the owner's action | Rejected: legacy must stay the default |
+| Legacy widget first, switch on `LegacyApiNotActivatedMapError` detected passively | Current traffic untouched | Tested on a linked workspace: `gm_authFailure` does not fire; the error only reaches `console.error`, which the Maps library logs through its own reference, and the JSONP response callback could not be intercepted | Rejected: unreliable |
+| Legacy through the programmatic `AutocompleteService` + our dropdown, new API on `REQUEST_DENIED` | Reliable detection; legacy billing kept | Every store switches from Google's dropdown to ours; merchant CSS depends on Google's DOM (`.pac-target-input`, `.pac-logo`, body-level container) | Rejected: visual change for every store |
+| Legacy widget + one status probe when no suggestions appear | Visual and billing unchanged for working stores; detects blocked keys | Depends on Google's undocumented DOM to pair the widget with its container; detaching the widget needs an input remount | Deferred: candidate for a future `'auto'` value |
+| In-code per-account allowlist (like `vcs.checkout-ui` `FeatureFlags`) | No dependency on other repos | One address-form release per account | Rejected: release per account |
+| **Legacy by default; Places API (New) opt-in via `window.vtex.googlePlacesApi`, set from the store's site configuration** | Nothing changes without an explicit decision; no release per account; follows the existing `googleMapsApiKey`/`geolocation`/`leanShipping` path | Needs changes in portal v2, portal-ui and vcs.checkout-ui to expose the value; stores that cannot enable the legacy API stay broken until they opt in | **Accepted** |
 
 ### Risks & Mitigations
 
 | Risk | Impact | Likelihood | Mitigation |
 |---|---|---|---|
-| Legacy-only keys break | High | Med | FR-7/FR-8 fallback; unit tests for each error class; Splunk event to measure how many stores fall back |
+| Stores whose key cannot enable the legacy API stay broken until they opt in | High | Med | Admin help text next to the Maps key; support guidance; the Splunk fallback event for opted-in stores; a future `'auto'` value |
+| Opted-in stores with a legacy-only key break | High | Low | FR-7/FR-8 fallback; unit tests for each error class; Splunk event to measure how many stores fall back |
 | Fallback misclassifies a transient error as "not enabled" | Med | Low | Fallback only on explicit permission/not-enabled signatures; other errors just close the list |
 | Address output differs from the legacy flow (e.g. `short_name` for `administrative_area_level_1`) | High | Med | Adapter maps `shortText` to `short_name` 1:1; parity test with the same fixture in both shapes; manual QA BRA/ARG/USA |
 | omnishipping Cypress or merchant CSS rely on Google's DOM | Med | Med | Keep `.pac-container` / `.pac-item` class names and the list placed under the input |
-| Places (New) billing differs from legacy | Med | Med | Session tokens + Essentials-only fields; flag in the PR for the team that owns Maps billing |
+| Places (New) billing differs from legacy | Med | Med | Only after the store opts in; session tokens + Essentials-only fields; flag in the PR for the team that owns Maps billing |
+| The preference is not exposed yet on the page | Low | High | Fails closed to legacy; this change can ship before portal v2 and vcs.checkout-ui |
 | Consumers: `vtex.omnishipping`, `vtex.shipping-preview`, `vtex.checkout`, external npm users of `GeolocationInput` | Med | Low | No public API change; release as minor; announce in the CHANGELOG; QA in omnishipping on a linked workspace before release |
 | Old Maps JS version cached without `AutocompleteSuggestion` | Low | Low | Feature-detect and fall back |
 | Blur closes the list before the click registers | Low | Med | Select on `mousedown` (with `preventDefault`) instead of `click` |
@@ -196,12 +219,12 @@ sequenceDiagram
 - **Decision**: Use the programmatic API and render a `PlaceSuggestions` list next to the existing `Input`, with `.pac-container` / `.pac-item` classes.
 - **Consequences**: More code (keyboard, a11y, blur handling) owned by this repo, but the component contract is preserved.
 
-#### Decision 3: New-first with page-wide fallback to legacy
+#### Decision 3: Legacy by default; Places API (New) opt-in per store, with fallback to legacy
 
-- **Status**: Accepted
-- **Context**: Some keys have only the new API, some only the legacy one. Only the new API reports a catchable per-request error.
-- **Decision**: Try the new API first. On a not-enabled/permission error, or if the classes are missing, switch to legacy for the rest of the page lifetime and log one Splunk event.
-- **Consequences**: One extra failed request for legacy-only stores on the first keystroke; the shopper needs to type one more character for the legacy widget to show suggestions. That is acceptable, and the Splunk data tells us when the legacy path can be removed.
+- **Status**: Accepted (replaces "new-first with fallback to legacy")
+- **Context**: Preferring the legacy API is a must: a store must not change Google APIs, look or billing without the owner's action. The legacy widgets do not report failures in a way that code can catch reliably, so automatic switching from legacy to new is not dependable. The Checkout page already exposes per-store Maps configuration in `window.vtex`.
+- **Decision**: Read `window.vtex.googlePlacesApi`. Only `'new'` enables Places API (New); everything else keeps today's legacy code path and rendered tree. For opted-in stores, try the new API first and, on a not-enabled/permission error or missing classes, switch to legacy for the rest of the page lifetime and log one Splunk event.
+- **Consequences**: Nothing changes for stores that do not opt in. Stores that cannot enable the legacy API need to opt in (and allow Places API (New) on their key) to get suggestions. The value has to be exposed by portal v2 and vcs.checkout-ui, in separate specs; until then, this change is inert.
 
 #### Decision 4: Telemetry through `react/metrics.ts`
 
@@ -218,7 +241,8 @@ sequenceDiagram
 4. **Dropdown**: `PlaceSuggestions` component with the combobox/listbox a11y pattern; RTL tests for mouse and keyboard.
 5. **GeolocationInput wiring**: debounce, session tokens, stale-response guard, `useSearchBox` semantics, legacy path kept as is; rewrite `GeolocationInput.test.tsx` with RTL covering both modes.
 6. **Docs/CHANGELOG**: `### Added` entry under `## [Unreleased]` naming Places API (New) support, the fallback and the Splunk event.
-7. **Manual QA**: demo app with a new-API-only key and a legacy-only key for BRA, ARG and USA; `vtex link` into an omnishipping workspace and run the delivery/pickup geolocation flows.
+7. **Store preference**: `getPlacesApiPreference` reading `window.vtex.googlePlacesApi` (fail closed to legacy) and the gate in `GeolocationInput`, with tests for the default, explicit legacy and the unrendered placeholder.
+8. **Manual QA**: demo app with a new-API-only key and a legacy-only key for BRA, ARG and USA; `vtex link` into an omnishipping workspace and run the delivery/pickup geolocation flows.
 
 ---
 
@@ -279,6 +303,9 @@ export function toLegacyPlaceResult(place: google.maps.places.Place): LegacyPlac
 
 // placesMode.ts
 export type PlacesMode = 'new' | 'legacy'
+export type PlacesApiPreference = 'legacy' | 'new'
+export function getPlacesApiPreference(): PlacesApiPreference // window.vtex.googlePlacesApi, fails closed to 'legacy'
+export function isPlacesApiNewSupported(googleMaps: typeof google.maps): boolean
 export function resolvePlacesMode(googleMaps: typeof google.maps): PlacesMode
 export function markLegacyFallback(reason: string, country?: string): void // caches + logs once
 export function isPlacesApiNewUnavailableError(error: unknown): boolean
@@ -310,6 +337,7 @@ export function logPlacesApiFallback(params: { reason: string; country?: string 
 
 ### Integration Points
 
+- **`window.vtex.googlePlacesApi`** (read only): set by the Checkout page from the store's site configuration, next to `window.vtex.googleMapsApiKey`. Typed in the global `Window` declaration of `react/metrics.ts`.
 - **Google Maps JS API** (loaded by the unchanged `googleMaps.js` with `libraries: ['places']`): `places.AutocompleteSuggestion`, `places.AutocompleteSessionToken`, `places.PlacePrediction.toPlace`, `places.Place.fetchFields`, `places.Place.searchByText`; legacy `places.Autocomplete`, `places.SearchBox`, `Geocoder` for the fallback.
 - **`geolocationAutoCompleteAddress`**: called with `(state.address, legacyPlaceResult, rules)`, unchanged.
 - **`react/metrics.ts`**: new `logPlacesApiFallback` → `window.logSplunk`.
@@ -318,10 +346,11 @@ export function logPlacesApiFallback(params: { reason: string; country?: string 
 ### Invariants & Constraints
 
 - `geolocationAutoCompleteAddress`, `react/types/rules.ts`, `react/country/*.ts`, `react/index.ts`, `react/components.ts` and `react/inputs.ts` are not modified.
+- Unless `window.vtex.googlePlacesApi` is `'new'`, no Places API (New) request is made, no Splunk fallback event is emitted, and `GeolocationInput` renders only the `Input` with the legacy widget attached, exactly as before this change.
 - `onChangeAddress` is called at most once per selection, and only when the resolved place has a location.
 - For the same place, `geolocationAutoCompleteAddress(base, toLegacyPlaceResult(newPlace), rules)` deep-equals `geolocationAutoCompleteAddress(base, legacyPlaceResult, rules)`.
 - Only the `addressComponents`, `formattedAddress` and `location` fields are ever requested from Place Details.
 - A session token is never reused after a selection.
-- Once legacy mode is chosen in a page, the new API is not called again in that page.
+- Once an opted-in page falls back to legacy, the new API is not called again in that page.
 - No new keys in `messages/en.json`; no new npm dependencies.
 - The dropdown root has class `pac-container` and each option has class `pac-item`.

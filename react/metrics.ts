@@ -18,6 +18,7 @@ declare global {
   interface Window {
     vtex?: {
       accountName?: string
+      googlePlacesApi?: string
       vtexid?: {
         accountName?: string
       }
