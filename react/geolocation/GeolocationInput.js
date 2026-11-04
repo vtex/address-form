@@ -20,18 +20,17 @@ import {
 } from './newPlacesSource'
 import {
   UNSUPPORTED_MAPS_VERSION,
-  getFallbackReason,
+  getPlacesApiNewErrorReason,
   getPlacesApiPreference,
   isPlacesApiNewSupported,
   isPlacesApiNewUnavailableError,
-  markLegacyFallback,
-  resolvePlacesMode,
+  reportPlacesApiNewError,
 } from './placesMode'
 
 export const SUGGESTIONS_DEBOUNCE_MS = 300
 
 // Rendering the input and the suggestions list side by side needs React 16+.
-// On React 15 the component keeps using the legacy widgets.
+// On React 15 the component always uses the legacy widgets.
 const SUPPORTS_ARRAY_RENDER = parseInt(React.version, 10) >= 16
 
 let listboxCounter = 0
@@ -99,22 +98,12 @@ class GeolocationInput extends Component {
     }
   }
 
-  getPlacesMode = () => {
-    const { googleMaps, rules } = this.props
-
-    // Legacy Places is the default: Places API (New) is opt-in per store.
-    if (!SUPPORTS_ARRAY_RENDER || getPlacesApiPreference() !== 'new') {
-      return 'legacy'
-    }
-
-    if (!isPlacesApiNewSupported(googleMaps)) {
-      markLegacyFallback(UNSUPPORTED_MAPS_VERSION, rules.country)
-
-      return 'legacy'
-    }
-
-    return resolvePlacesMode(googleMaps)
-  }
+  // The store preference alone decides which API runs: legacy Places is the
+  // default and Places API (New) is opt-in. There is no runtime fallback.
+  getPlacesMode = () =>
+    SUPPORTS_ARRAY_RENDER && getPlacesApiPreference() === 'new'
+      ? 'new'
+      : 'legacy'
 
   attachLegacyWidget = () => {
     const { useSearchBox, rules, googleMaps } = this.props
@@ -184,6 +173,12 @@ class GeolocationInput extends Component {
   }
 
   attachNewPlaces = () => {
+    const { googleMaps, rules } = this.props
+
+    if (!isPlacesApiNewSupported(googleMaps)) {
+      reportPlacesApiNewError(UNSUPPORTED_MAPS_VERSION, rules.country)
+    }
+
     this.sessionToken = null
     this.input.addEventListener('keydown', this.handleKeyDown)
     this.input.addEventListener('blur', this.handleBlur)
@@ -210,18 +205,6 @@ class GeolocationInput extends Component {
     }
 
     this.closeSuggestions()
-  }
-
-  switchToLegacy = (error) => {
-    markLegacyFallback(getFallbackReason(error), this.props.rules.country)
-
-    if (!this.input || this.placesMode !== 'new') {
-      return
-    }
-
-    this.detachNewPlaces()
-    this.placesMode = 'legacy'
-    this.attachLegacyWidget()
   }
 
   syncAriaAttributes = () => {
@@ -269,6 +252,11 @@ class GeolocationInput extends Component {
 
   fetchSuggestions = (value) => {
     const { googleMaps, rules } = this.props
+
+    if (!isPlacesApiNewSupported(googleMaps)) {
+      return
+    }
+
     const requestId = this.requestId + 1
 
     this.requestId = requestId
@@ -286,10 +274,13 @@ class GeolocationInput extends Component {
       .catch((error) => {
         if (this.unmounted) return
 
+        // A key or project that blocks Places API (New) is a store
+        // configuration problem: report it, but keep the opted-in API.
         if (isPlacesApiNewUnavailableError(error)) {
-          this.switchToLegacy(error)
-
-          return
+          reportPlacesApiNewError(
+            getPlacesApiNewErrorReason(error),
+            rules.country
+          )
         }
 
         if (requestId === this.requestId) {

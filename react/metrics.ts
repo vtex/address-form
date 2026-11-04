@@ -90,15 +90,15 @@ export function logGeolocationAddressMismatch({
   }
 }
 
-interface LogPlacesApiFallbackData {
+interface LogPlacesApiNewErrorData {
   reason: string
   country?: string
 }
 
-export function logPlacesApiFallback({
+export function logPlacesApiNewError({
   reason,
   country,
-}: LogPlacesApiFallbackData) {
+}: LogPlacesApiNewErrorData) {
   const eventData = {
     reason,
     country: country ?? '',
@@ -111,9 +111,9 @@ export function logPlacesApiFallback({
   try {
     window.logSplunk?.({
       level: LEVELS.DEBUG,
-      type: TYPES.WARNING,
+      type: TYPES.ERROR,
       workflowType: 'address-form',
-      workflowInstance: 'places-api-fallback',
+      workflowInstance: 'places-api-new-error',
       event: eventData,
     })
   } catch (error) {

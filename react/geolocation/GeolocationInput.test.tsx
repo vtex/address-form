@@ -8,7 +8,7 @@ import type { AddressWithValidation } from '../types/address'
 import GeolocationInput, { SUGGESTIONS_DEBOUNCE_MS } from './GeolocationInput'
 import AddressContainer from '../AddressContainer'
 import AddressRules from '../AddressRules'
-import { resetPlacesMode } from './placesMode'
+import { resetPlacesApiNewErrorReport } from './placesMode'
 import {
   MockAutocompleteSessionToken,
   apiKeyServiceBlockedError,
@@ -43,7 +43,7 @@ describe('GeolocationInput', () => {
     jest.resetAllMocks()
 
     initialize()
-    resetPlacesMode()
+    resetPlacesApiNewErrorReport()
 
     placeWithoutPostalCode = {
       address_components: [
@@ -657,49 +657,8 @@ describe('GeolocationInput', () => {
       expect(lastCall.sessionToken).not.toBe(braToken)
     })
 
-    describe('fallback to the legacy widgets', () => {
-      it('switches to the legacy Autocomplete when the new API is not enabled', async () => {
-        fetchAutocompleteSuggestions.mockRejectedValue({
-          code: 'PERMISSION_DENIED',
-          message: 'Places API (New) has not been used in this project',
-        })
-
-        const { input } = await renderInput({ country: 'BRA' })
-
-        await userEvent.type(input, 'a')
-
-        await waitFor(() =>
-          expect(
-            mockInstances.get(google.maps.places.Autocomplete)
-          ).toHaveLength(1)
-        )
-
-        expect(event.addListener).toHaveBeenCalledWith(
-          mockInstances.get(google.maps.places.Autocomplete)[0],
-          'place_changed',
-          expect.any(Function)
-        )
-        expect(input).not.toHaveAttribute('role')
-        expect(window.logSplunk).toHaveBeenCalledTimes(1)
-        expect(window.logSplunk).toHaveBeenCalledWith(
-          expect.objectContaining({
-            workflowInstance: 'places-api-fallback',
-            event: expect.objectContaining({
-              reason: 'PERMISSION_DENIED',
-              country: 'BRA',
-            }),
-          })
-        )
-
-        fetchAutocompleteSuggestions.mockClear()
-        await userEvent.type(input, 'b')
-        await new Promise((resolve) =>
-          setTimeout(resolve, SUGGESTIONS_DEBOUNCE_MS + 50)
-        )
-        expect(fetchAutocompleteSuggestions).not.toHaveBeenCalled()
-      })
-
-      it('switches to the legacy Autocomplete when the key blocks the new API', async () => {
+    describe('when Places API (New) cannot serve the opted-in store', () => {
+      it('keeps the new API and reports a key that blocks it, without attaching legacy widgets', async () => {
         fetchAutocompleteSuggestions.mockRejectedValue(
           apiKeyServiceBlockedError()
         )
@@ -707,76 +666,60 @@ describe('GeolocationInput', () => {
         const { input } = await renderInput({ country: 'BRA' })
 
         await userEvent.type(input, 'a')
+        await waitFor(() => expect(window.logSplunk).toHaveBeenCalledTimes(1))
 
-        await waitFor(() =>
-          expect(
-            mockInstances.get(google.maps.places.Autocomplete)
-          ).toHaveLength(1)
-        )
         expect(window.logSplunk).toHaveBeenCalledWith(
           expect.objectContaining({
+            workflowInstance: 'places-api-new-error',
             event: expect.objectContaining({
               reason: 'API_KEY_SERVICE_BLOCKED',
+              country: 'BRA',
             }),
           })
         )
+        expect(mockInstances.get(google.maps.places.Autocomplete)).toHaveLength(
+          0
+        )
+        expect(input).toHaveAttribute('role', 'combobox')
+        expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
+
+        fetchAutocompleteSuggestions.mockClear()
+        await userEvent.type(input, 'b')
+        await waitFor(() =>
+          expect(fetchAutocompleteSuggestions).toHaveBeenCalledTimes(1)
+        )
+        expect(window.logSplunk).toHaveBeenCalledTimes(1)
       })
 
-      it('switches to the legacy SearchBox when useSearchBox is set', async () => {
+      it('does not attach the legacy SearchBox when useSearchBox is set', async () => {
         fetchAutocompleteSuggestions.mockRejectedValue({
           code: 'REQUEST_DENIED',
         })
-        // @googlemaps/jest-mocks does not provide a Geocoder.
-        ;(google.maps as any).Geocoder = class Geocoder {}
 
         const { input } = await renderInput({ useSearchBox: true })
 
         await userEvent.type(input, 'a')
+        await waitFor(() => expect(window.logSplunk).toHaveBeenCalledTimes(1))
 
-        await waitFor(() =>
-          expect(mockInstances.get(google.maps.places.SearchBox)).toHaveLength(
-            1
-          )
-        )
+        expect(mockInstances.get(google.maps.places.SearchBox)).toHaveLength(0)
       })
 
-      it('mounts later inputs directly in legacy mode', async () => {
-        fetchAutocompleteSuggestions.mockRejectedValue({
-          code: 'PERMISSION_DENIED',
-        })
-
-        const first = await renderInput()
-
-        await userEvent.type(first.input, 'a')
-        await waitFor(() => expect(window.logSplunk).toHaveBeenCalled())
-        first.unmount()
-
-        fetchAutocompleteSuggestions.mockClear()
-        mockInstances.clearAll()
-
-        const second = await renderInput()
-
-        expect(mockInstances.get(google.maps.places.Autocomplete)).toHaveLength(
-          1
-        )
-        expect(second.input).not.toHaveAttribute('role')
-        await userEvent.type(second.input, 'b')
-        await new Promise((resolve) =>
-          setTimeout(resolve, SUGGESTIONS_DEBOUNCE_MS + 50)
-        )
-        expect(fetchAutocompleteSuggestions).not.toHaveBeenCalled()
-        expect(window.logSplunk).toHaveBeenCalledTimes(1)
-      })
-
-      it('uses the legacy widget when the new API classes are missing', async () => {
+      it('reports a Maps version without the new API classes and makes no request', async () => {
         delete (google.maps.places as any).AutocompleteSuggestion
 
         const { input } = await renderInput()
 
-        expect(mockInstances.get(google.maps.places.Autocomplete)).toHaveLength(
-          1
+        await userEvent.type(input, 'praia')
+        await new Promise((resolve) =>
+          setTimeout(resolve, SUGGESTIONS_DEBOUNCE_MS + 50)
         )
-        expect(input).not.toHaveAttribute('role')
+
+        expect(mockInstances.get(google.maps.places.Autocomplete)).toHaveLength(
+          0
+        )
+        expect(input).toHaveAttribute('role', 'combobox')
+        expect(fetchAutocompleteSuggestions).not.toHaveBeenCalled()
+        expect(window.logSplunk).toHaveBeenCalledTimes(1)
         expect(window.logSplunk).toHaveBeenCalledWith(
           expect.objectContaining({
             event: expect.objectContaining({
@@ -786,7 +729,7 @@ describe('GeolocationInput', () => {
         )
       })
 
-      it('keeps the new API after a transient error', async () => {
+      it('does not report transient errors and keeps requesting', async () => {
         fetchAutocompleteSuggestions
           .mockRejectedValueOnce(new Error('Failed to fetch'))
           .mockImplementation(() =>
@@ -807,9 +750,6 @@ describe('GeolocationInput', () => {
         await screen.findAllByRole('option')
 
         expect(fetchAutocompleteSuggestions).toHaveBeenCalledTimes(2)
-        expect(mockInstances.get(google.maps.places.Autocomplete)).toHaveLength(
-          0
-        )
         expect(window.logSplunk).not.toHaveBeenCalled()
       })
     })

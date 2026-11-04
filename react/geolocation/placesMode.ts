@@ -1,6 +1,4 @@
-import { logPlacesApiFallback } from '../metrics'
-
-export type PlacesMode = 'new' | 'legacy'
+import { logPlacesApiNewError } from '../metrics'
 
 export const UNSUPPORTED_MAPS_VERSION = 'unsupported-maps-version'
 export const API_NOT_ENABLED = 'api-not-enabled'
@@ -82,25 +80,17 @@ export function isPlacesApiNewSupported(googleMaps): boolean {
   return !!(places?.AutocompleteSuggestion && places?.AutocompleteSessionToken)
 }
 
-// Once a page falls back to the legacy widgets it stays there, so every
-// GeolocationInput mounted later skips the new API.
-let legacyFallbackReason: string | null = null
+// One event per page is enough to spot a store whose key or Maps version
+// cannot serve Places API (New); every keystroke would otherwise log again.
+let placesApiNewErrorReported = false
 
-export function resolvePlacesMode(googleMaps): PlacesMode {
-  if (getPlacesApiPreference() !== 'new' || legacyFallbackReason) {
-    return 'legacy'
-  }
-
-  return isPlacesApiNewSupported(googleMaps) ? 'new' : 'legacy'
-}
-
-export function markLegacyFallback(reason: string, country?: string) {
-  if (legacyFallbackReason) {
+export function reportPlacesApiNewError(reason: string, country?: string) {
+  if (placesApiNewErrorReported) {
     return
   }
 
-  legacyFallbackReason = reason
-  logPlacesApiFallback({ reason, country })
+  placesApiNewErrorReported = true
+  logPlacesApiNewError({ reason, country })
 }
 
 export function isPlacesApiNewUnavailableError(error: unknown): boolean {
@@ -124,7 +114,7 @@ export function isPlacesApiNewUnavailableError(error: unknown): boolean {
   return UNAVAILABLE_ERROR_PATTERNS.some((pattern) => pattern.test(description))
 }
 
-export function getFallbackReason(error: unknown): string {
+export function getPlacesApiNewErrorReason(error: unknown): string {
   if (!error) {
     return API_NOT_ENABLED
   }
@@ -147,7 +137,7 @@ export function getFallbackReason(error: unknown): string {
   return API_NOT_ENABLED
 }
 
-// Test-only: clears the page-wide fallback decision.
-export function resetPlacesMode() {
-  legacyFallbackReason = null
+// Test-only: allows the next error to be reported again.
+export function resetPlacesApiNewErrorReport() {
+  placesApiNewErrorReported = false
 }
