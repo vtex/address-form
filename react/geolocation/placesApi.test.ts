@@ -1,12 +1,11 @@
 import {
-  API_NOT_ENABLED,
   getPlacesApiNewErrorReason,
   getPlacesApiPreference,
+  isPlacesApiNewConfigurationError,
   isPlacesApiNewSupported,
-  isPlacesApiNewUnavailableError,
   reportPlacesApiNewError,
   resetPlacesApiNewErrorReport,
-} from './placesMode'
+} from './placesApi'
 import {
   apiKeyServiceBlockedError,
   createRpcError,
@@ -19,7 +18,7 @@ const googleMapsWithNewApi = {
   },
 }
 
-describe('placesMode', () => {
+describe('placesApi', () => {
   beforeEach(() => {
     resetPlacesApiNewErrorReport()
     window.logSplunk = () => {}
@@ -75,61 +74,47 @@ describe('placesMode', () => {
   })
 
   it.each([
-    [{ code: 'PERMISSION_DENIED', message: 'denied' }],
-    [{ code: 'REQUEST_DENIED' }],
-    [new Error('Places API (New) has not been used in project 123')],
-    [new Error('This API key is not authorized to use this service')],
-    [{ message: 'LegacyApiNotActivatedMapError' }],
-    ['API_KEY_SERVICE_BLOCKED'],
-  ])('treats %p as the new API being unavailable', (error) => {
-    expect(isPlacesApiNewUnavailableError(error)).toBe(true)
-  })
-
-  it('treats the RpcError of a key that blocks Places API (New) as unavailable', () => {
-    expect(isPlacesApiNewUnavailableError(apiKeyServiceBlockedError())).toBe(
-      true
-    )
-  })
-
-  it('treats a numeric PERMISSION_DENIED RpcError as unavailable', () => {
-    expect(
-      isPlacesApiNewUnavailableError(
-        createRpcError(
-          7,
-          'Places API (New) has not been used in project 123 before or it is disabled.',
-          'SERVICE_DISABLED'
-        )
-      )
-    ).toBe(true)
+    ['a key that blocks Places API (New)', apiKeyServiceBlockedError()],
+    [
+      'a project where the API is disabled',
+      createRpcError(
+        7,
+        'Places API (New) has not been used in project 123 before or it is disabled.',
+        'SERVICE_DISABLED'
+      ),
+    ],
+    ['PERMISSION_DENIED without metadata', createRpcError(7, 'denied')],
+    [
+      'an invalid key',
+      createRpcError(3, 'API key not valid.', 'API_KEY_INVALID'),
+    ],
+  ])('treats %s as a configuration error', (_description, error) => {
+    expect(isPlacesApiNewConfigurationError(error)).toBe(true)
   })
 
   it.each([
-    [createRpcError(14, 'Network error')],
-    [createRpcError(8, 'Quota exceeded', 'RATE_LIMIT_EXCEEDED')],
-    [new Error('Failed to fetch')],
-    [{ code: 'OVER_QUERY_LIMIT', message: 'rate limited' }],
-    [{ code: 'UNKNOWN_ERROR' }],
-    [null],
-    [undefined],
-  ])('does not treat %p as the new API being unavailable', (error) => {
-    expect(isPlacesApiNewUnavailableError(error)).toBe(false)
+    ['a network error', createRpcError(14, 'Network error')],
+    [
+      'a quota error',
+      createRpcError(8, 'Quota exceeded', 'RATE_LIMIT_EXCEEDED'),
+    ],
+    ['a plain Error', new Error('Failed to fetch')],
+    ['null', null],
+    ['undefined', undefined],
+  ])('does not treat %s as a configuration error', (_description, error) => {
+    expect(isPlacesApiNewConfigurationError(error)).toBe(false)
   })
 
-  it('uses the error code as reason when present', () => {
-    expect(getPlacesApiNewErrorReason({ code: 'PERMISSION_DENIED' })).toBe(
-      'PERMISSION_DENIED'
-    )
-    expect(getPlacesApiNewErrorReason(new Error('not enabled'))).toBe(
-      API_NOT_ENABLED
-    )
-  })
-
-  it('uses the RpcError metadata reason as reason', () => {
+  it('reads the reason from the RpcError metadata', () => {
     expect(getPlacesApiNewErrorReason(apiKeyServiceBlockedError())).toBe(
       'API_KEY_SERVICE_BLOCKED'
     )
+  })
+
+  it('falls back to PERMISSION_DENIED or UNKNOWN when there is no metadata reason', () => {
     expect(getPlacesApiNewErrorReason(createRpcError(7, 'denied'))).toBe(
       'PERMISSION_DENIED'
     )
+    expect(getPlacesApiNewErrorReason(new Error('boom'))).toBe('UNKNOWN')
   })
 })

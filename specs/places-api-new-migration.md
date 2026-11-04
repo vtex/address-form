@@ -98,7 +98,7 @@ The legacy Places API therefore stays the **default**, which is a must for this 
 - FR-5: Render a suggestions dropdown under the existing `Input` (the `Input` prop, `DefaultInput` by default), using the existing `inputRef` mount point. Do not replace the input element.
 - FR-6: The dropdown uses class names `pac-container` (dropdown root, wrapping the `role="listbox"` list) and `pac-item` (option) so that existing selectors (omnishipping Cypress `cy.get('.pac-item')`, merchant CSS) keep working. Each option shows the prediction's main and secondary text.
 - FR-7: The store preference alone decides the API. An opted-in store never falls back to the legacy widgets at runtime, and a store that did not opt in never calls Places API (New). The only exception is React 15, where `GeolocationInput` always uses the legacy widgets because it cannot render the suggestions list next to the input.
-- FR-8: Report to Splunk, once per page, when Places API (New) cannot serve an opted-in store: `AutocompleteSuggestion` is undefined, **or** `fetchAutocompleteSuggestions` rejects with an error that indicates the API is not enabled or not authorized (numeric gRPC code `7`, or `PERMISSION_DENIED`, `REQUEST_DENIED`, `API_KEY_SERVICE_BLOCKED`, `SERVICE_DISABLED`, "has not been used", "not authorized" in the code, message or `grpc-web-status-details-bin` metadata). Other errors (network, quota) are not reported.
+- FR-8: Report to Splunk, once per page, when Places API (New) cannot serve an opted-in store: `AutocompleteSuggestion` is undefined (`unsupported-maps-version`), **or** `fetchAutocompleteSuggestions` rejects with a configuration error: an `RpcError` with numeric gRPC `code` `7` (`PERMISSION_DENIED`), or whose `grpc-web-status-details-bin` metadata carries an `ErrorInfo` reason starting with `API_KEY_` or equal to `SERVICE_DISABLED`. The event's reason is that `ErrorInfo` reason, or `PERMISSION_DENIED`. Other errors (network, quota) are not reported. Reporting never changes behavior.
 - FR-9: Debounce suggestion requests (300 ms). Ignore responses that arrive for a query that is no longer current.
 - FR-10: Preserve the `useSearchBox` semantics described in US-4.
 - FR-11: No new keys in `messages/en.json`.
@@ -235,8 +235,8 @@ sequenceDiagram
 ### Implementation Plan
 
 1. **Adapter**: `toLegacyPlaceResult` + unit tests, including a parity fixture against `geolocationAutoCompleteAddress` and the ARG CABA case.
-2. **New source**: `newPlacesSource` (`fetchSuggestions`, `fetchPlace`, `searchByText`, `isPlacesApiNewUnavailableError`) + mocks in `react/geolocation/__mocks__/` + unit tests.
-3. **Error reporting**: `isPlacesApiNewUnavailableError`, `getPlacesApiNewErrorReason`, `reportPlacesApiNewError` (once per page) + `logPlacesApiNewError` in `metrics.ts`.
+2. **New source**: `newPlacesSource` (`fetchSuggestions`, `fetchPlace`, `searchByText`) + mocks in `react/geolocation/__mocks__/` + unit tests.
+3. **Preference and error reporting** (`placesApi.ts`): `getPlacesApiPreference`, `isPlacesApiNewSupported`, `isPlacesApiNewConfigurationError`, `getPlacesApiNewErrorReason`, `reportPlacesApiNewError` (once per page) + `logPlacesApiNewError` in `metrics.ts`.
 4. **Dropdown**: `PlaceSuggestions` component with the combobox/listbox a11y pattern; RTL tests for mouse and keyboard.
 5. **GeolocationInput wiring**: debounce, session tokens, stale-response guard, `useSearchBox` semantics, legacy path kept as is, no switching between APIs; rewrite `GeolocationInput.test.tsx` with RTL covering both modes.
 6. **Docs/CHANGELOG**: `### Added` entry under `## [Unreleased]` naming the opt-in Places API (New) support and the Splunk error event.
@@ -300,12 +300,12 @@ Internal (new, under `react/geolocation/`; none exported from `index.ts`, `compo
 // placesAdapter.ts
 export function toLegacyPlaceResult(place: google.maps.places.Place): LegacyPlaceResult
 
-// placesMode.ts
+// placesApi.ts
 export type PlacesApiPreference = 'legacy' | 'new'
 export function getPlacesApiPreference(): PlacesApiPreference // window.vtex.googlePlacesApi, fails closed to 'legacy'
 export function isPlacesApiNewSupported(googleMaps: typeof google.maps): boolean
-export function isPlacesApiNewUnavailableError(error: unknown): boolean
-export function getPlacesApiNewErrorReason(error: unknown): string // ErrorInfo reason, string code or PERMISSION_DENIED
+export function isPlacesApiNewConfigurationError(error: unknown): boolean // RpcError code 7, or API_KEY_* / SERVICE_DISABLED reason
+export function getPlacesApiNewErrorReason(error: unknown): string // ErrorInfo reason, PERMISSION_DENIED or UNKNOWN
 export function reportPlacesApiNewError(reason: string, country?: string): void // logs once per page
 
 // newPlacesSource.ts

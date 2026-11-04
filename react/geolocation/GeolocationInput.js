@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
 import debounce from 'lodash/debounce'
+import uniqueId from 'lodash/uniqueId'
 
 import DefaultInput from '../inputs/DefaultInput'
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
@@ -23,17 +24,15 @@ import {
   getPlacesApiNewErrorReason,
   getPlacesApiPreference,
   isPlacesApiNewSupported,
-  isPlacesApiNewUnavailableError,
+  isPlacesApiNewConfigurationError,
   reportPlacesApiNewError,
-} from './placesMode'
+} from './placesApi'
 
 export const SUGGESTIONS_DEBOUNCE_MS = 300
 
 // Rendering the input and the suggestions list side by side needs React 16+.
 // On React 15 the component always uses the legacy widgets.
 const SUPPORTS_ARRAY_RENDER = parseInt(React.version, 10) >= 16
-
-let listboxCounter = 0
 
 class GeolocationInput extends Component {
   constructor(props) {
@@ -45,8 +44,12 @@ class GeolocationInput extends Component {
       activeIndex: -1,
     }
 
-    listboxCounter += 1
-    this.listboxId = `ship-addressQuery-suggestions-${listboxCounter}`
+    // The store preference alone decides which API runs, once per instance:
+    // legacy Places is the default and Places API (New) is opt-in. There is
+    // no runtime fallback between them.
+    this.usesPlacesApiNew =
+      SUPPORTS_ARRAY_RENDER && getPlacesApiPreference() === 'new'
+    this.listboxId = uniqueId('ship-addressQuery-suggestions-')
     this.requestId = 0
     this.selectionId = 0
     this.debouncedFetchSuggestions = debounce(
@@ -89,21 +92,13 @@ class GeolocationInput extends Component {
     }
 
     this.input = input
-    this.placesMode = this.getPlacesMode()
 
-    if (this.placesMode === 'new') {
+    if (this.usesPlacesApiNew) {
       this.attachNewPlaces()
     } else {
       this.attachLegacyWidget()
     }
   }
-
-  // The store preference alone decides which API runs: legacy Places is the
-  // default and Places API (New) is opt-in. There is no runtime fallback.
-  getPlacesMode = () =>
-    SUPPORTS_ARRAY_RENDER && getPlacesApiPreference() === 'new'
-      ? 'new'
-      : 'legacy'
 
   attachLegacyWidget = () => {
     const { useSearchBox, rules, googleMaps } = this.props
@@ -192,7 +187,7 @@ class GeolocationInput extends Component {
     this.cancelPendingSuggestions()
     this.sessionToken = null
 
-    if (this.input && this.placesMode === 'new') {
+    if (this.input && this.usesPlacesApiNew) {
       this.input.removeEventListener('keydown', this.handleKeyDown)
       this.input.removeEventListener('blur', this.handleBlur)
       ;[
@@ -208,7 +203,7 @@ class GeolocationInput extends Component {
   }
 
   syncAriaAttributes = () => {
-    if (!this.input || this.placesMode !== 'new') {
+    if (!this.input || !this.usesPlacesApiNew) {
       return
     }
 
@@ -276,7 +271,7 @@ class GeolocationInput extends Component {
 
         // A key or project that blocks Places API (New) is a store
         // configuration problem: report it, but keep the opted-in API.
-        if (isPlacesApiNewUnavailableError(error)) {
+        if (isPlacesApiNewConfigurationError(error)) {
           reportPlacesApiNewError(
             getPlacesApiNewErrorReason(error),
             rules.country
@@ -289,8 +284,7 @@ class GeolocationInput extends Component {
       })
   }
 
-  isStaleRequest = (requestId) =>
-    this.unmounted || requestId !== this.requestId || this.placesMode !== 'new'
+  isStaleRequest = (requestId) => this.unmounted || requestId !== this.requestId
 
   // Selections have their own counter so that a blur while place details load
   // does not discard the shopper's choice.
@@ -306,9 +300,7 @@ class GeolocationInput extends Component {
   }
 
   isStaleSelection = (selectionId) =>
-    this.unmounted ||
-    selectionId !== this.selectionId ||
-    this.placesMode !== 'new'
+    this.unmounted || selectionId !== this.selectionId
 
   handleSelectSuggestion = (item) => {
     const selectionId = this.startSelection()
@@ -415,7 +407,7 @@ class GeolocationInput extends Component {
   handleInputChange = (value) => {
     this.handleChangeInput(value)
 
-    if (this.placesMode !== 'new' || !this.input) {
+    if (!this.usesPlacesApiNew || !this.input) {
       return
     }
 
@@ -463,7 +455,7 @@ class GeolocationInput extends Component {
   renderSuggestions() {
     const { suggestions, activeIndex } = this.state
 
-    if (!suggestions.length || this.placesMode !== 'new' || !this.input) {
+    if (!suggestions.length || !this.input) {
       return null
     }
 
@@ -528,7 +520,7 @@ class GeolocationInput extends Component {
     )
 
     // Without the opt-in the rendered tree stays exactly the legacy one.
-    if (!SUPPORTS_ARRAY_RENDER || getPlacesApiPreference() !== 'new') {
+    if (!this.usesPlacesApiNew) {
       return input
     }
 

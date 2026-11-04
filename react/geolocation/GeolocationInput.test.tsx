@@ -8,7 +8,7 @@ import type { AddressWithValidation } from '../types/address'
 import GeolocationInput, { SUGGESTIONS_DEBOUNCE_MS } from './GeolocationInput'
 import AddressContainer from '../AddressContainer'
 import AddressRules from '../AddressRules'
-import { resetPlacesApiNewErrorReport } from './placesMode'
+import { resetPlacesApiNewErrorReport } from './placesApi'
 import {
   MockAutocompleteSessionToken,
   apiKeyServiceBlockedError,
@@ -650,9 +650,9 @@ describe('GeolocationInput', () => {
         )
       )
 
-      const lastCall = (fetchAutocompleteSuggestions as any).mock.calls.slice(
-        -1
-      )[0][0]
+      const [
+        [lastCall],
+      ] = (fetchAutocompleteSuggestions as any).mock.calls.slice(-1)
 
       expect(lastCall.sessionToken).not.toBe(braToken)
     })
@@ -692,9 +692,9 @@ describe('GeolocationInput', () => {
       })
 
       it('does not attach the legacy SearchBox when useSearchBox is set', async () => {
-        fetchAutocompleteSuggestions.mockRejectedValue({
-          code: 'REQUEST_DENIED',
-        })
+        fetchAutocompleteSuggestions.mockRejectedValue(
+          apiKeyServiceBlockedError()
+        )
 
         const { input } = await renderInput({ useSearchBox: true })
 
