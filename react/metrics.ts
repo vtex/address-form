@@ -18,6 +18,7 @@ declare global {
   interface Window {
     vtex?: {
       accountName?: string
+      googlePlacesApi?: string
       vtexid?: {
         accountName?: string
       }
@@ -82,6 +83,37 @@ export function logGeolocationAddressMismatch({
       type: TYPES.WARNING,
       workflowType: 'address-form',
       workflowInstance: 'validate-field',
+      event: eventData,
+    })
+  } catch (error) {
+    // ignore failed log
+  }
+}
+
+interface LogPlacesApiNewErrorData {
+  reason: string
+  country?: string
+}
+
+export function logPlacesApiNewError({
+  reason,
+  country,
+}: LogPlacesApiNewErrorData) {
+  const eventData = {
+    reason,
+    country: country ?? '',
+    account: getAccountName() ?? '',
+    orderFormId: window.vtexjs?.checkout?.orderFormId ?? '',
+    addressFormVersion: process.env.VTEX_APP_VERSION ?? '',
+    urlPathname: document.location.pathname,
+  }
+
+  try {
+    window.logSplunk?.({
+      level: LEVELS.DEBUG,
+      type: TYPES.ERROR,
+      workflowType: 'address-form',
+      workflowInstance: 'places-api-new-error',
       event: eventData,
     })
   } catch (error) {

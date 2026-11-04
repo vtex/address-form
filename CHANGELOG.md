@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in support for Google Places API (New) in `GeolocationInput`. The legacy Places widgets stay the default, so nothing changes (requests, look or Google billing) unless the page sets `window.vtex.googlePlacesApi = 'new'`. Any other value, including a missing `window.vtex` or the unrendered `{{ config.googlePlacesApi }}` placeholder, keeps the legacy behavior. The value is meant to come from the store's site configuration, exposed by the Checkout page next to `window.vtex.googleMapsApiKey`; that exposure is a separate change in portal v2 and vcs.checkout-ui.
+- For opted-in stores, `GeolocationInput` uses Places API (New) (`AutocompleteSuggestion`, `AutocompleteSessionToken`, `Place.fetchFields`), so Maps keys from Google Cloud projects that can no longer enable the legacy Places API (`LegacyApiNotActivatedMapError`) work again. Suggestions render in an accessible dropdown (WAI-ARIA combobox) under the existing input and keep the `.pac-container` / `.pac-item` class names, plus the Google Maps attribution (`.pac-attribution`) required for Places data shown outside a map. Place details request only the `addressComponents`, `formattedAddress` and `location` fields.
+- For opted-in stores, the preference alone decides the API: there is no automatic fallback to the legacy widgets. When the store's key or project blocks Places API (New), or the loaded Maps version lacks its classes, one event per page is sent to Splunk (`workflowInstance: 'places-api-new-error'`, via `logPlacesApiNewError` in `react/metrics.ts`) with the reason, so the configuration can be fixed.
+- No changes to the public API, country rules, `PostalCodeRules` or i18n messages; a new adapter converts Places API (New) results to the legacy `PlaceResult` shape.
+
 ## [3.44.2] - 2026-07-24
 
 ### Fixed

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { compose } from 'recompose'
+import debounce from 'lodash/debounce'
+import uniqueId from 'lodash/uniqueId'
 
 import DefaultInput from '../inputs/DefaultInput'
 import AddressShapeWithValidation from '../propTypes/AddressShapeWithValidation'
@@ -9,6 +11,28 @@ import { EGOOGLEADDRESS } from '../constants'
 import { injectRules } from '../addressRulesContext'
 import { injectAddressContext } from '../addressContainerContext'
 import { injectIntl } from '../intl/utils'
+import PlaceSuggestions, { getOptionId } from './PlaceSuggestions'
+import { toLegacyPlaceResult } from './placesAdapter'
+import {
+  createSessionToken,
+  fetchPlace,
+  fetchSuggestions,
+  searchByText,
+} from './newPlacesSource'
+import {
+  UNSUPPORTED_MAPS_VERSION,
+  getPlacesApiNewErrorReason,
+  getPlacesApiPreference,
+  isPlacesApiNewSupported,
+  isPlacesApiNewConfigurationError,
+  reportPlacesApiNewError,
+} from './placesApi'
+
+export const SUGGESTIONS_DEBOUNCE_MS = 300
+
+// Rendering the input and the suggestions list side by side needs React 16+.
+// On React 15 the component always uses the legacy widgets.
+const SUPPORTS_ARRAY_RENDER = parseInt(React.version, 10) >= 16
 
 class GeolocationInput extends Component {
   constructor(props) {
@@ -16,7 +40,22 @@ class GeolocationInput extends Component {
 
     this.state = {
       address: this.props.address,
+      suggestions: [],
+      activeIndex: -1,
     }
+
+    // The store preference alone decides which API runs, once per instance:
+    // legacy Places is the default and Places API (New) is opt-in. There is
+    // no runtime fallback between them.
+    this.usesPlacesApiNew =
+      SUPPORTS_ARRAY_RENDER && getPlacesApiPreference() === 'new'
+    this.listboxId = uniqueId('ship-addressQuery-suggestions-')
+    this.requestId = 0
+    this.selectionId = 0
+    this.debouncedFetchSuggestions = debounce(
+      this.fetchSuggestions,
+      SUGGESTIONS_DEBOUNCE_MS
+    )
 
     this.handleMountInput = this.handleMountInput.bind(this)
   }
@@ -28,13 +67,22 @@ class GeolocationInput extends Component {
     })
   }
 
-  handleMountInput = (input) => {
-    const { useSearchBox, rules, googleMaps } = this.props
+  componentDidUpdate() {
+    this.syncAriaAttributes()
+  }
 
+  componentWillUnmount() {
+    this.unmounted = true
+    this.cancelPendingSuggestions()
+  }
+
+  handleMountInput = (input) => {
     if (this.autocompleteListener) {
       this.autocompleteListener.remove()
       this.autocompleteListener = null
     }
+
+    this.detachNewPlaces()
 
     if (!input) {
       this.input = null
@@ -44,6 +92,16 @@ class GeolocationInput extends Component {
     }
 
     this.input = input
+
+    if (this.usesPlacesApiNew) {
+      this.attachNewPlaces()
+    } else {
+      this.attachLegacyWidget()
+    }
+  }
+
+  attachLegacyWidget = () => {
+    const { useSearchBox, rules, googleMaps } = this.props
 
     const options = rules.abbr
       ? {
@@ -109,6 +167,260 @@ class GeolocationInput extends Component {
     )
   }
 
+  attachNewPlaces = () => {
+    const { googleMaps, rules } = this.props
+
+    if (!isPlacesApiNewSupported(googleMaps)) {
+      reportPlacesApiNewError(UNSUPPORTED_MAPS_VERSION, rules.country)
+    }
+
+    this.sessionToken = null
+    this.input.addEventListener('keydown', this.handleKeyDown)
+    this.input.addEventListener('blur', this.handleBlur)
+    this.input.setAttribute('role', 'combobox')
+    this.input.setAttribute('aria-autocomplete', 'list')
+    this.input.setAttribute('aria-controls', this.listboxId)
+    this.syncAriaAttributes()
+  }
+
+  detachNewPlaces = () => {
+    this.cancelPendingSuggestions()
+    this.sessionToken = null
+
+    if (this.input && this.usesPlacesApiNew) {
+      this.input.removeEventListener('keydown', this.handleKeyDown)
+      this.input.removeEventListener('blur', this.handleBlur)
+      ;[
+        'role',
+        'aria-autocomplete',
+        'aria-controls',
+        'aria-expanded',
+        'aria-activedescendant',
+      ].forEach((attribute) => this.input.removeAttribute(attribute))
+    }
+
+    this.closeSuggestions()
+  }
+
+  syncAriaAttributes = () => {
+    if (!this.input || !this.usesPlacesApiNew) {
+      return
+    }
+
+    const { suggestions, activeIndex } = this.state
+
+    this.input.setAttribute('aria-expanded', String(suggestions.length > 0))
+
+    if (activeIndex >= 0 && suggestions[activeIndex]) {
+      this.input.setAttribute(
+        'aria-activedescendant',
+        getOptionId(this.listboxId, activeIndex)
+      )
+    } else {
+      this.input.removeAttribute('aria-activedescendant')
+    }
+  }
+
+  cancelPendingSuggestions = () => {
+    this.debouncedFetchSuggestions.cancel()
+    // Invalidates responses of requests that are still in flight.
+    this.requestId += 1
+  }
+
+  closeSuggestions = () => {
+    if (this.unmounted) {
+      return
+    }
+
+    if (this.state.suggestions.length || this.state.activeIndex !== -1) {
+      this.setState({ suggestions: [], activeIndex: -1 })
+    }
+  }
+
+  getSessionToken = () => {
+    if (!this.sessionToken) {
+      this.sessionToken = createSessionToken(this.props.googleMaps)
+    }
+
+    return this.sessionToken
+  }
+
+  fetchSuggestions = (value) => {
+    const { googleMaps, rules } = this.props
+
+    if (!isPlacesApiNewSupported(googleMaps)) {
+      return
+    }
+
+    const requestId = this.requestId + 1
+
+    this.requestId = requestId
+
+    fetchSuggestions(googleMaps, {
+      input: value,
+      sessionToken: this.getSessionToken(),
+      regionCode: rules.abbr,
+    })
+      .then((suggestions) => {
+        if (this.isStaleRequest(requestId)) return
+
+        this.setState({ suggestions, activeIndex: -1 })
+      })
+      .catch((error) => {
+        if (this.unmounted) return
+
+        // A key or project that blocks Places API (New) is a store
+        // configuration problem: report it, but keep the opted-in API.
+        if (isPlacesApiNewConfigurationError(error)) {
+          reportPlacesApiNewError(
+            getPlacesApiNewErrorReason(error),
+            rules.country
+          )
+        }
+
+        if (requestId === this.requestId) {
+          this.closeSuggestions()
+        }
+      })
+  }
+
+  isStaleRequest = (requestId) => this.unmounted || requestId !== this.requestId
+
+  // Selections have their own counter so that a blur while place details load
+  // does not discard the shopper's choice.
+  startSelection = () => {
+    this.cancelPendingSuggestions()
+    this.closeSuggestions()
+    // The prediction carries its session token: the next search starts a new
+    // session.
+    this.sessionToken = null
+    this.selectionId += 1
+
+    return this.selectionId
+  }
+
+  isStaleSelection = (selectionId) =>
+    this.unmounted || selectionId !== this.selectionId
+
+  handleSelectSuggestion = (item) => {
+    const selectionId = this.startSelection()
+
+    fetchPlace(item.prediction)
+      .then((place) => {
+        if (this.isStaleSelection(selectionId)) return
+
+        this.handleNewPlace(place)
+      })
+      .catch(() => {})
+  }
+
+  searchTypedText = (textQuery) => {
+    const { googleMaps, rules } = this.props
+    const selectionId = this.startSelection()
+
+    searchByText(googleMaps, { textQuery, regionCode: rules.abbr })
+      .then((place) => {
+        if (!place || this.isStaleSelection(selectionId)) return
+
+        this.handleNewPlace(place)
+      })
+      .catch(() => {})
+  }
+
+  handleNewPlace = (place) => {
+    const googleAddress = toLegacyPlaceResult(place)
+
+    if (googleAddress.geometry) {
+      this.handleAddress(googleAddress)
+    }
+  }
+
+  handleKeyDown = (event) => {
+    const { suggestions, activeIndex } = this.state
+    const count = suggestions.length
+
+    switch (event.key) {
+      case 'ArrowDown':
+        if (!count) return
+        event.preventDefault()
+        this.setState({ activeIndex: (activeIndex + 1) % count })
+        break
+
+      case 'ArrowUp':
+        if (!count) return
+        event.preventDefault()
+        this.setState({
+          activeIndex: activeIndex <= 0 ? count - 1 : activeIndex - 1,
+        })
+        break
+
+      case 'Enter':
+        this.handleEnter(event)
+        break
+
+      case 'Escape':
+        if (!count) return
+        event.preventDefault()
+        this.cancelPendingSuggestions()
+        this.closeSuggestions()
+        break
+
+      default:
+        break
+    }
+  }
+
+  handleEnter = (event) => {
+    const { suggestions, activeIndex } = this.state
+
+    if (activeIndex >= 0 && suggestions[activeIndex]) {
+      event.preventDefault()
+      this.handleSelectSuggestion(suggestions[activeIndex])
+
+      return
+    }
+
+    if (!this.props.useSearchBox) {
+      return
+    }
+
+    event.preventDefault()
+
+    if (suggestions.length) {
+      this.handleSelectSuggestion(suggestions[0])
+
+      return
+    }
+
+    const textQuery = (this.input && this.input.value) || ''
+
+    if (textQuery.trim()) {
+      this.searchTypedText(textQuery)
+    }
+  }
+
+  handleBlur = () => {
+    this.cancelPendingSuggestions()
+    this.closeSuggestions()
+  }
+
+  handleInputChange = (value) => {
+    this.handleChangeInput(value)
+
+    if (!this.usesPlacesApiNew || !this.input) {
+      return
+    }
+
+    if (!value || !value.trim()) {
+      this.cancelPendingSuggestions()
+      this.closeSuggestions()
+
+      return
+    }
+
+    this.debouncedFetchSuggestions(value)
+  }
+
   handleAddress = (googleAddress) => {
     this.handleChangeInput(googleAddress.formatted_address)
     this.handlePlaceChanged(googleAddress)
@@ -136,6 +448,37 @@ class GeolocationInput extends Component {
     }))
   }
 
+  handleHoverSuggestion = (index) => {
+    this.setState({ activeIndex: index })
+  }
+
+  renderSuggestions() {
+    const { suggestions, activeIndex } = this.state
+
+    if (!suggestions.length || !this.input) {
+      return null
+    }
+
+    return (
+      <div
+        key="suggestions"
+        style={{
+          position: 'absolute',
+          zIndex: 1000,
+          width: this.input.offsetWidth || undefined,
+        }}
+      >
+        <PlaceSuggestions
+          id={this.listboxId}
+          items={suggestions}
+          activeIndex={activeIndex}
+          onSelect={this.handleSelectSuggestion}
+          onHover={this.handleHoverSuggestion}
+        />
+      </div>
+    )
+  }
+
   render() {
     const {
       Input,
@@ -159,7 +502,7 @@ class GeolocationInput extends Component {
       },
     }
 
-    return (
+    const input = (
       <Input
         {...inputProps}
         key={rules.country}
@@ -171,10 +514,17 @@ class GeolocationInput extends Component {
         address={newAddress}
         placeholder={placeholder}
         autoFocus={autoFocus}
-        onChange={!loadingGoogle ? this.handleChangeInput : () => {}}
+        onChange={!loadingGoogle ? this.handleInputChange : () => {}}
         inputRef={!loadingGoogle ? this.handleMountInput : undefined}
       />
     )
+
+    // Without the opt-in the rendered tree stays exactly the legacy one.
+    if (!this.usesPlacesApiNew) {
+      return input
+    }
+
+    return [input, this.renderSuggestions()]
   }
 }
 
