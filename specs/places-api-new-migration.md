@@ -1,6 +1,6 @@
 # Places API (New) migration for GeolocationInput
 
-> **Status**: Approved
+> **Status**: Done
 > **Created**: 2026-11-04
 
 ## 1. Business Context
