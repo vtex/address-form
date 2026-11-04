@@ -17,7 +17,8 @@ const googleMapsWithNewApi = {
 describe('placesMode', () => {
   beforeEach(() => {
     resetPlacesMode()
-    jest.spyOn(window, 'logSplunk').mockImplementation()
+    window.logSplunk = () => {}
+    jest.spyOn(window, 'logSplunk')
   })
 
   afterEach(() => {

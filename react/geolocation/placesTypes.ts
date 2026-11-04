@@ -15,7 +15,9 @@ export interface PlacesApiNewPlace {
   addressComponents?: PlaceAddressComponent[] | null
   formattedAddress?: string | null
   location?: google.maps.LatLng | null
-  fetchFields(options: { fields: string[] }): Promise<{ place: PlacesApiNewPlace }>
+  fetchFields(options: {
+    fields: string[]
+  }): Promise<{ place: PlacesApiNewPlace }>
 }
 
 export interface PlacePrediction {
