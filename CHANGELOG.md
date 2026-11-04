@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `GeolocationInput` now uses Google Places API (New) (`AutocompleteSuggestion`, `AutocompleteSessionToken`, `Place.fetchFields`) for address suggestions, so Maps keys from Google Cloud projects that can no longer enable the legacy Places API (`LegacyApiNotActivatedMapError`) work again. Suggestions render in an accessible dropdown (WAI-ARIA combobox) under the existing input and keep the `.pac-container` / `.pac-item` class names. Place details request only the `addressComponents`, `formattedAddress` and `location` fields.
+- `GeolocationInput` now uses Google Places API (New) (`AutocompleteSuggestion`, `AutocompleteSessionToken`, `Place.fetchFields`) for address suggestions, so Maps keys from Google Cloud projects that can no longer enable the legacy Places API (`LegacyApiNotActivatedMapError`) work again. Suggestions render in an accessible dropdown (WAI-ARIA combobox) under the existing input and keep the `.pac-container` / `.pac-item` class names, plus the Google Maps attribution (`.pac-attribution`) required for Places data shown outside a map. Place details request only the `addressComponents`, `formattedAddress` and `location` fields.
 - Automatic fallback to the legacy `places.Autocomplete` / `places.SearchBox` widgets when the new API is not enabled for the key or not available in the loaded Maps version. The fallback holds for the whole page and is reported once to Splunk (`workflowInstance: 'places-api-fallback'`, via `logPlacesApiFallback` in `react/metrics.ts`).
 - No changes to the public API, country rules, `PostalCodeRules` or i18n messages; a new adapter converts Places API (New) results to the legacy `PlaceResult` shape.
 

@@ -48,7 +48,7 @@ describe('PlaceSuggestions', () => {
     const options = screen.getAllByRole('option')
 
     expect(listbox).toHaveAttribute('id', 'list')
-    expect(listbox).toHaveClass('pac-container')
+    expect(listbox.parentElement).toHaveClass('pac-container')
     expect(options).toHaveLength(2)
     expect(options[0]).toHaveClass('pac-item')
     expect(options[0]).toHaveAttribute('id', 'list-option-0')
@@ -56,6 +56,31 @@ describe('PlaceSuggestions', () => {
     expect(options[0]).toHaveTextContent('Rua ARio de Janeiro')
     expect(options[1]).toHaveClass('pac-item', 'pac-item-selected')
     expect(options[1]).toHaveAttribute('aria-selected', 'true')
+  })
+
+  it('shows the Google Maps attribution outside the listbox', () => {
+    const { container } = render(
+      <PlaceSuggestions
+        id="list"
+        items={items}
+        activeIndex={-1}
+        onSelect={jest.fn()}
+        onHover={jest.fn()}
+      />
+    )
+
+    const attribution = screen.getByText('Google Maps')
+    const listbox = screen.getByRole('listbox')
+
+    expect(attribution).toHaveClass('pac-attribution')
+    expect(attribution).toHaveAttribute('translate', 'no')
+    expect(container.querySelector('.pac-container')).toContainElement(
+      attribution
+    )
+    expect(listbox).not.toContainElement(attribution)
+    expect(container.querySelector('.pac-container')?.lastChild).toBe(
+      attribution
+    )
   })
 
   it('selects on mousedown and reports hover', () => {

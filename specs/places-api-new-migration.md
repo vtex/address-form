@@ -83,12 +83,13 @@ Merchants whose keys come from older projects still work today. Some of those ke
 - FR-3: On selection, call `placePrediction.toPlace().fetchFields({ fields: ['addressComponents', 'formattedAddress', 'location'] })` and request **only** these fields.
 - FR-4: Convert the new `Place` to the legacy `PlaceResult` shape with a pure adapter before calling `geolocationAutoCompleteAddress`, so that `geolocationAutoCompleteAddress`, `GeolocationRules` handlers and all `react/country/*.ts` files stay untouched.
 - FR-5: Render a suggestions dropdown under the existing `Input` (the `Input` prop, `DefaultInput` by default), using the existing `inputRef` mount point. Do not replace the input element.
-- FR-6: The dropdown uses class names `pac-container` (list) and `pac-item` (option) so that existing selectors (omnishipping Cypress `cy.get('.pac-item')`, merchant CSS) keep working. Each option shows the prediction's main and secondary text.
+- FR-6: The dropdown uses class names `pac-container` (dropdown root, wrapping the `role="listbox"` list) and `pac-item` (option) so that existing selectors (omnishipping Cypress `cy.get('.pac-item')`, merchant CSS) keep working. Each option shows the prediction's main and secondary text.
 - FR-7: Fall back to the legacy widgets when the new API is unavailable (FR-8). The fallback decision is cached at module level for the page lifetime.
 - FR-8: "Unavailable" means: `AutocompleteSuggestion` is undefined, **or** `fetchAutocompleteSuggestions` rejects with an error whose message or code indicates the API is not enabled or not authorized (for example `PERMISSION_DENIED`, `REQUEST_DENIED`, "API has not been used", "not authorized"). Other errors (network, rate limit) do not trigger the fallback.
 - FR-9: Debounce suggestion requests (300 ms). Ignore responses that arrive for a query that is no longer current.
 - FR-10: Preserve the `useSearchBox` semantics described in US-4.
 - FR-11: No new keys in `messages/en.json`.
+- FR-12: The dropdown shows the Google Maps attribution required by the Google Maps Platform policies for Places data displayed outside a Google map, which the legacy widget used to render itself ("powered by Google"). It uses the text form `Google Maps` (`.pac-attribution`, `translate="no"`), placed after the list and outside the `listbox` so the listbox only contains options. The brand name is not translated, so it is not an i18n message.
 
 ### Non-Functional Requirements
 

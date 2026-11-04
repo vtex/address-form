@@ -280,7 +280,10 @@ describe('GeolocationInput', () => {
 
       expect(options).toHaveLength(1)
       expect(options[0]).toHaveClass('pac-item')
-      expect(screen.getByRole('listbox')).toHaveClass('pac-container')
+      expect(screen.getByRole('listbox').parentElement).toHaveClass(
+        'pac-container'
+      )
+      expect(screen.getByText('Google Maps')).toBeInTheDocument()
       expect(fetchAutocompleteSuggestions).toHaveBeenCalledWith({
         input: 'c',
         sessionToken: expect.any(MockAutocompleteSessionToken),
