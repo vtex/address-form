@@ -95,6 +95,7 @@ Merchants whose keys come from older projects still work today. Some of those ke
 - **Compatibility**: React 15/16 peer range; no hooks in `GeolocationInput` if that would conflict with the class-based HOC chain (`injectAddressContext`, `injectRules`, `injectIntl`). New subcomponents may be function components.
 - **Dependencies**: No new npm dependencies. Keep `load-google-maps-api`.
 - **Cost**: One autocomplete session plus one Place Details (Essentials fields) per completed selection. Never request Pro/Enterprise fields.
+  - `useSearchBox` only: pressing Enter with no suggestions loaded (US-4) makes one `Place.searchByText` request (`maxResultCount: 1`, the same three fields). Text Search is billed per request under its own SKU. Session tokens do not apply to it, so it is **not** covered by the autocomplete session pricing. With `addressComponents`, `formattedAddress` and `location`, it falls in a higher Text Search tier than "IDs only"; the team that owns Maps billing must confirm the exact tier. Expected volume is low: the call happens only when a shopper submits text that produced no suggestions.
 - **Accessibility**: WAI-ARIA combobox pattern (US-3).
 - **Performance**: At most one in-flight suggestions request per input. Close the list on blur with a short delay so that clicks on options register.
 - **TypeScript**: New files in TS 3.9-compatible syntax. `GeolocationInput.js` may stay JS.
