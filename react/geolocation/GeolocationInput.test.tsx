@@ -471,6 +471,29 @@ describe('GeolocationInput', () => {
       expect(screen.getAllByRole('option')).toHaveLength(1)
     })
 
+    it('does not request suggestions while Google Maps is loading', async () => {
+      mockSuggestions([createArgentinaPrediction()])
+
+      render(
+        <AddressRules country="BRA" shouldUseIOFetching>
+          <AddressContainer address={address} onChangeAddress={jest.fn()}>
+            <GeolocationInput googleMaps={google.maps} loadingGoogle />
+          </AddressContainer>
+        </AddressRules>
+      )
+
+      const input = await screen.findByLabelText(/address/i)
+
+      await userEvent.type(input, 'praia')
+      await new Promise((resolve) =>
+        setTimeout(resolve, SUGGESTIONS_DEBOUNCE_MS + 50)
+      )
+
+      expect(fetchAutocompleteSuggestions).not.toHaveBeenCalled()
+      expect(input).not.toHaveAttribute('role')
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument()
+    })
+
     it('keeps the list closed when there are no results', async () => {
       mockSuggestions([])
 
