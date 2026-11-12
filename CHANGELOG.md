@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `isValidAddress` no longer fails the first submit because of a stale `valid: false` flag on a field that was filled after being flagged (e.g. neighborhood chosen from the postal code options); fields flagged invalid are re-validated against their current value.
+- `AddressSubmitter` now sets `showErrorMessage` on invalid fields and clears stale invalid flags, so the invalid state is displayed after a submit attempt.
+- `StyleguideInput` shows the error state (including the options dropdown) for fields that are invalid and flagged, instead of relying only on the always-true `isInputValid`.
+
 ## [4.29.3] - 2026-07-24
 
 ### Fixed

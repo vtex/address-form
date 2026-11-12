@@ -49,6 +49,25 @@ describe('Address Validation:', () => {
       expect(result.valid).toBe(false)
     })
 
+    it('should ignore a stale `valid: false` on a field that is now filled', () => {
+      const staleAddress = {
+        ...address,
+        postalCode: { value: '22231000' },
+        city: { value: 'Rio de Janeiro' },
+        street: { value: 'Praia de Botafogo' },
+        number: { value: '300' },
+        neighborhood: { value: 'Botafogo', valid: false, reason: EEMPTY },
+        receiverName: { value: 'Linus' },
+        state: { value: 'RJ' },
+      }
+
+      const result = isValidAddress(staleAddress, usePostalCode)
+
+      expect(result.valid).toBe(true)
+      expect(result.address.neighborhood.valid).toBe(true)
+      expect(result.address.neighborhood.reason).toBeUndefined()
+    })
+
     it('should not throw and return true if a field with option pairs is null and not required', () => {
       const validAddress = {
         ...address,
