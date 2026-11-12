@@ -14,14 +14,45 @@ import {
 
 export function isValidAddress(address, rules) {
   const validatedAddress = addFocusToNextInvalidField(address, rules)
-  const hasInvalidField = find(
+
+  // When no invalid field is found, addFocusToNextInvalidField returns the
+  // address as it came in, so a stale `valid: false` (e.g. a field that was
+  // empty on blur and filled later) would still make the submit fail once.
+  // Re-check the fields flagged as invalid against their current value.
+  const currentValidation = reduce(
     validatedAddress,
-    (field) => field.valid === false
+    (memo, field, name) => {
+      if (field.valid === false) {
+        memo[name] = validateField(field.value, name, validatedAddress, rules)
+      }
+
+      return memo
+    },
+    {}
   )
 
+  const hasInvalidField = find(
+    currentValidation,
+    (validation) => validation.valid === false
+  )
+
+  if (hasInvalidField) {
+    return { valid: false, address: validatedAddress }
+  }
+
   return {
-    valid: !hasInvalidField,
-    address: validatedAddress,
+    valid: true,
+    address: reduce(
+      validatedAddress,
+      (memo, field, name) => {
+        memo[name] = currentValidation[name]
+          ? { ...field, ...currentValidation[name] }
+          : field
+
+        return memo
+      },
+      {}
+    ),
   }
 }
 

@@ -12,14 +12,24 @@ class AddressSubmitter extends Component {
     const { address, rules, onSubmit, onChangeAddress } = this.props
     const { valid, address: validatedAddress } = isValidAddress(address, rules)
 
-    const invalidFields = Object.keys(validatedAddress)
-      .filter(key => validatedAddress[key].valid === false)
+    // invalid fields get showErrorMessage so inputs render the error state
+    // (red border + message) after a submit attempt; fields that were flagged
+    // invalid before but are valid now are sent back to clear the stale flag
+    const changedFields = Object.keys(validatedAddress)
+      .filter(
+        key =>
+          validatedAddress[key].valid === false ||
+          (address[key] && address[key].valid === false)
+      )
       .reduce((filteredAddress, key) => {
-        filteredAddress[key] = validatedAddress[key]
+        filteredAddress[key] =
+          validatedAddress[key].valid === false
+            ? { ...validatedAddress[key], showErrorMessage: true }
+            : validatedAddress[key]
         return filteredAddress
       }, {})
 
-    onChangeAddress(invalidFields)
+    onChangeAddress(changedFields)
     onSubmit(valid, removeValidation(validatedAddress))
   }
 

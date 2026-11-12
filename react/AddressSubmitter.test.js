@@ -46,6 +46,54 @@ describe('AddressSubmitter', () => {
     expect(onCA).toHaveBeenCalled()
   })
 
+  function submitWith(customAddress) {
+    shallow(
+      <AddressSubmitter
+        onSubmit={onSub}
+        onChangeAddress={onCA}
+        address={customAddress}
+        rules={usaRules}
+      >
+        {onSubmit => <button className="unique" onClick={onSubmit} />}
+      </AddressSubmitter>
+    )
+      .dive()
+      .dive()
+      .find('button')
+      .simulate('click')
+  }
+
+  it('should flag invalid fields with showErrorMessage on submission', () => {
+    submitWith({
+      ...address,
+      postalCode: { ...address.postalCode, value: '' },
+    })
+
+    expect(onSub).toHaveBeenCalledWith(false, expect.any(Object))
+    expect(onCA).toHaveBeenCalledWith(
+      expect.objectContaining({
+        postalCode: expect.objectContaining({
+          valid: false,
+          showErrorMessage: true,
+        }),
+      })
+    )
+  })
+
+  it('should clear a stale invalid flag from a field that is valid now', () => {
+    submitWith({
+      ...address,
+      street: { ...address.street, valid: false, reason: 'ERROR_EMPTY_FIELD' },
+    })
+
+    expect(onSub).toHaveBeenCalledWith(true, expect.any(Object))
+    expect(onCA).toHaveBeenCalledWith(
+      expect.objectContaining({
+        street: expect.objectContaining({ valid: true }),
+      })
+    )
+  })
+
   it('should correctly validate the received address', () => {
     wrapper.find('button').simulate('click')
 

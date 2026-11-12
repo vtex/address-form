@@ -100,6 +100,9 @@ class StyleguideInput extends Component {
         }),
       })
 
+    const shouldShowError =
+      this.state.showErrorMessage || !!address[field.name].showErrorMessage
+
     const inputCommonProps = {
       name: field.name,
       label: `${label}${
@@ -119,10 +122,10 @@ class StyleguideInput extends Component {
       autoFocus,
       value: address[field.name].value || '',
       disabled,
-      error: !this.state.isInputValid,
+      error: !this.state.isInputValid || (!valid && shouldShowError),
       ref: inputRef,
       errorMessage:
-        (this.state.showErrorMessage || address[field.name].showErrorMessage) &&
+        shouldShowError &&
         (address[field.name].reason || address[field.name].customErrorMessage)
           ? this.props.intl.formatMessage({
               id: `address-form.error.${address[field.name].reason}`,
